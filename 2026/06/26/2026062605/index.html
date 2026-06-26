@@ -8,16 +8,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#f7f3e9">
 
-<title>如何用 Spring Security 构建无状态权限控制系统（含角色菜单控制） | ZapcoMan&#39;s world</title>
-<meta name="description" content="本文是「EduCore 教务系统实战系列」第 3 篇，讲解我如何基于 Spring Security + JWT 搭建一套可拓展、无状态的权限控制系统，结合角色动态菜单，实现中后台常见的“前后端权限联动”。 🎯 权限控制目标在 EduCore 教务系统中，我设定了三类核心角色： 🧑‍💼 管理员（ADMIN）：系统管理 + 全模块管理权限 👨‍🏫 教...">
+<title>使用 Vue3 + Axios 与 Spring Boot 高效对接（含 token 处理） | ZapcoMan&#39;s world</title>
+<meta name="description" content="本文是「EduCore 教务系统实战系列」第 6 篇，介绍我如何在 Vue3 前端中封装 Axios，实现与 Spring Boot 后端的高效通信，重点处理好 JWT Token 传递、接口统一封装、异常处理、身份失效跳转等关键点。 🎯 通信机制设计目标前后端分离架构中，通信稳定性决定系统使用体验。在 EduCore 中，我设定了以下通信设计目标： ✅...">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何用 Spring Security 构建无状态权限控制系统（含角色菜单控制） | ZapcoMan&#39;s world">
-<meta property="og:url" content="http://example.com/2026/06/26/2026062604/">
+<meta property="og:title" content="使用 Vue3 + Axios 与 Spring Boot 高效对接（含 token 处理） | ZapcoMan&#39;s world">
+<meta property="og:url" content="http://example.com/2026/06/26/2026062605/">
 <meta property="og:site_name" content="ZapcoMan&#39;s world">
-<meta property="og:description" content="本文是「EduCore 教务系统实战系列」第 3 篇，讲解我如何基于 Spring Security + JWT 搭建一套可拓展、无状态的权限控制系统，结合角色动态菜单，实现中后台常见的“前后端权限联动”。 🎯 权限控制目标在 EduCore 教务系统中，我设定了三类核心角色： 🧑‍💼 管理员（ADMIN）：系统管理 + 全模块管理权限 👨‍🏫 教...">
+<meta property="og:description" content="本文是「EduCore 教务系统实战系列」第 6 篇，介绍我如何在 Vue3 前端中封装 Axios，实现与 Spring Boot 后端的高效通信，重点处理好 JWT Token 传递、接口统一封装、异常处理、身份失效跳转等关键点。 🎯 通信机制设计目标前后端分离架构中，通信稳定性决定系统使用体验。在 EduCore 中，我设定了以下通信设计目标： ✅...">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-06-26T08:48:42.000Z">
-<meta property="article:modified_time" content="2026-06-26T08:49:06.850Z">
+<meta property="article:published_time" content="2026-06-26T08:50:42.000Z">
+<meta property="article:modified_time" content="2026-06-26T08:50:44.739Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="Git">
 <meta property="article:tag" content="Java">
@@ -25,11 +25,11 @@
 <meta property="article:tag" content="Springboot">
 <meta property="article:tag" content="Vue3">
 <meta name="twitter:card" content="summary">
-<link rel="canonical" href="http://example.com/2026/06/26/2026062604/">
+<link rel="canonical" href="http://example.com/2026/06/26/2026062605/">
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"如何用 Spring Security 构建无状态权限控制系统（含角色菜单控制）","name":"如何用 Spring Security 构建无状态权限控制系统（含角色菜单控制） | ZapcoMan's world","description":"本文是「EduCore 教务系统实战系列」第 3 篇，讲解我如何基于 Spring Security + JWT 搭建一套可拓展、无状态的权限控制系统，结合角色动态菜单，实现中后台常见的“前后端权限联动”。 🎯 权限控制目标在 EduCore 教务系统中，我设定了三类核心角色： 🧑‍💼 管理员（ADMIN）：系统管理 + 全模块管理权限 👨‍🏫 教...","url":"http://example.com/2026/06/26/2026062604/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/06/26/2026062604/","datePublished":"2026-06-26T08:48:42.000Z","dateModified":"2026-06-26T08:49:06.850Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"Java, Springboot, Mybatis, Vue3, Git"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"使用 Vue3 + Axios 与 Spring Boot 高效对接（含 token 处理）","name":"使用 Vue3 + Axios 与 Spring Boot 高效对接（含 token 处理） | ZapcoMan's world","description":"本文是「EduCore 教务系统实战系列」第 6 篇，介绍我如何在 Vue3 前端中封装 Axios，实现与 Spring Boot 后端的高效通信，重点处理好 JWT Token 传递、接口统一封装、异常处理、身份失效跳转等关键点。 🎯 通信机制设计目标前后端分离架构中，通信稳定性决定系统使用体验。在 EduCore 中，我设定了以下通信设计目标： ✅...","url":"http://example.com/2026/06/26/2026062605/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/06/26/2026062605/","datePublished":"2026-06-26T08:50:42.000Z","dateModified":"2026-06-26T08:50:44.739Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"Java, Springboot, Mybatis, Vue3, Git"}</script>
 
 <script>
   (function () {
@@ -340,7 +340,7 @@
         </header>
         <div class="toc-content">
           
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8E%AF-%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6%E7%9B%AE%E6%A0%87"><span class="toc-text">🎯 权限控制目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%90-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%87%87%E7%94%A8-Spring-Security-JWT%EF%BC%9F"><span class="toc-text">🔐 为什么采用 Spring Security + JWT？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%B1-%E7%B3%BB%E7%BB%9F%E6%9D%83%E9%99%90%E6%9E%B6%E6%9E%84%E5%9B%BE"><span class="toc-text">🧱 系统权限架构图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9C%85-Spring-Security-%E9%85%8D%E7%BD%AE%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81"><span class="toc-text">✅ Spring Security 配置核心代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%94%A7-1-%E9%85%8D%E7%BD%AE%E7%B1%BB%EF%BC%88SecurityConfig%EF%BC%89"><span class="toc-text">🔧 1. 配置类（SecurityConfig）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%94%92-2-%E8%87%AA%E5%AE%9A%E4%B9%89-JWT-%E9%89%B4%E6%9D%83%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="toc-text">🔒 2. 自定义 JWT 鉴权过滤器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%97%82%EF%B8%8F-%E6%8E%A5%E5%8F%A3%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84%EF%BC%88%E5%90%8E%E7%AB%AF%EF%BC%89"><span class="toc-text">🗂️ 接口权限控制结构（后端）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%AD-%E5%89%8D%E7%AB%AF%E5%A6%82%E4%BD%95%E6%8E%A7%E5%88%B6%E8%8F%9C%E5%8D%95%E6%9D%83%E9%99%90%EF%BC%9F"><span class="toc-text">🧭 前端如何控制菜单权限？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="toc-text">步骤如下：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9AVue3-%E4%B8%AD%E5%8A%A8%E6%80%81%E8%8F%9C%E5%8D%95%E6%B3%A8%E5%85%A5"><span class="toc-text">示例：Vue3 中动态菜单注入</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%A0-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%A7%A3%E7%AD%94"><span class="toc-text">🧠 常见问题解答</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9D%93-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%90%8C%E6%97%B6%E5%81%9A%E5%89%8D%E5%90%8E%E7%AB%AF%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6%EF%BC%9F"><span class="toc-text">❓ 为什么要同时做前后端权限控制？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9D%93-%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8-ROLE-%E5%89%8D%E7%BC%80%EF%BC%9F"><span class="toc-text">❓ 为什么使用 ROLE_ 前缀？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9D%93-%E5%8F%AF%E5%90%A6%E5%9F%BA%E4%BA%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8A%A8%E6%80%81%E6%8E%A7%E5%88%B6%E6%9D%83%E9%99%90%EF%BC%9F"><span class="toc-text">❓ 可否基于数据库动态控制权限？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%A6-%E7%BB%93%E6%9E%84%E6%80%BB%E8%A7%88"><span class="toc-text">📦 结构总览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9C%85-%E6%95%88%E6%9E%9C%E6%BC%94%E7%A4%BA%E6%88%AA%E5%9B%BE"><span class="toc-text">✅ 效果演示截图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%9A-%E6%80%BB%E7%BB%93"><span class="toc-text">🔚 总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8C-%E4%B8%8B%E4%B8%80%E7%AF%87%E9%A2%84%E5%91%8A"><span class="toc-text">📌 下一篇预告</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%97-%E9%A1%B9%E7%9B%AE%E6%BA%90%E7%A0%81"><span class="toc-text">🔗 项目源码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%99%8B%E2%80%8D%E2%99%82%EF%B8%8F-%E5%A6%82%E6%9E%9C%E4%BD%A0%E8%A7%89%E5%BE%97%E8%BF%99%E7%AF%87%E6%96%87%E7%AB%A0%E6%9C%89%E5%B8%AE%E5%8A%A9%EF%BC%9A"><span class="toc-text">🙋‍♂️ 如果你觉得这篇文章有帮助：</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8E%AF-%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6%E8%AE%BE%E8%AE%A1%E7%9B%AE%E6%A0%87"><span class="toc-text">🎯 通信机制设计目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%9B%A0%EF%B8%8F-%E6%8A%80%E6%9C%AF%E6%A0%88%E8%AF%B4%E6%98%8E"><span class="toc-text">🛠️ 技术栈说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%A6-%E6%8E%A5%E5%8F%A3%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">📦 接口数据结构设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9C%85-Axios-%E5%B0%81%E8%A3%85%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81%EF%BC%88request-js%EF%BC%89"><span class="toc-text">✅ Axios 封装核心代码（request.js）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%A1-%E6%8E%A5%E5%8F%A3%E8%B0%83%E7%94%A8%E6%96%B9%E5%BC%8F%E6%A0%87%E5%87%86%E5%8C%96"><span class="toc-text">📡 接口调用方式标准化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A%E8%B0%83%E7%94%A8%E6%88%90%E7%BB%A9%E5%88%97%E8%A1%A8%E6%8E%A5%E5%8F%A3"><span class="toc-text">示例：调用成绩列表接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B5%E9%9D%A2%E4%B8%AD%E4%BD%BF%E7%94%A8%EF%BC%88%E6%8E%A8%E8%8D%90-async-try%EF%BC%89"><span class="toc-text">页面中使用（推荐 async + try）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%91-JWT-Token-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E%EF%BC%88%E5%89%8D%E5%90%8E%E7%AB%AF%E4%BA%A4%E4%BA%92%EF%BC%89"><span class="toc-text">🔑 JWT Token 使用说明（前后端交互）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8C-%E5%AE%9E%E7%8E%B0-401-403-%E8%87%AA%E5%8A%A8%E8%B7%B3%E8%BD%AC"><span class="toc-text">📌 实现 401&#x2F;403 自动跳转</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%B1-Spring-Boot-%E5%90%8E%E7%AB%AF%E5%A4%84%E7%90%86-JWT"><span class="toc-text">🧱 Spring Boot 后端处理 JWT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%92%A1-Tips%EF%BC%9A%E5%A4%9A%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2%E4%B8%8B%E5%A4%84%E7%90%86-baseURL"><span class="toc-text">💡 Tips：多环境部署下处理 baseURL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%A6-%E5%89%8D%E7%AB%AF%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E5%BB%BA%E8%AE%AE%EF%BC%88%E9%80%9A%E4%BF%A1%E7%9B%B8%E5%85%B3%EF%BC%89"><span class="toc-text">📦 前端目录结构建议（通信相关）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9C%85-%E5%AE%9E%E9%99%85%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C%E6%88%AA%E5%9B%BE%EF%BC%88%E5%BB%BA%E8%AE%AE%E6%8F%92%E5%9B%BE%EF%BC%89"><span class="toc-text">✅ 实际运行效果截图（建议插图）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%9A-%E6%80%BB%E7%BB%93"><span class="toc-text">🔚 总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8C-%E4%B8%8B%E4%B8%80%E7%AF%87%E9%A2%84%E5%91%8A"><span class="toc-text">📌 下一篇预告</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%97-%E9%A1%B9%E7%9B%AE%E6%BA%90%E7%A0%81%E5%9C%B0%E5%9D%80"><span class="toc-text">🔗 项目源码地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%99%8B%E2%80%8D%E2%99%82%EF%B8%8F-%E5%A6%82%E6%9E%9C%E4%BD%A0%E8%A7%89%E5%BE%97%E8%BF%99%E7%AF%87%E6%96%87%E7%AB%A0%E6%9C%89%E5%B8%AE%E5%8A%A9%EF%BC%9A"><span class="toc-text">🙋‍♂️ 如果你觉得这篇文章有帮助：</span></a></li></ol>
           
         </div>
       </section>
@@ -369,7 +369,7 @@
         Java
       </a>
     
-    <h1>如何用 Spring Security 构建无状态权限控制系统（含角色菜单控制）</h1>
+    <h1>使用 Vue3 + Axios 与 Spring Boot 高效对接（含 token 处理）</h1>
     <div class="meta-line meta-line--article">
       <span class="meta-date">
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
@@ -390,122 +390,141 @@
 
   <div class="article-content">
     <blockquote>
-<p>本文是「EduCore 教务系统实战系列」第 3 篇，讲解我如何基于 Spring Security + JWT 搭建一套可拓展、无状态的权限控制系统，结合角色动态菜单，实现中后台常见的“前后端权限联动”。</p>
+<p>本文是「EduCore 教务系统实战系列」第 6 篇，介绍我如何在 Vue3 前端中封装 Axios，实现与 Spring Boot 后端的高效通信，重点处理好 JWT Token 传递、接口统一封装、异常处理、身份失效跳转等关键点。</p>
 </blockquote>
 <hr>
-<h2 id="🎯-权限控制目标"><a href="#🎯-权限控制目标" class="headerlink" title="🎯 权限控制目标"></a>🎯 权限控制目标</h2><p>在 EduCore 教务系统中，我设定了三类核心角色：</p>
+<h2 id="🎯-通信机制设计目标"><a href="#🎯-通信机制设计目标" class="headerlink" title="🎯 通信机制设计目标"></a>🎯 通信机制设计目标</h2><p>前后端分离架构中，通信稳定性决定系统使用体验。在 EduCore 中，我设定了以下通信设计目标：</p>
 <ul>
-<li>🧑‍💼 管理员（ADMIN）：系统管理 + 全模块管理权限</li>
-<li>👨‍🏫 教师（TEACHER）：可管理课程、学生、成绩</li>
-<li>🧑‍🎓 学生（STUDENT）：仅可查看与自身有关的信息</li>
+<li>✅ 所有请求统一封装（请求&#x2F;响应拦截器）；</li>
+<li>✅ 自动附带 JWT Token；</li>
+<li>✅ 401&#x2F;403 自动跳转登录页；</li>
+<li>✅ 提供统一的消息提示 &amp; 错误处理机制；</li>
+<li>✅ 接口响应结构标准化处理；</li>
 </ul>
-<p>目标是在后端使用 Spring Security 控制接口权限，在前端根据角色渲染对应菜单与页面，实现**“接口 + 页面”双重权限控制**。</p>
 <hr>
-<h2 id="🔐-为什么采用-Spring-Security-JWT？"><a href="#🔐-为什么采用-Spring-Security-JWT？" class="headerlink" title="🔐 为什么采用 Spring Security + JWT？"></a>🔐 为什么采用 Spring Security + JWT？</h2><table>
+<h2 id="🛠️-技术栈说明"><a href="#🛠️-技术栈说明" class="headerlink" title="🛠️ 技术栈说明"></a>🛠️ 技术栈说明</h2><table>
 <thead>
 <tr>
-<th>功能需求</th>
-<th>技术方案</th>
+<th>技术项</th>
+<th>使用内容</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>无状态、Token 认证</td>
-<td>JWT</td>
+<td>前端框架</td>
+<td>Vue3（Composition API）</td>
 </tr>
 <tr>
-<td>权限路径拦截、角色判断</td>
-<td>Spring Security</td>
+<td>网络库</td>
+<td>Axios（封装为 request.js）</td>
 </tr>
 <tr>
-<td>登录角色动态控制菜单</td>
-<td>前端根据 Token 中角色生成菜单树</td>
+<td>消息提示</td>
+<td>Element Plus <code>ElMessage</code></td>
 </tr>
 <tr>
-<td>扫码等场景适配</td>
-<td>JWT 无需绑定 Session，移动端也可复用</td>
+<td>路由管理</td>
+<td>Vue Router v4</td>
+</tr>
+<tr>
+<td>状态管理</td>
+<td>Pinia</td>
+</tr>
+<tr>
+<td>后端框架</td>
+<td>Spring Boot + JWT 鉴权</td>
 </tr>
 </tbody></table>
 <hr>
-<h2 id="🧱-系统权限架构图"><a href="#🧱-系统权限架构图" class="headerlink" title="🧱 系统权限架构图"></a>🧱 系统权限架构图</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[浏览器请求] ---&gt; [JWT 鉴权过滤器] ---&gt; [Spring Security 权限校验] ---&gt; [控制器方法]</span><br><span class="line">        |                                               |</span><br><span class="line">  Token 中包含角色                            控制器标注角色权限 (@PreAuthorize)</span><br></pre></td></tr></table></figure>
+<h2 id="📦-接口数据结构设计"><a href="#📦-接口数据结构设计" class="headerlink" title="📦 接口数据结构设计"></a>📦 接口数据结构设计</h2><p>后端所有接口返回结构统一如下（Java 封装为 <code>R.ok()</code> &#x2F; <code>R.error()</code>）：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span> <span class="number">200</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;成功&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="comment">// 任意返回内容</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>错误时：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span> <span class="number">401</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;未登录或已过期&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
 
 <hr>
-<h2 id="✅-Spring-Security-配置核心代码"><a href="#✅-Spring-Security-配置核心代码" class="headerlink" title="✅ Spring Security 配置核心代码"></a>✅ Spring Security 配置核心代码</h2><h3 id="🔧-1-配置类（SecurityConfig）"><a href="#🔧-1-配置类（SecurityConfig）" class="headerlink" title="🔧 1. 配置类（SecurityConfig）"></a>🔧 1. 配置类（SecurityConfig）</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableWebSecurity</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SecurityConfig</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span> <span class="keyword">private</span> JwtAuthenticationFilter jwtAuthenticationFilter;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> SecurityFilterChain <span class="title function_">securityFilterChain</span><span class="params">(HttpSecurity http)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="keyword">return</span> http</span><br><span class="line">            .csrf().disable()</span><br><span class="line">            .cors()</span><br><span class="line">            .and()</span><br><span class="line">            .authorizeHttpRequests(auth -&gt; auth</span><br><span class="line">                .requestMatchers(<span class="string">&quot;/login&quot;</span>, <span class="string">&quot;/register&quot;</span>, <span class="string">&quot;/qr/**&quot;</span>).permitAll()</span><br><span class="line">                .requestMatchers(<span class="string">&quot;/admin/**&quot;</span>).hasRole(<span class="string">&quot;ADMIN&quot;</span>)</span><br><span class="line">                .requestMatchers(<span class="string">&quot;/teacher/**&quot;</span>).hasRole(<span class="string">&quot;TEACHER&quot;</span>)</span><br><span class="line">                .requestMatchers(<span class="string">&quot;/student/**&quot;</span>).hasRole(<span class="string">&quot;STUDENT&quot;</span>)</span><br><span class="line">                .anyRequest().authenticated()</span><br><span class="line">            )</span><br><span class="line">            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)</span><br><span class="line">            .and()</span><br><span class="line">            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)</span><br><span class="line">            .build();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="✅-Axios-封装核心代码（request-js）"><a href="#✅-Axios-封装核心代码（request-js）" class="headerlink" title="✅ Axios 封装核心代码（request.js）"></a>✅ Axios 封装核心代码（request.js）</h2><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">ElMessage</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;element-plus&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">&#x27;@/router&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> service = axios.<span class="title function_">create</span>(&#123;</span><br><span class="line">  <span class="attr">baseURL</span>: <span class="string">&#x27;/api&#x27;</span>,</span><br><span class="line">  <span class="attr">timeout</span>: <span class="number">5000</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 请求拦截器：附带 token</span></span><br><span class="line">service.<span class="property">interceptors</span>.<span class="property">request</span>.<span class="title function_">use</span>(</span><br><span class="line">  <span class="function"><span class="params">config</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> token = <span class="variable language_">localStorage</span>.<span class="title function_">getItem</span>(<span class="string">&#x27;token&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span> (token) config.<span class="property">headers</span>.<span class="property">Authorization</span> = <span class="string">`Bearer <span class="subst">$&#123;token&#125;</span>`</span>;</span><br><span class="line">    <span class="keyword">return</span> config;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="params">error</span> =&gt;</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(error)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 响应拦截器：统一处理响应</span></span><br><span class="line">service.<span class="property">interceptors</span>.<span class="property">response</span>.<span class="title function_">use</span>(</span><br><span class="line">  <span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (res.<span class="property">data</span>.<span class="property">code</span> !== <span class="number">200</span>) &#123;</span><br><span class="line">      <span class="title class_">ElMessage</span>.<span class="title function_">error</span>(res.<span class="property">data</span>.<span class="property">msg</span> || <span class="string">&#x27;请求失败&#x27;</span>);</span><br><span class="line">      <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(res.<span class="property">data</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res.<span class="property">data</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (err.<span class="property">response</span>?.<span class="property">status</span> === <span class="number">401</span>) &#123;</span><br><span class="line">      <span class="title class_">ElMessage</span>.<span class="title function_">warning</span>(<span class="string">&#x27;登录已过期，请重新登录&#x27;</span>);</span><br><span class="line">      <span class="variable language_">localStorage</span>.<span class="title function_">removeItem</span>(<span class="string">&#x27;token&#x27;</span>);</span><br><span class="line">      router.<span class="title function_">push</span>(<span class="string">&#x27;/login&#x27;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="title class_">ElMessage</span>.<span class="title function_">error</span>(<span class="string">&#x27;网络异常或服务器错误&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(err);</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> service;</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h3 id="🔒-2-自定义-JWT-鉴权过滤器"><a href="#🔒-2-自定义-JWT-鉴权过滤器" class="headerlink" title="🔒 2. 自定义 JWT 鉴权过滤器"></a>🔒 2. 自定义 JWT 鉴权过滤器</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JwtAuthenticationFilter</span> <span class="keyword">extends</span> <span class="title class_">OncePerRequestFilter</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span> <span class="keyword">private</span> JwtUtils jwtUtils;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doFilterInternal</span><span class="params">(HttpServletRequest request, HttpServletResponse response, FilterChain chain)</span></span><br><span class="line">        <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">String</span> <span class="variable">token</span> <span class="operator">=</span> request.getHeader(<span class="string">&quot;Authorization&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (token != <span class="literal">null</span> &amp;&amp; token.startsWith(<span class="string">&quot;Bearer &quot;</span>)) &#123;</span><br><span class="line">            token = token.replace(<span class="string">&quot;Bearer &quot;</span>, <span class="string">&quot;&quot;</span>);</span><br><span class="line">            <span class="type">Claims</span> <span class="variable">claims</span> <span class="operator">=</span> jwtUtils.parseToken(token);</span><br><span class="line">            <span class="type">String</span> <span class="variable">userId</span> <span class="operator">=</span> claims.getSubject();</span><br><span class="line">            <span class="type">String</span> <span class="variable">role</span> <span class="operator">=</span> (String) claims.get(<span class="string">&quot;role&quot;</span>);</span><br><span class="line"></span><br><span class="line">            List&lt;GrantedAuthority&gt; authorities = AuthorityUtils.createAuthorityList(<span class="string">&quot;ROLE_&quot;</span> + role);</span><br><span class="line">            <span class="type">UsernamePasswordAuthenticationToken</span> <span class="variable">authToken</span> <span class="operator">=</span></span><br><span class="line">                <span class="keyword">new</span> <span class="title class_">UsernamePasswordAuthenticationToken</span>(userId, <span class="literal">null</span>, authorities);</span><br><span class="line">            SecurityContextHolder.getContext().setAuthentication(authToken);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        chain.doFilter(request, response);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="📡-接口调用方式标准化"><a href="#📡-接口调用方式标准化" class="headerlink" title="📡 接口调用方式标准化"></a>📡 接口调用方式标准化</h2><h3 id="示例：调用成绩列表接口"><a href="#示例：调用成绩列表接口" class="headerlink" title="示例：调用成绩列表接口"></a>示例：调用成绩列表接口</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> request <span class="keyword">from</span> <span class="string">&#x27;@/utils/request&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">getScoreList</span>(<span class="params">params</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> request.<span class="title function_">get</span>(<span class="string">&#x27;/score/list&#x27;</span>, &#123; params &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="页面中使用（推荐-async-try）"><a href="#页面中使用（推荐-async-try）" class="headerlink" title="页面中使用（推荐 async + try）"></a>页面中使用（推荐 async + try）</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">fetchData</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> res = <span class="keyword">await</span> <span class="title function_">getScoreList</span>();</span><br><span class="line">    scoreList.<span class="property">value</span> = res.<span class="property">data</span>;</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="comment">// 已全局处理，无需额外操作</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h2 id="🗂️-接口权限控制结构（后端）"><a href="#🗂️-接口权限控制结构（后端）" class="headerlink" title="🗂️ 接口权限控制结构（后端）"></a>🗂️ 接口权限控制结构（后端）</h2><table>
+<h2 id="🔑-JWT-Token-使用说明（前后端交互）"><a href="#🔑-JWT-Token-使用说明（前后端交互）" class="headerlink" title="🔑 JWT Token 使用说明（前后端交互）"></a>🔑 JWT Token 使用说明（前后端交互）</h2><table>
 <thead>
 <tr>
-<th>接口路径前缀</th>
-<th>允许角色</th>
+<th>场景</th>
+<th>前端操作</th>
+<th>后端处理</th>
 </tr>
 </thead>
 <tbody><tr>
-<td><code>/admin/**</code></td>
-<td>ADMIN</td>
+<td>登录成功</td>
+<td>将 token 存入 localStorage</td>
+<td>生成带角色的 JWT</td>
 </tr>
 <tr>
-<td><code>/teacher/**</code></td>
-<td>TEACHER</td>
+<td>请求接口</td>
+<td>Axios 自动携带 Authorization</td>
+<td><code>JwtFilter</code> 解析 Token 获取用户身份</td>
 </tr>
 <tr>
-<td><code>/student/**</code></td>
-<td>STUDENT</td>
+<td>Token 失效</td>
+<td>401 响应，跳转登录页</td>
+<td>返回 <code>code=401</code> 状态</td>
 </tr>
 </tbody></table>
-<p>也可使用注解方式控制方法级权限：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PreAuthorize(&quot;hasRole(&#x27;ADMIN&#x27;)&quot;)</span></span><br><span class="line"><span class="meta">@GetMapping(&quot;/admin/account/list&quot;)</span></span><br><span class="line"><span class="keyword">public</span> R <span class="title function_">listAllUsers</span><span class="params">()</span> &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="📌-实现-401-403-自动跳转"><a href="#📌-实现-401-403-自动跳转" class="headerlink" title="📌 实现 401&#x2F;403 自动跳转"></a>📌 实现 401&#x2F;403 自动跳转</h2><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (err.<span class="property">response</span>?.<span class="property">status</span> === <span class="number">401</span>) &#123;</span><br><span class="line">  <span class="title class_">ElMessage</span>.<span class="title function_">warning</span>(<span class="string">&#x27;登录已过期，请重新登录&#x27;</span>);</span><br><span class="line">  <span class="variable language_">localStorage</span>.<span class="title function_">removeItem</span>(<span class="string">&#x27;token&#x27;</span>);</span><br><span class="line">  router.<span class="title function_">push</span>(<span class="string">&#x27;/login&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h2 id="🧭-前端如何控制菜单权限？"><a href="#🧭-前端如何控制菜单权限？" class="headerlink" title="🧭 前端如何控制菜单权限？"></a>🧭 前端如何控制菜单权限？</h2><blockquote>
-<p>基于后端登录返回的角色信息，前端动态渲染路由与菜单。</p>
-</blockquote>
-<h3 id="步骤如下："><a href="#步骤如下：" class="headerlink" title="步骤如下："></a>步骤如下：</h3><ol>
-<li>后端登录接口返回用户的 <code>role</code></li>
-<li>Vue3 中使用 Pinia 存储当前用户角色</li>
-<li>定义菜单数据结构（不同角色不同菜单）</li>
-<li>登录后根据角色注入对应路由表</li>
-</ol>
-<h3 id="示例：Vue3-中动态菜单注入"><a href="#示例：Vue3-中动态菜单注入" class="headerlink" title="示例：Vue3 中动态菜单注入"></a>示例：Vue3 中动态菜单注入</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> role = <span class="variable language_">localStorage</span>.<span class="title function_">getItem</span>(<span class="string">&quot;role&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> routesMap = &#123;</span><br><span class="line">  <span class="attr">ADMIN</span>: [...adminRoutes],</span><br><span class="line">  <span class="attr">TEACHER</span>: [...teacherRoutes],</span><br><span class="line">  <span class="attr">STUDENT</span>: [...studentRoutes]</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> router = <span class="title function_">useRouter</span>();</span><br><span class="line">routesMap[role].<span class="title function_">forEach</span>(<span class="function"><span class="params">r</span> =&gt;</span> router.<span class="title function_">addRoute</span>(<span class="string">&quot;ManagerLayout&quot;</span>, r));</span><br></pre></td></tr></table></figure>
-
-<p>这样用户登录后才会注入该角色的页面路由，实现<strong>前端页面级权限隔离</strong>。</p>
-<hr>
-<h2 id="🧠-常见问题解答"><a href="#🧠-常见问题解答" class="headerlink" title="🧠 常见问题解答"></a>🧠 常见问题解答</h2><h3 id="❓-为什么要同时做前后端权限控制？"><a href="#❓-为什么要同时做前后端权限控制？" class="headerlink" title="❓ 为什么要同时做前后端权限控制？"></a>❓ 为什么要同时做前后端权限控制？</h3><ul>
-<li>后端控制接口权限是安全基线（避免恶意伪造请求）</li>
-<li>前端控制菜单页面是用户体验保障（防止“跳转404”）</li>
-</ul>
-<h3 id="❓-为什么使用-ROLE-前缀？"><a href="#❓-为什么使用-ROLE-前缀？" class="headerlink" title="❓ 为什么使用 ROLE_ 前缀？"></a>❓ 为什么使用 <code>ROLE_</code> 前缀？</h3><p>Spring Security 默认角色名称需要以 <code>ROLE_</code> 开头，匹配时会自动加上。</p>
-<h3 id="❓-可否基于数据库动态控制权限？"><a href="#❓-可否基于数据库动态控制权限？" class="headerlink" title="❓ 可否基于数据库动态控制权限？"></a>❓ 可否基于数据库动态控制权限？</h3><p>目前项目以硬编码为主，但完全可以扩展为数据库角色-菜单表形式，加载用户角色菜单进行动态渲染。</p>
-<hr>
-<h2 id="📦-结构总览"><a href="#📦-结构总览" class="headerlink" title="📦 结构总览"></a>📦 结构总览</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">├── config</span><br><span class="line">│   └── SecurityConfig.java</span><br><span class="line">├── filter</span><br><span class="line">│   └── JwtAuthenticationFilter.java</span><br><span class="line">├── utils</span><br><span class="line">│   └── JwtUtils.java</span><br><span class="line">├── controller</span><br><span class="line">│   ├── AdminController.java</span><br><span class="line">│   ├── TeacherController.java</span><br><span class="line">│   └── StudentController.java</span><br><span class="line">└── vue-pages</span><br><span class="line">    └── menuConfig.js // 各角色菜单配置</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="✅-效果演示截图"><a href="#✅-效果演示截图" class="headerlink" title="✅ 效果演示截图"></a>✅ 效果演示截图</h2><p>（建议贴登录后各角色菜单界面截图）</p>
-<hr>
-<h2 id="🔚-总结"><a href="#🔚-总结" class="headerlink" title="🔚 总结"></a>🔚 总结</h2><p>通过 Spring Security + JWT 的配合，我构建了一套适配三角色、无状态、可拓展的权限控制系统：</p>
+<h2 id="🧱-Spring-Boot-后端处理-JWT"><a href="#🧱-Spring-Boot-后端处理-JWT" class="headerlink" title="🧱 Spring Boot 后端处理 JWT"></a>🧱 Spring Boot 后端处理 JWT</h2><p>详见上一篇：</p>
 <ul>
-<li>✅ 后端权限基于角色配置路径 + 方法注解</li>
-<li>✅ 前端权限通过动态菜单与路由控制</li>
-<li>✅ Token 中包含角色信息，可实现完整身份传递</li>
-<li>✅ 无状态架构为扫码登录、多端适配打下基础</li>
+<li>自定义 <code>JwtAuthenticationFilter</code> 提取 Token</li>
+<li>从 Token 中获取 <code>userId</code> 和 <code>role</code></li>
+<li>设置 <code>SecurityContextHolder</code> 用户上下文</li>
+<li>无需 Session，完全无状态认证</li>
 </ul>
-<p>这部分是整个 EduCore 系统的安全核心，未来也可以扩展为 RBAC 权限模型或接入权限中心。</p>
 <hr>
-<h2 id="📌-下一篇预告"><a href="#📌-下一篇预告" class="headerlink" title="📌 下一篇预告"></a>📌 下一篇预告</h2><p>📌《项目中如何用策略模式实现多角色登录解耦？（附实战代码）》</p>
-<p>敬请期待！</p>
+<h2 id="💡-Tips：多环境部署下处理-baseURL"><a href="#💡-Tips：多环境部署下处理-baseURL" class="headerlink" title="💡 Tips：多环境部署下处理 baseURL"></a>💡 Tips：多环境部署下处理 baseURL</h2><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> service = axios.<span class="title function_">create</span>(&#123;</span><br><span class="line">  <span class="attr">baseURL</span>: <span class="keyword">import</span>.<span class="property">meta</span>.<span class="property">env</span>.<span class="property">VITE_BASE_API</span>, <span class="comment">// 通过 .env 配置</span></span><br><span class="line">  <span class="attr">timeout</span>: <span class="number">5000</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><code>.env.development</code> 示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">VITE_BASE_API = /api</span><br></pre></td></tr></table></figure>
+
+<p>部署时只需切换环境文件即可，无需改代码。</p>
 <hr>
-<h2 id="🔗-项目源码"><a href="#🔗-项目源码" class="headerlink" title="🔗 项目源码"></a>🔗 项目源码</h2><ul>
+<h2 id="📦-前端目录结构建议（通信相关）"><a href="#📦-前端目录结构建议（通信相关）" class="headerlink" title="📦 前端目录结构建议（通信相关）"></a>📦 前端目录结构建议（通信相关）</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">├── utils</span><br><span class="line">│   └── request.js         // Axios 封装</span><br><span class="line">├── api</span><br><span class="line">│   ├── user.js            // 用户模块接口</span><br><span class="line">│   ├── score.js           // 成绩模块接口</span><br><span class="line">│   └── ...                // 其他模块接口</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="✅-实际运行效果截图（建议插图）"><a href="#✅-实际运行效果截图（建议插图）" class="headerlink" title="✅ 实际运行效果截图（建议插图）"></a>✅ 实际运行效果截图（建议插图）</h2><ul>
+<li>登录后请求正常接口，自动附带 Token；</li>
+<li>Token 失效自动跳转登录页；</li>
+<li>所有错误统一提示，开发体验与用户体验一致提升。</li>
+</ul>
+<hr>
+<h2 id="🔚-总结"><a href="#🔚-总结" class="headerlink" title="🔚 总结"></a>🔚 总结</h2><p>通过封装 Axios 与统一响应处理，我实现了：</p>
+<ul>
+<li>✅ 稳定的前后端通信机制；</li>
+<li>✅ 请求附带 Token，响应全局处理；</li>
+<li>✅ 401&#x2F;403 自动登录跳转；</li>
+<li>✅ 所有模块接口统一、调用规范清晰；</li>
+<li>✅ 可快速复用于任何中后台项目；</li>
+</ul>
+<p>这种通信机制既可适配小型项目，也具备向中大型系统扩展的基础能力。</p>
+<p>—使用 Vue3 + Axios 与 Spring Boot 高效对接（含 token 处理）</p>
+<h2 id="📌-下一篇预告"><a href="#📌-下一篇预告" class="headerlink" title="📌 下一篇预告"></a>📌 下一篇预告</h2><p>📌《教务系统如何分层？Controller &#x2F; Service &#x2F; Mapper 三层详解》</p>
+<p>你将看到 EduCore 系统如何组织后端架构、三层职责划分、接口设计、Service 拆分策略等。</p>
+<hr>
+<h2 id="🔗-项目源码地址"><a href="#🔗-项目源码地址" class="headerlink" title="🔗 项目源码地址"></a>🔗 项目源码地址</h2><ul>
 <li>GitHub：<a target="_blank" rel="noopener" href="https://gitee.com/codevibe/grade-system">https://gitee.com/codevibe/grade-system</a></li>
-<li>后端完整权限配置 + 策略代码已上传，欢迎 Star、Fork</li>
+<li>Axios 封装、前后端对接代码已上传，支持一键部署体验</li>
 </ul>
 <hr>
 <h2 id="🙋‍♂️-如果你觉得这篇文章有帮助："><a href="#🙋‍♂️-如果你觉得这篇文章有帮助：" class="headerlink" title="🙋‍♂️ 如果你觉得这篇文章有帮助："></a>🙋‍♂️ 如果你觉得这篇文章有帮助：</h2><ul>
-<li>点个赞 👍</li>
+<li>点赞 👍</li>
 <li>收藏 ⭐</li>
 <li>评论 💬</li>
-<li>关注我 👇 获取后续实战文章更新</li>
+<li>关注我 👇 获取后续实战内容</li>
 </ul>
 
   </div>
@@ -536,18 +555,18 @@
 
   <nav class="article-actions">
     
-      <a class="article-action article-action--prev" href="/2026/06/26/2026062606/">
+      <span class="article-action article-action--prev is-disabled" aria-disabled="true">
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
 
         <span class="action-label">上一篇</span>
-        <span class="action-title">使用 Vue3 + Axios 与 Spring Boot 高效对接（含 token 处理）</span>
-      </a>
+        <span class="action-title">没有更早的文章了</span>
+      </span>
     
     
-      <a class="article-action article-action--next" href="/2026/06/26/2026062603/">
+      <a class="article-action article-action--next" href="/2026/06/26/2026062606/">
         <span class="action-label">下一篇</span>
-        <span class="action-title">从 0 到 1，我如何独立开发一套教务系统（EduCore）</span>
+        <span class="action-title">使用 Vue3 + Axios 与 Spring Boot 高效对接（含 token 处理）</span>
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
 
@@ -578,7 +597,7 @@
     </header>
     <div class="related-paper__grid">
       
-        <a class="related-card" href="/2026/06/26/2026062605/">
+        <a class="related-card" href="/2026/06/26/2026062606/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
@@ -594,7 +613,7 @@
           </span>
         </a>
       
-        <a class="related-card" href="/2026/06/26/2026062606/">
+        <a class="related-card" href="/2026/06/26/2026062604/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-1 paper-thumb--cover">
@@ -605,7 +624,7 @@
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">使用 Vue3 + Axios 与 Spring Boot 高效对接（含 token 处理）</strong>
+            <strong class="related-card__title">如何用 Spring Security 构建无状态权限控制系统（含角色菜单控制）</strong>
             <em class="related-card__date">2026-06-26</em>
           </span>
         </a>
