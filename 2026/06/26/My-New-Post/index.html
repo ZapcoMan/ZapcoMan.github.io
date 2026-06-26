@@ -2,11 +2,11 @@
 <html>
 <head>
   <meta charset="utf-8">
-  
-  
   <title>旧手机别扔！三台安卓手机搭建本地大模型实战指南 | Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="旧手机别扔！三台安卓手机搭建本地大模型实战指南 从 4GB 老爷机到 12GB 千元机，手把手教你在手机上跑 Ollama，搭建私有 AI 服务器   写在前面很多人以为跑大模型必须买显卡、配服务器。但其实，你抽屉里吃灰的旧手机就能跑。 我手头有三台安卓设备，配置从弱到强：华为畅享 9 Plus（4GB）、OnePlus 3（6GB）、vivo Y300i（12GB）。经过一周折腾，全部成功部署">
+  <meta name="keywords" content=" AI ">
+  <meta name="description" content="旧手机别扔！三台安卓手机搭建本地大模型实战指南 | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="旧手机别扔！三台安卓手机搭建本地大模型实战指南 从 4GB 老爷机到 12GB 千元机，手把手教你在手机上跑 Ollama，搭建私有 AI 服务器   写在前面很多人以为跑大模型必须买显卡、配服务器。但其实，你抽屉里吃灰的旧手机就能跑。 我手头有三台安卓设备，配置从弱到强：华为畅享 9 Plus（4GB）、OnePlus 3（6GB）、vivo Y300i（12GB）。经过一周折腾，全部成功部署">
 <meta property="og:type" content="article">
 <meta property="og:title" content="旧手机别扔！三台安卓手机搭建本地大模型实战指南">
 <meta property="og:url" content="http://example.com/2026/06/26/My-New-Post/index.html">
@@ -18,83 +18,406 @@
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="AI">
 <meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-  
-<link rel="stylesheet" href="/css/style.css">
 
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
 
-  
-  
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
 
 <meta name="generator" content="Hexo 8.1.2"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
 
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-        
-          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
-        
-        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-
-      <div class="outer">
-        <section id="main"><article id="post-My-New-Post" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2026/06/26/My-New-Post/" class="article-date">
-  <time class="dt-published" datetime="2026-06-26T05:08:27.000Z" itemprop="datePublished">2026-06-26</time>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
 </a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="p-name article-title" itemprop="headline name">
-      旧手机别扔！三台安卓手机搭建本地大模型实战指南
-    </h1>
-  
+<div class="author">
+    <span>John Doe</span>
+</div>
 
-      </header>
+<div class="icon">
     
-    <div class="e-content article-entry" itemprop="articleBody">
+        
+            <a title="rss"
+               href="/atom.xml"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-rss"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="github"
+               href="https://github.com/yelog"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="facebook"
+               href="https://www.facebook.com/faker.tops"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-facebook"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+            <a title="instagram"
+               href="https://www.facebook.com/faker.tops"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-instagram"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="reddit"
+               href="https://www.reddit.com/user/yelog/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-reddit"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="weibo"
+               href="http://weibo.com/u/2307534817"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-weibo"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="jianshu"
+               href="https://www.jianshu.com/u/ff56736de7cf"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-jianshu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/jaytp/activities"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+            <a title="oschina"
+               href="https://my.oschina.net/yelog"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-oschina"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+            <a title="email"
+               href="mailto:jaytp@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=872336115&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="kugou"
+               href="https://www.kugou.com/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-kugou"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="neteasemusic"
+               href="https://music.163.com/#/user/home?id=88151013"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-neteasemusic"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(2)</small>
+            
+        </div>
+    </li>
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="2">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="search shortcut key i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="switch to outline view shortcut key w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="return"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="case sensitive"></i>
+            <i class="iconfont icon-tag" data-title="label"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">outline</div>
+            <i class="iconfont icon-list" data-title="switch to article list"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AI</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All "
+           href="/2026/06/26/My-New-Post/"
+           data-tag="AI"
+           data-author="" >
+            <span class="post-title" title="旧手机别扔！三台安卓手机搭建本地大模型实战指南">旧手机别扔！三台安卓手机搭建本地大模型实战指南</span>
+            <span class="post-date" title="2026-06-26 13:08:27">2026/06/26</span>
+        </a>
+        
+        
+        <a  class="All "
+           href="/2026/06/26/hello-world/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2026-06-26 12:54:43">2026/06/26</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="Toggle full screen shortcut key s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-My-New-Post" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">旧手机别扔！三台安卓手机搭建本地大模型实战指南</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color3">AI</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2026-06-26 13:09:31'>2026-06-26 13:08</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%97%A7%E6%89%8B%E6%9C%BA%E5%88%AB%E6%89%94%EF%BC%81%E4%B8%89%E5%8F%B0%E5%AE%89%E5%8D%93%E6%89%8B%E6%9C%BA%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AE%9E%E6%88%98%E6%8C%87%E5%8D%97"><span class="toc-text">旧手机别扔！三台安卓手机搭建本地大模型实战指南</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="toc-text">写在前面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%A1%AC%E4%BB%B6%E6%B8%85%E5%8D%95%EF%BC%9A%E4%B8%89%E5%8F%B0%E8%AE%BE%E5%A4%87%E6%A6%82%E5%86%B5"><span class="toc-text">一、硬件清单：三台设备概况</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="toc-text">二、环境准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%AE%89%E8%A3%85-Termux%EF%BC%88%E6%99%AE%E9%80%9A%E5%AE%89%E5%8D%93%EF%BC%89"><span class="toc-text">2.1 安装 Termux（普通安卓）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-Kali-NetHunter%EF%BC%88OnePlus-3-%E4%B8%93%E5%B1%9E%EF%BC%89"><span class="toc-text">2.2 Kali NetHunter（OnePlus 3 专属）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E5%AE%89%E8%A3%85-Ollama"><span class="toc-text">2.3 安装 Ollama</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%A8%A1%E5%9E%8B%E9%80%89%E5%9E%8B%E4%B8%8E-L-%E7%AD%89%E7%BA%A7"><span class="toc-text">三、模型选型与 L 等级</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E4%BB%80%E4%B9%88%E6%98%AF-L-%E7%AD%89%E7%BA%A7"><span class="toc-text">3.1 什么是 L 等级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-vivo-Y300i%EF%BC%8812GB%EF%BC%89%E5%8F%AF%E7%94%A8%E6%A8%A1%E5%9E%8B"><span class="toc-text">3.2 vivo Y300i（12GB）可用模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-OnePlus-3-Kali%EF%BC%886GB%EF%BC%89%E5%8F%AF%E7%94%A8%E6%A8%A1%E5%9E%8B"><span class="toc-text">3.3 OnePlus 3 Kali（6GB）可用模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E5%8D%8E%E4%B8%BA%E7%95%85%E4%BA%AB-9-Plus%EF%BC%884GB%EF%BC%89%E5%8F%AF%E7%94%A8%E6%A8%A1%E5%9E%8B"><span class="toc-text">3.4 华为畅享 9 Plus（4GB）可用模型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%90%AF%E5%8A%A8%E4%B8%8E%E8%81%94%E7%BD%91"><span class="toc-text">四、启动与联网</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E6%9A%B4%E9%9C%B2%E5%88%B0%E5%B1%80%E5%9F%9F%E7%BD%91"><span class="toc-text">4.1 暴露到局域网</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E8%8E%B7%E5%8F%96%E6%89%8B%E6%9C%BA-IP"><span class="toc-text">4.2 获取手机 IP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E4%BB%8E%E7%94%B5%E8%84%91%E8%BF%9E%E6%8E%A5"><span class="toc-text">4.3 从电脑连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-SSH-%E8%BF%9C%E7%A8%8B%E7%AE%A1%E7%90%86"><span class="toc-text">4.4 SSH 远程管理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81Chatbox-%E8%BF%9E%E6%8E%A5%E9%85%8D%E7%BD%AE"><span class="toc-text">五、Chatbox 连接配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E8%B8%A9%E5%9D%91%E5%AE%9E%E5%BD%95-%E2%80%94%E2%80%94-%E6%88%91%E4%BA%B2%E8%87%AA%E8%B6%9F%E8%BF%87%E7%9A%84%E9%9B%B7"><span class="toc-text">六、踩坑实录 —— 我亲自趟过的雷</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%91%E2%91%A0-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%B1%E8%B7%91-bf16-%E6%A8%A1%E5%9E%8B%EF%BC%8C%E7%9B%B4%E6%8E%A5%E8%A2%AB-OOM-Kill"><span class="toc-text">坑① 第一次就跑 bf16 模型，直接被 OOM Kill</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%91%E2%91%A1-%E4%BB%A5%E4%B8%BA%E9%87%8F%E5%8C%96%E6%A0%87%E7%AD%BE%E8%A6%81%E5%86%99%E5%85%A8%EF%BC%8C%E7%BB%93%E6%9E%9C%E6%A0%B9%E6%9C%AC%E6%90%9C%E4%B8%8D%E5%88%B0%E6%A8%A1%E5%9E%8B"><span class="toc-text">坑② 以为量化标签要写全，结果根本搜不到模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%91%E2%91%A2-%E6%8A%8A%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E4%B8%9C%E8%A5%BF%E5%BD%93%E5%AD%98%E5%9C%A8%EF%BC%8C%E6%B5%AA%E8%B4%B9%E5%A4%A7%E9%87%8F%E6%97%B6%E9%97%B4%E6%90%9C%E7%B4%A2"><span class="toc-text">坑③ 把不存在的东西当存在，浪费大量时间搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%91%E2%91%A3-OnePlus-3%EF%BC%88Kali-NetHunter%EF%BC%89%E6%8B%89%E6%A8%A1%E5%9E%8B%E6%8A%A5-file-does-not-exist"><span class="toc-text">坑④ OnePlus 3（Kali NetHunter）拉模型报 file does not exist</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%91%E2%91%A4-Chatbox-%E8%BF%9E%E4%B8%8D%E4%B8%8A%EF%BC%8C%E4%B8%80%E7%9B%B4-403"><span class="toc-text">坑⑤ Chatbox 连不上，一直 403</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%91%E2%91%A5-%E4%B8%8B%E8%BD%BD%E4%B8%AD%E6%96%AD%E7%95%99%E4%B8%8B%E6%8D%9F%E5%9D%8F%E6%96%87%E4%BB%B6%EF%BC%8C%E6%AD%BB%E6%B4%BB%E6%8B%89%E4%B8%8D%E4%B8%8B%E6%9D%A5"><span class="toc-text">坑⑥ 下载中断留下损坏文件，死活拉不下来</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%91%E2%91%A6-%E5%8D%8E%E4%B8%BA%E7%95%85%E4%BA%AB-9-Plus-%E9%AB%98%E4%BC%B0%EF%BC%8C%E4%BB%A5%E4%B8%BA%E8%83%BD%E8%B7%91-1-5B-%E6%A8%A1%E5%9E%8B"><span class="toc-text">坑⑦ 华为畅享 9 Plus 高估，以为能跑 1.5B 模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%91%E2%91%A7-OLLAMA-HOST-%E5%BF%98%E4%BA%86%E5%8A%A0-OLLAMA-ORIGINS"><span class="toc-text">坑⑧ OLLAMA_HOST 忘了加 OLLAMA_ORIGINS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B8%A9%E5%9D%91%E6%80%BB%E7%BB%93"><span class="toc-text">踩坑总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E6%9C%80%E7%BB%88%E6%8E%A8%E8%8D%90%E6%96%B9%E6%A1%88"><span class="toc-text">七、最终推荐方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#vivo-Y300i%EF%BC%88%E4%B8%BB%E5%8A%9B%EF%BC%89"><span class="toc-text">vivo Y300i（主力）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OnePlus-3-Kali%EF%BC%88%E5%A4%87%E7%94%A8-%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%89"><span class="toc-text">OnePlus 3 Kali（备用&#x2F;服务器）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%8E%E4%B8%BA%E7%95%85%E4%BA%AB-9-Plus%EF%BC%88%E6%94%BE%E5%BC%83%E6%88%96%E6%9E%81%E9%99%90%E4%BD%BF%E7%94%A8%EF%BC%89"><span class="toc-text">华为畅享 9 Plus（放弃或极限使用）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E6%80%BB%E7%BB%93"><span class="toc-text">八、总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%E5%BD%95%EF%BC%9A%E6%A8%A1%E5%9E%8B%E5%90%8D%E7%A7%B0%E9%AA%8C%E8%AF%81%E8%AE%B0%E5%BD%95"><span class="toc-text">附录：模型名称验证记录</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
       
         <h1 id="旧手机别扔！三台安卓手机搭建本地大模型实战指南"><a href="#旧手机别扔！三台安卓手机搭建本地大模型实战指南" class="headerlink" title="旧手机别扔！三台安卓手机搭建本地大模型实战指南"></a>旧手机别扔！三台安卓手机搭建本地大模型实战指南</h1><blockquote>
 <p>从 4GB 老爷机到 12GB 千元机，手把手教你在手机上跑 Ollama，搭建私有 AI 服务器</p>
@@ -649,128 +972,193 @@
 </tbody></table>
 
       
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2026/06/26/My-New-Post/" data-id="cuid9VZWR6eTfoVfuElvffRjZ" data-title="旧手机别扔！三台安卓手机搭建本地大模型实战指南" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AI/" rel="tag">AI</a></li></ul>
-
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-  
-    <a href="/2026/06/26/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Hello World</div>
-    </a>
-  
-</nav>
-
-  
 </article>
 
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a></li></ul>
-    </div>
-  </div>
+<p>
+    <a  class="dashang" onclick="dashangToggle()">💰</a>
+</p>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/AI/" style="font-size: 10px;">AI</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/06/">June 2026</a></li></ul>
-    </div>
-  </div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2026/06/26/My-New-Post/">旧手机别扔！三台安卓手机搭建本地大模型实战指南</a>
-          </li>
-        
-          <li>
-            <a href="/2026/06/26/hello-world/">Hello World</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
 
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2026 John Doe<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
 
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
     
 
 
-<script src="/js/jquery-3.6.4.min.js"></script>
 
 
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 Yelog
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="Toggle full screen shortcut key s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>Help us with donation</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">alipay</label></span><span><label><input type="radio" name="pay" value="weixin">weixin</label></span>
+    </div>
+</div>
 
 
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-
-  </div>
 </body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
 </html>
