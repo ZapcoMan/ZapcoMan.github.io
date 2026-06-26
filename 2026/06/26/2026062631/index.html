@@ -8,28 +8,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#f7f3e9">
 
-<title>Spring Boot 服务层泛型抽象与代码复用实战 | ZapcoMan&#39;s world</title>
-<meta name="description" content="详解如何设计基于泛型的 BaseService + BaseServiceImpl 模板，极大减少业务层重复 CRUD 代码，提高代码可维护性和扩展性。 🎯 设计目标 统一定义 CRUD 接口 抽象公共实现，业务专注差异化 避免重复代码膨胀 提升开发效率与代码质量 🧱 代码设计1. BaseService 接口1234567public interfac...">
+<title>社工开盒的黑思路 | ZapcoMan&#39;s world</title>
+<meta name="description" content="社工开盒的黑思路 一、什么是“开盒”？ 开盒：指通过社工手段（社会工程学）对目标进行人肉搜索，获取其身份、家庭、住址、社交关系等隐私信息的行为。 涉及圈子：hx圈、fh圈、原创圈、剪辑圈、喷系、字母圈等；多为12–17岁青少年群体，易被锁定身份证前四位范围。 正常有工作、有家庭、无心理问题者通常不会参与此类行为。 二、心理动因分析（统称“S心理”） 挫败感：...">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spring Boot 服务层泛型抽象与代码复用实战 | ZapcoMan&#39;s world">
-<meta property="og:url" content="http://example.com/2026/06/26/2026062607/">
+<meta property="og:title" content="社工开盒的黑思路 | ZapcoMan&#39;s world">
+<meta property="og:url" content="http://example.com/2026/06/26/2026062631/">
 <meta property="og:site_name" content="ZapcoMan&#39;s world">
-<meta property="og:description" content="详解如何设计基于泛型的 BaseService + BaseServiceImpl 模板，极大减少业务层重复 CRUD 代码，提高代码可维护性和扩展性。 🎯 设计目标 统一定义 CRUD 接口 抽象公共实现，业务专注差异化 避免重复代码膨胀 提升开发效率与代码质量 🧱 代码设计1. BaseService 接口1234567public interfac...">
+<meta property="og:description" content="社工开盒的黑思路 一、什么是“开盒”？ 开盒：指通过社工手段（社会工程学）对目标进行人肉搜索，获取其身份、家庭、住址、社交关系等隐私信息的行为。 涉及圈子：hx圈、fh圈、原创圈、剪辑圈、喷系、字母圈等；多为12–17岁青少年群体，易被锁定身份证前四位范围。 正常有工作、有家庭、无心理问题者通常不会参与此类行为。 二、心理动因分析（统称“S心理”） 挫败感：...">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-06-26T08:54:50.000Z">
-<meta property="article:modified_time" content="2026-06-26T08:54:55.100Z">
+<meta property="article:published_time" content="2026-06-26T12:40:51.000Z">
+<meta property="article:modified_time" content="2026-06-26T12:42:27.515Z">
 <meta property="article:author" content="ZapcoMan">
-<meta property="article:tag" content="Git">
-<meta property="article:tag" content="Java">
-<meta property="article:tag" content="Mybatis">
-<meta property="article:tag" content="Springboot">
-<meta property="article:tag" content="Vue3">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="随手记">
 <meta name="twitter:card" content="summary">
-<link rel="canonical" href="http://example.com/2026/06/26/2026062607/">
+<link rel="canonical" href="http://example.com/2026/06/26/2026062631/">
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Spring Boot 服务层泛型抽象与代码复用实战","name":"Spring Boot 服务层泛型抽象与代码复用实战 | ZapcoMan's world","description":"详解如何设计基于泛型的 BaseService + BaseServiceImpl 模板，极大减少业务层重复 CRUD 代码，提高代码可维护性和扩展性。 🎯 设计目标 统一定义 CRUD 接口 抽象公共实现，业务专注差异化 避免重复代码膨胀 提升开发效率与代码质量 🧱 代码设计1. BaseService 接口1234567public interfac...","url":"http://example.com/2026/06/26/2026062607/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/06/26/2026062607/","datePublished":"2026-06-26T08:54:50.000Z","dateModified":"2026-06-26T08:54:55.100Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"Java, Springboot, Mybatis, Vue3, Git"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"社工开盒的黑思路","name":"社工开盒的黑思路 | ZapcoMan's world","description":"社工开盒的黑思路 一、什么是“开盒”？ 开盒：指通过社工手段（社会工程学）对目标进行人肉搜索，获取其身份、家庭、住址、社交关系等隐私信息的行为。 涉及圈子：hx圈、fh圈、原创圈、剪辑圈、喷系、字母圈等；多为12–17岁青少年群体，易被锁定身份证前四位范围。 正常有工作、有家庭、无心理问题者通常不会参与此类行为。 二、心理动因分析（统称“S心理”） 挫败感：...","url":"http://example.com/2026/06/26/2026062631/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/06/26/2026062631/","datePublished":"2026-06-26T12:40:51.000Z","dateModified":"2026-06-26T12:42:27.515Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"笔记, 随手记"}</script>
 
 <script>
   (function () {
@@ -348,7 +345,7 @@
         </header>
         <div class="toc-content">
           
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8E%AF-%E8%AE%BE%E8%AE%A1%E7%9B%AE%E6%A0%87"><span class="toc-text">🎯 设计目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%B1-%E4%BB%A3%E7%A0%81%E8%AE%BE%E8%AE%A1"><span class="toc-text">🧱 代码设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-BaseService-%E6%8E%A5%E5%8F%A3"><span class="toc-text">1. BaseService 接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-BaseServiceImpl-%E6%8A%BD%E8%B1%A1%E5%AE%9E%E7%8E%B0"><span class="toc-text">2. BaseServiceImpl 抽象实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9A%99%EF%B8%8F-%E4%B8%9A%E5%8A%A1%E6%8E%A5%E5%85%A5%E7%A4%BA%E4%BE%8B"><span class="toc-text">⚙️ 业务接入示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8C-%E5%AE%9E%E8%B7%B5%E5%BB%BA%E8%AE%AE"><span class="toc-text">📌 实践建议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%9A-%E6%80%BB%E7%BB%93"><span class="toc-text">🔚 总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%97-%E9%A1%B9%E7%9B%AE%E6%BA%90%E7%A0%81%E5%9C%B0%E5%9D%80"><span class="toc-text">🔗 项目源码地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%99%8B%E2%80%8D%E2%99%82%EF%B8%8F-%E5%A6%82%E6%9E%9C%E4%BD%A0%E8%A7%89%E5%BE%97%E8%BF%99%E7%AF%87%E6%96%87%E7%AB%A0%E6%9C%89%E5%B8%AE%E5%8A%A9%EF%BC%9A"><span class="toc-text">🙋‍♂️ 如果你觉得这篇文章有帮助：</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E2%80%9C%E5%BC%80%E7%9B%92%E2%80%9D%EF%BC%9F"><span class="toc-text">一、什么是“开盒”？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%BF%83%E7%90%86%E5%8A%A8%E5%9B%A0%E5%88%86%E6%9E%90%EF%BC%88%E7%BB%9F%E7%A7%B0%E2%80%9CS%E5%BF%83%E7%90%86%E2%80%9D%EF%BC%89"><span class="toc-text">二、心理动因分析（统称“S心理”）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2%E9%80%94%E5%BE%84%E4%B8%8E%E6%89%8B%E5%B7%A5%E5%BC%80%E7%9B%92%E6%B5%81%E7%A8%8B%EF%BC%88%E7%BA%AF%E6%89%8B%E6%89%93%E6%80%9D%E8%B7%AF%EF%BC%89"><span class="toc-text">三、信息泄露途径与手工开盒流程（纯手打思路）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E9%80%9A%E7%94%A8%E8%B7%AF%E5%BE%84"><span class="toc-text">（1）通用路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E8%BA%AB%E4%BB%BD%E8%AF%81%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90"><span class="toc-text">（2）身份证结构解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E5%BE%AE%E4%BF%A1-%E5%BE%AE%E5%8D%9A-%E5%B0%8F%E7%BA%A2%E4%B9%A6-%E5%BF%AB%E6%89%8B-%E6%8A%96%E9%9F%B3%E5%85%B1%E9%80%9A%E9%80%BB%E8%BE%91"><span class="toc-text">（3）微信&#x2F;微博&#x2F;小红书&#x2F;快手&#x2F;抖音共通逻辑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%884%EF%BC%89%E6%97%A0%E4%BF%A1%E6%81%AF%E6%97%B6%E7%9A%84%E8%A1%A5%E6%95%91%E7%AD%96%E7%95%A5"><span class="toc-text">（4）无信息时的补救策略</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E9%BB%91%E5%AE%A2%E8%BF%9B%E9%98%B6%E7%A4%BE%E5%B7%A5%E6%89%8B%E6%AE%B5"><span class="toc-text">四、黑客进阶社工手段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E8%A2%AB%E5%BC%80%E7%9B%92%EF%BC%9F"><span class="toc-text">五、如何避免被开盒？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E9%BB%91%E4%BA%A7%E8%BF%90%E4%BD%9C%E6%A8%A1%E5%BC%8F%EF%BC%88%E4%BF%A1%E6%81%AF%E8%8E%B7%E5%8F%96%E4%B8%8E%E4%BD%BF%E7%94%A8%EF%BC%89"><span class="toc-text">六、黑产运作模式（信息获取与使用）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E5%A4%96%E7%BD%91%E4%B8%8E%E5%8C%BF%E5%90%8D%E7%BD%91%E7%BB%9C"><span class="toc-text">七、外网与匿名网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E5%BC%80%E6%88%B7%E6%B5%81%E7%A8%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9D%A5%E6%BA%90"><span class="toc-text">八、开户流程与数据库来源</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E6%97%B6%E9%97%B4%E4%B8%8E%E6%9B%B4%E6%96%B0%E6%9C%BA%E5%88%B6"><span class="toc-text">数据库时间与更新机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2%E6%B8%A0%E9%81%93"><span class="toc-text">信息泄露渠道</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%9D%E3%80%81%E5%BA%94%E5%AF%B9%E4%B8%8E%E5%8F%8D%E5%87%BB%E7%AD%96%E7%95%A5"><span class="toc-text">九、应对与反击策略</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E8%87%AA%E6%88%91%E9%98%B2%E6%8A%A4"><span class="toc-text">（1）自我防护</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E5%8F%8D%E5%87%BB%E6%89%8B%E6%AE%B5"><span class="toc-text">（2）反击手段</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81-%E5%A6%82%E4%BD%95%E6%94%B6%E9%9B%86%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E7%A4%BE%E5%B7%A5%E5%BA%93"><span class="toc-text">十. 如何收集属于自己的社工库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E4%B8%80%E3%80%81%E7%BB%93%E8%AF%AD"><span class="toc-text">十一、结语</span></a></li></ol>
           
         </div>
       </section>
@@ -370,14 +367,14 @@
 <article class="article-paper">
   <header class="article-header">
     
-      <a class="label-pill" href="/categories/Java/">
+      <a class="label-pill" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder" aria-hidden="true"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>
 
-        Java
+        网络安全
       </a>
     
-    <h1>Spring Boot 服务层泛型抽象与代码复用实战</h1>
+    <h1>社工开盒的黑思路</h1>
     <div class="meta-line meta-line--article">
       <span class="meta-date">
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
@@ -387,7 +384,7 @@
           
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag" aria-hidden="true"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/></svg>
 
-          <a class="meta-tag-link" href="/tags/Java/">#Java</a><a class="meta-tag-link" href="/tags/Springboot/">#Springboot</a><a class="meta-tag-link" href="/tags/Mybatis/">#Mybatis</a><a class="meta-tag-link" href="/tags/Vue3/">#Vue3</a><a class="meta-tag-link" href="/tags/Git/">#Git</a>
+          <a class="meta-tag-link" href="/tags/%E7%AC%94%E8%AE%B0/">#笔记</a><a class="meta-tag-link" href="/tags/%E9%9A%8F%E6%89%8B%E8%AE%B0/">#随手记</a>
         </span>
       
     </div>
@@ -398,42 +395,180 @@
 
   <div class="article-content">
     <blockquote>
-<p>详解如何设计基于泛型的 <code>BaseService</code> + <code>BaseServiceImpl</code> 模板，极大减少业务层重复 CRUD 代码，提高代码可维护性和扩展性。</p>
+<p>社工开盒的黑思路</p>
+</blockquote>
+<h2 id="一、什么是“开盒”？"><a href="#一、什么是“开盒”？" class="headerlink" title="一、什么是“开盒”？"></a>一、什么是“开盒”？</h2><ul>
+<li>开盒：指通过社工手段（社会工程学）对目标进行人肉搜索，获取其身份、家庭、住址、社交关系等隐私信息的行为。  </li>
+<li>涉及圈子：hx圈、fh圈、原创圈、剪辑圈、喷系、字母圈等；多为12–17岁青少年群体，易被锁定身份证前四位范围。  </li>
+<li>正常有工作、有家庭、无心理问题者通常不会参与此类行为。</li>
+</ul>
+<hr>
+<h2 id="二、心理动因分析（统称“S心理”）"><a href="#二、心理动因分析（统称“S心理”）" class="headerlink" title="二、心理动因分析（统称“S心理”）"></a>二、心理动因分析（统称“S心理”）</h2><ul>
+<li>挫败感：现实无朋友、家庭不幸福、农村背景、渴望炫耀权力、追求他人臣服与羡慕。  </li>
+<li>可能经历：  <ul>
+<li>童年创伤 &#x2F; 做事不顺 &#x2F; 被霸凌 &#x2F; 被欺压 &#x2F; 被“开户”嘲讽（弱小→想变强）  </li>
+<li>深藏不露型（自我保护机制）  </li>
+<li>缺钱型：家庭困难 &#x2F; 农村 &#x2F; 家庭压力大</li>
+</ul>
+</li>
+<li>补充观点：真正有实力者不屑显摆；真正的有钱人都是隐形的。</li>
+</ul>
+<hr>
+<h2 id="三、信息泄露途径与手工开盒流程（纯手打思路）"><a href="#三、信息泄露途径与手工开盒流程（纯手打思路）" class="headerlink" title="三、信息泄露途径与手工开盒流程（纯手打思路）"></a>三、信息泄露途径与手工开盒流程（纯手打思路）</h2><h3 id="（1）通用路径"><a href="#（1）通用路径" class="headerlink" title="（1）通用路径"></a>（1）通用路径</h3><ul>
+<li>社交账号：QQ、微信、朋友圈、微博、小红书、快手、抖音  </li>
+<li>手工开盒步骤（以QQ为例）：  <ol>
+<li>群聊&#x2F;私聊 → 信息收集 → 推理演练  </li>
+<li>查看说说&#x2F;空间&#x2F;相册图片+评论回复 → 锁定年龄  </li>
+<li>进阶：找评论中像“好哥们&#x2F;熟人”的回复 → 查其主页 → 重复操作3–5轮 → 锁定：地址+学校+学历+社交圈+年龄+可能父母亲人信息  </li>
+<li>若无直接信息 → 查账号信息：  <ul>
+<li>QQ号判断注册时间 → 是否为手机号 → 用手机号查其他社交账号  </li>
+<li>QQ查绑（老号更易查）→ 锁定父母年龄 → 提高社工全家户口概率</li>
+</ul>
+</li>
+<li>兄弟&#x2F;朋友&#x2F;同学：主页信息 + IP锁定 + 图片分析（哪怕厕所自拍）  <ul>
+<li>地板砖 &#x2F; 装修风格 &#x2F; 天花板 &#x2F; 台灯 &#x2F; 物品左右布局 → 可反推厕所地址</li>
+</ul>
+</li>
+<li>地址确认后：  <ul>
+<li>判断是否同市区 → 口音&#x2F;素质&#x2F;习惯 → 推测本地人 → 查身份证前几位  </li>
+<li>生日：空间&#x2F;聊天记录&#x2F;套话（如假装同学&#x2F;仰慕者）→ 获取姓名+生日</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="（2）身份证结构解析"><a href="#（2）身份证结构解析" class="headerlink" title="（2）身份证结构解析"></a>（2）身份证结构解析</h3><ul>
+<li>前6位：行政区划代码（可结合IP&#x2F;地址反查）  </li>
+<li>中8位：出生日期 + 顺序码（第17位奇数男偶数女）  </li>
+<li>第18位：校验码  <ul>
+<li>计算方式：前17位 × 系数 [7,9,10,5,8,4,2,1,6,3,7,9,10,5,8,4,2] → 求和 → ÷11取余 → 对应校验码表：<br><code>余数: 0 1 2 3 4 5 6 7 8 9 10</code><br><code>校验码: 1 0 X 9 8 7 6 5 4 3 2</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="（3）微信-微博-小红书-快手-抖音共通逻辑"><a href="#（3）微信-微博-小红书-快手-抖音共通逻辑" class="headerlink" title="（3）微信&#x2F;微博&#x2F;小红书&#x2F;快手&#x2F;抖音共通逻辑"></a>（3）微信&#x2F;微博&#x2F;小红书&#x2F;快手&#x2F;抖音共通逻辑</h3><ul>
+<li>群聊&#x2F;私聊 → 信息收集 → 推理演练  </li>
+<li>IP &#x3D; 地段；朋友圈&#x2F;作品图 &#x3D; 地址&#x2F;去过地点&#x2F;居住地  </li>
+<li>个人简介含公司 → 公司 &#x3D; 地址 &#x3D; 年龄 &#x3D; 收入 &#x3D; 家庭情况  </li>
+<li>查绑 &#x2F; 社工机器人辅助  </li>
+<li>快手特例：点赞&#x2F;收藏 → 年龄+地段+收入+家境</li>
+</ul>
+<h3 id="（4）无信息时的补救策略"><a href="#（4）无信息时的补救策略" class="headerlink" title="（4）无信息时的补救策略"></a>（4）无信息时的补救策略</h3><ol>
+<li>接近法：关注列表 → 同IP → 找现实认识者 → 套话装熟人  </li>
+<li>社工查绑 → 得7位手机号 → 尝试改密&#x2F;登录账号  </li>
+<li>心理学推断：名字 + 在线时间 → 身份（学生&#x2F;上班族）→ 年龄&#x2F;地段&#x2F;学校&#x2F;生日</li>
+</ol>
+<hr>
+<h2 id="四、黑客进阶社工手段"><a href="#四、黑客进阶社工手段" class="headerlink" title="四、黑客进阶社工手段"></a>四、黑客进阶社工手段</h2><ul>
+<li>知道目标访问网站 → 内网穿透 + 监听数据包  <ul>
+<li>登录时抓包 → 截取账号密码 → 登录后查手机号&#x2F;实名&#x2F;父母&#x2F;同学&#x2F;年龄等  </li>
+<li>若仅有IP且已登录账号 → 查交易单号 → 反查商家商品 → 得地址</li>
+</ul>
+</li>
+<li>抓包难点：多数为节点IP → 用“三基站对比法”锁定区域  </li>
+<li>区域内网段扫描：  <ul>
+<li>记录目标上线时所有活跃设备IP  </li>
+<li>第二次上线比对 → 重复IP即为目标设备  </li>
+<li>多轮往返排除非目标IP</li>
+</ul>
+</li>
+<li>控制设备：根据其偏好颜色&#x2F;软件 → 漏洞检测 → 插入病毒执行（限内网）</li>
+</ul>
+<hr>
+<h2 id="五、如何避免被开盒？"><a href="#五、如何避免被开盒？" class="headerlink" title="五、如何避免被开盒？"></a>五、如何避免被开盒？</h2><ul>
+<li>使用挡刀号（非本人实名手机号）</li>
+<li>手机端几乎不留个人信息</li>
+</ul>
+<hr>
+<h2 id="六、黑产运作模式（信息获取与使用）"><a href="#六、黑产运作模式（信息获取与使用）" class="headerlink" title="六、黑产运作模式（信息获取与使用）"></a>六、黑产运作模式（信息获取与使用）</h2><ul>
+<li>社工库建设方式：  <ul>
+<li>制作黄色软件 &#x2F; 免费视频软件 &#x2F; 开户工具等 → 捆绑免杀病毒  </li>
+<li>功能：IP查询&#x2F;地址定位&#x2F;读取通讯录&#x2F;短信监控&#x2F;社交账号访问&#x2F;支付信息获取 → 自动上传至数据库  </li>
+<li>传播路径：QQ群 &#x2F; 社会工程学诱导 &#x2F; 大型网站 &#x2F; 软件分享站  </li>
+<li>传播激励：要求用户分享至N个群 &#x2F; 记录打开次数 → 加速扩散  </li>
+<li>效果：7天内可收集2000–50000人重点信息  </li>
+<li>注意：使用者本身也会被反向收集信息入库</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="七、外网与匿名网络"><a href="#七、外网与匿名网络" class="headerlink" title="七、外网与匿名网络"></a>七、外网与匿名网络</h2><ul>
+<li>TG（Telegram）   </li>
+<li>该软件采用信息焚烧机制，中间服务器并存储用户的任何信息 信息具有时效性 时间一过即便是服务器所有者也无法查询</li>
+<li>匿名网络 &#x3D; 是由 暗网延申出来的</li>
+</ul>
+<hr>
+<h2 id="八、开户流程与数据库来源"><a href="#八、开户流程与数据库来源" class="headerlink" title="八、开户流程与数据库来源"></a>八、开户流程与数据库来源</h2><ul>
+<li>如何开户？</li>
+<li>答：使用机器人从数据库中查询提交</li>
+</ul>
+<ul>
+<li>开户方式：TG社工机器人 &#x2F; 公安接口 &#x2F; 公开信息收集  </li>
+<li>开户所需：1个社交账号 &#x2F; 手机号 &#x2F; 图片 &#x2F; 银行卡  </li>
+<li>可开出信息：  <ul>
+<li>手机号 + 所有社交账号  </li>
+<li>户口 &#x2F; 身份证 &#x2F; 姓名 &#x2F; 父母身份证姓名 &#x2F; 祖上三代  </li>
+<li>酒店开房记录 &#x2F; 征信 &#x2F; 银行卡号 &#x2F; 余额 &#x2F; 账号 &#x2F; 支付信息 &#x2F; 大头照（证件照）</li>
+</ul>
+</li>
+</ul>
+<h3 id="数据库时间与更新机制"><a href="#数据库时间与更新机制" class="headerlink" title="数据库时间与更新机制"></a>数据库时间与更新机制</h3><ul>
+<li>时间段：2017–2020年为主，持续实时更新  </li>
+<li>更新原因：  <ul>
+<li>公安内鬼 </li>
+<li>黑客偷窃</li>
+<li>公开信息收集</li>
+</ul>
+</li>
+</ul>
+<h3 id="信息泄露渠道"><a href="#信息泄露渠道" class="headerlink" title="信息泄露渠道"></a>信息泄露渠道</h3><ul>
+<li>色情网站XSS注入 → 信息收集  </li>
+<li>信息收集-木马病毒-控制-信息收集-设备监控</li>
+<li>黑客入侵服务商数据库  </li>
+<li>公安数据库查询接口被挖出来了</li>
+</ul>
+<hr>
+<h2 id="九、应对与反击策略"><a href="#九、应对与反击策略" class="headerlink" title="九、应对与反击策略"></a>九、应对与反击策略</h2><h3 id="（1）自我防护"><a href="#（1）自我防护" class="headerlink" title="（1）自我防护"></a>（1）自我防护</h3><ul>
+<li>私密所有账号  </li>
+<li>更换手机号  </li>
+<li>通知家人开启骚扰拦截  </li>
+<li>求助公安（成功率约50%）</li>
+</ul>
+<h3 id="（2）反击手段"><a href="#（2）反击手段" class="headerlink" title="（2）反击手段"></a>（2）反击手段</h3><ul>
+<li>“开回去”：以其发起的社交账号为起点，反向社工  </li>
+<li>恶劣行为应对：  <ul>
+<li>电话骚扰 → 记手机号 → 查机主（虚拟号则找服务商查漏洞&#x2F;沟通）→ 锁定通话时间查使用者IP  </li>
+<li>恐吓账号 → 提交客服&#x2F;服务商（30天封禁）  </li>
+<li>若不理睬 → 向上层施压（声明生命危险） &#x2F; 拨打110称“要自X” → 警方到场后陈述情况</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>原则：<strong>比谁更不要脸</strong></p>
 </blockquote>
 <hr>
-<h2 id="🎯-设计目标"><a href="#🎯-设计目标" class="headerlink" title="🎯 设计目标"></a>🎯 设计目标</h2><ul>
-<li>统一定义 CRUD 接口</li>
-<li>抽象公共实现，业务专注差异化</li>
-<li>避免重复代码膨胀</li>
-<li>提升开发效率与代码质量</li>
+<h2 id="十-如何收集属于自己的社工库"><a href="#十-如何收集属于自己的社工库" class="headerlink" title="十. 如何收集属于自己的社工库"></a>十. 如何收集属于自己的社工库</h2><ol>
+<li>找到一个黄色软件 然后利用病毒免杀捆绑<br>里面可以进行ip查询地址 访问手机号通讯录 短信监控 社交账号读取访问 支付信息访问 自动上传到数据库整理 </li>
+<li>传播</li>
+</ol>
+<ul>
+<li>我们经过广大网站qq群社会工程学进行传播，大型网站传播 一些软件分享网站或者qq群传播（利用社会工程学拿到相对高一点的权限）进行传播 大概7天左右时间即可收获到2000-50000人左右的重点信息</li>
 </ul>
-<hr>
-<h2 id="🧱-代码设计"><a href="#🧱-代码设计" class="headerlink" title="🧱 代码设计"></a>🧱 代码设计</h2><h3 id="1-BaseService-接口"><a href="#1-BaseService-接口" class="headerlink" title="1. BaseService 接口"></a>1. BaseService 接口</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">BaseService</span>&lt;T, ID <span class="keyword">extends</span> <span class="title class_">Serializable</span>&gt; &#123;</span><br><span class="line">    T <span class="title function_">getById</span><span class="params">(ID id)</span>;</span><br><span class="line">    List&lt;T&gt; <span class="title function_">listAll</span><span class="params">()</span>;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">save</span><span class="params">(T entity)</span>;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">update</span><span class="params">(T entity)</span>;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">deleteById</span><span class="params">(ID id)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-BaseServiceImpl-抽象实现"><a href="#2-BaseServiceImpl-抽象实现" class="headerlink" title="2. BaseServiceImpl 抽象实现"></a>2. BaseServiceImpl 抽象实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">BaseServiceImpl</span>&lt;T, ID <span class="keyword">extends</span> <span class="title class_">Serializable</span>, M <span class="keyword">extends</span> <span class="title class_">BaseMapper</span>&lt;T&gt;&gt; <span class="keyword">implements</span> <span class="title class_">BaseService</span>&lt;T, ID&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">final</span> M mapper;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">BaseServiceImpl</span><span class="params">(M mapper)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.mapper = mapper;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> T <span class="title function_">getById</span><span class="params">(ID id)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> mapper.selectById(id);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;T&gt; <span class="title function_">listAll</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> mapper.selectAll();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">save</span><span class="params">(T entity)</span> &#123;</span><br><span class="line">        mapper.insert(entity);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">update</span><span class="params">(T entity)</span> &#123;</span><br><span class="line">        mapper.update(entity);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">deleteById</span><span class="params">(ID id)</span> &#123;</span><br><span class="line">        mapper.deleteById(id);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="⚙️-业务接入示例"><a href="#⚙️-业务接入示例" class="headerlink" title="⚙️ 业务接入示例"></a>⚙️ 业务接入示例</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserServiceImpl</span> <span class="keyword">extends</span> <span class="title class_">BaseServiceImpl</span>&lt;User, Long, UserMapper&gt; <span class="keyword">implements</span> <span class="title class_">UserService</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">UserServiceImpl</span><span class="params">(UserMapper userMapper)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(userMapper);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 可写特有业务逻辑</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="📌-实践建议"><a href="#📌-实践建议" class="headerlink" title="📌 实践建议"></a>📌 实践建议</h2><ul>
-<li>新增业务模块从此基类继承，避免重复实现</li>
-<li>结合分页、事务钩子方法，增强基类能力</li>
-<li>定期重构老业务代码，引入泛型抽象层</li>
+<ol start="3">
+<li>除了黄色软件，任何对大众有吸引力的软件都可以<ul>
+<li>比如一些开户软件</li>
+<li>免费看视频软件</li>
+<li>或者一些合法软件进行捆绑</li>
+<li>做好社工软件或者网站的时候（一般都只给一些不太重要的信息）我们可以在网站和软件里面植入病毒 并进行免杀 </li>
+<li>在某些想开别人户的身上也可以收集信息  </li>
+<li>简单来说就是这些想要用我们这些开户软件的人 </li>
+<li>也会被我们记录信息然后存到数据库 </li>
+<li>我们可以在软件使用上面动手脚 如果用户想使用 必须把软件分享到多少多少个群里（或者传播给他人记录打开次数） 这样就可以加快传播速度（一传十 十传百）以此类推</li>
 </ul>
-<hr>
-<h2 id="🔚-总结"><a href="#🔚-总结" class="headerlink" title="🔚 总结"></a>🔚 总结</h2><p>服务层泛型抽象设计，减少了样板代码，提高了代码复用率和可维护性，是大型项目必备的架构实践。业务开发专注核心逻辑，极大提升团队开发效率。</p>
-<hr>
-<h2 id="🔗-项目源码地址"><a href="#🔗-项目源码地址" class="headerlink" title="🔗 项目源码地址"></a>🔗 项目源码地址</h2><ul>
-<li>GitHub：<a target="_blank" rel="noopener" href="https://gitee.com/codevibe/grade-system">https://gitee.com/codevibe/grade-system</a></li>
-<li>Axios 封装、前后端对接代码已上传，支持一键部署体验</li>
-</ul>
-<hr>
-<h2 id="🙋‍♂️-如果你觉得这篇文章有帮助："><a href="#🙋‍♂️-如果你觉得这篇文章有帮助：" class="headerlink" title="🙋‍♂️ 如果你觉得这篇文章有帮助："></a>🙋‍♂️ 如果你觉得这篇文章有帮助：</h2><ul>
-<li>点赞 👍</li>
-<li>收藏 ⭐</li>
-<li>评论 💬</li>
-<li>关注我 👇 获取后续实战内容</li>
+</li>
+</ol>
+<h2 id="十一、结语"><a href="#十一、结语" class="headerlink" title="十一、结语"></a>十一、结语</h2><ul>
+<li>售卖&#x2F;威胁他人信息属违法行为，可判三年以上  </li>
+<li>奉劝：各位也请低调做人！</li>
 </ul>
 
   </div>
@@ -464,18 +599,18 @@
 
   <nav class="article-actions">
     
-      <a class="article-action article-action--prev" href="/2026/06/26/2026062613/">
+      <a class="article-action article-action--prev" href="/2026/06/26/2026062629/">
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
 
         <span class="action-label">上一篇</span>
-        <span class="action-title">物理机 Kali 改造笔记（一）</span>
+        <span class="action-title">匿名上网方法</span>
       </a>
     
     
-      <a class="article-action article-action--next" href="/2026/06/26/2026062608/">
+      <a class="article-action article-action--next" href="/2026/06/26/2026062630/">
         <span class="action-label">下一篇</span>
-        <span class="action-title">多协议蜜罐初体验 🐝</span>
+        <span class="action-title">V2ray搭建教程，操作简单，支持vless，vmess，socks5等协议，x-ui搭建教程v2ray服务器vps</span>
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
 
@@ -506,7 +641,7 @@
     </header>
     <div class="related-paper__grid">
       
-        <a class="related-card" href="/2026/06/26/2026062605/">
+        <a class="related-card" href="/2026/06/26/2026062629/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
@@ -517,12 +652,12 @@
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">使用 Vue3 + Axios 与 Spring Boot 高效对接（含 token 处理）</strong>
+            <strong class="related-card__title">匿名上网方法</strong>
             <em class="related-card__date">2026-06-26</em>
           </span>
         </a>
       
-        <a class="related-card" href="/2026/06/26/2026062606/">
+        <a class="related-card" href="/2026/06/26/2026062630/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-1 paper-thumb--cover">
@@ -533,12 +668,12 @@
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">使用 Vue3 + Axios 与 Spring Boot 高效对接（含 token 处理）</strong>
+            <strong class="related-card__title">V2ray搭建教程，操作简单，支持vless，vmess，socks5等协议，x-ui搭建教程v2ray服务器vps</strong>
             <em class="related-card__date">2026-06-26</em>
           </span>
         </a>
       
-        <a class="related-card" href="/2026/06/26/2026062604/">
+        <a class="related-card" href="/2026/06/26/2026062615/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-2 paper-thumb--cover">
@@ -549,12 +684,12 @@
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">如何用 Spring Security 构建无状态权限控制系统（含角色菜单控制）</strong>
+            <strong class="related-card__title">当网络成为广场：匿名者（Anonymous）现象背后的公共议题张力</strong>
             <em class="related-card__date">2026-06-26</em>
           </span>
         </a>
       
-        <a class="related-card" href="/2026/06/26/2026062603/">
+        <a class="related-card" href="/2026/06/26/2026062616/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
@@ -565,7 +700,7 @@
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">从 0 到 1，我如何独立开发一套教务系统（EduCore）</strong>
+            <strong class="related-card__title">🛡️ 社工防御体系：从信息隐身到主动反制</strong>
             <em class="related-card__date">2026-06-26</em>
           </span>
         </a>
