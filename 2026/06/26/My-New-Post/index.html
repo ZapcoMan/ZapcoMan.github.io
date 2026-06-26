@@ -31,11 +31,11 @@
   (function () {
     var accents = { orange: 1, purple: 1, sakura: 1, blue: 1, pink: 1, green: 1, black: 1 };
     var match = document.cookie.match(/(?:^|;\s*)flatpaper-accent=([^;]+)/);
-    var accent = 'green';
+    var accent = 'blue';
     if (match) {
       try { accent = decodeURIComponent(match[1]); } catch (e) {}
     }
-    if (!accents[accent]) accent = 'green';
+    if (!accents[accent]) accent = 'blue';
     document.documentElement.setAttribute('data-accent', accent);
     try {
       if (localStorage.getItem('flatpaper-mode') === 'dark') {
@@ -68,8 +68,8 @@
 
 <body
   class="is-post tag-style-tape bg-style-default"
-  data-default-accent="green"
-  data-code-theme="simple"
+  data-default-accent="blue"
+  data-code-theme="dark"
   data-note-style="sticky"
   data-note-icons="on"
   data-button-style="circle"
