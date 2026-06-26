@@ -16,16 +16,18 @@
 <meta property="og:site_name" content="ZapcoMan&#39;s world">
 <meta property="og:description" content="一句 Executive Summary数据库和服务层的性能问题本质上是“无谓工作”的累加：无谓扫描、无谓回表、无谓网络往返与无谓资源创建。通过索引与查询改写减少扫描行数、通过批量化与缓存减少往返、通过架构化治理减少阻塞，完成从“能跑”到“能扩展”的跃迁。 引子公司某报表系统每天上午 9:00 准时卡顿：单条查询等待约 30 秒，用户抱怨不断。排查发现一条...">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.zhimg.com/v2-ce806dc227aba6e52fdc4f5895fd21ac_r.jpg">
 <meta property="article:published_time" content="2026-06-26T11:49:51.000Z">
-<meta property="article:modified_time" content="2026-06-26T14:16:33.460Z">
+<meta property="article:modified_time" content="2026-06-26T14:20:07.182Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="SQL">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.zhimg.com/v2-ce806dc227aba6e52fdc4f5895fd21ac_r.jpg">
 <link rel="canonical" href="http://example.com/2026/06/26/2026062624/">
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"从秒到毫秒：掌控 SQL 性能的 21 条硬核策略与服务层性能陷阱","name":"从秒到毫秒：掌控 SQL 性能的 21 条硬核策略与服务层性能陷阱 | ZapcoMan's world","description":"一句 Executive Summary数据库和服务层的性能问题本质上是“无谓工作”的累加：无谓扫描、无谓回表、无谓网络往返与无谓资源创建。通过索引与查询改写减少扫描行数、通过批量化与缓存减少往返、通过架构化治理减少阻塞，完成从“能跑”到“能扩展”的跃迁。 引子公司某报表系统每天上午 9:00 准时卡顿：单条查询等待约 30 秒，用户抱怨不断。排查发现一条...","url":"http://example.com/2026/06/26/2026062624/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/06/26/2026062624/","datePublished":"2026-06-26T11:49:51.000Z","dateModified":"2026-06-26T14:16:33.460Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"SQL"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"从秒到毫秒：掌控 SQL 性能的 21 条硬核策略与服务层性能陷阱","name":"从秒到毫秒：掌控 SQL 性能的 21 条硬核策略与服务层性能陷阱 | ZapcoMan's world","description":"一句 Executive Summary数据库和服务层的性能问题本质上是“无谓工作”的累加：无谓扫描、无谓回表、无谓网络往返与无谓资源创建。通过索引与查询改写减少扫描行数、通过批量化与缓存减少往返、通过架构化治理减少阻塞，完成从“能跑”到“能扩展”的跃迁。 引子公司某报表系统每天上午 9:00 准时卡顿：单条查询等待约 30 秒，用户抱怨不断。排查发现一条...","url":"http://example.com/2026/06/26/2026062624/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/06/26/2026062624/","datePublished":"2026-06-26T11:49:51.000Z","dateModified":"2026-06-26T14:20:07.182Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"SQL"}</script>
 
 <script>
   (function () {
@@ -397,6 +399,7 @@
 <hr>
 <h1 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h1><p>公司某报表系统每天上午 9:00 准时卡顿：单条查询等待约 30 秒，用户抱怨不断。排查发现一条 SQL 未走索引，对百万级数据做全表扫描。优化后，耗时降为 0.1 秒。<br>比喻：数据库是图书馆，索引等于书籍编号。直接说“给我一本小说”相当于全表扫描；说“给我编号 A123 架第4层”则是索引查询——快速到位。</p>
 <hr>
+<p><img src="https://pic1.zhimg.com/v2-ce806dc227aba6e52fdc4f5895fd21ac_r.jpg"></p>
 <h2 id="1-为什么要做优化（本质）"><a href="#1-为什么要做优化（本质）" class="headerlink" title="1. 为什么要做优化（本质）"></a>1. 为什么要做优化（本质）</h2><ul>
 <li>问题核心：不合理的 SQL 与服务层写法会使数据库承担指数级的额外工作（扫描更多行、产生更多随机 IO、触发频繁回表、增加锁竞争）。</li>
 <li>目标：把“无谓工作”降到最低，优先减少扫描行数与网络往返次数，并保证系统在数据增长与并发放大时可扩展。</li>
