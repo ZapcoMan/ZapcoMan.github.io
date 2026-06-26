@@ -17,16 +17,15 @@
 <meta property="og:description" content="一句 Executive Summary数据库和服务层的性能问题本质上是“无谓工作”的累加：无谓扫描、无谓回表、无谓网络往返与无谓资源创建。通过索引与查询改写减少扫描行数、通过批量化与缓存减少往返、通过架构化治理减少阻塞，完成从“能跑”到“能扩展”的跃迁。 引子公司某报表系统每天上午 9:00 准时卡顿：单条查询等待约 30 秒，用户抱怨不断。排查发现一条...">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-06-26T11:49:51.000Z">
-<meta property="article:modified_time" content="2026-06-26T11:33:52.145Z">
+<meta property="article:modified_time" content="2026-06-26T14:16:33.460Z">
 <meta property="article:author" content="ZapcoMan">
-<meta property="article:tag" content="Kali  Linux">
-<meta property="article:tag" content="SQ">
+<meta property="article:tag" content="SQL">
 <meta name="twitter:card" content="summary">
 <link rel="canonical" href="http://example.com/2026/06/26/2026062624/">
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"从秒到毫秒：掌控 SQL 性能的 21 条硬核策略与服务层性能陷阱","name":"从秒到毫秒：掌控 SQL 性能的 21 条硬核策略与服务层性能陷阱 | ZapcoMan's world","description":"一句 Executive Summary数据库和服务层的性能问题本质上是“无谓工作”的累加：无谓扫描、无谓回表、无谓网络往返与无谓资源创建。通过索引与查询改写减少扫描行数、通过批量化与缓存减少往返、通过架构化治理减少阻塞，完成从“能跑”到“能扩展”的跃迁。 引子公司某报表系统每天上午 9:00 准时卡顿：单条查询等待约 30 秒，用户抱怨不断。排查发现一条...","url":"http://example.com/2026/06/26/2026062624/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/06/26/2026062624/","datePublished":"2026-06-26T11:49:51.000Z","dateModified":"2026-06-26T11:33:52.145Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"Kali Linux, SQ"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"从秒到毫秒：掌控 SQL 性能的 21 条硬核策略与服务层性能陷阱","name":"从秒到毫秒：掌控 SQL 性能的 21 条硬核策略与服务层性能陷阱 | ZapcoMan's world","description":"一句 Executive Summary数据库和服务层的性能问题本质上是“无谓工作”的累加：无谓扫描、无谓回表、无谓网络往返与无谓资源创建。通过索引与查询改写减少扫描行数、通过批量化与缓存减少往返、通过架构化治理减少阻塞，完成从“能跑”到“能扩展”的跃迁。 引子公司某报表系统每天上午 9:00 准时卡顿：单条查询等待约 30 秒，用户抱怨不断。排查发现一条...","url":"http://example.com/2026/06/26/2026062624/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/06/26/2026062624/","datePublished":"2026-06-26T11:49:51.000Z","dateModified":"2026-06-26T14:16:33.460Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"SQL"}</script>
 
 <script>
   (function () {
@@ -384,7 +383,7 @@
           
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag" aria-hidden="true"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/></svg>
 
-          <a class="meta-tag-link" href="/tags/Kali-Linux/">#Kali  Linux</a><a class="meta-tag-link" href="/tags/SQ/">#SQ</a>
+          <a class="meta-tag-link" href="/tags/SQL/">#SQL</a>
         </span>
       
     </div>
@@ -868,87 +867,6 @@
 
 </button>
 
-
-  <section class="related-paper">
-    <header class="related-paper__head">
-      <h2>
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-相关文章</h2>
-      <a class="related-paper__more" href="/archives/">
-        <span>查看更多</span>
-        
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-
-      </a>
-    </header>
-    <div class="related-paper__grid">
-      
-        <a class="related-card" href="/2026/06/26/2026062622/">
-          <span class="related-card__thumb">
-            
-<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
-  
-    <img class="paper-thumb__img" src="https://pic1.imgdb.cn/item/6a3e885199bccaf16ccea437.png" alt="生成APK 以及制作 APK签名" loading="lazy" referrerpolicy="no-referrer">
-  
-</div>
-
-          </span>
-          <span class="related-card__body">
-            <strong class="related-card__title">生成APK 以及制作 APK签名</strong>
-            <em class="related-card__date">2026-06-26</em>
-          </span>
-        </a>
-      
-        <a class="related-card" href="/2026/06/26/2026062620/">
-          <span class="related-card__thumb">
-            
-<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
-  
-    <img class="paper-thumb__img" src="https://mmbiz.qpic.cn/sz_mmbiz_png/MSDUaqtwboR1zDBP6fjpsqreyj512zLwlmicsBwUf0CtNOwCPUDW0icgFCnvWCK4sT3icb1sfGKcuhGBLYGyT40y7gaNiaXXFSqdoA5C9AbTGtQ/640?wx_fmt=png&amp;from=appmsg" alt="若依常见漏洞一把梭（上）" loading="lazy" referrerpolicy="no-referrer">
-  
-</div>
-
-          </span>
-          <span class="related-card__body">
-            <strong class="related-card__title">若依常见漏洞一把梭（上）</strong>
-            <em class="related-card__date">2026-06-26</em>
-          </span>
-        </a>
-      
-        <a class="related-card" href="/2026/06/26/2026062621/">
-          <span class="related-card__thumb">
-            
-<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
-  
-    <img class="paper-thumb__img" src="/images/cover/notebook.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
-  
-</div>
-
-          </span>
-          <span class="related-card__body">
-            <strong class="related-card__title">若依常见漏洞一把梭（下）</strong>
-            <em class="related-card__date">2026-06-26</em>
-          </span>
-        </a>
-      
-        <a class="related-card" href="/2026/06/26/2026062619/">
-          <span class="related-card__thumb">
-            
-<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
-  
-    <img class="paper-thumb__img" src="/images/cover/port.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
-  
-</div>
-
-          </span>
-          <span class="related-card__body">
-            <strong class="related-card__title">破解手机锁屏密码</strong>
-            <em class="related-card__date">2026-06-26</em>
-          </span>
-        </a>
-      
-    </div>
-  </section>
 
 
       
