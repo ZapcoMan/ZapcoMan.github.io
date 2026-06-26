@@ -8,16 +8,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#f7f3e9">
 
-<title>从 0 到 1，我如何独立开发一套教务系统（EduCore） | ZapcoMan&#39;s world</title>
-<meta name="description" content="作为一名独立开发者，我花了数月时间从头设计、编码并上线了一个完整的教务系统 —— EduCore。本文将系统回顾我从项目构想到架构设计、技术选型再到功能实现的全过程，帮助读者了解如何独立打造一套具备实际价值的中后台系统。 🧭 项目背景与动机2025 年初，我决定彻底整理和沉淀自己的技术能力，于是着手开发一套面向学校、培训机构的 教务管理系统。在职业发展受限...">
+<title>Spring Boot 服务层泛型抽象与代码复用实战 | ZapcoMan&#39;s world</title>
+<meta name="description" content="详解如何设计基于泛型的 BaseService + BaseServiceImpl 模板，极大减少业务层重复 CRUD 代码，提高代码可维护性和扩展性。 🎯 设计目标 统一定义 CRUD 接口 抽象公共实现，业务专注差异化 避免重复代码膨胀 提升开发效率与代码质量 🧱 代码设计1. BaseService 接口1234567public interfac...">
 <meta property="og:type" content="article">
-<meta property="og:title" content="从 0 到 1，我如何独立开发一套教务系统（EduCore） | ZapcoMan&#39;s world">
-<meta property="og:url" content="http://example.com/2026/06/26/2026062603/">
+<meta property="og:title" content="Spring Boot 服务层泛型抽象与代码复用实战 | ZapcoMan&#39;s world">
+<meta property="og:url" content="http://example.com/2026/06/26/2026062607/">
 <meta property="og:site_name" content="ZapcoMan&#39;s world">
-<meta property="og:description" content="作为一名独立开发者，我花了数月时间从头设计、编码并上线了一个完整的教务系统 —— EduCore。本文将系统回顾我从项目构想到架构设计、技术选型再到功能实现的全过程，帮助读者了解如何独立打造一套具备实际价值的中后台系统。 🧭 项目背景与动机2025 年初，我决定彻底整理和沉淀自己的技术能力，于是着手开发一套面向学校、培训机构的 教务管理系统。在职业发展受限...">
+<meta property="og:description" content="详解如何设计基于泛型的 BaseService + BaseServiceImpl 模板，极大减少业务层重复 CRUD 代码，提高代码可维护性和扩展性。 🎯 设计目标 统一定义 CRUD 接口 抽象公共实现，业务专注差异化 避免重复代码膨胀 提升开发效率与代码质量 🧱 代码设计1. BaseService 接口1234567public interfac...">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-06-26T08:44:44.000Z">
-<meta property="article:modified_time" content="2026-06-26T08:49:08.178Z">
+<meta property="article:published_time" content="2026-06-26T08:54:50.000Z">
+<meta property="article:modified_time" content="2026-06-26T08:54:55.100Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="Git">
 <meta property="article:tag" content="Java">
@@ -25,11 +25,11 @@
 <meta property="article:tag" content="Springboot">
 <meta property="article:tag" content="Vue3">
 <meta name="twitter:card" content="summary">
-<link rel="canonical" href="http://example.com/2026/06/26/2026062603/">
+<link rel="canonical" href="http://example.com/2026/06/26/2026062607/">
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"从 0 到 1，我如何独立开发一套教务系统（EduCore）","name":"从 0 到 1，我如何独立开发一套教务系统（EduCore） | ZapcoMan's world","description":"作为一名独立开发者，我花了数月时间从头设计、编码并上线了一个完整的教务系统 —— EduCore。本文将系统回顾我从项目构想到架构设计、技术选型再到功能实现的全过程，帮助读者了解如何独立打造一套具备实际价值的中后台系统。 🧭 项目背景与动机2025 年初，我决定彻底整理和沉淀自己的技术能力，于是着手开发一套面向学校、培训机构的 教务管理系统。在职业发展受限...","url":"http://example.com/2026/06/26/2026062603/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/06/26/2026062603/","datePublished":"2026-06-26T08:44:44.000Z","dateModified":"2026-06-26T08:49:08.178Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"Java, Springboot, Mybatis, Vue3, Git"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Spring Boot 服务层泛型抽象与代码复用实战","name":"Spring Boot 服务层泛型抽象与代码复用实战 | ZapcoMan's world","description":"详解如何设计基于泛型的 BaseService + BaseServiceImpl 模板，极大减少业务层重复 CRUD 代码，提高代码可维护性和扩展性。 🎯 设计目标 统一定义 CRUD 接口 抽象公共实现，业务专注差异化 避免重复代码膨胀 提升开发效率与代码质量 🧱 代码设计1. BaseService 接口1234567public interfac...","url":"http://example.com/2026/06/26/2026062607/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/06/26/2026062607/","datePublished":"2026-06-26T08:54:50.000Z","dateModified":"2026-06-26T08:54:55.100Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"Java, Springboot, Mybatis, Vue3, Git"}</script>
 
 <script>
   (function () {
@@ -340,7 +340,7 @@
         </header>
         <div class="toc-content">
           
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%AD-%E9%A1%B9%E7%9B%AE%E8%83%8C%E6%99%AF%E4%B8%8E%E5%8A%A8%E6%9C%BA"><span class="toc-text">🧭 项目背景与动机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%A7-%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B%E4%B8%8E%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">🔧 技术选型与架构设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%92%A1-%E6%8A%80%E6%9C%AF%E6%A0%88%E6%A6%82%E8%A7%88"><span class="toc-text">💡 技术栈概览</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%8F%97%EF%B8%8F-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%9B%BE"><span class="toc-text">🏗️ 系统架构图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%A9-%E7%B3%BB%E7%BB%9F%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97%E6%8B%86%E8%A7%A3"><span class="toc-text">🧩 系统功能模块拆解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%91%A4-%E5%A4%9A%E8%A7%92%E8%89%B2%E7%99%BB%E5%BD%95%E8%AE%A4%E8%AF%81%EF%BC%88%E6%94%AF%E6%8C%81%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81-%E6%89%AB%E7%A0%81%E7%99%BB%E5%BD%95%EF%BC%89"><span class="toc-text">👤 多角色登录认证（支持账号密码 + 扫码登录）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%94%90-%E8%A7%92%E8%89%B2%E6%9D%83%E9%99%90%E4%B8%8E%E8%8F%9C%E5%8D%95%E6%8E%A7%E5%88%B6"><span class="toc-text">🔐 角色权限与菜单控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%93%9A-%E6%95%99%E5%8A%A1%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97"><span class="toc-text">📚 教务核心模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%93%8B-%E7%94%A8%E6%88%B7%E4%B8%AA%E4%BA%BA%E4%B8%AD%E5%BF%83"><span class="toc-text">📋 用户个人中心</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%A6-%E9%A1%B9%E7%9B%AE%E7%89%B9%E8%89%B2%E4%B8%8E%E4%BA%AE%E7%82%B9"><span class="toc-text">📦 项目特色与亮点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%9A%80-%E9%A1%B9%E7%9B%AE%E6%89%98%E7%AE%A1%E4%B8%8E%E6%BC%94%E7%A4%BA%E5%9C%B0%E5%9D%80"><span class="toc-text">🚀 项目托管与演示地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9C%8D%EF%B8%8F-%E6%88%91%E4%BB%8E%E8%BF%99%E4%B8%AA%E9%A1%B9%E7%9B%AE%E4%B8%AD%E5%AD%A6%E5%88%B0%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">✍️ 我从这个项目中学到了什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%B1-%E6%8E%A5%E4%B8%8B%E6%9D%A5%E6%88%91%E5%B0%86%E5%86%99%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">🧱 接下来我将写什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9C%85-%E5%A6%82%E6%9E%9C%E4%BD%A0%E8%A7%89%E5%BE%97%E8%BF%99%E7%AF%87%E6%96%87%E7%AB%A0%E5%AF%B9%E4%BD%A0%E6%9C%89%E5%B8%AE%E5%8A%A9%EF%BC%9A"><span class="toc-text">✅ 如果你觉得这篇文章对你有帮助：</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8E%AF-%E8%AE%BE%E8%AE%A1%E7%9B%AE%E6%A0%87"><span class="toc-text">🎯 设计目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%B1-%E4%BB%A3%E7%A0%81%E8%AE%BE%E8%AE%A1"><span class="toc-text">🧱 代码设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-BaseService-%E6%8E%A5%E5%8F%A3"><span class="toc-text">1. BaseService 接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-BaseServiceImpl-%E6%8A%BD%E8%B1%A1%E5%AE%9E%E7%8E%B0"><span class="toc-text">2. BaseServiceImpl 抽象实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9A%99%EF%B8%8F-%E4%B8%9A%E5%8A%A1%E6%8E%A5%E5%85%A5%E7%A4%BA%E4%BE%8B"><span class="toc-text">⚙️ 业务接入示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8C-%E5%AE%9E%E8%B7%B5%E5%BB%BA%E8%AE%AE"><span class="toc-text">📌 实践建议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%9A-%E6%80%BB%E7%BB%93"><span class="toc-text">🔚 总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%97-%E9%A1%B9%E7%9B%AE%E6%BA%90%E7%A0%81%E5%9C%B0%E5%9D%80"><span class="toc-text">🔗 项目源码地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%99%8B%E2%80%8D%E2%99%82%EF%B8%8F-%E5%A6%82%E6%9E%9C%E4%BD%A0%E8%A7%89%E5%BE%97%E8%BF%99%E7%AF%87%E6%96%87%E7%AB%A0%E6%9C%89%E5%B8%AE%E5%8A%A9%EF%BC%9A"><span class="toc-text">🙋‍♂️ 如果你觉得这篇文章有帮助：</span></a></li></ol>
           
         </div>
       </section>
@@ -369,7 +369,7 @@
         Java
       </a>
     
-    <h1>从 0 到 1，我如何独立开发一套教务系统（EduCore）</h1>
+    <h1>Spring Boot 服务层泛型抽象与代码复用实战</h1>
     <div class="meta-line meta-line--article">
       <span class="meta-date">
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
@@ -390,130 +390,43 @@
 
   <div class="article-content">
     <blockquote>
-<p>作为一名独立开发者，我花了数月时间从头设计、编码并上线了一个完整的教务系统 —— <strong>EduCore</strong>。本文将系统回顾我从项目构想到架构设计、技术选型再到功能实现的全过程，帮助读者了解如何独立打造一套具备实际价值的中后台系统。</p>
+<p>详解如何设计基于泛型的 <code>BaseService</code> + <code>BaseServiceImpl</code> 模板，极大减少业务层重复 CRUD 代码，提高代码可维护性和扩展性。</p>
 </blockquote>
 <hr>
-<h2 id="🧭-项目背景与动机"><a href="#🧭-项目背景与动机" class="headerlink" title="🧭 项目背景与动机"></a>🧭 项目背景与动机</h2><p>2025 年初，我决定彻底整理和沉淀自己的技术能力，于是着手开发一套面向学校、培训机构的 <strong>教务管理系统</strong>。在职业发展受限多年后，我希望借由这个项目重构个人技术体系，并通过开源与文档化构建我的技术影响力。</p>
-<p>过去我曾帮助部分学生完成毕业设计，也做过一些中小项目外包，但始终缺乏一个<strong>完整、可复用、具备系统架构能力</strong>的项目。<strong>EduCore 就是为此而生</strong>。</p>
+<h2 id="🎯-设计目标"><a href="#🎯-设计目标" class="headerlink" title="🎯 设计目标"></a>🎯 设计目标</h2><ul>
+<li>统一定义 CRUD 接口</li>
+<li>抽象公共实现，业务专注差异化</li>
+<li>避免重复代码膨胀</li>
+<li>提升开发效率与代码质量</li>
+</ul>
 <hr>
-<h2 id="🔧-技术选型与架构设计"><a href="#🔧-技术选型与架构设计" class="headerlink" title="🔧 技术选型与架构设计"></a>🔧 技术选型与架构设计</h2><h3 id="💡-技术栈概览"><a href="#💡-技术栈概览" class="headerlink" title="💡 技术栈概览"></a>💡 技术栈概览</h3><table>
-<thead>
-<tr>
-<th>层级</th>
-<th>技术栈</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>前端</td>
-<td>Vue3、Element Plus、Pinia、Vue Router、Axios</td>
-</tr>
-<tr>
-<td>后端</td>
-<td>Spring Boot、Spring Security、JWT、MyBatis Plus</td>
-</tr>
-<tr>
-<td>数据库</td>
-<td>MySQL、Redis（用于扫码登录与 Token 管理）</td>
-</tr>
-<tr>
-<td>部署</td>
-<td>本地开发环境 + 可选 Docker 打包，支持一键运行</td>
-</tr>
-<tr>
-<td>工具</td>
-<td>GitHub 管理、Postman 调试、Navicat 数据建模</td>
-</tr>
-</tbody></table>
-<hr>
-<h3 id="🏗️-系统架构图"><a href="#🏗️-系统架构图" class="headerlink" title="🏗️ 系统架构图"></a>🏗️ 系统架构图</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">浏览器（PC / 手机）</span><br><span class="line">    ↓</span><br><span class="line">Vue3 + Axios</span><br><span class="line">    ↓</span><br><span class="line">Spring Boot Controller</span><br><span class="line">    ↓</span><br><span class="line">Service 层（接口 + 实现）</span><br><span class="line">    ↓</span><br><span class="line">MyBatis Plus → MySQL</span><br><span class="line">                 ↑</span><br><span class="line">         Redis（缓存/状态）</span><br></pre></td></tr></table></figure>
+<h2 id="🧱-代码设计"><a href="#🧱-代码设计" class="headerlink" title="🧱 代码设计"></a>🧱 代码设计</h2><h3 id="1-BaseService-接口"><a href="#1-BaseService-接口" class="headerlink" title="1. BaseService 接口"></a>1. BaseService 接口</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">BaseService</span>&lt;T, ID <span class="keyword">extends</span> <span class="title class_">Serializable</span>&gt; &#123;</span><br><span class="line">    T <span class="title function_">getById</span><span class="params">(ID id)</span>;</span><br><span class="line">    List&lt;T&gt; <span class="title function_">listAll</span><span class="params">()</span>;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">save</span><span class="params">(T entity)</span>;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">update</span><span class="params">(T entity)</span>;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">deleteById</span><span class="params">(ID id)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-BaseServiceImpl-抽象实现"><a href="#2-BaseServiceImpl-抽象实现" class="headerlink" title="2. BaseServiceImpl 抽象实现"></a>2. BaseServiceImpl 抽象实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">BaseServiceImpl</span>&lt;T, ID <span class="keyword">extends</span> <span class="title class_">Serializable</span>, M <span class="keyword">extends</span> <span class="title class_">BaseMapper</span>&lt;T&gt;&gt; <span class="keyword">implements</span> <span class="title class_">BaseService</span>&lt;T, ID&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">final</span> M mapper;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">BaseServiceImpl</span><span class="params">(M mapper)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.mapper = mapper;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> T <span class="title function_">getById</span><span class="params">(ID id)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> mapper.selectById(id);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;T&gt; <span class="title function_">listAll</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> mapper.selectAll();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">save</span><span class="params">(T entity)</span> &#123;</span><br><span class="line">        mapper.insert(entity);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">update</span><span class="params">(T entity)</span> &#123;</span><br><span class="line">        mapper.update(entity);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">deleteById</span><span class="params">(ID id)</span> &#123;</span><br><span class="line">        mapper.deleteById(id);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h2 id="🧩-系统功能模块拆解"><a href="#🧩-系统功能模块拆解" class="headerlink" title="🧩 系统功能模块拆解"></a>🧩 系统功能模块拆解</h2><p>项目采用典型的<strong>多角色权限控制 + 分模块管理</strong>的结构，整体功能如下：</p>
-<h3 id="👤-多角色登录认证（支持账号密码-扫码登录）"><a href="#👤-多角色登录认证（支持账号密码-扫码登录）" class="headerlink" title="👤 多角色登录认证（支持账号密码 + 扫码登录）"></a>👤 多角色登录认证（支持账号密码 + 扫码登录）</h3><ul>
-<li>支持 <code>ADMIN</code> &#x2F; <code>TEACHER</code> &#x2F; <code>STUDENT</code> 三角色登录</li>
-<li>使用 Spring Security + JWT 实现无状态登录</li>
-<li>扫码登录不依赖微信，仅使用 PC + 手机浏览器交互</li>
-<li>使用策略模式解耦登录逻辑，提升扩展性</li>
-</ul>
-<h3 id="🔐-角色权限与菜单控制"><a href="#🔐-角色权限与菜单控制" class="headerlink" title="🔐 角色权限与菜单控制"></a>🔐 角色权限与菜单控制</h3><ul>
-<li>登录后根据用户角色动态加载前端路由</li>
-<li>后端控制接口权限，前端控制菜单渲染</li>
-<li>使用 Vue Router + JWT Token 实现导航守卫</li>
-</ul>
-<h3 id="📚-教务核心模块"><a href="#📚-教务核心模块" class="headerlink" title="📚 教务核心模块"></a>📚 教务核心模块</h3><ul>
-<li>学生管理：增删改查、分页、模糊搜索</li>
-<li>教师管理：支持教师个人信息与职务维护</li>
-<li>成绩管理：教师录入成绩，学生查看成绩</li>
-<li>课程管理：添加课程、分配教师、选课绑定</li>
-<li>通知管理：管理员发布通知，全体用户接收</li>
-</ul>
-<h3 id="📋-用户个人中心"><a href="#📋-用户个人中心" class="headerlink" title="📋 用户个人中心"></a>📋 用户个人中心</h3><ul>
-<li>用户可修改个人信息与密码</li>
-<li>支持按角色区分信息展示与表单项</li>
+<h2 id="⚙️-业务接入示例"><a href="#⚙️-业务接入示例" class="headerlink" title="⚙️ 业务接入示例"></a>⚙️ 业务接入示例</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserServiceImpl</span> <span class="keyword">extends</span> <span class="title class_">BaseServiceImpl</span>&lt;User, Long, UserMapper&gt; <span class="keyword">implements</span> <span class="title class_">UserService</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">UserServiceImpl</span><span class="params">(UserMapper userMapper)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(userMapper);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 可写特有业务逻辑</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="📌-实践建议"><a href="#📌-实践建议" class="headerlink" title="📌 实践建议"></a>📌 实践建议</h2><ul>
+<li>新增业务模块从此基类继承，避免重复实现</li>
+<li>结合分页、事务钩子方法，增强基类能力</li>
+<li>定期重构老业务代码，引入泛型抽象层</li>
 </ul>
 <hr>
-<h2 id="📦-项目特色与亮点"><a href="#📦-项目特色与亮点" class="headerlink" title="📦 项目特色与亮点"></a>📦 项目特色与亮点</h2><table>
-<thead>
-<tr>
-<th>类别</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>🔁 无状态认证</td>
-<td>JWT + 自定义拦截器，结合 Redis 实现高效校验</td>
-</tr>
-<tr>
-<td>🧠 设计模式</td>
-<td>登录逻辑采用策略模式解耦角色认证</td>
-</tr>
-<tr>
-<td>📱 扫码登录</td>
-<td>自研网页扫码登录机制，无需依赖微信平台</td>
-</tr>
-<tr>
-<td>💡 通用脚手架</td>
-<td>已抽象为 mycode 脚手架，支持快速构建后台</td>
-</tr>
-<tr>
-<td>🎯 项目架构规范</td>
-<td>三层结构、接口分离、模块清晰、注释齐全</td>
-</tr>
-</tbody></table>
+<h2 id="🔚-总结"><a href="#🔚-总结" class="headerlink" title="🔚 总结"></a>🔚 总结</h2><p>服务层泛型抽象设计，减少了样板代码，提高了代码复用率和可维护性，是大型项目必备的架构实践。业务开发专注核心逻辑，极大提升团队开发效率。</p>
 <hr>
-<h2 id="🚀-项目托管与演示地址"><a href="#🚀-项目托管与演示地址" class="headerlink" title="🚀 项目托管与演示地址"></a>🚀 项目托管与演示地址</h2><ul>
-<li><p>🔗 GitHub 开源地址（持续更新中）：<br><a target="_blank" rel="noopener" href="https://gitee.com/codevibe/grade-system">https://gitee.com/codevibe/grade-system</a></p>
-</li>
-<li><p>🛠️ 本地一键启动指南、接口文档与演示账号均已配置于 README</p>
-</li>
+<h2 id="🔗-项目源码地址"><a href="#🔗-项目源码地址" class="headerlink" title="🔗 项目源码地址"></a>🔗 项目源码地址</h2><ul>
+<li>GitHub：<a target="_blank" rel="noopener" href="https://gitee.com/codevibe/grade-system">https://gitee.com/codevibe/grade-system</a></li>
+<li>Axios 封装、前后端对接代码已上传，支持一键部署体验</li>
 </ul>
 <hr>
-<h2 id="✍️-我从这个项目中学到了什么？"><a href="#✍️-我从这个项目中学到了什么？" class="headerlink" title="✍️ 我从这个项目中学到了什么？"></a>✍️ 我从这个项目中学到了什么？</h2><p>这个项目不仅锻炼了我独立开发能力，更让我意识到以下几点：</p>
-<ol>
-<li><strong>代码只是起点，架构与模式才是进阶的门槛</strong></li>
-<li>写代码很简单，<strong>写别人能看懂的结构化系统</strong>很难</li>
-<li>一个好项目，不只是功能全，而是要<strong>可扩展、可维护、可协作</strong></li>
-<li>写博客、做文档，是验证你理解深度的最好方式</li>
-</ol>
-<hr>
-<h2 id="🧱-接下来我将写什么？"><a href="#🧱-接下来我将写什么？" class="headerlink" title="🧱 接下来我将写什么？"></a>🧱 接下来我将写什么？</h2><p>这是「EduCore 教务系统实战系列」的第一篇，后续我将拆解每个模块细节，包括但不限于：</p>
-<ul>
-<li>Spring Security + JWT 的认证全过程</li>
-<li>多角色登录策略模式解耦实践</li>
-<li>网页扫码登录机制的完整实现</li>
-<li>Vue3 前后端权限联动与动态菜单控制</li>
-<li>项目三层架构与接口设计规范</li>
+<h2 id="🙋‍♂️-如果你觉得这篇文章有帮助："><a href="#🙋‍♂️-如果你觉得这篇文章有帮助：" class="headerlink" title="🙋‍♂️ 如果你觉得这篇文章有帮助："></a>🙋‍♂️ 如果你觉得这篇文章有帮助：</h2><ul>
+<li>点赞 👍</li>
+<li>收藏 ⭐</li>
+<li>评论 💬</li>
+<li>关注我 👇 获取后续实战内容</li>
 </ul>
-<hr>
-<h2 id="✅-如果你觉得这篇文章对你有帮助："><a href="#✅-如果你觉得这篇文章对你有帮助：" class="headerlink" title="✅ 如果你觉得这篇文章对你有帮助："></a>✅ 如果你觉得这篇文章对你有帮助：</h2><ul>
-<li>欢迎点赞 👍 收藏 ⭐ 留言 💬</li>
-<li>也可以访问我的 GitHub 获取完整源码</li>
-<li>后续文章我将持续更新，欢迎关注专栏</li>
-</ul>
-<hr>
-<blockquote>
-<p>写这篇文章对我来说不只是记录，更是重启职业成长的一部分。<br>如果你也在独自学习编程，不妨从一个完整的项目开始。</p>
-</blockquote>
 
   </div>
 
@@ -543,18 +456,18 @@
 
   <nav class="article-actions">
     
-      <a class="article-action article-action--prev" href="/2026/06/26/2026062604/">
+      <span class="article-action article-action--prev is-disabled" aria-disabled="true">
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
 
         <span class="action-label">上一篇</span>
-        <span class="action-title">如何用 Spring Security 构建无状态权限控制系统（含角色菜单控制）</span>
-      </a>
+        <span class="action-title">没有更早的文章了</span>
+      </span>
     
     
-      <a class="article-action article-action--next" href="/2026/06/26/2026062602/">
+      <a class="article-action article-action--next" href="/2026/06/26/2026062605/">
         <span class="action-label">下一篇</span>
-        <span class="action-title">Java 集合框架与数据结构核心速记笔记</span>
+        <span class="action-title">使用 Vue3 + Axios 与 Spring Boot 高效对接（含 token 处理）</span>
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
 
@@ -585,7 +498,7 @@
     </header>
     <div class="related-paper__grid">
       
-        <a class="related-card" href="/2026/06/26/2026062607/">
+        <a class="related-card" href="/2026/06/26/2026062605/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
@@ -596,12 +509,12 @@
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">Spring Boot 服务层泛型抽象与代码复用实战</strong>
+            <strong class="related-card__title">使用 Vue3 + Axios 与 Spring Boot 高效对接（含 token 处理）</strong>
             <em class="related-card__date">2026-06-26</em>
           </span>
         </a>
       
-        <a class="related-card" href="/2026/06/26/2026062605/">
+        <a class="related-card" href="/2026/06/26/2026062606/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-1 paper-thumb--cover">
@@ -617,7 +530,7 @@
           </span>
         </a>
       
-        <a class="related-card" href="/2026/06/26/2026062606/">
+        <a class="related-card" href="/2026/06/26/2026062604/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-2 paper-thumb--cover">
@@ -628,12 +541,12 @@
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">使用 Vue3 + Axios 与 Spring Boot 高效对接（含 token 处理）</strong>
+            <strong class="related-card__title">如何用 Spring Security 构建无状态权限控制系统（含角色菜单控制）</strong>
             <em class="related-card__date">2026-06-26</em>
           </span>
         </a>
       
-        <a class="related-card" href="/2026/06/26/2026062604/">
+        <a class="related-card" href="/2026/06/26/2026062603/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
@@ -644,7 +557,7 @@
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">如何用 Spring Security 构建无状态权限控制系统（含角色菜单控制）</strong>
+            <strong class="related-card__title">从 0 到 1，我如何独立开发一套教务系统（EduCore）</strong>
             <em class="related-card__date">2026-06-26</em>
           </span>
         </a>
