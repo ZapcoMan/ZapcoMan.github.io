@@ -8,26 +8,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#f7f3e9">
 
-<title>多协议蜜罐初体验 🐝 | ZapcoMan&#39;s world</title>
-<meta name="description" content="目标：快速搭建多协议蜜罐，记录攻击行为，入门蜜罐实践 🎯 实验目标 搭建 TCP &#x2F; HTTP &#x2F; HTTPS &#x2F; SSH &#x2F; Telnet &#x2F; FTP 的低交互蜜罐 捕获和记录攻击输入 了解异步架构 asyncio 的多协议处理方式 学习 JSONL 格式日志记录与分析 🛠 环境准备 Python 3...">
+<title>玩转 Flipper Zero：RFID 全功能介绍 | ZapcoMan&#39;s world</title>
+<meta name="description" content="前言Flipper Zero 是一款便携式多功能黑客工具，RFID（射频识别）是它的核心功能之一。本文将全面介绍 Flipper Zero 上所有与 RFID 相关的功能和第三方 APP，帮助你从入门到精通。 一、RFID Detector — 频率探测利器在正式进入 NFC 和 RFID 的系列教程之前，先介绍一个内置的实用工具：RFID Detector...">
 <meta property="og:type" content="article">
-<meta property="og:title" content="多协议蜜罐初体验 🐝 | ZapcoMan&#39;s world">
-<meta property="og:url" content="http://example.com/2026/06/26/2026062608/">
+<meta property="og:title" content="玩转 Flipper Zero：RFID 全功能介绍 | ZapcoMan&#39;s world">
+<meta property="og:url" content="http://example.com/2026/06/27/2026062702/">
 <meta property="og:site_name" content="ZapcoMan&#39;s world">
-<meta property="og:description" content="目标：快速搭建多协议蜜罐，记录攻击行为，入门蜜罐实践 🎯 实验目标 搭建 TCP &#x2F; HTTP &#x2F; HTTPS &#x2F; SSH &#x2F; Telnet &#x2F; FTP 的低交互蜜罐 捕获和记录攻击输入 了解异步架构 asyncio 的多协议处理方式 学习 JSONL 格式日志记录与分析 🛠 环境准备 Python 3...">
+<meta property="og:description" content="前言Flipper Zero 是一款便携式多功能黑客工具，RFID（射频识别）是它的核心功能之一。本文将全面介绍 Flipper Zero 上所有与 RFID 相关的功能和第三方 APP，帮助你从入门到精通。 一、RFID Detector — 频率探测利器在正式进入 NFC 和 RFID 的系列教程之前，先介绍一个内置的实用工具：RFID Detector...">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-06-26T08:54:50.000Z">
-<meta property="article:modified_time" content="2026-06-26T08:57:16.828Z">
+<meta property="og:image" content="https://i.imgs.ovh/2026/06/27/89047f87e0e38f0f6166ade170eead3c.jpg">
+<meta property="article:published_time" content="2026-06-27T11:03:11.893Z">
+<meta property="article:modified_time" content="2026-06-27T11:11:54.900Z">
 <meta property="article:author" content="ZapcoMan">
-<meta property="article:tag" content="kali Linux">
-<meta property="article:tag" content="多协议">
-<meta property="article:tag" content="蜜罐">
+<meta property="article:tag" content="Flipper Zero">
+<meta property="article:tag" content="网络安全">
+<meta property="article:tag" content="近源渗透">
 <meta name="twitter:card" content="summary">
-<link rel="canonical" href="http://example.com/2026/06/26/2026062608/">
+<meta name="twitter:image" content="https://i.imgs.ovh/2026/06/27/89047f87e0e38f0f6166ade170eead3c.jpg">
+<link rel="canonical" href="http://example.com/2026/06/27/2026062702/">
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"多协议蜜罐初体验 🐝","name":"多协议蜜罐初体验 🐝 | ZapcoMan's world","description":"目标：快速搭建多协议蜜罐，记录攻击行为，入门蜜罐实践 🎯 实验目标 搭建 TCP &#x2F; HTTP &#x2F; HTTPS &#x2F; SSH &#x2F; Telnet &#x2F; FTP 的低交互蜜罐 捕获和记录攻击输入 了解异步架构 asyncio 的多协议处理方式 学习 JSONL 格式日志记录与分析 🛠 环境准备 Python 3...","url":"http://example.com/2026/06/26/2026062608/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/06/26/2026062608/","datePublished":"2026-06-26T08:54:50.000Z","dateModified":"2026-06-26T08:57:16.828Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"蜜罐, 多协议, kali Linux"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"玩转 Flipper Zero：RFID 全功能介绍","name":"玩转 Flipper Zero：RFID 全功能介绍 | ZapcoMan's world","description":"前言Flipper Zero 是一款便携式多功能黑客工具，RFID（射频识别）是它的核心功能之一。本文将全面介绍 Flipper Zero 上所有与 RFID 相关的功能和第三方 APP，帮助你从入门到精通。 一、RFID Detector — 频率探测利器在正式进入 NFC 和 RFID 的系列教程之前，先介绍一个内置的实用工具：RFID Detector...","url":"http://example.com/2026/06/27/2026062702/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/06/27/2026062702/","datePublished":"2026-06-27T11:03:11.893Z","dateModified":"2026-06-27T11:11:54.900Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"网络安全, 近源渗透, Flipper Zero"}</script>
 
 <script>
   (function () {
@@ -346,7 +348,7 @@
         </header>
         <div class="toc-content">
           
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8E%AF-%E5%AE%9E%E9%AA%8C%E7%9B%AE%E6%A0%87"><span class="toc-text">🎯 实验目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%9B%A0-%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="toc-text">🛠 环境准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%A1-%E6%B5%8B%E8%AF%95%E7%A4%BA%E4%BE%8B"><span class="toc-text">📡 测试示例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP-%E6%B5%8B%E8%AF%95"><span class="toc-text">TCP 测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Telnet-%E6%B5%8B%E8%AF%95"><span class="toc-text">Telnet 测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FTP-%E6%B5%8B%E8%AF%95"><span class="toc-text">FTP 测试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%84-%E6%97%A5%E5%BF%97%E7%A4%BA%E4%BE%8B"><span class="toc-text">📄 日志示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8A-%E6%97%A5%E5%BF%97%E8%A7%A3%E6%9E%90%E7%A4%BA%E4%BE%8B"><span class="toc-text">📊 日志解析示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%9A-%E6%80%BB%E7%BB%93"><span class="toc-text">🔚 总结</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81RFID-Detector-%E2%80%94-%E9%A2%91%E7%8E%87%E6%8E%A2%E6%B5%8B%E5%88%A9%E5%99%A8"><span class="toc-text">一、RFID Detector — 频率探测利器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">使用方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81125KHz-RFID-%E2%80%94-%E5%86%85%E7%BD%AE%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD"><span class="toc-text">二、125KHz RFID — 内置核心功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Read-%E2%80%94-%E8%AF%BB%E5%8F%96%E5%8D%A1%E7%89%87"><span class="toc-text">Read — 读取卡片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Saved-%E2%80%94-%E5%B7%B2%E4%BF%9D%E5%AD%98%E5%8D%A1%E7%89%87%E7%AE%A1%E7%90%86"><span class="toc-text">Saved — 已保存卡片管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Add-Manually-%E2%80%94-%E6%89%8B%E5%8A%A8%E6%B7%BB%E5%8A%A0%E5%8D%A1%E7%89%87"><span class="toc-text">Add Manually — 手动添加卡片</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%AC%AC%E4%B8%89%E6%96%B9-RFID-APP-%E8%AF%A6%E8%A7%A3"><span class="toc-text">三、第三方 RFID APP 详解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-RFID-Beacon-%E2%80%94-%E6%91%A9%E6%96%AF%E7%94%B5%E7%A0%81%E4%BF%A1%E6%A0%87"><span class="toc-text">3.1 RFID Beacon — 摩斯电码信标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%96%B9%E5%BC%8F"><span class="toc-text">操作方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-RFID-Fuzzer-%E2%80%94-%E5%8D%A1%E7%89%87-ID-%E7%88%86%E7%A0%B4%E5%B7%A5%E5%85%B7"><span class="toc-text">3.2 RFID Fuzzer — 卡片 ID 爆破工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-EM4100-Key-Generator-%E2%80%94-ID-%E7%94%9F%E6%88%90%E5%99%A8"><span class="toc-text">3.3 EM4100 Key Generator — ID 生成器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-T5577-Multiwriter-%E2%80%94-%E5%A4%9A-ID-%E5%86%99%E5%8D%A1%E5%B7%A5%E5%85%B7"><span class="toc-text">3.4 T5577 Multiwriter — 多 ID 写卡工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-UHF-RFID-%E2%80%94-%E8%B6%85%E9%AB%98%E9%A2%91-RFID-%E6%A8%A1%E5%9D%97"><span class="toc-text">3.5 UHF RFID — 超高频 RFID 模块</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%8A%9F%E8%83%BD%E6%80%BB%E7%BB%93"><span class="toc-text">四、功能总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E7%BB%93%E8%AF%AD"><span class="toc-text">五、结语</span></a></li></ol>
           
         </div>
       </section>
@@ -368,24 +370,24 @@
 <article class="article-paper">
   <header class="article-header">
     
-      <a class="label-pill" href="/categories/python/">
+      <a class="label-pill" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder" aria-hidden="true"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>
 
-        python
+        网络安全
       </a>
     
-    <h1>多协议蜜罐初体验 🐝</h1>
+    <h1>玩转 Flipper Zero：RFID 全功能介绍</h1>
     <div class="meta-line meta-line--article">
       <span class="meta-date">
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
-2026-06-26</span>
+2026-06-27</span>
       
         <span class="meta-tags">
           
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag" aria-hidden="true"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/></svg>
 
-          <a class="meta-tag-link" href="/tags/%E8%9C%9C%E7%BD%90/">#蜜罐</a><a class="meta-tag-link" href="/tags/%E5%A4%9A%E5%8D%8F%E8%AE%AE/">#多协议</a><a class="meta-tag-link" href="/tags/kali-Linux/">#kali Linux</a>
+          <a class="meta-tag-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">#网络安全</a><a class="meta-tag-link" href="/tags/%E8%BF%91%E6%BA%90%E6%B8%97%E9%80%8F/">#近源渗透</a><a class="meta-tag-link" href="/tags/Flipper-Zero/">#Flipper Zero</a>
         </span>
       
     </div>
@@ -395,54 +397,251 @@
 
 
   <div class="article-content">
-    <blockquote>
-<p>目标：快速搭建多协议蜜罐，记录攻击行为，入门蜜罐实践</p>
-</blockquote>
+    <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Flipper Zero 是一款便携式多功能黑客工具，RFID（射频识别）是它的核心功能之一。本文将全面介绍 Flipper Zero 上所有与 RFID 相关的功能和第三方 APP，帮助你从入门到精通。</p>
 <hr>
-<h2 id="🎯-实验目标"><a href="#🎯-实验目标" class="headerlink" title="🎯 实验目标"></a>🎯 实验目标</h2><ul>
-<li>搭建 TCP &#x2F; HTTP &#x2F; HTTPS &#x2F; SSH &#x2F; Telnet &#x2F; FTP 的低交互蜜罐</li>
-<li>捕获和记录攻击输入</li>
-<li>了解异步架构 asyncio 的多协议处理方式</li>
-<li>学习 JSONL 格式日志记录与分析</li>
-</ul>
-<hr>
-<h2 id="🛠-环境准备"><a href="#🛠-环境准备" class="headerlink" title="🛠 环境准备"></a>🛠 环境准备</h2><ul>
-<li>Python 3.11+ 🐍</li>
-<li>系统：Linux &#x2F; Windows &#x2F; macOS</li>
-<li>端口：非特权端口（避免 root）</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python multi_protocol_honeypot.py --host 0.0.0.0 --<span class="built_in">log</span> honeypot_sessions.jsonl --generate-cert</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>⚠️ <code>--generate-cert</code> 用于 HTTPS 自签名证书</p>
-</blockquote>
-<hr>
-<h2 id="📡-测试示例"><a href="#📡-测试示例" class="headerlink" title="📡 测试示例"></a>📡 测试示例</h2><h3 id="TCP-测试"><a href="#TCP-测试" class="headerlink" title="TCP 测试"></a>TCP 测试</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nc 127.0.0.1 9000</span><br><span class="line"><span class="comment"># 输入任意文本，观察回显 🔁</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="Telnet-测试"><a href="#Telnet-测试" class="headerlink" title="Telnet 测试"></a>Telnet 测试</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">telnet 127.0.0.1 2323</span><br><span class="line"><span class="comment"># 登录 mini-shell，输入 whoami / exit</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="FTP-测试"><a href="#FTP-测试" class="headerlink" title="FTP 测试"></a>FTP 测试</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ftp 127.0.0.1 2121</span><br><span class="line"><span class="comment"># USER test</span></span><br><span class="line"><span class="comment"># PASS 1234</span></span><br><span class="line"><span class="comment"># LIST / RETR filename</span></span><br><span class="line"><span class="comment"># QUIT</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="📄-日志示例"><a href="#📄-日志示例" class="headerlink" title="📄 日志示例"></a>📄 日志示例</h2><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;session_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;3f6e0d4a-1234-5678-9abc-abcdef123456&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;protocol&quot;</span><span class="punctuation">:</span> <span class="string">&quot;telnet&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;remote_ip&quot;</span><span class="punctuation">:</span> <span class="string">&quot;127.0.0.1&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;remote_port&quot;</span><span class="punctuation">:</span> <span class="number">50232</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;login&quot;</span><span class="punctuation">:</span> <span class="string">&quot;test&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;password&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&lt;captured&gt;&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;inputs&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span><span class="attr">&quot;ts&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2025-09-26T12:00:01+00:00&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;input&quot;</span><span class="punctuation">:</span> <span class="string">&quot;whoami&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span><span class="attr">&quot;ts&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2025-09-26T12:00:05+00:00&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;input&quot;</span><span class="punctuation">:</span> <span class="string">&quot;exit&quot;</span><span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;raw_base64&quot;</span><span class="punctuation">:</span> <span class="string">&quot;dGVzdF9sb2dpbgpwd2QK...&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>✅ 每条会话包含：协议类型、远端 IP、输入记录、原始数据</p>
-</blockquote>
-<hr>
-<h2 id="📊-日志解析示例"><a href="#📊-日志解析示例" class="headerlink" title="📊 日志解析示例"></a>📊 日志解析示例</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;honeypot_sessions.jsonl&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> f:</span><br><span class="line">        entry = json.loads(line)</span><br><span class="line">        <span class="keyword">if</span> entry[<span class="string">&quot;protocol&quot;</span>] == <span class="string">&quot;telnet&quot;</span>:</span><br><span class="line">            <span class="built_in">print</span>(entry[<span class="string">&quot;remote_ip&quot;</span>], entry[<span class="string">&quot;login&quot;</span>], <span class="built_in">len</span>(entry[<span class="string">&quot;inputs&quot;</span>]))</span><br></pre></td></tr></table></figure>
-
+<h2 id="一、RFID-Detector-—-频率探测利器"><a href="#一、RFID-Detector-—-频率探测利器" class="headerlink" title="一、RFID Detector — 频率探测利器"></a>一、RFID Detector — 频率探测利器</h2><p>在正式进入 NFC 和 RFID 的系列教程之前，先介绍一个内置的实用工具：<strong>RFID Detector</strong>。</p>
+<p>这个 APP 位于 <code>APPs → Tools</code> 文件夹中，它的作用是<strong>探测读卡器的工作频率</strong>，帮你判断目标卡是低频卡还是高频卡。</p>
+<h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><p>配合 Proxmark3（pm3）使用效果更好：</p>
 <ul>
-<li>可以统计攻击来源 IP 🌍</li>
-<li>分析常用命令和密码尝试 🔑</li>
+<li>执行 <code>lf search</code> 进行低频探测时，把 Flipper 贴上去，如果显示 <strong>125KHz</strong>，说明是低频卡读卡器</li>
+<li>执行 <code>hf search</code> 进行高频探测时，把 Flipper 贴上去，如果显示 <strong>13.56MHz</strong>，说明是高频卡读卡器</li>
+</ul>
+<blockquote>
+<p>💡 <strong>小贴士</strong>：在不知道卡类型的情况下，先用 RFID Detector 探测频率，再选择对应的读取功能，可以大大提高效率。</p>
+</blockquote>
+<hr>
+<h2 id="二、125KHz-RFID-—-内置核心功能"><a href="#二、125KHz-RFID-—-内置核心功能" class="headerlink" title="二、125KHz RFID — 内置核心功能"></a>二、125KHz RFID — 内置核心功能</h2><p>回到本文主题，主菜单中的 <strong>125KHz RFID</strong> 是 Flipper Zero 的内置 RFID 功能，包含以下选项：</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Read</strong></td>
+<td>读取附近 RFID 卡的信息</td>
+</tr>
+<tr>
+<td><strong>Saved</strong></td>
+<td>查看已保存的卡片</td>
+</tr>
+<tr>
+<td><strong>Add Manually</strong></td>
+<td>手动添加卡片</td>
+</tr>
+<tr>
+<td><strong>Extra Actions</strong></td>
+<td>其他操作</td>
+</tr>
+</tbody></table>
+<h3 id="Read-—-读取卡片"><a href="#Read-—-读取卡片" class="headerlink" title="Read — 读取卡片"></a>Read — 读取卡片</h3><p>使用 Proxmark3 模拟一个 EM410X ID 卡来演示读取功能：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># pm3 命令：模拟 ID 为 1122334455 的卡片</span></span><br><span class="line">[usb] pm3 &gt; lf em 410x sim <span class="built_in">id</span> 1122334455</span><br><span class="line">Starting simulating EM Tag ID 1122334455 clock: 64</span><br><span class="line">[] Press pm3 button or &lt;Enter&gt; to abort simulation</span><br></pre></td></tr></table></figure>
+
+<p>然后在 Flipper 上选择 <strong>Read</strong>，把 Flipper 贴在 pm3 的 LF 天线上，就能成功读取到模拟卡片的信息。读取后可以选择：</p>
+<ul>
+<li><strong>保存</strong> — 将卡片信息存入 Saved</li>
+<li><strong>模拟</strong> — 仿真该卡</li>
+<li><strong>写入</strong> — 将数据写入空白卡</li>
+</ul>
+<h3 id="Saved-—-已保存卡片管理"><a href="#Saved-—-已保存卡片管理" class="headerlink" title="Saved — 已保存卡片管理"></a>Saved — 已保存卡片管理</h3><p>在 Saved 选项中可以看到所有已保存的卡片。点击任意一张可以进行以下操作：</p>
+<ul>
+<li><strong>模拟（Emulate）</strong> — 仿真该卡</li>
+<li><strong>写卡（Write）</strong> — 将数据写入可写卡</li>
+<li><strong>写卡并设置密码</strong> — 写入时添加密码保护</li>
+<li><strong>编辑（Edit）</strong> — 修改卡片信息</li>
+<li><strong>删除</strong> — 移除该卡片</li>
+<li><strong>查看信息</strong> — 查看卡片详细信息</li>
+</ul>
+<blockquote>
+<p>⚠️ <strong>注意</strong>：写卡的对象应该是 <strong>T5577</strong> 等可写卡，而不是 <strong>EM410X</strong> 这种不可更改的只读卡。</p>
+</blockquote>
+<h3 id="Add-Manually-—-手动添加卡片"><a href="#Add-Manually-—-手动添加卡片" class="headerlink" title="Add Manually — 手动添加卡片"></a>Add Manually — 手动添加卡片</h3><p>可以选择不同类型的卡片并设置卡片 ID 来创建一张虚拟卡。支持的类型包括：</p>
+<ul>
+<li>EM Micro EM410x</li>
+<li>EM410x 32</li>
+<li>EM Micro HID Prox</li>
+<li>IDTECK Hitag</li>
+</ul>
+<p>创建结果会保存在 Saved 中。不过逐个查看后发现，这些类型都只是保存一个卡号，功能比较简单。</p>
+<hr>
+<h2 id="三、第三方-RFID-APP-详解"><a href="#三、第三方-RFID-APP-详解" class="headerlink" title="三、第三方 RFID APP 详解"></a>三、第三方 RFID APP 详解</h2><p>在 <code>APPs → RFID</code> 文件夹中有几个非常实用的第三方 APP：</p>
+<ul>
+<li><strong>RFID Beacon</strong></li>
+<li><strong>RFID Fuzzer</strong></li>
+<li><strong>EM4100 Key Generator</strong></li>
+<li><strong>T5577 Multiwriter</strong></li>
+<li><strong>UHF RFID</strong></li>
+</ul>
+<p>下面逐一介绍。</p>
+<hr>
+<h3 id="3-1-RFID-Beacon-—-摩斯电码信标"><a href="#3-1-RFID-Beacon-—-摩斯电码信标" class="headerlink" title="3.1 RFID Beacon — 摩斯电码信标"></a>3.1 RFID Beacon — 摩斯电码信标</h3><p><strong>项目地址</strong>：<a target="_blank" rel="noopener" href="https://github.com/nmrr/flipperzero-rfidbeacon">github.com&#x2F;nmrr&#x2F;flipperzero-rfidbeacon</a></p>
+<p>RFID Beacon 是一个发射信标的小程序，在 <strong>125KHz</strong> 频段使用<strong>摩斯电码</strong>传输：</p>
+<ul>
+<li>整个字母表（A 到 Z）</li>
+<li>数字（0 到 9）</li>
+<li>一些常见符号</li>
+</ul>
+<h3 id="操作方式"><a href="#操作方式" class="headerlink" title="操作方式"></a>操作方式</h3><ul>
+<li>短按方向键：切换要发射的内容</li>
+<li>长按方向键：切换发射和暂停状态</li>
+<li>进入发射状态后，每隔一段时间自动发射一次</li>
+<li>发射时 Flipper 的<strong>红灯会亮起</strong>作为指示</li>
+</ul>
+<blockquote>
+<p>💡 需要有低频 SDR 设备才能接收信号。如果没有，可以到 GitHub 项目页面查看演示截图。</p>
+</blockquote>
+<hr>
+<h3 id="3-2-RFID-Fuzzer-—-卡片-ID-爆破工具"><a href="#3-2-RFID-Fuzzer-—-卡片-ID-爆破工具" class="headerlink" title="3.2 RFID Fuzzer — 卡片 ID 爆破工具"></a>3.2 RFID Fuzzer — 卡片 ID 爆破工具</h3><p><strong>项目地址</strong>：<a target="_blank" rel="noopener" href="https://github.com/DarkFlippers/Multi_Fuzzer">github.com&#x2F;DarkFlippers&#x2F;Multi_Fuzzer</a></p>
+<p>RFID Fuzzer 主要用于<strong>爆破各种协议卡片的 ID</strong>，提供了多种爆破方式：</p>
+<h4 id="爆破方式"><a href="#爆破方式" class="headerlink" title="爆破方式"></a>爆破方式</h4><ol>
+<li><strong>Default Values</strong> — 使用默认 ID 列表进行爆破，默认列表数量不多</li>
+<li><strong>BF (Brute Force) Customer ID</strong> — ID 遍历爆破，可以选择爆破哪一个字节，爆破时只有该字节变化，其余为 0</li>
+<li><strong>Load File</strong> — 从之前保存的卡片文件中加载，只爆破一个字节，但可以选择修改其他字节的值</li>
+<li><strong>Load UIDs from file</strong> — 从 TXT 文件加载 ID 列表</li>
+</ol>
+<h4 id="ID-列表文件格式"><a href="#ID-列表文件格式" class="headerlink" title="ID 列表文件格式"></a>ID 列表文件格式</h4><p>列表文件是纯 TXT，一行一个 ID，格式示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">0404004440</span><br><span class="line">FE00000000G</span><br><span class="line">CHFE0000000</span><br><span class="line">BOCRFE0000</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="3-3-EM4100-Key-Generator-—-ID-生成器"><a href="#3-3-EM4100-Key-Generator-—-ID-生成器" class="headerlink" title="3.3 EM4100 Key Generator — ID 生成器"></a>3.3 EM4100 Key Generator — ID 生成器</h3><p><strong>项目地址</strong>：<a target="_blank" rel="noopener" href="https://github.com/Milk-Cool/fz-em4100-generator">github.com&#x2F;Milk-Cool&#x2F;fz-em4100-generator</a></p>
+<p>这里的 “Key” 指的是 <strong>ID</strong> 而不是密码。这个 APP 用于生成一系列 EM4100 卡片 ID，特点：</p>
+<ul>
+<li>生成的 ID <strong>不是随机的</strong>，而是固定序列</li>
+<li>生成的文件会保存在 RFID Fuzzer 的 <code>Load UIDs from file</code> 选项对应文件夹中</li>
+<li>生成的 ID 列表可以直接用于 RFID Fuzzer 进行爆破</li>
 </ul>
 <hr>
-<h2 id="🔚-总结"><a href="#🔚-总结" class="headerlink" title="🔚 总结"></a>🔚 总结</h2><ul>
-<li>低交互蜜罐易于部署</li>
-<li>JSONL 格式便于批量分析</li>
-<li>适合入门攻击行为记录和日志分析</li>
+<h3 id="3-4-T5577-Multiwriter-—-多-ID-写卡工具"><a href="#3-4-T5577-Multiwriter-—-多-ID-写卡工具" class="headerlink" title="3.4 T5577 Multiwriter — 多 ID 写卡工具"></a>3.4 T5577 Multiwriter — 多 ID 写卡工具</h3><p><strong>项目地址</strong>：<a target="_blank" rel="noopener" href="https://github.com/Leptoptilos/t5577_multiwriter">github.com&#x2F;Leptoptilos&#x2F;t5577_multiwriter</a></p>
+<p>这个 APP 的功能是往 <strong>T5577 卡片</strong>中写入<strong>多个 EM410X 卡片 ID</strong>：</p>
+<ul>
+<li>最多能写入 <strong>3 个 ID</strong></li>
+<li>只能写入已在 Saved 中保存的卡片文件</li>
 </ul>
+<blockquote>
+<p>🤔 <strong>有趣背景</strong>：这个 APP 的灵感来源于 <a target="_blank" rel="noopener" href="https://forum.dangerousthings.com/">Dangerous Things 论坛</a> 的一篇帖子。该论坛是”生物黑客”社区，有人把特斯拉卡片融开，把钥匙芯片植入身体里——确实非常离谱，慎入。</p>
+</blockquote>
 <hr>
+<h3 id="3-5-UHF-RFID-—-超高频-RFID-模块"><a href="#3-5-UHF-RFID-—-超高频-RFID-模块" class="headerlink" title="3.5 UHF RFID — 超高频 RFID 模块"></a>3.5 UHF RFID — 超高频 RFID 模块</h3><p><strong>项目地址</strong>：<a target="_blank" rel="noopener" href="https://github.com/frux-C/uhf_rfid">github.com&#x2F;frux-C&#x2F;uhf_rfid</a></p>
+<p>UHF RFID 功能需要<strong>外接模块</strong>，模块价格约 ¥260。</p>
+<h4 id="什么是-UHF-RFID？"><a href="#什么是-UHF-RFID？" class="headerlink" title="什么是 UHF RFID？"></a>什么是 UHF RFID？</h4><p>UHF RFID 可以理解为”高频的低频卡”——功能仍然只有一个 ID，但工作频段在 <strong>900+ MHz</strong>，读取距离大大增加。选一个好点的模块，可以实现<strong>几米范围内的读取</strong>。</p>
+<h4 id="YRM100I-100G-模块引脚定义"><a href="#YRM100I-100G-模块引脚定义" class="headerlink" title="YRM100I-100G 模块引脚定义"></a>YRM100I-100G 模块引脚定义</h4><table>
+<thead>
+<tr>
+<th>引脚</th>
+<th>定义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GND</td>
+<td>Ground（接地）</td>
+</tr>
+<tr>
+<td>EN</td>
+<td>High-level enabling module（1.5V 高电平使能）</td>
+</tr>
+<tr>
+<td>RXD</td>
+<td>TTL level（3.3V 接收）</td>
+</tr>
+<tr>
+<td>TXD</td>
+<td>TTL level（3.3V 发送）</td>
+</tr>
+<tr>
+<td>VCC</td>
+<td>Power supply（3-5V 供电）</td>
+</tr>
+</tbody></table>
+<h4 id="连接建议"><a href="#连接建议" class="headerlink" title="连接建议"></a>连接建议</h4><p>为了方便连接 Flipper，建议购买 <strong>1.25 转 2.54 杜邦端子线</strong>（5P 规格），价格约 ¥0.88。</p>
+<p>插上模块后，从左到右依次是：<strong>GND → EN → RX → TX → VCC</strong></p>
+<h4 id="与-Flipper-的连线关系"><a href="#与-Flipper-的连线关系" class="headerlink" title="与 Flipper 的连线关系"></a>与 Flipper 的连线关系</h4><table>
+<thead>
+<tr>
+<th>YRM100 模块</th>
+<th>Flipper 引脚</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GND</td>
+<td>GND</td>
+</tr>
+<tr>
+<td>VCC</td>
+<td>3V3（3.3V）</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>⚠️ <strong>使用注意事项</strong>：如果一开始就把所有线都插上，进入 APP 时会<strong>卡死</strong>。解决办法：先不插 5V 线，进入 APP 后再插上 5V，点击 Retry 即可正常识别。</p>
+</blockquote>
+<hr>
+<h2 id="四、功能总结"><a href="#四、功能总结" class="headerlink" title="四、功能总结"></a>四、功能总结</h2><p>以下是 Flipper Zero 所有 RFID 相关功能的快速对比：</p>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>类型</th>
+<th>频段</th>
+<th>是否需要外接模块</th>
+<th>主要用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>RFID Detector</td>
+<td>内置</td>
+<td>125KHz&#x2F;13.56MHz</td>
+<td>否</td>
+<td>频率探测</td>
+</tr>
+<tr>
+<td>125KHz RFID</td>
+<td>内置</td>
+<td>125KHz</td>
+<td>否</td>
+<td>读卡&#x2F;写卡&#x2F;模拟</td>
+</tr>
+<tr>
+<td>RFID Beacon</td>
+<td>第三方</td>
+<td>125KHz</td>
+<td>否</td>
+<td>摩斯电码信标</td>
+</tr>
+<tr>
+<td>RFID Fuzzer</td>
+<td>第三方</td>
+<td>125KHz</td>
+<td>否</td>
+<td>ID 爆破</td>
+</tr>
+<tr>
+<td>EM4100 Key Generator</td>
+<td>第三方</td>
+<td>125KHz</td>
+<td>否</td>
+<td>ID 生成</td>
+</tr>
+<tr>
+<td>T5577 Multiwriter</td>
+<td>第三方</td>
+<td>125KHz</td>
+<td>否</td>
+<td>多 ID 写卡</td>
+</tr>
+<tr>
+<td>UHF RFID</td>
+<td>第三方</td>
+<td>900+MHz</td>
+<td><strong>是（YRM100模块）</strong></td>
+<td>超高频读卡</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="五、结语"><a href="#五、结语" class="headerlink" title="五、结语"></a>五、结语</h2><p>Flipper Zero 在 RFID 方面的功能覆盖非常全面——从基础的频率探测、卡片读取写入，到进阶的 ID 爆破、多 ID 写卡，再到超高频 RFID，几乎涵盖了 125KHz 低频 RFID 的所有玩法。</p>
+<p>如果你刚入手 Flipper Zero，建议从 <strong>RFID Detector</strong> 和 <strong>125KHz RFID</strong> 的 Read 功能开始上手，熟悉之后再尝试第三方 APP。UHF RFID 模块虽然需要额外购买，但读取距离的优势对于某些场景非常有价值。</p>
+<p><strong>安全提醒</strong>：这些工具仅应用于合法的安全研究和学习场景，切勿用于未经授权的访问或违法行为。</p>
+<hr>
+<p><img src="https://i.imgs.ovh/2026/06/27/89047f87e0e38f0f6166ade170eead3c.jpg"></p>
 
   </div>
 
@@ -472,18 +671,18 @@
 
   <nav class="article-actions">
     
-      <a class="article-action article-action--prev" href="/2026/06/26/2026062607/">
+      <span class="article-action article-action--prev is-disabled" aria-disabled="true">
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
 
         <span class="action-label">上一篇</span>
-        <span class="action-title">Spring Boot 服务层泛型抽象与代码复用实战</span>
-      </a>
+        <span class="action-title">没有更早的文章了</span>
+      </span>
     
     
-      <a class="article-action article-action--next" href="/2026/06/26/2026062609/">
+      <a class="article-action article-action--next" href="/2026/06/27/2026062701/">
         <span class="action-label">下一篇</span>
-        <span class="action-title">多协议蜜罐日志解析与可视化 📊</span>
+        <span class="action-title">🎭 镜界反制：一个针对裸聊骗子的克制指南</span>
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
 
@@ -514,34 +713,66 @@
     </header>
     <div class="related-paper__grid">
       
-        <a class="related-card" href="/2026/06/26/2026062609/">
+        <a class="related-card" href="/2026/06/26/2026062615/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/images/cover/camera.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="https://s41.ax1x.com/2026/06/26/pmNfT4f.jpg" alt="当网络成为广场：匿名者（Anonymous）现象背后的公共议题张力" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">多协议蜜罐日志解析与可视化 📊</strong>
+            <strong class="related-card__title">当网络成为广场：匿名者（Anonymous）现象背后的公共议题张力</strong>
             <em class="related-card__date">2026-06-26</em>
           </span>
         </a>
       
-        <a class="related-card" href="/2026/06/26/2026062611/">
+        <a class="related-card" href="/2026/06/26/2026062616/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-1 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/images/cover/mountain.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="https://pic1.imgdb.cn/item/6a3e7fc799bccaf16cce494a.jpg" alt="🛡️ 社工防御体系：从信息隐身到主动反制" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">从 B 站弹幕到数据分析：Python 实战指南</strong>
+            <strong class="related-card__title">🛡️ 社工防御体系：从信息隐身到主动反制</strong>
+            <em class="related-card__date">2026-06-26</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/06/27/2026062701/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="https://s41.ax1x.com/2026/06/26/pmNfT4f.jpg" alt="🎭 镜界反制：一个针对裸聊骗子的克制指南" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">🎭 镜界反制：一个针对裸聊骗子的克制指南</strong>
+            <em class="related-card__date">2026-06-27</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/06/26/2026062629/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="https://pic1.imgdb.cn/item/6a3e885099bccaf16ccea436.jpg" alt="匿名上网方法" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">匿名上网方法</strong>
             <em class="related-card__date">2026-06-26</em>
           </span>
         </a>
