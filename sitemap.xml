@@ -604,14 +604,14 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/SQL/</loc>
+    <loc>http://example.com/tags/AI/</loc>
     <lastmod>2026-06-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/AI/</loc>
+    <loc>http://example.com/tags/SQL/</loc>
     <lastmod>2026-06-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
