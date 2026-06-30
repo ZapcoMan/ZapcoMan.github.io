@@ -1,3 +1,4 @@
+http://example.com/links/index.html
 http://example.com/2024/10/13/2026062627/
 http://example.com/2026/06/26/2026062629/
 http://example.com/2026/06/26/2026062616/
@@ -36,7 +37,6 @@ http://example.com/2026/06/26/2026062606/
 http://example.com/2026/06/26/2026062605/
 http://example.com/2026/06/26/2026062603/
 http://example.com/2026/06/26/2026062604/
-http://example.com/links/index.html
 http://example.com/archives/index.html
 http://example.com/index.html
 http://example.com/
