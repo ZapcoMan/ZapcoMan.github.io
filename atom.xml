@@ -9,7 +9,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   <rights>All rights reserved 2026, ZapcoMan</rights>
   <title>ZapcoMan's world</title>
-  <updated>2026-07-01T13:26:19.589Z</updated>
+  <updated>2026-07-01T13:29:06.362Z</updated>
   <entry>
     <author>
       <name>ZapcoMan</name>
@@ -19,19 +19,6 @@
     <category term="红队攻防" scheme="http://example.com/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/%E7%BA%A2%E9%98%9F%E6%94%BB%E9%98%B2/"/>
     <category term="免杀技术" scheme="http://example.com/tags/%E5%85%8D%E6%9D%80%E6%8A%80%E6%9C%AF/"/>
     <category term="免杀" scheme="http://example.com/tags/%E5%85%8D%E6%9D%80/"/>
-    <category term="AV绕过" scheme="http://example.com/tags/AV%E7%BB%95%E8%BF%87/"/>
-    <category term="EDR对抗" scheme="http://example.com/tags/EDR%E5%AF%B9%E6%8A%97/"/>
-    <category term="Shellcode" scheme="http://example.com/tags/Shellcode/"/>
-    <category term="代码混淆" scheme="http://example.com/tags/%E4%BB%A3%E7%A0%81%E6%B7%B7%E6%B7%86/"/>
-    <category term="进程注入" scheme="http://example.com/tags/%E8%BF%9B%E7%A8%8B%E6%B3%A8%E5%85%A5/"/>
-    <category term="Syscall" scheme="http://example.com/tags/Syscall/"/>
-    <category term="反沙箱" scheme="http://example.com/tags/%E5%8F%8D%E6%B2%99%E7%AE%B1/"/>
-    <category term="无文件攻击" scheme="http://example.com/tags/%E6%97%A0%E6%96%87%E4%BB%B6%E6%94%BB%E5%87%BB/"/>
-    <category term="白文件Patch" scheme="http://example.com/tags/%E7%99%BD%E6%96%87%E4%BB%B6Patch/"/>
-    <category term="Bypass" scheme="http://example.com/tags/Bypass/"/>
-    <category term="静态免杀" scheme="http://example.com/tags/%E9%9D%99%E6%80%81%E5%85%8D%E6%9D%80/"/>
-    <category term="动态免杀" scheme="http://example.com/tags/%E5%8A%A8%E6%80%81%E5%85%8D%E6%9D%80/"/>
-    <category term="内存免杀" scheme="http://example.com/tags/%E5%86%85%E5%AD%98%E5%85%8D%E6%9D%80/"/>
     <category term="终端安全" scheme="http://example.com/tags/%E7%BB%88%E7%AB%AF%E5%AE%89%E5%85%A8/"/>
     <category term="LOLBins" scheme="http://example.com/tags/LOLBins/"/>
     <category term="加壳" scheme="http://example.com/tags/%E5%8A%A0%E5%A3%B3/"/>
@@ -45,8 +32,8 @@
     <summary>
       <![CDATA[<h2 id="一、免杀基本概念"><a href="#一、免杀基本概念" class="headerlink" title="一、免杀基本概念"></a>一、免杀基本概念</h2><h3 id="1-1-什么是”免杀”？"><a href="#1-1-什么是”免杀”？" cla]]>
     </summary>
-    <title>免杀技术综合文档（Bypass AV/EDR）</title>
-    <updated>2026-07-01T13:26:19.589Z</updated>
+    <title>免杀技术（Bypass AV/EDR）</title>
+    <updated>2026-07-01T13:29:06.362Z</updated>
   </entry>
   <entry>
     <author>
