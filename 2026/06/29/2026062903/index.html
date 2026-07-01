@@ -17,7 +17,7 @@
 <meta property="og:description" content="注意点 上线后第一条命令不要执行 whoami，可以执行 ipconfig 等 个人杀软鸡肋，企业标配 EDR.IPS.IDS.NDR.XDR，一般分为主控和 agent wd 大于国内其他杀软 早期杀软大多数凭借特征库 &#x2F; 病毒库对比查杀 常用 C2（Command &amp; Control Server）： Cobalt Strike（最常见...">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-06-29T14:39:51.000Z">
-<meta property="article:modified_time" content="2026-06-29T14:35:26.777Z">
+<meta property="article:modified_time" content="2026-07-01T13:38:39.383Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="Kali  Linux">
 <meta property="article:tag" content="免杀技术">
@@ -28,7 +28,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"免杀对抗之一 基础了解","name":"免杀对抗之一 基础了解 | ZapcoMan's world","description":"注意点 上线后第一条命令不要执行 whoami，可以执行 ipconfig 等 个人杀软鸡肋，企业标配 EDR.IPS.IDS.NDR.XDR，一般分为主控和 agent wd 大于国内其他杀软 早期杀软大多数凭借特征库 &#x2F; 病毒库对比查杀 常用 C2（Command &amp; Control Server）： Cobalt Strike（最常见...","url":"http://example.com/2026/06/29/2026062903/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/06/29/2026062903/","datePublished":"2026-06-29T14:39:51.000Z","dateModified":"2026-06-29T14:35:26.777Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"Kali Linux, 网络安全, 渗透测试, 免杀技术"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"免杀对抗之一 基础了解","name":"免杀对抗之一 基础了解 | ZapcoMan's world","description":"注意点 上线后第一条命令不要执行 whoami，可以执行 ipconfig 等 个人杀软鸡肋，企业标配 EDR.IPS.IDS.NDR.XDR，一般分为主控和 agent wd 大于国内其他杀软 早期杀软大多数凭借特征库 &#x2F; 病毒库对比查杀 常用 C2（Command &amp; Control Server）： Cobalt Strike（最常见...","url":"http://example.com/2026/06/29/2026062903/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/06/29/2026062903/","datePublished":"2026-06-29T14:39:51.000Z","dateModified":"2026-07-01T13:38:39.383Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"Kali Linux, 网络安全, 渗透测试, 免杀技术"}</script>
 
 <script>
   (function () {
@@ -359,7 +359,7 @@
         
           
             <a class="site-info__item" href="/tags/">
-              <strong>49</strong>
+              <strong>48</strong>
               <span>标签</span>
             </a>
           
@@ -472,25 +472,25 @@
 
   <div class="article-content">
     <h1 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h1><ol>
-<li><p>上线后第一条命令不要执行 <code>whoami</code>，可以执行 <code>ipconfig</code> 等  </p>
+<li><p>上线后第一条命令不要执行 <code>whoami</code>，可以执行 <code>ipconfig</code> 等</p>
 </li>
-<li><p>个人杀软鸡肋，企业标配 EDR.IPS.IDS.NDR.XDR，一般分为主控和 agent  </p>
+<li><p>个人杀软鸡肋，企业标配 EDR.IPS.IDS.NDR.XDR，一般分为主控和 agent</p>
 </li>
-<li><p>wd 大于国内其他杀软  </p>
+<li><p>wd 大于国内其他杀软</p>
 </li>
-<li><p>早期杀软大多数凭借特征库 &#x2F; 病毒库对比查杀  </p>
+<li><p>早期杀软大多数凭借特征库 &#x2F; 病毒库对比查杀</p>
 </li>
-<li><p>常用 C2（Command &amp; Control Server）：  </p>
+<li><p>常用 C2（Command &amp; Control Server）：</p>
 <ul>
-<li>Cobalt Strike（最常见）  </li>
-<li>Metasploit（老牌）  </li>
-<li>Empire（帝国）  </li>
-<li>Covenant（C#）  </li>
-<li>Poshc2（基于命令行，翻文件不友好）  </li>
-<li>Sliver（golang.规避很好，但命令行模式比较难用，可控 linux）  </li>
-<li>BRC4（多规避手段）  </li>
-<li>夜莺（nig，不对大陆出口）  </li>
-<li>Havoc（C&#x2F;Go）  <blockquote>
+<li>Cobalt Strike（最常见）</li>
+<li>Metasploit（老牌）</li>
+<li>Empire（帝国）</li>
+<li>Covenant（C#）</li>
+<li>Poshc2（基于命令行，翻文件不友好）</li>
+<li>Sliver（golang.规避很好，但命令行模式比较难用，可控 linux）</li>
+<li>BRC4（多规避手段）</li>
+<li>夜莺（nig，不对大陆出口）</li>
+<li>Havoc（C&#x2F;Go）<blockquote>
 <p>cs4.5 最适合二开，自写 C2 很容易免杀。</p>
 </blockquote>
 </li>
@@ -499,65 +499,23 @@
 <li><p>国外常用杀软：猎鹰.S1.卡巴斯基<br>国内常用杀软：卡巴斯基，ESET，NOD32，麦咖啡，以及各家 EDR，和个人版杀软例如腾讯电脑管家，火绒等。</p>
 </li>
 <li><p>把自己写的马子传到 VT 查杀是很傻的行为</p>
-<p> 这句话：</p>
+<p>这句话：</p>
 <blockquote>
 <p><strong>“把自己写的马子传到 VT 查杀是很傻的行为”</strong></p>
 </blockquote>
-<p> 逐层分析：</p>
+<p>逐层分析：</p>
 <hr>
 <h3 id="一、术语解析"><a href="#一、术语解析" class="headerlink" title="一、术语解析"></a>一、术语解析</h3><ul>
 <li><strong>“马子”</strong>：黑话&#x2F;行话，指 <strong>木马（Malware）</strong>，即自己编写的恶意程序（如后门、远控客户端、免杀 payload 等），常用于红队&#x2F;渗透测试或攻击场景。</li>
-<li><strong>VT</strong>：指 <strong>VirusTotal</strong>（<a target="_blank" rel="noopener" href="https://www.virustotal.com),是/">https://www.virustotal.com），是</a> Google 旗下（现属 Google Cloud）的<strong>在线多引擎病毒扫描平台</strong>，并非严格意义上的“云沙箱”，但<strong>包含云沙箱能力</strong>。</li>
+<li><strong>VT</strong>：指 <strong>VirusTotal</strong>（<a target="_blank" rel="noopener" href="https://www.virustotal.com),是/">https://www.virustotal.com），是</a> Google 旗下（现属 Google Cloud）的<strong>在线多引擎病毒扫描平台</strong><br>，并非严格意义上的“云沙箱”，但<strong>包含云沙箱能力</strong>。</li>
 <li><strong>查杀</strong>：指被 VT 上挂载的多个杀毒引擎（如卡巴斯基、火绒、360、ESET、Bitdefender、Sophos 等）检测并报毒。</li>
 </ul>
 <hr>
-<h3 id="二、VT-的核心机制-≠-纯云沙箱"><a href="#二、VT-的核心机制-≠-纯云沙箱" class="headerlink" title="二、VT 的核心机制 ≠ 纯云沙箱"></a>二、VT 的核心机制 ≠ 纯云沙箱</h3><table>
-<thead>
-<tr>
-<th>组件</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>✅ 多引擎静态扫描</td>
-<td>将文件哈希&#x2F;样本上传后，VT 调用约 70+ 安全厂商的 <strong>本地 AV 引擎</strong> 进行静态特征比对（基于签名、YARA 规则等）</td>
-</tr>
-<tr>
-<td>✅ 云沙箱（Dynamic Analysis）</td>
-<td>对部分样本（尤其是可执行文件）会触发 <strong>动态行为分析</strong>（如 Cuckoo、AnyRun、VMRay 集成），在隔离虚拟机中运行，捕获网络、注册表、进程等行为</td>
-</tr>
-<tr>
-<td>❌ 不是“纯沙箱服务”</td>
-<td>VT 本身不提供主动沙箱提交接口（需手动上传），其沙箱是后台自动触发的，且有策略限制（如大小、类型、频率）</td>
-</tr>
-</tbody></table>
-<p> 👉 所以：<strong>VT 是一个“多引擎静态 + 部分动态分析”的聚合平台</strong>，<strong>包含云沙箱能力，但本质是检测平台，不是专用沙箱服务</strong>。</p>
+<h3 id="二、VT-的核心机制-≠-纯云沙箱"><a href="#二、VT-的核心机制-≠-纯云沙箱" class="headerlink" title="二、VT 的核心机制 ≠ 纯云沙箱"></a>二、VT 的核心机制 ≠ 纯云沙箱</h3><p>| 组件 | 说明 |<br>    |——|——|<br>| ✅ 多引擎静态扫描 | 将文件哈希&#x2F;样本上传后，VT 调用约 70+ 安全厂商的 <strong>本地 AV 引擎</strong> 进行静态特征比对（基于签名、YARA 规则等） |<br>| ✅ 云沙箱（Dynamic Analysis） | 对部分样本（尤其是可执行文件）会触发 <strong>动态行为分析</strong>（如 Cuckoo、AnyRun、VMRay 集成），在隔离虚拟机中运行，捕获网络、注册表、进程等行为 |<br>| ❌ 不是“纯沙箱服务” | VT 本身不提供主动沙箱提交接口（需手动上传），其沙箱是后台自动触发的，且有策略限制（如大小、类型、频率） |</p>
+<p>👉 所以：<strong>VT 是一个“多引擎静态 + 部分动态分析”的聚合平台</strong>，<strong>包含云沙箱能力，但本质是检测平台，不是专用沙箱服务</strong>。</p>
 <hr>
-<h3 id="三、为什么“很傻”？"><a href="#三、为什么“很傻”？" class="headerlink" title="三、为什么“很傻”？"></a>三、为什么“很傻”？</h3><p> 将自研木马上传至 VT 的后果包括：</p>
-<table>
-<thead>
-<tr>
-<th>风险</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>🔴 样本被收录进威胁情报库</td>
-<td>一旦被任一引擎检出，VT 会公开哈希（MD5&#x2F;SHA256），该样本将被各大厂商加入黑名单，后续所有使用此样本的攻击都会被拦截</td>
-</tr>
-<tr>
-<td>🔴 暴露开发特征</td>
-<td>即使未被查杀，VT 会记录上传 IP、时间、User-Agent、文件元数据（如编译器版本、PDB 路径、资源段等），可能反向追踪到开发者环境</td>
-</tr>
-<tr>
-<td>🔴 激活云端联动防御</td>
-<td>如 Windows Defender &#x2F; SentinelOne &#x2F; CrowdStrike 等 EDR 会订阅 VT 哈希情报，实现“一处上传，全域封禁”</td>
-</tr>
-<tr>
-<td>🔴 破坏免杀成果</td>
-<td>免杀的核心是“未被已知特征识别”，上传 VT 相当于主动送检，等于自毁免杀成果</td>
-</tr>
-</tbody></table>
+<h3 id="三、为什么“很傻”？"><a href="#三、为什么“很傻”？" class="headerlink" title="三、为什么“很傻”？"></a>三、为什么“很傻”？</h3><p>将自研木马上传至 VT 的后果包括：</p>
+<p>| 风险 | 说明 |<br>    |——|——|<br>| 🔴 样本被收录进威胁情报库 | 一旦被任一引擎检出，VT 会公开哈希（MD5&#x2F;SHA256），该样本将被各大厂商加入黑名单，后续所有使用此样本的攻击都会被拦截 |<br>| 🔴 暴露开发特征 | 即使未被查杀，VT 会记录上传 IP、时间、User-Agent、文件元数据（如编译器版本、PDB 路径、资源段等），可能反向追踪到开发者环境 |<br>| 🔴 激活云端联动防御 | 如 Windows Defender &#x2F; SentinelOne &#x2F; CrowdStrike 等 EDR 会订阅 VT 哈希情报，实现“一处上传，全域封禁” |<br>| 🔴 破坏免杀成果 | 免杀的核心是“未被已知特征识别”，上传 VT 相当于主动送检，等于自毁免杀成果 |</p>
 <blockquote>
 <p>📌 类比：就像你刚造了一把“开锁万能钥匙”，却把它拍照发到公安指纹数据库——不是测试，是自首。</p>
 </blockquote>
@@ -567,32 +525,32 @@
 </ol>
 <hr>
 <h3 id="免杀技术核心"><a href="#免杀技术核心" class="headerlink" title="免杀技术核心"></a>免杀技术核心</h3><ol>
-<li><p>主动对抗<br>做混淆等，持续攻击，钓鱼，在无法本地复现目标杀软环境的情况下，只能 fuzz 各种操作看怎么才能不杀  </p>
+<li><p>主动对抗<br>做混淆等，持续攻击，钓鱼，在无法本地复现目标杀软环境的情况下，只能 fuzz 各种操作看怎么才能不杀</p>
 </li>
-<li><p>被动对抗  </p>
+<li><p>被动对抗</p>
 </li>
-<li><p>时间成本<br>小项目无需做太复杂，能用就行<br>代码量尽量小，UPX 压缩 360 落地查杀，Golang 1–2M，Python3 4–6M，尽量简单高效，但现在的网络环境对大体积影响不大，所以实在不行也不必强求代码量低  </p>
+<li><p>时间成本<br>小项目无需做太复杂，能用就行<br>代码量尽量小，UPX 压缩 360 落地查杀，Golang 1–2M，Python3 4–6M，尽量简单高效，但现在的网络环境对大体积影响不大，所以实在不行也不必强求代码量低</p>
 </li>
-<li><p>静态查杀<br>文件刚落地就无了或者被检测了就是被静态查杀了  </p>
+<li><p>静态查杀<br>文件刚落地就无了或者被检测了就是被静态查杀了</p>
 </li>
 <li><p>动态查杀<br>可以存在但运行就挂了，就是动态查杀<br>双击运行和 cmd 运行的运行链是不一样的，cmd 没杀可能是因为主进程是 cmd 的进程，双击则为木马本身的进程，叫做 ppid 欺骗</p>
 </li>
 </ol>
 <hr>
 <h3 id="免杀难点"><a href="#免杀难点" class="headerlink" title="免杀难点"></a>免杀难点</h3><ol>
-<li><p>特征检测<br> 基于病毒库 \ 特征库比对文件特征去查杀  </p>
+<li><p>特征检测<br>基于病毒库 \ 特征库比对文件特征去查杀</p>
 </li>
-<li><p>行为检测<br> 比如添加用户，添加计划任务，注册表，驱动等  </p>
+<li><p>行为检测<br>比如添加用户，添加计划任务，注册表，驱动等</p>
 </li>
-<li><p>云查杀<br> 把可疑文件上传沙箱再返回结果  </p>
+<li><p>云查杀<br>把可疑文件上传沙箱再返回结果</p>
 </li>
-<li><p>内存扫描<br> 扫描内存的区域，卡巴斯基和 wd 都有  </p>
+<li><p>内存扫描<br>扫描内存的区域，卡巴斯基和 wd 都有</p>
 </li>
-<li><p>主动防御<br> 360 有，杀软内置检测规则，触发规则即拦截  </p>
+<li><p>主动防御<br>360 有，杀软内置检测规则，触发规则即拦截</p>
 </li>
-<li><p>启发式<br> 对特征码补充，解决未知病毒的情况，就是将病毒特征进行总结，得出规则再查杀，涉及到 AI 引擎和沙箱  </p>
+<li><p>启发式<br>对特征码补充，解决未知病毒的情况，就是将病毒特征进行总结，得出规则再查杀，涉及到 AI 引擎和沙箱</p>
 </li>
-<li><p>流量查杀<br> 比如态势感知这种设备对传输流量进行解密识别，检测是否远控传输，比如 webshell 流量，cs 流量</p>
+<li><p>流量查杀<br>比如态势感知这种设备对传输流量进行解密识别，检测是否远控传输，比如 webshell 流量，cs 流量</p>
 </li>
 </ol>
 
