@@ -713,6 +713,13 @@
   </url>
   
   <url>
+    <loc>http://example.com/tags/%E6%89%8B%E6%9C%BA/</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://example.com/tags/%E8%8B%A5%E4%BE%9D/</loc>
     <lastmod>2026-07-05</lastmod>
     <changefreq>weekly</changefreq>
@@ -721,13 +728,6 @@
   
   <url>
     <loc>http://example.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</loc>
-    <lastmod>2026-07-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.com/tags/%E6%89%8B%E6%9C%BA/</loc>
     <lastmod>2026-07-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -869,14 +869,14 @@
   </url>
   
   <url>
-    <loc>http://example.com/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/</loc>
+    <loc>http://example.com/categories/Java/Springboot/</loc>
     <lastmod>2026-07-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://example.com/categories/Java/Springboot/</loc>
+    <loc>http://example.com/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/</loc>
     <lastmod>2026-07-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -890,7 +890,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/python/</loc>
+    <loc>http://example.com/categories/Java/Springboot/Mybatis/</loc>
     <lastmod>2026-07-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -911,7 +911,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/categories/Java/Springboot/Mybatis/</loc>
+    <loc>http://example.com/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/python/</loc>
     <lastmod>2026-07-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -939,13 +939,6 @@
   </url>
   
   <url>
-    <loc>http://example.com/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/python/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</loc>
-    <lastmod>2026-07-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://example.com/categories/AI/java/</loc>
     <lastmod>2026-07-05</lastmod>
     <changefreq>weekly</changefreq>
@@ -954,6 +947,13 @@
   
   <url>
     <loc>http://example.com/categories/Kali-Linux/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/python/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</loc>
     <lastmod>2026-07-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
