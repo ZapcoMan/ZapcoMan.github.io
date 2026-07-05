@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic1.zhimg.com/v2-ce806dc227aba6e52fdc4f5895fd21ac_r.jpg">
 <meta property="article:published_time" content="2026-06-26T11:49:51.000Z">
-<meta property="article:modified_time" content="2026-07-05T12:06:07.604Z">
+<meta property="article:modified_time" content="2026-07-05T12:07:50.914Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="SQL">
 <meta property="article:tag" content="SQl注入漏洞">
@@ -28,7 +28,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"从秒到毫秒：掌控 SQL 性能的 21 条硬核策略与服务层性能陷阱","name":"从秒到毫秒：掌控 SQL 性能的 21 条硬核策略与服务层性能陷阱 | ZapcoMan's world","description":"一句 Executive Summary数据库和服务层的性能问题本质上是“无谓工作”的累加：无谓扫描、无谓回表、无谓网络往返与无谓资源创建。通过索引与查询改写减少扫描行数、通过批量化与缓存减少往返、通过架构化治理减少阻塞，完成从“能跑”到“能扩展”的跃迁。 引子公司某报表系统每天上午 9:00 准时卡顿：单条查询等待约 30 秒，用户抱怨不断。排查发现一条...","url":"http://example.com/2026/06/26/2026062624/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/06/26/2026062624/","datePublished":"2026-06-26T11:49:51.000Z","dateModified":"2026-07-05T12:06:07.604Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"SQL, SQl注入漏洞"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"从秒到毫秒：掌控 SQL 性能的 21 条硬核策略与服务层性能陷阱","name":"从秒到毫秒：掌控 SQL 性能的 21 条硬核策略与服务层性能陷阱 | ZapcoMan's world","description":"一句 Executive Summary数据库和服务层的性能问题本质上是“无谓工作”的累加：无谓扫描、无谓回表、无谓网络往返与无谓资源创建。通过索引与查询改写减少扫描行数、通过批量化与缓存减少往返、通过架构化治理减少阻塞，完成从“能跑”到“能扩展”的跃迁。 引子公司某报表系统每天上午 9:00 准时卡顿：单条查询等待约 30 秒，用户抱怨不断。排查发现一条...","url":"http://example.com/2026/06/26/2026062624/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/06/26/2026062624/","datePublished":"2026-06-26T11:49:51.000Z","dateModified":"2026-07-05T12:07:50.914Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"SQL, SQl注入漏洞"}</script>
 
 <script>
   (function () {
@@ -352,7 +352,7 @@
         
           
             <a class="site-info__item" href="/categories/">
-              <strong>23</strong>
+              <strong>21</strong>
               <span>分类</span>
             </a>
           
@@ -444,11 +444,11 @@
   
   <header class="article-header">
     
-      <a class="label-pill" href="/categories/SQl%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/">
+      <a class="label-pill" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
 
-        SQl注入漏洞
+        网络安全
       </a>
     
     <h1>从秒到毫秒：掌控 SQL 性能的 21 条硬核策略与服务层性能陷阱</h1>
@@ -946,6 +946,87 @@
 
 </button>
 
+
+  <section class="related-paper">
+    <header class="related-paper__head">
+      <h2>
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-link"></use></svg>
+相关文章</h2>
+      <a class="related-paper__more" href="/archives/">
+        <span>查看更多</span>
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
+
+      </a>
+    </header>
+    <div class="related-paper__grid">
+      
+        <a class="related-card" href="/2026/07/05/2026070502/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/camera.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">Python实现MSF免杀技术：Base64加密 + 字符替换 + 反调试反沙箱</strong>
+            <em class="related-card__date">2026-07-05</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/07/05/2026070501/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/mountain.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">我潜入了一个&#34;消费返利&#34;项目的启动大会——这是我的现场记录</strong>
+            <em class="related-card__date">2026-07-05</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/07/01/2026070103/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/miansha.png" alt="免杀技术（Bypass AV/EDR）" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">免杀技术（Bypass AV/EDR）</strong>
+            <em class="related-card__date">2026-07-01</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/07/01/2026070102/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/Flipper-One-we-need-your-help-main-v2.jpg" alt="Flipper One：口袋里的开放 Linux 计算机——从愿景到现实" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">Flipper One：口袋里的开放 Linux 计算机——从愿景到现实</strong>
+            <em class="related-card__date">2026-07-01</em>
+          </span>
+        </a>
+      
+    </div>
+  </section>
 
 
       
