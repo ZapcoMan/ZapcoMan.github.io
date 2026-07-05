@@ -18,16 +18,17 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic1.zhimg.com/v2-ce806dc227aba6e52fdc4f5895fd21ac_r.jpg">
 <meta property="article:published_time" content="2026-06-26T11:49:51.000Z">
-<meta property="article:modified_time" content="2026-06-26T14:20:07.182Z">
+<meta property="article:modified_time" content="2026-07-05T12:06:07.604Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="SQL">
+<meta property="article:tag" content="SQl注入漏洞">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://pic1.zhimg.com/v2-ce806dc227aba6e52fdc4f5895fd21ac_r.jpg">
 <link rel="canonical" href="http://example.com/2026/06/26/2026062624/">
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"从秒到毫秒：掌控 SQL 性能的 21 条硬核策略与服务层性能陷阱","name":"从秒到毫秒：掌控 SQL 性能的 21 条硬核策略与服务层性能陷阱 | ZapcoMan's world","description":"一句 Executive Summary数据库和服务层的性能问题本质上是“无谓工作”的累加：无谓扫描、无谓回表、无谓网络往返与无谓资源创建。通过索引与查询改写减少扫描行数、通过批量化与缓存减少往返、通过架构化治理减少阻塞，完成从“能跑”到“能扩展”的跃迁。 引子公司某报表系统每天上午 9:00 准时卡顿：单条查询等待约 30 秒，用户抱怨不断。排查发现一条...","url":"http://example.com/2026/06/26/2026062624/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/06/26/2026062624/","datePublished":"2026-06-26T11:49:51.000Z","dateModified":"2026-06-26T14:20:07.182Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"SQL"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"从秒到毫秒：掌控 SQL 性能的 21 条硬核策略与服务层性能陷阱","name":"从秒到毫秒：掌控 SQL 性能的 21 条硬核策略与服务层性能陷阱 | ZapcoMan's world","description":"一句 Executive Summary数据库和服务层的性能问题本质上是“无谓工作”的累加：无谓扫描、无谓回表、无谓网络往返与无谓资源创建。通过索引与查询改写减少扫描行数、通过批量化与缓存减少往返、通过架构化治理减少阻塞，完成从“能跑”到“能扩展”的跃迁。 引子公司某报表系统每天上午 9:00 准时卡顿：单条查询等待约 30 秒，用户抱怨不断。排查发现一条...","url":"http://example.com/2026/06/26/2026062624/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/06/26/2026062624/","datePublished":"2026-06-26T11:49:51.000Z","dateModified":"2026-07-05T12:06:07.604Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"SQL, SQl注入漏洞"}</script>
 
 <script>
   (function () {
@@ -344,21 +345,21 @@
         
           
             <a class="site-info__item" href="/archives/">
-              <strong>39</strong>
+              <strong>40</strong>
               <span>文章</span>
             </a>
           
         
           
             <a class="site-info__item" href="/categories/">
-              <strong>22</strong>
+              <strong>23</strong>
               <span>分类</span>
             </a>
           
         
           
             <a class="site-info__item" href="/tags/">
-              <strong>55</strong>
+              <strong>56</strong>
               <span>标签</span>
             </a>
           
@@ -443,11 +444,11 @@
   
   <header class="article-header">
     
-      <a class="label-pill" href="/categories/SQL/">
+      <a class="label-pill" href="/categories/SQl%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/">
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
 
-        SQL
+        SQl注入漏洞
       </a>
     
     <h1>从秒到毫秒：掌控 SQL 性能的 21 条硬核策略与服务层性能陷阱</h1>
@@ -460,7 +461,7 @@
           
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
 
-          <a class="meta-tag-link" href="/tags/SQL/">#SQL</a>
+          <a class="meta-tag-link" href="/tags/SQL/">#SQL</a><a class="meta-tag-link" href="/tags/SQl%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/">#SQl注入漏洞</a>
         </span>
       
     </div>
