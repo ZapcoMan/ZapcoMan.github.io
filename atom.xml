@@ -37,8 +37,8 @@
     <author>
       <name>ZapcoMan</name>
     </author>
-    <category term="社会工程学" scheme="http://example.com/categories/%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6/"/>
-    <category term="网络安全" scheme="http://example.com/categories/%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+    <category term="网络安全" scheme="http://example.com/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+    <category term="社会工程学" scheme="http://example.com/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6/"/>
     <category term="网络安全" scheme="http://example.com/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
     <category term="黑客组织" scheme="http://example.com/tags/%E9%BB%91%E5%AE%A2%E7%BB%84%E7%BB%87/"/>
     <category term="社工" scheme="http://example.com/tags/%E7%A4%BE%E5%B7%A5/"/>
@@ -56,7 +56,7 @@
 <h2 id="一、这个项目是什么？"><a href="#一、这个项目是什么]]>
     </summary>
     <title>我潜入了一个&quot;消费返利&quot;项目的启动大会——这是我的现场记录</title>
-    <updated>2026-07-05T12:16:25.637Z</updated>
+    <updated>2026-07-05T12:22:03.305Z</updated>
   </entry>
   <entry>
     <author>
