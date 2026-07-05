@@ -17,7 +17,7 @@
 <meta property="og:description" content="本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言在红队攻防演练中，Metasploit Framework（MSF）是最常用的渗透测试框架之一。然而，MSF生成的原始payload往往会被主流杀毒软件和EDR产品轻易拦截。免杀（AV Evasion）技术因此成为红队武器库中的关键一环。 本文基于真实的Python...">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-07-05T12:05:51.000Z">
-<meta property="article:modified_time" content="2026-07-05T12:08:22.091Z">
+<meta property="article:modified_time" content="2026-07-05T12:16:25.278Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="免杀">
@@ -26,7 +26,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Python实现MSF免杀技术：Base64加密 + 字符替换 + 反调试反沙箱","name":"Python实现MSF免杀技术：Base64加密 + 字符替换 + 反调试反沙箱 | ZapcoMan's world","description":"本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言在红队攻防演练中，Metasploit Framework（MSF）是最常用的渗透测试框架之一。然而，MSF生成的原始payload往往会被主流杀毒软件和EDR产品轻易拦截。免杀（AV Evasion）技术因此成为红队武器库中的关键一环。 本文基于真实的Python...","url":"http://example.com/2026/07/05/2026070502/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/07/05/2026070502/","datePublished":"2026-07-05T12:05:51.000Z","dateModified":"2026-07-05T12:08:22.091Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"python, 免杀"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Python实现MSF免杀技术：Base64加密 + 字符替换 + 反调试反沙箱","name":"Python实现MSF免杀技术：Base64加密 + 字符替换 + 反调试反沙箱 | ZapcoMan's world","description":"本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言在红队攻防演练中，Metasploit Framework（MSF）是最常用的渗透测试框架之一。然而，MSF生成的原始payload往往会被主流杀毒软件和EDR产品轻易拦截。免杀（AV Evasion）技术因此成为红队武器库中的关键一环。 本文基于真实的Python...","url":"http://example.com/2026/07/05/2026070502/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/07/05/2026070502/","datePublished":"2026-07-05T12:05:51.000Z","dateModified":"2026-07-05T12:16:25.278Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"python, 免杀"}</script>
 
 <script>
   (function () {
@@ -350,7 +350,7 @@
         
           
             <a class="site-info__item" href="/categories/">
-              <strong>21</strong>
+              <strong>23</strong>
               <span>分类</span>
             </a>
           
@@ -442,11 +442,11 @@
   
   <header class="article-header">
     
-      <a class="label-pill" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">
+      <a class="label-pill" href="/categories/%E5%85%8D%E6%9D%80/">
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
 
-        网络安全
+        免杀
       </a>
     
     <h1>Python实现MSF免杀技术：Base64加密 + 字符替换 + 反调试反沙箱</h1>
@@ -616,10 +616,42 @@
     </header>
     <div class="related-paper__grid">
       
-        <a class="related-card" href="/2026/07/01/2026070103/">
+        <a class="related-card" href="/2026/07/05/2026062606/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/camera.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">敏感目录扫描工具：多线程爆破Web隐藏路径</strong>
+            <em class="related-card__date">2026-07-05</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/07/01/2026070104/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/mountain.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">Python 爬虫实战：从 API 请求到浏览器模拟的全链路探索</strong>
+            <em class="related-card__date">2026-07-01</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/07/01/2026070103/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/images/miansha.png" alt="免杀技术（Bypass AV/EDR）" loading="lazy" referrerpolicy="no-referrer">
   
@@ -632,39 +664,7 @@
           </span>
         </a>
       
-        <a class="related-card" href="/2026/07/05/2026070501/">
-          <span class="related-card__thumb">
-            
-<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
-  
-    <img class="paper-thumb__img" src="/images/cover/mountain.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
-  
-</div>
-
-          </span>
-          <span class="related-card__body">
-            <strong class="related-card__title">我潜入了一个&#34;消费返利&#34;项目的启动大会——这是我的现场记录</strong>
-            <em class="related-card__date">2026-07-05</em>
-          </span>
-        </a>
-      
-        <a class="related-card" href="/2026/07/01/2026070102/">
-          <span class="related-card__thumb">
-            
-<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
-  
-    <img class="paper-thumb__img" src="/images/Flipper-One-we-need-your-help-main-v2.jpg" alt="Flipper One：口袋里的开放 Linux 计算机——从愿景到现实" loading="lazy" referrerpolicy="no-referrer">
-  
-</div>
-
-          </span>
-          <span class="related-card__body">
-            <strong class="related-card__title">Flipper One：口袋里的开放 Linux 计算机——从愿景到现实</strong>
-            <em class="related-card__date">2026-07-01</em>
-          </span>
-        </a>
-      
-        <a class="related-card" href="/2026/07/01/2026070101/">
+        <a class="related-card" href="/2026/06/29/2026062903/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
@@ -675,8 +675,8 @@
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">震惊！2026年了，微软 Edge 居然还在内存里明文存密码？三步就能全拿走</strong>
-            <em class="related-card__date">2026-07-01</em>
+            <strong class="related-card__title">免杀对抗之一 基础了解</strong>
+            <em class="related-card__date">2026-06-29</em>
           </span>
         </a>
       

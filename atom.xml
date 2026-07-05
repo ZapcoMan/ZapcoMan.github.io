@@ -9,14 +9,13 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   <rights>All rights reserved 2026, ZapcoMan</rights>
   <title>ZapcoMan's world</title>
-  <updated>2026-07-05T12:08:22.091Z</updated>
+  <updated>2026-07-05T12:16:25.278Z</updated>
   <entry>
     <author>
       <name>ZapcoMan</name>
     </author>
-    <category term="网络安全" scheme="http://example.com/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
-    <category term="免杀" scheme="http://example.com/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/%E5%85%8D%E6%9D%80/"/>
-    <category term="红队攻防" scheme="http://example.com/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/%E5%85%8D%E6%9D%80/%E7%BA%A2%E9%98%9F%E6%94%BB%E9%98%B2/"/>
+    <category term="免杀" scheme="http://example.com/categories/%E5%85%8D%E6%9D%80/"/>
+    <category term="红队攻防" scheme="http://example.com/categories/%E5%85%8D%E6%9D%80/%E7%BA%A2%E9%98%9F%E6%94%BB%E9%98%B2/"/>
     <category term="python" scheme="http://example.com/tags/python/"/>
     <category term="免杀" scheme="http://example.com/tags/%E5%85%8D%E6%9D%80/"/>
     <content>
@@ -32,14 +31,14 @@
 <h]]>
     </summary>
     <title>Python实现MSF免杀技术：Base64加密 + 字符替换 + 反调试反沙箱</title>
-    <updated>2026-07-05T12:08:22.091Z</updated>
+    <updated>2026-07-05T12:16:25.278Z</updated>
   </entry>
   <entry>
     <author>
       <name>ZapcoMan</name>
     </author>
-    <category term="网络安全" scheme="http://example.com/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
-    <category term="社会工程学" scheme="http://example.com/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6/"/>
+    <category term="社会工程学" scheme="http://example.com/categories/%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6/"/>
+    <category term="网络安全" scheme="http://example.com/categories/%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
     <category term="网络安全" scheme="http://example.com/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
     <category term="黑客组织" scheme="http://example.com/tags/%E9%BB%91%E5%AE%A2%E7%BB%84%E7%BB%87/"/>
     <category term="社工" scheme="http://example.com/tags/%E7%A4%BE%E5%B7%A5/"/>
@@ -57,7 +56,7 @@
 <h2 id="一、这个项目是什么？"><a href="#一、这个项目是什么]]>
     </summary>
     <title>我潜入了一个&quot;消费返利&quot;项目的启动大会——这是我的现场记录</title>
-    <updated>2026-07-05T11:42:51.097Z</updated>
+    <updated>2026-07-05T12:16:25.637Z</updated>
   </entry>
   <entry>
     <author>
