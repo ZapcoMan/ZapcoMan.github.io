@@ -17,7 +17,7 @@
 <meta property="og:description" content="本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言在渗透测试和红队评估中，密码爆破仍然是获取系统权限的重要手段之一。然而，面对现代密码策略（要求大小写混合、数字、特殊字符、最小长度等），传统的通用字典文件往往效率低下。社会工程学字典生成器通过收集目标人员的个人信息（姓名、生日、手机号、身份证号等），按照人类设置密码...">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-07-05T12:31:25.000Z">
-<meta property="article:modified_time" content="2026-07-05T13:30:27.283Z">
+<meta property="article:modified_time" content="2026-07-05T13:53:31.446Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="免杀">
@@ -26,7 +26,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"社会工程学字典生成器：基于个人信息的多维度密码组合工具","name":"社会工程学字典生成器：基于个人信息的多维度密码组合工具 | ZapcoMan's world","description":"本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言在渗透测试和红队评估中，密码爆破仍然是获取系统权限的重要手段之一。然而，面对现代密码策略（要求大小写混合、数字、特殊字符、最小长度等），传统的通用字典文件往往效率低下。社会工程学字典生成器通过收集目标人员的个人信息（姓名、生日、手机号、身份证号等），按照人类设置密码...","url":"http://example.com/2026/07/05/2026070504/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/07/05/2026070504/","datePublished":"2026-07-05T12:31:25.000Z","dateModified":"2026-07-05T13:30:27.283Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"python, 免杀"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"社会工程学字典生成器：基于个人信息的多维度密码组合工具","name":"社会工程学字典生成器：基于个人信息的多维度密码组合工具 | ZapcoMan's world","description":"本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言在渗透测试和红队评估中，密码爆破仍然是获取系统权限的重要手段之一。然而，面对现代密码策略（要求大小写混合、数字、特殊字符、最小长度等），传统的通用字典文件往往效率低下。社会工程学字典生成器通过收集目标人员的个人信息（姓名、生日、手机号、身份证号等），按照人类设置密码...","url":"http://example.com/2026/07/05/2026070504/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/07/05/2026070504/","datePublished":"2026-07-05T12:31:25.000Z","dateModified":"2026-07-05T13:53:31.446Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"python, 免杀"}</script>
 
 <script>
   (function () {
@@ -343,14 +343,14 @@
         
           
             <a class="site-info__item" href="/archives/">
-              <strong>42</strong>
+              <strong>44</strong>
               <span>文章</span>
             </a>
           
         
           
             <a class="site-info__item" href="/categories/">
-              <strong>24</strong>
+              <strong>25</strong>
               <span>分类</span>
             </a>
           
@@ -572,13 +572,13 @@
 
   <nav class="article-actions">
     
-      <span class="article-action article-action--prev is-disabled" aria-disabled="true">
+      <a class="article-action article-action--prev" href="/2026/07/05/2026070505/">
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-left"></use></svg>
 
         <span class="action-label">上一篇</span>
-        <span class="action-title">没有更早的文章了</span>
-      </span>
+        <span class="action-title">手机号归属地查询与社工接口：多维度信息收集工具链解析</span>
+      </a>
     
     
       <a class="article-action article-action--next" href="/2026/07/05/2026070503/">
@@ -614,12 +614,28 @@
     </header>
     <div class="related-paper__grid">
       
-        <a class="related-card" href="/2026/07/05/2026070503/">
+        <a class="related-card" href="/2026/07/05/2026070505/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/images/cover/camera.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">手机号归属地查询与社工接口：多维度信息收集工具链解析</strong>
+            <em class="related-card__date">2026-07-05</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/07/05/2026070503/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/mountain.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
@@ -633,9 +649,9 @@
         <a class="related-card" href="/2026/07/05/2026070502/">
           <span class="related-card__thumb">
             
-<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
+<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/images/cover/mountain.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/images/cover/notebook.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
@@ -646,23 +662,7 @@
           </span>
         </a>
       
-        <a class="related-card" href="/2026/07/05/2026062606/">
-          <span class="related-card__thumb">
-            
-<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
-  
-    <img class="paper-thumb__img" src="/images/cover/notebook.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
-  
-</div>
-
-          </span>
-          <span class="related-card__body">
-            <strong class="related-card__title">敏感目录扫描工具：多线程爆破Web隐藏路径</strong>
-            <em class="related-card__date">2026-07-05</em>
-          </span>
-        </a>
-      
-        <a class="related-card" href="/2026/07/01/2026070104/">
+        <a class="related-card" href="/2026/07/05/2026070506/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
@@ -673,8 +673,8 @@
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">Python 爬虫实战：从 API 请求到浏览器模拟的全链路探索</strong>
-            <em class="related-card__date">2026-07-01</em>
+            <strong class="related-card__title">QRCode二维码扫描器</strong>
+            <em class="related-card__date">2026-07-05</em>
           </span>
         </a>
       
