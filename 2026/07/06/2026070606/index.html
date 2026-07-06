@@ -8,25 +8,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#f7f3e9">
 
-<title>WAF基础实现：基于FastAPI中间件的轻量级Web应用防火墙 | ZapcoMan&#39;s world</title>
-<meta name="description" content="W 本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言Web应用防火墙（Web Application Firewall，简称WAF）是Web安全防御体系的核心组件。它位于Web应用与互联网之间，通过检查HTTP请求的内容来识别和拦截恶意流量，是抵御SQL注入、XSS跨站脚本攻击等OWASP Top 10威胁的第一...">
+<title>自定义网络通讯协议：基于struct的二进制协议设计 | ZapcoMan&#39;s world</title>
+<meta name="description" content="本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言在网络编程中，TCP是流式传输协议——它像一条没有边界的管道，发送方写入的数据会被任意分割和合并。你调用send发送了”ABC”和”DEF”两次，接收方可能一次recv就收到”ABCDEF”。这就是所谓的”粘包”问题。 要解决这个问题，应用层必须自行定义消息边界——...">
 <meta property="og:type" content="article">
-<meta property="og:title" content="WAF基础实现：基于FastAPI中间件的轻量级Web应用防火墙 | ZapcoMan&#39;s world">
-<meta property="og:url" content="http://example.com/2026/07/06/2026070602/">
+<meta property="og:title" content="自定义网络通讯协议：基于struct的二进制协议设计 | ZapcoMan&#39;s world">
+<meta property="og:url" content="http://example.com/2026/07/06/2026070606/">
 <meta property="og:site_name" content="ZapcoMan&#39;s world">
-<meta property="og:description" content="W 本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言Web应用防火墙（Web Application Firewall，简称WAF）是Web安全防御体系的核心组件。它位于Web应用与互联网之间，通过检查HTTP请求的内容来识别和拦截恶意流量，是抵御SQL注入、XSS跨站脚本攻击等OWASP Top 10威胁的第一...">
+<meta property="og:description" content="本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言在网络编程中，TCP是流式传输协议——它像一条没有边界的管道，发送方写入的数据会被任意分割和合并。你调用send发送了”ABC”和”DEF”两次，接收方可能一次recv就收到”ABCDEF”。这就是所谓的”粘包”问题。 要解决这个问题，应用层必须自行定义消息边界——...">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-07-06T01:16:25.000Z">
-<meta property="article:modified_time" content="2026-07-06T01:19:02.073Z">
+<meta property="article:published_time" content="2026-07-06T02:09:25.000Z">
+<meta property="article:modified_time" content="2026-07-06T02:12:26.196Z">
 <meta property="article:author" content="ZapcoMan">
-<meta property="article:tag" content="WAF">
-<meta property="article:tag" content="python">
+<meta property="article:tag" content="渗透测试">
+<meta property="article:tag" content="自定义通讯协议">
 <meta name="twitter:card" content="summary">
-<link rel="canonical" href="http://example.com/2026/07/06/2026070602/">
+<link rel="canonical" href="http://example.com/2026/07/06/2026070606/">
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"WAF基础实现：基于FastAPI中间件的轻量级Web应用防火墙","name":"WAF基础实现：基于FastAPI中间件的轻量级Web应用防火墙 | ZapcoMan's world","description":"W 本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言Web应用防火墙（Web Application Firewall，简称WAF）是Web安全防御体系的核心组件。它位于Web应用与互联网之间，通过检查HTTP请求的内容来识别和拦截恶意流量，是抵御SQL注入、XSS跨站脚本攻击等OWASP Top 10威胁的第一...","url":"http://example.com/2026/07/06/2026070602/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/07/06/2026070602/","datePublished":"2026-07-06T01:16:25.000Z","dateModified":"2026-07-06T01:19:02.073Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"python, WAF"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"自定义网络通讯协议：基于struct的二进制协议设计","name":"自定义网络通讯协议：基于struct的二进制协议设计 | ZapcoMan's world","description":"本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言在网络编程中，TCP是流式传输协议——它像一条没有边界的管道，发送方写入的数据会被任意分割和合并。你调用send发送了”ABC”和”DEF”两次，接收方可能一次recv就收到”ABCDEF”。这就是所谓的”粘包”问题。 要解决这个问题，应用层必须自行定义消息边界——...","url":"http://example.com/2026/07/06/2026070606/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/07/06/2026070606/","datePublished":"2026-07-06T02:09:25.000Z","dateModified":"2026-07-06T02:12:26.196Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"渗透测试, 自定义通讯协议"}</script>
 
 <script>
   (function () {
@@ -419,7 +419,7 @@
         </header>
         <div class="toc-content">
           
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E8%83%8C%E6%99%AF"><span class="toc-text">技术背景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#WAF%E7%9A%84%E6%A0%B8%E5%BF%83%E6%A3%80%E6%B5%8B%E6%9C%BA%E5%88%B6"><span class="toc-text">WAF的核心检测机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Payload%E6%A0%87%E5%87%86%E5%8C%96"><span class="toc-text">Payload标准化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fail-Open-vs-Fail-Closed"><span class="toc-text">Fail-Open vs Fail-Closed</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF"><span class="toc-text">实现思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="toc-text">核心代码解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%84%E5%88%99%E5%AE%9A%E4%B9%89%E4%B8%8E%E9%A2%84%E7%BC%96%E8%AF%91"><span class="toc-text">规则定义与预编译</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95%E5%99%A8%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">日志记录器初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Payload%E6%A0%87%E5%87%86%E5%8C%96%E5%87%BD%E6%95%B0"><span class="toc-text">Payload标准化函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WAF%E4%B8%AD%E9%97%B4%E4%BB%B6%E6%A0%B8%E5%BF%83%E9%80%BB%E8%BE%91"><span class="toc-text">WAF中间件核心逻辑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E7%AB%AF%E7%82%B9"><span class="toc-text">测试端点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E4%B8%8E%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">部署与使用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96"><span class="toc-text">安装依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8WAF"><span class="toc-text">启动WAF</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81%E6%B5%8B%E8%AF%95"><span class="toc-text">验证测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90"><span class="toc-text">日志分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2%E5%BB%BA%E8%AE%AE"><span class="toc-text">生产环境部署建议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%B2%E5%BE%A1%E6%95%88%E6%9E%9C%E5%88%86%E6%9E%90"><span class="toc-text">防御效果分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%80%E6%B5%8B%E8%83%BD%E5%8A%9B"><span class="toc-text">检测能力</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5%E4%BC%98%E5%8A%BF"><span class="toc-text">安全策略优势</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%80%E9%99%90%E6%80%A7%E4%B8%8E%E6%94%B9%E8%BF%9B%E6%96%B9%E5%90%91"><span class="toc-text">局限性与改进方向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E8%A7%84%E5%88%99%E7%A4%BA%E4%BE%8B"><span class="toc-text">扩展规则示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E8%83%8C%E6%99%AF"><span class="toc-text">技术背景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B2%98%E5%8C%85%E9%97%AE%E9%A2%98"><span class="toc-text">粘包问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%8D%8F%E8%AE%AE-vs-%E6%96%87%E6%9C%AC%E5%8D%8F%E8%AE%AE"><span class="toc-text">二进制协议 vs 文本协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Python-struct%E6%A8%A1%E5%9D%97"><span class="toc-text">Python struct模块</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF"><span class="toc-text">实现思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="toc-text">核心代码解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%8D%8F%E8%AE%AE%E5%B8%B8%E9%87%8F%E5%AE%9A%E4%B9%89"><span class="toc-text">1. 协议常量定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%8C%85%E6%8E%A5%E6%94%B6%E4%B8%8E%E5%93%8D%E5%BA%94"><span class="toc-text">2. 服务器端：数据包接收与响应</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%EF%BC%9A%E5%90%AF%E5%8A%A8%E7%9B%91%E5%90%AC"><span class="toc-text">3. 服务器端：启动监听</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%AE%A2%E6%88%B7%E7%AB%AF%EF%BC%9A%E8%BF%9E%E6%8E%A5%E4%B8%8E%E6%96%AD%E7%BA%BF%E9%87%8D%E8%BF%9E"><span class="toc-text">4. 客户端：连接与断线重连</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%AE%A2%E6%88%B7%E7%AB%AF%EF%BC%9A%E5%8F%91%E9%80%81%E6%95%B0%E6%8D%AE%E5%8C%85"><span class="toc-text">5. 客户端：发送数据包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%AE%A2%E6%88%B7%E7%AB%AF%EF%BC%9A%E6%8E%A5%E6%94%B6%E6%95%B0%E6%8D%AE%E5%8C%85"><span class="toc-text">6. 客户端：接收数据包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E4%B8%BB%E7%A8%8B%E5%BA%8F%E8%B0%83%E7%94%A8"><span class="toc-text">7. 主程序调用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C"><span class="toc-text">使用方法与运行效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE%E8%AE%BE%E8%AE%A1%E7%9A%84%E5%87%A0%E7%82%B9%E6%80%9D%E8%80%83"><span class="toc-text">协议设计的几点思考</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%8D%8F%E8%AE%AE%E5%A4%B4%E9%AD%94%E6%95%B0%EF%BC%9F"><span class="toc-text">为什么需要协议头魔数？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8%E7%BD%91%E7%BB%9C%E5%AD%97%E8%8A%82%E5%BA%8F%EF%BC%9F"><span class="toc-text">为什么用网络字节序？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%95%BF%E5%BA%A6%E5%AD%97%E6%AE%B5%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A82%E5%AD%97%E8%8A%82%EF%BC%9F"><span class="toc-text">长度字段为什么用2字节？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol>
           
         </div>
       </section>
@@ -449,7 +449,7 @@
         python
       </a>
     
-    <h1>WAF基础实现：基于FastAPI中间件的轻量级Web应用防火墙</h1>
+    <h1>自定义网络通讯协议：基于struct的二进制协议设计</h1>
     <div class="meta-line meta-line--article">
       <span class="meta-date">
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
@@ -459,7 +459,7 @@
           
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
 
-          <a class="meta-tag-link" href="/tags/python/">#python</a><a class="meta-tag-link" href="/tags/WAF/">#WAF</a>
+          <a class="meta-tag-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">#渗透测试</a><a class="meta-tag-link" href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE/">#自定义通讯协议</a>
         </span>
       
     </div>
@@ -469,156 +469,119 @@
 
 
   <div class="article-content">
-    <h1 id="W"><a href="#W" class="headerlink" title="W"></a>W</h1><blockquote>
+    <blockquote>
 <p>本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。</p>
 </blockquote>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Web应用防火墙（Web Application Firewall，简称WAF）是Web安全防御体系的核心组件。它位于Web应用与互联网之间，通过检查HTTP请求的内容来识别和拦截恶意流量，是抵御SQL注入、XSS跨站脚本攻击等OWASP Top 10威胁的第一道防线。</p>
-<p>市面上有ModSecurity、阿里云WAF、Cloudflare WAF等成熟产品，但理解WAF的核心工作原理——规则匹配、评分机制、标准化处理——对于安全工程师来说至关重要。无论是自定义WAF规则、调优误报&#x2F;漏报，还是应对绕过攻击，都需要对WAF底层逻辑有深刻理解。</p>
-<p>本文基于一个真实的FastAPI中间件WAF源码，讲解如何用不到150行Python代码实现一个具备规则引擎、评分机制、Fail-Open安全策略的轻量级WAF。</p>
-<h2 id="技术背景"><a href="#技术背景" class="headerlink" title="技术背景"></a>技术背景</h2><h3 id="WAF的核心检测机制"><a href="#WAF的核心检测机制" class="headerlink" title="WAF的核心检测机制"></a>WAF的核心检测机制</h3><p>现代WAF主要采用两种检测方式：</p>
-<ul>
-<li><strong>黑名单&#x2F;规则匹配</strong>：预定义已知攻击特征的正则表达式，请求匹配到任何规则即判定为恶意。代表产品：ModSecurity（OWASP CRS规则集）</li>
-<li><strong>评分制</strong>：为每条规则分配权重（分数），请求累计得分超过阈值才拦截。相比单一规则命中即拦截，评分制能降低误报率，同时能识别组合攻击</li>
-</ul>
-<p>本文的WAF采用<strong>评分制+黑名单规则</strong>的混合模式。</p>
-<h3 id="Payload标准化"><a href="#Payload标准化" class="headerlink" title="Payload标准化"></a>Payload标准化</h3><p>攻击者常通过编码和变形来绕过WAF检测，例如：</p>
-<ul>
-<li>URL编码：<code>UNION%20SELECT</code> 绕过对 <code>UNION SELECT</code> 的直接匹配</li>
-<li>大小写混淆：<code>UnIoN sElEcT</code> 绕过大小写敏感的规则</li>
-<li>双重编码：<code>%2555NION</code> 绕过单次URL解码</li>
-</ul>
-<p>因此WAF在匹配规则前必须对请求进行<strong>标准化处理</strong>：URL解码、统一小写、拼接各部分内容。本文源码实现了基础的标准化逻辑。</p>
-<h3 id="Fail-Open-vs-Fail-Closed"><a href="#Fail-Open-vs-Fail-Closed" class="headerlink" title="Fail-Open vs Fail-Closed"></a>Fail-Open vs Fail-Closed</h3><p>WAF引擎本身也可能发生异常（如正则编译错误、内存不足）。此时如何决策体现了安全策略：</p>
-<ul>
-<li><strong>Fail-Open（故障放行）</strong>：WAF异常时放行请求，保证业务可用性，但可能放行攻击</li>
-<li><strong>Fail-Closed（故障关闭）</strong>：WAF异常时拒绝请求，保证安全性，但可能阻断正常业务</li>
-</ul>
-<p>生产环境通常选择Fail-Open，避免WAF故障导致全站不可用。</p>
-<h2 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h2><p>本WAF以FastAPI中间件形式实现，整体架构如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">HTTP请求 → WAF中间件 → 标准化Payload → 规则引擎匹配 → 评分计算</span><br><span class="line">                                                          ↓</span><br><span class="line">                                              score &gt;= 阈值？</span><br><span class="line">                                           ┌──── 是 ────┐──── 否 ────┐</span><br><span class="line">                                     Fail-Open?      放行到后端</span><br><span class="line">                                  ┌── 是 ──┐── 否 ──┐</span><br><span class="line">                              记录后放行    返回403拦截</span><br></pre></td></tr></table></figure>
-
-<p>关键设计：</p>
-<ol>
-<li><strong>规则定义</strong>：每条规则包含ID、正则表达式、权重三要素</li>
-<li><strong>预编译正则</strong>：启动时预编译所有正则，避免运行时重复编译</li>
-<li><strong>标准化处理</strong>：URL解码 + 小写化 + 拼接路径&#x2F;查询参数&#x2F;UA&#x2F;Body</li>
-<li><strong>评分计算</strong>：遍历所有规则，命中则累加权重</li>
-<li><strong>决策逻辑</strong>：总分超过阈值时，根据Fail-Open策略决定是放行还是拦截</li>
-<li><strong>日志记录</strong>：无论是否拦截，都记录请求信息和匹配结果，用于后续分析和调优</li>
-</ol>
-<h2 id="核心代码解析"><a href="#核心代码解析" class="headerlink" title="核心代码解析"></a>核心代码解析</h2><h3 id="规则定义与预编译"><a href="#规则定义与预编译" class="headerlink" title="规则定义与预编译"></a>规则定义与预编译</h3><p>WAF的检测能力直接由规则集决定。以下代码定义了针对SQL注入和XSS的检测规则：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re, os, time, json, logging</span><br><span class="line"><span class="keyword">from</span> urllib.parse <span class="keyword">import</span> unquote_plus</span><br><span class="line"></span><br><span class="line">LOG_PATH = os.getenv(<span class="string">&quot;WAF_LOG&quot;</span>, <span class="string">&quot;./waf_samples.log&quot;</span>)</span><br><span class="line">SCORE_THRESHOLD = <span class="built_in">int</span>(os.getenv(<span class="string">&quot;WAF_BLOCK_SCORE&quot;</span>, <span class="string">&quot;100&quot;</span>))  <span class="comment"># 默认100：只监控不拦截</span></span><br><span class="line">FAIL_OPEN = os.getenv(<span class="string">&quot;WAF_FAIL_OPEN&quot;</span>, <span class="string">&quot;1&quot;</span>) == <span class="string">&quot;1&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 规则：(id, regex_str, weight)</span></span><br><span class="line">RULES = [</span><br><span class="line">    (<span class="string">&quot;sqli_union&quot;</span>, <span class="string">r&quot;(?i)\bunion\s+select\b&quot;</span>, <span class="number">50</span>),            <span class="comment"># UNION SELECT注入</span></span><br><span class="line">    (<span class="string">&quot;sqli_information_schema&quot;</span>, <span class="string">r&quot;(?i)information_schema&quot;</span>, <span class="number">40</span>), <span class="comment"># 信息架构探测</span></span><br><span class="line">    (<span class="string">&quot;xss_tag&quot;</span>, <span class="string">r&quot;(?i)&lt;\s*script\b&quot;</span>, <span class="number">30</span>),                      <span class="comment"># &lt;script&gt;标签</span></span><br><span class="line">    (<span class="string">&quot;xss_event&quot;</span>, <span class="string">r&quot;(?i)onerror\s*=|javascript:&quot;</span>, <span class="number">20</span>),        <span class="comment"># XSS事件处理器</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 预编译正则表达式，提升运行时匹配效率</span></span><br><span class="line">COMPILED = [(rid, re.<span class="built_in">compile</span>(pat)) <span class="keyword">for</span> rid, pat, w <span class="keyword">in</span> [(r[<span class="number">0</span>], r[<span class="number">1</span>], r[<span class="number">2</span>]) <span class="keyword">for</span> r <span class="keyword">in</span> RULES]]</span><br><span class="line">WEIGHTS = &#123;r[<span class="number">0</span>]: r[<span class="number">2</span>] <span class="keyword">for</span> r <span class="keyword">in</span> RULES&#125;</span><br></pre></td></tr></table></figure>
-
-<p>每条规则的设计思路：</p>
-<ul>
-<li><strong><code>sqli_union</code>（权重50）</strong>：<code>UNION SELECT</code> 是SQL注入中最经典的注入手法，用于从其他表中提取数据。<code>(?i)</code> 使匹配不区分大小写，<code>\b</code> 确保匹配单词边界避免误报</li>
-<li><strong><code>sqli_information_schema</code>（权重40）</strong>：<code>information_schema</code> 是MySQL的元数据库，攻击者通过查询它来获取表名和列名，是SQL注入后续利用的标志性特征</li>
-<li><strong><code>xss_tag</code>（权重30）</strong>：<code>&lt;script&gt;</code> 标签是XSS攻击的核心载荷，<code>&lt;\s*script\b</code> 可以匹配 <code>&lt;script&gt;</code> 和 <code>&lt; script&gt;</code> 等变体</li>
-<li><strong><code>xss_event</code>（权重20）</strong>：<code>onerror=</code> 和 <code>javascript:</code> 是两种常见的XSS向量，通过HTML事件属性或伪协议执行脚本</li>
-</ul>
-<p>注意默认阈值设为100，而四条规则的总权重为50+40+30+20&#x3D;140。这意味着单一规则命中不会触发拦截，需要组合命中（如同时触发UNION SELECT和information_schema，得分为90仍未超阈值；再命中任意XSS规则，总分超过100才会拦截）。这种设计有效降低了误报率。</p>
-<h3 id="日志记录器初始化"><a href="#日志记录器初始化" class="headerlink" title="日志记录器初始化"></a>日志记录器初始化</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 初始化日志记录器，使用JSON格式记录，便于后续分析</span></span><br><span class="line">logger = logging.getLogger(<span class="string">&quot;waf&quot;</span>)</span><br><span class="line">logger.setLevel(logging.INFO)</span><br><span class="line">fh = logging.FileHandler(LOG_PATH, encoding=<span class="string">&quot;utf8&quot;</span>)</span><br><span class="line">formatter = logging.Formatter(<span class="string">&#x27;%(message)s&#x27;</span>)  <span class="comment"># 直接输出JSON字符串，不加额外格式</span></span><br><span class="line">fh.setFormatter(formatter)</span><br><span class="line">logger.addHandler(fh)</span><br></pre></td></tr></table></figure>
-
-<p>日志格式设为 <code>%(message)s</code>，直接输出JSON字符串。这样日志文件每行就是一个完整的JSON对象，可以用 <code>jq</code> 等工具快速查询分析。</p>
-<h3 id="Payload标准化函数"><a href="#Payload标准化函数" class="headerlink" title="Payload标准化函数"></a>Payload标准化函数</h3><p>标准化是WAF反绕过的关键环节：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">normalize_payload</span>(<span class="params">path: <span class="built_in">str</span>, query: <span class="built_in">str</span>, ua: <span class="built_in">str</span>, body: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    对HTTP请求的各个部分进行标准化处理，便于后续检测</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        q = unquote_plus(query <span class="keyword">or</span> <span class="string">&quot;&quot;</span>)  <span class="comment"># URL解码查询参数</span></span><br><span class="line">        b = unquote_plus(body <span class="keyword">or</span> <span class="string">&quot;&quot;</span>)   <span class="comment"># URL解码请求体</span></span><br><span class="line">    <span class="keyword">except</span> Exception:</span><br><span class="line">        q = query <span class="keyword">or</span> <span class="string">&quot;&quot;</span></span><br><span class="line">        b = body <span class="keyword">or</span> <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="comment"># 拼接所有部分并统一小写</span></span><br><span class="line">    combined = <span class="string">&quot; &quot;</span>.join([path <span class="keyword">or</span> <span class="string">&quot;&quot;</span>, q, ua <span class="keyword">or</span> <span class="string">&quot;&quot;</span>, b <span class="keyword">or</span> <span class="string">&quot;&quot;</span>]).lower()</span><br><span class="line">    <span class="keyword">return</span> combined</span><br></pre></td></tr></table></figure>
-
-<p>这个函数做了三件事：</p>
-<ol>
-<li><strong>URL解码</strong>：<code>unquote_plus</code> 将 <code>%20</code> 解码为空格、<code>%3C</code> 解码为 <code>&lt;</code>，确保编码绕过无效</li>
-<li><strong>拼接所有输入向量</strong>：路径、查询参数、User-Agent、请求体合并为一个字符串，确保攻击载荷无论藏在哪个字段都能被检测到</li>
-<li><strong>统一小写</strong>：<code>.lower()</code> 使后续正则匹配无需考虑大小写问题</li>
-</ol>
-<h3 id="WAF中间件核心逻辑"><a href="#WAF中间件核心逻辑" class="headerlink" title="WAF中间件核心逻辑"></a>WAF中间件核心逻辑</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.middleware(<span class="params"><span class="string">&quot;http&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">waf_middleware</span>(<span class="params">request: Request, call_next</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    WAF中间件，用于检测和拦截恶意请求</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="comment"># 提取请求体和User-Agent</span></span><br><span class="line">        body_bytes = <span class="keyword">await</span> request.body()</span><br><span class="line">        body = body_bytes.decode(errors=<span class="string">&quot;ignore&quot;</span>)</span><br><span class="line">        ua = request.headers.get(<span class="string">&quot;user-agent&quot;</span>, <span class="string">&quot;&quot;</span>)</span><br><span class="line">        <span class="comment"># 标准化payload</span></span><br><span class="line">        payload = normalize_payload(request.url.path, request.url.query, ua, body)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 规则匹配与评分</span></span><br><span class="line">        score = <span class="number">0</span></span><br><span class="line">        matched = []</span><br><span class="line">        <span class="keyword">for</span> rid, cre <span class="keyword">in</span> COMPILED:</span><br><span class="line">            <span class="keyword">if</span> cre.search(payload):</span><br><span class="line">                score += WEIGHTS.get(rid, <span class="number">10</span>)</span><br><span class="line">                matched.append(rid)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 记录请求信息和检测结果（无论是否拦截都记录）</span></span><br><span class="line">        record = &#123;</span><br><span class="line">            <span class="string">&quot;ts&quot;</span>: <span class="built_in">int</span>(time.time()),</span><br><span class="line">            <span class="string">&quot;src_ip&quot;</span>: request.client.host <span class="keyword">if</span> request.client <span class="keyword">else</span> <span class="literal">None</span>,</span><br><span class="line">            <span class="string">&quot;method&quot;</span>: request.method,</span><br><span class="line">            <span class="string">&quot;path&quot;</span>: <span class="built_in">str</span>(request.url.path),</span><br><span class="line">            <span class="string">&quot;query&quot;</span>: <span class="built_in">str</span>(request.url.query),</span><br><span class="line">            <span class="string">&quot;ua&quot;</span>: ua,</span><br><span class="line">            <span class="string">&quot;score&quot;</span>: score,</span><br><span class="line">            <span class="string">&quot;matched&quot;</span>: matched,</span><br><span class="line">            <span class="string">&quot;body_snip&quot;</span>: body[:<span class="number">800</span>]  <span class="comment"># 截取前800字符，避免日志过大</span></span><br><span class="line">        &#125;</span><br><span class="line">        logger.info(json.dumps(record, ensure_ascii=<span class="literal">False</span>))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 决策：是否拦截</span></span><br><span class="line">        <span class="keyword">if</span> score &gt;= SCORE_THRESHOLD:</span><br><span class="line">            <span class="keyword">if</span> FAIL_OPEN:</span><br><span class="line">                <span class="comment"># 故障安全：fail-open 时依旧放行，但已记录高优先级日志</span></span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">await</span> call_next(request)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> JSONResponse(</span><br><span class="line">                    &#123;<span class="string">&quot;detail&quot;</span>: <span class="string">&quot;blocked by waf&quot;</span>, <span class="string">&quot;score&quot;</span>: score, <span class="string">&quot;matched&quot;</span>: matched&#125;,</span><br><span class="line">                    status_code=<span class="number">403</span></span><br><span class="line">                )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        <span class="comment"># 引擎异常时的安全策略</span></span><br><span class="line">        <span class="keyword">if</span> FAIL_OPEN:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">await</span> call_next(request)  <span class="comment"># 放行</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> JSONResponse(&#123;<span class="string">&quot;detail&quot;</span>: <span class="string">&quot;waf internal error&quot;</span>&#125;, status_code=<span class="number">500</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">await</span> call_next(request)</span><br></pre></td></tr></table></figure>
-
-<p>这段代码体现了WAF的完整决策链路，有几个关键点值得深入理解：</p>
-<p><strong>1. 全向量提取</strong>：<code>body_bytes = await request.body()</code> 读取完整请求体，加上 <code>path</code>、<code>query</code>、<code>ua</code>，覆盖了HTTP请求中所有可能携带攻击载荷的位置。</p>
-<p><strong>2. 记录先于决策</strong>：无论最终是否拦截，日志都会记录。这意味着即使WAF处于”只监控”模式（阈值设为100），也能收集到所有匹配到规则的请求，为后续调优提供数据基础。</p>
-<p><strong>3. 分层异常处理</strong>：</p>
-<ul>
-<li>正则匹配阶段的异常被 <code>try-except</code> 包裹</li>
-<li>异常处理中再次检查 <code>FAIL_OPEN</code> 策略</li>
-<li>确保WAF自身的故障不会导致请求处理中断</li>
-</ul>
-<p><strong>4. 响应中携带匹配信息</strong>：拦截时返回 <code>{&quot;detail&quot;: &quot;blocked by waf&quot;, &quot;score&quot;: score, &quot;matched&quot;: matched}</code>，便于前端和API客户端理解被拦截的原因。</p>
-<h3 id="测试端点"><a href="#测试端点" class="headerlink" title="测试端点"></a>测试端点</h3><p>WAF源码附带了两个测试端点：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.get(<span class="params"><span class="string">&quot;/health&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">health</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;健康检查端点&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;status&quot;</span>: <span class="string">&quot;ok&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.post(<span class="params"><span class="string">&quot;/echo&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">echo</span>(<span class="params">req: Request</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;回显端点，用于测试WAF对POST body的检测&quot;&quot;&quot;</span></span><br><span class="line">    body = <span class="keyword">await</span> req.body()</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;echo&quot;</span>: body.decode(errors=<span class="string">&quot;ignore&quot;</span>)[:<span class="number">1000</span>]&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>/echo</code> 端点特别有用——它会回显请求体内容，可用于验证WAF是否正确拦截了带有恶意payload的POST请求。</p>
-<h2 id="部署与使用方法"><a href="#部署与使用方法" class="headerlink" title="部署与使用方法"></a>部署与使用方法</h2><h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install fastapi uvicorn</span><br></pre></td></tr></table></figure>
-
-<h3 id="启动WAF"><a href="#启动WAF" class="headerlink" title="启动WAF"></a>启动WAF</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 默认模式（只监控，不拦截）</span></span><br><span class="line">python3 Demo001.py</span><br><span class="line"><span class="comment"># 通过uvicorn运行：</span></span><br><span class="line">uvicorn Demo001:app --host 0.0.0.0 --port 8000</span><br><span class="line"></span><br><span class="line"><span class="comment"># 拦截模式（设置较低阈值）</span></span><br><span class="line">WAF_BLOCK_SCORE=60 WAF_FAIL_OPEN=0 uvicorn Demo001:app --host 0.0.0.0 --port 8000</span><br><span class="line"></span><br><span class="line"><span class="comment"># 自定义日志路径</span></span><br><span class="line">WAF_LOG=/var/log/waf.log uvicorn Demo001:app --host 0.0.0.0 --port 8000</span><br></pre></td></tr></table></figure>
-
-<h3 id="验证测试"><a href="#验证测试" class="headerlink" title="验证测试"></a>验证测试</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 正常请求（不会被拦截）</span></span><br><span class="line">curl http://localhost:8000/health</span><br><span class="line"></span><br><span class="line"><span class="comment"># SQL注入测试（触发sqli_union规则，得分50）</span></span><br><span class="line">curl <span class="string">&quot;http://localhost:8000/?id=1+UNION+SELECT+1&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># XSS测试（触发xss_tag规则，得分30）</span></span><br><span class="line">curl <span class="string">&quot;http://localhost:8000/?q=&lt;script&gt;alert(1)&lt;/script&gt;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 组合攻击（触发多条规则，得分高）</span></span><br><span class="line">curl <span class="string">&quot;http://localhost:8000/?id=1+UNION+SELECT+*+FROM+information_schema.tables&quot;</span> \</span><br><span class="line">     -A <span class="string">&quot;&lt;script&gt;javascript:alert(1)&lt;/script&gt;&quot;</span></span><br><span class="line"><span class="comment"># 命中: sqli_union(50) + sqli_information_schema(40) + xss_event(20) = 110分 &gt; 100阈值</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># POST body注入测试</span></span><br><span class="line">curl -X POST http://localhost:8000/echo \</span><br><span class="line">     -d <span class="string">&quot;data=1 UNION SELECT password FROM information_schema.tables&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="日志分析"><a href="#日志分析" class="headerlink" title="日志分析"></a>日志分析</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看被匹配到规则的请求</span></span><br><span class="line"><span class="built_in">cat</span> waf_samples.log | python3 -c <span class="string">&quot;</span></span><br><span class="line"><span class="string">import json, sys</span></span><br><span class="line"><span class="string">for line in sys.stdin:</span></span><br><span class="line"><span class="string">    r = json.loads(line)</span></span><br><span class="line"><span class="string">    if r[&#x27;score&#x27;] &gt; 0:</span></span><br><span class="line"><span class="string">        print(f\&quot;[&#123;r[&#x27;score&#x27;]&#125;分] &#123;r[&#x27;method&#x27;]&#125; &#123;r[&#x27;path&#x27;]&#125; matched=&#123;r[&#x27;matched&#x27;]&#125; ip=&#123;r[&#x27;src_ip&#x27;]&#125;\&quot;)</span></span><br><span class="line"><span class="string">&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 统计各类攻击次数</span></span><br><span class="line"><span class="built_in">cat</span> waf_samples.log | python3 -c <span class="string">&quot;</span></span><br><span class="line"><span class="string">import json, sys</span></span><br><span class="line"><span class="string">from collections import Counter</span></span><br><span class="line"><span class="string">c = Counter()</span></span><br><span class="line"><span class="string">for line in sys.stdin:</span></span><br><span class="line"><span class="string">    r = json.loads(line)</span></span><br><span class="line"><span class="string">    for rule in r.get(&#x27;matched&#x27;, []):</span></span><br><span class="line"><span class="string">        c[rule] += 1</span></span><br><span class="line"><span class="string">for rule, count in c.most_common():</span></span><br><span class="line"><span class="string">    print(f&#x27;&#123;rule&#125;: &#123;count&#125;次&#x27;)</span></span><br><span class="line"><span class="string">&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="生产环境部署建议"><a href="#生产环境部署建议" class="headerlink" title="生产环境部署建议"></a>生产环境部署建议</h3><p>在实际部署中，建议将WAF作为反向代理前置：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">客户端 → Nginx → FastAPI WAF (uvicorn) → 后端应用</span><br></pre></td></tr></table></figure>
-
-<p>或使用Docker部署：</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> python:<span class="number">3.11</span>-slim</span><br><span class="line"><span class="keyword">WORKDIR</span><span class="language-bash"> /app</span></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> Demo001.py .</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> pip install fastapi uvicorn</span></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [<span class="string">&quot;uvicorn&quot;</span>, <span class="string">&quot;Demo001:app&quot;</span>, <span class="string">&quot;--host&quot;</span>, <span class="string">&quot;0.0.0.0&quot;</span>, <span class="string">&quot;--port&quot;</span>, <span class="string">&quot;8000&quot;</span>]</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="防御效果分析"><a href="#防御效果分析" class="headerlink" title="防御效果分析"></a>防御效果分析</h2><h3 id="检测能力"><a href="#检测能力" class="headerlink" title="检测能力"></a>检测能力</h3><p>该WAF能有效检测以下攻击：</p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在网络编程中，TCP是流式传输协议——它像一条没有边界的管道，发送方写入的数据会被任意分割和合并。你调用<code>send</code>发送了”ABC”和”DEF”两次，接收方可能一次<code>recv</code>就收到”ABCDEF”。这就是所谓的”粘包”问题。</p>
+<p>要解决这个问题，应用层必须自行定义消息边界——也就是设计”应用层协议”。HTTP用<code>\r\n\r\n</code>分隔头部，DNS用固定长度的长度字段。本文将基于Python的<code>struct</code>模块，设计一套名为”VIBE”的二进制网络协议，实现可靠的数据包收发。</p>
+<h2 id="技术背景"><a href="#技术背景" class="headerlink" title="技术背景"></a>技术背景</h2><h3 id="粘包问题"><a href="#粘包问题" class="headerlink" title="粘包问题"></a>粘包问题</h3><p>TCP是面向字节流的协议，不维护应用层消息的边界。发送方连续发送多条消息时，TCP可能将它们合并为一个报文发送（Nagle算法），也可能将一条消息拆分为多个报文。接收方如果不做处理，就无法区分消息的边界。</p>
+<h3 id="二进制协议-vs-文本协议"><a href="#二进制协议-vs-文本协议" class="headerlink" title="二进制协议 vs 文本协议"></a>二进制协议 vs 文本协议</h3><p>应用层协议分为两大类：</p>
 <table>
 <thead>
 <tr>
-<th>攻击类型</th>
-<th>测试Payload</th>
-<th>命中规则</th>
-<th>得分</th>
+<th>类型</th>
+<th>代表协议</th>
+<th>优点</th>
+<th>缺点</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>SQL注入</td>
-<td><code>1 UNION SELECT * FROM users</code></td>
-<td>sqli_union</td>
-<td>50</td>
+<td>文本协议</td>
+<td>HTTP、SMTP</td>
+<td>可读性好，易调试</td>
+<td>解析复杂，体积大</td>
 </tr>
 <tr>
-<td>信息架构探测</td>
-<td><code>... FROM information_schema.tables</code></td>
-<td>sqli_information_schema</td>
-<td>40</td>
-</tr>
-<tr>
-<td>XSS标签注入</td>
-<td><code>&lt;script&gt;alert(1)&lt;/script&gt;</code></td>
-<td>xss_tag</td>
-<td>30</td>
-</tr>
-<tr>
-<td>XSS事件注入</td>
-<td><code>&lt;img onerror=alert(1)&gt;</code></td>
-<td>xss_event</td>
-<td>20</td>
-</tr>
-<tr>
-<td>组合攻击</td>
-<td>UNION + information_schema + XSS</td>
-<td>三条规则</td>
-<td>110</td>
+<td>二进制协议</td>
+<td>DNS、TLS</td>
+<td>紧凑高效，解析快</td>
+<td>不可读，需工具分析</td>
 </tr>
 </tbody></table>
-<h3 id="安全策略优势"><a href="#安全策略优势" class="headerlink" title="安全策略优势"></a>安全策略优势</h3><ul>
-<li><strong>评分制降低误报</strong>：单一低权重规则命中不会触发拦截，减少对正常业务的影响</li>
-<li><strong>Fail-Open保障可用性</strong>：WAF故障或规则异常时不会阻断业务</li>
-<li><strong>全向量覆盖</strong>：路径、查询参数、User-Agent、请求体均纳入检测范围</li>
-<li><strong>环境变量配置</strong>：无需修改代码即可调整阈值和安全策略</li>
-</ul>
-<h3 id="局限性与改进方向"><a href="#局限性与改进方向" class="headerlink" title="局限性与改进方向"></a>局限性与改进方向</h3><ul>
-<li><strong>规则集精简</strong>：仅包含4条规则，生产环境需扩展至覆盖OWASP Top 10全量攻击类型</li>
-<li><strong>标准化不足</strong>：仅做单次URL解码，无法应对双重编码绕过；缺少HTML实体解码、Unicode规范化</li>
-<li><strong>无学习能力</strong>：纯规则驱动，无法识别未知攻击模式（可考虑集成机器学习异常检测）</li>
-<li><strong>性能考量</strong>：每个请求都要读取完整body并执行多次正则匹配，在高并发场景下需做性能评估</li>
-<li><strong>无IP信誉库</strong>：不结合威胁情报，无法对已知恶意IP提高检测敏感度</li>
-</ul>
-<h3 id="扩展规则示例"><a href="#扩展规则示例" class="headerlink" title="扩展规则示例"></a>扩展规则示例</h3><p>可以按相同格式添加更多规则：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">RULES = [</span><br><span class="line">    <span class="comment"># ... 原有规则 ...</span></span><br><span class="line">    (<span class="string">&quot;sqli_or_injection&quot;</span>, <span class="string">r&quot;(?i)&#x27;\s*or\s*&#x27;1&#x27;\s*=\s*&#x27;1&quot;</span>, <span class="number">45</span>),      <span class="comment"># OR &#x27;1&#x27;=&#x27;1</span></span><br><span class="line">    (<span class="string">&quot;sqli_comment&quot;</span>, <span class="string">r&quot;(?i)(--|#|/\*)&quot;</span>, <span class="number">15</span>),                        <span class="comment"># SQL注释符</span></span><br><span class="line">    (<span class="string">&quot;xss_img&quot;</span>, <span class="string">r&quot;(?i)&lt;\s*img\b[^&gt;]*\bonerror\b&quot;</span>, <span class="number">25</span>),              <span class="comment"># &lt;img onerror&gt;</span></span><br><span class="line">    (<span class="string">&quot;lfi_traversal&quot;</span>, <span class="string">r&quot;\.\./|\.\.\\&quot;</span>, <span class="number">35</span>),                         <span class="comment"># 目录穿越</span></span><br><span class="line">    (<span class="string">&quot;rfi_remote&quot;</span>, <span class="string">r&quot;(?i)(file|php|http|ftp)://&quot;</span>, <span class="number">20</span>),             <span class="comment"># 远程文件包含</span></span><br><span class="line">    (<span class="string">&quot;cmd_injection&quot;</span>, <span class="string">r&quot;(?i)(;\s*(cat|ls|id|whoami)\b|\$\(|`)&quot;</span>, <span class="number">40</span>), <span class="comment"># 命令注入</span></span><br><span class="line">    (<span class="string">&quot;xxe&quot;</span>, <span class="string">r&quot;(?i)&lt;!ENTITY\b&quot;</span>, <span class="number">50</span>),                                 <span class="comment"># XXE实体</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>二进制协议通过固定格式的头部字段来描述消息结构，解析时直接按字节偏移读取，效率远高于文本协议的正则匹配。</p>
+<h3 id="Python-struct模块"><a href="#Python-struct模块" class="headerlink" title="Python struct模块"></a>Python struct模块</h3><p><code>struct</code>模块是Python处理二进制数据的利器。它通过格式字符串将Python值打包为字节串，或将字节串解包为Python值。</p>
+<p>常用格式字符：</p>
+<table>
+<thead>
+<tr>
+<th>字符</th>
+<th>C类型</th>
+<th>Python类型</th>
+<th>大小</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>s</code></td>
+<td>char[]</td>
+<td>bytes</td>
+<td>1字节</td>
+</tr>
+<tr>
+<td><code>H</code></td>
+<td>unsigned short</td>
+<td>int</td>
+<td>2字节</td>
+</tr>
+<tr>
+<td><code>I</code></td>
+<td>unsigned int</td>
+<td>int</td>
+<td>4字节</td>
+</tr>
+<tr>
+<td><code>!</code></td>
+<td>网络字节序</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody></table>
+<p><code>!</code>前缀表示使用网络字节序（大端序），这是网络协议的标准字节序。</p>
+<h2 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h2><p>VIBE协议采用经典的”头部+载荷”结构：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">+--------+--------+--------+--------+--------+--------+--------+--------+--------+---...</span><br><span class="line">| &#x27;V&#x27;    | &#x27;I&#x27;    | &#x27;B&#x27;    | &#x27;E&#x27;    | 包类型(2字节) | 数据长度(2字节) | 数据载荷...</span><br><span class="line">+--------+--------+--------+--------+--------+--------+--------+--------+--------+---...</span><br><span class="line">|&lt;------- 协议头(4字节) ------&gt;|&lt;-- 类型 --&gt;|&lt;-- 长度 --&gt;|&lt;------- 载荷 -------&gt;</span><br></pre></td></tr></table></figure>
 
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文基于一个真实的FastAPI WAF源码，完整讲解了Web应用防火墙的核心实现原理。从规则定义、正则预编译、Payload标准化、评分计算到Fail-Open安全策略，这不到150行代码涵盖了WAF最核心的工程要素。</p>
-<p>理解这个基础实现后，就能更好地使用和调优生产级WAF：知道为什么某条规则会误报（权重过高）、理解双重编码为什么能绕过（标准化不充分）、明白Fail-Open策略的利弊权衡。WAF不是银弹，它是纵深防御体系中的一环——配合蜜罐的主动感知、IP自动封禁的快速响应，才能构建起完整的Web安全防御体系。</p>
-<p>对于安全工程师而言，掌握WAF底层原理的价值远超熟练使用某款产品，因为安全对抗的本质是规则与绕过的持续博弈——只有理解了检测机制，才能在攻防对抗中始终领先一步。</p>
+<p>整体架构包含两个组件：</p>
+<ol>
+<li><strong>服务器端</strong>：监听端口，接收数据包并回显响应</li>
+<li><strong>客户端</strong>：封装为<code>Client</code>类，提供<code>send_packet</code>和<code>receive_packet</code>方法，支持断线重连</li>
+</ol>
+<p>协议格式字符串为 <code>!4sHH</code>：<code>4s</code>表示4字节字符串（协议头”VIBE”），两个<code>H</code>分别表示数据包类型和数据长度。</p>
+<h2 id="核心代码解析"><a href="#核心代码解析" class="headerlink" title="核心代码解析"></a>核心代码解析</h2><h3 id="1-协议常量定义"><a href="#1-协议常量定义" class="headerlink" title="1. 协议常量定义"></a>1. 协议常量定义</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义协议格式</span></span><br><span class="line">PROTOCOL_HEADER = <span class="string">b&#x27;VIBE&#x27;</span>  <span class="comment"># 固定的协议开头，用于标识VIBE协议</span></span><br><span class="line">HEADER_FORMAT = <span class="string">&#x27;!4sHH&#x27;</span>    <span class="comment"># 格式：4字节头 + 2字节包类型 + 2字节长度</span></span><br><span class="line">HEADER_SIZE = struct.calcsize(HEADER_FORMAT)  <span class="comment"># 计算头部固定大小（8字节）</span></span><br></pre></td></tr></table></figure>
+
+<p><code>struct.calcsize(HEADER_FORMAT)</code>计算头部结构的固定大小。<code>!4sHH</code> &#x3D; 4字节 + 2字节 + 2字节 &#x3D; 8字节。这个值在收发数据时用于精确读取头部。</p>
+<h3 id="2-服务器端：数据包接收与响应"><a href="#2-服务器端：数据包接收与响应" class="headerlink" title="2. 服务器端：数据包接收与响应"></a>2. 服务器端：数据包接收与响应</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">handle_client</span>(<span class="params">client_socket</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    处理客户端连接。</span></span><br><span class="line"><span class="string">    循环接收数据包，解析协议头部，读取载荷，并回显响应。</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="comment"># 第一步：精确接收头部（8字节）</span></span><br><span class="line">            header = client_socket.recv(HEADER_SIZE)</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> header:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;Connection closed by client&quot;</span>)</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"># 第二步：解包头部，提取协议头、包类型、数据长度</span></span><br><span class="line">            protocol_header, pkt_type, packet_length = struct.unpack(HEADER_FORMAT, header)</span><br><span class="line">            <span class="keyword">if</span> protocol_header != PROTOCOL_HEADER:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;Invalid protocol header&quot;</span>)</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"># 第三步：根据头部中的长度字段，精确接收载荷</span></span><br><span class="line">            data = client_socket.recv(packet_length)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;Received packet type: <span class="subst">&#123;pkt_type&#125;</span>, data: <span class="subst">&#123;data.decode(<span class="string">&#x27;utf-8&#x27;</span>)&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 第四步：构造响应数据包</span></span><br><span class="line">            response_data = <span class="string">&quot;Hello, Client!&quot;</span></span><br><span class="line">            response_bytes = response_data.encode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">            response_packet_length = <span class="built_in">len</span>(response_bytes)</span><br><span class="line">            <span class="comment"># 打包响应头部</span></span><br><span class="line">            response_header = struct.pack(HEADER_FORMAT, PROTOCOL_HEADER, pkt_type, response_packet_length)</span><br><span class="line">            <span class="comment"># 发送头部+载荷</span></span><br><span class="line">            client_socket.sendall(response_header + response_bytes)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;Error handling client: <span class="subst">&#123;e&#125;</span>&quot;</span>)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">    client_socket.close()</span><br></pre></td></tr></table></figure>
+
+<p>服务器端的接收流程严格遵循”先读头部、再读载荷”的模式。这是解决粘包问题的标准方案：头部中的<code>packet_length</code>字段告诉接收方”还有多少字节的载荷需要读取”，从而精确界定一个完整消息。</p>
+<p><code>struct.unpack(HEADER_FORMAT, header)</code>将8字节头部解包为三个值。如果协议头不是<code>b&#39;VIBE&#39;</code>，说明收到的数据不符合协议规范，直接断开连接。</p>
+<h3 id="3-服务器端：启动监听"><a href="#3-服务器端：启动监听" class="headerlink" title="3. 服务器端：启动监听"></a>3. 服务器端：启动监听</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">start_server</span>(<span class="params">host, port</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    启动TCP服务器，监听指定地址和端口。</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">    server.bind((host, port))</span><br><span class="line">    server.listen(<span class="number">5</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Server listening on <span class="subst">&#123;host&#125;</span>:<span class="subst">&#123;port&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="comment"># 接受客户端连接</span></span><br><span class="line">        client_socket, addr = server.accept()</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Accepted connection from <span class="subst">&#123;addr&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="comment"># 处理客户端连接（单线程模式）</span></span><br><span class="line">        handle_client(client_socket)</span><br></pre></td></tr></table></figure>
+
+<p>服务器采用单线程处理模式，一次只服务一个客户端。对于学习协议设计而言，这种简洁的结构足以说明问题。在实际生产环境中，可以通过<code>threading</code>扩展为多线程模式。</p>
+<h3 id="4-客户端：连接与断线重连"><a href="#4-客户端：连接与断线重连" class="headerlink" title="4. 客户端：连接与断线重连"></a>4. 客户端：连接与断线重连</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Client</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, server_address, server_port</span>):</span><br><span class="line">        <span class="variable language_">self</span>.server_address = server_address</span><br><span class="line">        <span class="variable language_">self</span>.server_port = server_port</span><br><span class="line">        <span class="variable language_">self</span>.socket = <span class="literal">None</span></span><br><span class="line">        <span class="variable language_">self</span>.connect()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">connect</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        循环尝试连接服务器，直到成功。</span></span><br><span class="line"><span class="string">        连接被拒绝时每5秒重试一次。</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                <span class="variable language_">self</span>.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">                <span class="variable language_">self</span>.socket.connect((<span class="variable language_">self</span>.server_address, <span class="variable language_">self</span>.server_port))</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;Connected to server&quot;</span>)</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">except</span> ConnectionRefusedError:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;Connection refused. Retrying...&quot;</span>)</span><br><span class="line">                time.sleep(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+<p>客户端封装为<code>Client</code>类。<code>connect</code>方法实现了断线重连逻辑——当服务器未启动时，<code>connect</code>会抛出<code>ConnectionRefusedError</code>，客户端捕获后等待5秒重试。这种设计使得客户端可以先于服务器启动，不会因为服务器暂时不可用而退出。</p>
+<h3 id="5-客户端：发送数据包"><a href="#5-客户端：发送数据包" class="headerlink" title="5. 客户端：发送数据包"></a>5. 客户端：发送数据包</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">send_packet</span>(<span class="params">self, pkt_type, msg_data</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    发送数据包到服务器。</span></span><br><span class="line"><span class="string">    将消息编码后打包为VIBE协议格式发送。</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    data_bytes = msg_data.encode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">    packet_length = <span class="built_in">len</span>(data_bytes)</span><br><span class="line">    <span class="comment"># 打包头部：协议头 + 包类型 + 数据长度</span></span><br><span class="line">    header = struct.pack(HEADER_FORMAT, PROTOCOL_HEADER, pkt_type, packet_length)</span><br><span class="line">    <span class="comment"># 发送头部+载荷（原子发送）</span></span><br><span class="line">    <span class="variable language_">self</span>.socket.sendall(header + data_bytes)</span><br></pre></td></tr></table></figure>
+
+<p><code>sendall</code>确保所有数据都被发送完毕。与<code>send</code>不同，<code>send</code>可能只发送部分数据（返回实际发送的字节数），而<code>sendall</code>会循环调用<code>send</code>直到所有数据发送完成。对于协议数据包这种需要完整发送的场景，<code>sendall</code>是更安全的选择。</p>
+<h3 id="6-客户端：接收数据包"><a href="#6-客户端：接收数据包" class="headerlink" title="6. 客户端：接收数据包"></a>6. 客户端：接收数据包</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">receive_packet</span>(<span class="params">self</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    接收服务器发送的数据包。</span></span><br><span class="line"><span class="string">    先读取头部，验证协议头，再根据长度读取载荷。</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="comment"># 精确读取头部</span></span><br><span class="line">        header = <span class="variable language_">self</span>.socket.recv(HEADER_SIZE)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> header:</span><br><span class="line">            <span class="keyword">raise</span> ConnectionResetError(<span class="string">&quot;Connection closed by server&quot;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 解包头部</span></span><br><span class="line">        protocol_header, pkt_type, packet_length = struct.unpack(HEADER_FORMAT, header)</span><br><span class="line">        <span class="keyword">if</span> protocol_header != PROTOCOL_HEADER:</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">&quot;Invalid protocol header&quot;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 根据长度读取载荷</span></span><br><span class="line">        data = <span class="variable language_">self</span>.socket.recv(packet_length)</span><br><span class="line">        <span class="keyword">return</span> pkt_type, data.decode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">    <span class="keyword">except</span> ConnectionResetError <span class="keyword">as</span> e:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Connection reset by peer: <span class="subst">&#123;e&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="variable language_">self</span>.connect()  <span class="comment"># 自动重连</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span>, <span class="literal">None</span></span><br></pre></td></tr></table></figure>
+
+<p>客户端的接收逻辑与服务器端对称。当连接被重置时，<code>receive_packet</code>会调用<code>self.connect()</code>自动重连，并返回<code>(None, None)</code>通知上层逻辑。调用方通过检查返回值决定是否继续处理。</p>
+<h3 id="7-主程序调用"><a href="#7-主程序调用" class="headerlink" title="7. 主程序调用"></a>7. 主程序调用</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    client = Client(<span class="string">&#x27;192.168.1.6&#x27;</span>, <span class="number">38745</span>)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        client.send_packet(<span class="number">1</span>, <span class="string">&quot;Hello, Server!&quot;</span>)</span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            pkt_type, data = client.receive_packet()</span><br><span class="line">            <span class="keyword">if</span> pkt_type <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">and</span> data <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;Received packet type: <span class="subst">&#123;pkt_type&#125;</span>, data: <span class="subst">&#123;data&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        client.close()</span><br></pre></td></tr></table></figure>
+
+<p>客户端发送一条消息后进入循环，持续接收服务器响应。<code>finally</code>块确保无论是否异常，连接都会被正确关闭。</p>
+<h2 id="使用方法与运行效果"><a href="#使用方法与运行效果" class="headerlink" title="使用方法与运行效果"></a>使用方法与运行效果</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 终端1：启动服务器</span></span><br><span class="line">python 服务器端.py</span><br><span class="line"><span class="comment"># 输出: Server listening on 192.168.1.6:38745</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 终端2：启动客户端</span></span><br><span class="line">python 客户端.py</span><br><span class="line"><span class="comment"># 客户端输出: Connected to server</span></span><br><span class="line"><span class="comment">#            Received packet type: 1, data: Hello, Client!</span></span><br><span class="line"><span class="comment"># 服务器输出: Accepted connection from 192.168.1.6:xxxxx</span></span><br><span class="line"><span class="comment">#            Received packet type: 1, data: Hello, Server!</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="协议设计的几点思考"><a href="#协议设计的几点思考" class="headerlink" title="协议设计的几点思考"></a>协议设计的几点思考</h2><h3 id="为什么需要协议头魔数？"><a href="#为什么需要协议头魔数？" class="headerlink" title="为什么需要协议头魔数？"></a>为什么需要协议头魔数？</h3><p><code>PROTOCOL_HEADER = b&#39;VIBE&#39;</code>这样的固定标识称为”魔数”（Magic Number）。它的作用是快速识别协议——当接收到的数据不以<code>VIBE</code>开头时，可以立即判定为无效数据。这在处理端口扫描误连、协议版本不匹配等场景时非常有用。</p>
+<h3 id="为什么用网络字节序？"><a href="#为什么用网络字节序？" class="headerlink" title="为什么用网络字节序？"></a>为什么用网络字节序？</h3><p><code>!</code>前缀指定网络字节序（大端序）。不同CPU架构的字节序不同（x86是小端序，ARM可配置），如果直接使用主机字节序，在不同架构的机器间通信时数据会错乱。网络字节序是网络协议的事实标准，保证了跨平台兼容性。</p>
+<h3 id="长度字段为什么用2字节？"><a href="#长度字段为什么用2字节？" class="headerlink" title="长度字段为什么用2字节？"></a>长度字段为什么用2字节？</h3><p><code>H</code>表示unsigned short，范围是0~65535，即单个数据包最大约64KB。如果需要传输更大的数据，可以改用<code>I</code>（4字节，最大4GB），或者在协议中增加分片字段。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文设计并实现了一套名为VIBE的自定义二进制网络协议，核心知识点：</p>
+<ol>
+<li><strong>粘包问题的解决</strong>：通过”固定头部+长度字段+变长载荷”的结构精确定界消息</li>
+<li><strong>struct模块</strong>：<code>pack</code>&#x2F;<code>unpack</code>实现Python值与二进制数据的转换，<code>calcsize</code>计算结构大小</li>
+<li><strong>协议头验证</strong>：魔数<code>b&#39;VIBE&#39;</code>快速识别协议有效性</li>
+<li><strong>网络字节序</strong>：<code>!</code>前缀确保跨平台兼容</li>
+<li><strong>断线重连</strong>：客户端捕获<code>ConnectionRefusedError</code>后自动重试</li>
+<li><strong>sendall vs send</strong>：<code>sendall</code>保证数据完整发送，避免部分发送问题</li>
+</ol>
+<p>自定义协议是网络编程的核心能力。理解了这套设计方法，就能读懂DNS、TLS等真实协议的报文结构，也能为自己的应用设计高效的通信协议。无论是物联网设备通信、游戏服务器协议，还是分布式系统的RPC框架，都建立在同样的原理之上。</p>
 
   </div>
 
@@ -648,18 +611,18 @@
 
   <nav class="article-actions">
     
-      <a class="article-action article-action--prev" href="/2026/07/06/2026070605/">
+      <span class="article-action article-action--prev is-disabled" aria-disabled="true">
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-left"></use></svg>
 
         <span class="action-label">上一篇</span>
-        <span class="action-title">批量生成联系人信息并可以导入到手机通讯录</span>
-      </a>
+        <span class="action-title">没有更早的文章了</span>
+      </span>
     
     
-      <a class="article-action article-action--next" href="/2026/07/06/2026070601/">
+      <a class="article-action article-action--next" href="/2026/07/06/2026070604/">
         <span class="action-label">下一篇</span>
-        <span class="action-title">SSH爆破行为IP自动封禁系统：基于日志监控的自动化蓝队防御方案</span>
+        <span class="action-title">图片隐写术检测与提取</span>
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
 
@@ -690,7 +653,7 @@
     </header>
     <div class="related-paper__grid">
       
-        <a class="related-card" href="/2026/07/06/2026070601/">
+        <a class="related-card" href="/2026/07/06/2026070604/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
@@ -701,12 +664,12 @@
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">SSH爆破行为IP自动封禁系统：基于日志监控的自动化蓝队防御方案</strong>
+            <strong class="related-card__title">图片隐写术检测与提取</strong>
             <em class="related-card__date">2026-07-06</em>
           </span>
         </a>
       
-        <a class="related-card" href="/2026/07/06/2026070603/">
+        <a class="related-card" href="/2026/07/06/2026070605/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-1 paper-thumb--cover">
@@ -717,12 +680,12 @@
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">子域名挖掘（JSFinder实现）：从JS文件中揪出隐藏的攻击面</strong>
+            <strong class="related-card__title">批量生成联系人信息并可以导入到手机通讯录</strong>
             <em class="related-card__date">2026-07-06</em>
           </span>
         </a>
       
-        <a class="related-card" href="/2026/07/05/2026070506/">
+        <a class="related-card" href="/2026/07/06/2026070602/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-2 paper-thumb--cover">
@@ -733,12 +696,12 @@
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">QRCode二维码扫描器</strong>
-            <em class="related-card__date">2026-07-05</em>
+            <strong class="related-card__title">WAF基础实现：基于FastAPI中间件的轻量级Web应用防火墙</strong>
+            <em class="related-card__date">2026-07-06</em>
           </span>
         </a>
       
-        <a class="related-card" href="/2026/07/01/2026070104/">
+        <a class="related-card" href="/2026/07/06/2026070601/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
@@ -749,8 +712,8 @@
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">Python 爬虫实战：从 API 请求到浏览器模拟的全链路探索</strong>
-            <em class="related-card__date">2026-07-01</em>
+            <strong class="related-card__title">SSH爆破行为IP自动封禁系统：基于日志监控的自动化蓝队防御方案</strong>
+            <em class="related-card__date">2026-07-06</em>
           </span>
         </a>
       
