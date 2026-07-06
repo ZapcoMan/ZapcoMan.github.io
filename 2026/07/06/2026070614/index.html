@@ -8,25 +8,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#f7f3e9">
 
-<title>旧手机别扔！三台安卓手机搭建本地大模型实战指南 | ZapcoMan&#39;s world</title>
-<meta name="description" content="从 4GB 老爷机到 12GB 千元机，手把手教你在手机上跑 Ollama，搭建私有 AI 服务器 写在前面很多人以为跑大模型必须买显卡、配服务器。但其实，你抽屉里吃灰的旧手机就能跑。 我手头有三台安卓设备，配置从弱到强：华为畅享 9 Plus（4GB）、OnePlus 3（6GB）、vivo Y300i（12GB）。经过一周折腾，全部成功部署 Ollama...">
+<title>闲鱼商品爬虫与多线程链接刷新：MD5签名逆向与浏览器自动化实战 | ZapcoMan&#39;s world</title>
+<meta name="description" content="前言闲鱼（Goofish）作为阿里旗下的二手交易平台，汇聚了大量个人卖家和商品数据。对于二手商品比价、市场行情分析来说，闲鱼的数据极具价值。然而，闲鱼的搜索接口使用 MD5 签名验证，且签名参数与时间戳强绑定，给自动化采集带来了不小的挑战。 另一方面，闲鱼商品链接会定期失效（商品下架或重新发布），需要定期刷新链接保持活跃度。面对大量链接的手动刷新需求，多线程...">
 <meta property="og:type" content="article">
-<meta property="og:title" content="旧手机别扔！三台安卓手机搭建本地大模型实战指南 | ZapcoMan&#39;s world">
-<meta property="og:url" content="http://example.com/2026/06/26/2026062625/">
+<meta property="og:title" content="闲鱼商品爬虫与多线程链接刷新：MD5签名逆向与浏览器自动化实战 | ZapcoMan&#39;s world">
+<meta property="og:url" content="http://example.com/2026/07/06/2026070614/">
 <meta property="og:site_name" content="ZapcoMan&#39;s world">
-<meta property="og:description" content="从 4GB 老爷机到 12GB 千元机，手把手教你在手机上跑 Ollama，搭建私有 AI 服务器 写在前面很多人以为跑大模型必须买显卡、配服务器。但其实，你抽屉里吃灰的旧手机就能跑。 我手头有三台安卓设备，配置从弱到强：华为畅享 9 Plus（4GB）、OnePlus 3（6GB）、vivo Y300i（12GB）。经过一周折腾，全部成功部署 Ollama...">
+<meta property="og:description" content="前言闲鱼（Goofish）作为阿里旗下的二手交易平台，汇聚了大量个人卖家和商品数据。对于二手商品比价、市场行情分析来说，闲鱼的数据极具价值。然而，闲鱼的搜索接口使用 MD5 签名验证，且签名参数与时间戳强绑定，给自动化采集带来了不小的挑战。 另一方面，闲鱼商品链接会定期失效（商品下架或重新发布），需要定期刷新链接保持活跃度。面对大量链接的手动刷新需求，多线程...">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-06-26T12:07:27.000Z">
-<meta property="article:modified_time" content="2026-06-26T12:07:18.887Z">
+<meta property="article:published_time" content="2026-07-06T02:36:30.000Z">
+<meta property="article:modified_time" content="2026-07-06T02:46:57.231Z">
 <meta property="article:author" content="ZapcoMan">
-<meta property="article:tag" content="AI">
-<meta property="article:tag" content="本地大模型">
+<meta property="article:tag" content="JS逆向">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="爬虫">
 <meta name="twitter:card" content="summary">
-<link rel="canonical" href="http://example.com/2026/06/26/2026062625/">
+<link rel="canonical" href="http://example.com/2026/07/06/2026070614/">
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"旧手机别扔！三台安卓手机搭建本地大模型实战指南","name":"旧手机别扔！三台安卓手机搭建本地大模型实战指南 | ZapcoMan's world","description":"从 4GB 老爷机到 12GB 千元机，手把手教你在手机上跑 Ollama，搭建私有 AI 服务器 写在前面很多人以为跑大模型必须买显卡、配服务器。但其实，你抽屉里吃灰的旧手机就能跑。 我手头有三台安卓设备，配置从弱到强：华为畅享 9 Plus（4GB）、OnePlus 3（6GB）、vivo Y300i（12GB）。经过一周折腾，全部成功部署 Ollama...","url":"http://example.com/2026/06/26/2026062625/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/06/26/2026062625/","datePublished":"2026-06-26T12:07:27.000Z","dateModified":"2026-06-26T12:07:18.887Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"本地大模型, AI"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"闲鱼商品爬虫与多线程链接刷新：MD5签名逆向与浏览器自动化实战","name":"闲鱼商品爬虫与多线程链接刷新：MD5签名逆向与浏览器自动化实战 | ZapcoMan's world","description":"前言闲鱼（Goofish）作为阿里旗下的二手交易平台，汇聚了大量个人卖家和商品数据。对于二手商品比价、市场行情分析来说，闲鱼的数据极具价值。然而，闲鱼的搜索接口使用 MD5 签名验证，且签名参数与时间戳强绑定，给自动化采集带来了不小的挑战。 另一方面，闲鱼商品链接会定期失效（商品下架或重新发布），需要定期刷新链接保持活跃度。面对大量链接的手动刷新需求，多线程...","url":"http://example.com/2026/07/06/2026070614/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/07/06/2026070614/","datePublished":"2026-07-06T02:36:30.000Z","dateModified":"2026-07-06T02:46:57.231Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"python, 爬虫, JS逆向"}</script>
 
 <script>
   (function () {
@@ -419,7 +420,7 @@
         </header>
         <div class="toc-content">
           
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="toc-text">写在前面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%A1%AC%E4%BB%B6%E6%B8%85%E5%8D%95%EF%BC%9A%E4%B8%89%E5%8F%B0%E8%AE%BE%E5%A4%87%E6%A6%82%E5%86%B5"><span class="toc-text">一、硬件清单：三台设备概况</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="toc-text">二、环境准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%AE%89%E8%A3%85-Termux%EF%BC%88%E6%99%AE%E9%80%9A%E5%AE%89%E5%8D%93%EF%BC%89"><span class="toc-text">2.1 安装 Termux（普通安卓）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-Kali-NetHunter%EF%BC%88OnePlus-3-%E4%B8%93%E5%B1%9E%EF%BC%89"><span class="toc-text">2.2 Kali NetHunter（OnePlus 3 专属）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E5%AE%89%E8%A3%85-Ollama"><span class="toc-text">2.3 安装 Ollama</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%A8%A1%E5%9E%8B%E9%80%89%E5%9E%8B%E4%B8%8E-L-%E7%AD%89%E7%BA%A7"><span class="toc-text">三、模型选型与 L 等级</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E4%BB%80%E4%B9%88%E6%98%AF-L-%E7%AD%89%E7%BA%A7"><span class="toc-text">3.1 什么是 L 等级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-vivo-Y300i%EF%BC%8812GB%EF%BC%89%E5%8F%AF%E7%94%A8%E6%A8%A1%E5%9E%8B"><span class="toc-text">3.2 vivo Y300i（12GB）可用模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-OnePlus-3-Kali%EF%BC%886GB%EF%BC%89%E5%8F%AF%E7%94%A8%E6%A8%A1%E5%9E%8B"><span class="toc-text">3.3 OnePlus 3 Kali（6GB）可用模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E5%8D%8E%E4%B8%BA%E7%95%85%E4%BA%AB-9-Plus%EF%BC%884GB%EF%BC%89%E5%8F%AF%E7%94%A8%E6%A8%A1%E5%9E%8B"><span class="toc-text">3.4 华为畅享 9 Plus（4GB）可用模型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%90%AF%E5%8A%A8%E4%B8%8E%E8%81%94%E7%BD%91"><span class="toc-text">四、启动与联网</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E6%9A%B4%E9%9C%B2%E5%88%B0%E5%B1%80%E5%9F%9F%E7%BD%91"><span class="toc-text">4.1 暴露到局域网</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E8%8E%B7%E5%8F%96%E6%89%8B%E6%9C%BA-IP"><span class="toc-text">4.2 获取手机 IP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E4%BB%8E%E7%94%B5%E8%84%91%E8%BF%9E%E6%8E%A5"><span class="toc-text">4.3 从电脑连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-SSH-%E8%BF%9C%E7%A8%8B%E7%AE%A1%E7%90%86"><span class="toc-text">4.4 SSH 远程管理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81Chatbox-%E8%BF%9E%E6%8E%A5%E9%85%8D%E7%BD%AE"><span class="toc-text">五、Chatbox 连接配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E8%B8%A9%E5%9D%91%E5%AE%9E%E5%BD%95-%E2%80%94%E2%80%94-%E6%88%91%E4%BA%B2%E8%87%AA%E8%B6%9F%E8%BF%87%E7%9A%84%E9%9B%B7"><span class="toc-text">六、踩坑实录 —— 我亲自趟过的雷</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%91%E2%91%A0-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%B1%E8%B7%91-bf16-%E6%A8%A1%E5%9E%8B%EF%BC%8C%E7%9B%B4%E6%8E%A5%E8%A2%AB-OOM-Kill"><span class="toc-text">坑① 第一次就跑 bf16 模型，直接被 OOM Kill</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%91%E2%91%A1-%E4%BB%A5%E4%B8%BA%E9%87%8F%E5%8C%96%E6%A0%87%E7%AD%BE%E8%A6%81%E5%86%99%E5%85%A8%EF%BC%8C%E7%BB%93%E6%9E%9C%E6%A0%B9%E6%9C%AC%E6%90%9C%E4%B8%8D%E5%88%B0%E6%A8%A1%E5%9E%8B"><span class="toc-text">坑② 以为量化标签要写全，结果根本搜不到模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%91%E2%91%A2-%E6%8A%8A%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E4%B8%9C%E8%A5%BF%E5%BD%93%E5%AD%98%E5%9C%A8%EF%BC%8C%E6%B5%AA%E8%B4%B9%E5%A4%A7%E9%87%8F%E6%97%B6%E9%97%B4%E6%90%9C%E7%B4%A2"><span class="toc-text">坑③ 把不存在的东西当存在，浪费大量时间搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%91%E2%91%A3-OnePlus-3%EF%BC%88Kali-NetHunter%EF%BC%89%E6%8B%89%E6%A8%A1%E5%9E%8B%E6%8A%A5-file-does-not-exist"><span class="toc-text">坑④ OnePlus 3（Kali NetHunter）拉模型报 file does not exist</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%91%E2%91%A4-Chatbox-%E8%BF%9E%E4%B8%8D%E4%B8%8A%EF%BC%8C%E4%B8%80%E7%9B%B4-403"><span class="toc-text">坑⑤ Chatbox 连不上，一直 403</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%91%E2%91%A5-%E4%B8%8B%E8%BD%BD%E4%B8%AD%E6%96%AD%E7%95%99%E4%B8%8B%E6%8D%9F%E5%9D%8F%E6%96%87%E4%BB%B6%EF%BC%8C%E6%AD%BB%E6%B4%BB%E6%8B%89%E4%B8%8D%E4%B8%8B%E6%9D%A5"><span class="toc-text">坑⑥ 下载中断留下损坏文件，死活拉不下来</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%91%E2%91%A6-%E5%8D%8E%E4%B8%BA%E7%95%85%E4%BA%AB-9-Plus-%E9%AB%98%E4%BC%B0%EF%BC%8C%E4%BB%A5%E4%B8%BA%E8%83%BD%E8%B7%91-1-5B-%E6%A8%A1%E5%9E%8B"><span class="toc-text">坑⑦ 华为畅享 9 Plus 高估，以为能跑 1.5B 模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%91%E2%91%A7-OLLAMA-HOST-%E5%BF%98%E4%BA%86%E5%8A%A0-OLLAMA-ORIGINS"><span class="toc-text">坑⑧ OLLAMA_HOST 忘了加 OLLAMA_ORIGINS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B8%A9%E5%9D%91%E6%80%BB%E7%BB%93"><span class="toc-text">踩坑总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E6%9C%80%E7%BB%88%E6%8E%A8%E8%8D%90%E6%96%B9%E6%A1%88"><span class="toc-text">七、最终推荐方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#vivo-Y300i%EF%BC%88%E4%B8%BB%E5%8A%9B%EF%BC%89"><span class="toc-text">vivo Y300i（主力）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OnePlus-3-Kali%EF%BC%88%E5%A4%87%E7%94%A8-%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%89"><span class="toc-text">OnePlus 3 Kali（备用&#x2F;服务器）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%8E%E4%B8%BA%E7%95%85%E4%BA%AB-9-Plus%EF%BC%88%E6%94%BE%E5%BC%83%E6%88%96%E6%9E%81%E9%99%90%E4%BD%BF%E7%94%A8%EF%BC%89"><span class="toc-text">华为畅享 9 Plus（放弃或极限使用）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E6%80%BB%E7%BB%93"><span class="toc-text">八、总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%E5%BD%95%EF%BC%9A%E6%A8%A1%E5%9E%8B%E5%90%8D%E7%A7%B0%E9%AA%8C%E8%AF%81%E8%AE%B0%E5%BD%95"><span class="toc-text">附录：模型名称验证记录</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E8%83%8C%E6%99%AF"><span class="toc-text">技术背景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%B2%E9%B1%BC%E6%90%9C%E7%B4%A2%E6%8E%A5%E5%8F%A3%E5%88%86%E6%9E%90"><span class="toc-text">闲鱼搜索接口分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%89%E5%8F%8A%E7%9A%84%E5%BA%93"><span class="toc-text">涉及的库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF"><span class="toc-text">实现思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="toc-text">核心代码解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%95%86%E5%93%81%E6%90%9C%E7%B4%A2%E7%88%AC%E8%99%AB"><span class="toc-text">一、商品搜索爬虫</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%A4%9A%E7%BA%BF%E7%A8%8B%E9%93%BE%E6%8E%A5%E5%88%B7%E6%96%B0"><span class="toc-text">二、多线程链接刷新</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C"><span class="toc-text">运行效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E5%90%91"><span class="toc-text">总结与优化方向</span></a></li></ol>
           
         </div>
       </section>
@@ -442,24 +443,24 @@
   
   <header class="article-header">
     
-      <a class="label-pill" href="/categories/AI/">
+      <a class="label-pill" href="/categories/python/">
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
 
-        AI
+        python
       </a>
     
-    <h1>旧手机别扔！三台安卓手机搭建本地大模型实战指南</h1>
+    <h1>闲鱼商品爬虫与多线程链接刷新：MD5签名逆向与浏览器自动化实战</h1>
     <div class="meta-line meta-line--article">
       <span class="meta-date">
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
-2026-06-26</span>
+2026-07-06</span>
       
         <span class="meta-tags">
           
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
 
-          <a class="meta-tag-link" href="/tags/%E6%9C%AC%E5%9C%B0%E5%A4%A7%E6%A8%A1%E5%9E%8B/">#本地大模型</a><a class="meta-tag-link" href="/tags/AI/">#AI</a>
+          <a class="meta-tag-link" href="/tags/python/">#python</a><a class="meta-tag-link" href="/tags/%E7%88%AC%E8%99%AB/">#爬虫</a><a class="meta-tag-link" href="/tags/JS%E9%80%86%E5%90%91/">#JS逆向</a>
         </span>
       
     </div>
@@ -469,557 +470,109 @@
 
 
   <div class="article-content">
-    <blockquote>
-<p>从 4GB 老爷机到 12GB 千元机，手把手教你在手机上跑 Ollama，搭建私有 AI 服务器</p>
-</blockquote>
-<hr>
-<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>很多人以为跑大模型必须买显卡、配服务器。但其实，你抽屉里吃灰的旧手机就能跑。</p>
-<p>我手头有三台安卓设备，配置从弱到强：华为畅享 9 Plus（4GB）、OnePlus 3（6GB）、vivo Y300i（12GB）。经过一周折腾，全部成功部署 Ollama，实现了<strong>手机端本地推理</strong>。</p>
-<p>这篇文章把整个过程记录下来，包括硬件选型、模型选择、常见坑和最终推荐配置。</p>
-<hr>
-<h2 id="一、硬件清单：三台设备概况"><a href="#一、硬件清单：三台设备概况" class="headerlink" title="一、硬件清单：三台设备概况"></a>一、硬件清单：三台设备概况</h2><table>
+    <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>闲鱼（Goofish）作为阿里旗下的二手交易平台，汇聚了大量个人卖家和商品数据。对于二手商品比价、市场行情分析来说，闲鱼的数据极具价值。然而，闲鱼的搜索接口使用 MD5 签名验证，且签名参数与时间戳强绑定，给自动化采集带来了不小的挑战。</p>
+<p>另一方面，闲鱼商品链接会定期失效（商品下架或重新发布），需要定期刷新链接保持活跃度。面对大量链接的手动刷新需求，多线程浏览器自动化成了高效的解决方案。</p>
+<p>本文基于闲鱼爬虫项目的真实源码，分两大模块讲解：商品搜索爬虫（含 MD5 签名逆向）和多线程链接刷新（含移动端模拟）。</p>
+<h2 id="技术背景"><a href="#技术背景" class="headerlink" title="技术背景"></a>技术背景</h2><h3 id="闲鱼搜索接口分析"><a href="#闲鱼搜索接口分析" class="headerlink" title="闲鱼搜索接口分析"></a>闲鱼搜索接口分析</h3><p>闲鱼商品搜索通过以下 API 实现：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">POST https://h5api.m.goofish.com/h5/mtop.taobao.idlemtopsearch.pc.search/1.0/</span><br></pre></td></tr></table></figure>
+
+<p>该接口需要 <code>sign</code> 签名参数，签名算法为 <strong>MD5</strong>，计算公式为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sign = MD5(token + &quot;&amp;&quot; + timestamp + &quot;&amp;&quot; + appKey + &quot;&amp;&quot; + data)</span><br></pre></td></tr></table></figure>
+
+<h3 id="涉及的库"><a href="#涉及的库" class="headerlink" title="涉及的库"></a>涉及的库</h3><table>
 <thead>
 <tr>
-<th>设备</th>
-<th>RAM</th>
-<th>处理器</th>
-<th>系统</th>
-<th>定位</th>
+<th>库</th>
+<th>用途</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>vivo Y300i</td>
-<td>12GB</td>
-<td>天玑</td>
-<td>Android + Termux</td>
-<td>主力机</td>
+<td><code>requests</code></td>
+<td>发送 HTTP 请求</td>
 </tr>
 <tr>
-<td>OnePlus 3</td>
-<td>6GB</td>
-<td>骁龙 820</td>
-<td>Kali NetHunter</td>
-<td>备用机&#x2F;7×24 服务器</td>
+<td><code>hashlib</code></td>
+<td>MD5 签名计算</td>
 </tr>
 <tr>
-<td>华为畅享 9 Plus</td>
-<td>4GB</td>
-<td>麒麟 710</td>
-<td>EMUI + Termux</td>
-<td>极弱，勉强跑</td>
+<td><code>csv</code></td>
+<td>数据持久化</td>
+</tr>
+<tr>
+<td><code>time</code></td>
+<td>生成时间戳、请求间隔</td>
+</tr>
+<tr>
+<td><code>threading</code></td>
+<td>多线程浏览器自动化</td>
+</tr>
+<tr>
+<td><code>DrissionPage</code></td>
+<td>浏览器自动化控制</td>
 </tr>
 </tbody></table>
-<p><strong>关键结论</strong>：</p>
-<ul>
-<li><strong>12GB 内存</strong>：可以流畅跑 7-8B 模型，体验接近 GPT-3.5</li>
-<li><strong>6GB 内存</strong>：可以跑 3-4B 模型，代码补全够用</li>
-<li><strong>4GB 内存</strong>：只能跑 0.5B 极限小模型，聊胜于无</li>
-</ul>
-<hr>
-<h2 id="二、环境准备"><a href="#二、环境准备" class="headerlink" title="二、环境准备"></a>二、环境准备</h2><h3 id="2-1-安装-Termux（普通安卓）"><a href="#2-1-安装-Termux（普通安卓）" class="headerlink" title="2.1 安装 Termux（普通安卓）"></a>2.1 安装 Termux（普通安卓）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 通过 F-Droid 安装 Termux（不要用 Google Play 版本，太旧）</span></span><br><span class="line"><span class="comment"># 安装后更新并安装基础工具</span></span><br><span class="line">pkg update &amp;&amp; pkg upgrade</span><br><span class="line">pkg install wget proot  <span class="comment"># proot 用于运行 Linux 环境</span></span><br></pre></td></tr></table></figure>
+<h2 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h2><p>项目分为两大模块：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">模块一：商品搜索爬虫</span><br><span class="line">├── 单个搜索（商品搜索单个爬虫.py）</span><br><span class="line">├── 批量搜索（商品搜索爬虫批量.py）—— 含MD5签名</span><br><span class="line">└── 商品详情（商品详情爬虫.py）</span><br><span class="line"></span><br><span class="line">模块二：多线程链接刷新</span><br><span class="line">├── 单线程版（闲鱼刷新1.py）</span><br><span class="line">├── 多线程版（多线程闲鱼链接刷新.py）</span><br><span class="line">├── 不保存版（多链接多线程不保存闲鱼链接刷新.py）</span><br><span class="line">└── 移动端模拟版（模拟移动端.py）</span><br></pre></td></tr></table></figure>
 
-<h3 id="2-2-Kali-NetHunter（OnePlus-3-专属）"><a href="#2-2-Kali-NetHunter（OnePlus-3-专属）" class="headerlink" title="2.2 Kali NetHunter（OnePlus 3 专属）"></a>2.2 Kali NetHunter（OnePlus 3 专属）</h3><p>OnePlus 3 刷了 Kali NetHunter，自带完整 Linux 环境，不需要 Termux 那一层。</p>
-<p>优势：</p>
-<ul>
-<li>功耗低（骁龙 820 比天玑省电）</li>
-<li>适合 7×24 开机当服务器</li>
-<li>直接跑 <code>ollama serve</code> 暴露给局域网</li>
-</ul>
-<h3 id="2-3-安装-Ollama"><a href="#2-3-安装-Ollama" class="headerlink" title="2.3 安装 Ollama"></a>2.3 安装 Ollama</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 所有设备通用安装命令</span></span><br><span class="line">curl -fsSL https://ollama.com/install.sh | sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装后验证</span></span><br><span class="line">ollama --version</span><br></pre></td></tr></table></figure>
+<h2 id="核心代码解析"><a href="#核心代码解析" class="headerlink" title="核心代码解析"></a>核心代码解析</h2><h3 id="一、商品搜索爬虫"><a href="#一、商品搜索爬虫" class="headerlink" title="一、商品搜索爬虫"></a>一、商品搜索爬虫</h3><h4 id="1-单页搜索：基础版"><a href="#1-单页搜索：基础版" class="headerlink" title="1. 单页搜索：基础版"></a>1. 单页搜索：基础版</h4><p>单个搜索版本直接使用固定的签名参数，适合单次请求：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打开CSV文件准备写入</span></span><br><span class="line">f = <span class="built_in">open</span>(<span class="string">&#x27;单个商品搜索数据.csv&#x27;</span>, mode=<span class="string">&#x27;w&#x27;</span>, newline=<span class="string">&#x27;&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">csv_writer = csv.DictWriter(f, fieldnames=[</span><br><span class="line">    <span class="string">&#x27;价格&#x27;</span>, <span class="string">&#x27;标签&#x27;</span>, <span class="string">&#x27;产品简介&#x27;</span>, <span class="string">&#x27;标题&#x27;</span>, <span class="string">&#x27;昵称&#x27;</span>, <span class="string">&#x27;区域&#x27;</span>, <span class="string">&#x27;标题详情&#x27;</span>,</span><br><span class="line">])</span><br><span class="line">csv_writer.writeheader()</span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&quot;User-Agent&quot;</span>: <span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Referer&quot;</span>: <span class="string">&quot;https://www.goofish.com/&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Cookie&quot;</span>: <span class="string">&quot;t=333d89bdd8d3c7f1680d61c314977359; ...&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">url = <span class="string">&quot;https://h5api.m.goofish.com/h5/mtop.taobao.idlemtopsearch.pc.search/1.0/&quot;</span></span><br><span class="line"></span><br><span class="line">params = &#123;</span><br><span class="line">    <span class="string">&quot;jsv&quot;</span>: <span class="string">&quot;2.7.2&quot;</span>,</span><br><span class="line">    <span class="string">&quot;appKey&quot;</span>: <span class="string">&quot;34839810&quot;</span>,</span><br><span class="line">    <span class="string">&quot;t&quot;</span>: <span class="string">&quot;1759795344200&quot;</span>,           <span class="comment"># 时间戳</span></span><br><span class="line">    <span class="string">&quot;sign&quot;</span>: <span class="string">&quot;8e4f63f339cc4eaea8dc3a9a778a94a5&quot;</span>,  <span class="comment"># MD5签名</span></span><br><span class="line">    <span class="string">&quot;v&quot;</span>: <span class="string">&quot;1.0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;type&quot;</span>: <span class="string">&quot;originaljson&quot;</span>,</span><br><span class="line">    <span class="string">&quot;accountSite&quot;</span>: <span class="string">&quot;xianyu&quot;</span>,</span><br><span class="line">    <span class="string">&quot;dataType&quot;</span>: <span class="string">&quot;json&quot;</span>,</span><br><span class="line">    <span class="string">&quot;api&quot;</span>: <span class="string">&quot;mtop.taobao.idlemtopsearch.pc.search&quot;</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 搜索关键词为&quot;python爬虫&quot;</span></span><br><span class="line">data = &#123;</span><br><span class="line">    <span class="string">&#x27;data&#x27;</span>: <span class="string">&#x27;&#123;&quot;pageNumber&quot;:1,&quot;keyword&quot;:&quot;python爬虫&quot;,&quot;fromFilter&quot;:false,&quot;rowsPerPage&quot;:30,...&#125;&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">response = requests.post(url, headers=headers, params=params, data=data)</span><br><span class="line">json_data = response.json()</span><br></pre></td></tr></table></figure>
 
-<p>如果官方脚本不兼容（常见于 ARM 设备），手动下载 ARM64 二进制：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载 ARM64 版本</span></span><br><span class="line">wget https://github.com/ollama/ollama/releases/latest/download/ollama-linux-arm64.tar.gz</span><br><span class="line">tar -xzf ollama-linux-arm64.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># OnePlus 3 手动安装示例</span></span><br><span class="line"><span class="built_in">mkdir</span> -p ~/Ollama/bin</span><br><span class="line"><span class="built_in">mv</span> ollama ~/Ollama/bin/</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="三、模型选型与-L-等级"><a href="#三、模型选型与-L-等级" class="headerlink" title="三、模型选型与 L 等级"></a>三、模型选型与 L 等级</h2><h3 id="3-1-什么是-L-等级"><a href="#3-1-什么是-L-等级" class="headerlink" title="3.1 什么是 L 等级"></a>3.1 什么是 L 等级</h3><p>L 等级是我根据社区经验和实测得出的能力分级：</p>
-<table>
-<thead>
-<tr>
-<th>等级</th>
-<th>能力描述</th>
-<th>对标</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>L1</strong></td>
-<td>闲聊、讲笑话、极简单问答</td>
-<td>无</td>
-</tr>
-<tr>
-<td><strong>L2</strong></td>
-<td>知识问答、简单写作、基础理解</td>
-<td>GPT-3</td>
-</tr>
-<tr>
-<td><strong>L3</strong></td>
-<td>复杂推理、代码生成、长文写作</td>
-<td>GPT-3.5</td>
-</tr>
-<tr>
-<td><strong>L4</strong></td>
-<td>强推理、专业代码、接近人类专家</td>
-<td>GPT-4o &#x2F; Claude Sonnet</td>
-</tr>
-</tbody></table>
-<p>手机端一般能达到 L2-L3，日常使用足够了。</p>
-<h3 id="3-2-vivo-Y300i（12GB）可用模型"><a href="#3-2-vivo-Y300i（12GB）可用模型" class="headerlink" title="3.2 vivo Y300i（12GB）可用模型"></a>3.2 vivo Y300i（12GB）可用模型</h3><table>
-<thead>
-<tr>
-<th>模型</th>
-<th>大小</th>
-<th>L等级</th>
-<th>拉取命令</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>qwen3:8b</td>
-<td>5.2GB</td>
-<td><strong>L3+</strong></td>
-<td><code>ollama pull qwen3:8b</code></td>
-</tr>
-<tr>
-<td>qwen2.5-coder:7b</td>
-<td>4.7GB</td>
-<td><strong>L3</strong></td>
-<td><code>ollama pull qwen2.5-coder:7b</code></td>
-</tr>
-<tr>
-<td>qwen2.5-coder:14b</td>
-<td>9.0GB</td>
-<td><strong>L3+</strong></td>
-<td><code>ollama pull qwen2.5-coder:14b</code></td>
-</tr>
-<tr>
-<td>qwen3:14b</td>
-<td>9.3GB</td>
-<td><strong>L3+</strong></td>
-<td><code>ollama pull qwen3:14b</code></td>
-</tr>
-<tr>
-<td>qwen3:4b</td>
-<td>2.5GB</td>
-<td><strong>L2+</strong></td>
-<td><code>ollama pull qwen3:4b</code></td>
-</tr>
-</tbody></table>
-<p><strong>推荐组合</strong>：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ollama pull qwen3:8b              <span class="comment"># 通用主力，综合能力强</span></span><br><span class="line">ollama pull qwen2.5-coder:7b      <span class="comment"># 写代码专用</span></span><br></pre></td></tr></table></figure>
-
-<p>14B 虽然能跑但接近内存上限，推理速度会明显下降，不太推荐。</p>
-<h3 id="3-3-OnePlus-3-Kali（6GB）可用模型"><a href="#3-3-OnePlus-3-Kali（6GB）可用模型" class="headerlink" title="3.3 OnePlus 3 Kali（6GB）可用模型"></a>3.3 OnePlus 3 Kali（6GB）可用模型</h3><table>
-<thead>
-<tr>
-<th>模型</th>
-<th>大小</th>
-<th>L等级</th>
-<th>拉取命令</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>qwen3:4b</td>
-<td>2.5GB</td>
-<td><strong>L2+</strong></td>
-<td><code>ollama pull qwen3:4b</code></td>
-</tr>
-<tr>
-<td>qwen2.5-coder:3b</td>
-<td>1.9GB</td>
-<td><strong>L3</strong></td>
-<td><code>ollama pull qwen2.5-coder:3b</code></td>
-</tr>
-<tr>
-<td>qwen3:1.7b</td>
-<td>1.4GB</td>
-<td><strong>L2</strong></td>
-<td><code>ollama pull qwen3:1.7b</code></td>
-</tr>
-<tr>
-<td>qwen2.5-coder:1.5b</td>
-<td>986MB</td>
-<td><strong>L2</strong></td>
-<td><code>ollama pull qwen2.5-coder:1.5b</code></td>
-</tr>
-<tr>
-<td>qwen3:0.6b</td>
-<td>523MB</td>
-<td><strong>L1</strong></td>
-<td><code>ollama pull qwen3:0.6b</code></td>
-</tr>
-<tr>
-<td>tinyllama:1.1b</td>
-<td>638MB</td>
-<td><strong>L1</strong></td>
-<td><code>ollama pull tinyllama</code></td>
-</tr>
-</tbody></table>
-<p><strong>推荐组合</strong>：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ollama pull qwen3:4b              <span class="comment"># 主力通用</span></span><br><span class="line">ollama pull qwen2.5-coder:3b      <span class="comment"># 代码专家（这反而是 L3！）</span></span><br></pre></td></tr></table></figure>
-
-<p>注意：6GB 跑不了 8B 模型（需要 5.5GB 内存，系统不够用）。</p>
-<h3 id="3-4-华为畅享-9-Plus（4GB）可用模型"><a href="#3-4-华为畅享-9-Plus（4GB）可用模型" class="headerlink" title="3.4 华为畅享 9 Plus（4GB）可用模型"></a>3.4 华为畅享 9 Plus（4GB）可用模型</h3><table>
-<thead>
-<tr>
-<th>模型</th>
-<th>大小</th>
-<th>L等级</th>
-<th>拉取命令</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>qwen2.5-coder:0.5b</td>
-<td>398MB</td>
-<td><strong>L1</strong></td>
-<td><code>ollama pull qwen2.5-coder:0.5b</code></td>
-</tr>
-<tr>
-<td>qwen3:0.6b</td>
-<td>523MB</td>
-<td><strong>L1</strong></td>
-<td><code>ollama pull qwen3:0.6b</code></td>
-</tr>
-<tr>
-<td>tinyllama:1.1b</td>
-<td>638MB</td>
-<td><strong>L1</strong></td>
-<td><code>ollama pull tinyllama</code></td>
-</tr>
-</tbody></table>
-<p><strong>唯一实用选择</strong>：<code>qwen2.5-coder:0.5b</code>，能做简单代码补全。说实话 4GB 设备跑大模型的体验很差，建议考虑卖掉换钱。</p>
-<hr>
-<h2 id="四、启动与联网"><a href="#四、启动与联网" class="headerlink" title="四、启动与联网"></a>四、启动与联网</h2><h3 id="4-1-暴露到局域网"><a href="#4-1-暴露到局域网" class="headerlink" title="4.1 暴露到局域网"></a>4.1 暴露到局域网</h3><p>默认情况下 Ollama 只监听 <code>127.0.0.1</code>，其他设备无法访问。需要修改启动参数：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 暴露给局域网（所有设备都能连）</span></span><br><span class="line">OLLAMA_ORIGINS=* OLLAMA_HOST=0.0.0.0:11434 ollama serve &amp;</span><br><span class="line"></span><br><span class="line"><span class="comment"># OnePlus 3（手动安装版）</span></span><br><span class="line">OLLAMA_ORIGINS=* OLLAMA_HOST=0.0.0.0:11434 ~/Ollama/bin/ollama serve &amp;</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-2-获取手机-IP"><a href="#4-2-获取手机-IP" class="headerlink" title="4.2 获取手机 IP"></a>4.2 获取手机 IP</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Termux / Kali 通用</span></span><br><span class="line">ip addr show wlan0 | grep <span class="string">&quot;inet &quot;</span> | awk <span class="string">&#x27;&#123;print $2&#125;&#x27;</span></span><br><span class="line"><span class="comment"># 输出类似：192.168.1.10/24 → IP 是 192.168.1.10</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="4-3-从电脑连接"><a href="#4-3-从电脑连接" class="headerlink" title="4.3 从电脑连接"></a>4.3 从电脑连接</h3><p>电脑端通过 WorkBuddy MCP、Chatbox 等客户端连接手机上的 Ollama：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在电脑上测试连接</span></span><br><span class="line">curl http://192.168.1.10:11434/api/tags</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-4-SSH-远程管理"><a href="#4-4-SSH-远程管理" class="headerlink" title="4.4 SSH 远程管理"></a>4.4 SSH 远程管理</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 从电脑 SSH 到 vivo（Termux）</span></span><br><span class="line">ssh u0_a155@192.168.1.11 -p 8022</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从电脑 SSH 到 OnePlus 3（Kali，默认 22 端口）</span></span><br><span class="line">ssh root@192.168.1.x</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="五、Chatbox-连接配置"><a href="#五、Chatbox-连接配置" class="headerlink" title="五、Chatbox 连接配置"></a>五、Chatbox 连接配置</h2><p>Chatbox 是手机上常用的 AI 聊天客户端。</p>
-<p><strong>连接方式</strong>：选择「Ollama 原生模式」，不要选「OpenAI Compatible」。</p>
-<table>
-<thead>
-<tr>
-<th>配置项</th>
-<th>值</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>协议</td>
-<td>HTTP</td>
-</tr>
-<tr>
-<td>主机</td>
-<td>你手机的 IP（如 <code>192.168.1.10</code>）</td>
-</tr>
-<tr>
-<td>端口</td>
-<td><code>11434</code></td>
-</tr>
-<tr>
-<td>模型路径</td>
-<td>自动识别（不需要填 <code>/v1</code>）</td>
-</tr>
-</tbody></table>
-<p><strong>常见错误</strong>：如果选了 OpenAI 格式，会返回 403 错误——Chatbox 发的是 <code>/v1/chat/completions</code>，Ollama 不认。</p>
-<hr>
-<h2 id="六、踩坑实录-——-我亲自趟过的雷"><a href="#六、踩坑实录-——-我亲自趟过的雷" class="headerlink" title="六、踩坑实录 —— 我亲自趟过的雷"></a>六、踩坑实录 —— 我亲自趟过的雷</h2><p>整个部署过程横跨三台设备、两种系统（Android Termux + Kali NetHunter），踩过的坑比成功多得多。以下是完整的「翻车记录 + 修复过程」。</p>
-<hr>
-<h3 id="坑①-第一次就跑-bf16-模型，直接被-OOM-Kill"><a href="#坑①-第一次就跑-bf16-模型，直接被-OOM-Kill" class="headerlink" title="坑① 第一次就跑 bf16 模型，直接被 OOM Kill"></a>坑① 第一次就跑 bf16 模型，直接被 OOM Kill</h3><p><strong>场景</strong>：vivo Y300i（12GB），满怀期待地在 Termux 里执行了第一条命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ollama run qwen3.5:2b-bf16</span><br></pre></td></tr></table></figure>
-
-<p><strong>报错</strong>：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">signal: killed</span><br></pre></td></tr></table></figure>
-
-<p><strong>原因</strong>：bf16（bfloat16）是 HuggingFace 上的原始权重格式，<code>qwen3.5:2b-bf16</code> 并非 Ollama 标准 tag（标准 tag 是 <code>qwen3.5:2b</code>，默认 q4_K_M 量化）。bf16 加载到内存后实际占用 5-6GB，Android 的 OOM Killer 检测到进程吃太多内存，直接杀掉。</p>
-<p>后来不死心又试了一次，这次<strong>侥幸加载成功了</strong>，但推理到一半又炸了：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unexpected EOF</span><br></pre></td></tr></table></figure>
-
-<p>——内存不够了，进程在回答中途被系统一刀切，连接断开。</p>
-<p><strong>修复</strong>：永远不要用 bf16 格式。手机上只能用 <strong>q4_K_M</strong> 或更低的量化版本。最终换成了 <code>qwen2.5-coder:7b</code>（q4_K_M），12GB 手机完美运行。</p>
-<blockquote>
-<p>教训：<strong>手机上不跑任何非量化模型</strong>。q4_K_M 是甜点，q3_K_M 也能用但质量下降明显。</p>
-</blockquote>
-<hr>
-<h3 id="坑②-以为量化标签要写全，结果根本搜不到模型"><a href="#坑②-以为量化标签要写全，结果根本搜不到模型" class="headerlink" title="坑② 以为量化标签要写全，结果根本搜不到模型"></a>坑② 以为量化标签要写全，结果根本搜不到模型</h3><p><strong>场景</strong>：在 vivo 上拉模型，手写了完整量化标签：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ollama pull qwen2.5-coder:7b-instruct-q4_K_M</span><br><span class="line">ollama pull qwen3:8b-q4_K_M</span><br></pre></td></tr></table></figure>
-
-<p><strong>结果</strong>：前者拉下来了（碰巧 Ollama 做了模糊匹配），但后者和各种带 <code>-instruct-q4_K_M</code> 后缀的都严重混乱，根本不确定自己拉的是什么。</p>
-<p><strong>原因</strong>：Ollama 的官方拉取命令是<strong>不带量化标签的</strong>，写 <code>qwen3:8b</code> 就行，它会自动选最优量化版本（默认就是 q4_K_M）。</p>
-<p><strong>修复</strong>：统一用最简名称：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ollama pull qwen3:8b           <span class="comment"># ✅ 正确</span></span><br><span class="line">ollama pull qwen2.5-coder:7b   <span class="comment"># ✅ 正确</span></span><br></pre></td></tr></table></figure>
-
-<p><code>ollama list</code> 可以查看已安装模型的精确信息。</p>
-<hr>
-<h3 id="坑③-把不存在的东西当存在，浪费大量时间搜索"><a href="#坑③-把不存在的东西当存在，浪费大量时间搜索" class="headerlink" title="坑③ 把不存在的东西当存在，浪费大量时间搜索"></a>坑③ 把不存在的东西当存在，浪费大量时间搜索</h3><p>这是最尴尬的坑——我在 Ollama 官网上反复核实之前，推荐了多个<strong>根本不存在的模型</strong>。</p>
-<table>
-<thead>
-<tr>
-<th>我推荐过的（误报）</th>
-<th>真相</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>qwen3-coder:8b</code></td>
-<td>qwen3-coder 系列只有 <strong>30B</strong> 和 <strong>480B</strong>，没有 8B</td>
-</tr>
-<tr>
-<td><code>qwen3-coder:8b-q4_K_M</code></td>
-<td>同上，不存在</td>
-</tr>
-<tr>
-<td><code>tinyllama:1.1b-q4</code></td>
-<td>正确名称是 <code>tinyllama</code> 或 <code>tinyllama:1.1b</code>，没有 <code>-q4</code> tag</td>
-</tr>
-<tr>
-<td>OnePlus 3 跑 <code>qwen3:8b</code></td>
-<td>一开始兴奋地说 6GB 能跑 8B，算完才发现 5.5GB 模型 + 系统开销 ≈ 6.5GB，根本不够</td>
-</tr>
-</tbody></table>
-<p><strong>修复</strong>：去 <a target="_blank" rel="noopener" href="https://ollama.com/search">ollama.com&#x2F;search</a> 逐模型核实。现在这篇文章里的所有模型名称都已验证。</p>
-<hr>
-<h3 id="坑④-OnePlus-3（Kali-NetHunter）拉模型报-file-does-not-exist"><a href="#坑④-OnePlus-3（Kali-NetHunter）拉模型报-file-does-not-exist" class="headerlink" title="坑④ OnePlus 3（Kali NetHunter）拉模型报 file does not exist"></a>坑④ OnePlus 3（Kali NetHunter）拉模型报 <code>file does not exist</code></h3><p><strong>场景</strong>：OnePlus 3 刷了 Kali NetHunter，手动下载了 ARM64 版 Ollama 放在 <code>~/Ollama/bin/</code> 目录。执行拉取命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/ollama pull qwen3:4b</span><br></pre></td></tr></table></figure>
-
-<p><strong>报错</strong>：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error: pull model manifest: file does not exist</span><br></pre></td></tr></table></figure>
-
-<p><strong>原因</strong>：根本乌龙——<code>ollama serve</code> 没启动。普通 Termux 安装后 service 自动启动，但手动安装版<strong>必须手动启动服务</strong>。没 serve 就 pull，Ollama 找不到本地模型存储路径。</p>
-<p><strong>修复</strong>：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 先启动服务</span></span><br><span class="line">~/Ollama/bin/ollama serve &amp;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 再拉模型</span></span><br><span class="line">~/Ollama/bin/ollama pull qwen3:4b</span><br></pre></td></tr></table></figure>
+<h4 id="2-批量搜索：MD5-签名动态生成"><a href="#2-批量搜索：MD5-签名动态生成" class="headerlink" title="2. 批量搜索：MD5 签名动态生成"></a>2. 批量搜索：MD5 签名动态生成</h4><p>批量搜索的关键突破在于<strong>动态生成签名</strong>。源码中实现了完整的签名算法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_sign</span>(<span class="params">page_number</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    生成请求签名和相关参数</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    签名算法：MD5(token + &quot;&amp;&quot; + timestamp + &quot;&amp;&quot; + appKey + &quot;&amp;&quot; + data)</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    token = <span class="string">&#x27;9a7fd05c49b25d5075fab51a234be307&#x27;</span>  <span class="comment"># 从Cookie的_m_h5_tk中提取</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 生成当前时间戳（毫秒）</span></span><br><span class="line">    current_timestamp = <span class="built_in">int</span>(time.time() * <span class="number">1000</span>)</span><br><span class="line">    j = <span class="built_in">str</span>(current_timestamp)</span><br><span class="line">    </span><br><span class="line">    h = <span class="string">&#x27;34839810&#x27;</span>  <span class="comment"># appKey</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 构造请求数据（包含页码）</span></span><br><span class="line">    c_data = <span class="string">&#x27;&#123;&quot;pageNumber&quot;:%d,&quot;keyword&quot;:&quot;python爬虫&quot;,&quot;fromFilter&quot;:false,&quot;rowsPerPage&quot;:30,&quot;sortValue&quot;:&quot;&quot;,&quot;sortField&quot;:&quot;&quot;,&quot;customDistance&quot;:&quot;&quot;,&quot;gps&quot;:&quot;&quot;,&quot;propValueStr&quot;:&#123;&#125;,&quot;customGps&quot;:&quot;&quot;,&quot;searchReqFromPage&quot;:&quot;pcSearch&quot;,&quot;extraFilterValue&quot;:&quot;&#123;&#125;&quot;,&quot;userPositionJson&quot;:&quot;&#123;&#125;&quot;&#125;&#x27;</span> % page_number</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 拼接签名字符串</span></span><br><span class="line">    string = token + <span class="string">&quot;&amp;&quot;</span> + j + <span class="string">&quot;&amp;&quot;</span> + h + <span class="string">&quot;&amp;&quot;</span> + c_data</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 计算MD5</span></span><br><span class="line">    sign = hashlib.md5(string.encode(<span class="string">&#x27;utf-8&#x27;</span>)).hexdigest()</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> j, c_data, sign</span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<p>教训：Kali NetHunter 手动安装 Ollama 后，<strong>每次开机都要先 serve，且必须用全路径</strong>——系统不在 PATH 里。</p>
+<p><strong>签名逆向过程</strong>：源码注释中记录了一个真实的调试经历——开发者发现抓包时间戳与当前系统时间相差16小时（抓包时与运行时的时差），导致签名失效。将时间戳调整为当前时间后，请求成功。这说明 <code>sign</code> 与时间戳强绑定，必须使用实时时间戳。</p>
 </blockquote>
-<hr>
-<h3 id="坑⑤-Chatbox-连不上，一直-403"><a href="#坑⑤-Chatbox-连不上，一直-403" class="headerlink" title="坑⑤ Chatbox 连不上，一直 403"></a>坑⑤ Chatbox 连不上，一直 403</h3><p><strong>场景</strong>：手机端装好 Chatbox，想连上 vivo 的 Ollama。</p>
-<p>Chatbox 的「添加模型」里有一个「OpenAI Compatible」选项。我心想 Ollama 的 API 格式不就是兼容 OpenAI 的吗？果断选了。</p>
-<p>填上 <code>http://192.168.1.11:11434/v1</code>，点击测试连接——<strong>403 Forbidden</strong>。</p>
-<p><strong>原因</strong>：选 OpenAI Compatible 模式后，Chatbox 实际发的请求路径是 <code>/v1/chat/completions</code>。但 Ollama 的 API 路径是 <code>/api/chat</code>，完全不同。</p>
-<p><strong>修复</strong>：在 Chatbox 中选择 <strong>「Ollama 原生模式」</strong>（不是 OpenAI Compatible），协议填 HTTP，端口填 <code>11434</code>，模型路径留空让它自动识别。</p>
-<hr>
-<h3 id="坑⑥-下载中断留下损坏文件，死活拉不下来"><a href="#坑⑥-下载中断留下损坏文件，死活拉不下来" class="headerlink" title="坑⑥ 下载中断留下损坏文件，死活拉不下来"></a>坑⑥ 下载中断留下损坏文件，死活拉不下来</h3><p><strong>场景</strong>：vivo 上拉 <code>qwen3:8b</code>，网络波动导致下载中断。重新执行 <code>ollama pull</code>，每次都报错：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error: pull model manifest: unexpected EOF</span><br></pre></td></tr></table></figure>
+<p>循环爬取多页：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> pageNumber <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">8</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;正在采集第<span class="subst">&#123;pageNumber&#125;</span>页的数据内容&#x27;</span>)</span><br><span class="line">    j, c_data, sign = get_sign(pageNumber)</span><br><span class="line"></span><br><span class="line">    params = &#123;</span><br><span class="line">        <span class="string">&quot;jsv&quot;</span>: <span class="string">&quot;2.7.2&quot;</span>,</span><br><span class="line">        <span class="string">&quot;appKey&quot;</span>: <span class="string">&quot;34839810&quot;</span>,</span><br><span class="line">        <span class="string">&quot;t&quot;</span>: j,        <span class="comment"># 动态时间戳</span></span><br><span class="line">        <span class="string">&quot;sign&quot;</span>: sign,  <span class="comment"># 动态签名</span></span><br><span class="line">        <span class="string">&quot;v&quot;</span>: <span class="string">&quot;1.0&quot;</span>,</span><br><span class="line">        <span class="string">&quot;type&quot;</span>: <span class="string">&quot;originaljson&quot;</span>,</span><br><span class="line">        <span class="string">&quot;accountSite&quot;</span>: <span class="string">&quot;xianyu&quot;</span>,</span><br><span class="line">        <span class="string">&quot;dataType&quot;</span>: <span class="string">&quot;json&quot;</span>,</span><br><span class="line">        <span class="string">&quot;api&quot;</span>: <span class="string">&quot;mtop.taobao.idlemtopsearch.pc.search&quot;</span>,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    data = &#123;<span class="string">&#x27;data&#x27;</span>: c_data&#125;</span><br><span class="line">    response = requests.post(url, headers=headers, params=params, data=data)</span><br><span class="line">    json_data = response.json()</span><br><span class="line">    resultList = json_data[<span class="string">&#x27;data&#x27;</span>][<span class="string">&#x27;resultList&#x27;</span>]</span><br></pre></td></tr></table></figure>
 
-<p><strong>原因</strong>：中断留下了 <code>.partial</code> 损坏文件，Ollama 检测到已有文件就直接用了，导致每次都读损坏数据。</p>
-<p><strong>修复</strong>：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 清理所有损坏的部分下载文件</span></span><br><span class="line"><span class="built_in">rm</span> -f ~/.ollama/models/blobs/*partial*</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新拉取</span></span><br><span class="line">ollama pull qwen3:8b</span><br></pre></td></tr></table></figure>
+<h4 id="3-商品数据提取"><a href="#3-商品数据提取" class="headerlink" title="3. 商品数据提取"></a>3. 商品数据提取</h4><p>从返回的嵌套 JSON 中提取商品信息：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> resultList:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        main = item[<span class="string">&#x27;data&#x27;</span>][<span class="string">&#x27;item&#x27;</span>][<span class="string">&#x27;main&#x27;</span>]</span><br><span class="line">        fishTags_keys = main[<span class="string">&#x27;exContent&#x27;</span>][<span class="string">&#x27;fishTags&#x27;</span>].keys()</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 提取商品标签</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&#x27;r2&#x27;</span> <span class="keyword">in</span> fishTags_keys:</span><br><span class="line">            tagname = <span class="string">&#x27;&#x27;</span>.join([i[<span class="string">&#x27;utParams&#x27;</span>][<span class="string">&#x27;args&#x27;</span>][<span class="string">&#x27;content&#x27;</span>] </span><br><span class="line">                              <span class="keyword">for</span> i <span class="keyword">in</span> main[<span class="string">&#x27;exContent&#x27;</span>][<span class="string">&#x27;fishTags&#x27;</span>][<span class="string">&#x27;r2&#x27;</span>][<span class="string">&#x27;tagList&#x27;</span>]])</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            tagname = <span class="string">&#x27;无&#x27;</span></span><br><span class="line">        </span><br><span class="line">        dit = &#123;</span><br><span class="line">            <span class="string">&#x27;价格&#x27;</span>: main[<span class="string">&#x27;clickParam&#x27;</span>][<span class="string">&#x27;args&#x27;</span>][<span class="string">&#x27;price&#x27;</span>],</span><br><span class="line">            <span class="string">&#x27;标签&#x27;</span>: main[<span class="string">&#x27;clickParam&#x27;</span>][<span class="string">&#x27;args&#x27;</span>][<span class="string">&#x27;tagname&#x27;</span>],</span><br><span class="line">            <span class="string">&#x27;产品简介&#x27;</span>: tagname,</span><br><span class="line">            <span class="string">&#x27;标题&#x27;</span>: main[<span class="string">&#x27;exContent&#x27;</span>][<span class="string">&#x27;detailParams&#x27;</span>][<span class="string">&#x27;title&#x27;</span>],</span><br><span class="line">            <span class="string">&#x27;昵称&#x27;</span>: main[<span class="string">&#x27;exContent&#x27;</span>][<span class="string">&#x27;userNickName&#x27;</span>],</span><br><span class="line">            <span class="string">&#x27;区域&#x27;</span>: main[<span class="string">&#x27;exContent&#x27;</span>][<span class="string">&#x27;area&#x27;</span>],</span><br><span class="line">            <span class="string">&#x27;标题详情&#x27;</span>: main[<span class="string">&#x27;exContent&#x27;</span>][<span class="string">&#x27;title&#x27;</span>],</span><br><span class="line">        &#125;</span><br><span class="line">        csv_writer.writerow(dit)</span><br><span class="line">    <span class="keyword">except</span> KeyError <span class="keyword">as</span> e:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;商品缺少字段<span class="subst">&#123;e&#125;</span>，跳过&quot;</span>)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;未预期的错误: <span class="subst">&#123;<span class="built_in">type</span>(e).__name__&#125;</span>: <span class="subst">&#123;e&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
 
-<hr>
-<h3 id="坑⑦-华为畅享-9-Plus-高估，以为能跑-1-5B-模型"><a href="#坑⑦-华为畅享-9-Plus-高估，以为能跑-1-5B-模型" class="headerlink" title="坑⑦ 华为畅享 9 Plus 高估，以为能跑 1.5B 模型"></a>坑⑦ 华为畅享 9 Plus 高估，以为能跑 1.5B 模型</h3><p><strong>场景</strong>：拿到华为畅享 9 Plus（4GB RAM）时想，虽然内存小但跑个 <code>qwen2.5-coder:1.5b</code>（约 1GB）总行吧？</p>
-<p>结果拉是拉下来了，跑起来直接卡到手机发烫，终端<strong>一个字一个字往外蹦</strong>，比打字还慢。</p>
-<p><strong>原因</strong>：4GB 内存里系统就占了接近 2GB，剩下不到 2GB 可用。1.5B 的 q4 模型加载需要约 1.5GB，再加上推理时的上下文缓冲，内存直接爆炸，触发 swap 疯狂读写闪存。</p>
-<p><strong>修复</strong>：认命。4GB 设备唯一能用的就是 <code>qwen2.5-coder:0.5b</code>（398MB），输出质量勉强能看，做简单代码补全还行。旁边 6GB 的 OnePlus 3 跑 3B 模型都流畅，这就是硬件的残酷。</p>
-<hr>
-<h3 id="坑⑧-OLLAMA-HOST-忘了加-OLLAMA-ORIGINS"><a href="#坑⑧-OLLAMA-HOST-忘了加-OLLAMA-ORIGINS" class="headerlink" title="坑⑧ OLLAMA_HOST 忘了加 OLLAMA_ORIGINS"></a>坑⑧ OLLAMA_HOST 忘了加 OLLAMA_ORIGINS</h3><p><strong>场景</strong>：服务启动成功，<code>curl http://手机IP:11434/api/tags</code> 在电脑上能返回数据。但 Chatbox 或其他 Web 客户端连过去就是报跨域错误。</p>
-<p><strong>原因</strong>：只设了 <code>OLLAMA_HOST=0.0.0.0:11434</code> 开放网络，但没设 <code>OLLAMA_ORIGINS=*</code> 允许跨域请求。Chatbox 前端发的是浏览器请求，浏览器有 CORS 限制。</p>
-<p><strong>修复</strong>：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 两个环境变量要一起设</span></span><br><span class="line">OLLAMA_ORIGINS=* OLLAMA_HOST=0.0.0.0:11434 ollama serve &amp;</span><br><span class="line"><span class="comment">#  ^^^^^^^^^^^^^^^^   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span></span><br><span class="line"><span class="comment">#   允许跨域             允许局域网访问</span></span><br><span class="line"><span class="comment">#   缺一不可！           缺一不可！</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>异常处理</strong>：闲鱼返回的数据结构不完全统一，有些商品可能缺少 <code>fishTags</code> 等字段。使用 <code>try-except</code> 捕获 <code>KeyError</code> 可以跳过异常数据，保证程序不中断。</p>
+</blockquote>
+<h4 id="4-商品详情爬虫"><a href="#4-商品详情爬虫" class="headerlink" title="4. 商品详情爬虫"></a>4. 商品详情爬虫</h4><p>获取单个商品详情通过另一个 API：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">url = <span class="string">&quot;https://h5api.m.goofish.com/h5/mtop.taobao.idle.pc.detail/1.0/&quot;</span></span><br><span class="line"></span><br><span class="line">data_form = &#123;</span><br><span class="line">    <span class="string">&#x27;data&#x27;</span>: <span class="string">&#x27;&#123;&quot;itemId&quot;: &quot;963567908521&quot;&#125;&#x27;</span>  <span class="comment"># 商品ID</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">params = &#123;</span><br><span class="line">    <span class="string">&quot;jsv&quot;</span>: <span class="string">&quot;2.7.2&quot;</span>,</span><br><span class="line">    <span class="string">&quot;appKey&quot;</span>: <span class="string">&quot;34839810&quot;</span>,</span><br><span class="line">    <span class="string">&quot;t&quot;</span>: <span class="string">&quot;1759793614723&quot;</span>,</span><br><span class="line">    <span class="string">&quot;sign&quot;</span>: <span class="string">&quot;2f84c8f1628ea3253f8343def6720c7c&quot;</span>,</span><br><span class="line">    <span class="string">&quot;api&quot;</span>: <span class="string">&quot;mtop.taobao.idle.pc.detail&quot;</span>,</span><br><span class="line">    <span class="string">&quot;accountSite&quot;</span>: <span class="string">&quot;xianyu&quot;</span>,</span><br><span class="line">    <span class="string">&quot;dataType&quot;</span>: <span class="string">&quot;json&quot;</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">response = requests.post(url, headers=headers, params=params, data=data_form)</span><br><span class="line">resjson = response.json()</span><br></pre></td></tr></table></figure>
 
-<hr>
-<h3 id="踩坑总结"><a href="#踩坑总结" class="headerlink" title="踩坑总结"></a>踩坑总结</h3><table>
-<thead>
-<tr>
-<th>编号</th>
-<th>坑</th>
-<th>关键词</th>
-<th>血泪指数</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>①</td>
-<td>bf16 直接 OOM Kill</td>
-<td>量化格式</td>
-<td>🩸🩸🩸</td>
-</tr>
-<tr>
-<td>②</td>
-<td>量化标签写太全反而搜不到</td>
-<td>模型名称</td>
-<td>🩸🩸</td>
-</tr>
-<tr>
-<td>③</td>
-<td>推荐不存在的模型</td>
-<td>模型名称</td>
-<td>🩸🩸🩸🩸</td>
-</tr>
-<tr>
-<td>④</td>
-<td>OnePlus 3 忘记 serve 就 pull</td>
-<td>手动安装</td>
-<td>🩸🩸🩸</td>
-</tr>
-<tr>
-<td>⑤</td>
-<td>Chatbox 选错模式 403</td>
-<td>客户端连接</td>
-<td>🩸🩸</td>
-</tr>
-<tr>
-<td>⑥</td>
-<td>下载中断 partial 损坏</td>
-<td>网络</td>
-<td>🩸🩸</td>
-</tr>
-<tr>
-<td>⑦</td>
-<td>高估 4GB 手机能力</td>
-<td>硬件上限</td>
-<td>🩸🩸🩸</td>
-</tr>
-<tr>
-<td>⑧</td>
-<td>忘记设 OLLAMA_ORIGINS</td>
-<td>CORS</td>
-<td>🩸🩸</td>
-</tr>
-</tbody></table>
-<p>如果这些坑能帮你少走弯路，那这周折腾就值了。</p>
-<hr>
-<h2 id="七、最终推荐方案"><a href="#七、最终推荐方案" class="headerlink" title="七、最终推荐方案"></a>七、最终推荐方案</h2><h3 id="vivo-Y300i（主力）"><a href="#vivo-Y300i（主力）" class="headerlink" title="vivo Y300i（主力）"></a>vivo Y300i（主力）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装</span></span><br><span class="line">ollama pull qwen3:8b              <span class="comment"># L3+ · 通用主力</span></span><br><span class="line">ollama pull qwen2.5-coder:7b      <span class="comment"># L3  · 代码主力</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动</span></span><br><span class="line">OLLAMA_HOST=0.0.0.0:11434 ollama serve &amp;</span><br></pre></td></tr></table></figure>
+<h3 id="二、多线程链接刷新"><a href="#二、多线程链接刷新" class="headerlink" title="二、多线程链接刷新"></a>二、多线程链接刷新</h3><h4 id="1-单线程版"><a href="#1-单线程版" class="headerlink" title="1. 单线程版"></a>1. 单线程版</h4><p>单线程版本使用 DrissionPage 控制浏览器，逐个访问链接并定时刷新：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> DrissionPage <span class="keyword">import</span> ChromiumPage</span><br><span class="line"></span><br><span class="line">page = ChromiumPage()</span><br><span class="line"></span><br><span class="line">urls = [</span><br><span class="line">    <span class="string">&quot;https://www.goofish.com/item?id=978882160967&amp;spm=widle.12011849.0.0&amp;ut_sk=&quot;</span>,</span><br><span class="line">    <span class="string">&quot;https://www.goofish.com/item?id=976990295214&amp;spm=widle.12011849.0.0&amp;ut_sk=&quot;</span>,</span><br><span class="line">    <span class="string">&quot;https://www.goofish.com/item?id=976991963358&amp;spm=widle.12011849.0.0&amp;ut_sk=&quot;</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">max_refreshes_per_url = <span class="number">100</span>  <span class="comment"># 每个URL最大刷新次数</span></span><br><span class="line">min_interval = <span class="number">3</span>   <span class="comment"># 最小刷新间隔(秒)</span></span><br><span class="line">max_interval = <span class="number">10</span>  <span class="comment"># 最大刷新间隔(秒)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> url_index, url <span class="keyword">in</span> <span class="built_in">enumerate</span>(urls):</span><br><span class="line">    page.get(url)</span><br><span class="line">    time.sleep(<span class="number">5</span>)  <span class="comment"># 等待页面加载</span></span><br><span class="line">    </span><br><span class="line">    refresh_count = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> refresh_count &lt; max_refreshes_per_url:</span><br><span class="line">        refresh_count += <span class="number">1</span></span><br><span class="line">        page.refresh()  <span class="comment"># 刷新页面</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 随机等待，模拟人类行为</span></span><br><span class="line">        wait_time = random.randint(min_interval, max_interval)</span><br><span class="line">        time.sleep(wait_time)</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;URL <span class="subst">&#123;url_index + <span class="number">1</span>&#125;</span> - 第 <span class="subst">&#123;refresh_count&#125;</span> 次刷新完成，等待 <span class="subst">&#123;wait_time&#125;</span> 秒&quot;</span>)</span><br><span class="line"></span><br><span class="line">page.quit()</span><br></pre></td></tr></table></figure>
 
-<p><strong>能力</strong>：复杂推理、代码生成、长文写作，日常使用足够。</p>
-<h3 id="OnePlus-3-Kali（备用-服务器）"><a href="#OnePlus-3-Kali（备用-服务器）" class="headerlink" title="OnePlus 3 Kali（备用&#x2F;服务器）"></a>OnePlus 3 Kali（备用&#x2F;服务器）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装</span></span><br><span class="line">~/Ollama/bin/ollama pull qwen3:4b             <span class="comment"># L2+ · 通用主力</span></span><br><span class="line">~/Ollama/bin/ollama pull qwen2.5-coder:3b     <span class="comment"># L3  · 代码专家</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动（先 serve 再 pull，否则报错）</span></span><br><span class="line">OLLAMA_HOST=0.0.0.0:11434 ~/Ollama/bin/ollama serve &amp;</span><br></pre></td></tr></table></figure>
+<h4 id="2-多线程版"><a href="#2-多线程版" class="headerlink" title="2. 多线程版"></a>2. 多线程版</h4><p>多线程版本为每个 URL 创建独立的浏览器实例，并发刷新：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"></span><br><span class="line">browser_instances = &#123;&#125;</span><br><span class="line">browser_lock = threading.Lock()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">refresh_url</span>(<span class="params">url, url_index</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;为单个URL创建浏览器实例并刷新&quot;&quot;&quot;</span></span><br><span class="line">    page = ChromiumPage()  <span class="comment"># 每个线程独立浏览器</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">with</span> browser_lock:</span><br><span class="line">        browser_instances[url_index] = page</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        page.get(url)</span><br><span class="line">        time.sleep(<span class="number">5</span>)</span><br><span class="line">        </span><br><span class="line">        refresh_count = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> refresh_count &lt; max_refreshes_per_url:</span><br><span class="line">            refresh_count += <span class="number">1</span></span><br><span class="line">            page.refresh()</span><br><span class="line">            wait_time = random.randint(min_interval, max_interval)</span><br><span class="line">            time.sleep(wait_time)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;[线程 <span class="subst">&#123;url_index + <span class="number">1</span>&#125;</span>] 第 <span class="subst">&#123;refresh_count&#125;</span> 次刷新完成&quot;</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;[线程 <span class="subst">&#123;url_index + <span class="number">1</span>&#125;</span>] 发生错误: <span class="subst">&#123;e&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    threads = []</span><br><span class="line">    <span class="keyword">for</span> i, url <span class="keyword">in</span> <span class="built_in">enumerate</span>(urls):</span><br><span class="line">        thread = threading.Thread(target=refresh_url, args=(url, i))</span><br><span class="line">        threads.append(thread)</span><br><span class="line">        thread.start()</span><br><span class="line">        time.sleep(<span class="number">2</span>)  <span class="comment"># 错开启动时间</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> thread <span class="keyword">in</span> threads:</span><br><span class="line">        thread.join()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 统一关闭所有浏览器</span></span><br><span class="line">    <span class="keyword">with</span> browser_lock:</span><br><span class="line">        <span class="keyword">for</span> index, browser <span class="keyword">in</span> browser_instances.items():</span><br><span class="line">            browser.quit()</span><br></pre></td></tr></table></figure>
 
-<p><strong>优势</strong>：低功耗，适合 7×24 开机当局域网 AI 服务器。</p>
-<h3 id="华为畅享-9-Plus（放弃或极限使用）"><a href="#华为畅享-9-Plus（放弃或极限使用）" class="headerlink" title="华为畅享 9 Plus（放弃或极限使用）"></a>华为畅享 9 Plus（放弃或极限使用）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ollama pull qwen2.5-coder:0.5b    <span class="comment"># L1 · 唯一实用</span></span><br></pre></td></tr></table></figure>
+<p>关键设计：</p>
+<ul>
+<li><strong>每个线程独立浏览器实例</strong>：避免多线程操作同一浏览器导致冲突</li>
+<li><strong><code>browser_lock</code></strong>：保护 <code>browser_instances</code> 字典的线程安全</li>
+<li><strong><code>time.sleep(2)</code></strong>：线程启动间隔2秒，避免同时启动多个浏览器</li>
+</ul>
+<h4 id="3-移动端模拟版"><a href="#3-移动端模拟版" class="headerlink" title="3. 移动端模拟版"></a>3. 移动端模拟版</h4><p>移动端版本通过修改 User-Agent 和窗口大小，模拟手机访问：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> DrissionPage <span class="keyword">import</span> ChromiumPage, ChromiumOptions</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">create_mobile_chromium_options</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;创建移动端浏览器配置&quot;&quot;&quot;</span></span><br><span class="line">    co = ChromiumOptions()</span><br><span class="line">    <span class="comment"># 使用iPhone用户代理</span></span><br><span class="line">    co.set_user_agent(<span class="string">&#x27;Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1&#x27;</span>)</span><br><span class="line">    <span class="comment"># 设置iPhone 12 Pro分辨率</span></span><br><span class="line">    co.set_argument(<span class="string">&#x27;--window-size=390,844&#x27;</span>)</span><br><span class="line">    co.set_argument(<span class="string">&#x27;--device-scale-factor=3&#x27;</span>)</span><br><span class="line">    co.set_argument(<span class="string">&#x27;--use-mobile-user-agent&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> co</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建移动端浏览器</span></span><br><span class="line">co = create_mobile_chromium_options()</span><br><span class="line">page = ChromiumPage(co)</span><br></pre></td></tr></table></figure>
 
-<p><strong>诚实建议</strong>：卖掉换钱。4GB 设备跑模型的体验太差了。</p>
-<hr>
-<h2 id="八、总结"><a href="#八、总结" class="headerlink" title="八、总结"></a>八、总结</h2><table>
-<thead>
-<tr>
-<th>设备</th>
-<th>主力模型</th>
-<th>L等级</th>
-<th>定位</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>vivo Y300i</td>
-<td>qwen3:8b</td>
-<td>L3+</td>
-<td>主力机</td>
-</tr>
-<tr>
-<td>OnePlus 3</td>
-<td>qwen3:4b</td>
-<td>L2+</td>
-<td>7×24 服务器</td>
-</tr>
-<tr>
-<td>华为畅享 9</td>
-<td>0.5b</td>
-<td>L1</td>
-<td>放弃</td>
-</tr>
-</tbody></table>
-<p><strong>几个关键认知</strong>：</p>
+<p>移动端模拟的意义在于：某些闲鱼链接（如 <code>m.tb.cn</code> 短链）只在移动端可访问，PC端访问会跳转或失效。</p>
+<h2 id="运行效果"><a href="#运行效果" class="headerlink" title="运行效果"></a>运行效果</h2><p><strong>商品搜索爬虫输出：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">正在采集第1页的数据内容</span><br><span class="line">当前时间戳: 1759801941772</span><br><span class="line">&#123;&#x27;价格&#x27;: &#x27;299&#x27;, &#x27;标签&#x27;: &#x27;包邮&#x27;, &#x27;产品简介&#x27;: &#x27;Python爬虫开发实战&#x27;, &#x27;标题&#x27;: &#x27;Python爬虫书籍&#x27;, &#x27;昵称&#x27;: &#x27;二手书店&#x27;, &#x27;区域&#x27;: &#x27;广东深圳&#x27;, &#x27;标题详情&#x27;: &#x27;...&#x27;&#125;</span><br><span class="line">&#123;&#x27;价格&#x27;: &#x27;1500&#x27;, &#x27;标签&#x27;: &#x27;九成新&#x27;, &#x27;产品简介&#x27;: &#x27;Python入门到精通&#x27;, &#x27;标题&#x27;: &#x27;Python编程教材&#x27;, &#x27;昵称&#x27;: &#x27;技术宅&#x27;, &#x27;区域&#x27;: &#x27;北京海淀&#x27;, &#x27;标题详情&#x27;: &#x27;...&#x27;&#125;</span><br><span class="line">...</span><br><span class="line">正在采集第2页的数据内容</span><br></pre></td></tr></table></figure>
+
+<p><strong>多线程链接刷新输出：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[线程 1] 开始处理URL: https://www.goofish.com/item?id=978882160967...</span><br><span class="line">[线程 1] 页面标题: 闲鱼商品</span><br><span class="line">[线程 2] 开始处理URL: https://www.goofish.com/item?id=976990295214...</span><br><span class="line">[线程 1] 第 1 次刷新完成，等待 9 秒</span><br><span class="line">[线程 2] 页面标题: 闲鱼商品</span><br><span class="line">[线程 1] 第 2 次刷新完成，等待 6 秒</span><br><span class="line">...</span><br><span class="line">所有URL处理完成，正在关闭浏览器...</span><br><span class="line">[浏览器 1] 已关闭</span><br><span class="line">[浏览器 2] 已关闭</span><br><span class="line">所有浏览器已关闭</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结与优化方向"><a href="#总结与优化方向" class="headerlink" title="总结与优化方向"></a>总结与优化方向</h2><p>本文基于闲鱼爬虫项目的真实源码，完整讲解了两大模块：商品搜索（MD5 签名逆向 + 数据提取）和多线程链接刷新（浏览器自动化 + 移动端模拟）。</p>
+<p><strong>核心知识点回顾：</strong></p>
 <ol>
-<li><strong>6GB 是实用门槛</strong>——低于这个配置体验很差</li>
-<li><strong>8B 模型是甜点</strong>——能力接近 GPT-3.5，12GB 手机就能跑</li>
-<li><strong>q4_K_M 量化最稳</strong>——兼顾质量与内存</li>
-<li><strong>OLLAMA_HOST&#x3D;0.0.0.0</strong> 是联网关键——别忘了加</li>
-<li><strong>IP 会漂移</strong>——每次开机后要确认</li>
+<li><strong>MD5 签名逆向</strong>：<code>sign = MD5(token + &quot;&amp;&quot; + timestamp + &quot;&amp;&quot; + appKey + &quot;&amp;&quot; + data)</code>，关键在于 token 的提取和时间戳的实时性</li>
+<li><strong>多线程浏览器自动化</strong>：每个线程创建独立浏览器实例，通过 <code>threading.Lock</code> 管理共享资源</li>
+<li><strong>移动端模拟</strong>：通过修改 UA 和窗口大小模拟手机访问</li>
 </ol>
-<p>旧手机不需要吃灰，装个 Ollama，它就是你的私有 AI 服务器。</p>
-<hr>
-<p><em>最后更新：2026-06-22</em></p>
-<hr>
-<h2 id="附录：模型名称验证记录"><a href="#附录：模型名称验证记录" class="headerlink" title="附录：模型名称验证记录"></a>附录：模型名称验证记录</h2><p>以下所有推荐模型均已通过 <a target="_blank" rel="noopener" href="https://ollama.com/">ollama.com</a> 逐一核实（核查日期：2026-06-22）：</p>
-<table>
-<thead>
-<tr>
-<th>模型名称</th>
-<th>官方页面</th>
-<th>验证状态</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>qwen3:0.6b</code></td>
-<td><a target="_blank" rel="noopener" href="https://ollama.com/library/qwen3">ollama.com&#x2F;library&#x2F;qwen3</a></td>
-<td>✅ 523MB</td>
-</tr>
-<tr>
-<td><code>qwen3:1.7b</code></td>
-<td><a target="_blank" rel="noopener" href="https://ollama.com/library/qwen3">ollama.com&#x2F;library&#x2F;qwen3</a></td>
-<td>✅ 1.4GB</td>
-</tr>
-<tr>
-<td><code>qwen3:4b</code></td>
-<td><a target="_blank" rel="noopener" href="https://ollama.com/library/qwen3">ollama.com&#x2F;library&#x2F;qwen3</a></td>
-<td>✅ 2.5GB</td>
-</tr>
-<tr>
-<td><code>qwen3:8b</code></td>
-<td><a target="_blank" rel="noopener" href="https://ollama.com/library/qwen3">ollama.com&#x2F;library&#x2F;qwen3</a></td>
-<td>✅ 5.2GB</td>
-</tr>
-<tr>
-<td><code>qwen3:14b</code></td>
-<td><a target="_blank" rel="noopener" href="https://ollama.com/library/qwen3">ollama.com&#x2F;library&#x2F;qwen3</a></td>
-<td>✅ 9.3GB</td>
-</tr>
-<tr>
-<td><code>qwen2.5-coder:0.5b</code></td>
-<td><a target="_blank" rel="noopener" href="https://ollama.com/library/qwen2.5-coder">ollama.com&#x2F;library&#x2F;qwen2.5-coder</a></td>
-<td>✅ 398MB</td>
-</tr>
-<tr>
-<td><code>qwen2.5-coder:1.5b</code></td>
-<td><a target="_blank" rel="noopener" href="https://ollama.com/library/qwen2.5-coder">ollama.com&#x2F;library&#x2F;qwen2.5-coder</a></td>
-<td>✅ 986MB</td>
-</tr>
-<tr>
-<td><code>qwen2.5-coder:3b</code></td>
-<td><a target="_blank" rel="noopener" href="https://ollama.com/library/qwen2.5-coder">ollama.com&#x2F;library&#x2F;qwen2.5-coder</a></td>
-<td>✅ 1.9GB</td>
-</tr>
-<tr>
-<td><code>qwen2.5-coder:7b</code></td>
-<td><a target="_blank" rel="noopener" href="https://ollama.com/library/qwen2.5-coder">ollama.com&#x2F;library&#x2F;qwen2.5-coder</a></td>
-<td>✅ 4.7GB</td>
-</tr>
-<tr>
-<td><code>qwen2.5-coder:14b</code></td>
-<td><a target="_blank" rel="noopener" href="https://ollama.com/library/qwen2.5-coder">ollama.com&#x2F;library&#x2F;qwen2.5-coder</a></td>
-<td>✅ 9.0GB</td>
-</tr>
-<tr>
-<td><code>tinyllama</code></td>
-<td><a target="_blank" rel="noopener" href="https://ollama.com/library/tinyllama">ollama.com&#x2F;library&#x2F;tinyllama</a></td>
-<td>✅ 638MB</td>
-</tr>
-<tr>
-<td><code>tinyllama:1.1b</code></td>
-<td><a target="_blank" rel="noopener" href="https://ollama.com/library/tinyllama">ollama.com&#x2F;library&#x2F;tinyllama</a></td>
-<td>✅ 同上（latest 即 1.1b）</td>
-</tr>
-</tbody></table>
-<p><strong>确认不存在</strong>：</p>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>原因</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>qwen3-coder:8b</code></td>
-<td>qwen3-coder 仅有 30B 和 480B，无 8B 版本</td>
-</tr>
-<tr>
-<td><code>tinyllama:1.1b-q4</code></td>
-<td>官方 tag 为 <code>tinyllama</code> 或 <code>tinyllama:1.1b</code>，无 <code>-q4</code> 后缀</td>
-</tr>
-<tr>
-<td><code>qwen3.5:2b-bf16</code></td>
-<td>非 Ollama 标准 tag；标准为 <code>qwen3.5:2b</code>（默认 q4_K_M）</td>
-</tr>
-</tbody></table>
+<p><strong>优化方向：</strong></p>
+<ol>
+<li><strong>Token 自动提取</strong>：当前 token 硬编码在代码中，可从 Cookie 的 <code>_m_h5_tk</code> 字段自动提取</li>
+<li><strong>代理 IP 池</strong>：多线程刷新时容易被识别，搭配代理 IP 降低风险</li>
+<li><strong>刷新策略优化</strong>：根据商品活跃度动态调整刷新频率，活跃商品多刷，冷门商品少刷</li>
+<li><strong>异常恢复</strong>：浏览器崩溃后自动重启，保证长时间运行的稳定性</li>
+<li><strong>数据持久化</strong>：搜索结果存入数据库，支持历史价格对比和趋势分析</li>
+</ol>
+<p>闲鱼爬虫的核心难点在于 MD5 签名的逆向和时间戳的处理。理解了签名算法后，就能灵活应对阿里系平台（淘宝、天猫、闲鱼）的类似签名机制。</p>
 
   </div>
 
@@ -1049,18 +602,18 @@
 
   <nav class="article-actions">
     
-      <a class="article-action article-action--prev" href="/2026/06/26/2026062630/">
+      <a class="article-action article-action--prev" href="/2026/07/06/2026070613/">
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-left"></use></svg>
 
         <span class="action-label">上一篇</span>
-        <span class="action-title">V2ray搭建教程，操作简单，支持vless，vmess，socks5等协议，x-ui搭建教程v2ray服务器vps</span>
+        <span class="action-title">抖音视频评论爬取：逆向分析Web端评论接口</span>
       </a>
     
     
-      <a class="article-action article-action--next" href="/2026/06/26/2026062624/">
+      <a class="article-action article-action--next" href="/2026/07/06/2026070312/">
         <span class="action-label">下一篇</span>
-        <span class="action-title">从秒到毫秒：掌控 SQL 性能的 21 条硬核策略与服务层性能陷阱</span>
+        <span class="action-title">CVE-2025-55184 React漏洞利用——RSC DoS框架与WAF绕过实战</span>
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
 
@@ -1091,7 +644,7 @@
     </header>
     <div class="related-paper__grid">
       
-        <a class="related-card" href="/2026/06/26/2026062612/">
+        <a class="related-card" href="/2026/07/06/2026070613/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
@@ -1102,7 +655,55 @@
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">Springboot --- 使用国内的 AI 大模型 对话</strong>
+            <strong class="related-card__title">抖音视频评论爬取：逆向分析Web端评论接口</strong>
+            <em class="related-card__date">2026-07-06</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/07/06/2026070615/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/mountain.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">B站获取关注UP主列表与去重：Cookie认证与分页API全解析</strong>
+            <em class="related-card__date">2026-07-06</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/07/01/2026070104/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/notebook.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">Python 爬虫实战：从 API 请求到浏览器模拟的全链路探索</strong>
+            <em class="related-card__date">2026-07-01</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/06/26/2026062611/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/port.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">从 B 站弹幕到数据分析：Python 实战指南</strong>
             <em class="related-card__date">2026-06-26</em>
           </span>
         </a>
