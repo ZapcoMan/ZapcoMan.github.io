@@ -1,6 +1,6 @@
 <!doctype html>
 
-<html lang="zh-CN">
+<html lang="zh-CN" data-fancybox-enabled="1">
 <head>
   
 
@@ -8,21 +8,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#f7f3e9">
 
-<title>标签：POC | ZapcoMan&#39;s world</title>
-<meta name="description" content="标签「POC」收录 5 篇文章，包括CVE-2025-55184 React漏洞利用——RSC DoS框架与WAF绕过实战、CVE-2025-55182 POC与反弹Shell——Next.js React Server Components RCE深度剖析、CVE-2022-22965 Spring4Shell RCE漏洞利用——从原理到EXP实现。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="标签：POC | ZapcoMan&#39;s world">
-<meta property="og:url" content="http://example.com/tags/POC/">
+<title>抖音视频评论爬取：逆向分析Web端评论接口 | ZapcoMan&#39;s world</title>
+<meta name="description" content="前言抖音作为国内最大的短视频平台，每天产生海量的用户评论数据。这些评论数据对于舆情分析、用户画像、产品反馈等场景具有重要价值。然而，抖音的反爬机制非常严格，涉及到参数签名、设备指纹、Cookie验证等多重防护。 本文基于真实的抖音视频评论爬虫源码，讲解如何通过分析抖音Web端的评论接口，构造完整的请求参数来获取指定视频的评论数据。重点会拆解 a_bogus...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="抖音视频评论爬取：逆向分析Web端评论接口 | ZapcoMan&#39;s world">
+<meta property="og:url" content="http://example.com/2026/07/06/2026070613/">
 <meta property="og:site_name" content="ZapcoMan&#39;s world">
-<meta property="og:description" content="标签「POC」收录 5 篇文章，包括CVE-2025-55184 React漏洞利用——RSC DoS框架与WAF绕过实战、CVE-2025-55182 POC与反弹Shell——Next.js React Server Components RCE深度剖析、CVE-2022-22965 Spring4Shell RCE漏洞利用——从原理到EXP实现。">
+<meta property="og:description" content="前言抖音作为国内最大的短视频平台，每天产生海量的用户评论数据。这些评论数据对于舆情分析、用户画像、产品反馈等场景具有重要价值。然而，抖音的反爬机制非常严格，涉及到参数签名、设备指纹、Cookie验证等多重防护。 本文基于真实的抖音视频评论爬虫源码，讲解如何通过分析抖音Web端的评论接口，构造完整的请求参数来获取指定视频的评论数据。重点会拆解 a_bogus...">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-07-06T02:36:30.000Z">
+<meta property="article:modified_time" content="2026-07-06T02:46:00.647Z">
 <meta property="article:author" content="ZapcoMan">
+<meta property="article:tag" content="JS逆向">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="爬虫">
 <meta name="twitter:card" content="summary">
-<link rel="canonical" href="http://example.com/tags/POC/">
+<link rel="canonical" href="http://example.com/2026/07/06/2026070613/">
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","headline":"标签：POC | ZapcoMan's world","name":"标签：POC | ZapcoMan's world","description":"标签「POC」收录 5 篇文章，包括CVE-2025-55184 React漏洞利用——RSC DoS框架与WAF绕过实战、CVE-2025-55182 POC与反弹Shell——Next.js React Server Components RCE深度剖析、CVE-2022-22965 Spring4Shell RCE漏洞利用——从原理到EXP实现。","url":"http://example.com/tags/POC/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"about":"标签：POC"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"抖音视频评论爬取：逆向分析Web端评论接口","name":"抖音视频评论爬取：逆向分析Web端评论接口 | ZapcoMan's world","description":"前言抖音作为国内最大的短视频平台，每天产生海量的用户评论数据。这些评论数据对于舆情分析、用户画像、产品反馈等场景具有重要价值。然而，抖音的反爬机制非常严格，涉及到参数签名、设备指纹、Cookie验证等多重防护。 本文基于真实的抖音视频评论爬虫源码，讲解如何通过分析抖音Web端的评论接口，构造完整的请求参数来获取指定视频的评论数据。重点会拆解 a_bogus...","url":"http://example.com/2026/07/06/2026070613/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/07/06/2026070613/","datePublished":"2026-07-06T02:36:30.000Z","dateModified":"2026-07-06T02:46:00.647Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"python, 爬虫, JS逆向"}</script>
 
 <script>
   (function () {
@@ -56,13 +61,16 @@
   
 
   
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
+<script defer src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+
 
   
 <meta name="generator" content="Hexo 8.1.2"><link rel="alternate" href="/atom.xml" title="ZapcoMan's world" type="application/atom+xml">
 </head>
 
 <body
-  class="is-list tag-style-tape bg-style-default"
+  class="is-post tag-style-tape bg-style-default"
   data-default-accent="blue"
   data-code-theme="dark"
   data-note-style="sticky"
@@ -116,7 +124,7 @@
       
     
       
-        <div class="site-nav-item has-children active">
+        <div class="site-nav-item has-children">
           <button class="site-nav-link site-nav-parent" type="button" aria-haspopup="true" aria-expanded="false">
             
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
@@ -132,7 +140,7 @@
                 <span>分类</span>
               </a>
             
-              <a role="menuitem" class="active" href="/tags/">
+              <a role="menuitem" class="" href="/tags/">
                 
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
 
@@ -219,7 +227,7 @@
 
 
   
-  <main class="paper-shell ">
+  <main class="paper-shell paper-shell--article">
     
 
 <aside id="paper-sidebar-drawer" class="paper-sidebar paper-sidebar--right" aria-label="侧边栏">
@@ -267,8 +275,8 @@
         
       
         
-          <div class="drawer-nav-group is-open active">
-            <button class="drawer-nav-parent" type="button" aria-expanded="true">
+          <div class="drawer-nav-group">
+            <button class="drawer-nav-parent" type="button" aria-expanded="false">
               
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
 
@@ -283,7 +291,7 @@
                   <span>分类</span>
                 </a>
               
-                <a class="active" href="/tags/">
+                <a class="" href="/tags/">
                   
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
 
@@ -398,90 +406,28 @@
   
 
   
-    <section class="side-card categories-card">
-      <h2>
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
-分类</h2>
-      
-        <a href="/categories/Java/">
-          <span class="dot dot-0"></span>
-          <strong>Java</strong>
-          <em>6</em>
-        </a>
-      
-        <a href="/categories/Java/Springboot/">
-          <span class="dot dot-1"></span>
-          <strong>Springboot</strong>
-          <em>5</em>
-        </a>
-      
-        <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">
-          <span class="dot dot-2"></span>
-          <strong>网络安全</strong>
-          <em>21</em>
-        </a>
-      
-        <a href="/categories/python/">
-          <span class="dot dot-3"></span>
-          <strong>python</strong>
-          <em>18</em>
-        </a>
-      
-        <a href="/categories/Java/Springboot/Mybatis/">
-          <span class="dot dot-0"></span>
-          <strong>Mybatis</strong>
-          <em>4</em>
-        </a>
-      
-        <a href="/categories/AI/">
-          <span class="dot dot-1"></span>
-          <strong>AI</strong>
-          <em>2</em>
-        </a>
-      
-    </section>
+    <div class="post-sticky-stack">
+      <section class="side-card toc-card">
+        <header class="toc-card__head">
+          <h2>
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-table-of-contents flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-table-of-contents"></use></svg>
+文章目录</h2>
+          <button type="button" class="toc-toggle-all" data-action="toggle-toc" aria-pressed="false" aria-label="展开全部目录" title="展开全部目录">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-chevron-down"></use></svg>
 
-    <section class="side-card tag-card">
-      <header class="tag-card__head">
-        <h2>
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-flame flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-flame"></use></svg>
-热门标签</h2>
-        <a class="tag-card__more" href="/tags/">
-          <span>查看全部</span>
+          </button>
+        </header>
+        <div class="toc-content">
           
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E8%83%8C%E6%99%AF"><span class="toc-text">技术背景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%96%E9%9F%B3Web%E7%AB%AF%E6%8E%A5%E5%8F%A3%E5%88%86%E6%9E%90"><span class="toc-text">抖音Web端接口分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E7%88%AC%E6%9C%BA%E5%88%B6"><span class="toc-text">反爬机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%89%E5%8F%8A%E7%9A%84%E5%BA%93"><span class="toc-text">涉及的库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF"><span class="toc-text">实现思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="toc-text">核心代码解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AE%9A%E4%B9%89%E8%AF%B7%E6%B1%82URL"><span class="toc-text">1. 定义请求URL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%9E%84%E9%80%A0%E8%AF%B7%E6%B1%82%E5%A4%B4"><span class="toc-text">2. 构造请求头</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%9E%84%E9%80%A0%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0"><span class="toc-text">3. 构造请求参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82%E4%B8%8E%E8%A7%A3%E6%9E%90%E8%AF%84%E8%AE%BA"><span class="toc-text">4. 发送请求与解析评论</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E8%AF%84%E8%AE%BA%E7%BF%BB%E9%A1%B5"><span class="toc-text">5. 评论翻页</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C"><span class="toc-text">运行效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E5%90%91"><span class="toc-text">总结与优化方向</span></a></li></ol>
+          
+        </div>
+      </section>
+      
 
-        </a>
-      </header>
-      <div class="tag-cloud">
-        
-        
-          <a class="tag-chip tag-chip-0" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
-        
-          <a class="tag-chip tag-chip-1" href="/tags/python/">python</a>
-        
-          <a class="tag-chip tag-chip-2" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">渗透测试</a>
-        
-          <a class="tag-chip tag-chip-3" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
-        
-          <a class="tag-chip tag-chip-4" href="/tags/%E9%9A%8F%E6%89%8B%E8%AE%B0/">随手记</a>
-        
-          <a class="tag-chip tag-chip-5" href="/tags/Java/">Java</a>
-        
-          <a class="tag-chip tag-chip-0" href="/tags/%E7%88%AC%E8%99%AB/">爬虫</a>
-        
-          <a class="tag-chip tag-chip-1" href="/tags/Springboot/">Springboot</a>
-        
-          <a class="tag-chip tag-chip-2" href="/tags/Kali-Linux/">Kali  Linux</a>
-        
-          <a class="tag-chip tag-chip-3" href="/tags/%E5%85%8D%E6%9D%80/">免杀</a>
-        
-          <a class="tag-chip tag-chip-4" href="/tags/CVE/">CVE</a>
-        
-          <a class="tag-chip tag-chip-5" href="/tags/POC/">POC</a>
-        
-      </div>
-    </section>
+
+    </div>
   
 
   
@@ -490,457 +436,254 @@
 
     <section class="paper-main">
       
-<section class="archive-paper">
+
+<div class="article-tape-wrap">
+<span class="tape tape--top-right" aria-hidden="true"></span>
+<article class="article-paper">
   
-    <h1>POC</h1>
+  <header class="article-header">
+    
+      <a class="label-pill" href="/categories/python/">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+        python
+      </a>
+    
+    <h1>抖音视频评论爬取：逆向分析Web端评论接口</h1>
+    <div class="meta-line meta-line--article">
+      <span class="meta-date">
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
+2026-07-06</span>
+      
+        <span class="meta-tags">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
+
+          <a class="meta-tag-link" href="/tags/python/">#python</a><a class="meta-tag-link" href="/tags/%E7%88%AC%E8%99%AB/">#爬虫</a><a class="meta-tag-link" href="/tags/JS%E9%80%86%E5%90%91/">#JS逆向</a>
+        </span>
+      
+    </div>
+  </header>
+
   
-  <div class="archive-list">
-    
-      <a class="archive-item" href="/2026/07/06/2026070312/">
-        <span>2026-07-06</span>
-        <strong>CVE-2025-55184 React漏洞利用——RSC DoS框架与WAF绕过实战</strong>
-        <em></em>
-      </a>
-    
-      <a class="archive-item" href="/2026/07/06/2026070611/">
-        <span>2026-07-06</span>
-        <strong>CVE-2025-55182 POC与反弹Shell——Next.js React Server Components RCE深度剖析</strong>
-        <em></em>
-      </a>
-    
-      <a class="archive-item" href="/2026/07/06/2026070612/">
-        <span>2026-07-06</span>
-        <strong>CVE-2022-22965 Spring4Shell RCE漏洞利用——从原理到EXP实现</strong>
-        <em></em>
-      </a>
-    
-      <a class="archive-item" href="/2026/07/06/2026070610/">
-        <span>2026-07-06</span>
-        <strong>CVE-2025-24813 Tomcat PUT漏洞POC——反序列化RCE的完整利用链</strong>
-        <em></em>
-      </a>
-    
-      <a class="archive-item" href="/2026/07/06/2026070609/">
-        <span>2026-07-06</span>
-        <strong>CVE-2025-30208 Vite任意文件读取漏洞——多路径绕过与批量检测实现</strong>
-        <em></em>
-      </a>
-    
+
+
+  <div class="article-content">
+    <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>抖音作为国内最大的短视频平台，每天产生海量的用户评论数据。这些评论数据对于舆情分析、用户画像、产品反馈等场景具有重要价值。然而，抖音的反爬机制非常严格，涉及到参数签名、设备指纹、Cookie验证等多重防护。</p>
+<p>本文基于真实的抖音视频评论爬虫源码，讲解如何通过分析抖音Web端的评论接口，构造完整的请求参数来获取指定视频的评论数据。重点会拆解 <code>a_bogus</code>、<code>msToken</code>、<code>verifyFp</code> 等关键签名参数的作用。</p>
+<h2 id="技术背景"><a href="#技术背景" class="headerlink" title="技术背景"></a>技术背景</h2><h3 id="抖音Web端接口分析"><a href="#抖音Web端接口分析" class="headerlink" title="抖音Web端接口分析"></a>抖音Web端接口分析</h3><p>抖音Web端（<code>www.douyin.com</code>）的评论数据通过以下接口获取：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET https://www.douyin.com/aweme/v1/web/comment/list/</span><br></pre></td></tr></table></figure>
+
+<p>这个接口返回 JSON 格式的评论列表，包含用户昵称、评论内容、点赞数、回复数等信息。</p>
+<h3 id="反爬机制"><a href="#反爬机制" class="headerlink" title="反爬机制"></a>反爬机制</h3><p>抖音的反爬策略非常复杂，主要涉及以下几个方面：</p>
+<ol>
+<li><strong>Cookie 验证</strong>：需要完整的会话 Cookie，包括 <code>ttwid</code>、<code>__ac_signature</code> 等</li>
+<li><strong>参数签名</strong>：<code>a_bogus</code> 参数是抖音的核心签名，由前端 JS 动态生成</li>
+<li><strong>设备指纹</strong>：<code>msToken</code>、<code>verifyFp</code>（<code>s_v_web_id</code>）用于设备识别</li>
+<li><strong>请求头校验</strong>：<code>uifid</code>、<code>sec-ch-ua</code> 等头部需要与 Cookie 对应</li>
+</ol>
+<h3 id="涉及的库"><a href="#涉及的库" class="headerlink" title="涉及的库"></a>涉及的库</h3><ul>
+<li><code>requests</code>：发送 HTTP GET 请求</li>
+<li>内置 JSON 解析</li>
+</ul>
+<h2 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h2><p>整体流程如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">分析网络请求 → 提取URL和参数 → 构造请求头 → 填充Cookie → </span><br><span class="line">发送GET请求 → 解析JSON → 提取评论内容</span><br></pre></td></tr></table></figure>
+
+<p>核心步骤是通过浏览器开发者工具（F12 Network面板）抓取真实的评论请求，然后将请求参数和头部信息完整复刻到代码中。</p>
+<h2 id="核心代码解析"><a href="#核心代码解析" class="headerlink" title="核心代码解析"></a>核心代码解析</h2><h3 id="1-定义请求URL"><a href="#1-定义请求URL" class="headerlink" title="1. 定义请求URL"></a>1. 定义请求URL</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="comment"># 抖音Web端评论列表接口</span></span><br><span class="line">url = <span class="string">&quot;https://www.douyin.com/aweme/v1/web/comment/list/&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-构造请求头"><a href="#2-构造请求头" class="headerlink" title="2. 构造请求头"></a>2. 构造请求头</h3><p>请求头是绕过抖音反爬的第一道关卡。源码中的 headers 包含了完整的浏览器指纹信息：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&quot;authority&quot;</span>: <span class="string">&quot;www.douyin.com&quot;</span>,</span><br><span class="line">    <span class="string">&quot;method&quot;</span>: <span class="string">&quot;GET&quot;</span>,</span><br><span class="line">    <span class="string">&quot;path&quot;</span>: <span class="string">&quot;/aweme/v1/web/comment/list/&quot;</span>,</span><br><span class="line">    <span class="string">&quot;scheme&quot;</span>: <span class="string">&quot;https&quot;</span>,</span><br><span class="line">    <span class="string">&quot;accept&quot;</span>: <span class="string">&quot;application/json, text/plain, */*&quot;</span>,</span><br><span class="line">    <span class="string">&quot;accept-encoding&quot;</span>: <span class="string">&quot;gzip, deflate, br, zstd&quot;</span>,</span><br><span class="line">    <span class="string">&quot;accept-language&quot;</span>: <span class="string">&quot;zh-CN,zh;q=0.9&quot;</span>,</span><br><span class="line">    <span class="string">&quot;cookie&quot;</span>: <span class="string">&quot;ttwid=1%7CNg9hNx0-rpMm...; __ac_signature=_02B4Z6wo00f01...; ...&quot;</span>,</span><br><span class="line">    <span class="string">&quot;priority&quot;</span>: <span class="string">&quot;u=1, i&quot;</span>,</span><br><span class="line">    <span class="string">&quot;referer&quot;</span>: <span class="string">&quot;https://www.douyin.com/shipin/7270368633061197885&quot;</span>,</span><br><span class="line">    <span class="string">&quot;sec-ch-ua&quot;</span>: <span class="string">&#x27;&quot;Google Chrome&quot;;v=&quot;137&quot;, &quot;Chromium&quot;;v=&quot;137&quot;, &quot;Not/A)Brand&quot;;v=&quot;24&quot;&#x27;</span>,</span><br><span class="line">    <span class="string">&quot;sec-ch-ua-mobile&quot;</span>: <span class="string">&quot;?0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;sec-ch-ua-platform&quot;</span>: <span class="string">&#x27;&quot;Windows&quot;&#x27;</span>,</span><br><span class="line">    <span class="string">&quot;sec-fetch-dest&quot;</span>: <span class="string">&quot;empty&quot;</span>,</span><br><span class="line">    <span class="string">&quot;sec-fetch-mode&quot;</span>: <span class="string">&quot;cors&quot;</span>,</span><br><span class="line">    <span class="string">&quot;sec-fetch-site&quot;</span>: <span class="string">&quot;same-origin&quot;</span>,</span><br><span class="line">    <span class="string">&quot;uifid&quot;</span>: <span class="string">&quot;4be83ecefa579a300714166db9e569bafd8689fc248d1e190e384db8df203b81...&quot;</span>,</span><br><span class="line">    <span class="string">&quot;user-agent&quot;</span>: <span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>关键头部说明：</p>
+<ul>
+<li><strong><code>referer</code></strong>：必须指向抖音的视频页面，服务器会验证来源</li>
+<li><strong><code>uifid</code></strong>：用户身份指纹标识，需与 Cookie 中的值一致</li>
+<li><strong><code>cookie</code></strong>：包含 <code>ttwid</code>（游客ID）、<code>__ac_signature</code>（签名）等核心字段</li>
+</ul>
+<h3 id="3-构造请求参数"><a href="#3-构造请求参数" class="headerlink" title="3. 构造请求参数"></a>3. 构造请求参数</h3><p>这是最关键的部分。抖音的请求参数包含大量设备信息和签名参数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">params = &#123;</span><br><span class="line">    <span class="string">&quot;device_platform&quot;</span>: <span class="string">&quot;webapp&quot;</span>,       <span class="comment"># 平台标识</span></span><br><span class="line">    <span class="string">&quot;aid&quot;</span>: <span class="string">&quot;6383&quot;</span>,                     <span class="comment"># 应用ID</span></span><br><span class="line">    <span class="string">&quot;channel&quot;</span>: <span class="string">&quot;channel_pc_web&quot;</span>,       <span class="comment"># 渠道</span></span><br><span class="line">    <span class="string">&quot;aweme_id&quot;</span>: <span class="string">&quot;7318724406165916963&quot;</span>, <span class="comment"># 视频ID（目标视频）</span></span><br><span class="line">    <span class="string">&quot;cursor&quot;</span>: <span class="string">&quot;0&quot;</span>,                     <span class="comment"># 评论偏移量（翻页用）</span></span><br><span class="line">    <span class="string">&quot;count&quot;</span>: <span class="string">&quot;20&quot;</span>,                     <span class="comment"># 每页评论数</span></span><br><span class="line">    <span class="string">&quot;item_type&quot;</span>: <span class="string">&quot;0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;update_version_code&quot;</span>: <span class="string">&quot;170400&quot;</span>,</span><br><span class="line">    <span class="string">&quot;pc_client_type&quot;</span>: <span class="string">&quot;1&quot;</span>,</span><br><span class="line">    <span class="string">&quot;version_code&quot;</span>: <span class="string">&quot;170400&quot;</span>,</span><br><span class="line">    <span class="string">&quot;version_name&quot;</span>: <span class="string">&quot;17.4.0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;cookie_enabled&quot;</span>: <span class="string">&quot;true&quot;</span>,</span><br><span class="line">    <span class="string">&quot;screen_width&quot;</span>: <span class="string">&quot;2560&quot;</span>,</span><br><span class="line">    <span class="string">&quot;screen_height&quot;</span>: <span class="string">&quot;1440&quot;</span>,</span><br><span class="line">    <span class="string">&quot;browser_language&quot;</span>: <span class="string">&quot;zh-CN&quot;</span>,</span><br><span class="line">    <span class="string">&quot;browser_platform&quot;</span>: <span class="string">&quot;Win32&quot;</span>,</span><br><span class="line">    <span class="string">&quot;browser_name&quot;</span>: <span class="string">&quot;Chrome&quot;</span>,</span><br><span class="line">    <span class="string">&quot;browser_version&quot;</span>: <span class="string">&quot;137.0.0.0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;engine_name&quot;</span>: <span class="string">&quot;Blink&quot;</span>,</span><br><span class="line">    <span class="string">&quot;engine_version&quot;</span>: <span class="string">&quot;137.0.0.0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;os_name&quot;</span>: <span class="string">&quot;Windows&quot;</span>,</span><br><span class="line">    <span class="string">&quot;os_version&quot;</span>: <span class="string">&quot;10&quot;</span>,</span><br><span class="line">    <span class="string">&quot;device_memory&quot;</span>: <span class="string">&quot;8&quot;</span>,</span><br><span class="line">    <span class="string">&quot;platform&quot;</span>: <span class="string">&quot;PC&quot;</span>,</span><br><span class="line">    <span class="string">&quot;downlink&quot;</span>: <span class="string">&quot;1.25&quot;</span>,</span><br><span class="line">    <span class="string">&quot;effective_type&quot;</span>: <span class="string">&quot;3g&quot;</span>,</span><br><span class="line">    <span class="string">&quot;round_trip_time&quot;</span>: <span class="string">&quot;400&quot;</span>,</span><br><span class="line">    <span class="string">&quot;webid&quot;</span>: <span class="string">&quot;7496768310278981130&quot;</span>,</span><br><span class="line">    <span class="comment"># ===== 以下为签名参数 =====</span></span><br><span class="line">    <span class="string">&quot;msToken&quot;</span>: <span class="string">&quot;F4T44jrnEeB6JH0ljmnhaLUUHOuaoy99JdvY488bpl3yt...&quot;</span>,  <span class="comment"># 动态Token</span></span><br><span class="line">    <span class="string">&quot;a_bogus&quot;</span>: <span class="string">&quot;QX4VhH6Jdd5nad%2FtmCbGt5OlG%2FLlNBuy01TxRaaP9xF...&quot;</span>, <span class="comment"># 核心签名</span></span><br><span class="line">    <span class="string">&quot;verifyFp&quot;</span>: <span class="string">&quot;verify_mcd86ytp_114CZoh0_P145_411x_9k9D_FPijnA76CiMQ&quot;</span>, <span class="comment"># 验证指纹</span></span><br><span class="line">    <span class="string">&quot;fp&quot;</span>: <span class="string">&quot;verify_mcd86ytp_114CZoh0_P145_411x_9k9D_FPijnA76CiMQ&quot;</span>,</span><br><span class="line">    <span class="string">&quot;x-secsdk-web-expire&quot;</span>: <span class="string">&quot;1750933212143&quot;</span>,</span><br><span class="line">    <span class="string">&quot;x-secsdk-web-signature&quot;</span>: <span class="string">&quot;95f0353e72b3161c834f8625ef0bffae&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>签名参数详解：</strong></p>
+<ul>
+<li><strong><code>aweme_id</code></strong>：目标视频的唯一ID，决定了要获取哪个视频的评论</li>
+<li><strong><code>cursor</code></strong>：评论分页游标，<code>&quot;0&quot;</code> 表示第一页，后续翻页使用上一页返回的 <code>cursor</code> 值</li>
+<li><strong><code>count</code></strong>：每页返回的评论数量，通常为20</li>
+<li><strong><code>msToken</code></strong>：抖音的安全令牌，由前端 JS 生成，有效期较短</li>
+<li><strong><code>a_bogus</code></strong>：抖音最核心的签名参数，基于请求参数和设备信息通过混淆算法生成</li>
+<li><strong><code>verifyFp</code></strong>：验证指纹，与 Cookie 中的 <code>s_v_web_id</code> 值一致</li>
+<li><strong>设备信息参数</strong>：<code>browser_name</code>、<code>os_name</code>、<code>screen_width</code> 等模拟真实浏览器环境</li>
+</ul>
+<h3 id="4-发送请求与解析评论"><a href="#4-发送请求与解析评论" class="headerlink" title="4. 发送请求与解析评论"></a>4. 发送请求与解析评论</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 发送GET请求</span></span><br><span class="line">response = requests.get(url, headers=headers, params=params)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查响应状态码</span></span><br><span class="line"><span class="keyword">if</span> response.status_code == <span class="number">200</span>:</span><br><span class="line">    <span class="comment"># 解析JSON数据</span></span><br><span class="line">    data = response.json()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 提取评论数据</span></span><br><span class="line">    comments = data.get(<span class="string">&quot;comments&quot;</span>, [])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> comment <span class="keyword">in</span> comments:</span><br><span class="line">        user = comment[<span class="string">&quot;user&quot;</span>][<span class="string">&quot;nickname&quot;</span>]  <span class="comment"># 评论用户昵称</span></span><br><span class="line">        content = comment[<span class="string">&quot;text&quot;</span>]            <span class="comment"># 评论内容</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;user&#125;</span>: <span class="subst">&#123;content&#125;</span>&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;请求失败，状态码: <span class="subst">&#123;response.status_code&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这里使用 <code>data.get(&quot;comments&quot;, [])</code> 而不是 <code>data[&quot;comments&quot;]</code>，因为当请求被反爬拦截时，返回的JSON中可能不包含 <code>comments</code> 字段，直接取值会抛出 <code>KeyError</code>。</p>
+<h3 id="5-评论翻页"><a href="#5-评论翻页" class="headerlink" title="5. 评论翻页"></a>5. 评论翻页</h3><p>如果要获取更多评论，需要更新 <code>cursor</code> 参数。抖音的翻页逻辑是：每次请求返回的 JSON 中包含一个 <code>cursor</code> 字段，作为下一页请求的游标值：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">cursor = <span class="string">&quot;0&quot;</span></span><br><span class="line">all_comments = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    params[<span class="string">&quot;cursor&quot;</span>] = cursor</span><br><span class="line">    response = requests.get(url, headers=headers, params=params)</span><br><span class="line">    data = response.json()</span><br><span class="line">    comments = data.get(<span class="string">&quot;comments&quot;</span>, [])</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> comments:</span><br><span class="line">        <span class="keyword">break</span>  <span class="comment"># 没有更多评论了</span></span><br><span class="line">    </span><br><span class="line">    all_comments.extend(comments)</span><br><span class="line">    cursor = data.get(<span class="string">&quot;cursor&quot;</span>, <span class="string">&quot;&quot;</span>)  <span class="comment"># 更新游标</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="运行效果"><a href="#运行效果" class="headerlink" title="运行效果"></a>运行效果</h2><p>运行程序后，控制台输出类似如下内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">用户A: 这个视频太有意思了哈哈哈</span><br><span class="line">用户B: 博主的剪辑水平越来越好了</span><br><span class="line">用户C: 求BGM名字！！</span><br><span class="line">用户D: 第一次来，关注了</span><br><span class="line">用户E: 这才是真正的好内容</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>共输出20条评论（第一页），如果需要更多评论则需要翻页请求。</p>
+<h2 id="总结与优化方向"><a href="#总结与优化方向" class="headerlink" title="总结与优化方向"></a>总结与优化方向</h2><p>本文基于抖音Web端评论爬虫的真实源码，详细拆解了评论接口的请求构造过程。核心难点在于 <code>a_bogus</code>、<code>msToken</code> 等签名参数的获取——这些参数由前端 JS 动态生成，无法直接在代码中模拟。</p>
+<p><strong>当前方案的局限性：</strong></p>
+<ol>
+<li><strong>签名参数有效期短</strong>：<code>a_bogus</code> 和 <code>msToken</code> 有时效性，过期后请求会失败</li>
+<li><strong>手动复制参数</strong>：目前需要从浏览器开发者工具中手动复制签名参数，无法自动化</li>
+<li><strong>Cookie 过期</strong>：<code>ttwid</code> 等Cookie也有有效期，需要定期更新</li>
+</ol>
+<p><strong>优化方向：</strong></p>
+<ol>
+<li><strong>JS逆向</strong>：通过逆向 <code>a_bogus</code> 的生成算法，在 Python 中直接计算签名，实现全自动化</li>
+<li><strong>Playwright&#x2F;Selenium 自动化</strong>：用浏览器自动化工具获取签名参数，绕过JS逆向</li>
+<li><strong>评论存储</strong>：将评论存入数据库，配合定时任务实现长期监控</li>
+<li><strong>情感分析</strong>：对爬取的评论文本进行NLP情感分析，挖掘用户态度</li>
+<li><strong>代理IP池</strong>：高频请求时使用代理IP，避免IP被封禁</li>
+</ol>
+<p>抖音爬虫的难点不在于代码本身，而在于对反爬机制的理解和签名参数的获取。随着抖音反爬不断升级，纯参数硬编码的方式越来越难以维持，JS逆向和浏览器自动化是未来的主流方向。</p>
+
   </div>
-</section>
+
+  <footer class="article-reactions">
+    <div class="reaction-group">
+      <button type="button" class="reaction reaction--comment" aria-label="跳转到评论区" data-action="scroll-to-comments">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-message-circle"></use></svg>
+
+      </button>
+      <span class="reaction-label">评论</span>
+      
+    </div>
+    <div class="reaction-group reaction-group--right">
+      
+      <button type="button" class="reaction reaction--share" aria-label="分享" data-action="share">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share-2 flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-share-2"></use></svg>
+
+      </button>
+      <span class="reaction-label">分享</span>
+    </div>
+  </footer>
+
+  
 
 
+  <nav class="article-actions">
+    
+      <span class="article-action article-action--prev is-disabled" aria-disabled="true">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-left"></use></svg>
+
+        <span class="action-label">上一篇</span>
+        <span class="action-title">没有更早的文章了</span>
+      </span>
+    
+    
+      <a class="article-action article-action--next" href="/2026/07/06/2026070312/">
+        <span class="action-label">下一篇</span>
+        <span class="action-title">CVE-2025-55184 React漏洞利用——RSC DoS框架与WAF绕过实战</span>
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
+
+      </a>
+    
+  </nav>
+</article>
+</div>
+
+<button type="button" class="back-to-top" data-action="scroll-to-top" aria-label="返回顶部" hidden>
+  
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-up"></use></svg>
+
+</button>
+
+
+  <section class="related-paper">
+    <header class="related-paper__head">
+      <h2>
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-link"></use></svg>
+相关文章</h2>
+      <a class="related-paper__more" href="/archives/">
+        <span>查看更多</span>
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
+
+      </a>
+    </header>
+    <div class="related-paper__grid">
+      
+        <a class="related-card" href="/2026/07/01/2026070104/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/camera.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">Python 爬虫实战：从 API 请求到浏览器模拟的全链路探索</strong>
+            <em class="related-card__date">2026-07-01</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/06/26/2026062611/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/mountain.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">从 B 站弹幕到数据分析：Python 实战指南</strong>
+            <em class="related-card__date">2026-06-26</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/06/26/2026062610/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/notebook.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">闲鱼商品搜索爬虫：从签名算法到反爬机制的完整逆向与实现</strong>
+            <em class="related-card__date">2026-06-26</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/07/06/2026070608/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/port.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">数据清洗实战：从鳄鱼数据到加密货币数据的全流程处理</strong>
+            <em class="related-card__date">2026-07-06</em>
+          </span>
+        </a>
+      
+    </div>
+  </section>
 
 
       
 
 
     </section>
-    
-      <aside class="paper-sidebar paper-sidebar--left">
-  
-  
-
-  <section class="side-card recent-card" data-random-posts-limit="5">
-    <h2>
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shuffle flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-shuffle"></use></svg>
-随机文章</h2>
-    <ul class="recent-list js-random-posts">
-      
-        <li>
-          <a class="recent-item" href="/2026/07/06/2026070613/">
-            <strong>抖音视频评论爬取：逆向分析Web端评论接口</strong>
-            <em>2026-07-06</em>
-          </a>
-        </li>
-      
-        <li>
-          <a class="recent-item" href="/2026/07/06/2026070312/">
-            <strong>CVE-2025-55184 React漏洞利用——RSC DoS框架与WAF绕过实战</strong>
-            <em>2026-07-06</em>
-          </a>
-        </li>
-      
-        <li>
-          <a class="recent-item" href="/2026/07/06/2026070611/">
-            <strong>CVE-2025-55182 POC与反弹Shell——Next.js React Server Components RCE深度剖析</strong>
-            <em>2026-07-06</em>
-          </a>
-        </li>
-      
-        <li>
-          <a class="recent-item" href="/2026/07/06/2026070612/">
-            <strong>CVE-2022-22965 Spring4Shell RCE漏洞利用——从原理到EXP实现</strong>
-            <em>2026-07-06</em>
-          </a>
-        </li>
-      
-        <li>
-          <a class="recent-item" href="/2026/07/06/2026070610/">
-            <strong>CVE-2025-24813 Tomcat PUT漏洞POC——反序列化RCE的完整利用链</strong>
-            <em>2026-07-06</em>
-          </a>
-        </li>
-      
-    </ul>
-    <script type="application/json" class="js-random-posts-data">
-    [
-    
-      {
-        "title": "抖音视频评论爬取：逆向分析Web端评论接口",
-        "url": "/2026/07/06/2026070613/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "CVE-2025-55184 React漏洞利用——RSC DoS框架与WAF绕过实战",
-        "url": "/2026/07/06/2026070312/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "CVE-2025-55182 POC与反弹Shell——Next.js React Server Components RCE深度剖析",
-        "url": "/2026/07/06/2026070611/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "CVE-2022-22965 Spring4Shell RCE漏洞利用——从原理到EXP实现",
-        "url": "/2026/07/06/2026070612/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "CVE-2025-24813 Tomcat PUT漏洞POC——反序列化RCE的完整利用链",
-        "url": "/2026/07/06/2026070610/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "CVE-2025-30208 Vite任意文件读取漏洞——多路径绕过与批量检测实现",
-        "url": "/2026/07/06/2026070609/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "数据清洗实战：从鳄鱼数据到加密货币数据的全流程处理",
-        "url": "/2026/07/06/2026070608/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "B站弹幕数据处理与词频分析",
-        "url": "/2026/07/06/2026070607/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "自定义网络通讯协议：基于struct的二进制协议设计",
-        "url": "/2026/07/06/2026070606/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "图片隐写术检测与提取",
-        "url": "/2026/07/06/2026070604/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "批量生成联系人信息并可以导入到手机通讯录",
-        "url": "/2026/07/06/2026070605/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "WAF基础实现：基于FastAPI中间件的轻量级Web应用防火墙",
-        "url": "/2026/07/06/2026070602/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "SSH爆破行为IP自动封禁系统：基于日志监控的自动化蓝队防御方案",
-        "url": "/2026/07/06/2026070601/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "子域名挖掘（JSFinder实现）：从JS文件中揪出隐藏的攻击面",
-        "url": "/2026/07/06/2026070603/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "QRCode二维码扫描器",
-        "url": "/2026/07/05/2026070506/",
-        "date": "2026-07-05"
-      },
-    
-      {
-        "title": "手机号归属地查询与社工接口：多维度信息收集工具链解析",
-        "url": "/2026/07/05/2026070505/",
-        "date": "2026-07-05"
-      },
-    
-      {
-        "title": "社会工程学字典生成器：基于个人信息的多维度密码组合工具",
-        "url": "/2026/07/05/2026070504/",
-        "date": "2026-07-05"
-      },
-    
-      {
-        "title": "Shellcode加密免杀技术：Base64编码与字符替换实战",
-        "url": "/2026/07/05/2026070503/",
-        "date": "2026-07-05"
-      },
-    
-      {
-        "title": "Python实现MSF免杀技术：Base64加密 + 字符替换 + 反调试反沙箱",
-        "url": "/2026/07/05/2026070502/",
-        "date": "2026-07-05"
-      },
-    
-      {
-        "title": "我潜入了一个\"消费返利\"项目的启动大会——这是我的现场记录",
-        "url": "/2026/07/05/2026070501/",
-        "date": "2026-07-05"
-      },
-    
-      {
-        "title": "敏感目录扫描工具：多线程爆破Web隐藏路径",
-        "url": "/2026/07/05/2026062606/",
-        "date": "2026-07-05"
-      },
-    
-      {
-        "title": "Python 爬虫实战：从 API 请求到浏览器模拟的全链路探索",
-        "url": "/2026/07/01/2026070104/",
-        "date": "2026-07-01"
-      },
-    
-      {
-        "title": "免杀技术（Bypass AV/EDR）",
-        "url": "/2026/07/01/2026070103/",
-        "date": "2026-07-01"
-      },
-    
-      {
-        "title": "Flipper One：口袋里的开放 Linux 计算机——从愿景到现实",
-        "url": "/2026/07/01/2026070102/",
-        "date": "2026-07-01"
-      },
-    
-      {
-        "title": "震惊！2026年了，微软 Edge 居然还在内存里明文存密码？三步就能全拿走",
-        "url": "/2026/07/01/2026070101/",
-        "date": "2026-07-01"
-      },
-    
-      {
-        "title": "涉密场所办公保密设备 + 通信屏蔽设备完整选型指南",
-        "url": "/2026/06/30/2026063001/",
-        "date": "2026-06-30"
-      },
-    
-      {
-        "title": "免杀对抗之一 基础了解",
-        "url": "/2026/06/29/2026062903/",
-        "date": "2026-06-29"
-      },
-    
-      {
-        "title": "X（Twitter）平台开源情报调查技巧",
-        "url": "/2026/06/29/2026062902/",
-        "date": "2026-06-29"
-      },
-    
-      {
-        "title": "一个查询IP地理信息和CDN提供商的离线终端工具",
-        "url": "/2026/06/29/2026062901/",
-        "date": "2026-06-29"
-      },
-    
-      {
-        "title": "玩转 Flipper Zero：RFID 全功能介绍",
-        "url": "/2026/06/27/2026062702/",
-        "date": "2026-06-27"
-      },
-    
-      {
-        "title": "🎭 镜界反制：一个针对裸聊骗子的克制指南",
-        "url": "/2026/06/27/2026062701/",
-        "date": "2026-06-27"
-      },
-    
-      {
-        "title": "匿名上网方法",
-        "url": "/2026/06/26/2026062629/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "社工开盒的黑思路",
-        "url": "/2026/06/26/2026062631/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "V2ray搭建教程，操作简单，支持vless，vmess，socks5等协议，x-ui搭建教程v2ray服务器vps",
-        "url": "/2026/06/26/2026062630/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "旧手机别扔！三台安卓手机搭建本地大模型实战指南",
-        "url": "/2026/06/26/2026062625/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "从秒到毫秒：掌控 SQL 性能的 21 条硬核策略与服务层性能陷阱",
-        "url": "/2026/06/26/2026062624/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "基于策略模式优化 Java 系统角色相关功能的方案文档",
-        "url": "/2026/06/26/2026062614/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "当网络成为广场：匿名者（Anonymous）现象背后的公共议题张力",
-        "url": "/2026/06/26/2026062615/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "若依常见漏洞一把梭（上）",
-        "url": "/2026/06/26/2026062620/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "若依常见漏洞一把梭（下）",
-        "url": "/2026/06/26/2026062621/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "你真的会用搜索引擎吗？",
-        "url": "/2026/06/26/2026062618/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "破解手机锁屏密码",
-        "url": "/2026/06/26/2026062619/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "📚 序列化与反序列化：原理、实现、风险与现代开发实践",
-        "url": "/2026/06/26/2026062617/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "学校想要手机序列号有什么用",
-        "url": "/2026/06/26/2026062623/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "🛡️ 社工防御体系：从信息隐身到主动反制",
-        "url": "/2026/06/26/2026062616/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "Springboot --- 使用国内的 AI 大模型 对话",
-        "url": "/2026/06/26/2026062612/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "从 B 站弹幕到数据分析：Python 实战指南",
-        "url": "/2026/06/26/2026062611/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "物理机 Kali 改造笔记（一）",
-        "url": "/2026/06/26/2026062613/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "Spring Boot 服务层泛型抽象与代码复用实战",
-        "url": "/2026/06/26/2026062607/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "多协议蜜罐初体验 🐝",
-        "url": "/2026/06/26/2026062608/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "多协议蜜罐日志解析与可视化 📊",
-        "url": "/2026/06/26/2026062609/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "闲鱼商品搜索爬虫：从签名算法到反爬机制的完整逆向与实现",
-        "url": "/2026/06/26/2026062610/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "使用 Vue3 + Axios 与 Spring Boot 高效对接（含 token 处理）",
-        "url": "/2026/06/26/2026062605/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "如何用 Spring Security 构建无状态权限控制系统（含角色菜单控制）",
-        "url": "/2026/06/26/2026062604/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "从 0 到 1，我如何独立开发一套教务系统（EduCore）",
-        "url": "/2026/06/26/2026062603/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "Java 集合框架与数据结构核心速记笔记",
-        "url": "/2026/06/26/2026062602/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "将 MSF 捆绑进入正常的APP 程序中",
-        "url": "/2024/12/10/2026062628/",
-        "date": "2024-12-10"
-      },
-    
-      {
-        "title": "古典密码学 (一)",
-        "url": "/2024/10/13/2026062627/",
-        "date": "2024-10-13"
-      }
-    
-    ]
-    </script>
-  </section>
-
-
-</aside>
-
     
   </main>
 
