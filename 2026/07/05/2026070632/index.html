@@ -8,16 +8,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#f7f3e9">
 
-<title>我潜入了一个&#34;消费返利&#34;项目的启动大会——这是我的现场记录 | ZapcoMan&#39;s world</title>
-<meta name="description" content="Redis 缓存一致性 + 分布式限流完整实战 从”只删一次缓存的坑”到”延迟双删的正确姿势”，从”固定窗口的临界突刺”到”令牌桶的匀速填充”——本文把 Redis 缓存策略和限流算法的完整知识体系，用一个社区团购系统的真实代码从头到尾讲透。 第一章：为什么缓存一致性是个难题1.1 先看”只删一次”的坑最常见的缓存更新策略是 Cache Aside：先更新数...">
+<title>Redis 缓存一致性 + 分布式限流完整实战 | ZapcoMan&#39;s world</title>
+<meta name="description" content="从”只删一次缓存的坑”到”延迟双删的正确姿势”，从”固定窗口的临界突刺”到”令牌桶的匀速填充”——本文把 Redis 缓存策略和限流算法的完整知识体系，用一个社区团购系统的真实代码从头到尾讲透。 第一章：为什么缓存一致性是个难题1.1 先看”只删一次”的坑最常见的缓存更新策略是 Cache Aside：先更新数据库，再删除缓存。但在高并发下有一个经典竞态条件...">
 <meta property="og:type" content="article">
-<meta property="og:title" content="我潜入了一个&quot;消费返利&quot;项目的启动大会——这是我的现场记录 | ZapcoMan&#39;s world">
+<meta property="og:title" content="Redis 缓存一致性 + 分布式限流完整实战 | ZapcoMan&#39;s world">
 <meta property="og:url" content="http://example.com/2026/07/05/2026070632/">
 <meta property="og:site_name" content="ZapcoMan&#39;s world">
-<meta property="og:description" content="Redis 缓存一致性 + 分布式限流完整实战 从”只删一次缓存的坑”到”延迟双删的正确姿势”，从”固定窗口的临界突刺”到”令牌桶的匀速填充”——本文把 Redis 缓存策略和限流算法的完整知识体系，用一个社区团购系统的真实代码从头到尾讲透。 第一章：为什么缓存一致性是个难题1.1 先看”只删一次”的坑最常见的缓存更新策略是 Cache Aside：先更新数...">
+<meta property="og:description" content="从”只删一次缓存的坑”到”延迟双删的正确姿势”，从”固定窗口的临界突刺”到”令牌桶的匀速填充”——本文把 Redis 缓存策略和限流算法的完整知识体系，用一个社区团购系统的真实代码从头到尾讲透。 第一章：为什么缓存一致性是个难题1.1 先看”只删一次”的坑最常见的缓存更新策略是 Cache Aside：先更新数据库，再删除缓存。但在高并发下有一个经典竞态条件...">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-07-05T12:12:51.000Z">
-<meta property="article:modified_time" content="2026-07-06T13:09:37.645Z">
+<meta property="article:modified_time" content="2026-07-06T13:12:46.421Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="Redis">
 <meta property="article:tag" content="Springboot">
@@ -28,7 +28,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"我潜入了一个\"消费返利\"项目的启动大会——这是我的现场记录","name":"我潜入了一个\"消费返利\"项目的启动大会——这是我的现场记录 | ZapcoMan's world","description":"Redis 缓存一致性 + 分布式限流完整实战 从”只删一次缓存的坑”到”延迟双删的正确姿势”，从”固定窗口的临界突刺”到”令牌桶的匀速填充”——本文把 Redis 缓存策略和限流算法的完整知识体系，用一个社区团购系统的真实代码从头到尾讲透。 第一章：为什么缓存一致性是个难题1.1 先看”只删一次”的坑最常见的缓存更新策略是 Cache Aside：先更新数...","url":"http://example.com/2026/07/05/2026070632/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/07/05/2026070632/","datePublished":"2026-07-05T12:12:51.000Z","dateModified":"2026-07-06T13:09:37.645Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"Springboot, java, Redis, 缓存"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Redis 缓存一致性 + 分布式限流完整实战","name":"Redis 缓存一致性 + 分布式限流完整实战 | ZapcoMan's world","description":"从”只删一次缓存的坑”到”延迟双删的正确姿势”，从”固定窗口的临界突刺”到”令牌桶的匀速填充”——本文把 Redis 缓存策略和限流算法的完整知识体系，用一个社区团购系统的真实代码从头到尾讲透。 第一章：为什么缓存一致性是个难题1.1 先看”只删一次”的坑最常见的缓存更新策略是 Cache Aside：先更新数据库，再删除缓存。但在高并发下有一个经典竞态条件...","url":"http://example.com/2026/07/05/2026070632/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/07/05/2026070632/","datePublished":"2026-07-05T12:12:51.000Z","dateModified":"2026-07-06T13:12:46.421Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"Springboot, java, Redis, 缓存"}</script>
 
 <script>
   (function () {
@@ -451,7 +451,7 @@
         springboot
       </a>
     
-    <h1>我潜入了一个&#34;消费返利&#34;项目的启动大会——这是我的现场记录</h1>
+    <h1>Redis 缓存一致性 + 分布式限流完整实战</h1>
     <div class="meta-line meta-line--article">
       <span class="meta-date">
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
@@ -471,7 +471,7 @@
 
 
   <div class="article-content">
-    <h1 id="Redis-缓存一致性-分布式限流完整实战"><a href="#Redis-缓存一致性-分布式限流完整实战" class="headerlink" title="Redis 缓存一致性 + 分布式限流完整实战"></a>Redis 缓存一致性 + 分布式限流完整实战</h1><blockquote>
+    <blockquote>
 <p>从”只删一次缓存的坑”到”延迟双删的正确姿势”，从”固定窗口的临界突刺”到”令牌桶的匀速填充”——本文把 Redis 缓存策略和限流算法的完整知识体系，用一个社区团购系统的真实代码从头到尾讲透。</p>
 </blockquote>
 <hr>
