@@ -17,7 +17,7 @@
 <meta property="og:description" content="WAF（Web Application Firewall）是渗透测试的第一道坎。扫之前先搞清楚对面是什么 WAF——Cloudflare？阿里云 WAF？安全狗？不同 WAF 的绕过策略天差地别。这篇从 sqlmap 的 WAF 检测模块拆解指纹识别的底层原理。 WAF 指纹识别的两种思路 主动探测：发送特定 Payload，根据响应特征判断。sqlmap...">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-07-06T06:18:22.000Z">
-<meta property="article:modified_time" content="2026-07-06T07:14:04.628Z">
+<meta property="article:modified_time" content="2026-07-06T07:58:22.061Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="WAF">
 <meta property="article:tag" content="python">
@@ -27,7 +27,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"WAF 指纹识别原理与实现：从 sqlmap 源码学起","name":"WAF 指纹识别原理与实现：从 sqlmap 源码学起 | ZapcoMan's world","description":"WAF（Web Application Firewall）是渗透测试的第一道坎。扫之前先搞清楚对面是什么 WAF——Cloudflare？阿里云 WAF？安全狗？不同 WAF 的绕过策略天差地别。这篇从 sqlmap 的 WAF 检测模块拆解指纹识别的底层原理。 WAF 指纹识别的两种思路 主动探测：发送特定 Payload，根据响应特征判断。sqlmap...","url":"http://example.com/2026/07/06/2026070630/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/07/06/2026070630/","datePublished":"2026-07-06T06:18:22.000Z","dateModified":"2026-07-06T07:14:04.628Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"python, 渗透测试, WAF"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"WAF 指纹识别原理与实现：从 sqlmap 源码学起","name":"WAF 指纹识别原理与实现：从 sqlmap 源码学起 | ZapcoMan's world","description":"WAF（Web Application Firewall）是渗透测试的第一道坎。扫之前先搞清楚对面是什么 WAF——Cloudflare？阿里云 WAF？安全狗？不同 WAF 的绕过策略天差地别。这篇从 sqlmap 的 WAF 检测模块拆解指纹识别的底层原理。 WAF 指纹识别的两种思路 主动探测：发送特定 Payload，根据响应特征判断。sqlmap...","url":"http://example.com/2026/07/06/2026070630/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/07/06/2026070630/","datePublished":"2026-07-06T06:18:22.000Z","dateModified":"2026-07-06T07:58:22.061Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"python, 渗透测试, WAF"}</script>
 
 <script>
   (function () {
@@ -553,9 +553,7 @@
 <hr>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>WAF 指纹识别本质上是一个<strong>模式匹配</strong>问题。被动识别看响应头和 Cookie，主动探测发送恶意 Payload 看反应。sqlmap 的思路很经典——用一个明显恶意的请求试探，根据 WAF 的拦截页面特征反推类型。</p>
 <p>知道对面是什么 WAF，后面的绕过才有方向。</p>
-<p>完整代码：<a target="_blank" rel="noopener" href="https://github.com/your-repo">vibeWaf</a></p>
 <hr>
-<p><em>下一篇预告：短信验证码漏洞挖掘——从轰炸到逻辑绕过。</em></p>
 
   </div>
 

@@ -17,7 +17,7 @@
 <meta property="og:description" content="安全从业者的工具箱里，漏洞扫描器是出场率最高的家伙。市面上的成品要么贵（Nessus），要么重（OpenVAS），要么只做一件事（Nmap）。这篇带你从零搭一个能打的全功能扫描器——端口扫描、目录爆破、SQL 注入&#x2F;XSS&#x2F;命令注入检测、子域名枚举、HTML 可视化报告，一个不少。 最终成品一个 Python CLI 工具，输入一个域名或...">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-07-06T06:28:22.000Z">
-<meta property="article:modified_time" content="2026-07-06T07:17:35.933Z">
+<meta property="article:modified_time" content="2026-07-06T07:58:21.972Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="信息收集">
@@ -28,7 +28,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"从零打造漏洞扫描器：端口扫描 + Web 检测 + 报告生成","name":"从零打造漏洞扫描器：端口扫描 + Web 检测 + 报告生成 | ZapcoMan's world","description":"安全从业者的工具箱里，漏洞扫描器是出场率最高的家伙。市面上的成品要么贵（Nessus），要么重（OpenVAS），要么只做一件事（Nmap）。这篇带你从零搭一个能打的全功能扫描器——端口扫描、目录爆破、SQL 注入&#x2F;XSS&#x2F;命令注入检测、子域名枚举、HTML 可视化报告，一个不少。 最终成品一个 Python CLI 工具，输入一个域名或...","url":"http://example.com/2026/07/06/2026070631/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/07/06/2026070631/","datePublished":"2026-07-06T06:28:22.000Z","dateModified":"2026-07-06T07:17:35.933Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"python, 渗透测试, 信息收集, 端口扫描"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"从零打造漏洞扫描器：端口扫描 + Web 检测 + 报告生成","name":"从零打造漏洞扫描器：端口扫描 + Web 检测 + 报告生成 | ZapcoMan's world","description":"安全从业者的工具箱里，漏洞扫描器是出场率最高的家伙。市面上的成品要么贵（Nessus），要么重（OpenVAS），要么只做一件事（Nmap）。这篇带你从零搭一个能打的全功能扫描器——端口扫描、目录爆破、SQL 注入&#x2F;XSS&#x2F;命令注入检测、子域名枚举、HTML 可视化报告，一个不少。 最终成品一个 Python CLI 工具，输入一个域名或...","url":"http://example.com/2026/07/06/2026070631/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/07/06/2026070631/","datePublished":"2026-07-06T06:28:22.000Z","dateModified":"2026-07-06T07:58:21.972Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"python, 渗透测试, 信息收集, 端口扫描"}</script>
 
 <script>
   (function () {
@@ -583,9 +583,7 @@
 <li><strong>异常隔离</strong> → 单目标失败不影响批量</li>
 </ul>
 <p><strong>法律声明</strong>：此工具仅限授权安全测试使用。未经授权扫描他人系统可能违反《网络安全法》。</p>
-<p>完整代码：<a target="_blank" rel="noopener" href="https://github.com/your-repo">CyberThreatHunter</a></p>
 <hr>
-<p><em>下一篇预告：masscan + nmap 组合拳——高速端口扫描工具开发。</em></p>
 
   </div>
 

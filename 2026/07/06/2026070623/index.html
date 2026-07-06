@@ -17,7 +17,7 @@
 <meta property="og:description" content="身份证号码不是随机数字，它有严格的编码规则——前 6 位是地区码，中间 8 位是出生日期，最后 1 位是校验码。这篇彻底拆解身份证号码的生成与校验算法，写一个能”算”出完整身份证号的 Python 工具。 声明：本文仅讨论身份证号码的数学结构和编码规则，所涉及的校验算法为公开知识。严禁用于非法获取或验证他人身份信息。 18 位身份证号码的结构12345┌──...">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-07-06T03:05:22.000Z">
-<meta property="article:modified_time" content="2026-07-06T03:56:25.544Z">
+<meta property="article:modified_time" content="2026-07-06T07:58:21.761Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="社会工程学">
@@ -26,7 +26,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Python 身份证号码校验算法详解：从编码规则到穷举验证","name":"Python 身份证号码校验算法详解：从编码规则到穷举验证 | ZapcoMan's world","description":"身份证号码不是随机数字，它有严格的编码规则——前 6 位是地区码，中间 8 位是出生日期，最后 1 位是校验码。这篇彻底拆解身份证号码的生成与校验算法，写一个能”算”出完整身份证号的 Python 工具。 声明：本文仅讨论身份证号码的数学结构和编码规则，所涉及的校验算法为公开知识。严禁用于非法获取或验证他人身份信息。 18 位身份证号码的结构12345┌──...","url":"http://example.com/2026/07/06/2026070623/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/07/06/2026070623/","datePublished":"2026-07-06T03:05:22.000Z","dateModified":"2026-07-06T03:56:25.544Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"python, 社会工程学"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Python 身份证号码校验算法详解：从编码规则到穷举验证","name":"Python 身份证号码校验算法详解：从编码规则到穷举验证 | ZapcoMan's world","description":"身份证号码不是随机数字，它有严格的编码规则——前 6 位是地区码，中间 8 位是出生日期，最后 1 位是校验码。这篇彻底拆解身份证号码的生成与校验算法，写一个能”算”出完整身份证号的 Python 工具。 声明：本文仅讨论身份证号码的数学结构和编码规则，所涉及的校验算法为公开知识。严禁用于非法获取或验证他人身份信息。 18 位身份证号码的结构12345┌──...","url":"http://example.com/2026/07/06/2026070623/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/07/06/2026070623/","datePublished":"2026-07-06T03:05:22.000Z","dateModified":"2026-07-06T07:58:21.761Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"python, 社会工程学"}</script>
 
 <script>
   (function () {
