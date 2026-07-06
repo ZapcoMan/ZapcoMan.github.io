@@ -17,7 +17,7 @@
 <meta property="og:description" content="身份证号码不是随机数字，它有严格的编码规则——前 6 位是地区码，中间 8 位是出生日期，最后 1 位是校验码。这篇彻底拆解身份证号码的生成与校验算法，写一个能”算”出完整身份证号的 Python 工具。 声明：本文仅讨论身份证号码的数学结构和编码规则，所涉及的校验算法为公开知识。严禁用于非法获取或验证他人身份信息。 18 位身份证号码的结构12345┌──...">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-07-06T03:05:22.000Z">
-<meta property="article:modified_time" content="2026-07-06T03:54:22.756Z">
+<meta property="article:modified_time" content="2026-07-06T03:56:25.544Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="社会工程学">
@@ -26,7 +26,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Python 身份证号码校验算法详解：从编码规则到穷举验证","name":"Python 身份证号码校验算法详解：从编码规则到穷举验证 | ZapcoMan's world","description":"身份证号码不是随机数字，它有严格的编码规则——前 6 位是地区码，中间 8 位是出生日期，最后 1 位是校验码。这篇彻底拆解身份证号码的生成与校验算法，写一个能”算”出完整身份证号的 Python 工具。 声明：本文仅讨论身份证号码的数学结构和编码规则，所涉及的校验算法为公开知识。严禁用于非法获取或验证他人身份信息。 18 位身份证号码的结构12345┌──...","url":"http://example.com/2026/07/06/2026070623/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/07/06/2026070623/","datePublished":"2026-07-06T03:05:22.000Z","dateModified":"2026-07-06T03:54:22.756Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"python, 社会工程学"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Python 身份证号码校验算法详解：从编码规则到穷举验证","name":"Python 身份证号码校验算法详解：从编码规则到穷举验证 | ZapcoMan's world","description":"身份证号码不是随机数字，它有严格的编码规则——前 6 位是地区码，中间 8 位是出生日期，最后 1 位是校验码。这篇彻底拆解身份证号码的生成与校验算法，写一个能”算”出完整身份证号的 Python 工具。 声明：本文仅讨论身份证号码的数学结构和编码规则，所涉及的校验算法为公开知识。严禁用于非法获取或验证他人身份信息。 18 位身份证号码的结构12345┌──...","url":"http://example.com/2026/07/06/2026070623/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/07/06/2026070623/","datePublished":"2026-07-06T03:05:22.000Z","dateModified":"2026-07-06T03:56:25.544Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"python, 社会工程学"}</script>
 
 <script>
   (function () {
@@ -343,7 +343,7 @@
         
           
             <a class="site-info__item" href="/archives/">
-              <strong>69</strong>
+              <strong>70</strong>
               <span>文章</span>
             </a>
           
@@ -357,7 +357,7 @@
         
           
             <a class="site-info__item" href="/tags/">
-              <strong>69</strong>
+              <strong>70</strong>
               <span>标签</span>
             </a>
           
@@ -533,9 +533,7 @@
 
 <hr>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>身份证号码是教科书级别的校验编码设计——加权求和、模 11 校验、性别嵌入顺序码。理解了这个算法，你就能验证、生成、升级任何合法的身份证号。</p>
-<p>完整实现：<a target="_blank" rel="noopener" href="https://github.com/your-repo">IdCardChecker</a> | <a target="_blank" rel="noopener" href="https://github.com/your-repo">IDCardTools</a></p>
 <hr>
-<p><em>下一篇预告：百万级 Excel 数据快速导入 MySQL 的 Python 方案。</em></p>
 
   </div>
 
@@ -565,12 +563,12 @@
 
   <nav class="article-actions">
     
-      <a class="article-action article-action--prev" href="/2026/07/06/2026070624/">
+      <a class="article-action article-action--prev" href="/2026/07/06/2026070625/">
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-left"></use></svg>
 
         <span class="action-label">上一篇</span>
-        <span class="action-title">自动化资产信息收集：CNVD 漏洞报送辅助工具</span>
+        <span class="action-title">dirsearch 二开实战：集成 EHole 指纹识别与 Swagger 未授权检测</span>
       </a>
     
     
@@ -623,7 +621,7 @@
           </span>
         </a>
       
-        <a class="related-card" href="/2026/07/06/2026070622/">
+        <a class="related-card" href="/2026/07/06/2026070625/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-1 paper-thumb--cover">
@@ -634,12 +632,12 @@
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">同花顺股票数据爬虫</strong>
+            <strong class="related-card__title">dirsearch 二开实战：集成 EHole 指纹识别与 Swagger 未授权检测</strong>
             <em class="related-card__date">2026-07-06</em>
           </span>
         </a>
       
-        <a class="related-card" href="/2026/07/06/2026070621/">
+        <a class="related-card" href="/2026/07/06/2026070622/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-2 paper-thumb--cover">
@@ -650,7 +648,7 @@
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">B站视频弹幕爬取实战</strong>
+            <strong class="related-card__title">同花顺股票数据爬虫</strong>
             <em class="related-card__date">2026-07-06</em>
           </span>
         </a>
