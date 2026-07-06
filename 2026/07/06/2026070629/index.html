@@ -17,7 +17,7 @@
 <meta property="og:description" content="Vue3 + Flask 全栈实战：从零构建在线二维码解析器 上篇讲了图像预处理提升二维码识别率的底层原理，这篇把整个流程搬上 Web——用 Vue 3 + Flask 搭一个前后端分离的在线二维码解析工具。支持拖拽上传和 URL 输入两种方式，外加 Redis 缓存和 API 限流。 最终效果一个单页面 Web 应用： 拖拽&#x2F;点击上传二维码图片...">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-07-06T03:18:22.000Z">
-<meta property="article:modified_time" content="2026-07-06T04:16:04.794Z">
+<meta property="article:modified_time" content="2026-07-06T04:19:26.610Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="渗透测试">
@@ -27,7 +27,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Vue3 + Flask 全栈实战：从零构建在线二维码解析器","name":"Vue3 + Flask 全栈实战：从零构建在线二维码解析器 | ZapcoMan's world","description":"Vue3 + Flask 全栈实战：从零构建在线二维码解析器 上篇讲了图像预处理提升二维码识别率的底层原理，这篇把整个流程搬上 Web——用 Vue 3 + Flask 搭一个前后端分离的在线二维码解析工具。支持拖拽上传和 URL 输入两种方式，外加 Redis 缓存和 API 限流。 最终效果一个单页面 Web 应用： 拖拽&#x2F;点击上传二维码图片...","url":"http://example.com/2026/07/06/2026070629/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/07/06/2026070629/","datePublished":"2026-07-06T03:18:22.000Z","dateModified":"2026-07-06T04:16:04.794Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"python, 渗透测试, 社会工程学"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Vue3 + Flask 全栈实战：从零构建在线二维码解析器","name":"Vue3 + Flask 全栈实战：从零构建在线二维码解析器 | ZapcoMan's world","description":"Vue3 + Flask 全栈实战：从零构建在线二维码解析器 上篇讲了图像预处理提升二维码识别率的底层原理，这篇把整个流程搬上 Web——用 Vue 3 + Flask 搭一个前后端分离的在线二维码解析工具。支持拖拽上传和 URL 输入两种方式，外加 Redis 缓存和 API 限流。 最终效果一个单页面 Web 应用： 拖拽&#x2F;点击上传二维码图片...","url":"http://example.com/2026/07/06/2026070629/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/07/06/2026070629/","datePublished":"2026-07-06T03:18:22.000Z","dateModified":"2026-07-06T04:19:26.610Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"python, 渗透测试, 社会工程学"}</script>
 
 <script>
   (function () {
@@ -611,9 +611,8 @@
 <li><strong>前端</strong>：Composition API → TypeScript 类型约束 → Vite 代理 → 毛玻璃 UI</li>
 <li><strong>部署</strong>：Docker Compose → Gunicorn gevent → Redis 持久化</li>
 </ul>
-<p>从零搭起来大概 3-4 小时，但每一步的决策背后都有实际工程考量。完整代码在 <a target="_blank" rel="noopener" href="https://github.com/your-repo">qrCodeAnalyzerWeb</a>，克隆下来 <code>docker-compose up</code> 就能跑。</p>
+<p>从零搭起来大概 3-4 小时，但每一步的决策背后都有实际工程考量。</p>
 <hr>
-<p><em>下一篇预告：从零打造漏洞扫描器——端口扫描 + Web 检测 + 报告生成。</em></p>
 
   </div>
 
@@ -652,9 +651,9 @@
       </a>
     
     
-      <a class="article-action article-action--next" href="/2026/07/06/2026070625/">
+      <a class="article-action article-action--next" href="/2026/07/06/2026070624/">
         <span class="action-label">下一篇</span>
-        <span class="action-title">dirsearch 二开实战：集成 EHole 指纹识别与 Swagger 未授权检测</span>
+        <span class="action-title">自动化资产信息收集：CNVD 漏洞报送辅助工具</span>
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
 
@@ -717,7 +716,7 @@
           </span>
         </a>
       
-        <a class="related-card" href="/2026/07/06/2026070625/">
+        <a class="related-card" href="/2026/07/06/2026070624/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-2 paper-thumb--cover">
@@ -728,12 +727,12 @@
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">dirsearch 二开实战：集成 EHole 指纹识别与 Swagger 未授权检测</strong>
+            <strong class="related-card__title">自动化资产信息收集：CNVD 漏洞报送辅助工具</strong>
             <em class="related-card__date">2026-07-06</em>
           </span>
         </a>
       
-        <a class="related-card" href="/2026/07/06/2026070624/">
+        <a class="related-card" href="/2026/07/06/2026070626/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
@@ -744,7 +743,7 @@
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">自动化资产信息收集：CNVD 漏洞报送辅助工具</strong>
+            <strong class="related-card__title">轻量级 OCR 服务搭建：ddddocr + 异步 HTTP 接口</strong>
             <em class="related-card__date">2026-07-06</em>
           </span>
         </a>
