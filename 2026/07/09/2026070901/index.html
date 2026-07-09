@@ -1,0 +1,1315 @@
+<!doctype html>
+
+<html lang="zh-CN" data-fancybox-enabled="1">
+<head>
+  
+
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f7f3e9">
+
+<title>GrapheneOS 完全指南：把安卓的安全与隐私做到极致 | ZapcoMan&#39;s world</title>
+<meta name="description" content="这不是一篇简单的”刷机教程”。本文从项目起源、安全架构、隐私机制、功能特性、安装方法到横向对比，事无巨细地拆解 GrapheneOS——目前公认最安全的安卓操作系统。 一、GrapheneOS 是什么GrapheneOS 是一款基于 AOSP（Android 开源项目） 的开源移动操作系统，兼容 Android 应用，是一个非营利开源项目。以隐私和安全为核心...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GrapheneOS 完全指南：把安卓的安全与隐私做到极致 | ZapcoMan&#39;s world">
+<meta property="og:url" content="http://example.com/2026/07/09/2026070901/">
+<meta property="og:site_name" content="ZapcoMan&#39;s world">
+<meta property="og:description" content="这不是一篇简单的”刷机教程”。本文从项目起源、安全架构、隐私机制、功能特性、安装方法到横向对比，事无巨细地拆解 GrapheneOS——目前公认最安全的安卓操作系统。 一、GrapheneOS 是什么GrapheneOS 是一款基于 AOSP（Android 开源项目） 的开源移动操作系统，兼容 Android 应用，是一个非营利开源项目。以隐私和安全为核心...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-07-09T15:28:22.000Z">
+<meta property="article:modified_time" content="2026-07-09T15:29:08.108Z">
+<meta property="article:author" content="ZapcoMan">
+<meta property="article:tag" content="GrapheneOS">
+<meta property="article:tag" content="信息收集">
+<meta property="article:tag" content="渗透测试">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="http://example.com/2026/07/09/2026070901/">
+
+<link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"GrapheneOS 完全指南：把安卓的安全与隐私做到极致","name":"GrapheneOS 完全指南：把安卓的安全与隐私做到极致 | ZapcoMan's world","description":"这不是一篇简单的”刷机教程”。本文从项目起源、安全架构、隐私机制、功能特性、安装方法到横向对比，事无巨细地拆解 GrapheneOS——目前公认最安全的安卓操作系统。 一、GrapheneOS 是什么GrapheneOS 是一款基于 AOSP（Android 开源项目） 的开源移动操作系统，兼容 Android 应用，是一个非营利开源项目。以隐私和安全为核心...","url":"http://example.com/2026/07/09/2026070901/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/07/09/2026070901/","datePublished":"2026-07-09T15:28:22.000Z","dateModified":"2026-07-09T15:29:08.108Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"渗透测试, 信息收集, GrapheneOS"}</script>
+
+<script>
+  (function () {
+    var accents = { orange: 1, purple: 1, sakura: 1, blue: 1, pink: 1, green: 1, black: 1 };
+    var match = document.cookie.match(/(?:^|;\s*)flatpaper-accent=([^;]+)/);
+    var accent = 'blue';
+    if (match) {
+      try { accent = decodeURIComponent(match[1]); } catch (e) {}
+    }
+    if (!accents[accent]) accent = 'blue';
+    document.documentElement.setAttribute('data-accent', accent);
+    try {
+      if (localStorage.getItem('flatpaper-mode') === 'dark') {
+        document.documentElement.classList.add('dark-mode');
+      }
+    } catch (e) {}
+  })();
+</script>
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
+<script defer src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 8.1.2"><link rel="alternate" href="/atom.xml" title="ZapcoMan's world" type="application/atom+xml">
+</head>
+
+<body
+  class="is-post tag-style-tape bg-style-default"
+  data-default-accent="blue"
+  data-code-theme="dark"
+  data-note-style="sticky"
+  data-note-icons="on"
+  data-button-style="circle"
+  data-strong-accent="on"
+>
+  
+    <div class="page-grain"></div>
+  
+  <svg width="0" height="0" style="position:absolute;z-index:-1;" aria-hidden="true">
+    <defs>
+      <filter id="paper-edge" x="-5%" y="-5%" width="110%" height="110%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.04" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+    </defs>
+  </svg>
+  <svg class="flatpaper-icon-sprite" xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute;width:0;height:0;overflow:hidden;" aria-hidden="true" focusable="false"><defs><symbol id="flatpaper-icon-lucide-layout-grid" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></symbol><symbol id="flatpaper-icon-lucide-house" viewBox="0 0 24 24"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol><symbol id="flatpaper-icon-lucide-archive" viewBox="0 0 24 24"><rect width="20" height="5" x="2" y="3" rx="1"/><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8"/><path d="M10 12h4"/></symbol><symbol id="flatpaper-icon-lucide-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol><symbol id="flatpaper-icon-lucide-user" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol><symbol id="flatpaper-icon-lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></symbol><symbol id="flatpaper-icon-lucide-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol><symbol id="flatpaper-icon-lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></symbol><symbol id="flatpaper-icon-lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></symbol><symbol id="flatpaper-icon-lucide-palette" viewBox="0 0 24 24"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"/><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/></symbol><symbol id="flatpaper-icon-fa-brands-github" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></symbol><symbol id="flatpaper-icon-fa-brands-twitter" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></symbol><symbol id="flatpaper-icon-lucide-mail" viewBox="0 0 24 24"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></symbol><symbol id="flatpaper-icon-lucide-rss" viewBox="0 0 24 24"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></symbol><symbol id="flatpaper-icon-lucide-atom" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><path d="M20.2 20.2c2.04-2.03.02-7.36-4.5-11.9-4.54-4.52-9.87-6.54-11.9-4.5-2.04 2.03-.02 7.36 4.5 11.9 4.54 4.52 9.87 6.54 11.9 4.5Z"/><path d="M15.7 15.7c4.52-4.54 6.54-9.87 4.5-11.9-2.03-2.04-7.36-.02-11.9 4.5-4.52 4.54-6.54 9.87-4.5 11.9 2.03 2.04 7.36.02 11.9-4.5Z"/></symbol><symbol id="flatpaper-icon-lucide-heart" viewBox="0 0 24 24"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></symbol><symbol id="flatpaper-icon-lucide-message-circle" viewBox="0 0 24 24"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></symbol><symbol id="flatpaper-icon-lucide-message-square" viewBox="0 0 24 24"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z"/></symbol><symbol id="flatpaper-icon-lucide-share-2" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></symbol><symbol id="flatpaper-icon-lucide-calendar" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></symbol><symbol id="flatpaper-icon-lucide-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol><symbol id="flatpaper-icon-lucide-shuffle" viewBox="0 0 24 24"><path d="m18 14 4 4-4 4"/><path d="m18 2 4 4-4 4"/><path d="M2 18h1.973a4 4 0 0 0 3.3-1.7l5.454-8.6a4 4 0 0 1 3.3-1.7H22"/><path d="M2 6h1.972a4 4 0 0 1 3.6 2.2"/><path d="M22 18h-6.041a4 4 0 0 1-3.3-1.8l-.359-.45"/></symbol><symbol id="flatpaper-icon-lucide-flame" viewBox="0 0 24 24"><path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4"/></symbol><symbol id="flatpaper-icon-lucide-history" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></symbol><symbol id="flatpaper-icon-lucide-table-of-contents" viewBox="0 0 24 24"><path d="M16 5H3"/><path d="M16 12H3"/><path d="M16 19H3"/><path d="M21 5h.01"/><path d="M21 12h.01"/><path d="M21 19h.01"/></symbol><symbol id="flatpaper-icon-lucide-list-tree" viewBox="0 0 24 24"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></symbol><symbol id="flatpaper-icon-lucide-folder" viewBox="0 0 24 24"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></symbol><symbol id="flatpaper-icon-lucide-tag" viewBox="0 0 24 24"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/></symbol><symbol id="flatpaper-icon-lucide-eye" viewBox="0 0 24 24"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></symbol><symbol id="flatpaper-icon-lucide-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol><symbol id="flatpaper-icon-lucide-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></symbol><symbol id="flatpaper-icon-lucide-arrow-up" viewBox="0 0 24 24"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></symbol><symbol id="flatpaper-icon-lucide-chevron-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol><symbol id="flatpaper-icon-lucide-chevron-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol><symbol id="flatpaper-icon-lucide-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol><symbol id="flatpaper-icon-lucide-chevron-up" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></symbol><symbol id="flatpaper-icon-lucide-send" viewBox="0 0 24 24"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></symbol><symbol id="flatpaper-icon-lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></symbol><symbol id="flatpaper-icon-lucide-panel-left" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/></symbol><symbol id="flatpaper-icon-lucide-leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></symbol><symbol id="flatpaper-icon-lucide-aperture" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m14.31 8 5.74 9.94"/><path d="M9.69 8h11.48"/><path d="m7.38 12 5.74-9.94"/><path d="M9.69 16 3.95 6.06"/><path d="M14.31 16H2.83"/><path d="m16.62 12-5.74 9.94"/></symbol><symbol id="flatpaper-icon-lucide-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"/></symbol><symbol id="flatpaper-icon-lucide-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></symbol><symbol id="flatpaper-icon-lucide-radio" viewBox="0 0 24 24"><path d="M16.247 7.761a6 6 0 0 1 0 8.478"/><path d="M19.075 4.933a10 10 0 0 1 0 14.134"/><path d="M4.925 19.067a10 10 0 0 1 0-14.134"/><path d="M7.753 16.239a6 6 0 0 1 0-8.478"/><circle cx="12" cy="12" r="2"/></symbol><symbol id="flatpaper-icon-lucide-hash" viewBox="0 0 24 24"><line x1="4" x2="20" y1="9" y2="9"/><line x1="4" x2="20" y1="15" y2="15"/><line x1="10" x2="8" y1="3" y2="21"/><line x1="16" x2="14" y1="3" y2="21"/></symbol><symbol id="flatpaper-icon-lucide-gift" viewBox="0 0 24 24"><path d="M12 7v14"/><path d="M20 11v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"/><path d="M7.5 7a1 1 0 0 1 0-5A4.8 8 0 0 1 12 7a4.8 8 0 0 1 4.5-5 1 1 0 0 1 0 5"/><rect x="3" y="7" width="18" height="4" rx="1"/></symbol><symbol id="flatpaper-icon-fa-brands-alipay" viewBox="0 0 448 512"><path d="M377.74 32H70.26C31.41 32 0 63.41 0 102.26v307.48C0 448.59 31.41 480 70.26 480h307.48c38.52 0 69.76-31.08 70.26-69.6-45.96-25.62-110.59-60.34-171.6-88.44-32.07 43.97-84.14 81-148.62 81-70.59 0-93.73-45.3-97.04-76.37-3.97-39.01 14.88-81.5 99.52-81.5 35.38 0 79.35 10.25 127.13 24.96 16.53-30.09 26.45-60.34 26.45-60.34h-178.2v-16.7h92.08v-31.24H88.28v-19.01h109.44V92.34h50.92v50.42h109.44v19.01H248.63v31.24h88.77s-15.21 46.62-38.35 90.92c48.93 16.7 100.01 36.04 148.62 52.74V102.26C447.83 63.57 416.43 32 377.74 32zM47.28 322.95c.99 20.17 10.25 53.73 69.93 53.73 52.07 0 92.58-39.68 117.87-72.9-44.63-18.68-84.48-31.41-109.44-31.41-67.45 0-79.35 33.06-78.36 50.58z"/></symbol><symbol id="flatpaper-icon-fa-brands-paypal" viewBox="0 0 384 512"><path d="M111.4 295.9c-3.5 19.2-17.4 108.7-21.5 134-.3 1.8-1 2.5-3 2.5H12.3c-7.6 0-13.1-6.6-12.1-13.9L58.8 46.6c1.5-9.6 10.1-16.9 20-16.9 152.3 0 165.1-3.7 204 11.4 60.1 23.3 65.6 79.5 44 140.3-21.5 62.6-72.5 89.5-140.1 90.3-43.4.7-69.5-7-75.3 24.2zM357.1 152c-1.8-1.3-2.5-1.8-3 1.3-2 11.4-5.1 22.5-8.8 33.6-39.9 113.8-150.5 103.9-204.5 103.9-6.1 0-10.1 3.3-10.9 9.4-22.6 140.4-27.1 169.7-27.1 169.7-1 7.1 3.5 12.9 10.6 12.9h63.5c8.6 0 15.7-6.3 17.4-14.9.7-5.4-1.1 6.1 14.4-91.3 4.6-22 14.3-19.7 29.3-19.7 71 0 126.4-28.8 142.9-112.3 6.5-34.8 4.6-71.4-23.8-92.6z"/></symbol><symbol id="flatpaper-icon-fa-brands-x-twitter" viewBox="0 0 512 512"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></symbol><symbol id="flatpaper-icon-fa-brands-steam" viewBox="0 0 496 512"><path d="M496 256c0 137-111.2 248-248.4 248-113.8 0-209.6-76.3-239-180.4l95.2 39.3c6.4 32.1 34.9 56.4 68.9 56.4 39.2 0 71.9-32.4 70.2-73.5l84.5-60.2c52.1 1.3 95.8-40.9 95.8-93.5 0-51.6-42-93.5-93.7-93.5s-93.7 42-93.7 93.5v1.2L176.6 279c-15.5-.9-30.7 3.4-43.5 12.1L0 236.1C10.2 108.4 117.1 8 247.6 8 384.8 8 496 119 496 256zM155.7 384.3l-30.5-12.6a52.79 52.79 0 0 0 27.2 25.8c26.9 11.2 57.8-1.6 69-28.4 5.4-13 5.5-27.3.1-40.3-5.4-13-15.5-23.2-28.5-28.6-12.9-5.4-26.7-5.2-38.9-.6l31.5 13c19.8 8.2 29.2 30.9 20.9 50.7-8.3 19.9-31 29.2-50.8 21zm173.8-129.9c-34.4 0-62.4-28-62.4-62.3s28-62.3 62.4-62.3 62.4 28 62.4 62.3-27.9 62.3-62.4 62.3zm.1-15.6c25.9 0 46.9-21 46.9-46.8 0-25.9-21-46.8-46.9-46.8s-46.9 21-46.9 46.8c.1 25.8 21.1 46.8 46.9 46.8z"/></symbol><symbol id="flatpaper-icon-fa-brands-bilibili" viewBox="0 0 512 512"><path d="M488.6 104.1C505.3 122.2 513 143.8 511.9 169.8V372.2C511.5 398.6 502.7 420.3 485.4 437.3C468.2 454.3 446.3 463.2 419.9 464H92.02C65.57 463.2 43.81 454.2 26.74 436.8C9.682 419.4 .7667 396.5 0 368.2V169.8C.7667 143.8 9.682 122.2 26.74 104.1C43.81 87.75 65.57 78.77 92.02 78H121.4L96.05 52.19C90.3 46.46 87.42 39.19 87.42 30.4C87.42 21.6 90.3 14.34 96.05 8.603C101.8 2.868 109.1 0 117.9 0C126.7 0 134 2.868 139.8 8.603L213.1 78H301.1L375.6 8.603C381.7 2.868 389.2 0 398 0C406.8 0 414.1 2.868 419.9 8.603C425.6 14.34 428.5 21.6 428.5 30.4C428.5 39.19 425.6 46.46 419.9 52.19L394.6 78L423.9 78C450.3 78.77 471.9 87.75 488.6 104.1H488.6zM449.8 173.8C449.4 164.2 446.1 156.4 439.1 150.3C433.9 144.2 425.1 140.9 416.4 140.5H96.05C86.46 140.9 78.6 144.2 72.47 150.3C66.33 156.4 63.07 164.2 62.69 173.8V368.2C62.69 377.4 65.95 385.2 72.47 391.7C78.99 398.2 86.85 401.5 96.05 401.5H416.4C425.6 401.5 433.4 398.2 439.7 391.7C446 385.2 449.4 377.4 449.8 368.2L449.8 173.8zM185.5 216.5C191.8 222.8 195.2 230.6 195.6 239.7V273C195.2 282.2 191.9 289.9 185.8 296.2C179.6 302.5 171.8 305.7 162.2 305.7C152.6 305.7 144.7 302.5 138.6 296.2C132.5 289.9 129.2 282.2 128.8 273V239.7C129.2 230.6 132.6 222.8 138.9 216.5C145.2 210.2 152.1 206.9 162.2 206.5C171.4 206.9 179.2 210.2 185.5 216.5H185.5zM377 216.5C383.3 222.8 386.7 230.6 387.1 239.7V273C386.7 282.2 383.4 289.9 377.3 296.2C371.2 302.5 363.3 305.7 353.7 305.7C344.1 305.7 336.3 302.5 330.1 296.2C323.1 289.9 320.7 282.2 320.4 273V239.7C320.7 230.6 324.1 222.8 330.4 216.5C336.7 210.2 344.5 206.9 353.7 206.5C362.9 206.9 370.7 210.2 377 216.5H377z"/></symbol><symbol id="flatpaper-icon-fa-brands-youtube" viewBox="0 0 576 512"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></symbol><symbol id="flatpaper-icon-fa-brands-facebook" viewBox="0 0 512 512"><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></symbol><symbol id="flatpaper-icon-fa-brands-instagram" viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></symbol><symbol id="flatpaper-icon-fa-brands-telegram" viewBox="0 0 496 512"><path d="M248,8C111.033,8,0,119.033,0,256S111.033,504,248,504,496,392.967,496,256,384.967,8,248,8ZM362.952,176.66c-3.732,39.215-19.881,134.378-28.1,178.3-3.476,18.584-10.322,24.816-16.948,25.425-14.4,1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25,5.342-39.5,3.652-3.793,67.107-61.51,68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608,69.142-14.845,10.194-26.894,9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7,18.45-13.7,108.446-47.248,144.628-62.3c68.872-28.647,83.183-33.623,92.511-33.789,2.052-.034,6.639.474,9.61,2.885a10.452,10.452,0,0,1,3.53,6.716A43.765,43.765,0,0,1,362.952,176.66Z"/></symbol><symbol id="flatpaper-icon-fa-brands-weibo" viewBox="0 0 512 512"><path d="M407 177.6c7.6-24-13.4-46.8-37.4-41.7-22 4.8-28.8-28.1-7.1-32.8 50.1-10.9 92.3 37.1 76.5 84.8-6.8 21.2-38.8 10.8-32-10.3zM214.8 446.7C108.5 446.7 0 395.3 0 310.4c0-44.3 28-95.4 76.3-143.7C176 67 279.5 65.8 249.9 161c-4 13.1 12.3 5.7 12.3 6 79.5-33.6 140.5-16.8 114 51.4-3.7 9.4 1.1 10.9 8.3 13.1 135.7 42.3 34.8 215.2-169.7 215.2zm143.7-146.3c-5.4-55.7-78.5-94-163.4-85.7-84.8 8.6-148.8 60.3-143.4 116s78.5 94 163.4 85.7c84.8-8.6 148.8-60.3 143.4-116zM347.9 35.1c-25.9 5.6-16.8 43.7 8.3 38.3 72.3-15.2 134.8 52.8 111.7 124-7.4 24.2 29.1 37 37.4 12 31.9-99.8-55.1-195.9-157.4-174.3zm-78.5 311c-17.1 38.8-66.8 60-109.1 46.3-40.8-13.1-58-53.4-40.3-89.7 17.7-35.4 63.1-55.4 103.4-45.1 42 10.8 63.1 50.2 46 88.5zm-86.3-30c-12.9-5.4-30 .3-38 12.9-8.3 12.9-4.3 28 8.6 34 13.1 6 30.8.3 39.1-12.9 8-13.1 3.7-28.3-9.7-34zm32.6-13.4c-5.1-1.7-11.4.6-14.3 5.4-2.9 5.1-1.4 10.6 3.7 12.9 5.1 2 11.7-.3 14.6-5.4 2.8-5.2 1.1-10.9-4-12.9z"/></symbol></defs></svg>
+  
+  <header class="site-header">
+  
+  <button class="icon-button js-sidebar-toggle sidebar-toggle" type="button" aria-label="打开侧边栏" aria-controls="paper-sidebar-drawer" aria-expanded="false">
+    
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-menu"></use></svg>
+
+  </button>
+
+  <div class="brand">
+    <div class="brand-mark-wrapper">
+      
+        <a class="brand-mark" href="/" aria-label="FlatPaper 首页">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-grid flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-layout-grid"></use></svg>
+
+        </a>
+      
+    </div>
+    <a class="brand-text" href="/">ZapcoMan&#39;s world</a>
+  </div>
+
+  <nav class="site-nav" aria-label="主导航">
+    
+      
+        <a class="site-nav-link " href="/">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-house"></use></svg>
+
+          <span>首页</span>
+        </a>
+      
+    
+      
+        <div class="site-nav-item has-children">
+          <button class="site-nav-link site-nav-parent" type="button" aria-haspopup="true" aria-expanded="false">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+            <span>文章</span>
+          </button>
+          <div class="site-nav-menu" role="menu">
+            
+              <a role="menuitem" class="" href="/categories/">
+                
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+                <span>分类</span>
+              </a>
+            
+              <a role="menuitem" class="" href="/tags/">
+                
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
+
+                <span>标签</span>
+              </a>
+            
+              <a role="menuitem" class="" href="/archives/">
+                
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-archive flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-archive"></use></svg>
+
+                <span>归档</span>
+              </a>
+            
+          </div>
+        </div>
+      
+    
+      
+        <a class="site-nav-link " href="/links/">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-link"></use></svg>
+
+          <span>友链</span>
+        </a>
+      
+    
+      
+        <a class="site-nav-link " href="/about/">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-user"></use></svg>
+
+          <span>关于</span>
+        </a>
+      
+    
+  </nav>
+
+  <div class="header-tools">
+    <button class="icon-button js-search-open" type="button" aria-label="搜索文章">
+      
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-search"></use></svg>
+
+    </button>
+    <div class="accent-picker">
+      <button class="icon-button accent-toggle" type="button" aria-label="选择主题色" title="选择主题色" aria-haspopup="true" aria-expanded="false" aria-controls="accent-menu">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-palette"></use></svg>
+
+      </button>
+      <div class="accent-menu" id="accent-menu" role="menu" aria-label="主题色">
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="橙色" aria-checked="false" data-accent-option="orange">
+          <span class="accent-swatch accent-swatch--orange" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="紫色" aria-checked="false" data-accent-option="purple">
+          <span class="accent-swatch accent-swatch--purple" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="樱花粉" aria-checked="false" data-accent-option="sakura">
+          <span class="accent-swatch accent-swatch--sakura" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="蓝色" aria-checked="false" data-accent-option="blue">
+          <span class="accent-swatch accent-swatch--blue" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="粉色" aria-checked="false" data-accent-option="pink">
+          <span class="accent-swatch accent-swatch--pink" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="绿色" aria-checked="false" data-accent-option="green">
+          <span class="accent-swatch accent-swatch--green" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="黑色" aria-checked="false" data-accent-option="black">
+          <span class="accent-swatch accent-swatch--black" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+    <button class="theme-toggle" type="button" aria-label="切换颜色模式">
+      <span class="theme-icon theme-icon--sun">
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-sun"></use></svg>
+</span>
+      <span class="theme-icon theme-icon--moon">
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-moon"></use></svg>
+</span>
+    </button>
+  </div>
+</header>
+
+
+  
+  <main class="paper-shell paper-shell--article">
+    
+
+<aside id="paper-sidebar-drawer" class="paper-sidebar paper-sidebar--right" aria-label="侧边栏">
+  <div class="drawer-toolbar" aria-label="侧边栏工具">
+    <div class="drawer-accent-options" role="group" aria-label="主题色">
+      <button type="button" class="accent-option" aria-label="橙色" aria-pressed="false" data-accent-option="orange">
+        <span class="accent-swatch accent-swatch--orange" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="紫色" aria-pressed="false" data-accent-option="purple">
+        <span class="accent-swatch accent-swatch--purple" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="樱花粉" aria-pressed="false" data-accent-option="sakura">
+        <span class="accent-swatch accent-swatch--sakura" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="蓝色" aria-pressed="false" data-accent-option="blue">
+        <span class="accent-swatch accent-swatch--blue" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="粉色" aria-pressed="false" data-accent-option="pink">
+        <span class="accent-swatch accent-swatch--pink" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="绿色" aria-pressed="false" data-accent-option="green">
+        <span class="accent-swatch accent-swatch--green" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="黑色" aria-pressed="false" data-accent-option="black">
+        <span class="accent-swatch accent-swatch--black" aria-hidden="true"></span>
+      </button>
+    </div>
+    <button class="icon-button drawer-close js-sidebar-close" type="button" aria-label="关闭侧边栏">
+      
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-x"></use></svg>
+
+    </button>
+  </div>
+
+  <section class="side-card nav-card">
+    <nav class="site-nav-drawer" aria-label="移动端导航">
+      
+        
+          <a class="" href="/">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-house"></use></svg>
+
+            <span>首页</span>
+          </a>
+        
+      
+        
+          <div class="drawer-nav-group">
+            <button class="drawer-nav-parent" type="button" aria-expanded="false">
+              
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+              <span>文章</span>
+            </button>
+            <div class="drawer-nav-children">
+              
+                <a class="" href="/categories/">
+                  
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+                  <span>分类</span>
+                </a>
+              
+                <a class="" href="/tags/">
+                  
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
+
+                  <span>标签</span>
+                </a>
+              
+                <a class="" href="/archives/">
+                  
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-archive flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-archive"></use></svg>
+
+                  <span>归档</span>
+                </a>
+              
+            </div>
+          </div>
+        
+      
+        
+          <a class="" href="/links/">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-link"></use></svg>
+
+            <span>友链</span>
+          </a>
+        
+      
+        
+          <a class="" href="/about/">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-user"></use></svg>
+
+            <span>关于</span>
+          </a>
+        
+      
+    </nav>
+  </section>
+
+  <section class="side-card profile-card">
+    
+      <div class="avatar avatar--image avatar--circle">
+        <img src="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4" alt="ZapcoMan" loading="lazy" referrerpolicy="no-referrer">
+      </div>
+    
+    <h3>ZapcoMan</h3>
+    <p class="profile-role">日常记录</p>
+    <p>独立开发者 主攻方向：Java 后端开发（Spring Boot + Vue3 全栈）Python 脚本开发（网络编程、爬虫、数据处理、信息安全工具、自动化运维,渗透测试工具）</p>
+    
+      <div class="site-info" aria-label="站点信息">
+        
+          
+            <a class="site-info__item" href="/archives/">
+              <strong>80</strong>
+              <span>文章</span>
+            </a>
+          
+        
+          
+            <a class="site-info__item" href="/categories/">
+              <strong>25</strong>
+              <span>分类</span>
+            </a>
+          
+        
+          
+            <a class="site-info__item" href="/tags/">
+              <strong>76</strong>
+              <span>标签</span>
+            </a>
+          
+        
+      </div>
+    
+    <div class="socials">
+      
+        <a href="https://github.com/ZapcoMan" target="_blank" rel="noopener" aria-label="GitHub" data-tooltip="GitHub">
+          
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="lucide lucide-github flatpaper-icon flatpaper-icon--fa-brands" aria-hidden="true"><use href="#flatpaper-icon-fa-brands-github"></use></svg>
+
+          
+        </a>
+      
+        <a href="https://space.bilibili.com/544166891" target="_blank" rel="noopener" aria-label="Bilibili" data-tooltip="Bilibili">
+          
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="lucide lucide-bilibili flatpaper-icon flatpaper-icon--fa-brands" aria-hidden="true"><use href="#flatpaper-icon-fa-brands-bilibili"></use></svg>
+
+          
+        </a>
+      
+        <a href="#" target="_blank" rel="noopener" aria-label="掘金" data-tooltip="掘金">
+          
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-send"></use></svg>
+
+          
+        </a>
+      
+      
+        
+        
+        <a href="/atom.xml" aria-label="RSS feed" data-tooltip="RSS feed">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rss flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-rss"></use></svg>
+
+        </a>
+      
+    </div>
+  </section>
+
+  
+
+  
+    <div class="post-sticky-stack">
+      <section class="side-card toc-card">
+        <header class="toc-card__head">
+          <h2>
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-table-of-contents flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-table-of-contents"></use></svg>
+文章目录</h2>
+          <button type="button" class="toc-toggle-all" data-action="toggle-toc" aria-pressed="false" aria-label="展开全部目录" title="展开全部目录">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-chevron-down"></use></svg>
+
+          </button>
+        </header>
+        <div class="toc-content">
+          
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81GrapheneOS-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">一、GrapheneOS 是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AA%E6%94%AF%E6%8C%81-Pixel"><span class="toc-text">二、为什么只支持 Pixel</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%A0%B8%E5%BF%83%E7%90%86%E5%BF%B5%EF%BC%9A%E9%9B%B6%E4%BF%A1%E4%BB%BB%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84"><span class="toc-text">三、核心理念：零信任安全架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%94%BB%E5%87%BB%E9%9D%A2%E7%BC%A9%E5%87%8F%EF%BC%9A%E6%8A%8A%E9%97%A8%E5%85%B3%E5%88%B0%E6%9C%80%E7%B4%A7"><span class="toc-text">四、攻击面缩减：把门关到最紧</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E9%94%81%E5%B1%8F%E5%90%8E%E7%A6%81%E7%94%A8-USB-C-%E6%95%B0%E6%8D%AE"><span class="toc-text">4.1 锁屏后禁用 USB-C 数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E5%85%B6%E4%BB%96%E6%94%BB%E5%87%BB%E9%9D%A2%E7%BC%A9%E5%87%8F"><span class="toc-text">4.2 其他攻击面缩减</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E7%BC%93%E8%A7%A3%EF%BC%9A%E8%AE%A9-0-day-%E4%B9%9F%E9%9A%BE%E5%8F%97"><span class="toc-text">五、漏洞利用缓解：让 0-day 也难受</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-Hardened-Malloc%EF%BC%88%E7%A1%AC%E5%8C%96%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E5%99%A8%EF%BC%89"><span class="toc-text">5.1 Hardened Malloc（硬化内存分配器）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E5%8A%A0%E5%9B%BA%E5%86%85%E6%A0%B8"><span class="toc-text">5.2 加固内核</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-JIT-%E5%92%8C%E5%8A%A8%E6%80%81%E4%BB%A3%E7%A0%81%E9%99%90%E5%88%B6"><span class="toc-text">5.3 JIT 和动态代码限制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%8F%8D%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%9A%E8%AE%A9%E6%94%BB%E5%87%BB%E8%80%85%E5%BE%85%E4%B8%8D%E4%BD%8F"><span class="toc-text">六、反持久化：让攻击者待不住</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-%E5%A2%9E%E5%BC%BA-Verified-Boot%EF%BC%88%E9%AA%8C%E8%AF%81%E5%90%AF%E5%8A%A8%EF%BC%89"><span class="toc-text">6.1 增强 Verified Boot（验证启动）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-Auditor-%E5%BA%94%E7%94%A8"><span class="toc-text">6.2 Auditor 应用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E9%9A%90%E7%A7%81%E4%BF%9D%E6%8A%A4%EF%BC%9A%E4%B8%8D%E7%BB%99%E4%BB%BB%E4%BD%95%E4%BA%BA%E4%BD%A0%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="toc-text">七、隐私保护：不给任何人你的数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-%E9%BB%98%E8%AE%A4%E5%8E%BB-Google-%E5%8C%96"><span class="toc-text">7.1 默认去 Google 化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-%E7%BD%91%E7%BB%9C%E6%9D%83%E9%99%90%E5%BC%80%E5%85%B3"><span class="toc-text">7.2 网络权限开关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-%E4%BC%A0%E6%84%9F%E5%99%A8%E6%9D%83%E9%99%90%E5%BC%80%E5%85%B3"><span class="toc-text">7.3 传感器权限开关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-4-Storage-Scopes%EF%BC%88%E5%AD%98%E5%82%A8%E8%8C%83%E5%9B%B4%EF%BC%89"><span class="toc-text">7.4 Storage Scopes（存储范围）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-5-Contact-Scopes%EF%BC%88%E8%81%94%E7%B3%BB%E4%BA%BA%E8%8C%83%E5%9B%B4%EF%BC%89"><span class="toc-text">7.5 Contact Scopes（联系人范围）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-6-Wi-Fi-%E9%9A%90%E7%A7%81"><span class="toc-text">7.6 Wi-Fi 隐私</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-7-%E7%A7%81%E5%AF%86%E6%88%AA%E5%9B%BE"><span class="toc-text">7.7 私密截图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-8-%E5%85%B6%E4%BB%96%E9%9A%90%E7%A7%81%E7%89%B9%E6%80%A7"><span class="toc-text">7.8 其他隐私特性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E6%B2%99%E7%AE%B1%E5%8C%96-Google-Play%EF%BC%9A%E5%A4%A9%E6%89%8D%E7%9A%84%E5%85%BC%E5%AE%B9%E6%96%B9%E6%A1%88"><span class="toc-text">八、沙箱化 Google Play：天才的兼容方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-text">工作原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E8%A6%86%E7%9B%96"><span class="toc-text">功能覆盖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Android-Auto"><span class="toc-text">Android Auto</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%9D%E3%80%81Vanadium%EF%BC%9A%E8%87%AA%E5%B8%A6%E7%A1%AC%E6%A0%B8%E6%B5%8F%E8%A7%88%E5%99%A8"><span class="toc-text">九、Vanadium：自带硬核浏览器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E3%80%81%E8%83%81%E8%BF%AB%E5%AF%86%E7%A0%81%EF%BC%88Duress-PIN-Password%EF%BC%89"><span class="toc-text">十、胁迫密码（Duress PIN&#x2F;Password）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%BA%E5%88%B6"><span class="toc-text">机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A6%E5%8F%91%E8%8C%83%E5%9B%B4"><span class="toc-text">触发范围</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE"><span class="toc-text">设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">注意事项</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E4%B8%80%E3%80%81%E8%87%AA%E5%8A%A8%E9%87%8D%E5%90%AF%EF%BC%9ABFU-%E6%98%AF%E6%9C%80%E5%AE%89%E5%85%A8%E7%9A%84%E7%8A%B6%E6%80%81"><span class="toc-text">十一、自动重启：BFU 是最安全的状态</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-BFU-%E9%87%8D%E8%A6%81"><span class="toc-text">为什么 BFU 重要</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E4%BA%8C%E3%80%81%E7%94%A8%E6%88%B7%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="toc-text">十二、用户配置文件系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E4%B8%89%E3%80%81VPN-%E6%B3%84%E6%BC%8F%E9%98%B2%E6%8A%A4"><span class="toc-text">十三、VPN 泄漏防护</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E5%9B%9B%E3%80%81%E5%85%B6%E4%BB%96%E5%AE%9E%E7%94%A8%E5%8A%9F%E8%83%BD"><span class="toc-text">十四、其他实用功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#14-1-%E5%8A%A0%E5%AF%86%E5%A4%87%E4%BB%BD"><span class="toc-text">14.1 加密备份</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-2-%E9%80%9A%E8%AF%9D%E5%BD%95%E9%9F%B3"><span class="toc-text">14.2 通话录音</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-3-%E6%9B%B4%E7%B2%BE%E7%A1%AE%E7%9A%84%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%92%9F"><span class="toc-text">14.3 更精确的系统时钟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-4-%E6%97%A5%E5%BF%97%E6%9F%A5%E7%9C%8B%E5%99%A8"><span class="toc-text">14.4 日志查看器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-5-GrapheneOS-%E5%BA%94%E7%94%A8%E4%BB%93%E5%BA%93"><span class="toc-text">14.5 GrapheneOS 应用仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-6-%E7%BD%91%E7%BB%9C%E5%AE%9A%E4%BD%8D%E6%9C%8D%E5%8A%A1"><span class="toc-text">14.6 网络定位服务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E4%BA%94%E3%80%81%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95"><span class="toc-text">十五、安装方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E5%BC%8F%E4%B8%80%EF%BC%9AWeb-%E5%AE%89%E8%A3%85%E5%99%A8%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-text">方式一：Web 安装器（推荐）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E5%BC%8F%E4%BA%8C%EF%BC%9A%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%AE%89%E8%A3%85"><span class="toc-text">方式二：命令行安装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E5%85%AD%E3%80%81%E4%B8%8E%E5%85%B6%E4%BB%96%E9%9A%90%E7%A7%81-ROM-%E7%9A%84%E6%A8%AA%E5%90%91%E5%AF%B9%E6%AF%94"><span class="toc-text">十六、与其他隐私 ROM 的横向对比</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%84%E8%87%AA%E5%AE%9A%E4%BD%8D"><span class="toc-text">各自定位</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E4%B8%83%E3%80%81%E6%9C%8D%E5%8A%A1%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%EF%BC%9A%E8%BF%9E%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%BD%E6%98%AF%E9%9A%90%E7%A7%81%E7%9A%84"><span class="toc-text">十七、服务基础设施：连服务器都是隐私的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E5%85%AB%E3%80%81%E8%B0%81%E5%BA%94%E8%AF%A5%E7%94%A8-GrapheneOS"><span class="toc-text">十八、谁应该用 GrapheneOS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%82%E5%90%88"><span class="toc-text">适合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E5%A4%AA%E9%80%82%E5%90%88"><span class="toc-text">不太适合</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E4%B9%9D%E3%80%81%E4%BC%98%E7%BC%BA%E7%82%B9%E6%80%BB%E7%BB%93"><span class="toc-text">十九、优缺点总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E7%82%B9"><span class="toc-text">优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%BA%E7%82%B9"><span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%8D%81%E3%80%81%E7%BB%93%E8%AF%AD"><span class="toc-text">二十、结语</span></a></li></ol>
+          
+        </div>
+      </section>
+      
+
+
+    </div>
+  
+
+  
+
+</aside>
+
+    <section class="paper-main">
+      
+
+<div class="article-tape-wrap">
+<span class="tape tape--top-right" aria-hidden="true"></span>
+<article class="article-paper">
+  
+  <header class="article-header">
+    
+      <a class="label-pill" href="/categories/%E5%AE%89%E5%85%A8%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+        安全操作系统
+      </a>
+    
+    <h1>GrapheneOS 完全指南：把安卓的安全与隐私做到极致</h1>
+    <div class="meta-line meta-line--article">
+      <span class="meta-date">
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
+2026-07-09</span>
+      
+        <span class="meta-tags">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
+
+          <a class="meta-tag-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">#渗透测试</a><a class="meta-tag-link" href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">#信息收集</a><a class="meta-tag-link" href="/tags/GrapheneOS/">#GrapheneOS</a>
+        </span>
+      
+    </div>
+  </header>
+
+  
+
+
+  <div class="article-content">
+    <blockquote>
+<p>这不是一篇简单的”刷机教程”。本文从项目起源、安全架构、隐私机制、功能特性、安装方法到横向对比，事无巨细地拆解 GrapheneOS——目前公认最安全的安卓操作系统。</p>
+</blockquote>
+<hr>
+<h2 id="一、GrapheneOS-是什么"><a href="#一、GrapheneOS-是什么" class="headerlink" title="一、GrapheneOS 是什么"></a>一、GrapheneOS 是什么</h2><p>GrapheneOS 是一款基于 <strong>AOSP（Android 开源项目）</strong> 的开源移动操作系统，兼容 Android 应用，是一个非营利<a target="_blank" rel="noopener" href="https://grapheneos.org/source">开源</a>项目。以<strong>隐私和安全</strong>为核心设计目标。它由加拿大开发者 <strong>Daniel Micay</strong> 主导创建，它致力于隐私和安全技术的研究与开发，包括对沙箱、漏洞缓解和权限模型的重大改进。前身是 CopperheadOS 的社区分支，后独立发展成为今天的 GrapheneOS。</p>
+<p>一句话定位：<strong>保留 Android 的应用生态兼容性，但从内核到应用层全面加固，同时彻底剥离 Google 的数据采集链路。</strong></p>
+<p>它的几个关键标签：</p>
+<table>
+<thead>
+<tr>
+<th>标签</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>开源</td>
+<td>基于 AOSP，代码完全公开，可自行构建</td>
+</tr>
+<tr>
+<td>非营利</td>
+<td>项目保持商业化距离，避免利益冲突</td>
+</tr>
+<tr>
+<td>Pixel 专属</td>
+<td>仅支持 Google Pixel 系列手机（原因后文详解）</td>
+</tr>
+<tr>
+<td>去 Google 化</td>
+<td>默认不含任何 Google 服务和应用</td>
+</tr>
+<tr>
+<td>安全加固</td>
+<td>从内存分配器到内核，系统性硬化</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="二、为什么只支持-Pixel"><a href="#二、为什么只支持-Pixel" class="headerlink" title="二、为什么只支持 Pixel"></a>二、为什么只支持 Pixel</h2><p>这是被问得最多的问题。GrapheneOS 只支持 Google Pixel 系列，不是因为”和 Google 关系好”，而是因为<strong>安全需要硬件级支撑</strong>：</p>
+<ol>
+<li><strong>Titan M&#x2F;M2 安全芯片</strong>：Pixel 内置的专用安全芯片，用于加密密钥存储、Verified Boot 验证。其他厂商手机的芯片方案不够开放或文档不足。</li>
+<li><strong>可解锁的 Bootloader</strong>：Pixel 允许用户解锁 bootloader 刷入自定义系统，刷完后还能重新锁定——这是 Verified Boot 生效的前提。大多数厂商手机要么不能解锁，要么解锁后无法重新锁定。</li>
+<li><strong>长期安全更新承诺</strong>：Google 为 Pixel 提供 5 年以上的安全补丁，GrapheneOS 依赖上游补丁来维持安全基线。</li>
+<li><strong>AOSP 参考设备</strong>：Pixel 是 AOSP 的首选参考平台，驱动和固件文档最完整，兼容性最好。</li>
+</ol>
+<p>截至本文写作时，支持的设备覆盖 <strong>Pixel 6 系列到 Pixel 10 系列</strong>，包括折叠屏 Pixel Fold 和平板 Pixel Tablet。第 4、5 代 Pixel 已接近或到达生命周期末期。</p>
+<blockquote>
+<p>这意味着：想用 GrapheneOS，你得先有一台 Pixel 6 及以上的手机。</p>
+</blockquote>
+<hr>
+<h2 id="三、核心理念：零信任安全架构"><a href="#三、核心理念：零信任安全架构" class="headerlink" title="三、核心理念：零信任安全架构"></a>三、核心理念：零信任安全架构</h2><p>GrapheneOS 的安全哲学不是”在应用层加一层防护”，而是构建一套**”从不信任，始终验证”的零信任架构**。它的防御策略分三道防线：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">第一道：攻击面缩减 —— 能关的都关，能删的都删</span><br><span class="line">第二道：漏洞利用缓解 —— 就算被攻破，也让攻击者寸步难行</span><br><span class="line">第三道：反持久化 —— 攻击者无法在设备上&quot;住下来&quot;</span><br></pre></td></tr></table></figure>
+
+<p>这三道防线层层递进，下面逐一拆解。</p>
+<hr>
+<h2 id="四、攻击面缩减：把门关到最紧"><a href="#四、攻击面缩减：把门关到最紧" class="headerlink" title="四、攻击面缩减：把门关到最紧"></a>四、攻击面缩减：把门关到最紧</h2><h3 id="4-1-锁屏后禁用-USB-C-数据"><a href="#4-1-锁屏后禁用-USB-C-数据" class="headerlink" title="4.1 锁屏后禁用 USB-C 数据"></a>4.1 锁屏后禁用 USB-C 数据</h3><p>这是 GrapheneOS 最实用的安全特性之一。设备锁定后，USB-C 端口在<strong>硬件层面和操作系统层面双重阻止新的 USB 数据连接</strong>，仅保留充电。</p>
+<p>五种模式可选：</p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Off</td>
+<td>最高安全，连充电都禁用（关机&#x2F;fastboot 时不适用，不会变砖）</td>
+</tr>
+<tr>
+<td>Charging-only</td>
+<td>仅充电，无数据</td>
+</tr>
+<tr>
+<td><strong>Charging-only when locked</strong>（默认）</td>
+<td>锁定后硬件层面切断数据线</td>
+</tr>
+<tr>
+<td>Charging-only when locked, except before first unlock</td>
+<td>BFU 状态下允许数据</td>
+</tr>
+<tr>
+<td>On</td>
+<td>完全开放</td>
+</tr>
+</tbody></table>
+<p>技术细节上，它远比标准 Android 的 USB HAL 切换安全——后者只在操作系统高层禁用 USB 处理，不阻止新连接，不在硬件层面禁用数据线，也不禁用 USB-C 替代模式（如 DisplayPort）。</p>
+<h3 id="4-2-其他攻击面缩减"><a href="#4-2-其他攻击面缩减" class="headerlink" title="4.2 其他攻击面缩减"></a>4.2 其他攻击面缩减</h3><ul>
+<li><strong>可选无线模块关闭</strong>：NFC、蓝牙、UWB 等功能可按需禁用</li>
+<li><strong>蓝牙&#x2F;Wi-Fi 超时自动关闭</strong></li>
+<li><strong>ptrace 访问阻止</strong>：对内置应用默认阻止 ptrace（进程调试），减少本地攻击面</li>
+<li><strong>锁定后禁用摄像头访问</strong></li>
+<li><strong>LTE-only 模式</strong>：禁用 2G&#x2F;3G&#x2F;5G，大幅减少蜂窝无线电攻击面（2G 尤其不安全，易被伪基站利用）</li>
+</ul>
+<hr>
+<h2 id="五、漏洞利用缓解：让-0-day-也难受"><a href="#五、漏洞利用缓解：让-0-day-也难受" class="headerlink" title="五、漏洞利用缓解：让 0-day 也难受"></a>五、漏洞利用缓解：让 0-day 也难受</h2><p>这是 GrapheneOS 技术含量最高的部分。即使攻击者发现了未知漏洞（0-day），GrapheneOS 的大量缓解措施也会大幅提高利用难度。</p>
+<h3 id="5-1-Hardened-Malloc（硬化内存分配器）"><a href="#5-1-Hardened-Malloc（硬化内存分配器）" class="headerlink" title="5.1 Hardened Malloc（硬化内存分配器）"></a>5.1 Hardened Malloc（硬化内存分配器）</h3><p>GrapheneOS 自研的内存分配器 <a target="_blank" rel="noopener" href="https://github.com/GrapheneOS/hardened_malloc"><code>hardened_malloc</code></a>，是整个安全架构的基石之一。内存损坏（堆溢出、use-after-free 等）是最常见的漏洞类型，hardened_malloc 针对性防御：</p>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>完全离线元数据 + 损坏保护</td>
+<td>排除传统分配器元数据篡改利用</td>
+</tr>
+<tr>
+<td>独立内存区域 + 高熵随机基址</td>
+<td>不同区域间无地址空间重用，增大预测难度</td>
+</tr>
+<tr>
+<td>确定性检测无效 free</td>
+<td>任何非法释放立即被发现</td>
+</tr>
+<tr>
+<td>Free 时清零</td>
+<td>释放的内存立即清零，减少敏感数据驻留</td>
+</tr>
+<tr>
+<td>write-after-free 检测</td>
+<td>重新分配前检查内存是否仍为零</td>
+</tr>
+<tr>
+<td>延迟重用 + 随机隔离</td>
+<td>缓解 use-after-free，延长重用周期</td>
+</tr>
+<tr>
+<td>受保护内存区域</td>
+<td>大于 16KB 的分配有保护区，128KB+ 随机化保护区大小</td>
+</tr>
+<tr>
+<td>slab 级保护区</td>
+<td>小分配的 slab 前后各 4KB 保护区</td>
+</tr>
+<tr>
+<td>随机 canary + 前导零</td>
+<td>阻止 C 字符串溢出，检测线性溢出</td>
+</tr>
+<tr>
+<td>硬件内存标记（MTE）</td>
+<td>ARMv9 上提供 use-after-free 和跨对象溢出的概率检测</td>
+</tr>
+</tbody></table>
+<h3 id="5-2-加固内核"><a href="#5-2-加固内核" class="headerlink" title="5.2 加固内核"></a>5.2 加固内核</h3><p>内核是攻击者最想拿下的目标。GrapheneOS 的内核加固包括：</p>
+<ul>
+<li><strong>4 级页表</strong>：48 位地址空间（标准为 39 位），ASLR 熵从 24 位提升到 33 位——攻击者猜测内存布局的难度指数级增加</li>
+<li><strong>内核硬件内存标记</strong>：检测 use-after-free 和跨对象溢出</li>
+<li><strong>内核堆 canary</strong>：随机 canary + 前导零，检测堆溢出</li>
+<li><strong>内存释放立即清零</strong>：页分配器和 slub 分配器双重清零，敏感数据不留痕迹</li>
+<li><strong>启动早期清零所有未使用内存</strong>：消除上次启动遗留的数据</li>
+<li><strong>内核栈分配清零</strong>：未初始化数据使用漏洞无害化</li>
+<li><strong>强制内核模块签名</strong>：RSA 4096 + SHA256，锁定强制机密性模式</li>
+<li><strong>ARMv9 启用 BTI + Clang 类型 CFI + ShadowCallStack + PAC</strong>：多重控制流完整性保护</li>
+<li><strong>禁用 perf、ptrace</strong>等攻击面</li>
+</ul>
+<h3 id="5-3-JIT-和动态代码限制"><a href="#5-3-JIT-和动态代码限制" class="headerlink" title="5.3 JIT 和动态代码限制"></a>5.3 JIT 和动态代码限制</h3><p>JIT 编译器是攻击者的最爱——它需要可写可执行的内存，是利用链中的关键跳板。GrapheneOS 的处理：</p>
+<ul>
+<li><strong>Android Runtime JIT 完全禁用</strong>，替换为完整的提前编译（AOT）</li>
+<li><strong>基础操作系统动态代码加载阻止</strong>：几乎所有基础系统组件的原生代码&#x2F;Java 类动态加载被阻止</li>
+<li><strong>用户应用可选禁用</strong>三种动态代码加载：内存加载、存储加载、WebView JIT</li>
+<li>被阻止时<strong>显示用户通知</strong>，可按应用配置</li>
+</ul>
+<blockquote>
+<p>Vanadium 浏览器中，V8 JavaScript JIT 默认禁用，改用 DrumBrake WebAssembly 解释器在无 JIT 下支持 WebAssembly。</p>
+</blockquote>
+<hr>
+<h2 id="六、反持久化：让攻击者待不住"><a href="#六、反持久化：让攻击者待不住" class="headerlink" title="六、反持久化：让攻击者待不住"></a>六、反持久化：让攻击者待不住</h2><p>就算攻击者成功利用漏洞获得了执行权限，GrapheneOS 也要让他无法持久化——重启就消失。</p>
+<h3 id="6-1-增强-Verified-Boot（验证启动）"><a href="#6-1-增强-Verified-Boot（验证启动）" class="headerlink" title="6.1 增强 Verified Boot（验证启动）"></a>6.1 增强 Verified Boot（验证启动）</h3><p>Verified Boot 确保设备启动时运行的每一层固件和软件都经过加密签名验证。GrapheneOS 在标准 Android Verified Boot 基础上增强：</p>
+<ul>
+<li><strong>带外更新（APK）的持续验证</strong>：每次读取 APK 都验证 fs-verity 元数据签名，防止替换和降级</li>
+<li><strong>系统组件降级保护</strong>：基于应用的系统组件在安装和启动时强制版本检查</li>
+<li><strong>禁用压缩 APEX 模块</strong>：减少攻击面</li>
+<li><strong>增强硬件远程证明</strong>：提供更精确的版本信息</li>
+</ul>
+<h3 id="6-2-Auditor-应用"><a href="#6-2-Auditor-应用" class="headerlink" title="6.2 Auditor 应用"></a>6.2 Auditor 应用</h3><p>GrapheneOS 配套的 <a target="_blank" rel="noopener" href="https://attestation.app/">Auditor 应用</a> 提供基于硬件的设备真实性和完整性验证：</p>
+<ul>
+<li>使用配对设备的硬件密钥验证身份</li>
+<li>软件检查在硬件信任之上分层</li>
+<li>可远程监控设备是否被篡改</li>
+</ul>
+<hr>
+<h2 id="七、隐私保护：不给任何人你的数据"><a href="#七、隐私保护：不给任何人你的数据" class="headerlink" title="七、隐私保护：不给任何人你的数据"></a>七、隐私保护：不给任何人你的数据</h2><h3 id="7-1-默认去-Google-化"><a href="#7-1-默认去-Google-化" class="headerlink" title="7.1 默认去 Google 化"></a>7.1 默认去 Google 化</h3><p>GrapheneOS 默认<strong>不含任何 Google 应用和服务</strong>。不仅如此，它还将多个默认连接 Google 服务器的系统功能<strong>重定向到 GrapheneOS 自有服务器</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>标准 Android</th>
+<th>GrapheneOS 默认</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>连接检查</td>
+<td>Google 服务器</td>
+<td>GrapheneOS 服务器</td>
+</tr>
+<tr>
+<td>证明密钥配置</td>
+<td>Google</td>
+<td>GrapheneOS</td>
+</tr>
+<tr>
+<td>GNSS 星历下载</td>
+<td>Google XTRA</td>
+<td>GrapheneOS</td>
+</tr>
+<tr>
+<td>SUPL（定位）</td>
+<td>运营商服务器</td>
+<td>GrapheneOS 代理</td>
+</tr>
+<tr>
+<td>网络时间</td>
+<td>Google</td>
+<td>GrapheneOS（认证加密）</td>
+</tr>
+<tr>
+<td>浏览器组件更新</td>
+<td>Google</td>
+<td>GrapheneOS</td>
+</tr>
+</tbody></table>
+<p>所有切换都可手动改回 Google 或完全禁用。</p>
+<h3 id="7-2-网络权限开关"><a href="#7-2-网络权限开关" class="headerlink" title="7.2 网络权限开关"></a>7.2 网络权限开关</h3><p>这是 GrapheneOS 独有的杀手级隐私功能——一个全局的 <strong>Network 权限开关</strong>，可以禁止任何应用直接和间接访问网络：</p>
+<ul>
+<li>设备本地网络（localhost）也受保护——防止应用跨配置文件通信</li>
+<li>与防火墙不同，它阻止应用通过操作系统或其他应用 API 使用网络</li>
+<li><strong>禁用时假装网络断开</strong>：返回”网络连接问题”错误，避免应用检测到权限被撤销</li>
+<li>安装应用时在确认页面显示网络开关</li>
+</ul>
+<h3 id="7-3-传感器权限开关"><a href="#7-3-传感器权限开关" class="headerlink" title="7.3 传感器权限开关"></a>7.3 传感器权限开关</h3><p>标准 Android 的权限体系有漏洞：Camera、Microphone、Body Sensors 之外的其他传感器（加速度计、陀螺仪、指南针、气压计等）<strong>没有权限控制</strong>。这些传感器可以用于侧信道攻击和设备指纹。</p>
+<p>GrapheneOS 补上了这个缺口——一个传感器总开关，禁用后应用收到归零数据且不接收事件。</p>
+<h3 id="7-4-Storage-Scopes（存储范围）"><a href="#7-4-Storage-Scopes（存储范围）" class="headerlink" title="7.4 Storage Scopes（存储范围）"></a>7.4 Storage Scopes（存储范围）</h3><p>标准 Android 的存储权限是”全有或全无”——要么给应用完整存储访问，要么不给。GrapheneOS 的 Storage Scopes 是完全兼容的替代方案：</p>
+<ul>
+<li>应用<strong>以为</strong>自己拥有所有存储权限</li>
+<li>实际上只能访问用户手动选定的文件&#x2F;目录</li>
+<li>没有存储权限的应用仍可创建文件和访问自己创建的文件</li>
+</ul>
+<h3 id="7-5-Contact-Scopes（联系人范围）"><a href="#7-5-Contact-Scopes（联系人范围）" class="headerlink" title="7.5 Contact Scopes（联系人范围）"></a>7.5 Contact Scopes（联系人范围）</h3><p>类似的精细化控制——不授 Contacts 权限，而是选择性授予对特定联系人的访问。</p>
+<h3 id="7-6-Wi-Fi-隐私"><a href="#7-6-Wi-Fi-隐私" class="headerlink" title="7.6 Wi-Fi 隐私"></a>7.6 Wi-Fi 隐私</h3><ul>
+<li><strong>按连接 MAC 随机化</strong>（默认启用）：比标准 Android 的”每网络持久随机 MAC”更隐私——每次连接都换新 MAC</li>
+<li>重新连接前刷新 DHCP 状态，避免暴露设备身份</li>
+<li>修复 Linux 内核 IPv6 隐私地址的严重缺陷</li>
+</ul>
+<h3 id="7-7-私密截图"><a href="#7-7-私密截图" class="headerlink" title="7.7 私密截图"></a>7.7 私密截图</h3><ul>
+<li>禁用 EXIF Software 标签（标准 Android 会泄露操作系统版本和设备型号）</li>
+<li>默认禁用 EXIF 日期&#x2F;时间&#x2F;时区标签（避免通过元数据泄露时间和准位置）</li>
+</ul>
+<h3 id="7-8-其他隐私特性"><a href="#7-8-其他隐私特性" class="headerlink" title="7.8 其他隐私特性"></a>7.8 其他隐私特性</h3><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PIN 混淆</td>
+<td>提高通过物理接近或侧信道发现 PIN 的难度</td>
+</tr>
+<tr>
+<td>双因素指纹解锁</td>
+<td>指纹通过后还需输入第二因素 PIN</td>
+</tr>
+<tr>
+<td>更长密码</td>
+<td>支持最长 128 字符密码（标准为 16）</td>
+</tr>
+<tr>
+<td>位置访问指示器</td>
+<td>位置权限使用时显示绿色指示灯（标准 Android 仅有摄像头和麦克风指示器）</td>
+</tr>
+<tr>
+<td>权限提示延迟</td>
+<td>权限弹窗 1 秒延迟激活，防止应用用覆盖按钮欺骗用户</td>
+</tr>
+<tr>
+<td>移除不受信任根 CA</td>
+<td>移除 Chunghwa Telecom 和 Netlock 根证书</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="八、沙箱化-Google-Play：天才的兼容方案"><a href="#八、沙箱化-Google-Play：天才的兼容方案" class="headerlink" title="八、沙箱化 Google Play：天才的兼容方案"></a>八、沙箱化 Google Play：天才的兼容方案</h2><p>这是 GrapheneOS 最被称道的设计。很多人想要隐私，但又离不开 Google 生态——银行 App、Google Maps、依赖推送通知的应用都需要 Google Play 服务。</p>
+<p>GrapheneOS 的解决方案不是 microG（第三方逆向实现），也不是预装 Google Play，而是：</p>
+<blockquote>
+<p><strong>把官方 Google Play 当作普通应用，跑在标准应用沙箱里。</strong></p>
+</blockquote>
+<h3 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h3><ul>
+<li>Google Play <strong>不获得任何特殊访问或权限</strong>——不像在其他系统上绕过沙箱获得大量高权限</li>
+<li>兼容层教 Google Play 如何在完整沙箱内工作</li>
+<li>即使安装了 Google Play，它也<strong>不做操作系统服务的后端</strong></li>
+<li>仅作为常规应用存在于特定用户&#x2F;工作配置文件中，仅同配置文件内的应用可使用</li>
+<li>需要用户明确同意才能获得配置文件数据或标准权限</li>
+</ul>
+<h3 id="功能覆盖"><a href="#功能覆盖" class="headerlink" title="功能覆盖"></a>功能覆盖</h3><p>接近完全功能，包括：</p>
+<ul>
+<li>大多数 Play 服务功能完美运行（dynamite modules、Google Play Games 等）</li>
+<li>Play Store 完整支持：应用内购买、Play Asset Delivery、许可证检查</li>
+<li>应用安装、更新、卸载（需用户授权）</li>
+<li>无人值守自动更新（仅限 Play Store 来源的应用）</li>
+<li><strong>默认将位置请求重新路由到 GrapheneOS 自己的地理定位服务</strong>（可禁用）</li>
+</ul>
+<h3 id="Android-Auto"><a href="#Android-Auto" class="headerlink" title="Android Auto"></a>Android Auto</h3><p>GrapheneOS 也支持官方 Android Auto——通过沙箱化 Google Play 兼容层的扩展，以降低的权限级别运行。</p>
+<blockquote>
+<p>一句话总结：你可以在享受完整应用兼容性的同时，让 Google Play 拿不到你的系统级权限。要 Google 服务的时候开，不要的时候关，随时卸载。</p>
+</blockquote>
+<hr>
+<h2 id="九、Vanadium：自带硬核浏览器"><a href="#九、Vanadium：自带硬核浏览器" class="headerlink" title="九、Vanadium：自带硬核浏览器"></a>九、Vanadium：自带硬核浏览器</h2><p>GrapheneOS 默认浏览器 Vanadium 是基于 Chromium 的加固版本，安全特性包括：</p>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>硬件内存标记（MTE）</td>
+<td>主分配器启用</td>
+</tr>
+<tr>
+<td>类型基础 CFI</td>
+<td>控制流完整性</td>
+</tr>
+<tr>
+<td>强栈保护器</td>
+<td>检测栈溢出</td>
+</tr>
+<tr>
+<td>自动零初始化变量</td>
+<td>防止未初始化数据泄露</td>
+</tr>
+<tr>
+<td><strong>JavaScript JIT 默认禁用</strong></td>
+<td>按站点可开启，大幅减少攻击面</td>
+</tr>
+<tr>
+<td>DrumBrake WebAssembly 解释器</td>
+<td>无 JIT 下支持 WebAssembly</td>
+</tr>
+<tr>
+<td>严格站点隔离</td>
+<td>每个站点独立进程</td>
+</tr>
+<tr>
+<td>内容过滤引擎</td>
+<td>使用 EasyList&#x2F;EasyPrivacy，按站点切换</td>
+</tr>
+<tr>
+<td>第三方 Cookie 默认禁用</td>
+<td>—</td>
+</tr>
+<tr>
+<td>支付支持默认禁用</td>
+<td>—</td>
+</tr>
+<tr>
+<td>后台同步默认禁用</td>
+<td>—</td>
+</tr>
+<tr>
+<td>DRM 默认禁用</td>
+<td>—</td>
+</tr>
+<tr>
+<td>WebGPU 禁用</td>
+<td>攻击面缩减</td>
+</tr>
+<tr>
+<td>Battery API 伪造</td>
+<td>始终显示充电中且 100%</td>
+</tr>
+<tr>
+<td>用户代理缩减</td>
+<td>不泄露设备型号和版本</td>
+</tr>
+<tr>
+<td>混合后量子密码学</td>
+<td>默认启用</td>
+</tr>
+<tr>
+<td>几乎所有远程服务禁用</td>
+<td>默认仅连接 GrapheneOS 服务器</td>
+</tr>
+</tbody></table>
+<p>Vanadium 不支持浏览器扩展——这与站点隔离和反指纹策略冲突。</p>
+<hr>
+<h2 id="十、胁迫密码（Duress-PIN-Password）"><a href="#十、胁迫密码（Duress-PIN-Password）" class="headerlink" title="十、胁迫密码（Duress PIN&#x2F;Password）"></a>十、胁迫密码（Duress PIN&#x2F;Password）</h2><p>GrapheneOS 提供胁迫密码功能，设计用于<strong>被胁迫交出密码的场景</strong>（如被抢劫、被绑架时被迫解锁手机）。</p>
+<h3 id="机制"><a href="#机制" class="headerlink" title="机制"></a>机制</h3><ul>
+<li>用户设置一个胁迫 PIN 和&#x2F;或胁迫密码</li>
+<li>一旦在<strong>任何要求设备凭据的地方</strong>输入胁迫密码，设备<strong>不可逆地擦除所有数据</strong>（包括已安装的 eSIM）</li>
+<li>擦除在后台静默进行，不需要重启，无法中断</li>
+<li>对方看不到任何提示</li>
+</ul>
+<h3 id="触发范围"><a href="#触发范围" class="headerlink" title="触发范围"></a>触发范围</h3><p>不仅是锁屏——系统内任何 PIN&#x2F;密码输入点都会触发：</p>
+<ul>
+<li>锁屏界面</li>
+<li>修改密码时的”确认当前密码”</li>
+<li>开启开发者选项时的 PIN 输入</li>
+<li>应用内 PIN 校验弹窗</li>
+<li>双因素指纹解锁的 PIN 输入</li>
+</ul>
+<p>唯一例外是 SIM 卡 PIN（基带侧，与系统凭据无关）。</p>
+<h3 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Settings → Security &amp; privacy → Device unlock → Duress Password</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>PIN 模式设胁迫 PIN（纯数字）</li>
+<li>Password 模式设胁迫密码（字母数字）</li>
+<li>两者都需设置才能完整启用</li>
+<li>如果胁迫密码与真实密码相同，真实密码始终优先，不会误擦</li>
+</ul>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li><strong>不可逆</strong>：一旦触发，数据无法恢复</li>
+<li><strong>eSIM 一起被擦除</strong>：需要重新去运营商激活</li>
+<li><strong>擦除需要时间</strong>：后台擦除非瞬间完成</li>
+<li><strong>自身风险</strong>：自己手滑输错也会擦——胁迫密码要与真密码差异足够大</li>
+</ul>
+<blockquote>
+<p>这个功能保护的是”被歹徒胁迫交密码”这种非法胁迫场景。在合法执法场景下使用它销毁数据，在很多法域可能构成独立的违法行为（如妨碍公务、毁灭证据），需要自行承担法律后果。</p>
+</blockquote>
+<hr>
+<h2 id="十一、自动重启：BFU-是最安全的状态"><a href="#十一、自动重启：BFU-是最安全的状态" class="headerlink" title="十一、自动重启：BFU 是最安全的状态"></a>十一、自动重启：BFU 是最安全的状态</h2><p>GrapheneOS 的自动重启功能确保设备不会长时间停留在已解锁状态：</p>
+<ul>
+<li>设备锁定后经过设定时间<strong>自动重启</strong></li>
+<li>重启后进入 **BFU（Before First Unlock）**状态——加密密钥从内存中清除</li>
+<li>默认 18 小时，可设置 10 分钟到 72 小时</li>
+<li>在 init 进程中实现，无法通过系统进程崩溃绕过</li>
+<li><strong>不适用于 BFU 状态</strong>——不会导致设备持续重启</li>
+</ul>
+<h3 id="为什么-BFU-重要"><a href="#为什么-BFU-重要" class="headerlink" title="为什么 BFU 重要"></a>为什么 BFU 重要</h3><p>设备解锁后（AFU 状态），加密密钥驻留在内存中，理论上可被物理取证提取。BFU 状态下密钥已被清除，即使设备被拿走，面对的是全盘加密——暴力破解几乎不可能。</p>
+<p>配合内存清理功能：设备锁定时为 SystemUI 和 system_server 触发完整垃圾回收，释放不再使用的内存，内核页分配器清零所有不再引用的对象数据。</p>
+<hr>
+<h2 id="十二、用户配置文件系统"><a href="#十二、用户配置文件系统" class="headerlink" title="十二、用户配置文件系统"></a>十二、用户配置文件系统</h2><p>GrapheneOS 增强了 Android 的多用户能力：</p>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>更多配置文件</td>
+<td>上限从 4 个（3+访客）提升到 32 个（31+访客）</td>
+</tr>
+<tr>
+<td>结束会话</td>
+<td>不需设备管理器即可登出配置文件，清除加密密钥恢复静止状态</td>
+</tr>
+<tr>
+<td>禁用应用安装</td>
+<td>可在 Owner 配置文件装好应用后禁止辅助用户安装</td>
+</tr>
+<tr>
+<td>安装可用应用</td>
+<td>Owner 可安装其他用户已有的包，无需重新下载</td>
+</tr>
+<tr>
+<td>通知转发</td>
+<td>支持从后台用户向活跃用户转发通知</td>
+</tr>
+</tbody></table>
+<p>实践中的应用：把敏感数据放在 Owner 配置文件，日常使用放在辅助配置文件。辅助配置文件登出后，其中的应用无法运行，加密密钥被清除。</p>
+<hr>
+<h2 id="十三、VPN-泄漏防护"><a href="#十三、VPN-泄漏防护" class="headerlink" title="十三、VPN 泄漏防护"></a>十三、VPN 泄漏防护</h2><p>GrapheneOS 大幅改进了 Android 的 VPN 泄漏保护——这是很多人忽略但极其重要的安全细节：</p>
+<ul>
+<li><strong>防止 DNS 查询泄漏</strong>：标准 Android 在 VPN 下线时允许 DNS 查询泄漏到网络 DNS 服务器</li>
+<li><strong>阻止多播数据包绕过</strong>：标准 Android 允许进程通过多播数据包完全绕过 VPN</li>
+<li><strong>VPN 锁定时禁用 mDNS</strong></li>
+<li><strong>多播防火墙</strong>：防止进程通过其他配置文件的 VPN 隧道发送数据包</li>
+<li><strong>关闭 eBPF 防火墙漏洞</strong>：防止通过指定接口绕过 VPN</li>
+<li>VPN 默认启用 “Always-on VPN” 和 “Block connections without VPN”</li>
+</ul>
+<hr>
+<h2 id="十四、其他实用功能"><a href="#十四、其他实用功能" class="headerlink" title="十四、其他实用功能"></a>十四、其他实用功能</h2><h3 id="14-1-加密备份"><a href="#14-1-加密备份" class="headerlink" title="14.1 加密备份"></a>14.1 加密备份</h3><p>通过集成 Seedvault 实现加密备份，支持本地备份和云存储。</p>
+<h3 id="14-2-通话录音"><a href="#14-2-通话录音" class="headerlink" title="14.2 通话录音"></a>14.2 通话录音</h3><p>Dialer 应用内置通话录音，录音存储在 <code>Recordings/Call Recordings</code>，无地区限制。</p>
+<h3 id="14-3-更精确的系统时钟"><a href="#14-3-更精确的系统时钟" class="headerlink" title="14.3 更精确的系统时钟"></a>14.3 更精确的系统时钟</h3><p>系统时钟时间更新阈值从 2000ms 降到 50ms，漂移警告从 2000ms 降到 250ms——对 TOTP 等基于时间的认证协议很重要。</p>
+<h3 id="14-4-日志查看器"><a href="#14-4-日志查看器" class="headerlink" title="14.4 日志查看器"></a>14.4 日志查看器</h3><p>设置中内置日志查看器，支持按级别、缓冲区和文本搜索过滤。GrapheneOS 因隐私原因不实现自动化崩溃报告，取而代之的是用户面向的崩溃报告和日志查看。</p>
+<h3 id="14-5-GrapheneOS-应用仓库"><a href="#14-5-GrapheneOS-应用仓库" class="headerlink" title="14.5 GrapheneOS 应用仓库"></a>14.5 GrapheneOS 应用仓库</h3><p>自有的应用仓库客户端，用于分发 GrapheneOS 自有应用和 Google Play 镜像。</p>
+<h3 id="14-6-网络定位服务"><a href="#14-6-网络定位服务" class="headerlink" title="14.6 网络定位服务"></a>14.6 网络定位服务</h3><p>GrapheneOS 自有的基于网络的位置服务——类似 Apple&#x2F;Google 的服务，但隐私得多：</p>
+<ul>
+<li>仅发送每个网络的标识符，不需要发送距离估计</li>
+<li>本地位置估计，数据在内存中缓存最多 15 分钟，可离线运行</li>
+<li>可选择代理到 Apple 服务或直接使用 Apple 服务</li>
+</ul>
+<hr>
+<h2 id="十五、安装方法"><a href="#十五、安装方法" class="headerlink" title="十五、安装方法"></a>十五、安装方法</h2><p>GrapheneOS 提供两种官方安装方式：</p>
+<h3 id="方式一：Web-安装器（推荐）"><a href="#方式一：Web-安装器（推荐）" class="headerlink" title="方式一：Web 安装器（推荐）"></a>方式一：Web 安装器（推荐）</h3><p>基于 WebUSB 的浏览器安装器，<strong>不需要安装任何额外软件</strong>，只需一个支持 WebUSB 的浏览器（Chrome&#x2F;Chromium&#x2F;Edge）。</p>
+<p>大致流程：</p>
+<ol>
+<li>在 Pixel 上启用 OEM 解锁</li>
+<li>连接电脑，在浏览器中打开 GrapheneOS Web 安装器</li>
+<li>解锁 bootloader</li>
+<li>下载 GrapheneOS 镜像并刷入</li>
+<li>锁定 bootloader（GrapheneOS 设置向导会引导）</li>
+<li>完成</li>
+</ol>
+<h3 id="方式二：命令行安装"><a href="#方式二：命令行安装" class="headerlink" title="方式二：命令行安装"></a>方式二：命令行安装</h3><p>面向技术用户，需要 fastboot 和 OpenSSH 工具。需要理解安装流程，不要盲目执行命令。</p>
+<blockquote>
+<p>官方强烈建议使用这两种官方方法。第三方安装指南经常过时或包含错误建议。</p>
+</blockquote>
+<hr>
+<h2 id="十六、与其他隐私-ROM-的横向对比"><a href="#十六、与其他隐私-ROM-的横向对比" class="headerlink" title="十六、与其他隐私 ROM 的横向对比"></a>十六、与其他隐私 ROM 的横向对比</h2><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>GrapheneOS</th>
+<th>CalyxOS</th>
+<th>LineageOS</th>
+<th>DivestOS</th>
+<th>iodéOS</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>安全评级</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+<td>⭐⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>隐私评级</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>易用性</td>
+<td>⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>Google Play 兼容</td>
+<td>沙箱化 ✅</td>
+<td>microG ✅</td>
+<td>手动 ⚠️</td>
+<td>无 ❌</td>
+<td>microG ✅</td>
+</tr>
+<tr>
+<td>银行 App</td>
+<td>大多数可用 ✅</td>
+<td>部分 ⚠️</td>
+<td>不确定 ⚠️</td>
+<td>不行 ❌</td>
+<td>部分 ⚠️</td>
+</tr>
+<tr>
+<td>加固内核</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>部分</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>设备支持</td>
+<td>仅 Pixel</td>
+<td>Pixel + Fairphone + Motorola</td>
+<td>110+ 设备</td>
+<td>旧设备</td>
+<td>部分 Pixel&#x2F;Fairphone&#x2F;Samsung</td>
+</tr>
+<tr>
+<td>内置防火墙</td>
+<td>❌</td>
+<td>✅ (Datura)</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>追踪器拦截</td>
+<td>❌</td>
+<td>部分</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+</tbody></table>
+<h3 id="各自定位"><a href="#各自定位" class="headerlink" title="各自定位"></a>各自定位</h3><ul>
+<li><strong>GrapheneOS</strong>：安全最强，适合记者、活动人士、安全研究人员、追求极致隐私的极客。代价是仅支持 Pixel。</li>
+<li><strong>CalyxOS</strong>：平衡之选，开箱即用，microG 预装，适合从标准 Android 平滑过渡。</li>
+<li><strong>LineageOS</strong>：设备支持最广，适合非 Pixel 设备的去 Google 化。</li>
+<li><strong>DivestOS</strong>：旧设备救星，给被抛弃的手机续命。</li>
+<li><strong>iodéOS</strong>：预装体验最好，甚至能买到预装手机。</li>
+</ul>
+<hr>
+<h2 id="十七、服务基础设施：连服务器都是隐私的"><a href="#十七、服务基础设施：连服务器都是隐私的" class="headerlink" title="十七、服务基础设施：连服务器都是隐私的"></a>十七、服务基础设施：连服务器都是隐私的</h2><p>GrapheneOS 对隐私的追求延伸到了自身服务基础设施：</p>
+<ul>
+<li><strong>完全自托管</strong>：专用服务器和虚拟机，不使用 CDN、SaaS 平台</li>
+<li><strong>避免不必要日志</strong>，日志自动清除（网络服务 4 天，其他 10 天）</li>
+<li><strong>DNSSEC</strong> 全域名实现</li>
+<li><strong>DANE TLSA 记录</strong> 固定 TLS 密钥</li>
+<li><strong>DNS CAA 记录</strong> 仅允许 Let’s Encrypt 颁发证书</li>
+<li><strong>SSHFP</strong> 固定 SSH 密钥</li>
+<li>网站不含第三方内容，严格 CSP，禁用 referrer</li>
+<li>所有服务使用认证加密 + 前向保密</li>
+<li>无持久 cookie（登录会话除外），<code>SameSite=Strict</code> + <code>__Host</code> 前缀</li>
+<li>scrypt 密码哈希</li>
+</ul>
+<hr>
+<h2 id="十八、谁应该用-GrapheneOS"><a href="#十八、谁应该用-GrapheneOS" class="headerlink" title="十八、谁应该用 GrapheneOS"></a>十八、谁应该用 GrapheneOS</h2><h3 id="适合"><a href="#适合" class="headerlink" title="适合"></a>适合</h3><ul>
+<li><strong>记者、活动人士</strong>：面对有针对性的监控威胁</li>
+<li><strong>安全研究人员</strong>：需要可审计的安全设备</li>
+<li><strong>隐私极客</strong>：不想让 Google 追踪自己的一举一动</li>
+<li><strong>高价值目标</strong>：持有敏感数据的企业高管、律师等</li>
+<li><strong>技术爱好者</strong>：愿意折腾、追求掌控自己设备的人</li>
+</ul>
+<h3 id="不太适合"><a href="#不太适合" class="headerlink" title="不太适合"></a>不太适合</h3><ul>
+<li><strong>需要丰富售后保障的人</strong>：出问题靠社区</li>
+<li><strong>重度依赖 Google 生态且不愿折腾的人</strong>：虽然有沙箱化 Play，但体验不如原生</li>
+<li><strong>非 Pixel 用户</strong>：根本装不了</li>
+<li><strong>完全不懂技术的人</strong>：虽然安装已大幅简化，但日常使用仍需一定理解</li>
+</ul>
+<hr>
+<h2 id="十九、优缺点总结"><a href="#十九、优缺点总结" class="headerlink" title="十九、优缺点总结"></a>十九、优缺点总结</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>安卓生态中<strong>最强的安全加固</strong>，没有之一</li>
+<li>彻底去 Google 化，默认不泄露任何数据</li>
+<li>沙箱化 Google Play 兼顾隐私和兼容性</li>
+<li>功能丰富，从胁迫密码到 VPN 泄漏防护面面俱到</li>
+<li>非营利开源项目，无商业利益冲突</li>
+<li>更新及时，通常在 Google 发布安全补丁后数小时内跟进</li>
+</ul>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li><strong>仅支持 Pixel</strong>——这是最大的门槛</li>
+<li>国内应用兼容性基本 OK，但部分需要 Google SafetyNet&#x2F;Play Integrity 严格认证的应用可能有问题</li>
+<li>没有售后保障</li>
+<li>部分高级功能（如沙箱化 Play）需要一定学习成本</li>
+<li>不支持某些 Google 专属功能（如 Google Assistant 唤醒、Pixel 独有 AI 功能）</li>
+</ul>
+<hr>
+<h2 id="二十、结语"><a href="#二十、结语" class="headerlink" title="二十、结语"></a>二十、结语</h2><p>GrapheneOS 不是一个”换个主题”的 ROM，而是一个<strong>从底层重新思考安全和隐私的操作系统</strong>。它证明了：你不需要在”用安卓应用”和”保护自己数据”之间二选一。</p>
+<p>它的存在提出了一个重要的问题：<strong>你的手机到底是你的工具，还是别人监控你的终端？</strong></p>
+<p>如果你有一台 Pixel，愿意花一个下午的时间折腾，GrapheneOS 值得一试。它不会让你的生活更方便，但会让你的数据更安全——在这个数据即资产的时代，这可能是最值得的投资。</p>
+<hr>
+<blockquote>
+<p><strong>参考资料</strong></p>
+<ul>
+<li>GrapheneOS 官网：<a target="_blank" rel="noopener" href="https://grapheneos.org/">https://grapheneos.org/</a></li>
+<li>功能列表：<a target="_blank" rel="noopener" href="https://grapheneos.org/features">https://grapheneos.org/features</a></li>
+<li>安装指南：<a target="_blank" rel="noopener" href="https://grapheneos.org/install/">https://grapheneos.org/install/</a></li>
+<li>Auditor 服务：<a target="_blank" rel="noopener" href="https://attestation.app/">https://attestation.app/</a></li>
+<li>hardened_malloc：<a target="_blank" rel="noopener" href="https://github.com/GrapheneOS/hardened_malloc">https://github.com/GrapheneOS/hardened_malloc</a></li>
+<li>GrapheneOS 讨论论坛：<a target="_blank" rel="noopener" href="https://discuss.grapheneos.org/">https://discuss.grapheneos.org/</a></li>
+</ul>
+</blockquote>
+<p><em>本文信息截至 2026 年 7 月，GrapheneOS 持续更新中，具体功能以官方文档为准。</em></p>
+
+  </div>
+
+  <footer class="article-reactions">
+    <div class="reaction-group">
+      <button type="button" class="reaction reaction--comment" aria-label="跳转到评论区" data-action="scroll-to-comments">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-message-circle"></use></svg>
+
+      </button>
+      <span class="reaction-label">评论</span>
+      
+    </div>
+    <div class="reaction-group reaction-group--right">
+      
+      <button type="button" class="reaction reaction--share" aria-label="分享" data-action="share">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share-2 flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-share-2"></use></svg>
+
+      </button>
+      <span class="reaction-label">分享</span>
+    </div>
+  </footer>
+
+  
+
+
+  <nav class="article-actions">
+    
+      <span class="article-action article-action--prev is-disabled" aria-disabled="true">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-left"></use></svg>
+
+        <span class="action-label">上一篇</span>
+        <span class="action-title">没有更早的文章了</span>
+      </span>
+    
+    
+      <a class="article-action article-action--next" href="/2026/07/07/2026070703/">
+        <span class="action-label">下一篇</span>
+        <span class="action-title">Spring Boot 3 工程化实战：从数据库迁移到 Docker 部署</span>
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
+
+      </a>
+    
+  </nav>
+</article>
+</div>
+
+<button type="button" class="back-to-top" data-action="scroll-to-top" aria-label="返回顶部" hidden>
+  
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-up"></use></svg>
+
+</button>
+
+
+  <section class="related-paper">
+    <header class="related-paper__head">
+      <h2>
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-link"></use></svg>
+相关文章</h2>
+      <a class="related-paper__more" href="/archives/">
+        <span>查看更多</span>
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
+
+      </a>
+    </header>
+    <div class="related-paper__grid">
+      
+        <a class="related-card" href="/2026/07/06/2026070631/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/camera.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">从零打造漏洞扫描器：端口扫描 + Web 检测 + 报告生成</strong>
+            <em class="related-card__date">2026-07-06</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/07/06/2026070624/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/mountain.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">自动化资产信息收集：CNVD 漏洞报送辅助工具</strong>
+            <em class="related-card__date">2026-07-06</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/07/06/2026070630/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/notebook.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">WAF 指纹识别原理与实现：从 sqlmap 源码学起</strong>
+            <em class="related-card__date">2026-07-06</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/07/06/2026070628/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/port.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">图像预处理 + 二维码识别全攻略：9 种方法让模糊二维码无处遁形</strong>
+            <em class="related-card__date">2026-07-06</em>
+          </span>
+        </a>
+      
+    </div>
+  </section>
+
+
+      
+
+
+    </section>
+    
+  </main>
+
+  <div class="sidebar-backdrop js-sidebar-close" aria-hidden="true"></div>
+
+  
+<footer class="site-footer">
+  <span class="site-footer__left">© 2026 By ZapcoMan</span>
+  
+    <span class="site-footer__right">
+      
+        <span class="site-footer__row"><span class="site-footer__powered-prefix">Powered by Theme</span> <a href="https://github.com/Homulilly/hexo-theme-flatpaper" target="_blank" rel="noopener">FlatPaper</a></span>
+      
+    </span>
+  
+</footer>
+
+  
+<div class="search-panel" aria-hidden="true" data-index-url="/flatpaper-search.json">
+  <div class="search-backdrop js-search-close"></div>
+  <section class="search-dialog" role="dialog" aria-modal="true" aria-label="搜索文章">
+    <span class="tape tape--top-left" aria-hidden="true"></span>
+    <header class="search-head">
+      <h2><span class="green-dot"></span>搜索文章</h2>
+      <button class="icon-button js-search-close" type="button" aria-label="关闭搜索">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-x"></use></svg>
+
+      </button>
+    </header>
+    <label class="search-field">
+      
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-search"></use></svg>
+
+      <input id="flatpaper-search" class="search-input" type="search" placeholder="输入关键词，按 Esc 关闭" autocomplete="off">
+    </label>
+    <div class="search-results" data-empty="输入关键词后显示匹配的文章">
+      <p class="search-empty">输入关键词后显示匹配的文章</p>
+    </div>
+  </section>
+</div>
+
+  <script>
+  window.FLATPAPER_I18N = {"language":"zh-CN","common.posts":"文章","common.categories":"分类","common.tags":"标签","common.comments":"评论","common.share":"分享","common.page":"页面","common.archive":"归档","common.post_list":"文章列表","common.search_posts":"搜索文章","common.random_posts":"随机文章","common.reward":"赞赏","common.view_all":"查看全部","pagination.prev":"上一页","pagination.next":"下一页","pagination.post_pager":"文章分页","pagination.archive_pager":"归档分页","index.featured":"精选文章","index.pinned":"置顶","index.read_more":"阅读全文","index.previous_slide":"上一张","index.next_slide":"下一张","index.carousel_pagination":"轮播页码","index.carousel_slide":"第 %d 张","index.latest_posts":"最新文章","index.empty_posts":"还没有文章。创建第一篇文章后，这里会显示最新内容。","archive.title":"归档","archive.post_list":"文章列表","taxonomy.category_count":"%d 篇","taxonomy.empty_categories":"暂时还没有分类。","taxonomy.empty_tags":"暂时还没有标签。","links.label":"友链","links.title":"友情链接","links.empty_data":"暂未加载到友链数据。请确认 source/_data/links.yml 存在并已 hexo clean。","links.rss_label":"%s 的 RSS","friends_feed.label":"朋友圈","friends_feed.title":"友链朋友圈","friends_feed.loading":"正在加载友链动态…","friends_feed.missing_url":"暂未配置 all.json 地址。","friends_feed.load_failed":"友链动态加载失败，请稍后再试。","friends_feed.empty":"暂时没有抓取到友链文章。","friends_feed.load_more":"加载更多","friends_feed.updated_at":"更新于 %s","friends_feed.friend_count":"%d 位友邻","friends_feed.active_count":"%d 位活跃","friends_feed.article_count":"%d 篇文章","friends_feed.unknown_author":"未知站点","friends_feed.date_unknown":"时间未知","post.scroll_to_comments":"跳转到评论区","post.previous":"上一篇","post.next":"下一篇","post.no_previous":"没有更早的文章了","post.no_next":"已经是最新的一篇","post.back_to_top":"返回顶部","post.related_posts":"相关文章","post.view_more":"查看更多","not_found.label":"页面走丢了","not_found.title":"找不到这个页面","not_found.text":"这个地址可能已经移动、删除，或者从未存在。","not_found.home":"返回首页","not_found.search":"搜索文章","search.placeholder":"输入关键词，按 Esc 关闭","search.empty":"输入关键词后显示匹配的文章","search.loading":"正在加载搜索索引…","search.load_failed":"搜索索引加载失败，请重新打开搜索重试","search.no_result":"没有找到与 \"%s\" 相关的文章","search.close":"关闭搜索","code.copy":"复制代码","code.collapse":"折叠代码","code.expand":"展开代码","heading.anchor":"链接到此节: %s","head.tag":"标签：%s","head.category":"分类：%s","head.archive":"归档","head.archive_with_date":"归档：%s","head.page_number":"第 %d 页","navigation.primary":"主导航","navigation.mobile":"移动端导航","navigation.brand_home":"FlatPaper 首页","navigation.brand_menu":"打开站点导航","navigation.open_sidebar":"打开侧边栏","navigation.close_sidebar":"关闭侧边栏","navigation.sidebar":"侧边栏","navigation.sidebar_tools":"侧边栏工具","navigation.site_links":"站点链接","navigation.site_info":"站点信息","colors.choose_theme_color":"选择主题色","colors.theme_color":"主题色","colors.toggle_color_mode":"切换颜色模式","colors.green":"绿色","colors.purple":"紫色","colors.pink":"粉色","colors.sakura":"樱花粉","colors.blue":"蓝色","colors.orange":"橙色","colors.black":"黑色","profile.default_bio":"热爱生活，热爱代码，喜欢分享技术与生活中的点滴。","welcome.cta":"开始阅读","welcome.title":"欢迎来到 FlatPaper","welcome.text":"一个专注于内容与阅读体验的博客主题。","home_hero.label":"首页开屏","home_hero.enter":"开始阅读","home_hero.note":"今日","home_hero.default_subtitle":"日常记录","home_hero.nav_links":"开屏导航","home_hero.profile_links":"个人链接","home_hero.tools":"开屏工具","home_hero.shuffle_stickers":"打乱贴纸位置","home_hero.link":"链接","home_hero.sticker_image":"贴纸图片","home_hero.visit_confirm":"要访问 %s 吗？","home_hero.visit":"访问","home_hero.cancel":"取消","toc.title":"文章目录","toc.empty":"目录会根据文章标题自动生成。","toc.expand_all":"展开全部目录","toc.collapse_all":"收起全部目录","sidebar.hot_tags":"热门标签","sidebar.latest_posts":"最新文章"};
+  </script>
+  
+<script src="/js/main.js"></script>
+
+  
+</body>
+</html>
