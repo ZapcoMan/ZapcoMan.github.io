@@ -17,7 +17,7 @@
 <meta property="og:description" content="Feign Fallback 解决的是”调用失败后怎么办”，但如果商品服务持续故障，每次调用都等超时——系统会被拖死。Sentinel 在故障扩散前就熔断。Seata 保证跨服务操作的一致性。RocketMQ 把同步链变成异步扇出。本文继续拆解微服务的高级特性。 第一章：Sentinel 熔断限流1.1 雪崩效应123456订单服务 → 商品服务（持续故障）...">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-07-15T00:28:22.000Z">
-<meta property="article:modified_time" content="2026-07-15T01:06:57.183Z">
+<meta property="article:modified_time" content="2026-07-15T01:30:17.476Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="Spring cloud">
 <meta property="article:tag" content="微服务">
@@ -26,7 +26,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Spring Cloud 微服务架构全解（下）：熔断、事务与消息","name":"Spring Cloud 微服务架构全解（下）：熔断、事务与消息 | ZapcoMan's world","description":"Feign Fallback 解决的是”调用失败后怎么办”，但如果商品服务持续故障，每次调用都等超时——系统会被拖死。Sentinel 在故障扩散前就熔断。Seata 保证跨服务操作的一致性。RocketMQ 把同步链变成异步扇出。本文继续拆解微服务的高级特性。 第一章：Sentinel 熔断限流1.1 雪崩效应123456订单服务 → 商品服务（持续故障）...","url":"http://example.com/2026/07/15/20260715/2026071502/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/07/15/20260715/2026071502/","datePublished":"2026-07-15T00:28:22.000Z","dateModified":"2026-07-15T01:06:57.183Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"Spring cloud, 微服务"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Spring Cloud 微服务架构全解（下）：熔断、事务与消息","name":"Spring Cloud 微服务架构全解（下）：熔断、事务与消息 | ZapcoMan's world","description":"Feign Fallback 解决的是”调用失败后怎么办”，但如果商品服务持续故障，每次调用都等超时——系统会被拖死。Sentinel 在故障扩散前就熔断。Seata 保证跨服务操作的一致性。RocketMQ 把同步链变成异步扇出。本文继续拆解微服务的高级特性。 第一章：Sentinel 熔断限流1.1 雪崩效应123456订单服务 → 商品服务（持续故障）...","url":"http://example.com/2026/07/15/20260715/2026071502/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/07/15/20260715/2026071502/","datePublished":"2026-07-15T00:28:22.000Z","dateModified":"2026-07-15T01:30:17.476Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"Spring cloud, 微服务"}</script>
 
 <script>
   (function () {
@@ -343,21 +343,21 @@
         
           
             <a class="site-info__item" href="/archives/">
-              <strong>82</strong>
+              <strong>85</strong>
               <span>文章</span>
             </a>
           
         
           
             <a class="site-info__item" href="/categories/">
-              <strong>26</strong>
+              <strong>27</strong>
               <span>分类</span>
             </a>
           
         
           
             <a class="site-info__item" href="/tags/">
-              <strong>78</strong>
+              <strong>80</strong>
               <span>标签</span>
             </a>
           
@@ -469,7 +469,7 @@
 
 
   <div class="article-content">
-    <h1 id=""><a href="#" class="headerlink" title=""></a></h1><blockquote>
+    <blockquote>
 <p>Feign Fallback 解决的是”调用失败后怎么办”，但如果商品服务持续故障，每次调用都等超时——系统会被拖死。Sentinel 在故障扩散前就熔断。Seata 保证跨服务操作的一致性。RocketMQ 把同步链变成异步扇出。本文继续拆解微服务的高级特性。</p>
 </blockquote>
 <hr>
@@ -676,12 +676,28 @@
     </header>
     <div class="related-paper__grid">
       
-        <a class="related-card" href="/2026/07/15/20260715/2026071501/">
+        <a class="related-card" href="/2026/07/15/20260715/2026071503/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/images/cover/camera.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">模块化架构设计：从五层分层到 12 模块拆分再到 RuoYi 二开</strong>
+            <em class="related-card__date">2026-07-15</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/07/15/20260715/2026071501/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/mountain.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
