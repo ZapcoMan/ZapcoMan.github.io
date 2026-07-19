@@ -1,0 +1,1075 @@
+<!doctype html>
+
+<html lang="zh-CN" data-fancybox-enabled="1">
+<head>
+  
+
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f7f3e9">
+
+<title>研究 Reality 协议 v2:从 Shadowsocks、VMess、Trojan 的演进看 Reality 的突破 | ZapcoMan&#39;s world</title>
+<meta name="description" content="摘要:本文从网络分层与 OSI&#x2F;TCP-IP 模型讲起,说明 Shadowsocks、VMess、VLESS、Trojan、Reality 各自工作在哪一层。在此基础上研究了代理协议从 Shadowsocks 到 VMess、Trojan 再到 Reality 的演进脉络,并基于 XTLS&#x2F;REALITY 和 XTLS&#x2F;Xray...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="研究 Reality 协议 v2:从 Shadowsocks、VMess、Trojan 的演进看 Reality 的突破 | ZapcoMan&#39;s world">
+<meta property="og:url" content="http://example.com/2026/07/19/2026071901/">
+<meta property="og:site_name" content="ZapcoMan&#39;s world">
+<meta property="og:description" content="摘要:本文从网络分层与 OSI&#x2F;TCP-IP 模型讲起,说明 Shadowsocks、VMess、VLESS、Trojan、Reality 各自工作在哪一层。在此基础上研究了代理协议从 Shadowsocks 到 VMess、Trojan 再到 Reality 的演进脉络,并基于 XTLS&#x2F;REALITY 和 XTLS&#x2F;Xray...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-07-19T01:18:22.000Z">
+<meta property="article:modified_time" content="2026-07-19T01:20:38.108Z">
+<meta property="article:author" content="ZapcoMan">
+<meta property="article:tag" content="vpn">
+<meta property="article:tag" content="网络协议">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="http://example.com/2026/07/19/2026071901/">
+
+<link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"研究 Reality 协议 v2:从 Shadowsocks、VMess、Trojan 的演进看 Reality 的突破","name":"研究 Reality 协议 v2:从 Shadowsocks、VMess、Trojan 的演进看 Reality 的突破 | ZapcoMan's world","description":"摘要:本文从网络分层与 OSI&#x2F;TCP-IP 模型讲起,说明 Shadowsocks、VMess、VLESS、Trojan、Reality 各自工作在哪一层。在此基础上研究了代理协议从 Shadowsocks 到 VMess、Trojan 再到 Reality 的演进脉络,并基于 XTLS&#x2F;REALITY 和 XTLS&#x2F;Xray...","url":"http://example.com/2026/07/19/2026071901/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/07/19/2026071901/","datePublished":"2026-07-19T01:18:22.000Z","dateModified":"2026-07-19T01:20:38.108Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"网络协议, vpn"}</script>
+
+<script>
+  (function () {
+    var accents = { orange: 1, purple: 1, sakura: 1, blue: 1, pink: 1, green: 1, black: 1 };
+    var match = document.cookie.match(/(?:^|;\s*)flatpaper-accent=([^;]+)/);
+    var accent = 'blue';
+    if (match) {
+      try { accent = decodeURIComponent(match[1]); } catch (e) {}
+    }
+    if (!accents[accent]) accent = 'blue';
+    document.documentElement.setAttribute('data-accent', accent);
+    try {
+      if (localStorage.getItem('flatpaper-mode') === 'dark') {
+        document.documentElement.classList.add('dark-mode');
+      }
+    } catch (e) {}
+  })();
+</script>
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
+<script defer src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 8.1.2"><link rel="alternate" href="/atom.xml" title="ZapcoMan's world" type="application/atom+xml">
+</head>
+
+<body
+  class="is-post tag-style-tape bg-style-default"
+  data-default-accent="blue"
+  data-code-theme="dark"
+  data-note-style="sticky"
+  data-note-icons="on"
+  data-button-style="circle"
+  data-strong-accent="on"
+>
+  
+    <div class="page-grain"></div>
+  
+  <svg width="0" height="0" style="position:absolute;z-index:-1;" aria-hidden="true">
+    <defs>
+      <filter id="paper-edge" x="-5%" y="-5%" width="110%" height="110%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.04" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+    </defs>
+  </svg>
+  <svg class="flatpaper-icon-sprite" xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute;width:0;height:0;overflow:hidden;" aria-hidden="true" focusable="false"><defs><symbol id="flatpaper-icon-lucide-layout-grid" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></symbol><symbol id="flatpaper-icon-lucide-house" viewBox="0 0 24 24"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol><symbol id="flatpaper-icon-lucide-archive" viewBox="0 0 24 24"><rect width="20" height="5" x="2" y="3" rx="1"/><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8"/><path d="M10 12h4"/></symbol><symbol id="flatpaper-icon-lucide-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol><symbol id="flatpaper-icon-lucide-user" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol><symbol id="flatpaper-icon-lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></symbol><symbol id="flatpaper-icon-lucide-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol><symbol id="flatpaper-icon-lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></symbol><symbol id="flatpaper-icon-lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></symbol><symbol id="flatpaper-icon-lucide-palette" viewBox="0 0 24 24"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"/><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/></symbol><symbol id="flatpaper-icon-fa-brands-github" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></symbol><symbol id="flatpaper-icon-fa-brands-twitter" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></symbol><symbol id="flatpaper-icon-lucide-mail" viewBox="0 0 24 24"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></symbol><symbol id="flatpaper-icon-lucide-rss" viewBox="0 0 24 24"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></symbol><symbol id="flatpaper-icon-lucide-atom" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><path d="M20.2 20.2c2.04-2.03.02-7.36-4.5-11.9-4.54-4.52-9.87-6.54-11.9-4.5-2.04 2.03-.02 7.36 4.5 11.9 4.54 4.52 9.87 6.54 11.9 4.5Z"/><path d="M15.7 15.7c4.52-4.54 6.54-9.87 4.5-11.9-2.03-2.04-7.36-.02-11.9 4.5-4.52 4.54-6.54 9.87-4.5 11.9 2.03 2.04 7.36.02 11.9-4.5Z"/></symbol><symbol id="flatpaper-icon-lucide-heart" viewBox="0 0 24 24"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></symbol><symbol id="flatpaper-icon-lucide-message-circle" viewBox="0 0 24 24"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></symbol><symbol id="flatpaper-icon-lucide-message-square" viewBox="0 0 24 24"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z"/></symbol><symbol id="flatpaper-icon-lucide-share-2" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></symbol><symbol id="flatpaper-icon-lucide-calendar" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></symbol><symbol id="flatpaper-icon-lucide-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol><symbol id="flatpaper-icon-lucide-shuffle" viewBox="0 0 24 24"><path d="m18 14 4 4-4 4"/><path d="m18 2 4 4-4 4"/><path d="M2 18h1.973a4 4 0 0 0 3.3-1.7l5.454-8.6a4 4 0 0 1 3.3-1.7H22"/><path d="M2 6h1.972a4 4 0 0 1 3.6 2.2"/><path d="M22 18h-6.041a4 4 0 0 1-3.3-1.8l-.359-.45"/></symbol><symbol id="flatpaper-icon-lucide-flame" viewBox="0 0 24 24"><path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4"/></symbol><symbol id="flatpaper-icon-lucide-history" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></symbol><symbol id="flatpaper-icon-lucide-table-of-contents" viewBox="0 0 24 24"><path d="M16 5H3"/><path d="M16 12H3"/><path d="M16 19H3"/><path d="M21 5h.01"/><path d="M21 12h.01"/><path d="M21 19h.01"/></symbol><symbol id="flatpaper-icon-lucide-list-tree" viewBox="0 0 24 24"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></symbol><symbol id="flatpaper-icon-lucide-folder" viewBox="0 0 24 24"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></symbol><symbol id="flatpaper-icon-lucide-tag" viewBox="0 0 24 24"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/></symbol><symbol id="flatpaper-icon-lucide-eye" viewBox="0 0 24 24"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></symbol><symbol id="flatpaper-icon-lucide-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol><symbol id="flatpaper-icon-lucide-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></symbol><symbol id="flatpaper-icon-lucide-arrow-up" viewBox="0 0 24 24"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></symbol><symbol id="flatpaper-icon-lucide-chevron-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol><symbol id="flatpaper-icon-lucide-chevron-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol><symbol id="flatpaper-icon-lucide-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol><symbol id="flatpaper-icon-lucide-chevron-up" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></symbol><symbol id="flatpaper-icon-lucide-send" viewBox="0 0 24 24"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></symbol><symbol id="flatpaper-icon-lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></symbol><symbol id="flatpaper-icon-lucide-panel-left" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/></symbol><symbol id="flatpaper-icon-lucide-leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></symbol><symbol id="flatpaper-icon-lucide-aperture" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m14.31 8 5.74 9.94"/><path d="M9.69 8h11.48"/><path d="m7.38 12 5.74-9.94"/><path d="M9.69 16 3.95 6.06"/><path d="M14.31 16H2.83"/><path d="m16.62 12-5.74 9.94"/></symbol><symbol id="flatpaper-icon-lucide-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"/></symbol><symbol id="flatpaper-icon-lucide-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></symbol><symbol id="flatpaper-icon-lucide-radio" viewBox="0 0 24 24"><path d="M16.247 7.761a6 6 0 0 1 0 8.478"/><path d="M19.075 4.933a10 10 0 0 1 0 14.134"/><path d="M4.925 19.067a10 10 0 0 1 0-14.134"/><path d="M7.753 16.239a6 6 0 0 1 0-8.478"/><circle cx="12" cy="12" r="2"/></symbol><symbol id="flatpaper-icon-lucide-hash" viewBox="0 0 24 24"><line x1="4" x2="20" y1="9" y2="9"/><line x1="4" x2="20" y1="15" y2="15"/><line x1="10" x2="8" y1="3" y2="21"/><line x1="16" x2="14" y1="3" y2="21"/></symbol><symbol id="flatpaper-icon-lucide-gift" viewBox="0 0 24 24"><path d="M12 7v14"/><path d="M20 11v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"/><path d="M7.5 7a1 1 0 0 1 0-5A4.8 8 0 0 1 12 7a4.8 8 0 0 1 4.5-5 1 1 0 0 1 0 5"/><rect x="3" y="7" width="18" height="4" rx="1"/></symbol><symbol id="flatpaper-icon-fa-brands-alipay" viewBox="0 0 448 512"><path d="M377.74 32H70.26C31.41 32 0 63.41 0 102.26v307.48C0 448.59 31.41 480 70.26 480h307.48c38.52 0 69.76-31.08 70.26-69.6-45.96-25.62-110.59-60.34-171.6-88.44-32.07 43.97-84.14 81-148.62 81-70.59 0-93.73-45.3-97.04-76.37-3.97-39.01 14.88-81.5 99.52-81.5 35.38 0 79.35 10.25 127.13 24.96 16.53-30.09 26.45-60.34 26.45-60.34h-178.2v-16.7h92.08v-31.24H88.28v-19.01h109.44V92.34h50.92v50.42h109.44v19.01H248.63v31.24h88.77s-15.21 46.62-38.35 90.92c48.93 16.7 100.01 36.04 148.62 52.74V102.26C447.83 63.57 416.43 32 377.74 32zM47.28 322.95c.99 20.17 10.25 53.73 69.93 53.73 52.07 0 92.58-39.68 117.87-72.9-44.63-18.68-84.48-31.41-109.44-31.41-67.45 0-79.35 33.06-78.36 50.58z"/></symbol><symbol id="flatpaper-icon-fa-brands-paypal" viewBox="0 0 384 512"><path d="M111.4 295.9c-3.5 19.2-17.4 108.7-21.5 134-.3 1.8-1 2.5-3 2.5H12.3c-7.6 0-13.1-6.6-12.1-13.9L58.8 46.6c1.5-9.6 10.1-16.9 20-16.9 152.3 0 165.1-3.7 204 11.4 60.1 23.3 65.6 79.5 44 140.3-21.5 62.6-72.5 89.5-140.1 90.3-43.4.7-69.5-7-75.3 24.2zM357.1 152c-1.8-1.3-2.5-1.8-3 1.3-2 11.4-5.1 22.5-8.8 33.6-39.9 113.8-150.5 103.9-204.5 103.9-6.1 0-10.1 3.3-10.9 9.4-22.6 140.4-27.1 169.7-27.1 169.7-1 7.1 3.5 12.9 10.6 12.9h63.5c8.6 0 15.7-6.3 17.4-14.9.7-5.4-1.1 6.1 14.4-91.3 4.6-22 14.3-19.7 29.3-19.7 71 0 126.4-28.8 142.9-112.3 6.5-34.8 4.6-71.4-23.8-92.6z"/></symbol><symbol id="flatpaper-icon-fa-brands-x-twitter" viewBox="0 0 512 512"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></symbol><symbol id="flatpaper-icon-fa-brands-steam" viewBox="0 0 496 512"><path d="M496 256c0 137-111.2 248-248.4 248-113.8 0-209.6-76.3-239-180.4l95.2 39.3c6.4 32.1 34.9 56.4 68.9 56.4 39.2 0 71.9-32.4 70.2-73.5l84.5-60.2c52.1 1.3 95.8-40.9 95.8-93.5 0-51.6-42-93.5-93.7-93.5s-93.7 42-93.7 93.5v1.2L176.6 279c-15.5-.9-30.7 3.4-43.5 12.1L0 236.1C10.2 108.4 117.1 8 247.6 8 384.8 8 496 119 496 256zM155.7 384.3l-30.5-12.6a52.79 52.79 0 0 0 27.2 25.8c26.9 11.2 57.8-1.6 69-28.4 5.4-13 5.5-27.3.1-40.3-5.4-13-15.5-23.2-28.5-28.6-12.9-5.4-26.7-5.2-38.9-.6l31.5 13c19.8 8.2 29.2 30.9 20.9 50.7-8.3 19.9-31 29.2-50.8 21zm173.8-129.9c-34.4 0-62.4-28-62.4-62.3s28-62.3 62.4-62.3 62.4 28 62.4 62.3-27.9 62.3-62.4 62.3zm.1-15.6c25.9 0 46.9-21 46.9-46.8 0-25.9-21-46.8-46.9-46.8s-46.9 21-46.9 46.8c.1 25.8 21.1 46.8 46.9 46.8z"/></symbol><symbol id="flatpaper-icon-fa-brands-bilibili" viewBox="0 0 512 512"><path d="M488.6 104.1C505.3 122.2 513 143.8 511.9 169.8V372.2C511.5 398.6 502.7 420.3 485.4 437.3C468.2 454.3 446.3 463.2 419.9 464H92.02C65.57 463.2 43.81 454.2 26.74 436.8C9.682 419.4 .7667 396.5 0 368.2V169.8C.7667 143.8 9.682 122.2 26.74 104.1C43.81 87.75 65.57 78.77 92.02 78H121.4L96.05 52.19C90.3 46.46 87.42 39.19 87.42 30.4C87.42 21.6 90.3 14.34 96.05 8.603C101.8 2.868 109.1 0 117.9 0C126.7 0 134 2.868 139.8 8.603L213.1 78H301.1L375.6 8.603C381.7 2.868 389.2 0 398 0C406.8 0 414.1 2.868 419.9 8.603C425.6 14.34 428.5 21.6 428.5 30.4C428.5 39.19 425.6 46.46 419.9 52.19L394.6 78L423.9 78C450.3 78.77 471.9 87.75 488.6 104.1H488.6zM449.8 173.8C449.4 164.2 446.1 156.4 439.1 150.3C433.9 144.2 425.1 140.9 416.4 140.5H96.05C86.46 140.9 78.6 144.2 72.47 150.3C66.33 156.4 63.07 164.2 62.69 173.8V368.2C62.69 377.4 65.95 385.2 72.47 391.7C78.99 398.2 86.85 401.5 96.05 401.5H416.4C425.6 401.5 433.4 398.2 439.7 391.7C446 385.2 449.4 377.4 449.8 368.2L449.8 173.8zM185.5 216.5C191.8 222.8 195.2 230.6 195.6 239.7V273C195.2 282.2 191.9 289.9 185.8 296.2C179.6 302.5 171.8 305.7 162.2 305.7C152.6 305.7 144.7 302.5 138.6 296.2C132.5 289.9 129.2 282.2 128.8 273V239.7C129.2 230.6 132.6 222.8 138.9 216.5C145.2 210.2 152.1 206.9 162.2 206.5C171.4 206.9 179.2 210.2 185.5 216.5H185.5zM377 216.5C383.3 222.8 386.7 230.6 387.1 239.7V273C386.7 282.2 383.4 289.9 377.3 296.2C371.2 302.5 363.3 305.7 353.7 305.7C344.1 305.7 336.3 302.5 330.1 296.2C323.1 289.9 320.7 282.2 320.4 273V239.7C320.7 230.6 324.1 222.8 330.4 216.5C336.7 210.2 344.5 206.9 353.7 206.5C362.9 206.9 370.7 210.2 377 216.5H377z"/></symbol><symbol id="flatpaper-icon-fa-brands-youtube" viewBox="0 0 576 512"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></symbol><symbol id="flatpaper-icon-fa-brands-facebook" viewBox="0 0 512 512"><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></symbol><symbol id="flatpaper-icon-fa-brands-instagram" viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></symbol><symbol id="flatpaper-icon-fa-brands-telegram" viewBox="0 0 496 512"><path d="M248,8C111.033,8,0,119.033,0,256S111.033,504,248,504,496,392.967,496,256,384.967,8,248,8ZM362.952,176.66c-3.732,39.215-19.881,134.378-28.1,178.3-3.476,18.584-10.322,24.816-16.948,25.425-14.4,1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25,5.342-39.5,3.652-3.793,67.107-61.51,68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608,69.142-14.845,10.194-26.894,9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7,18.45-13.7,108.446-47.248,144.628-62.3c68.872-28.647,83.183-33.623,92.511-33.789,2.052-.034,6.639.474,9.61,2.885a10.452,10.452,0,0,1,3.53,6.716A43.765,43.765,0,0,1,362.952,176.66Z"/></symbol><symbol id="flatpaper-icon-fa-brands-weibo" viewBox="0 0 512 512"><path d="M407 177.6c7.6-24-13.4-46.8-37.4-41.7-22 4.8-28.8-28.1-7.1-32.8 50.1-10.9 92.3 37.1 76.5 84.8-6.8 21.2-38.8 10.8-32-10.3zM214.8 446.7C108.5 446.7 0 395.3 0 310.4c0-44.3 28-95.4 76.3-143.7C176 67 279.5 65.8 249.9 161c-4 13.1 12.3 5.7 12.3 6 79.5-33.6 140.5-16.8 114 51.4-3.7 9.4 1.1 10.9 8.3 13.1 135.7 42.3 34.8 215.2-169.7 215.2zm143.7-146.3c-5.4-55.7-78.5-94-163.4-85.7-84.8 8.6-148.8 60.3-143.4 116s78.5 94 163.4 85.7c84.8-8.6 148.8-60.3 143.4-116zM347.9 35.1c-25.9 5.6-16.8 43.7 8.3 38.3 72.3-15.2 134.8 52.8 111.7 124-7.4 24.2 29.1 37 37.4 12 31.9-99.8-55.1-195.9-157.4-174.3zm-78.5 311c-17.1 38.8-66.8 60-109.1 46.3-40.8-13.1-58-53.4-40.3-89.7 17.7-35.4 63.1-55.4 103.4-45.1 42 10.8 63.1 50.2 46 88.5zm-86.3-30c-12.9-5.4-30 .3-38 12.9-8.3 12.9-4.3 28 8.6 34 13.1 6 30.8.3 39.1-12.9 8-13.1 3.7-28.3-9.7-34zm32.6-13.4c-5.1-1.7-11.4.6-14.3 5.4-2.9 5.1-1.4 10.6 3.7 12.9 5.1 2 11.7-.3 14.6-5.4 2.8-5.2 1.1-10.9-4-12.9z"/></symbol></defs></svg>
+  
+  <header class="site-header">
+  
+  <button class="icon-button js-sidebar-toggle sidebar-toggle" type="button" aria-label="打开侧边栏" aria-controls="paper-sidebar-drawer" aria-expanded="false">
+    
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-menu"></use></svg>
+
+  </button>
+
+  <div class="brand">
+    <div class="brand-mark-wrapper">
+      
+        <a class="brand-mark" href="/" aria-label="FlatPaper 首页">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-grid flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-layout-grid"></use></svg>
+
+        </a>
+      
+    </div>
+    <a class="brand-text" href="/">ZapcoMan&#39;s world</a>
+  </div>
+
+  <nav class="site-nav" aria-label="主导航">
+    
+      
+        <a class="site-nav-link " href="/">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-house"></use></svg>
+
+          <span>首页</span>
+        </a>
+      
+    
+      
+        <div class="site-nav-item has-children">
+          <button class="site-nav-link site-nav-parent" type="button" aria-haspopup="true" aria-expanded="false">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+            <span>文章</span>
+          </button>
+          <div class="site-nav-menu" role="menu">
+            
+              <a role="menuitem" class="" href="/categories/">
+                
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+                <span>分类</span>
+              </a>
+            
+              <a role="menuitem" class="" href="/tags/">
+                
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
+
+                <span>标签</span>
+              </a>
+            
+              <a role="menuitem" class="" href="/archives/">
+                
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-archive flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-archive"></use></svg>
+
+                <span>归档</span>
+              </a>
+            
+          </div>
+        </div>
+      
+    
+      
+        <a class="site-nav-link " href="/links/">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-link"></use></svg>
+
+          <span>友链</span>
+        </a>
+      
+    
+      
+        <a class="site-nav-link " href="/about/">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-user"></use></svg>
+
+          <span>关于</span>
+        </a>
+      
+    
+  </nav>
+
+  <div class="header-tools">
+    <button class="icon-button js-search-open" type="button" aria-label="搜索文章">
+      
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-search"></use></svg>
+
+    </button>
+    <div class="accent-picker">
+      <button class="icon-button accent-toggle" type="button" aria-label="选择主题色" title="选择主题色" aria-haspopup="true" aria-expanded="false" aria-controls="accent-menu">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-palette"></use></svg>
+
+      </button>
+      <div class="accent-menu" id="accent-menu" role="menu" aria-label="主题色">
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="橙色" aria-checked="false" data-accent-option="orange">
+          <span class="accent-swatch accent-swatch--orange" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="紫色" aria-checked="false" data-accent-option="purple">
+          <span class="accent-swatch accent-swatch--purple" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="樱花粉" aria-checked="false" data-accent-option="sakura">
+          <span class="accent-swatch accent-swatch--sakura" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="蓝色" aria-checked="false" data-accent-option="blue">
+          <span class="accent-swatch accent-swatch--blue" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="粉色" aria-checked="false" data-accent-option="pink">
+          <span class="accent-swatch accent-swatch--pink" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="绿色" aria-checked="false" data-accent-option="green">
+          <span class="accent-swatch accent-swatch--green" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="黑色" aria-checked="false" data-accent-option="black">
+          <span class="accent-swatch accent-swatch--black" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+    <button class="theme-toggle" type="button" aria-label="切换颜色模式">
+      <span class="theme-icon theme-icon--sun">
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-sun"></use></svg>
+</span>
+      <span class="theme-icon theme-icon--moon">
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-moon"></use></svg>
+</span>
+    </button>
+  </div>
+</header>
+
+
+  
+  <main class="paper-shell paper-shell--article">
+    
+
+<aside id="paper-sidebar-drawer" class="paper-sidebar paper-sidebar--right" aria-label="侧边栏">
+  <div class="drawer-toolbar" aria-label="侧边栏工具">
+    <div class="drawer-accent-options" role="group" aria-label="主题色">
+      <button type="button" class="accent-option" aria-label="橙色" aria-pressed="false" data-accent-option="orange">
+        <span class="accent-swatch accent-swatch--orange" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="紫色" aria-pressed="false" data-accent-option="purple">
+        <span class="accent-swatch accent-swatch--purple" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="樱花粉" aria-pressed="false" data-accent-option="sakura">
+        <span class="accent-swatch accent-swatch--sakura" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="蓝色" aria-pressed="false" data-accent-option="blue">
+        <span class="accent-swatch accent-swatch--blue" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="粉色" aria-pressed="false" data-accent-option="pink">
+        <span class="accent-swatch accent-swatch--pink" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="绿色" aria-pressed="false" data-accent-option="green">
+        <span class="accent-swatch accent-swatch--green" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="黑色" aria-pressed="false" data-accent-option="black">
+        <span class="accent-swatch accent-swatch--black" aria-hidden="true"></span>
+      </button>
+    </div>
+    <button class="icon-button drawer-close js-sidebar-close" type="button" aria-label="关闭侧边栏">
+      
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-x"></use></svg>
+
+    </button>
+  </div>
+
+  <section class="side-card nav-card">
+    <nav class="site-nav-drawer" aria-label="移动端导航">
+      
+        
+          <a class="" href="/">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-house"></use></svg>
+
+            <span>首页</span>
+          </a>
+        
+      
+        
+          <div class="drawer-nav-group">
+            <button class="drawer-nav-parent" type="button" aria-expanded="false">
+              
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+              <span>文章</span>
+            </button>
+            <div class="drawer-nav-children">
+              
+                <a class="" href="/categories/">
+                  
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+                  <span>分类</span>
+                </a>
+              
+                <a class="" href="/tags/">
+                  
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
+
+                  <span>标签</span>
+                </a>
+              
+                <a class="" href="/archives/">
+                  
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-archive flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-archive"></use></svg>
+
+                  <span>归档</span>
+                </a>
+              
+            </div>
+          </div>
+        
+      
+        
+          <a class="" href="/links/">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-link"></use></svg>
+
+            <span>友链</span>
+          </a>
+        
+      
+        
+          <a class="" href="/about/">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-user"></use></svg>
+
+            <span>关于</span>
+          </a>
+        
+      
+    </nav>
+  </section>
+
+  <section class="side-card profile-card">
+    
+      <div class="avatar avatar--image avatar--circle">
+        <img src="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4" alt="ZapcoMan" loading="lazy" referrerpolicy="no-referrer">
+      </div>
+    
+    <h3>ZapcoMan</h3>
+    <p class="profile-role">日常记录</p>
+    <p>独立开发者 主攻方向：Java 后端开发（Spring Boot + Vue3 全栈）Python 脚本开发（网络编程、爬虫、数据处理、信息安全工具、自动化运维,渗透测试工具）</p>
+    
+      <div class="site-info" aria-label="站点信息">
+        
+          
+            <a class="site-info__item" href="/archives/">
+              <strong>88</strong>
+              <span>文章</span>
+            </a>
+          
+        
+          
+            <a class="site-info__item" href="/categories/">
+              <strong>27</strong>
+              <span>分类</span>
+            </a>
+          
+        
+          
+            <a class="site-info__item" href="/tags/">
+              <strong>85</strong>
+              <span>标签</span>
+            </a>
+          
+        
+      </div>
+    
+    <div class="socials">
+      
+        <a href="https://github.com/ZapcoMan" target="_blank" rel="noopener" aria-label="GitHub" data-tooltip="GitHub">
+          
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="lucide lucide-github flatpaper-icon flatpaper-icon--fa-brands" aria-hidden="true"><use href="#flatpaper-icon-fa-brands-github"></use></svg>
+
+          
+        </a>
+      
+        <a href="https://space.bilibili.com/544166891" target="_blank" rel="noopener" aria-label="Bilibili" data-tooltip="Bilibili">
+          
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="lucide lucide-bilibili flatpaper-icon flatpaper-icon--fa-brands" aria-hidden="true"><use href="#flatpaper-icon-fa-brands-bilibili"></use></svg>
+
+          
+        </a>
+      
+        <a href="#" target="_blank" rel="noopener" aria-label="掘金" data-tooltip="掘金">
+          
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-send"></use></svg>
+
+          
+        </a>
+      
+      
+        
+        
+        <a href="/atom.xml" aria-label="RSS feed" data-tooltip="RSS feed">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rss flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-rss"></use></svg>
+
+        </a>
+      
+    </div>
+  </section>
+
+  
+
+  
+    <div class="post-sticky-stack">
+      <section class="side-card toc-card">
+        <header class="toc-card__head">
+          <h2>
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-table-of-contents flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-table-of-contents"></use></svg>
+文章目录</h2>
+          <button type="button" class="toc-toggle-all" data-action="toggle-toc" aria-pressed="false" aria-label="展开全部目录" title="展开全部目录">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-chevron-down"></use></svg>
+
+          </button>
+        </header>
+        <div class="toc-content">
+          
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86-%E7%BD%91%E7%BB%9C%E5%88%86%E5%B1%82%E4%B8%8E%E4%BB%A3%E7%90%86%E5%8D%8F%E8%AE%AE%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="toc-text">前置知识:网络分层与代理协议的位置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81TCP-IP-%E5%9B%9B%E5%B1%82%E6%A8%A1%E5%9E%8B%E4%B8%8E-OSI-%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B"><span class="toc-text">一、TCP&#x2F;IP 四层模型与 OSI 七层模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%BB%A3%E7%90%86%E5%8D%8F%E8%AE%AE%E5%88%86%E5%88%AB%E5%B7%A5%E4%BD%9C%E5%9C%A8%E5%93%AA%E4%B8%AA%E5%B1%82"><span class="toc-text">二、代理协议分别工作在哪个层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%87%A0%E4%B8%AA%E5%BF%85%E9%A1%BB%E7%90%86%E8%A7%A3%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-text">三、几个必须理解的概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E5%88%86%E5%B1%82%E8%A7%86%E8%A7%92%E5%BE%88%E9%87%8D%E8%A6%81"><span class="toc-text">四、为什么分层视角很重要</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%90%86%E5%8D%8F%E8%AE%AE%E7%9A%84%E6%BC%94%E8%BF%9B-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81-Reality"><span class="toc-text">代理协议的演进:为什么需要 Reality</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E4%BB%A3-Shadowsocks"><span class="toc-text">第一代:Shadowsocks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E4%BB%A3-VMess"><span class="toc-text">第二代:VMess</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E4%BB%A3-Trojan"><span class="toc-text">第三代:Trojan</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E4%BB%A3-Reality"><span class="toc-text">第四代:Reality</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E4%BB%A3%E5%AF%B9%E6%AF%94"><span class="toc-text">四代对比</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reality-%E6%BA%90%E7%A0%81%E6%A0%B8%E5%BF%83%E6%9C%BA%E5%88%B6"><span class="toc-text">Reality 源码核心机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AE%A2%E6%88%B7%E7%AB%AF-%E5%9C%A8-SessionId-%E9%87%8C%E8%97%8F%E6%9A%97%E5%8F%B7"><span class="toc-text">1. 客户端:在 SessionId 里藏暗号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%9C%8D%E5%8A%A1%E7%AB%AF-%E8%AE%A4%E8%AF%81-%E5%88%86%E6%94%AF"><span class="toc-text">2. 服务端:认证 + 分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%88%86%E6%94%AF%E8%A1%8C%E4%B8%BA"><span class="toc-text">3. 分支行为</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%9C%8D%E5%8A%A1%E7%AB%AF%E4%BC%AA%E9%80%A0%E6%8F%A1%E6%89%8B%E8%AE%B0%E5%BD%95"><span class="toc-text">4. 服务端伪造握手记录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%87%E7%BA%A7-Demo-%E7%9A%84%E7%9B%AE%E6%A0%87"><span class="toc-text">升级 Demo 的目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81"><span class="toc-text">完整代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E4%B8%8E%E9%AA%8C%E8%AF%81"><span class="toc-text">运行与验证</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%BC%96%E8%AF%91"><span class="toc-text">1. 编译</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%BF%90%E8%A1%8C-%E5%B8%A6-SNI-%E8%B7%AF%E7%94%B1%E6%98%A0%E5%B0%84"><span class="toc-text">2. 运行(带 SNI 路由映射)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%94%A8-openssl-%E6%B5%8B%E8%AF%95"><span class="toc-text">3. 用 openssl 测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Windows-PowerShell-%E7%94%A8%E6%88%B7%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">4. Windows PowerShell 用户注意事项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E7%94%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E9%AA%8C%E8%AF%81-%E6%9C%80%E7%9B%B4%E8%A7%82"><span class="toc-text">5. 用浏览器验证(最直观)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E5%AE%9E%E7%8E%B0%E7%82%B9%E8%A7%A3%E6%9E%90"><span class="toc-text">关键实现点解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%8D%8F%E8%AE%AE%E9%A6%96%E5%8C%85%E8%AF%86%E5%88%AB"><span class="toc-text">1. 协议首包识别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-ClientHello-%E7%9A%84%E5%AE%8C%E6%95%B4%E8%A7%A3%E6%9E%90"><span class="toc-text">2. ClientHello 的完整解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-JA3-%E6%8C%87%E7%BA%B9%E5%AD%97%E6%AE%B5"><span class="toc-text">3. JA3 指纹字段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-SNI-%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1"><span class="toc-text">4. SNI 动态路由</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Reality-%E8%AE%A4%E8%AF%81%E6%8F%92%E6%A7%BD"><span class="toc-text">5. Reality 认证插槽</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%80%E9%99%90%E4%B8%8E%E4%B8%8B%E4%B8%80%E6%AD%A5"><span class="toc-text">局限与下一步</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%93%E5%89%8D%E5%B1%80%E9%99%90"><span class="toc-text">当前局限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E4%B8%80%E6%AD%A5%E5%8F%AF%E6%B7%B1%E5%85%A5"><span class="toc-text">下一步可深入</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%95%E5%BE%8B%E5%A3%B0%E6%98%8E"><span class="toc-text">法律声明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-text">参考资料</span></a></li></ol>
+          
+        </div>
+      </section>
+      
+
+
+    </div>
+  
+
+  
+
+</aside>
+
+    <section class="paper-main">
+      
+
+<div class="article-tape-wrap">
+<span class="tape tape--top-right" aria-hidden="true"></span>
+<article class="article-paper">
+  
+  <header class="article-header">
+    
+      <a class="label-pill" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+        网络安全
+      </a>
+    
+    <h1>研究 Reality 协议 v2:从 Shadowsocks、VMess、Trojan 的演进看 Reality 的突破</h1>
+    <div class="meta-line meta-line--article">
+      <span class="meta-date">
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
+2026-07-19</span>
+      
+        <span class="meta-tags">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
+
+          <a class="meta-tag-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">#网络协议</a><a class="meta-tag-link" href="/tags/vpn/">#vpn</a>
+        </span>
+      
+    </div>
+  </header>
+
+  
+
+
+  <div class="article-content">
+    <h1 id=""><a href="#" class="headerlink" title=""></a></h1><blockquote>
+<p>摘要:本文从网络分层与 OSI&#x2F;TCP-IP 模型讲起,说明 Shadowsocks、VMess、VLESS、Trojan、Reality 各自工作在哪一层。在此基础上研究了代理协议从 Shadowsocks 到 VMess、Trojan 再到 Reality 的演进脉络,并基于 XTLS&#x2F;REALITY 和 XTLS&#x2F;Xray-core 的源码,梳理了 Reality 的核心机制。最后给出了一段升级后的 Go Demo,支持协议首包识别、完整 ClientHello 解析、SNI 动态路由,以及 JA3 指纹所需字段提取。代码仅用于技术研究。</p>
+</blockquote>
+<hr>
+<h2 id="前置知识-网络分层与代理协议的位置"><a href="#前置知识-网络分层与代理协议的位置" class="headerlink" title="前置知识:网络分层与代理协议的位置"></a>前置知识:网络分层与代理协议的位置</h2><p>要理解 Shadowsocks、VMess、Trojan、Reality 这些协议的区别,需要先搞清楚它们在网络栈中的位置。网络分层不是抽象概念,它直接决定了协议能伪装到什么程度、能被识别在哪里。</p>
+<h3 id="一、TCP-IP-四层模型与-OSI-七层模型"><a href="#一、TCP-IP-四层模型与-OSI-七层模型" class="headerlink" title="一、TCP&#x2F;IP 四层模型与 OSI 七层模型"></a>一、TCP&#x2F;IP 四层模型与 OSI 七层模型</h3><p>两种模型都是把网络通信按功能分层,只是切法不同。对代理协议来说,TCP&#x2F;IP 四层更实用。</p>
+<table>
+<thead>
+<tr>
+<th>TCP&#x2F;IP 四层</th>
+<th>OSI 七层</th>
+<th>代表协议&#x2F;数据</th>
+<th>作用一句话</th>
+<th>代理协议例子</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>应用层</td>
+<td>应用层、表示层、会话层</td>
+<td>HTTP、HTTPS、FTP、DNS、SOCKS5</td>
+<td>解决”某个应用程序想发送什么数据、怎么解析”</td>
+<td>Trojan 内层认证、VMess 请求头、SOCKS5</td>
+</tr>
+<tr>
+<td>传输层</td>
+<td>传输层</td>
+<td>TCP、UDP、端口</td>
+<td>解决”端到端可靠传输,数据交给哪个进程”</td>
+<td>Shadowsocks 直接跑在 TCP&#x2F;UDP 上,Reality 在这里接管 TLS</td>
+</tr>
+<tr>
+<td>网络层</td>
+<td>网络层</td>
+<td>IP、ICMP、路由</td>
+<td>解决”数据包从哪来、到哪去,走哪条路”</td>
+<td>网络层本身不感知代理协议,但 IP 和 SNI 会被审查</td>
+</tr>
+<tr>
+<td>链路层</td>
+<td>数据链路层、物理层</td>
+<td>以太网、Wi-Fi、光纤</td>
+<td>解决”比特流在物理介质上怎么跑”</td>
+<td>和代理协议关系不大</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>一句话记忆:<strong>链路层传比特,网络层找路径,传输层管端口,应用层定语义。</strong></p>
+</blockquote>
+<h3 id="二、代理协议分别工作在哪个层"><a href="#二、代理协议分别工作在哪个层" class="headerlink" title="二、代理协议分别工作在哪个层"></a>二、代理协议分别工作在哪个层</h3><p>这是理解 Shadowsocks、VMess、Trojan、Reality 差异的关键。</p>
+<table>
+<thead>
+<tr>
+<th>协议</th>
+<th>主要工作层</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>SOCKS5</strong></td>
+<td>应用层</td>
+<td>它只是一套”告诉代理服务器目标地址”的协议,本身不加密。很多代理工具在本地先开个 SOCKS5 服务,再由下层协议把流量传出去。</td>
+</tr>
+<tr>
+<td><strong>Shadowsocks</strong></td>
+<td>传输层之上&#x2F;应用层之下</td>
+<td>它把 SOCKS5 要转发的数据拿过来,用对称密钥加密后直接塞进 TCP&#x2F;UDP 发走。它不伪装成 HTTP,也不做 TLS 握手,只是一条加密隧道。</td>
+</tr>
+<tr>
+<td><strong>VMess</strong></td>
+<td>应用层</td>
+<td>VMess 自己定义了请求头和数据格式,再交给 TCP、WebSocket、gRPC 等传输层承载。如果外层是 TLS+WebSocket,那 TLS 是另一层负责伪装的。</td>
+</tr>
+<tr>
+<td><strong>VLESS</strong></td>
+<td>应用层</td>
+<td>和 VMess 类似,是 V2Ray&#x2F;Xray 的代理协议,但头部更轻、职责更单一。通常配合 TLS&#x2F;XTLS 作为外层。</td>
+</tr>
+<tr>
+<td><strong>Trojan</strong></td>
+<td>传输层(TLS) + 应用层</td>
+<td>客户端和服务端先完成标准 TLS 握手(传输层),然后在 TLS 加密通道里用 Trojan 自己的密码认证(应用层)。它伪装成 HTTPS,但服务器需要自己的证书。</td>
+</tr>
+<tr>
+<td><strong>Reality</strong></td>
+<td>传输层(TLS 握手层)</td>
+<td>Reality 不定义新的代理语义,它只解决”怎么让 TLS 握手看起来像访问真实网站”。真正的代理协议(如 VLESS)跑在 Reality 接管后的隧道里。</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>重点</strong>:Shadowsocks 和 VMess&#x2F;VLESS 是”应用层代理协议”,它们负责”目标地址是什么”;Trojan 和 Reality 是”传输层伪装方案”,它们负责”让这条连接看起来像普通 HTTPS”。Reality 的创新在于:它连 TLS 证书和握手都懒得自己演,而是直接让真网站演。</p>
+</blockquote>
+<h3 id="三、几个必须理解的概念"><a href="#三、几个必须理解的概念" class="headerlink" title="三、几个必须理解的概念"></a>三、几个必须理解的概念</h3><h4 id="1-SNI-Server-Name-Indication-服务器名称指示"><a href="#1-SNI-Server-Name-Indication-服务器名称指示" class="headerlink" title="1. SNI(Server Name Indication, 服务器名称指示)"></a>1. SNI(Server Name Indication, 服务器名称指示)</h4><p>一台服务器的一个 IP 上可能同时托管几百个网站。TLS 握手时,客户端需要在 <code>ClientHello</code> 里告诉服务器:”我要访问的是 <code>www.microsoft.com</code>“。这个字段就是 SNI。</p>
+<ul>
+<li>没有 SNI,服务器不知道该给哪个证书。</li>
+<li>审查者常常用 SNI 黑名单做初步过滤。</li>
+<li>Reality 的关键:让 SNI 指向真实网站(如 <code>www.microsoft.com</code>),并且真实证书也匹配这个 SNI。</li>
+</ul>
+<h4 id="2-TLS-握手与-ClientHello"><a href="#2-TLS-握手与-ClientHello" class="headerlink" title="2. TLS 握手与 ClientHello"></a>2. TLS 握手与 ClientHello</h4><p>TLS 握手是 HTTPS 建立安全连接的第一步。客户端先发 <code>ClientHello</code>,包含:</p>
+<ul>
+<li>TLS 版本</li>
+<li>支持的密码套件(Cipher Suites)</li>
+<li>支持的扩展(Extensions),包括 SNI、ALPN、SupportedVersions、KeyShare 等</li>
+<li>一个 32 字节的随机数 <code>ClientRandom</code></li>
+<li>在 TLS 1.3 中,<code>SessionId</code> 字段保留但不再用于会话恢复</li>
+</ul>
+<p>服务器回应 <code>ServerHello</code>,然后发证书、密钥交换等。TLS 1.3 握手完成后,双方派生出会话密钥,后续通信加密。</p>
+<p>Reality 的 trick 就是:<strong>在这个握手过程里,把客户端的 ClientHello 原样转发给真实目标,再把真实目标的 ServerHello&#x2F;证书 透传回来。</strong> 从链路上看,就像客户端真的在和真实网站握手。</p>
+<h4 id="3-证书与证书链"><a href="#3-证书与证书链" class="headerlink" title="3. 证书与证书链"></a>3. 证书与证书链</h4><p>证书由 CA(证书颁发机构)签发,证明”这个公钥确实属于 <code>www.microsoft.com</code>“。浏览器&#x2F;操作系统内置了可信 CA 列表,所以访问大网站时证书能验证通过。</p>
+<p>传统代理服务器自己申请证书时,证书上的域名是代理服务器自己的域名,审查者可以把这个域名&#x2F;指纹拉黑。Reality 的方案是:<strong>不申请证书,直接借用真实网站的证书。</strong></p>
+<h4 id="4-透明转发与接管"><a href="#4-透明转发与接管" class="headerlink" title="4. 透明转发与接管"></a>4. 透明转发与接管</h4><ul>
+<li><strong>透明转发</strong>:收到客户端数据后,原样不改地发给另一个目标,再把目标返回的数据原样发回客户端。对双方来说,仿佛直连。</li>
+<li><strong>接管</strong>:在 TLS 握手的某个节点,代理服务器不再把真实目标的响应透传给客户端,而是自己生成后续 TLS 记录,用派生出的密钥和客户端建立隧道。</li>
+</ul>
+<p>Reality 的认证分支就是:<strong>认证成功 → 接管;认证失败 → 透明转发给真实网站。</strong></p>
+<h3 id="四、为什么分层视角很重要"><a href="#四、为什么分层视角很重要" class="headerlink" title="四、为什么分层视角很重要"></a>四、为什么分层视角很重要</h3><p>如果你从分层角度看,就能明白为什么 Shadowsocks 容易被识别、为什么 Trojan 需要域名、为什么 Reality 是突破。</p>
+<ul>
+<li><strong>Shadowsocks</strong> 在传输层直接发加密数据。审查者不需要解密,只看”这是一个非 HTTP&#x2F;HTTPS 的 TCP 流”,就可能直接阻断。</li>
+<li><strong>VMess</strong> 在应用层自己定义了一套格式。虽然外层可以套 TLS,但 VMess 请求头本身有固定长度和特征,DPI 可以学出来。</li>
+<li><strong>Trojan</strong> 在传输层做得像 HTTPS。但因为它要扮演 HTTPS 服务器,所以审查者可以针对”这个 HTTPS 服务器”做指纹、证书、SNI 黑名单。</li>
+<li><strong>Reality</strong> 在传输层不扮演 HTTPS 服务器,而是把自己变成真实 HTTPS 连接的一部分。审查者能看到的证书和 SNI 都是真网站的,无法从这一层识别出代理。</li>
+</ul>
+<p>理解了这一层,再看后面的四协议演进,就会非常清晰。</p>
+<hr>
+<h2 id="代理协议的演进-为什么需要-Reality"><a href="#代理协议的演进-为什么需要-Reality" class="headerlink" title="代理协议的演进:为什么需要 Reality"></a>代理协议的演进:为什么需要 Reality</h2><h3 id="第一代-Shadowsocks"><a href="#第一代-Shadowsocks" class="headerlink" title="第一代:Shadowsocks"></a>第一代:Shadowsocks</h3><p>Shadowsocks 是一个轻量级 SOCKS5 代理,核心设计是”把数据包加密成随机字节流”。</p>
+<ul>
+<li><strong>握手</strong>:几乎没有显式握手。客户端直接用预共享密钥(PSK)发加密数据。</li>
+<li><strong>加密</strong>:早期用流密码(AES-CTR、ChaCha20),后期升级到 AEAD(AES-GCM、ChaCha20-Poly1305)。</li>
+<li><strong>被识别的原因</strong>:虽然载荷不可读,但流密码时代的流量有统计特征;而且端口固定、首包结构有迹可循。升级到 AEAD 后好很多,但仍依赖固定密钥,没有”抗主动探测”机制——审查者可以直接用密钥尝试解密,或者通过时间&#x2F;长度特征识别。</li>
+</ul>
+<p>一句话总结:<strong>Shadowsocks 隐藏内容,但没有隐藏”这是一个代理连接”这件事。</strong></p>
+<h3 id="第二代-VMess"><a href="#第二代-VMess" class="headerlink" title="第二代:VMess"></a>第二代:VMess</h3><p>VMess 是 V2Ray 的核心协议,设计目标是”特征更少、更灵活”。</p>
+<ul>
+<li><strong>握手</strong>:客户端发送一个加密的请求头,包含 UUID 派生的认证信息、目标地址、加密方式、传输层类型等。</li>
+<li><strong>认证</strong>:基于 UUID 和动态 ID(时间相关),服务端用正确 UUID 才能解密请求头。</li>
+<li><strong>加密</strong>:请求头和后续数据都用 AEAD 加密。</li>
+<li><strong>灵活</strong>:可以承载在 TCP、WebSocket、HTTP&#x2F;2、gRPC 等多种传输层之上。</li>
+<li><strong>被识别的原因</strong>:VMess 的固定长度请求头、特定扩展使用方式,以及客户端和服务端实现中的一些指纹, eventually 可以被 DPI 学习。而且它的”伪装”依赖于上层传输(比如 TLS+WebSocket),TLS 层仍然需要自己的证书和域名。</li>
+</ul>
+<p>一句话总结:<strong>VMess 把协议做得更复杂、更灵活,但本质上还是”自己造一个协议,然后努力伪装”。</strong></p>
+<h3 id="第三代-Trojan"><a href="#第三代-Trojan" class="headerlink" title="第三代:Trojan"></a>第三代:Trojan</h3><p>Trojan 是一个极简主义设计,它直接放弃”造协议”,而是说:** TLS 加密本来就是互联网常态,我们就在 TLS 里面跑代理。**</p>
+<ul>
+<li><strong>握手</strong>:客户端先和服务端完成标准 TLS 握手。服务端需要持有证书(通常是真实域名证书或自签证书)。</li>
+<li><strong>认证</strong>:TLS 握手成功后,客户端在加密通道里发送 <code>hex(SHA224(password))</code> + SOCKS5 风格的目标地址请求。</li>
+<li><strong>Fallback</strong>:如果认证失败,Trojan 服务端把流量转发给一个正常 HTTP 服务(比如本地 80 端口),让主动探测者看到一个正常网站。</li>
+<li><strong>被识别的原因</strong>:Trojan 比 VMess 更像 HTTPS,但它仍然需要自己的证书和域名。审查者可以记录证书指纹、SNI、TLS 指纹(JA3),建立”这个证书&#x2F;指纹属于代理服务器”的黑名单。而且一旦证书是自签的或者域名不常见,就很容易被标记。</li>
+</ul>
+<p>一句话总结:<strong>Trojan 把代理藏在 HTTPS 里,但”HTTPS 服务器”本身仍然是一个攻击面。</strong></p>
+<h3 id="第四代-Reality"><a href="#第四代-Reality" class="headerlink" title="第四代:Reality"></a>第四代:Reality</h3><p>Reality 是 XTLS&#x2F;Xray 项目 2023 年推出的方案。它直接否定了 Trojan 的 premise:<strong>为什么要自己当 HTTPS 服务器?为什么不能直接让真实的大网站当服务器?</strong></p>
+<ul>
+<li><strong>核心思想</strong>:代理服务器自己不持有证书。客户端发起 TLS 握手时,代理服务器把 <code>ClientHello</code> 原样转发给真实目标网站(如 <code>www.microsoft.com</code>),把真实网站返回的 <code>ServerHello</code> + 证书链透传回客户端。</li>
+<li><strong>自己人认证</strong>:客户端和代理服务器通过 X25519 密钥交换、HKDF、AES-GCM,在 <code>ClientHello</code> 的 <code>SessionId</code> 字段里藏一个加密的短 ID。服务端认证成功后”接管”握手;认证失败则把流量透明转发给真实网站。</li>
+<li><strong>突破点</strong>:链路上看到的证书、SNI、TLS 指纹全部来自真实网站,不需要自己的域名和证书,抗主动探测(失败走 fallback 到真实网站)。</li>
+</ul>
+<p>一句话总结:<strong>Reality 不再伪装成 HTTPS,而是真的成为一次 HTTPS 连接的一部分,然后在关键时刻接管它。</strong></p>
+<h3 id="四代对比"><a href="#四代对比" class="headerlink" title="四代对比"></a>四代对比</h3><table>
+<thead>
+<tr>
+<th>协议</th>
+<th>伪装思路</th>
+<th>认证方式</th>
+<th>最大弱点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Shadowsocks</td>
+<td>加密成随机流</td>
+<td>预共享密钥</td>
+<td>流量统计特征,无抗探测能力</td>
+</tr>
+<tr>
+<td>VMess</td>
+<td>加密请求头 + 多种传输层</td>
+<td>UUID + 动态 ID</td>
+<td>固定头部指纹,依赖 TLS 伪装</td>
+</tr>
+<tr>
+<td>Trojan</td>
+<td>标准 TLS + 内层认证</td>
+<td>SHA224(password)</td>
+<td>需要自己的证书&#x2F;域名,可被拉黑</td>
+</tr>
+<tr>
+<td>Reality</td>
+<td>直接用真实网站证书</td>
+<td>X25519 + HKDF + AES-GCM</td>
+<td>dest 网站被封则失效,长连接统计特征仍可能被 AI 识别</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="Reality-源码核心机制"><a href="#Reality-源码核心机制" class="headerlink" title="Reality 源码核心机制"></a>Reality 源码核心机制</h2><p>我下载并阅读了 XTLS&#x2F;Xray-core 的 <code>transport/internet/reality/reality.go</code> 和 <code>github.com/xtls/reality</code> 的核心文件(特别是 <code>tls.go</code> 中的 <code>Server</code> 函数)。下面是关键机制。</p>
+<h3 id="1-客户端-在-SessionId-里藏暗号"><a href="#1-客户端-在-SessionId-里藏暗号" class="headerlink" title="1. 客户端:在 SessionId 里藏暗号"></a>1. 客户端:在 SessionId 里藏暗号</h3><p>Xray-core 的 <code>transport/internet/reality/reality.go</code> 中,UClient 负责构造客户端握手。关键代码逻辑如下:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">hello.SessionId = <span class="built_in">make</span>([]<span class="type">byte</span>, <span class="number">32</span>)</span><br><span class="line"><span class="built_in">copy</span>(hello.Raw[<span class="number">39</span>:], hello.SessionId)</span><br><span class="line">hello.SessionId[<span class="number">0</span>] = core.Version_x</span><br><span class="line">hello.SessionId[<span class="number">1</span>] = core.Version_y</span><br><span class="line">hello.SessionId[<span class="number">2</span>] = core.Version_z</span><br><span class="line">hello.SessionId[<span class="number">3</span>] = <span class="number">0</span> <span class="comment">// reserved</span></span><br><span class="line">binary.BigEndian.PutUint32(hello.SessionId[<span class="number">4</span>:], <span class="type">uint32</span>(time.Now().Unix()))</span><br><span class="line"><span class="built_in">copy</span>(hello.SessionId[<span class="number">8</span>:], config.ShortId)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 用 X25519 ECDH 派生 AuthKey</span></span><br><span class="line">publicKey, err := ecdh.X25519().NewPublicKey(config.PublicKey)</span><br><span class="line">ecdhe := uConn.HandshakeState.State13.KeyShareKeys.Ecdhe</span><br><span class="line">uConn.AuthKey, _ = ecdhe.ECDH(publicKey)</span><br><span class="line"></span><br><span class="line"><span class="comment">// HKDF</span></span><br><span class="line">hkdf.New(sha256.New, uConn.AuthKey, hello.Random[:<span class="number">20</span>], []<span class="type">byte</span>(<span class="string">&quot;REALITY&quot;</span>)).Read(uConn.AuthKey)</span><br><span class="line"></span><br><span class="line"><span class="comment">// AES-GCM 加密 SessionId[:16]</span></span><br><span class="line">aead := crypto.NewAesGcm(uConn.AuthKey)</span><br><span class="line">aead.Seal(hello.SessionId[:<span class="number">0</span>], hello.Random[<span class="number">20</span>:], hello.SessionId[:<span class="number">16</span>], hello.Raw)</span><br><span class="line"><span class="built_in">copy</span>(hello.Raw[<span class="number">39</span>:], hello.SessionId)</span><br></pre></td></tr></table></figure>
+
+<p><code>SessionId</code> 的 32 字节结构:</p>
+<table>
+<thead>
+<tr>
+<th>偏移</th>
+<th>长度</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0-2</td>
+<td>3</td>
+<td>Xray 版本号 X.Y.Z</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1</td>
+<td>保留 0x00</td>
+</tr>
+<tr>
+<td>4-7</td>
+<td>4</td>
+<td>Unix 时间戳(大端)</td>
+</tr>
+<tr>
+<td>8-23</td>
+<td>16</td>
+<td>shortId(客户端身份)</td>
+</tr>
+<tr>
+<td>24-31</td>
+<td>8</td>
+<td>其余空间(被加密后覆盖)</td>
+</tr>
+</tbody></table>
+<p>前 16 字节被 AES-GCM 加密,整个 <code>SessionId</code> 看起来仍是随机字节,审查者看不出来。</p>
+<h3 id="2-服务端-认证-分支"><a href="#2-服务端-认证-分支" class="headerlink" title="2. 服务端:认证 + 分支"></a>2. 服务端:认证 + 分支</h3><p><code>github.com/xtls/reality/tls.go</code> 中的 <code>Server</code> 函数是核心。它一上来就做了三件事:</p>
+<ol>
+<li><strong>连接真实目标 dest</strong> 并发送 PROXY protocol 头(可选)。</li>
+<li><strong>用 <code>MirrorConn</code> 包裹客户端连接</strong>,让从客户端读到的数据同时被转发给 dest。</li>
+<li><strong>读取 ClientHello</strong> 并尝试认证。</li>
+</ol>
+<p>认证逻辑的关键代码:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> _, keyShare := <span class="keyword">range</span> hs.clientHello.keyShares &#123;</span><br><span class="line">    <span class="keyword">if</span> keyShare.group == X25519 &amp;&amp; <span class="built_in">len</span>(keyShare.data) == <span class="number">32</span> &#123;</span><br><span class="line">        peerPub = keyShare.data</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> hs.c.AuthKey, err = curve25519.X25519(config.PrivateKey, peerPub); err != <span class="literal">nil</span> &#123;</span><br><span class="line">    <span class="keyword">break</span></span><br><span class="line">&#125;</span><br><span class="line">hkdf.New(sha256.New, hs.c.AuthKey, hs.clientHello.random[:<span class="number">20</span>], []<span class="type">byte</span>(<span class="string">&quot;REALITY&quot;</span>)).Read(hs.c.AuthKey)</span><br><span class="line"></span><br><span class="line">block, _ := aes.NewCipher(hs.c.AuthKey)</span><br><span class="line">aead, _ := cipher.NewGCM(block)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 用 AES-GCM 解密 SessionId</span></span><br><span class="line">aead.Open(plainText[:<span class="number">0</span>], hs.clientHello.random[<span class="number">20</span>:], ciphertext, hs.clientHello.original)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 校验版本、时间差、shortId</span></span><br><span class="line"><span class="keyword">if</span> (version OK) &amp;&amp; (time diff OK) &amp;&amp; (config.ShortIds[hs.c.ClientShortId]) &#123;</span><br><span class="line">    hs.c.conn = conn  <span class="comment">// 认证成功: 接管连接</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-分支行为"><a href="#3-分支行为" class="headerlink" title="3. 分支行为"></a>3. 分支行为</h3><ul>
+<li><strong>认证失败</strong>: <code>hs.c.conn != conn</code>, 服务端直接 <code>io.Copy(target, underlying)</code> 和 <code>io.Copy(underlying, target)</code>, 把客户端和真实网站双向打通。审查者看到的是正常网站响应。</li>
+<li><strong>认证成功</strong>: <code>hs.c.conn = conn</code>, 服务端继续调用 <code>hs.handshake()</code> 和 <code>hs.readClientFinished()</code>, 自己伪造 TLS 1.3 握手记录,接管密钥,后续走代理隧道。</li>
+</ul>
+<p>这就是 Reality 抗主动探测的核心:<strong>对陌生人,你就是一个正常网站的反向代理。</strong></p>
+<h3 id="4-服务端伪造握手记录"><a href="#4-服务端伪造握手记录" class="headerlink" title="4. 服务端伪造握手记录"></a>4. 服务端伪造握手记录</h3><p>认证成功后,服务端不能直接把 dest 的响应原样发回客户端(那样客户端和 dest 会用自己的密钥完成握手,代理服务器就被架空了)。服务端会:</p>
+<ul>
+<li>从 dest 读取 <code>ServerHello</code>、<code>ChangeCipherSpec</code>、<code>EncryptedExtensions</code>、<code>Certificate</code>、<code>CertificateVerify</code>、<code>Finished</code> 等记录。</li>
+<li>根据这些记录的结构,自己生成对应的 TLS 1.3 记录,但用自己的密钥。</li>
+<li>让客户端以为它就是 dest 的响应,从而用代理服务器的密钥继续通信。</li>
+</ul>
+<p>这部分代码在 <code>handshake_server_tls13.go</code> 里,与标准 Go <code>crypto/tls</code> 的服务器握手高度相似,但关键点被 Reality 接管。</p>
+<hr>
+<h2 id="升级-Demo-的目标"><a href="#升级-Demo-的目标" class="headerlink" title="升级 Demo 的目标"></a>升级 Demo 的目标</h2><p>基于上面的源码理解,我把 Demo 升级到 v2,新增以下能力:</p>
+<ol>
+<li><strong>协议首包识别</strong>:判断 incoming 连接是 TLS、HTTP 还是未知协议。</li>
+<li><strong>完整 ClientHello 解析</strong>:版本、随机数、SessionID、密码套件、压缩方法、扩展列表、SNI、ALPN、SupportedVersions、KeyShare groups、SignatureSchemes。</li>
+<li><strong>SNI 动态路由</strong>:根据解析出的 SNI 选择不同的真实目标网站。</li>
+<li><strong>JA3 指纹字段提取</strong>:收集 JA3 计算所需的字段,但暂不引入外部依赖计算完整 hash。</li>
+<li><strong>保留 Reality 认证插槽</strong>:在代码中明确标注 X25519 + HKDF + AES-GCM 认证逻辑应插入的位置,但本 Demo 不实现(避免变成可部署翻墙工具)。</li>
+<li><strong>更详细的日志</strong>:方便观察不同客户端(OpenSSL、浏览器、curl)的握手特征差异。</li>
+</ol>
+<hr>
+<h2 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h2><p>项目目录:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">reality-study/</span><br><span class="line">├── go.mod</span><br><span class="line">├── main.go</span><br><span class="line">└── reality-study.exe</span><br></pre></td></tr></table></figure>
+
+<p><code>main.go</code>:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br><span class="line">468</span><br><span class="line">469</span><br><span class="line">470</span><br><span class="line">471</span><br><span class="line">472</span><br><span class="line">473</span><br><span class="line">474</span><br><span class="line">475</span><br><span class="line">476</span><br><span class="line">477</span><br><span class="line">478</span><br><span class="line">479</span><br><span class="line">480</span><br><span class="line">481</span><br><span class="line">482</span><br><span class="line">483</span><br><span class="line">484</span><br><span class="line">485</span><br><span class="line">486</span><br><span class="line">487</span><br><span class="line">488</span><br><span class="line">489</span><br><span class="line">490</span><br><span class="line">491</span><br><span class="line">492</span><br><span class="line">493</span><br><span class="line">494</span><br><span class="line">495</span><br><span class="line">496</span><br><span class="line">497</span><br><span class="line">498</span><br><span class="line">499</span><br><span class="line">500</span><br><span class="line">501</span><br><span class="line">502</span><br><span class="line">503</span><br><span class="line">504</span><br><span class="line">505</span><br><span class="line">506</span><br><span class="line">507</span><br><span class="line">508</span><br><span class="line">509</span><br><span class="line">510</span><br><span class="line">511</span><br><span class="line">512</span><br><span class="line">513</span><br><span class="line">514</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;bytes&quot;</span></span><br><span class="line">	<span class="string">&quot;encoding/binary&quot;</span></span><br><span class="line">	<span class="string">&quot;encoding/hex&quot;</span></span><br><span class="line">	<span class="string">&quot;flag&quot;</span></span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;io&quot;</span></span><br><span class="line">	<span class="string">&quot;log&quot;</span></span><br><span class="line">	<span class="string">&quot;net&quot;</span></span><br><span class="line">	<span class="string">&quot;strings&quot;</span></span><br><span class="line">	<span class="string">&quot;time&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 升级后的 Reality 研究 Demo(v2)。</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// 相比 v1 版本,本版本增加了:</span></span><br><span class="line"><span class="comment">//   1. 协议首包识别(TLS / HTTP / 未知)</span></span><br><span class="line"><span class="comment">//   2. 更完整的 TLS ClientHello 解析(版本、密码套件、扩展、ALPN、Supported Versions、KeyShare groups)</span></span><br><span class="line"><span class="comment">//   3. SNI 到真实目标网站的动态路由映射</span></span><br><span class="line"><span class="comment">//   4. 提取 JA3 指纹所需字段(暂不计算完整 JA3 hash,避免引入外部依赖)</span></span><br><span class="line"><span class="comment">//   5. 在日志中直观展示不同协议、不同客户端的握手特征</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// 本 Demo 仍然只演示 TLS 握手字节流的操控与透传,不实现 Reality 的认证、</span></span><br><span class="line"><span class="comment">// 密钥派生与隧道接管。代码中保留了明确的&quot;认证插槽&quot;注释,标示 Reality 源码</span></span><br><span class="line"><span class="comment">// 中 X25519+HKDF+AES-GCM 的接入点。</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> (</span><br><span class="line">	defaultListen = <span class="string">&quot;127.0.0.1:8443&quot;</span></span><br><span class="line">	defaultDest   = <span class="string">&quot;www.microsoft.com:443&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// ForwardRule 描述一条 SNI -&gt; dest 的映射规则。</span></span><br><span class="line"><span class="keyword">type</span> ForwardRule <span class="keyword">struct</span> &#123;</span><br><span class="line">	SNI  <span class="type">string</span></span><br><span class="line">	Dest <span class="type">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ClientHelloInfo 保存解析后的 ClientHello 关键信息。</span></span><br><span class="line"><span class="keyword">type</span> ClientHelloInfo <span class="keyword">struct</span> &#123;</span><br><span class="line">	RecordVersion      <span class="type">uint16</span></span><br><span class="line">	HandshakeVersion   <span class="type">uint16</span></span><br><span class="line">	Random             [<span class="number">32</span>]<span class="type">byte</span></span><br><span class="line">	SessionID          []<span class="type">byte</span></span><br><span class="line">	CipherSuites       []<span class="type">uint16</span></span><br><span class="line">	CompressionMethods []<span class="type">uint8</span></span><br><span class="line">	Extensions         []Extension</span><br><span class="line">	SNI                <span class="type">string</span></span><br><span class="line">	ALPNs              []<span class="type">string</span></span><br><span class="line">	SupportedVersions  []<span class="type">uint16</span></span><br><span class="line">	KeyShareGroups     []<span class="type">uint16</span></span><br><span class="line">	SignatureSchemes   []<span class="type">uint16</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Extension 保存单个 TLS 扩展的原始信息。</span></span><br><span class="line"><span class="keyword">type</span> Extension <span class="keyword">struct</span> &#123;</span><br><span class="line">	Type <span class="type">uint16</span></span><br><span class="line">	Len  <span class="type">uint16</span></span><br><span class="line">	Data []<span class="type">byte</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ProtocolType 表示首包识别结果。</span></span><br><span class="line"><span class="keyword">type</span> ProtocolType <span class="type">int</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> (</span><br><span class="line">	ProtoUnknown ProtocolType = <span class="literal">iota</span></span><br><span class="line">	ProtoTLS</span><br><span class="line">	ProtoHTTP</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p ProtocolType)</span></span> String() <span class="type">string</span> &#123;</span><br><span class="line">	<span class="keyword">switch</span> p &#123;</span><br><span class="line">	<span class="keyword">case</span> ProtoTLS:</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&quot;TLS&quot;</span></span><br><span class="line">	<span class="keyword">case</span> ProtoHTTP:</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&quot;HTTP&quot;</span></span><br><span class="line">	<span class="keyword">default</span>:</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&quot;UNKNOWN&quot;</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	listen := flag.String(<span class="string">&quot;listen&quot;</span>, defaultListen, <span class="string">&quot;本地监听地址&quot;</span>)</span><br><span class="line">	dest := flag.String(<span class="string">&quot;dest&quot;</span>, defaultDest, <span class="string">&quot;默认真实目标网站地址&quot;</span>)</span><br><span class="line">	sniMap := flag.String(<span class="string">&quot;sni-map&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="string">&quot;SNI 路由映射,逗号分隔,例如: &#x27;www.microsoft.com:microsoft.com:443,www.apple.com:apple.com:443&#x27;&quot;</span>)</span><br><span class="line">	show := flag.Bool(<span class="string">&quot;show&quot;</span>, <span class="literal">false</span>, <span class="string">&quot;打印详细握手信息&quot;</span>)</span><br><span class="line">	flag.Parse()</span><br><span class="line"></span><br><span class="line">	rules := parseSniMap(*sniMap)</span><br><span class="line"></span><br><span class="line">	ln, err := net.Listen(<span class="string">&quot;tcp&quot;</span>, *listen)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Fatalf(<span class="string">&quot;监听失败: %v&quot;</span>, err)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">defer</span> ln.Close()</span><br><span class="line"></span><br><span class="line">	log.Printf(<span class="string">&quot;[+] 监听 %s, 默认目标 %s&quot;</span>, *listen, *dest)</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(rules) &gt; <span class="number">0</span> &#123;</span><br><span class="line">		log.Printf(<span class="string">&quot;[+] 已加载 %d 条 SNI 路由规则&quot;</span>, <span class="built_in">len</span>(rules))</span><br><span class="line">		<span class="keyword">for</span> _, r := <span class="keyword">range</span> rules &#123;</span><br><span class="line">			log.Printf(<span class="string">&quot;    %s -&gt; %s&quot;</span>, r.SNI, r.Dest)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	log.Println(<span class="string">&quot;[+] 测试命令: openssl s_client -connect 127.0.0.1:8443 -servername www.microsoft.com&quot;</span>)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		conn, err := ln.Accept()</span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			log.Printf(<span class="string">&quot;accept 失败: %v&quot;</span>, err)</span><br><span class="line">			<span class="keyword">continue</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">go</span> handleConn(conn, *dest, rules, *show)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">parseSniMap</span><span class="params">(s <span class="type">string</span>)</span></span> []ForwardRule &#123;</span><br><span class="line">	<span class="keyword">if</span> strings.TrimSpace(s) == <span class="string">&quot;&quot;</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">var</span> rules []ForwardRule</span><br><span class="line">	<span class="keyword">for</span> _, part := <span class="keyword">range</span> strings.Split(s, <span class="string">&quot;,&quot;</span>) &#123;</span><br><span class="line">		part = strings.TrimSpace(part)</span><br><span class="line">		<span class="keyword">if</span> part == <span class="string">&quot;&quot;</span> &#123;</span><br><span class="line">			<span class="keyword">continue</span></span><br><span class="line">		&#125;</span><br><span class="line">		kv := strings.SplitN(part, <span class="string">&quot;:&quot;</span>, <span class="number">2</span>)</span><br><span class="line">		<span class="keyword">if</span> <span class="built_in">len</span>(kv) != <span class="number">2</span> &#123;</span><br><span class="line">			log.Printf(<span class="string">&quot;[-] 忽略非法 SNI 映射: %s&quot;</span>, part)</span><br><span class="line">			<span class="keyword">continue</span></span><br><span class="line">		&#125;</span><br><span class="line">		rules = <span class="built_in">append</span>(rules, ForwardRule&#123;SNI: kv[<span class="number">0</span>], Dest: kv[<span class="number">1</span>]&#125;)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> rules</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">routeBySNI</span><span class="params">(sni, defaultDest <span class="type">string</span>, rules []ForwardRule)</span></span> <span class="type">string</span> &#123;</span><br><span class="line">	<span class="keyword">for</span> _, r := <span class="keyword">range</span> rules &#123;</span><br><span class="line">		<span class="keyword">if</span> r.SNI == sni &#123;</span><br><span class="line">			<span class="keyword">return</span> r.Dest</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> defaultDest</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">handleConn</span><span class="params">(clientConn net.Conn, defaultDest <span class="type">string</span>, rules []ForwardRule, show <span class="type">bool</span>)</span></span> &#123;</span><br><span class="line">	<span class="keyword">defer</span> clientConn.Close()</span><br><span class="line">	remoteAddr := clientConn.RemoteAddr().String()</span><br><span class="line"></span><br><span class="line">	header := <span class="built_in">make</span>([]<span class="type">byte</span>, <span class="number">5</span>)</span><br><span class="line">	<span class="keyword">if</span> _, err := io.ReadFull(clientConn, header); err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Printf(<span class="string">&quot;[%s] 读取首包失败: %v&quot;</span>, remoteAddr, err)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	proto := detectProtocol(header)</span><br><span class="line">	log.Printf(<span class="string">&quot;[%s] 协议识别: %s&quot;</span>, remoteAddr, proto)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">switch</span> proto &#123;</span><br><span class="line">	<span class="keyword">case</span> ProtoTLS:</span><br><span class="line">		handleTLS(clientConn, header, defaultDest, rules, show, remoteAddr)</span><br><span class="line">	<span class="keyword">case</span> ProtoHTTP:</span><br><span class="line">		handlePlainHTTP(clientConn, header, defaultDest, remoteAddr)</span><br><span class="line">	<span class="keyword">default</span>:</span><br><span class="line">		log.Printf(<span class="string">&quot;[%s] 未知协议,按默认目标 %s 透明转发&quot;</span>, remoteAddr, defaultDest)</span><br><span class="line">		forwardRaw(clientConn, header, defaultDest)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">detectProtocol</span><span class="params">(header []<span class="type">byte</span>)</span></span> ProtocolType &#123;</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(header) &lt; <span class="number">5</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> ProtoUnknown</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> header[<span class="number">0</span>] == <span class="number">0x16</span> &#123;</span><br><span class="line">		ver := binary.BigEndian.Uint16(header[<span class="number">1</span>:<span class="number">3</span>])</span><br><span class="line">		<span class="keyword">if</span> ver == <span class="number">0x0301</span> || ver == <span class="number">0x0302</span> || ver == <span class="number">0x0303</span> || ver == <span class="number">0x0304</span> || ver == <span class="number">0x0300</span> &#123;</span><br><span class="line">			<span class="keyword">return</span> ProtoTLS</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	methods := []<span class="type">string</span>&#123;<span class="string">&quot;GET &quot;</span>, <span class="string">&quot;POST&quot;</span>, <span class="string">&quot;HEAD&quot;</span>, <span class="string">&quot;PUT &quot;</span>, <span class="string">&quot;DELE&quot;</span>, <span class="string">&quot;OPTI&quot;</span>, <span class="string">&quot;PATC&quot;</span>, <span class="string">&quot;TRAC&quot;</span>, <span class="string">&quot;CONN&quot;</span>&#125;</span><br><span class="line">	<span class="keyword">for</span> _, m := <span class="keyword">range</span> methods &#123;</span><br><span class="line">		<span class="keyword">if</span> bytes.HasPrefix(header, []<span class="type">byte</span>(m)) &#123;</span><br><span class="line">			<span class="keyword">return</span> ProtoHTTP</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ProtoUnknown</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">handleTLS</span><span class="params">(clientConn net.Conn, header []<span class="type">byte</span>, defaultDest <span class="type">string</span>, rules []ForwardRule, show <span class="type">bool</span>, remoteAddr <span class="type">string</span>)</span></span> &#123;</span><br><span class="line">	recLen := <span class="type">int</span>(binary.BigEndian.Uint16(header[<span class="number">3</span>:<span class="number">5</span>]))</span><br><span class="line">	record := <span class="built_in">make</span>([]<span class="type">byte</span>, <span class="number">5</span>+recLen)</span><br><span class="line">	<span class="built_in">copy</span>(record, header)</span><br><span class="line">	<span class="keyword">if</span> _, err := io.ReadFull(clientConn, record[<span class="number">5</span>:]); err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Printf(<span class="string">&quot;[%s] 读取 TLS record 体失败: %v&quot;</span>, remoteAddr, err)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	info, err := parseClientHello(record)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Printf(<span class="string">&quot;[%s] 解析 ClientHello 失败: %v&quot;</span>, remoteAddr, err)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	dest := routeBySNI(info.SNI, defaultDest, rules)</span><br><span class="line">	<span class="keyword">if</span> info.SNI == <span class="string">&quot;&quot;</span> &#123;</span><br><span class="line">		info.SNI = <span class="string">&quot;(none)&quot;</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	log.Printf(<span class="string">&quot;[%s] TLS ClientHello: SNI=%s, Version=0x%04x, Ciphers=%d, Exts=%d, KeyShareGroups=%v, ALPN=%v, Dest=%s&quot;</span>,</span><br><span class="line">		remoteAddr, info.SNI, info.HandshakeVersion, <span class="built_in">len</span>(info.CipherSuites), <span class="built_in">len</span>(info.Extensions),</span><br><span class="line">		info.KeyShareGroups, info.ALPNs, dest)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> show &#123;</span><br><span class="line">		printClientHelloDetails(remoteAddr, info)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// =====================================================</span></span><br><span class="line">	<span class="comment">// Reality 认证插槽(本 Demo 未实现):</span></span><br><span class="line">	<span class="comment">// 在真实 Reality 中,此时会:</span></span><br><span class="line">	<span class="comment">//   1. 从 info.KeyShares 中提取 X25519 客户端公钥</span></span><br><span class="line">	<span class="comment">//   2. 用服务端 privateKey 做 X25519 ECDH,得到 sharedSecret</span></span><br><span class="line">	<span class="comment">//   3. hkdf.New(sha256.New, sharedSecret, info.Random[:20], []byte(&quot;REALITY&quot;)).Read(authKey)</span></span><br><span class="line">	<span class="comment">//   4. 用 AES-GCM 解密 info.SessionID[:16] -&gt; 版本/时间戳/shortId</span></span><br><span class="line">	<span class="comment">//   5. 校验版本范围、时间差、shortId 白名单</span></span><br><span class="line">	<span class="comment">// 认证失败 -&gt; 透明转发给 dest(抗主动探测)</span></span><br><span class="line">	<span class="comment">// 认证成功 -&gt; 接管握手,自行生成 TLS 1.3 记录,后续走代理隧道</span></span><br><span class="line">	<span class="comment">// 本 Demo 为了边界清晰,只执行透明转发。</span></span><br><span class="line">	<span class="comment">// =====================================================</span></span><br><span class="line"></span><br><span class="line">	forwardTLS(clientConn, record, dest, remoteAddr)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printClientHelloDetails</span><span class="params">(remoteAddr <span class="type">string</span>, info *ClientHelloInfo)</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> cipherNames []<span class="type">string</span></span><br><span class="line">	<span class="keyword">for</span> _, c := <span class="keyword">range</span> info.CipherSuites &#123;</span><br><span class="line">		cipherNames = <span class="built_in">append</span>(cipherNames, fmt.Sprintf(<span class="string">&quot;0x%04x&quot;</span>, c))</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">var</span> extTypes []<span class="type">string</span></span><br><span class="line">	<span class="keyword">for</span> _, e := <span class="keyword">range</span> info.Extensions &#123;</span><br><span class="line">		extTypes = <span class="built_in">append</span>(extTypes, fmt.Sprintf(<span class="string">&quot;0x%04x&quot;</span>, e.Type))</span><br><span class="line">	&#125;</span><br><span class="line">	log.Printf(<span class="string">&quot;[%s]   CipherSuites: %s&quot;</span>, remoteAddr, strings.Join(cipherNames, <span class="string">&quot;, &quot;</span>))</span><br><span class="line">	log.Printf(<span class="string">&quot;[%s]   Extension Types: %s&quot;</span>, remoteAddr, strings.Join(extTypes, <span class="string">&quot;, &quot;</span>))</span><br><span class="line">	log.Printf(<span class="string">&quot;[%s]   SupportedVersions: %v&quot;</span>, remoteAddr, versionsToStrings(info.SupportedVersions))</span><br><span class="line">	log.Printf(<span class="string">&quot;[%s]   SignatureSchemes: %v&quot;</span>, remoteAddr, schemesToStrings(info.SignatureSchemes))</span><br><span class="line">	log.Printf(<span class="string">&quot;[%s]   SessionID: %s&quot;</span>, remoteAddr, hex.EncodeToString(info.SessionID))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">versionsToStrings</span><span class="params">(vers []<span class="type">uint16</span>)</span></span> []<span class="type">string</span> &#123;</span><br><span class="line">	<span class="keyword">var</span> out []<span class="type">string</span></span><br><span class="line">	<span class="keyword">for</span> _, v := <span class="keyword">range</span> vers &#123;</span><br><span class="line">		<span class="keyword">switch</span> v &#123;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">0x0304</span>:</span><br><span class="line">			out = <span class="built_in">append</span>(out, <span class="string">&quot;TLS 1.3&quot;</span>)</span><br><span class="line">		<span class="keyword">case</span> <span class="number">0x0303</span>:</span><br><span class="line">			out = <span class="built_in">append</span>(out, <span class="string">&quot;TLS 1.2&quot;</span>)</span><br><span class="line">		<span class="keyword">case</span> <span class="number">0x0302</span>:</span><br><span class="line">			out = <span class="built_in">append</span>(out, <span class="string">&quot;TLS 1.1&quot;</span>)</span><br><span class="line">		<span class="keyword">case</span> <span class="number">0x0301</span>:</span><br><span class="line">			out = <span class="built_in">append</span>(out, <span class="string">&quot;TLS 1.0&quot;</span>)</span><br><span class="line">		<span class="keyword">default</span>:</span><br><span class="line">			out = <span class="built_in">append</span>(out, fmt.Sprintf(<span class="string">&quot;0x%04x&quot;</span>, v))</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> out</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">schemesToStrings</span><span class="params">(schemes []<span class="type">uint16</span>)</span></span> []<span class="type">string</span> &#123;</span><br><span class="line">	<span class="keyword">var</span> out []<span class="type">string</span></span><br><span class="line">	<span class="keyword">for</span> _, s := <span class="keyword">range</span> schemes &#123;</span><br><span class="line">		out = <span class="built_in">append</span>(out, fmt.Sprintf(<span class="string">&quot;0x%04x&quot;</span>, s))</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> out</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">forwardTLS</span><span class="params">(clientConn net.Conn, record []<span class="type">byte</span>, dest, remoteAddr <span class="type">string</span>)</span></span> &#123;</span><br><span class="line">	destConn, err := net.Dial(<span class="string">&quot;tcp&quot;</span>, dest)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Printf(<span class="string">&quot;[%s] 连接目标 %s 失败: %v&quot;</span>, remoteAddr, dest, err)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">defer</span> destConn.Close()</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> _, err := destConn.Write(record); err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Printf(<span class="string">&quot;[%s] 转发 ClientHello 失败: %v&quot;</span>, remoteAddr, err)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	log.Printf(<span class="string">&quot;[%s] 开始双向透传 &lt;-&gt; %s&quot;</span>, remoteAddr, dest)</span><br><span class="line">	relay(clientConn, destConn)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">forwardRaw</span><span class="params">(clientConn net.Conn, header []<span class="type">byte</span>, dest <span class="type">string</span>)</span></span> &#123;</span><br><span class="line">	remoteAddr := clientConn.RemoteAddr().String()</span><br><span class="line">	destConn, err := net.Dial(<span class="string">&quot;tcp&quot;</span>, dest)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Printf(<span class="string">&quot;[%s] 连接目标 %s 失败: %v&quot;</span>, remoteAddr, dest, err)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">defer</span> destConn.Close()</span><br><span class="line">	<span class="keyword">if</span> _, err := destConn.Write(header); err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Printf(<span class="string">&quot;[%s] 转发首包失败: %v&quot;</span>, remoteAddr, err)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	relay(clientConn, destConn)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">handlePlainHTTP</span><span class="params">(clientConn net.Conn, header []<span class="type">byte</span>, defaultDest, remoteAddr <span class="type">string</span>)</span></span> &#123;</span><br><span class="line">	log.Printf(<span class="string">&quot;[%s] 明文 HTTP, 按默认目标 %s 转发&quot;</span>, remoteAddr, defaultDest)</span><br><span class="line">	forwardRaw(clientConn, header, defaultDest)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">relay</span><span class="params">(a, b net.Conn)</span></span> &#123;</span><br><span class="line">	done := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>&#123;&#125;, <span class="number">2</span>)</span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		_, _ = io.Copy(b, a)</span><br><span class="line">		done &lt;- <span class="keyword">struct</span>&#123;&#125;&#123;&#125;</span><br><span class="line">	&#125;()</span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		_, _ = io.Copy(a, b)</span><br><span class="line">		done &lt;- <span class="keyword">struct</span>&#123;&#125;&#123;&#125;</span><br><span class="line">	&#125;()</span><br><span class="line">	&lt;-done</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">parseClientHello</span><span class="params">(record []<span class="type">byte</span>)</span></span> (*ClientHelloInfo, <span class="type">error</span>) &#123;</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(record) &lt; <span class="number">5</span> || record[<span class="number">0</span>] != <span class="number">0x16</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span>, fmt.Errorf(<span class="string">&quot;不是 TLS Handshake record&quot;</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	recLen := <span class="type">int</span>(binary.BigEndian.Uint16(record[<span class="number">3</span>:<span class="number">5</span>]))</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(record) != <span class="number">5</span>+recLen &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span>, fmt.Errorf(<span class="string">&quot;TLS record 长度不匹配&quot;</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	body := record[<span class="number">5</span>:]</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(body) &lt; <span class="number">5</span> || body[<span class="number">0</span>] != <span class="number">1</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span>, fmt.Errorf(<span class="string">&quot;不是 ClientHello&quot;</span>)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	info := &amp;ClientHelloInfo&#123;&#125;</span><br><span class="line">	info.RecordVersion = binary.BigEndian.Uint16(record[<span class="number">1</span>:<span class="number">3</span>])</span><br><span class="line"></span><br><span class="line">	pos := <span class="number">4</span></span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(body) &lt; pos+<span class="number">34</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span>, fmt.Errorf(<span class="string">&quot;ClientHello 主体过短&quot;</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	info.HandshakeVersion = binary.BigEndian.Uint16(body[pos : pos+<span class="number">2</span>])</span><br><span class="line">	pos += <span class="number">2</span></span><br><span class="line">	<span class="built_in">copy</span>(info.Random[:], body[pos:pos+<span class="number">32</span>])</span><br><span class="line">	pos += <span class="number">32</span></span><br><span class="line"></span><br><span class="line">	sidLen := <span class="type">int</span>(body[pos])</span><br><span class="line">	pos++</span><br><span class="line">	<span class="keyword">if</span> pos+sidLen &gt; <span class="built_in">len</span>(body) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span>, fmt.Errorf(<span class="string">&quot;Session ID 数据越界&quot;</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	info.SessionID = <span class="built_in">make</span>([]<span class="type">byte</span>, sidLen)</span><br><span class="line">	<span class="built_in">copy</span>(info.SessionID, body[pos:pos+sidLen])</span><br><span class="line">	pos += sidLen</span><br><span class="line"></span><br><span class="line">	csLen := <span class="type">int</span>(binary.BigEndian.Uint16(body[pos : pos+<span class="number">2</span>]))</span><br><span class="line">	pos += <span class="number">2</span></span><br><span class="line">	<span class="keyword">if</span> pos+csLen &gt; <span class="built_in">len</span>(body) || csLen%<span class="number">2</span> != <span class="number">0</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span>, fmt.Errorf(<span class="string">&quot;Cipher Suites 数据越界&quot;</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; csLen; i += <span class="number">2</span> &#123;</span><br><span class="line">		info.CipherSuites = <span class="built_in">append</span>(info.CipherSuites, binary.BigEndian.Uint16(body[pos+i:pos+i+<span class="number">2</span>]))</span><br><span class="line">	&#125;</span><br><span class="line">	pos += csLen</span><br><span class="line"></span><br><span class="line">	compLen := <span class="type">int</span>(body[pos])</span><br><span class="line">	pos++</span><br><span class="line">	<span class="keyword">if</span> pos+compLen &gt; <span class="built_in">len</span>(body) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span>, fmt.Errorf(<span class="string">&quot;Compression Methods 数据越界&quot;</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; compLen; i++ &#123;</span><br><span class="line">		info.CompressionMethods = <span class="built_in">append</span>(info.CompressionMethods, body[pos+i])</span><br><span class="line">	&#125;</span><br><span class="line">	pos += compLen</span><br><span class="line"></span><br><span class="line">	extLen := <span class="type">int</span>(binary.BigEndian.Uint16(body[pos : pos+<span class="number">2</span>]))</span><br><span class="line">	pos += <span class="number">2</span></span><br><span class="line">	<span class="keyword">if</span> pos+extLen &gt; <span class="built_in">len</span>(body) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span>, fmt.Errorf(<span class="string">&quot;Extensions 数据越界&quot;</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	parseExtensions(body[pos:pos+extLen], info)</span><br><span class="line">	<span class="keyword">return</span> info, <span class="literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">parseExtensions</span><span class="params">(exts []<span class="type">byte</span>, info *ClientHelloInfo)</span></span> &#123;</span><br><span class="line">	pos := <span class="number">0</span></span><br><span class="line">	<span class="keyword">for</span> pos+<span class="number">4</span> &lt;= <span class="built_in">len</span>(exts) &#123;</span><br><span class="line">		extType := binary.BigEndian.Uint16(exts[pos : pos+<span class="number">2</span>])</span><br><span class="line">		extLen := <span class="type">int</span>(binary.BigEndian.Uint16(exts[pos+<span class="number">2</span> : pos+<span class="number">4</span>]))</span><br><span class="line">		pos += <span class="number">4</span></span><br><span class="line">		<span class="keyword">if</span> pos+extLen &gt; <span class="built_in">len</span>(exts) &#123;</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		&#125;</span><br><span class="line">		data := exts[pos : pos+extLen]</span><br><span class="line">		info.Extensions = <span class="built_in">append</span>(info.Extensions, Extension&#123;</span><br><span class="line">			Type: extType,</span><br><span class="line">			Len:  <span class="type">uint16</span>(extLen),</span><br><span class="line">			Data: data,</span><br><span class="line">		&#125;)</span><br><span class="line">		<span class="keyword">switch</span> extType &#123;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">0x0000</span>:</span><br><span class="line">			info.SNI = parseSNIExt(data)</span><br><span class="line">		<span class="keyword">case</span> <span class="number">0x0010</span>:</span><br><span class="line">			info.ALPNs = parseALPN(data)</span><br><span class="line">		<span class="keyword">case</span> <span class="number">0x002b</span>:</span><br><span class="line">			info.SupportedVersions = parseSupportedVersions(data)</span><br><span class="line">		<span class="keyword">case</span> <span class="number">0x0033</span>:</span><br><span class="line">			info.KeyShareGroups = parseKeyShareGroups(data)</span><br><span class="line">		<span class="keyword">case</span> <span class="number">0x000d</span>:</span><br><span class="line">			info.SignatureSchemes = parseSignatureSchemes(data)</span><br><span class="line">		&#125;</span><br><span class="line">		pos += extLen</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">parseSNIExt</span><span class="params">(data []<span class="type">byte</span>)</span></span> <span class="type">string</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(data) &lt; <span class="number">2</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&quot;&quot;</span></span><br><span class="line">	&#125;</span><br><span class="line">	listLen := <span class="type">int</span>(binary.BigEndian.Uint16(data[<span class="number">0</span>:<span class="number">2</span>]))</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(data) != <span class="number">2</span>+listLen || listLen &lt; <span class="number">3</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&quot;&quot;</span></span><br><span class="line">	&#125;</span><br><span class="line">	data = data[<span class="number">2</span>:]</span><br><span class="line">	<span class="keyword">if</span> data[<span class="number">0</span>] != <span class="number">0</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&quot;&quot;</span></span><br><span class="line">	&#125;</span><br><span class="line">	nameLen := <span class="type">int</span>(binary.BigEndian.Uint16(data[<span class="number">1</span>:<span class="number">3</span>]))</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(data) &lt; <span class="number">3</span>+nameLen &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&quot;&quot;</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="type">string</span>(data[<span class="number">3</span> : <span class="number">3</span>+nameLen])</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">parseALPN</span><span class="params">(data []<span class="type">byte</span>)</span></span> []<span class="type">string</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(data) &lt; <span class="number">2</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">	&#125;</span><br><span class="line">	listLen := <span class="type">int</span>(binary.BigEndian.Uint16(data[<span class="number">0</span>:<span class="number">2</span>]))</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(data) != <span class="number">2</span>+listLen &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">	&#125;</span><br><span class="line">	data = data[<span class="number">2</span>:]</span><br><span class="line">	<span class="keyword">var</span> alpn []<span class="type">string</span></span><br><span class="line">	<span class="keyword">for</span> <span class="built_in">len</span>(data) &gt;= <span class="number">1</span> &#123;</span><br><span class="line">		l := <span class="type">int</span>(data[<span class="number">0</span>])</span><br><span class="line">		<span class="keyword">if</span> <span class="built_in">len</span>(data) &lt; <span class="number">1</span>+l &#123;</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		&#125;</span><br><span class="line">		alpn = <span class="built_in">append</span>(alpn, <span class="type">string</span>(data[<span class="number">1</span>:<span class="number">1</span>+l]))</span><br><span class="line">		data = data[<span class="number">1</span>+l:]</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> alpn</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">parseSupportedVersions</span><span class="params">(data []<span class="type">byte</span>)</span></span> []<span class="type">uint16</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(data) &lt; <span class="number">3</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">	&#125;</span><br><span class="line">	listLen := <span class="type">int</span>(data[<span class="number">0</span>])</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(data) != <span class="number">1</span>+listLen || listLen%<span class="number">2</span> != <span class="number">0</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">var</span> vers []<span class="type">uint16</span></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">1</span>; i &lt; <span class="number">1</span>+listLen; i += <span class="number">2</span> &#123;</span><br><span class="line">		vers = <span class="built_in">append</span>(vers, binary.BigEndian.Uint16(data[i:i+<span class="number">2</span>]))</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> vers</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">parseKeyShareGroups</span><span class="params">(data []<span class="type">byte</span>)</span></span> []<span class="type">uint16</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(data) &lt; <span class="number">2</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">	&#125;</span><br><span class="line">	listLen := <span class="type">int</span>(binary.BigEndian.Uint16(data[<span class="number">0</span>:<span class="number">2</span>]))</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(data) != <span class="number">2</span>+listLen &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">	&#125;</span><br><span class="line">	data = data[<span class="number">2</span>:]</span><br><span class="line">	<span class="keyword">var</span> groups []<span class="type">uint16</span></span><br><span class="line">	<span class="keyword">for</span> <span class="built_in">len</span>(data) &gt;= <span class="number">4</span> &#123;</span><br><span class="line">		group := binary.BigEndian.Uint16(data[<span class="number">0</span>:<span class="number">2</span>])</span><br><span class="line">		keyLen := <span class="type">int</span>(binary.BigEndian.Uint16(data[<span class="number">2</span>:<span class="number">4</span>]))</span><br><span class="line">		<span class="keyword">if</span> <span class="built_in">len</span>(data) &lt; <span class="number">4</span>+keyLen &#123;</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		&#125;</span><br><span class="line">		groups = <span class="built_in">append</span>(groups, group)</span><br><span class="line">		data = data[<span class="number">4</span>+keyLen:]</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> groups</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">parseSignatureSchemes</span><span class="params">(data []<span class="type">byte</span>)</span></span> []<span class="type">uint16</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(data) &lt; <span class="number">2</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">	&#125;</span><br><span class="line">	listLen := <span class="type">int</span>(binary.BigEndian.Uint16(data[<span class="number">0</span>:<span class="number">2</span>]))</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(data) != <span class="number">2</span>+listLen || listLen%<span class="number">2</span> != <span class="number">0</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">var</span> schemes []<span class="type">uint16</span></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">2</span>; i &lt; <span class="number">2</span>+listLen; i += <span class="number">2</span> &#123;</span><br><span class="line">		schemes = <span class="built_in">append</span>(schemes, binary.BigEndian.Uint16(data[i:i+<span class="number">2</span>]))</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> schemes</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">init</span><span class="params">()</span></span> &#123;</span><br><span class="line">	_ = time.Now</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="运行与验证"><a href="#运行与验证" class="headerlink" title="运行与验证"></a>运行与验证</h2><h3 id="1-编译"><a href="#1-编译" class="headerlink" title="1. 编译"></a>1. 编译</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> reality-study</span><br><span class="line">go build -o reality-study.exe .</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-运行-带-SNI-路由映射"><a href="#2-运行-带-SNI-路由映射" class="headerlink" title="2. 运行(带 SNI 路由映射)"></a>2. 运行(带 SNI 路由映射)</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./reality-study.exe -listen 127.0.0.1:8444 -dest www.microsoft.com:443 -show -sni-map <span class="string">&quot;www.microsoft.com:microsoft.com:443,www.apple.com:apple.com:443&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>启动日志:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">2026/07/19 07:49:15 [+] 监听 127.0.0.1:8444, 默认目标 www.microsoft.com:443</span><br><span class="line">2026/07/19 07:49:15 [+] 已加载 2 条 SNI 路由规则</span><br><span class="line">2026/07/19 07:49:15     www.microsoft.com -&gt; microsoft.com:443</span><br><span class="line">2026/07/19 07:49:15     www.apple.com -&gt; apple.com:443</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-用-openssl-测试"><a href="#3-用-openssl-测试" class="headerlink" title="3. 用 openssl 测试"></a>3. 用 openssl 测试</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl s_client -connect 127.0.0.1:8444 -servername www.microsoft.com -showcerts &lt;/dev/null</span><br></pre></td></tr></table></figure>
+
+<p>服务端日志:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">2026/07/19 07:49:15 [127.0.0.1:9243] 协议识别: TLS</span><br><span class="line">2026/07/19 07:49:15 [127.0.0.1:9243] TLS ClientHello: SNI=www.microsoft.com, Version=0x0303, Ciphers=30, Exts=12, KeyShareGroups=[4588 29], ALPN=[], Dest=microsoft.com:443</span><br><span class="line">2026/07/19 07:49:15 [127.0.0.1:9243]   CipherSuites: 0x1302, 0x1303, 0x1301, 0xc02c, 0xc030, ...</span><br><span class="line">2026/07/19 07:49:15 [127.0.0.1:9243]   Extension Types: 0xff01, 0x0000, 0x000b, 0x000a, 0x0023, 0x0016, 0x0017, 0x000d, 0x002b, 0x002d, 0x0033, 0x001b</span><br><span class="line">2026/07/19 07:49:15 [127.0.0.1:9243]   SupportedVersions: [TLS 1.3 TLS 1.2]</span><br><span class="line">2026/07/19 07:49:15 [127.0.0.1:9243]   SignatureSchemes: [0x0905 0x0906 ...]</span><br><span class="line">2026/07/19 07:49:15 [127.0.0.1:9243]   SessionID: d2e39b06eab89ac5b1afdd95cadad5d51100c59a489c18536d0f2bb8ef62e365</span><br><span class="line">2026/07/19 07:49:16 [127.0.0.1:9243] 开始双向透传 &lt;-&gt; microsoft.com:443</span><br></pre></td></tr></table></figure>
+
+<p>openssl 输出关键行:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Connecting to 127.0.0.1</span><br><span class="line">depth=3 C=US, O=DigiCert Inc, OU=www.digicert.com, CN=DigiCert Global Root G3</span><br><span class="line">verify return:1</span><br><span class="line">depth=2 C=US, O=Microsoft Corporation, CN=Microsoft TLS ECC Root G2</span><br><span class="line">verify return:1</span><br><span class="line">depth=1 C=US, O=Microsoft Corporation, CN=Microsoft TLS G2 ECC CA OCSP 06</span><br><span class="line">verify return:1</span><br><span class="line">depth=0 C=US, ST=WA, L=Redmond, O=Microsoft Corporation, CN=*.azureedge.net</span><br><span class="line">verify return:1</span><br><span class="line">CONNECTED(00000238)</span><br></pre></td></tr></table></figure>
+
+<p>注意:由于 SNI 映射把 <code>www.microsoft.com</code> 转发到了 <code>microsoft.com:443</code>,而 <code>microsoft.com</code> 实际指向 Azure CDN,所以证书 CN 是 <code>*.azureedge.net</code>,但证书链仍是微软 CA 签发。这正好说明 Demo 的 SNI 路由生效了。</p>
+<h3 id="4-Windows-PowerShell-用户注意事项"><a href="#4-Windows-PowerShell-用户注意事项" class="headerlink" title="4. Windows PowerShell 用户注意事项"></a>4. Windows PowerShell 用户注意事项</h3><p>博客前面的命令都是 bash 语法。在 Windows PowerShell 里运行,要注意三个问题。</p>
+<h4 id="4-1-端口被占用"><a href="#4-1-端口被占用" class="headerlink" title="4.1 端口被占用"></a>4.1 端口被占用</h4><p>如果看到:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">listen tcp 127.0.0.1:8444: bind: Only one usage of each socket address ...</span><br></pre></td></tr></table></figure>
+
+<p>说明之前启动的 <code>reality-study.exe</code> 还在后台。先杀掉再启动:</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">taskkill /F /IM reality<span class="literal">-study</span>.exe</span><br></pre></td></tr></table></figure>
+
+<p>或者查找具体占用 8444 的进程:</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Get-Process</span> <span class="literal">-Id</span> (<span class="built_in">Get-NetTCPConnection</span> <span class="literal">-LocalPort</span> <span class="number">8444</span>).OwningProcess | <span class="built_in">Stop-Process</span> <span class="literal">-Force</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-2-Windows-默认没有-openssl"><a href="#4-2-Windows-默认没有-openssl" class="headerlink" title="4.2 Windows 默认没有 openssl"></a>4.2 Windows 默认没有 openssl</h4><p>PowerShell 里直接敲 <code>openssl</code> 会报 <code>The term &#39;openssl&#39; is not recognized</code>。最常见的解决办法:</p>
+<p><strong>方案 A：用 Git Bash 自带的 openssl</strong></p>
+<p>Git for Windows 安装后,<code>openssl.exe</code> 通常在:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files\Git\usr\bin\openssl.exe</span><br></pre></td></tr></table></figure>
+
+<p>在 PowerShell 里可以用完整路径调用,并把它加到 PATH:</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$openssl</span> = <span class="string">&quot;C:\Program Files\Git\usr\bin\openssl.exe&quot;</span></span><br><span class="line"><span class="variable">$env:Path</span> += <span class="string">&quot;;C:\Program Files\Git\usr\bin&quot;</span></span><br><span class="line"><span class="string">&quot;Q&quot;</span> | &amp; <span class="variable">$openssl</span> s_client <span class="literal">-connect</span> <span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">8444</span> <span class="literal">-servername</span> www.microsoft.com <span class="literal">-showcerts</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>&quot;Q&quot; |</code> 是为了让 openssl 在打印完证书后退出。PowerShell 不支持 bash 的 <code>&lt;/dev/null</code> 输入重定向。</p>
+</blockquote>
+<p><strong>方案 B：单独安装 OpenSSL</strong></p>
+<p>去 <a target="_blank" rel="noopener" href="https://slproweb.com/products/Win32OpenSSL.html">slproweb.com&#x2F;products&#x2F;Win32OpenSSL.html</a> 下载 Win64 OpenSSL Light,安装时勾选加入 PATH,重启 PowerShell 后就能直接用 <code>openssl</code>。</p>
+<p><strong>方案 C：用 Git Bash 终端</strong></p>
+<p>直接打开 Git Bash,所有博客里的命令都能原样运行,包括 <code>&lt;/dev/null</code>。</p>
+<h4 id="4-3-PowerShell-不支持-dev-null"><a href="#4-3-PowerShell-不支持-dev-null" class="headerlink" title="4.3 PowerShell 不支持 &lt; /dev/null"></a>4.3 PowerShell 不支持 <code>&lt; /dev/null</code></h4><p>bash 写法:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl s_client -connect 127.0.0.1:8444 -servername www.microsoft.com -showcerts &lt;/dev/null</span><br></pre></td></tr></table></figure>
+
+<p>在 PowerShell 里会报错:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The &#x27;&lt;&#x27; operator is reserved for future use.</span><br></pre></td></tr></table></figure>
+
+<p>改成管道:</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;Q&quot;</span> | openssl s_client <span class="literal">-connect</span> <span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">8444</span> <span class="literal">-servername</span> www.microsoft.com <span class="literal">-showcerts</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-用浏览器验证-最直观"><a href="#5-用浏览器验证-最直观" class="headerlink" title="5. 用浏览器验证(最直观)"></a>5. 用浏览器验证(最直观)</h3><p>启动 Demo 后,直接用浏览器打开:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://127.0.0.1:8444</span><br></pre></td></tr></table></figure>
+
+<p>浏览器会提示证书不安全(因为访问的是 IP 而不是域名,和证书 CN 不匹配),点击”高级”查看证书,应该能看到:</p>
+<ul>
+<li>颁发对象: <code>www.microsoft.com</code></li>
+<li>组织: <code>Microsoft Corporation</code></li>
+<li>颁发者: <code>Microsoft TLS G2 RSA CA OCSP 04</code> 之类的微软 CA</li>
+</ul>
+<p>这就证明 Demo 已经把真实网站的证书透传到了你的浏览器。页面可能显示 <code>Invalid URL</code> 或 edgesuite 的错误,这是正常的——这个 Demo 只研究 TLS 层,不处理 HTTP 代理逻辑。</p>
+<hr>
+<h2 id="关键实现点解析"><a href="#关键实现点解析" class="headerlink" title="关键实现点解析"></a>关键实现点解析</h2><h3 id="1-协议首包识别"><a href="#1-协议首包识别" class="headerlink" title="1. 协议首包识别"></a>1. 协议首包识别</h3><p>TLS 的 record 头固定为 5 字节:</p>
+<table>
+<thead>
+<tr>
+<th>字节</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>ContentType, Handshake &#x3D; 0x16</td>
+</tr>
+<tr>
+<td>1-2</td>
+<td>记录版本</td>
+</tr>
+<tr>
+<td>3-4</td>
+<td>载荷长度</td>
+</tr>
+</tbody></table>
+<p>HTTP 请求则以方法名开头。Demo 据此把连接分为 TLS &#x2F; HTTP &#x2F; 未知三类。</p>
+<h3 id="2-ClientHello-的完整解析"><a href="#2-ClientHello-的完整解析" class="headerlink" title="2. ClientHello 的完整解析"></a>2. ClientHello 的完整解析</h3><p>在 <code>parseClientHello</code> 中,我们按 RFC 5246&#x2F;8446 的结构顺序解析:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Version(2) + Random(32)</span><br><span class="line">+ SessionIDLen(1) + SessionID</span><br><span class="line">+ CipherSuitesLen(2) + CipherSuites</span><br><span class="line">+ CompressionMethodsLen(1) + CompressionMethods</span><br><span class="line">+ ExtensionsLen(2) + Extensions</span><br></pre></td></tr></table></figure>
+
+<p>扩展部分再逐个解析:</p>
+<ul>
+<li><code>0x0000</code> server_name: 提取 SNI</li>
+<li><code>0x0010</code> ALPN: 提取应用层协议</li>
+<li><code>0x002b</code> supported_versions: 提取 TLS 版本偏好</li>
+<li><code>0x0033</code> key_share: 提取密钥交换 group ID</li>
+<li><code>0x000d</code> signature_algorithms: 提取签名算法</li>
+</ul>
+<h3 id="3-JA3-指纹字段"><a href="#3-JA3-指纹字段" class="headerlink" title="3. JA3 指纹字段"></a>3. JA3 指纹字段</h3><p>JA3 是一种 TLS 客户端指纹算法,它把 ClientHello 中的以下字段拼成一个字符串,然后 MD5:</p>
+<ul>
+<li>TLS Version</li>
+<li>Cipher Suites</li>
+<li>Extensions</li>
+<li>Supported Groups(椭圆曲线)</li>
+<li>EC Point Formats</li>
+</ul>
+<p>我们的 Demo 已经收集了这些字段,如果需要,可以进一步用 <code>crypto/md5</code> 计算完整 JA3 字符串。但这里为了代码简洁和避免外部依赖,只打印原始字段,便于手动观察指纹差异。</p>
+<h3 id="4-SNI-动态路由"><a href="#4-SNI-动态路由" class="headerlink" title="4. SNI 动态路由"></a>4. SNI 动态路由</h3><p>通过 <code>-sni-map</code> 参数,可以指定:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">www.microsoft.com:microsoft.com:443,www.apple.com:apple.com:443</span><br></pre></td></tr></table></figure>
+
+<p>代码根据解析出的 SNI 选择目标地址。这对应 Reality 配置中的 <code>serverNames</code> 和 <code>dest</code> 映射。</p>
+<h3 id="5-Reality-认证插槽"><a href="#5-Reality-认证插槽" class="headerlink" title="5. Reality 认证插槽"></a>5. Reality 认证插槽</h3><p>代码中保留了一段注释,明确标示了 Reality 认证应发生的位置。这个插槽如果要实现,需要:</p>
+<ul>
+<li>从 <code>info.KeyShareGroups</code> 和原始 record 中取出 X25519 公钥</li>
+<li>用服务端 <code>privateKey</code> 做 <code>curve25519.X25519</code></li>
+<li>用 HKDF 派生 <code>authKey</code></li>
+<li>用 AES-GCM 解密 <code>SessionID[:16]</code></li>
+<li>校验版本、时间、shortId</li>
+</ul>
+<p>本 Demo 没有实现,保持技术研究边界。</p>
+<hr>
+<h2 id="局限与下一步"><a href="#局限与下一步" class="headerlink" title="局限与下一步"></a>局限与下一步</h2><h3 id="当前局限"><a href="#当前局限" class="headerlink" title="当前局限"></a>当前局限</h3><ol>
+<li><strong>未实现 Reality 认证和隧道接管</strong>:Demo 只能透明转发 TLS 握手,不能真正成为代理隧道。</li>
+<li><strong>未处理 TLS 1.3 的 0-RTT &#x2F; 重协商</strong>:只处理最简单的情况。</li>
+<li><strong>JA3 未计算完整 hash</strong>:只打印字段,可进一步用 MD5 计算。</li>
+<li><strong>非 TLS 协议只做透明转发</strong>:没有针对 Shadowsocks&#x2F;VMess&#x2F;Trojan 做解析或识别。</li>
+</ol>
+<h3 id="下一步可深入"><a href="#下一步可深入" class="headerlink" title="下一步可深入"></a>下一步可深入</h3><ol>
+<li><strong>实现 Reality 认证插槽</strong>:把 X25519 + HKDF + AES-GCM 逻辑填进去,做成本地验证 demo。</li>
+<li><strong>接管 TLS 1.3 握手</strong>:参考 <code>github.com/xtls/reality/handshake_server_tls13.go</code>,自己生成 ServerHello、EncryptedExtensions、Certificate 等记录。</li>
+<li><strong>引入 uTLS</strong>:让客户端模拟真实浏览器指纹,而不是用 OpenSSL 的默认指纹。</li>
+<li><strong>做协议识别器</strong>:对 Shadowsocks&#x2F;VMess&#x2F;Trojan 的首包做启发式识别(注意:只能识别”疑似”,不能精确解密)。</li>
+</ol>
+<hr>
+<h2 id="法律声明"><a href="#法律声明" class="headerlink" title="法律声明"></a>法律声明</h2><p>本文及代码仅供<strong>网络协议、TLS 握手和代理协议演进的技术研究</strong>。理解 Shadowsocks、VMess、Trojan、Reality 的设计原理,有助于学习网络安全、DPI 与反检测技术,本身是中性的知识。</p>
+<p>但将这些技术用于搭建或运营可规避网络审查的代理服务,在中国大陆可能违反《网络安全法》《计算机信息网络国际联网管理暂行规定》等法规。技术研究归技术研究,实际部署的法律边界需要自己把握。</p>
+<hr>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li>XTLS&#x2F;Xray-core: <code>https://github.com/XTLS/Xray-core</code></li>
+<li>XTLS&#x2F;REALITY: <code>https://github.com/xtls/reality</code></li>
+<li>Trojan 协议规范: <code>https://trojan-gfw.github.io/trojan/protocol</code></li>
+<li>VMess 协议 DeepWiki: <code>https://deepwiki.com/v2fly/v2ray-core/3.1-vmess-protocol</code></li>
+<li>Shadowsocks AEAD 协议: <code>https://shadowsocks.org/guide/aead</code></li>
+</ul>
+<hr>
+<p><em>写于 2026-07-19,研究记录 v2。</em></p>
+
+  </div>
+
+  <footer class="article-reactions">
+    <div class="reaction-group">
+      <button type="button" class="reaction reaction--comment" aria-label="跳转到评论区" data-action="scroll-to-comments">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-message-circle"></use></svg>
+
+      </button>
+      <span class="reaction-label">评论</span>
+      
+    </div>
+    <div class="reaction-group reaction-group--right">
+      
+      <button type="button" class="reaction reaction--share" aria-label="分享" data-action="share">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share-2 flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-share-2"></use></svg>
+
+      </button>
+      <span class="reaction-label">分享</span>
+    </div>
+  </footer>
+
+  
+
+
+  <nav class="article-actions">
+    
+      <span class="article-action article-action--prev is-disabled" aria-disabled="true">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-left"></use></svg>
+
+        <span class="action-label">上一篇</span>
+        <span class="action-title">没有更早的文章了</span>
+      </span>
+    
+    
+      <a class="article-action article-action--next" href="/2026/07/18/2026071801/">
+        <span class="action-label">下一篇</span>
+        <span class="action-title">手机密码、加密通讯与取证对抗</span>
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
+
+      </a>
+    
+  </nav>
+</article>
+</div>
+
+<button type="button" class="back-to-top" data-action="scroll-to-top" aria-label="返回顶部" hidden>
+  
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-up"></use></svg>
+
+</button>
+
+
+  <section class="related-paper">
+    <header class="related-paper__head">
+      <h2>
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-link"></use></svg>
+相关文章</h2>
+      <a class="related-paper__more" href="/archives/">
+        <span>查看更多</span>
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
+
+      </a>
+    </header>
+    <div class="related-paper__grid">
+      
+        <a class="related-card" href="/2026/07/18/2026071801/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/camera.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">手机密码、加密通讯与取证对抗</strong>
+            <em class="related-card__date">2026-07-18</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/07/05/20260705/2026070501/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/HackAttack_20260703_204746.jpg" alt="我潜入了一个&#34;消费返利&#34;项目的启动大会——这是我的现场记录" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">我潜入了一个&#34;消费返利&#34;项目的启动大会——这是我的现场记录</strong>
+            <em class="related-card__date">2026-07-05</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/07/05/20260626/2026062606/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/notebook.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">敏感目录扫描工具：多线程爆破Web隐藏路径</strong>
+            <em class="related-card__date">2026-07-05</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/07/01/20260701/2026070103/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/miansha.png" alt="免杀技术（Bypass AV/EDR）" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">免杀技术（Bypass AV/EDR）</strong>
+            <em class="related-card__date">2026-07-01</em>
+          </span>
+        </a>
+      
+    </div>
+  </section>
+
+
+      
+
+
+    </section>
+    
+  </main>
+
+  <div class="sidebar-backdrop js-sidebar-close" aria-hidden="true"></div>
+
+  
+<footer class="site-footer">
+  <span class="site-footer__left">© 2026 By ZapcoMan</span>
+  
+    <span class="site-footer__right">
+      
+        <span class="site-footer__row"><span class="site-footer__powered-prefix">Powered by Theme</span> <a href="https://github.com/Homulilly/hexo-theme-flatpaper" target="_blank" rel="noopener">FlatPaper</a></span>
+      
+    </span>
+  
+</footer>
+
+  
+<div class="search-panel" aria-hidden="true" data-index-url="/flatpaper-search.json">
+  <div class="search-backdrop js-search-close"></div>
+  <section class="search-dialog" role="dialog" aria-modal="true" aria-label="搜索文章">
+    <span class="tape tape--top-left" aria-hidden="true"></span>
+    <header class="search-head">
+      <h2><span class="green-dot"></span>搜索文章</h2>
+      <button class="icon-button js-search-close" type="button" aria-label="关闭搜索">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-x"></use></svg>
+
+      </button>
+    </header>
+    <label class="search-field">
+      
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-search"></use></svg>
+
+      <input id="flatpaper-search" class="search-input" type="search" placeholder="输入关键词，按 Esc 关闭" autocomplete="off">
+    </label>
+    <div class="search-results" data-empty="输入关键词后显示匹配的文章">
+      <p class="search-empty">输入关键词后显示匹配的文章</p>
+    </div>
+  </section>
+</div>
+
+  <script>
+  window.FLATPAPER_I18N = {"language":"zh-CN","common.posts":"文章","common.categories":"分类","common.tags":"标签","common.comments":"评论","common.share":"分享","common.page":"页面","common.archive":"归档","common.post_list":"文章列表","common.search_posts":"搜索文章","common.random_posts":"随机文章","common.reward":"赞赏","common.view_all":"查看全部","pagination.prev":"上一页","pagination.next":"下一页","pagination.post_pager":"文章分页","pagination.archive_pager":"归档分页","index.featured":"精选文章","index.pinned":"置顶","index.read_more":"阅读全文","index.previous_slide":"上一张","index.next_slide":"下一张","index.carousel_pagination":"轮播页码","index.carousel_slide":"第 %d 张","index.latest_posts":"最新文章","index.empty_posts":"还没有文章。创建第一篇文章后，这里会显示最新内容。","archive.title":"归档","archive.post_list":"文章列表","taxonomy.category_count":"%d 篇","taxonomy.empty_categories":"暂时还没有分类。","taxonomy.empty_tags":"暂时还没有标签。","links.label":"友链","links.title":"友情链接","links.empty_data":"暂未加载到友链数据。请确认 source/_data/links.yml 存在并已 hexo clean。","links.rss_label":"%s 的 RSS","friends_feed.label":"朋友圈","friends_feed.title":"友链朋友圈","friends_feed.loading":"正在加载友链动态…","friends_feed.missing_url":"暂未配置 all.json 地址。","friends_feed.load_failed":"友链动态加载失败，请稍后再试。","friends_feed.empty":"暂时没有抓取到友链文章。","friends_feed.load_more":"加载更多","friends_feed.updated_at":"更新于 %s","friends_feed.friend_count":"%d 位友邻","friends_feed.active_count":"%d 位活跃","friends_feed.article_count":"%d 篇文章","friends_feed.unknown_author":"未知站点","friends_feed.date_unknown":"时间未知","post.scroll_to_comments":"跳转到评论区","post.previous":"上一篇","post.next":"下一篇","post.no_previous":"没有更早的文章了","post.no_next":"已经是最新的一篇","post.back_to_top":"返回顶部","post.related_posts":"相关文章","post.view_more":"查看更多","not_found.label":"页面走丢了","not_found.title":"找不到这个页面","not_found.text":"这个地址可能已经移动、删除，或者从未存在。","not_found.home":"返回首页","not_found.search":"搜索文章","search.placeholder":"输入关键词，按 Esc 关闭","search.empty":"输入关键词后显示匹配的文章","search.loading":"正在加载搜索索引…","search.load_failed":"搜索索引加载失败，请重新打开搜索重试","search.no_result":"没有找到与 \"%s\" 相关的文章","search.close":"关闭搜索","code.copy":"复制代码","code.collapse":"折叠代码","code.expand":"展开代码","heading.anchor":"链接到此节: %s","head.tag":"标签：%s","head.category":"分类：%s","head.archive":"归档","head.archive_with_date":"归档：%s","head.page_number":"第 %d 页","navigation.primary":"主导航","navigation.mobile":"移动端导航","navigation.brand_home":"FlatPaper 首页","navigation.brand_menu":"打开站点导航","navigation.open_sidebar":"打开侧边栏","navigation.close_sidebar":"关闭侧边栏","navigation.sidebar":"侧边栏","navigation.sidebar_tools":"侧边栏工具","navigation.site_links":"站点链接","navigation.site_info":"站点信息","colors.choose_theme_color":"选择主题色","colors.theme_color":"主题色","colors.toggle_color_mode":"切换颜色模式","colors.green":"绿色","colors.purple":"紫色","colors.pink":"粉色","colors.sakura":"樱花粉","colors.blue":"蓝色","colors.orange":"橙色","colors.black":"黑色","profile.default_bio":"热爱生活，热爱代码，喜欢分享技术与生活中的点滴。","welcome.cta":"开始阅读","welcome.title":"欢迎来到 FlatPaper","welcome.text":"一个专注于内容与阅读体验的博客主题。","home_hero.label":"首页开屏","home_hero.enter":"开始阅读","home_hero.note":"今日","home_hero.default_subtitle":"日常记录","home_hero.nav_links":"开屏导航","home_hero.profile_links":"个人链接","home_hero.tools":"开屏工具","home_hero.shuffle_stickers":"打乱贴纸位置","home_hero.link":"链接","home_hero.sticker_image":"贴纸图片","home_hero.visit_confirm":"要访问 %s 吗？","home_hero.visit":"访问","home_hero.cancel":"取消","toc.title":"文章目录","toc.empty":"目录会根据文章标题自动生成。","toc.expand_all":"展开全部目录","toc.collapse_all":"收起全部目录","sidebar.hot_tags":"热门标签","sidebar.latest_posts":"最新文章"};
+  </script>
+  
+<script src="/js/main.js"></script>
+
+  
+</body>
+</html>
