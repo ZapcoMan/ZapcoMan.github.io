@@ -1,0 +1,970 @@
+<!doctype html>
+
+<html lang="zh-CN" data-fancybox-enabled="1">
+<head>
+  
+
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f7f3e9">
+
+<title>bitchat：连服务器都没有，拿什么监管你？——去中心化、免疫审查的蓝牙 Mesh 即时聊天软件 | ZapcoMan&#39;s world</title>
+<meta name="description" content="GitHub Trending #1 · 2026.07.28 · 32,000+ Stars · 5,000+ Forks · 42,000+ 行 Swift 代码 · 440+ Nostr 中继节点 1. 它是什么？bitchat 是一款由 permissionlesstech 团队开发并开源的去中心化点对点聊天应用。它的核心理念可以用三个词概括：无服务...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="bitchat：连服务器都没有，拿什么监管你？——去中心化、免疫审查的蓝牙 Mesh 即时聊天软件 | ZapcoMan&#39;s world">
+<meta property="og:url" content="http://example.com/2026/08/04/20260715/2026080401/">
+<meta property="og:site_name" content="ZapcoMan&#39;s world">
+<meta property="og:description" content="GitHub Trending #1 · 2026.07.28 · 32,000+ Stars · 5,000+ Forks · 42,000+ 行 Swift 代码 · 440+ Nostr 中继节点 1. 它是什么？bitchat 是一款由 permissionlesstech 团队开发并开源的去中心化点对点聊天应用。它的核心理念可以用三个词概括：无服务...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-08-04T14:48:22.000Z">
+<meta property="article:modified_time" content="2026-08-04T15:00:13.472Z">
+<meta property="article:author" content="ZapcoMan">
+<meta property="article:tag" content="Bluetooth LE Mesh">
+<meta property="article:tag" content="E2E Encryption">
+<meta property="article:tag" content="Noise Framework">
+<meta property="article:tag" content="Nostr Protocol">
+<meta property="article:tag" content="P2P">
+<meta property="article:tag" content="iOS &#x2F; macOS &#x2F; Android">
+<meta property="article:tag" content="隐私保护">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="http://example.com/2026/08/04/20260715/2026080401/">
+
+<link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"bitchat：连服务器都没有，拿什么监管你？——去中心化、免疫审查的蓝牙 Mesh 即时聊天软件","name":"bitchat：连服务器都没有，拿什么监管你？——去中心化、免疫审查的蓝牙 Mesh 即时聊天软件 | ZapcoMan's world","description":"GitHub Trending #1 · 2026.07.28 · 32,000+ Stars · 5,000+ Forks · 42,000+ 行 Swift 代码 · 440+ Nostr 中继节点 1. 它是什么？bitchat 是一款由 permissionlesstech 团队开发并开源的去中心化点对点聊天应用。它的核心理念可以用三个词概括：无服务...","url":"http://example.com/2026/08/04/20260715/2026080401/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/08/04/20260715/2026080401/","datePublished":"2026-08-04T14:48:22.000Z","dateModified":"2026-08-04T15:00:13.472Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"隐私保护, Bluetooth LE Mesh, Nostr Protocol, Noise Framework, P2P, E2E Encryption, iOS / macOS / Android"}</script>
+
+<script>
+  (function () {
+    var accents = { orange: 1, purple: 1, sakura: 1, blue: 1, pink: 1, green: 1, black: 1 };
+    var match = document.cookie.match(/(?:^|;\s*)flatpaper-accent=([^;]+)/);
+    var accent = 'blue';
+    if (match) {
+      try { accent = decodeURIComponent(match[1]); } catch (e) {}
+    }
+    if (!accents[accent]) accent = 'blue';
+    document.documentElement.setAttribute('data-accent', accent);
+    try {
+      if (localStorage.getItem('flatpaper-mode') === 'dark') {
+        document.documentElement.classList.add('dark-mode');
+      }
+    } catch (e) {}
+  })();
+</script>
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
+<script defer src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 8.1.2"><link rel="alternate" href="/atom.xml" title="ZapcoMan's world" type="application/atom+xml">
+</head>
+
+<body
+  class="is-post tag-style-tape bg-style-default"
+  data-default-accent="blue"
+  data-code-theme="dark"
+  data-note-style="sticky"
+  data-note-icons="on"
+  data-button-style="circle"
+  data-strong-accent="on"
+>
+  
+    <div class="page-grain"></div>
+  
+  <svg width="0" height="0" style="position:absolute;z-index:-1;" aria-hidden="true">
+    <defs>
+      <filter id="paper-edge" x="-5%" y="-5%" width="110%" height="110%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.04" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+    </defs>
+  </svg>
+  <svg class="flatpaper-icon-sprite" xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute;width:0;height:0;overflow:hidden;" aria-hidden="true" focusable="false"><defs><symbol id="flatpaper-icon-lucide-layout-grid" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></symbol><symbol id="flatpaper-icon-lucide-house" viewBox="0 0 24 24"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol><symbol id="flatpaper-icon-lucide-archive" viewBox="0 0 24 24"><rect width="20" height="5" x="2" y="3" rx="1"/><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8"/><path d="M10 12h4"/></symbol><symbol id="flatpaper-icon-lucide-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol><symbol id="flatpaper-icon-lucide-user" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol><symbol id="flatpaper-icon-lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></symbol><symbol id="flatpaper-icon-lucide-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol><symbol id="flatpaper-icon-lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></symbol><symbol id="flatpaper-icon-lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></symbol><symbol id="flatpaper-icon-lucide-palette" viewBox="0 0 24 24"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"/><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/></symbol><symbol id="flatpaper-icon-fa-brands-github" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></symbol><symbol id="flatpaper-icon-fa-brands-twitter" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></symbol><symbol id="flatpaper-icon-lucide-mail" viewBox="0 0 24 24"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></symbol><symbol id="flatpaper-icon-lucide-rss" viewBox="0 0 24 24"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></symbol><symbol id="flatpaper-icon-lucide-atom" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><path d="M20.2 20.2c2.04-2.03.02-7.36-4.5-11.9-4.54-4.52-9.87-6.54-11.9-4.5-2.04 2.03-.02 7.36 4.5 11.9 4.54 4.52 9.87 6.54 11.9 4.5Z"/><path d="M15.7 15.7c4.52-4.54 6.54-9.87 4.5-11.9-2.03-2.04-7.36-.02-11.9 4.5-4.52 4.54-6.54 9.87-4.5 11.9 2.03 2.04 7.36.02 11.9-4.5Z"/></symbol><symbol id="flatpaper-icon-lucide-heart" viewBox="0 0 24 24"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></symbol><symbol id="flatpaper-icon-lucide-message-circle" viewBox="0 0 24 24"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></symbol><symbol id="flatpaper-icon-lucide-message-square" viewBox="0 0 24 24"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z"/></symbol><symbol id="flatpaper-icon-lucide-share-2" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></symbol><symbol id="flatpaper-icon-lucide-calendar" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></symbol><symbol id="flatpaper-icon-lucide-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol><symbol id="flatpaper-icon-lucide-shuffle" viewBox="0 0 24 24"><path d="m18 14 4 4-4 4"/><path d="m18 2 4 4-4 4"/><path d="M2 18h1.973a4 4 0 0 0 3.3-1.7l5.454-8.6a4 4 0 0 1 3.3-1.7H22"/><path d="M2 6h1.972a4 4 0 0 1 3.6 2.2"/><path d="M22 18h-6.041a4 4 0 0 1-3.3-1.8l-.359-.45"/></symbol><symbol id="flatpaper-icon-lucide-flame" viewBox="0 0 24 24"><path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4"/></symbol><symbol id="flatpaper-icon-lucide-history" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></symbol><symbol id="flatpaper-icon-lucide-table-of-contents" viewBox="0 0 24 24"><path d="M16 5H3"/><path d="M16 12H3"/><path d="M16 19H3"/><path d="M21 5h.01"/><path d="M21 12h.01"/><path d="M21 19h.01"/></symbol><symbol id="flatpaper-icon-lucide-list-tree" viewBox="0 0 24 24"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></symbol><symbol id="flatpaper-icon-lucide-folder" viewBox="0 0 24 24"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></symbol><symbol id="flatpaper-icon-lucide-tag" viewBox="0 0 24 24"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/></symbol><symbol id="flatpaper-icon-lucide-eye" viewBox="0 0 24 24"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></symbol><symbol id="flatpaper-icon-lucide-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol><symbol id="flatpaper-icon-lucide-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></symbol><symbol id="flatpaper-icon-lucide-arrow-up" viewBox="0 0 24 24"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></symbol><symbol id="flatpaper-icon-lucide-chevron-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol><symbol id="flatpaper-icon-lucide-chevron-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol><symbol id="flatpaper-icon-lucide-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol><symbol id="flatpaper-icon-lucide-chevron-up" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></symbol><symbol id="flatpaper-icon-lucide-send" viewBox="0 0 24 24"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></symbol><symbol id="flatpaper-icon-lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></symbol><symbol id="flatpaper-icon-lucide-panel-left" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/></symbol><symbol id="flatpaper-icon-lucide-leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></symbol><symbol id="flatpaper-icon-lucide-aperture" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m14.31 8 5.74 9.94"/><path d="M9.69 8h11.48"/><path d="m7.38 12 5.74-9.94"/><path d="M9.69 16 3.95 6.06"/><path d="M14.31 16H2.83"/><path d="m16.62 12-5.74 9.94"/></symbol><symbol id="flatpaper-icon-lucide-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"/></symbol><symbol id="flatpaper-icon-lucide-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></symbol><symbol id="flatpaper-icon-lucide-radio" viewBox="0 0 24 24"><path d="M16.247 7.761a6 6 0 0 1 0 8.478"/><path d="M19.075 4.933a10 10 0 0 1 0 14.134"/><path d="M4.925 19.067a10 10 0 0 1 0-14.134"/><path d="M7.753 16.239a6 6 0 0 1 0-8.478"/><circle cx="12" cy="12" r="2"/></symbol><symbol id="flatpaper-icon-lucide-hash" viewBox="0 0 24 24"><line x1="4" x2="20" y1="9" y2="9"/><line x1="4" x2="20" y1="15" y2="15"/><line x1="10" x2="8" y1="3" y2="21"/><line x1="16" x2="14" y1="3" y2="21"/></symbol><symbol id="flatpaper-icon-lucide-gift" viewBox="0 0 24 24"><path d="M12 7v14"/><path d="M20 11v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"/><path d="M7.5 7a1 1 0 0 1 0-5A4.8 8 0 0 1 12 7a4.8 8 0 0 1 4.5-5 1 1 0 0 1 0 5"/><rect x="3" y="7" width="18" height="4" rx="1"/></symbol><symbol id="flatpaper-icon-fa-brands-alipay" viewBox="0 0 448 512"><path d="M377.74 32H70.26C31.41 32 0 63.41 0 102.26v307.48C0 448.59 31.41 480 70.26 480h307.48c38.52 0 69.76-31.08 70.26-69.6-45.96-25.62-110.59-60.34-171.6-88.44-32.07 43.97-84.14 81-148.62 81-70.59 0-93.73-45.3-97.04-76.37-3.97-39.01 14.88-81.5 99.52-81.5 35.38 0 79.35 10.25 127.13 24.96 16.53-30.09 26.45-60.34 26.45-60.34h-178.2v-16.7h92.08v-31.24H88.28v-19.01h109.44V92.34h50.92v50.42h109.44v19.01H248.63v31.24h88.77s-15.21 46.62-38.35 90.92c48.93 16.7 100.01 36.04 148.62 52.74V102.26C447.83 63.57 416.43 32 377.74 32zM47.28 322.95c.99 20.17 10.25 53.73 69.93 53.73 52.07 0 92.58-39.68 117.87-72.9-44.63-18.68-84.48-31.41-109.44-31.41-67.45 0-79.35 33.06-78.36 50.58z"/></symbol><symbol id="flatpaper-icon-fa-brands-paypal" viewBox="0 0 384 512"><path d="M111.4 295.9c-3.5 19.2-17.4 108.7-21.5 134-.3 1.8-1 2.5-3 2.5H12.3c-7.6 0-13.1-6.6-12.1-13.9L58.8 46.6c1.5-9.6 10.1-16.9 20-16.9 152.3 0 165.1-3.7 204 11.4 60.1 23.3 65.6 79.5 44 140.3-21.5 62.6-72.5 89.5-140.1 90.3-43.4.7-69.5-7-75.3 24.2zM357.1 152c-1.8-1.3-2.5-1.8-3 1.3-2 11.4-5.1 22.5-8.8 33.6-39.9 113.8-150.5 103.9-204.5 103.9-6.1 0-10.1 3.3-10.9 9.4-22.6 140.4-27.1 169.7-27.1 169.7-1 7.1 3.5 12.9 10.6 12.9h63.5c8.6 0 15.7-6.3 17.4-14.9.7-5.4-1.1 6.1 14.4-91.3 4.6-22 14.3-19.7 29.3-19.7 71 0 126.4-28.8 142.9-112.3 6.5-34.8 4.6-71.4-23.8-92.6z"/></symbol><symbol id="flatpaper-icon-fa-brands-x-twitter" viewBox="0 0 512 512"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></symbol><symbol id="flatpaper-icon-fa-brands-steam" viewBox="0 0 496 512"><path d="M496 256c0 137-111.2 248-248.4 248-113.8 0-209.6-76.3-239-180.4l95.2 39.3c6.4 32.1 34.9 56.4 68.9 56.4 39.2 0 71.9-32.4 70.2-73.5l84.5-60.2c52.1 1.3 95.8-40.9 95.8-93.5 0-51.6-42-93.5-93.7-93.5s-93.7 42-93.7 93.5v1.2L176.6 279c-15.5-.9-30.7 3.4-43.5 12.1L0 236.1C10.2 108.4 117.1 8 247.6 8 384.8 8 496 119 496 256zM155.7 384.3l-30.5-12.6a52.79 52.79 0 0 0 27.2 25.8c26.9 11.2 57.8-1.6 69-28.4 5.4-13 5.5-27.3.1-40.3-5.4-13-15.5-23.2-28.5-28.6-12.9-5.4-26.7-5.2-38.9-.6l31.5 13c19.8 8.2 29.2 30.9 20.9 50.7-8.3 19.9-31 29.2-50.8 21zm173.8-129.9c-34.4 0-62.4-28-62.4-62.3s28-62.3 62.4-62.3 62.4 28 62.4 62.3-27.9 62.3-62.4 62.3zm.1-15.6c25.9 0 46.9-21 46.9-46.8 0-25.9-21-46.8-46.9-46.8s-46.9 21-46.9 46.8c.1 25.8 21.1 46.8 46.9 46.8z"/></symbol><symbol id="flatpaper-icon-fa-brands-bilibili" viewBox="0 0 512 512"><path d="M488.6 104.1C505.3 122.2 513 143.8 511.9 169.8V372.2C511.5 398.6 502.7 420.3 485.4 437.3C468.2 454.3 446.3 463.2 419.9 464H92.02C65.57 463.2 43.81 454.2 26.74 436.8C9.682 419.4 .7667 396.5 0 368.2V169.8C.7667 143.8 9.682 122.2 26.74 104.1C43.81 87.75 65.57 78.77 92.02 78H121.4L96.05 52.19C90.3 46.46 87.42 39.19 87.42 30.4C87.42 21.6 90.3 14.34 96.05 8.603C101.8 2.868 109.1 0 117.9 0C126.7 0 134 2.868 139.8 8.603L213.1 78H301.1L375.6 8.603C381.7 2.868 389.2 0 398 0C406.8 0 414.1 2.868 419.9 8.603C425.6 14.34 428.5 21.6 428.5 30.4C428.5 39.19 425.6 46.46 419.9 52.19L394.6 78L423.9 78C450.3 78.77 471.9 87.75 488.6 104.1H488.6zM449.8 173.8C449.4 164.2 446.1 156.4 439.1 150.3C433.9 144.2 425.1 140.9 416.4 140.5H96.05C86.46 140.9 78.6 144.2 72.47 150.3C66.33 156.4 63.07 164.2 62.69 173.8V368.2C62.69 377.4 65.95 385.2 72.47 391.7C78.99 398.2 86.85 401.5 96.05 401.5H416.4C425.6 401.5 433.4 398.2 439.7 391.7C446 385.2 449.4 377.4 449.8 368.2L449.8 173.8zM185.5 216.5C191.8 222.8 195.2 230.6 195.6 239.7V273C195.2 282.2 191.9 289.9 185.8 296.2C179.6 302.5 171.8 305.7 162.2 305.7C152.6 305.7 144.7 302.5 138.6 296.2C132.5 289.9 129.2 282.2 128.8 273V239.7C129.2 230.6 132.6 222.8 138.9 216.5C145.2 210.2 152.1 206.9 162.2 206.5C171.4 206.9 179.2 210.2 185.5 216.5H185.5zM377 216.5C383.3 222.8 386.7 230.6 387.1 239.7V273C386.7 282.2 383.4 289.9 377.3 296.2C371.2 302.5 363.3 305.7 353.7 305.7C344.1 305.7 336.3 302.5 330.1 296.2C323.1 289.9 320.7 282.2 320.4 273V239.7C320.7 230.6 324.1 222.8 330.4 216.5C336.7 210.2 344.5 206.9 353.7 206.5C362.9 206.9 370.7 210.2 377 216.5H377z"/></symbol><symbol id="flatpaper-icon-fa-brands-youtube" viewBox="0 0 576 512"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></symbol><symbol id="flatpaper-icon-fa-brands-facebook" viewBox="0 0 512 512"><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></symbol><symbol id="flatpaper-icon-fa-brands-instagram" viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></symbol><symbol id="flatpaper-icon-fa-brands-telegram" viewBox="0 0 496 512"><path d="M248,8C111.033,8,0,119.033,0,256S111.033,504,248,504,496,392.967,496,256,384.967,8,248,8ZM362.952,176.66c-3.732,39.215-19.881,134.378-28.1,178.3-3.476,18.584-10.322,24.816-16.948,25.425-14.4,1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25,5.342-39.5,3.652-3.793,67.107-61.51,68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608,69.142-14.845,10.194-26.894,9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7,18.45-13.7,108.446-47.248,144.628-62.3c68.872-28.647,83.183-33.623,92.511-33.789,2.052-.034,6.639.474,9.61,2.885a10.452,10.452,0,0,1,3.53,6.716A43.765,43.765,0,0,1,362.952,176.66Z"/></symbol><symbol id="flatpaper-icon-fa-brands-weibo" viewBox="0 0 512 512"><path d="M407 177.6c7.6-24-13.4-46.8-37.4-41.7-22 4.8-28.8-28.1-7.1-32.8 50.1-10.9 92.3 37.1 76.5 84.8-6.8 21.2-38.8 10.8-32-10.3zM214.8 446.7C108.5 446.7 0 395.3 0 310.4c0-44.3 28-95.4 76.3-143.7C176 67 279.5 65.8 249.9 161c-4 13.1 12.3 5.7 12.3 6 79.5-33.6 140.5-16.8 114 51.4-3.7 9.4 1.1 10.9 8.3 13.1 135.7 42.3 34.8 215.2-169.7 215.2zm143.7-146.3c-5.4-55.7-78.5-94-163.4-85.7-84.8 8.6-148.8 60.3-143.4 116s78.5 94 163.4 85.7c84.8-8.6 148.8-60.3 143.4-116zM347.9 35.1c-25.9 5.6-16.8 43.7 8.3 38.3 72.3-15.2 134.8 52.8 111.7 124-7.4 24.2 29.1 37 37.4 12 31.9-99.8-55.1-195.9-157.4-174.3zm-78.5 311c-17.1 38.8-66.8 60-109.1 46.3-40.8-13.1-58-53.4-40.3-89.7 17.7-35.4 63.1-55.4 103.4-45.1 42 10.8 63.1 50.2 46 88.5zm-86.3-30c-12.9-5.4-30 .3-38 12.9-8.3 12.9-4.3 28 8.6 34 13.1 6 30.8.3 39.1-12.9 8-13.1 3.7-28.3-9.7-34zm32.6-13.4c-5.1-1.7-11.4.6-14.3 5.4-2.9 5.1-1.4 10.6 3.7 12.9 5.1 2 11.7-.3 14.6-5.4 2.8-5.2 1.1-10.9-4-12.9z"/></symbol></defs></svg>
+  
+  <header class="site-header">
+  
+  <button class="icon-button js-sidebar-toggle sidebar-toggle" type="button" aria-label="打开侧边栏" aria-controls="paper-sidebar-drawer" aria-expanded="false">
+    
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-menu"></use></svg>
+
+  </button>
+
+  <div class="brand">
+    <div class="brand-mark-wrapper">
+      
+        <a class="brand-mark" href="/" aria-label="FlatPaper 首页">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-grid flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-layout-grid"></use></svg>
+
+        </a>
+      
+    </div>
+    <a class="brand-text" href="/">ZapcoMan&#39;s world</a>
+  </div>
+
+  <nav class="site-nav" aria-label="主导航">
+    
+      
+        <a class="site-nav-link " href="/">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-house"></use></svg>
+
+          <span>首页</span>
+        </a>
+      
+    
+      
+        <div class="site-nav-item has-children">
+          <button class="site-nav-link site-nav-parent" type="button" aria-haspopup="true" aria-expanded="false">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+            <span>文章</span>
+          </button>
+          <div class="site-nav-menu" role="menu">
+            
+              <a role="menuitem" class="" href="/categories/">
+                
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+                <span>分类</span>
+              </a>
+            
+              <a role="menuitem" class="" href="/tags/">
+                
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
+
+                <span>标签</span>
+              </a>
+            
+              <a role="menuitem" class="" href="/archives/">
+                
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-archive flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-archive"></use></svg>
+
+                <span>归档</span>
+              </a>
+            
+          </div>
+        </div>
+      
+    
+      
+        <a class="site-nav-link " href="/links/">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-link"></use></svg>
+
+          <span>友链</span>
+        </a>
+      
+    
+      
+        <a class="site-nav-link " href="/about/">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-user"></use></svg>
+
+          <span>关于</span>
+        </a>
+      
+    
+  </nav>
+
+  <div class="header-tools">
+    <button class="icon-button js-search-open" type="button" aria-label="搜索文章">
+      
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-search"></use></svg>
+
+    </button>
+    <div class="accent-picker">
+      <button class="icon-button accent-toggle" type="button" aria-label="选择主题色" title="选择主题色" aria-haspopup="true" aria-expanded="false" aria-controls="accent-menu">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-palette"></use></svg>
+
+      </button>
+      <div class="accent-menu" id="accent-menu" role="menu" aria-label="主题色">
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="橙色" aria-checked="false" data-accent-option="orange">
+          <span class="accent-swatch accent-swatch--orange" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="紫色" aria-checked="false" data-accent-option="purple">
+          <span class="accent-swatch accent-swatch--purple" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="樱花粉" aria-checked="false" data-accent-option="sakura">
+          <span class="accent-swatch accent-swatch--sakura" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="蓝色" aria-checked="false" data-accent-option="blue">
+          <span class="accent-swatch accent-swatch--blue" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="粉色" aria-checked="false" data-accent-option="pink">
+          <span class="accent-swatch accent-swatch--pink" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="绿色" aria-checked="false" data-accent-option="green">
+          <span class="accent-swatch accent-swatch--green" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="黑色" aria-checked="false" data-accent-option="black">
+          <span class="accent-swatch accent-swatch--black" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+    <button class="theme-toggle" type="button" aria-label="切换颜色模式">
+      <span class="theme-icon theme-icon--sun">
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-sun"></use></svg>
+</span>
+      <span class="theme-icon theme-icon--moon">
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-moon"></use></svg>
+</span>
+    </button>
+  </div>
+</header>
+
+
+  
+  <main class="paper-shell paper-shell--article">
+    
+
+<aside id="paper-sidebar-drawer" class="paper-sidebar paper-sidebar--right" aria-label="侧边栏">
+  <div class="drawer-toolbar" aria-label="侧边栏工具">
+    <div class="drawer-accent-options" role="group" aria-label="主题色">
+      <button type="button" class="accent-option" aria-label="橙色" aria-pressed="false" data-accent-option="orange">
+        <span class="accent-swatch accent-swatch--orange" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="紫色" aria-pressed="false" data-accent-option="purple">
+        <span class="accent-swatch accent-swatch--purple" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="樱花粉" aria-pressed="false" data-accent-option="sakura">
+        <span class="accent-swatch accent-swatch--sakura" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="蓝色" aria-pressed="false" data-accent-option="blue">
+        <span class="accent-swatch accent-swatch--blue" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="粉色" aria-pressed="false" data-accent-option="pink">
+        <span class="accent-swatch accent-swatch--pink" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="绿色" aria-pressed="false" data-accent-option="green">
+        <span class="accent-swatch accent-swatch--green" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="黑色" aria-pressed="false" data-accent-option="black">
+        <span class="accent-swatch accent-swatch--black" aria-hidden="true"></span>
+      </button>
+    </div>
+    <button class="icon-button drawer-close js-sidebar-close" type="button" aria-label="关闭侧边栏">
+      
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-x"></use></svg>
+
+    </button>
+  </div>
+
+  <section class="side-card nav-card">
+    <nav class="site-nav-drawer" aria-label="移动端导航">
+      
+        
+          <a class="" href="/">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-house"></use></svg>
+
+            <span>首页</span>
+          </a>
+        
+      
+        
+          <div class="drawer-nav-group">
+            <button class="drawer-nav-parent" type="button" aria-expanded="false">
+              
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+              <span>文章</span>
+            </button>
+            <div class="drawer-nav-children">
+              
+                <a class="" href="/categories/">
+                  
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+                  <span>分类</span>
+                </a>
+              
+                <a class="" href="/tags/">
+                  
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
+
+                  <span>标签</span>
+                </a>
+              
+                <a class="" href="/archives/">
+                  
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-archive flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-archive"></use></svg>
+
+                  <span>归档</span>
+                </a>
+              
+            </div>
+          </div>
+        
+      
+        
+          <a class="" href="/links/">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-link"></use></svg>
+
+            <span>友链</span>
+          </a>
+        
+      
+        
+          <a class="" href="/about/">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-user"></use></svg>
+
+            <span>关于</span>
+          </a>
+        
+      
+    </nav>
+  </section>
+
+  <section class="side-card profile-card">
+    
+      <div class="avatar avatar--image avatar--circle">
+        <img src="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4" alt="ZapcoMan" loading="lazy" referrerpolicy="no-referrer">
+      </div>
+    
+    <h3>ZapcoMan</h3>
+    <p class="profile-role">日常记录</p>
+    <p>独立开发者 主攻方向：Java 后端开发（Spring Boot + Vue3 全栈）Python 脚本开发（网络编程、爬虫、数据处理、信息安全工具、自动化运维,渗透测试工具）</p>
+    
+      <div class="site-info" aria-label="站点信息">
+        
+          
+            <a class="site-info__item" href="/archives/">
+              <strong>90</strong>
+              <span>文章</span>
+            </a>
+          
+        
+          
+            <a class="site-info__item" href="/categories/">
+              <strong>27</strong>
+              <span>分类</span>
+            </a>
+          
+        
+          
+            <a class="site-info__item" href="/tags/">
+              <strong>91</strong>
+              <span>标签</span>
+            </a>
+          
+        
+      </div>
+    
+    <div class="socials">
+      
+        <a href="https://github.com/ZapcoMan" target="_blank" rel="noopener" aria-label="GitHub" data-tooltip="GitHub">
+          
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="lucide lucide-github flatpaper-icon flatpaper-icon--fa-brands" aria-hidden="true"><use href="#flatpaper-icon-fa-brands-github"></use></svg>
+
+          
+        </a>
+      
+        <a href="https://space.bilibili.com/544166891" target="_blank" rel="noopener" aria-label="Bilibili" data-tooltip="Bilibili">
+          
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="lucide lucide-bilibili flatpaper-icon flatpaper-icon--fa-brands" aria-hidden="true"><use href="#flatpaper-icon-fa-brands-bilibili"></use></svg>
+
+          
+        </a>
+      
+        <a href="#" target="_blank" rel="noopener" aria-label="掘金" data-tooltip="掘金">
+          
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-send"></use></svg>
+
+          
+        </a>
+      
+      
+        
+        
+        <a href="/atom.xml" aria-label="RSS feed" data-tooltip="RSS feed">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rss flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-rss"></use></svg>
+
+        </a>
+      
+    </div>
+  </section>
+
+  
+
+  
+    <div class="post-sticky-stack">
+      <section class="side-card toc-card">
+        <header class="toc-card__head">
+          <h2>
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-table-of-contents flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-table-of-contents"></use></svg>
+文章目录</h2>
+          <button type="button" class="toc-toggle-all" data-action="toggle-toc" aria-pressed="false" aria-label="展开全部目录" title="展开全部目录">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-chevron-down"></use></svg>
+
+          </button>
+        </header>
+        <div class="toc-content">
+          
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%AE%83%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">1. 它是什么？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%83%B3%E8%B1%A1%E8%BF%99%E6%A0%B7%E4%B8%80%E4%B8%AA%E5%9C%BA%E6%99%AF"><span class="toc-text">想象这样一个场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%8F%8C%E4%BC%A0%E8%BE%93%E5%B1%82%E6%9E%B6%E6%9E%84"><span class="toc-text">2. 双传输层架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E8%93%9D%E7%89%99-Mesh-%E7%BD%91%E7%BB%9C"><span class="toc-text">3. 蓝牙 Mesh 网络</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AF%8F%E5%8F%B0%E8%AE%BE%E5%A4%87%E6%97%A2%E6%98%AF%E5%AE%A2%E6%88%B7%E7%AB%AF%EF%BC%8C%E4%B9%9F%E6%98%AF%E4%B8%AD%E7%BB%A7"><span class="toc-text">每台设备既是客户端，也是中继</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%97%E6%8E%A7%E6%B3%9B%E6%B4%AA-%E5%8E%BB%E9%87%8D"><span class="toc-text">受控泛洪 + 去重</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%89%87%E9%87%8D%E7%BB%84"><span class="toc-text">分片重组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%93%E6%89%91%E6%84%9F%E7%9F%A5%E8%B7%AF%E7%94%B1"><span class="toc-text">拓扑感知路由</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Nostr-%E5%8D%8F%E8%AE%AE%E5%B1%82"><span class="toc-text">4. Nostr 协议层</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%8D%E7%BD%AE%E9%A2%91%E9%81%93%EF%BC%88Location-Channels%EF%BC%89"><span class="toc-text">位置频道（Location Channels）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%81%E6%9C%89%E4%BF%A1%E5%B0%81"><span class="toc-text">私有信封</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%8A%A0%E5%AF%86%E4%B8%8E%E5%AE%89%E5%85%A8"><span class="toc-text">5. 加密与安全</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E6%97%B6%E4%BC%9A%E8%AF%9D%EF%BC%9ANoise-XX-%E6%A8%A1%E5%BC%8F"><span class="toc-text">实时会话：Noise XX 模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A6%BB%E7%BA%BF%E5%B0%81%E7%BC%84%EF%BC%9ANoise-X-%E6%A8%A1%E5%BC%8F"><span class="toc-text">离线封缄：Noise X 模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A0%E5%AF%86%E5%B1%82%E7%BA%A7%E6%80%BB%E7%BB%93"><span class="toc-text">加密层级总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E5%AD%98%E5%82%A8%E8%BD%AC%E5%8F%91%EF%BC%9A%E6%B6%88%E6%81%AF%E4%B8%80%E5%AE%9A%E8%83%BD%E9%80%81%E8%BE%BE"><span class="toc-text">6. 存储转发：消息一定能送达</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%93%AE-%E5%8F%91%E9%80%81%E8%80%85%E5%8F%91%E4%BB%B6%E7%AE%B1"><span class="toc-text">📮 发送者发件箱</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%8F%83-%E4%BF%A1%E4%BD%BF%E7%B3%BB%E7%BB%9F%EF%BC%88Couriers%EF%BC%89"><span class="toc-text">🏃 信使系统（Couriers）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%94%84-%E5%85%AC%E5%85%B1%E5%8E%86%E5%8F%B2%E5%90%8C%E6%AD%A5"><span class="toc-text">🔄 公共历史同步</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%8C%90-Nostr-%E9%82%AE%E7%AE%B1"><span class="toc-text">🌐 Nostr 邮箱</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E8%BA%AB%E4%BB%BD%E4%B8%8E%E9%9A%90%E7%A7%81"><span class="toc-text">7. 身份与隐私</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%86%E9%92%A5%E5%8D%B3%E8%BA%AB%E4%BB%BD"><span class="toc-text">密钥即身份</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B4%A7%E6%80%A5%E6%93%A6%E9%99%A4%EF%BC%88Panic-Wipe%EF%BC%89"><span class="toc-text">紧急擦除（Panic Wipe）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tor-%E9%9B%86%E6%88%90"><span class="toc-text">Tor 集成</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%E4%B8%80%E8%A7%88"><span class="toc-text">8. 核心功能一览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">9. 应用场景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%81%BE%E9%9A%BE%E5%BA%94%E6%80%A5%E9%80%9A%E4%BF%A1"><span class="toc-text">灾难应急通信</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%B7%E5%A4%96%E6%B4%BB%E5%8A%A8%E4%B8%8E%E6%8E%A2%E9%99%A9"><span class="toc-text">户外活动与探险</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%A7%E5%9E%8B%E6%B4%BB%E5%8A%A8%E4%B8%8E%E9%9B%86%E4%BC%9A"><span class="toc-text">大型活动与集会</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%90%E7%A7%81%E6%95%8F%E6%84%9F%E9%80%9A%E4%BF%A1"><span class="toc-text">隐私敏感通信</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E4%BB%A3%E7%A0%81%E5%BA%93%E5%B7%A1%E7%A4%BC"><span class="toc-text">10. 代码库巡礼</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84%E6%BC%94%E8%BF%9B"><span class="toc-text">架构演进</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E7%A8%8B%E4%B8%A5%E8%B0%A8%E5%BA%A6"><span class="toc-text">工程严谨度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B"><span class="toc-text">快速上手</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E6%9C%AA%E6%9D%A5%E5%B7%B2%E6%9D%A5"><span class="toc-text">11. 未来已来</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%93%E5%89%8D%E6%8C%91%E6%88%98"><span class="toc-text">当前挑战</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AA%E6%9D%A5%E8%B7%AF%E7%BA%BF%E5%9B%BE"><span class="toc-text">未来路线图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD%EF%BC%9A%E9%80%9A%E4%BF%A1%E6%AD%A3%E5%9C%A8%E5%9B%9E%E5%BD%92%E8%AE%BE%E5%A4%87%E6%9C%AC%E8%BA%AB"><span class="toc-text">结语：通信正在回归设备本身</span></a></li></ol>
+          
+        </div>
+      </section>
+      
+
+
+    </div>
+  
+
+  
+
+</aside>
+
+    <section class="paper-main">
+      
+
+<div class="article-tape-wrap">
+<span class="tape tape--top-right" aria-hidden="true"></span>
+<article class="article-paper">
+  
+  <header class="article-header">
+    
+      <a class="label-pill" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+        网络安全
+      </a>
+    
+    <h1>bitchat：连服务器都没有，拿什么监管你？——去中心化、免疫审查的蓝牙 Mesh 即时聊天软件</h1>
+    <div class="meta-line meta-line--article">
+      <span class="meta-date">
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
+2026-08-04</span>
+      
+        <span class="meta-tags">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
+
+          <a class="meta-tag-link" href="/tags/%E9%9A%90%E7%A7%81%E4%BF%9D%E6%8A%A4/">#隐私保护</a><a class="meta-tag-link" href="/tags/Bluetooth-LE-Mesh/">#Bluetooth LE Mesh</a><a class="meta-tag-link" href="/tags/Nostr-Protocol/">#Nostr Protocol</a><a class="meta-tag-link" href="/tags/Noise-Framework/">#Noise Framework</a><a class="meta-tag-link" href="/tags/P2P/">#P2P</a><a class="meta-tag-link" href="/tags/E2E-Encryption/">#E2E Encryption</a><a class="meta-tag-link" href="/tags/iOS-macOS-Android/">#iOS / macOS / Android</a>
+        </span>
+      
+    </div>
+  </header>
+
+  
+
+
+  <div class="article-content">
+    <h1 id=""><a href="#" class="headerlink" title=""></a></h1><blockquote>
+<p><strong>GitHub Trending #1 · 2026.07.28</strong> · 32,000+ Stars · 5,000+ Forks · 42,000+ 行 Swift 代码 · 440+ Nostr 中继节点</p>
+</blockquote>
+<hr>
+<h2 id="1-它是什么？"><a href="#1-它是什么？" class="headerlink" title="1. 它是什么？"></a>1. 它是什么？</h2><p><strong>bitchat</strong> 是一款由 <em>permissionlesstech</em> 团队开发并开源的去中心化点对点聊天应用。它的核心理念可以用三个词概括：<strong>无服务器、无互联网、无许可</strong>。设备之间通过蓝牙直接组网通信，不需要任何中心化基础设施，不需要注册账号，不需要手机号，甚至不需要有网络信号。</p>
+<p>项目自称 <em>“IRC vibes”</em>，这个定位非常精准。如果你经历过 IRC 的黄金年代——90 年代末到 2000 年代初，那时候的互联网聊天就是这样的：匿名加入一个频道，和陌生人天南海北地聊，关掉窗口一切消失，没有历史记录，没有算法推荐，没有”你可能认识的人”。bitchat 把这种纯粹的体验搬到了蓝牙网络上，而且增加了一个 IRC 从未拥有的能力：<strong>离线可用</strong>。</p>
+<p>但 bitchat 不止于此。与早期版本的纯蓝牙 Mesh 不同，如今的 bitchat 已经演进为<strong>双传输层架构</strong>——蓝牙 Mesh 负责离线本地通信，Nostr 协议负责互联网可达的全局通信。这意味着它不仅能让你在没有信号的野外和附近的人聊天，还能在有网络时连接全球的 bitchat 用户。</p>
+<blockquote>
+<p><strong>一句话总结</strong>：bitchat &#x3D; 蓝牙 Mesh 离线通信 + Nostr 协议全球通信 + Noise 端到端加密 + 零注册零服务器，面向隐私、应急和去中心化场景的开源即时通讯应用。</p>
+</blockquote>
+<h3 id="想象这样一个场景"><a href="#想象这样一个场景" class="headerlink" title="想象这样一个场景"></a>想象这样一个场景</h3><p>bitchat 没有基站、没有服务器、没有验证码，连手机号都用不上，纯靠空气里乱飞的 2.4GHz 无线电波。某地大型活动突然”断网”，人群里有人把”出口在西北角”这条消息丢进 bitchat，不到三分钟，几千部手机像多米诺骨牌一样完成复制，恐慌瞬间降温。</p>
+<p>原理并不玄乎：低功耗蓝牙（BLE）一次能蹦 100 米，每部手机都是一个小小驿站。消息被拆成加密碎片，像裹了黑袋子的快递，谁接力谁都不知道里面装的是情书还是欠条。理论上，从洛杉矶到纽约 3940 公里，需要 3.94 万个”百米冲刺”，只要人口够密，节点够多，情书就能在几小时内”蛙跳”抵达。沙漠、草原、深山老林这种”手机荒”地带，快递也会堵车，但城市里最不缺的就是”人肉蓝牙桩”——地铁闸机口、奶茶店、共享单车站台，处处都是潜在”中继小哥”。</p>
+<p>速度呢？同城基本秒到，跨省几分钟到几小时不等。听上去比 5G”拉胯”，可别忘了，它天生免疫”拔网线”。当运营商基站罢工、当 Wi-Fi 路由死机、当某些地区进入”维护模式”，它反而越战越勇——节点越多，带宽越大，像极了那句老话：”人民战争海洋深。”</p>
+<p>隐私方面，bitchat 把”社恐”写进基因：没有账号，没有头像，没有云端备份，连聊天记录都只存在自己手机里。别人想查？先破解端到端加密，再凑齐整条蓝牙链路上每一部手机，难度堪比把撒出去的盐一颗颗捡回来。</p>
+<p>打开手机蓝牙，把消息扔进人潮，让陌生人帮你完成一次”赛博传烽”——这份浪漫，0 元不限量，还附赠满满成就感。</p>
+<p><strong>标签</strong>：<code>Bluetooth LE Mesh</code> <code>Nostr Protocol</code> <code>Noise Framework</code> <code>P2P</code> <code>E2E Encryption</code> <code>iOS / macOS / Android</code></p>
+<hr>
+<h2 id="2-双传输层架构"><a href="#2-双传输层架构" class="headerlink" title="2. 双传输层架构"></a>2. 双传输层架构</h2><p>bitchat 最独特的设计在于它的<strong>双传输层（Dual Transport）架构</strong>。两个传输层实现同一个 <code>Transport</code> 接口，由一个 <code>MessageRouter</code> 统一协调：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">      ┌─────────────────────────┐</span><br><span class="line">      │    Application Layer     │</span><br><span class="line">      └────────────┬────────────┘</span><br><span class="line">                   │</span><br><span class="line">      ┌────────────▼────────────┐</span><br><span class="line">      │      MessageRouter       │</span><br><span class="line">      │  (智能传输选择 &amp; 路由)    │</span><br><span class="line">      └─────┬─────────────┬──────┘</span><br><span class="line">            │             │</span><br><span class="line">Bluetooth 优先          Nostr 回退</span><br><span class="line">      ┌─────▼─────┐ ┌─────▼─────┐</span><br><span class="line">      │  BLE Mesh │ │  Nostr    │</span><br><span class="line">      │  Network  │ │  Protocol │</span><br><span class="line">      │           │ │           │</span><br><span class="line">      │ · GATT    │ │ · 440+    │</span><br><span class="line">      │   Central │ │   中继    │</span><br><span class="line">      │   +Periph │ │ · geohash │</span><br><span class="line">      │ · 7 hops  │ │   频道    │</span><br><span class="line">      │ · Noise XX│ │ · XChaCha │</span><br><span class="line">      └───────────┘ └───────────┘</span><br><span class="line">     离线·本地通信   在线·全球通信</span><br></pre></td></tr></table></figure>
+
+<p>路由器的决策逻辑非常清晰：</p>
+<ol>
+<li><strong>蓝牙优先</strong> —— 当蓝牙链路可用时，直接使用 Noise 加密会话发送，最快且最私密</li>
+<li><strong>Nostr 回退</strong> —— 蓝牙不可达时，通过接收者的 Nostr 公钥，经全球中继网络路由</li>
+<li><strong>智能排队</strong> —— 当两者都不可用时，消息进入队列，等待传输恢复后自动投递</li>
+</ol>
+<hr>
+<h2 id="3-蓝牙-Mesh-网络"><a href="#3-蓝牙-Mesh-网络" class="headerlink" title="3. 蓝牙 Mesh 网络"></a>3. 蓝牙 Mesh 网络</h2><p>bitchat 没有使用蓝牙技术联盟（Bluetooth SIG）官方的 Mesh 规范——那套规范主要面向 IoT 场景（智能灯泡、传感器网络），协议栈较重，对移动设备的功耗和延迟并不友好。相反，bitchat 在 BLE（低功耗蓝牙）的 GATT 和广播通道之上，自己实现了一套轻量级的 Mesh 路由协议。</p>
+<h3 id="每台设备既是客户端，也是中继"><a href="#每台设备既是客户端，也是中继" class="headerlink" title="每台设备既是客户端，也是中继"></a>每台设备既是客户端，也是中继</h3><p>在 bitchat 的 Mesh 网络中，每台设备同时扮演 <strong>GATT Central</strong> 和 <strong>Peripheral</strong> 两个角色。当你发送一条消息，它不只发给附近的设备，还会被范围内的其他设备接收并转发，像接力赛一样一跳一跳地传递出去。只要中间有足够的设备作为中继，消息可以传递到远超蓝牙标称距离（通常 10-30 米）的地方。</p>
+<h3 id="受控泛洪-去重"><a href="#受控泛洪-去重" class="headerlink" title="受控泛洪 + 去重"></a>受控泛洪 + 去重</h3><p>bitchat 采用了”受控泛洪 + 去重”的经典 Mesh 策略，但做了精细的调优：</p>
+<ul>
+<li><strong>TTL 控制</strong>：消息初始 TTL 为 7。密集网络（≥6 条连接）时 TTL 被限制为 5，稀疏链路（≤2 条连接）则保留完整深度</li>
+<li><strong>去重</strong>：LRU 去重集（1000 条目，5 分钟过期），按发送者、时间戳、类型和负载摘要作为键值丢弃重复消息</li>
+<li><strong>抖动</strong>：中继节点等待随机 10-220ms（密集网络时更长），让去重机制经常能抢占先机</li>
+<li><strong>扇出子集</strong>：广播消息只发送给确定性子集（约 log₂(连接度)），而非全部链路，大幅降低冗余流量</li>
+</ul>
+<h3 id="分片重组"><a href="#分片重组" class="headerlink" title="分片重组"></a>分片重组</h3><p>超过链路 MTU 的数据包会被切分为约 469 字节的分片，每个分片独立中继，在接收端重组（支持 128 个并发重组，30 秒超时，1 MiB 上限）。这意味着即使大文件也能在蓝牙 Mesh 中可靠传输。</p>
+<h3 id="拓扑感知路由"><a href="#拓扑感知路由" class="headerlink" title="拓扑感知路由"></a>拓扑感知路由</h3><p>公告消息携带最多 10 个直连邻居 ID，为每个节点构建一张浅层拓扑图（60 秒新鲜度）。当存在双向确认的路径时，消息会沿路径源路由；否则回退到泛洪。这种混合策略在效率和健壮性之间取得了平衡。</p>
+<hr>
+<h2 id="4-Nostr-协议层"><a href="#4-Nostr-协议层" class="headerlink" title="4. Nostr 协议层"></a>4. Nostr 协议层</h2><p>当蓝牙不可用时，bitchat 通过 <strong>Nostr 协议</strong>实现全球通信。Nostr（Notes and Other Stuff Transmitted by Relays）是一个简单、开放的协议，通过一组分布式中继节点传递消息。bitchat 内置了 440+ 个全球中继节点的目录，支持按地理位置智能选择。</p>
+<h3 id="位置频道（Location-Channels）"><a href="#位置频道（Location-Channels）" class="headerlink" title="位置频道（Location Channels）"></a>位置频道（Location Channels）</h3><p>bitchat 利用 <strong>geohash</strong>（地理哈希）编码创建了分层的位置频道系统，这是一种将经纬度编码为短字符串的方法：</p>
+<table>
+<thead>
+<tr>
+<th>频道级别</th>
+<th>Geohash 精度</th>
+<th>覆盖范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>block</code></td>
+<td>7 字符</td>
+<td>城市街区级</td>
+</tr>
+<tr>
+<td><code>neighborhood</code></td>
+<td>6 字符</td>
+<td>社区&#x2F;区域级</td>
+</tr>
+<tr>
+<td><code>city</code></td>
+<td>5 字符</td>
+<td>城市级</td>
+</tr>
+<tr>
+<td><code>province</code></td>
+<td>4 字符</td>
+<td>省&#x2F;州级</td>
+</tr>
+<tr>
+<td><code>region</code></td>
+<td>2 字符</td>
+<td>国家&#x2F;大区域级</td>
+</tr>
+</tbody></table>
+<p>这意味着你可以加入你所在街区的频道和邻居聊天，也可以切换到城市级频道参与更广泛的讨论。每个 geohash 区域使用独立的临时加密密钥，增强了隐私性。</p>
+<h3 id="私有信封"><a href="#私有信封" class="headerlink" title="私有信封"></a>私有信封</h3><p>bitchat 的 Nostr 私有消息使用了一套<strong>自有的加密信封格式</strong>，而非标准的 NIP-17&#x2F;NIP-44&#x2F;NIP-59。它复用了 NIP-17 的 kind 编号但不兼容：</p>
+<ul>
+<li>内部消息（kind 14）被加密后放入发送者签名的封缄（kind 13）</li>
+<li>封缄再次被加密放入由一次性密钥签名的公开信封（kind 1059）</li>
+<li>每个加密字段使用 <code>v2:</code> 前缀 + base64url 编码的 24 字节 nonce + XChaCha20-Poly1305 密文 + 16 字节认证标签</li>
+<li>密钥来自 secp256k1 ECDH 和 HKDF-SHA256 派生</li>
+<li>时间戳随机偏移 ±15 分钟，防止时间关联分析</li>
+</ul>
+<blockquote>
+<p>⚠️ <strong>注意</strong>：Nostr 路径<strong>没有前向保密（Forward Secrecy）</strong>——如果接收者的静态 Nostr 私钥被泄露，存储在中继上的加密信封可能被解密。这是当前设计的已知限制，prekey 方案正在规划中。</p>
+</blockquote>
+<hr>
+<h2 id="5-加密与安全"><a href="#5-加密与安全" class="headerlink" title="5. 加密与安全"></a>5. 加密与安全</h2><p>在去中心化通信中，端到端加密不是可选项，而是必选项。bitchat 使用 <strong>Noise Protocol Framework</strong>（Noise 协议框架）——这与 Signal、WhatsApp 等使用的加密基础框架同源，但实现了更精细的控制。</p>
+<h3 id="实时会话：Noise-XX-模式"><a href="#实时会话：Noise-XX-模式" class="headerlink" title="实时会话：Noise XX 模式"></a>实时会话：Noise XX 模式</h3><p>已连接的设备之间使用 Noise <code>XX</code> 握手模式建立会话，提供双向认证和前向保密：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// Noise XX 握手模式</span><br><span class="line">XX:</span><br><span class="line">  -&gt; e                              // 发起方发送临时密钥</span><br><span class="line">  &lt;- e, ee, s, es                   // 响应方发送临时密钥 + 加密的静态密钥</span><br><span class="line">  -&gt; s, se                          // 发起方发送加密的静态密钥，完成握手</span><br><span class="line"></span><br><span class="line">// 加密原语</span><br><span class="line">DH:     X25519 (Curve25519)</span><br><span class="line">Cipher: ChaCha20-Poly1305 (AEAD)</span><br><span class="line">Hash:   SHA-256</span><br><span class="line">KDF:    HKDF-SHA256</span><br><span class="line"></span><br><span class="line">// 自动重新密钥：每 1 小时或 10,000 条消息</span><br></pre></td></tr></table></figure>
+
+<p>三步握手提供：<strong>双向认证</strong>（双方确认对方身份）、<strong>身份隐藏</strong>（身份密钥在握手过程中被加密）、<strong>抗密钥泄露冒充</strong>（即使你的密钥泄露，也无法冒充其他人）。</p>
+<h3 id="离线封缄：Noise-X-模式"><a href="#离线封缄：Noise-X-模式" class="headerlink" title="离线封缄：Noise X 模式"></a>离线封缄：Noise X 模式</h3><p>对于离线投递的”信使邮件”，bitchat 使用单向 Noise <code>X</code> 模式封缄——发送者身份在密文内部认证，但<strong>这条路径没有前向保密</strong>。如果接收者的静态密钥被泄露，未投递的密封邮件可能暴露。</p>
+<h3 id="加密层级总结"><a href="#加密层级总结" class="headerlink" title="加密层级总结"></a>加密层级总结</h3><table>
+<thead>
+<tr>
+<th>路径</th>
+<th>加密方案</th>
+<th>前向保密</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>蓝牙实时会话</td>
+<td>Noise XX (X25519 &#x2F; ChaCha20-Poly1305)</td>
+<td>✅ 有</td>
+</tr>
+<tr>
+<td>信使离线邮件</td>
+<td>Noise X (静态密钥封缄)</td>
+<td>❌ 无</td>
+</tr>
+<tr>
+<td>Nostr 私有消息</td>
+<td>XChaCha20-Poly1305 + secp256k1 ECDH</td>
+<td>❌ 无</td>
+</tr>
+<tr>
+<td>公开广播消息</td>
+<td>Ed25519 签名（明文 + 签名验证）</td>
+<td>— 公开内容</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="6-存储转发：消息一定能送达"><a href="#6-存储转发：消息一定能送达" class="headerlink" title="6. 存储转发：消息一定能送达"></a>6. 存储转发：消息一定能送达</h2><p>bitchat 面临的核心挑战是：<strong>接收者此刻不在范围内怎么办？</strong> 为此，它设计了一套四层存储转发机制：</p>
+<h3 id="📮-发送者发件箱"><a href="#📮-发送者发件箱" class="headerlink" title="📮 发送者发件箱"></a>📮 发送者发件箱</h3><p>未投递的私信保留在本地（每对等方 100 条，24 小时 TTL），重新连接时自动重发，直到收到投递&#x2F;已读回执或达到 8 次重试上限。发件箱以 ChaChaPoly 密钥密封持久化到磁盘，即使应用被杀也只存密文。</p>
+<h3 id="🏃-信使系统（Couriers）"><a href="#🏃-信使系统（Couriers）" class="headerlink" title="🏃 信使系统（Couriers）"></a>🏃 信使系统（Couriers）</h3><p>当没有传输路径时，消息被封缄后交给最多 3 个可能遇到接收者的连接节点携带。信使看不到发送者、接收者和内容——唯一的路由信息是一个 16 字节的每日轮换标签。</p>
+<p>信使系统借鉴了 DTN（延迟容忍网络）中的 <strong>spray-and-wait</strong> 策略：</p>
+<ul>
+<li><strong>不透明寻址</strong>：信使只能看到一个 16 字节的轮换标签（接收者静态密钥和 UTC 日期的 HMAC），不知道发送者、接收者和内容</li>
+<li><strong>信任分级</strong>：互信好友可存放 5 个信封，任何签名验证的节点可存放 2 个，且好友邮件有保留配额</li>
+<li><strong>扩散传播</strong>：信封携带副本预算（初始 4，上限 8），信使遇到其他合格信使时交出一半预算，让邮件在移动的人群中扩散而非只骑在一个人身上</li>
+<li><strong>投递确认</strong>：收到接收者的直接公告时投递并删除；收到中继公告时定向泛洪一份副本</li>
+</ul>
+<blockquote>
+<p>想象一下：你在音乐节上给朋友发消息，朋友不在蓝牙范围内。你的消息被密封后交给了附近的 3 个陌生人携带。当其中任何一个人走到你朋友附近时，消息就会自动投递——而这些陌生人全程看不到消息内容，甚至不知道消息是发给谁的。</p>
+</blockquote>
+<h3 id="🔄-公共历史同步"><a href="#🔄-公共历史同步" class="headerlink" title="🔄 公共历史同步"></a>🔄 公共历史同步</h3><p>公共广播消息缓存 1000 条，节点之间每 ~15 秒用紧凑的 GCS 过滤器对账同步，保留窗口 6 小时。走过两个分区的设备会把房间最近历史带给错过的人。缓存持久化到磁盘，设备重启后仍然可服务。</p>
+<h3 id="🌐-Nostr-邮箱"><a href="#🌐-Nostr-邮箱" class="headerlink" title="🌐 Nostr 邮箱"></a>🌐 Nostr 邮箱</h3><p>bitchat 私有信封存储在 Nostr 中继上，客户端重连时回溯 24 小时，覆盖双方设备同时离线的场景——只要任一方触及互联网就能收信。</p>
+<hr>
+<h2 id="7-身份与隐私"><a href="#7-身份与隐私" class="headerlink" title="7. 身份与隐私"></a>7. 身份与隐私</h2><h3 id="密钥即身份"><a href="#密钥即身份" class="headerlink" title="密钥即身份"></a>密钥即身份</h3><p>bitchat 没有账号系统。每台设备在 Keychain 中保存两对长期密钥：</p>
+<ul>
+<li><strong>Curve25519 静态密钥</strong> —— 用于 Noise 密钥协商，其 SHA-256 指纹是设备的稳定身份标识</li>
+<li><strong>Ed25519 签名密钥</strong> —— 用于数据包签名</li>
+</ul>
+<p>在 Mesh 网络中，设备以 8 字节的短 Peer ID 出现——它是 Noise 静态密钥 SHA-256 指纹的前 8 字节。这个 ID <strong>不是临时的</strong>：它在会话、重启和保留 Keychain 的重装之间保持稳定，只有在紧急擦除更换身份时才会改变。</p>
+<h3 id="紧急擦除（Panic-Wipe）"><a href="#紧急擦除（Panic-Wipe）" class="headerlink" title="紧急擦除（Panic Wipe）"></a>紧急擦除（Panic Wipe）</h3><p>bitchat 提供了一个极端的隐私保护功能：<strong>三击触发紧急擦除</strong>，立即清除所有数据——身份密钥、好友列表、携带的信使邮件、加密发件箱、公共历史归档和度量指标。一切归零，仿佛你从未存在。</p>
+<h3 id="Tor-集成"><a href="#Tor-集成" class="headerlink" title="Tor 集成"></a>Tor 集成</h3><p>bitchat 内置了 <strong>Arti</strong>（Rust 编写的下一代 Tor 客户端）集成。启用后，所有 Nostr 流量通过 Tor 网络路由，进一步隐藏 IP 地址和网络元数据。这是从蓝牙层的物理隐私到互联网层的网络隐私的完整覆盖。</p>
+<blockquote>
+<p>💡 <strong>诚实的隐私披露</strong>：bitchat 的白皮书坦诚地指出了当前设计的隐私弱点：8 字节 Peer ID 派生自不轮换的密钥，公告以明文发布静态密钥和昵称，因此被动监听者可以枚举参与者并跨地点追踪设备。轮换的空中身份是正在规划的改进方向。</p>
+</blockquote>
+<hr>
+<h2 id="8-核心功能一览"><a href="#8-核心功能一览" class="headerlink" title="8. 核心功能一览"></a>8. 核心功能一览</h2><table>
+<thead>
+<tr>
+<th>功能</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>💬 <strong>IRC 风格命令</strong></td>
+<td>支持 <code>/slap</code>、<code>/msg</code>、<code>/who</code> 等经典 IRC 命令，怀旧感拉满</td>
+</tr>
+<tr>
+<td>🎙️ <strong>语音消息 &amp; PTT</strong></td>
+<td>支持语音笔记录制和 Push-to-Talk（按讲）模式，语音帧通过 Mesh 分片传输</td>
+</tr>
+<tr>
+<td>🖼️ <strong>媒体传输</strong></td>
+<td>图片和文件通过 Mesh 分片传输（1 MiB 上限），接收前需明确确认</td>
+</tr>
+<tr>
+<td>📍 <strong>地理频道</strong></td>
+<td>基于 geohash 的分层位置频道，从街区到国家级别自由切换</td>
+</tr>
+<tr>
+<td>🔑 <strong>好友验证</strong></td>
+<td>通过 QR 码扫描进行面对面身份验证，将昵称绑定到指纹</td>
+</tr>
+<tr>
+<td>⚡ <strong>Cashu 集成</strong></td>
+<td>支持 Cashu（基于 Lightning Network 的代币协议）的解码与处理</td>
+</tr>
+<tr>
+<td>🔒 <strong>紧急擦除</strong></td>
+<td>三击清除所有数据，一键归零，关键时刻的保命功能</td>
+</tr>
+<tr>
+<td>🌐 <strong>Tor 路由</strong></td>
+<td>内置 Arti 引擎，所有 Nostr 流量可选通过 Tor 匿名路由</td>
+</tr>
+<tr>
+<td>⚡ <strong>LZ4 压缩</strong></td>
+<td>消息使用 LZ4 压缩，自适应电池模式优化功耗</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="9-应用场景"><a href="#9-应用场景" class="headerlink" title="9. 应用场景"></a>9. 应用场景</h2><p>bitchat 的价值不止于”极客玩具”。在以下场景中，它可能是目前最优雅的解决方案：</p>
+<h3 id="灾难应急通信"><a href="#灾难应急通信" class="headerlink" title="灾难应急通信"></a>灾难应急通信</h3><p>地震、洪水等灾害发生后，蜂窝网络往往在数小时内瘫痪。救援队伍和受灾群众可以使用 bitchat 建立临时通信网络——不需要任何预先部署，打开应用就能通信。Mesh 的自组网特性意味着人越多网络越强壮。</p>
+<h3 id="户外活动与探险"><a href="#户外活动与探险" class="headerlink" title="户外活动与探险"></a>户外活动与探险</h3><p>徒步、登山、滑雪——这些场景通常没有手机信号。传统方案是对讲机，但 bitchat 通过 Mesh 中继扩展通信距离，支持文字消息传递坐标、路线等精确信息，远比对讲机的语音通话可靠。</p>
+<h3 id="大型活动与集会"><a href="#大型活动与集会" class="headerlink" title="大型活动与集会"></a>大型活动与集会</h3><p>音乐节、体育赛事——当数万人聚集，蜂窝网络因过载而崩溃。bitchat 不依赖蜂窝网络，人越多 Mesh 网络反而越强壮（中继节点更多），天然适合高密度人群场景。</p>
+<h3 id="隐私敏感通信"><a href="#隐私敏感通信" class="headerlink" title="隐私敏感通信"></a>隐私敏感通信</h3><p>记者、律师、活动人士——bitchat 的”无服务器”架构意味着没有元数据可以被收集，没有通信记录可以被调取。可选的 Tor 路由进一步隐藏网络踪迹。在”数据即权力”的时代，这种架构本身就是一种立场。</p>
+<hr>
+<h2 id="10-代码库巡礼"><a href="#10-代码库巡礼" class="headerlink" title="10. 代码库巡礼"></a>10. 代码库巡礼</h2><p>bitchat 是一个工程上非常成熟的项目。以下是来自实际源码仓库的数据：</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>数据</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>开发语言</td>
+<td>Swift（主）+ Rust（Arti Tor 引擎）</td>
+</tr>
+<tr>
+<td>源代码文件</td>
+<td>266 个 Swift 源文件</td>
+</tr>
+<tr>
+<td>测试文件</td>
+<td>201 个测试文件（~1,964 个测试用例）</td>
+</tr>
+<tr>
+<td>代码总量</td>
+<td>~42,722 行 Swift 代码</td>
+</tr>
+<tr>
+<td>测试覆盖率</td>
+<td>全套测试在迁移过程中全程绿色</td>
+</tr>
+<tr>
+<td>Nostr 中继</td>
+<td>441 个全球中继节点（含 GPS 坐标）</td>
+</tr>
+<tr>
+<td>许可证</td>
+<td>公共领域（Unlicense）—— 完全自由使用</td>
+</tr>
+<tr>
+<td>平台</td>
+<td>iOS 16+ &#x2F; macOS 13+ &#x2F; Android（Play Store）</td>
+</tr>
+<tr>
+<td>架构文档</td>
+<td>13 篇专题设计文档（含白皮书 v2.0）</td>
+</tr>
+</tbody></table>
+<h3 id="架构演进"><a href="#架构演进" class="headerlink" title="架构演进"></a>架构演进</h3><p>bitchat 的代码库经历了清晰的架构演进。从 V1 的单体 <code>BLEService</code>（8,300+ 行的”上帝对象”），到 V2 的应用层解耦（引入 <code>AppRuntime</code> 组合根、<code>ConversationStore</code> 和多个特性模型），再到 V3 的传输层重构（将 BLE 拆分为 <code>BLELinkLayer</code> + Mesh Engine + 特性模块的分层架构），每一步都有详细的设计文档记录。</p>
+<p>特别值得注意的是项目的**模拟器优先（Simulator-First）**测试策略：通过 <code>SimulatedLinkLayer</code> 实现 CB-free 的多节点测试拓扑，5 个确定性多节点测试在 ~40ms 内完成——包括公告&#x2F;绑定收敛、端到端 Noise 建立、线型拓扑中继、重复泛洪去重和紧急轮换单槽重绑等场景。模拟器上线第一天就发现了一个真实 bug。</p>
+<h3 id="工程严谨度"><a href="#工程严谨度" class="headerlink" title="工程严谨度"></a>工程严谨度</h3><p>从代码库可以看出项目团队对工程质量的极高要求：</p>
+<ul>
+<li><strong>队列契约测试</strong>：<code>BLEQueueContractTests</code> 通过 grep 源码确保只有 <code>onEngine</code> 可以同步进入引擎队列，传输代码永远不会同步分发到主队列</li>
+<li><strong>SwiftLint + Periphery</strong>：代码风格和死代码检测自动化</li>
+<li><strong>Justfile 构建系统</strong>：标准化构建、测试和运行流程</li>
+<li><strong>构建验证文档</strong>：详细的 <code>VERIFYING-A-BUILD.md</code> 指导用户如何验证源码与发布哈希清单的一致性</li>
+<li><strong>隐私评估文档</strong>：独立的 <code>privacy-assessment.md</code> 坦诚披露已知隐私局限</li>
+</ul>
+<h3 id="快速上手"><a href="#快速上手" class="headerlink" title="快速上手"></a>快速上手</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用 Xcode 打开</span></span><br><span class="line">open bitchat.xcodeproj</span><br><span class="line"></span><br><span class="line"><span class="comment"># macOS Debug 构建（无需签名）</span></span><br><span class="line">xcodebuild -project bitchat.xcodeproj -scheme <span class="string">&quot;bitchat (macOS)&quot;</span> \</span><br><span class="line">  -configuration Debug CODE_SIGNING_ALLOWED=NO build</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行完整 SwiftPM 测试套件</span></span><br><span class="line">swift <span class="built_in">test</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># iOS 模拟器测试</span></span><br><span class="line">xcodebuild -project bitchat.xcodeproj -scheme <span class="string">&quot;bitchat (iOS)&quot;</span> \</span><br><span class="line">  -sdk iphonesimulator \</span><br><span class="line">  -destination <span class="string">&#x27;platform=iOS Simulator,name=iPhone 17&#x27;</span> <span class="built_in">test</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 just 命令</span></span><br><span class="line">brew install just</span><br><span class="line">just check</span><br><span class="line">just run</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="11-未来已来"><a href="#11-未来已来" class="headerlink" title="11. 未来已来"></a>11. 未来已来</h2><h3 id="当前挑战"><a href="#当前挑战" class="headerlink" title="当前挑战"></a>当前挑战</h3><blockquote>
+<p> <strong>物理限制</strong>：蓝牙 Mesh 的多跳传输依赖节点密度。在人口稀疏的郊区或野外，设备之间的距离可能远超蓝牙通信范围，Mesh 网络就会断裂。bitchat 不是”无限距离通信”，它的覆盖范围本质上受制于”你附近有多少人也在用 bitchat”。</p>
+</blockquote>
+<blockquote>
+<p><strong>元数据暴露</strong>：8 字节 Peer ID 派生自不轮换的密钥，公告以明文发布静态密钥和昵称。被动监听者可以枚举参与者并跨地点追踪设备，甚至通过公告中携带的邻居列表获取局部邻接图。这是白皮书坦诚承认的”设计中最薄弱的部分”。</p>
+</blockquote>
+<blockquote>
+<p><strong>内容审核</strong>：去中心化意味着没有中心节点来过滤违法内容。这在隐私保护上是绝对的优势。bitchat 目前的选择是”不处理”。</p>
+</blockquote>
+<h3 id="未来路线图"><a href="#未来路线图" class="headerlink" title="未来路线图"></a>未来路线图</h3><p>bitchat 的白皮书和架构文档列出了明确的改进方向：</p>
+<ul>
+<li><strong>Prekey 前向保密</strong> —— 为信使邮件引入 prekey 机制，消除离线路径的前向保密缺失</li>
+<li><strong>轮换空中身份</strong> —— 纪元轮换 Peer ID，静态密钥在加密握手内披露，好友通过共享密钥派生标签相互识别</li>
+<li><strong>非 Noise 包填充</strong> —— 当前只有 Noise 帧有填充，其他包类型的负载长度可观测</li>
+<li><strong>多跳信使路由</strong> —— 基于相遇历史的多跳信使路由</li>
+<li><strong>后量子就绪</strong> —— 混合握手模式和 Kyber 集成计划</li>
+<li><strong>多设备支持</strong> —— 会话备份&#x2F;恢复和组消息原语</li>
+</ul>
+<blockquote>
+<p>未来的胡思乱想： 在解决了安全性和隐私性的问题之后 如果这东西中的某一个节点可以作为梯子 也许可以作为 一个不受任何政府监管的备用网络&#x2F;隐秘网络。</p>
+</blockquote>
+<hr>
+<h2 id="结语：通信正在回归设备本身"><a href="#结语：通信正在回归设备本身" class="headerlink" title="结语：通信正在回归设备本身"></a>结语：通信正在回归设备本身</h2><p>过去十五年，我们习惯了把一切交给云端——消息存在服务器上，联系人存在服务器上，聊天记录存在服务器上。bitchat 说：<strong>不，通信可以只发生在设备之间。</strong></p>
+<p>bitchat 的爆发可能只是一个开始。随着蓝牙 6.0 规范的推进和 UWB（超宽带）技术在手机上的普及，”设备直连通信”的体验将会大幅提升。未来的 bitchat 可能不再局限于蓝牙，而是融合 Wi-Fi Aware、UWB 甚至卫星直连等多种无线技术，构建一个真正的多模态 Mesh 网络。</p>
+<p>更长远地看，bitchat 代表的是一种趋势：<strong>通信正在从”云服务”回归”设备本身”</strong>。如果这种理念成为主流，改变的不仅是一个聊天工具，而是整个通信产业的架构逻辑。</p>
+<blockquote>
+<p><em>It’s the side-groupchat.</em> —— bitchat</p>
+</blockquote>
+<hr>
+<p><strong>参考链接</strong>：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/permissionlesstech/bitchat">GitHub 仓库</a></li>
+<li><a target="_blank" rel="noopener" href="http://bitchat.free/">官网</a></li>
+<li><a target="_blank" rel="noopener" href="https://apps.apple.com/us/app/bitchat-mesh/id6748219622">App Store</a></li>
+<li><a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=com.bitchat.droid">Play Store</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/permissionlesstech/bitchat/blob/main/WHITEPAPER.md">技术白皮书</a></li>
+</ul>
+<hr>
+<p><em>本文基于 bitchat 源码仓库及公开资料编写 · 2026 年 8 月</em></p>
+
+  </div>
+
+  <footer class="article-reactions">
+    <div class="reaction-group">
+      <button type="button" class="reaction reaction--comment" aria-label="跳转到评论区" data-action="scroll-to-comments">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-message-circle"></use></svg>
+
+      </button>
+      <span class="reaction-label">评论</span>
+      
+    </div>
+    <div class="reaction-group reaction-group--right">
+      
+      <button type="button" class="reaction reaction--share" aria-label="分享" data-action="share">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share-2 flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-share-2"></use></svg>
+
+      </button>
+      <span class="reaction-label">分享</span>
+    </div>
+  </footer>
+
+  
+
+
+  <nav class="article-actions">
+    
+      <span class="article-action article-action--prev is-disabled" aria-disabled="true">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-left"></use></svg>
+
+        <span class="action-label">上一篇</span>
+        <span class="action-title">没有更早的文章了</span>
+      </span>
+    
+    
+      <a class="article-action article-action--next" href="/2026/07/25/2026072501/">
+        <span class="action-label">下一篇</span>
+        <span class="action-title">在国内搭一台隐私副机：GrapheneOS + 随身 WiFi + 国内 WireGuard 加密通道</span>
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
+
+      </a>
+    
+  </nav>
+</article>
+</div>
+
+<button type="button" class="back-to-top" data-action="scroll-to-top" aria-label="返回顶部" hidden>
+  
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-up"></use></svg>
+
+</button>
+
+
+  <section class="related-paper">
+    <header class="related-paper__head">
+      <h2>
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-link"></use></svg>
+相关文章</h2>
+      <a class="related-paper__more" href="/archives/">
+        <span>查看更多</span>
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
+
+      </a>
+    </header>
+    <div class="related-paper__grid">
+      
+        <a class="related-card" href="/2026/07/25/2026072501/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/2026072501/1b1caa21ec0c7998.jpg" alt="在国内搭一台隐私副机：GrapheneOS + 随身 WiFi + 国内 WireGuard 加密通道" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">在国内搭一台隐私副机：GrapheneOS + 随身 WiFi + 国内 WireGuard 加密通道</strong>
+            <em class="related-card__date">2026-07-25</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/06/27/20260627/2026062701/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/IMG_20260626_213639.jpg" alt="🎭 镜界反制：一个针对裸聊骗子的克制指南" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">🎭 镜界反制：一个针对裸聊骗子的克制指南</strong>
+            <em class="related-card__date">2026-06-27</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/07/19/2026071901/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/notebook.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">Reality 协议研究：从 Shadowsocks 到 Reality 的演进与 Demo 复现</strong>
+            <em class="related-card__date">2026-07-19</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/07/18/2026071801/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/port.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">手机密码、加密通讯与取证对抗</strong>
+            <em class="related-card__date">2026-07-18</em>
+          </span>
+        </a>
+      
+    </div>
+  </section>
+
+
+      
+
+
+    </section>
+    
+  </main>
+
+  <div class="sidebar-backdrop js-sidebar-close" aria-hidden="true"></div>
+
+  
+<footer class="site-footer">
+  <span class="site-footer__left">© 2026 By ZapcoMan</span>
+  
+    <span class="site-footer__right">
+      
+        <span class="site-footer__row"><span class="site-footer__powered-prefix">Powered by Theme</span> <a href="https://github.com/Homulilly/hexo-theme-flatpaper" target="_blank" rel="noopener">FlatPaper</a></span>
+      
+    </span>
+  
+</footer>
+
+  
+<div class="search-panel" aria-hidden="true" data-index-url="/flatpaper-search.json">
+  <div class="search-backdrop js-search-close"></div>
+  <section class="search-dialog" role="dialog" aria-modal="true" aria-label="搜索文章">
+    <span class="tape tape--top-left" aria-hidden="true"></span>
+    <header class="search-head">
+      <h2><span class="green-dot"></span>搜索文章</h2>
+      <button class="icon-button js-search-close" type="button" aria-label="关闭搜索">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-x"></use></svg>
+
+      </button>
+    </header>
+    <label class="search-field">
+      
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-search"></use></svg>
+
+      <input id="flatpaper-search" class="search-input" type="search" placeholder="输入关键词，按 Esc 关闭" autocomplete="off">
+    </label>
+    <div class="search-results" data-empty="输入关键词后显示匹配的文章">
+      <p class="search-empty">输入关键词后显示匹配的文章</p>
+    </div>
+  </section>
+</div>
+
+  <script>
+  window.FLATPAPER_I18N = {"language":"zh-CN","common.posts":"文章","common.categories":"分类","common.tags":"标签","common.comments":"评论","common.share":"分享","common.page":"页面","common.archive":"归档","common.post_list":"文章列表","common.search_posts":"搜索文章","common.random_posts":"随机文章","common.reward":"赞赏","common.view_all":"查看全部","pagination.prev":"上一页","pagination.next":"下一页","pagination.post_pager":"文章分页","pagination.archive_pager":"归档分页","index.featured":"精选文章","index.pinned":"置顶","index.read_more":"阅读全文","index.previous_slide":"上一张","index.next_slide":"下一张","index.carousel_pagination":"轮播页码","index.carousel_slide":"第 %d 张","index.latest_posts":"最新文章","index.empty_posts":"还没有文章。创建第一篇文章后，这里会显示最新内容。","archive.title":"归档","archive.post_list":"文章列表","taxonomy.category_count":"%d 篇","taxonomy.empty_categories":"暂时还没有分类。","taxonomy.empty_tags":"暂时还没有标签。","links.label":"友链","links.title":"友情链接","links.empty_data":"暂未加载到友链数据。请确认 source/_data/links.yml 存在并已 hexo clean。","links.rss_label":"%s 的 RSS","friends_feed.label":"朋友圈","friends_feed.title":"友链朋友圈","friends_feed.loading":"正在加载友链动态…","friends_feed.missing_url":"暂未配置 all.json 地址。","friends_feed.load_failed":"友链动态加载失败，请稍后再试。","friends_feed.empty":"暂时没有抓取到友链文章。","friends_feed.load_more":"加载更多","friends_feed.updated_at":"更新于 %s","friends_feed.friend_count":"%d 位友邻","friends_feed.active_count":"%d 位活跃","friends_feed.article_count":"%d 篇文章","friends_feed.unknown_author":"未知站点","friends_feed.date_unknown":"时间未知","post.scroll_to_comments":"跳转到评论区","post.previous":"上一篇","post.next":"下一篇","post.no_previous":"没有更早的文章了","post.no_next":"已经是最新的一篇","post.back_to_top":"返回顶部","post.related_posts":"相关文章","post.view_more":"查看更多","not_found.label":"页面走丢了","not_found.title":"找不到这个页面","not_found.text":"这个地址可能已经移动、删除，或者从未存在。","not_found.home":"返回首页","not_found.search":"搜索文章","search.placeholder":"输入关键词，按 Esc 关闭","search.empty":"输入关键词后显示匹配的文章","search.loading":"正在加载搜索索引…","search.load_failed":"搜索索引加载失败，请重新打开搜索重试","search.no_result":"没有找到与 \"%s\" 相关的文章","search.close":"关闭搜索","code.copy":"复制代码","code.collapse":"折叠代码","code.expand":"展开代码","heading.anchor":"链接到此节: %s","head.tag":"标签：%s","head.category":"分类：%s","head.archive":"归档","head.archive_with_date":"归档：%s","head.page_number":"第 %d 页","navigation.primary":"主导航","navigation.mobile":"移动端导航","navigation.brand_home":"FlatPaper 首页","navigation.brand_menu":"打开站点导航","navigation.open_sidebar":"打开侧边栏","navigation.close_sidebar":"关闭侧边栏","navigation.sidebar":"侧边栏","navigation.sidebar_tools":"侧边栏工具","navigation.site_links":"站点链接","navigation.site_info":"站点信息","colors.choose_theme_color":"选择主题色","colors.theme_color":"主题色","colors.toggle_color_mode":"切换颜色模式","colors.green":"绿色","colors.purple":"紫色","colors.pink":"粉色","colors.sakura":"樱花粉","colors.blue":"蓝色","colors.orange":"橙色","colors.black":"黑色","profile.default_bio":"热爱生活，热爱代码，喜欢分享技术与生活中的点滴。","welcome.cta":"开始阅读","welcome.title":"欢迎来到 FlatPaper","welcome.text":"一个专注于内容与阅读体验的博客主题。","home_hero.label":"首页开屏","home_hero.enter":"开始阅读","home_hero.note":"今日","home_hero.default_subtitle":"日常记录","home_hero.nav_links":"开屏导航","home_hero.profile_links":"个人链接","home_hero.tools":"开屏工具","home_hero.shuffle_stickers":"打乱贴纸位置","home_hero.link":"链接","home_hero.sticker_image":"贴纸图片","home_hero.visit_confirm":"要访问 %s 吗？","home_hero.visit":"访问","home_hero.cancel":"取消","toc.title":"文章目录","toc.empty":"目录会根据文章标题自动生成。","toc.expand_all":"展开全部目录","toc.collapse_all":"收起全部目录","sidebar.hot_tags":"热门标签","sidebar.latest_posts":"最新文章"};
+  </script>
+  
+<script src="/js/main.js"></script>
+
+  
+</body>
+</html>
