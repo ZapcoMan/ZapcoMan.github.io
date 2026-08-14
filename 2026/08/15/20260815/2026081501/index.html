@@ -1,0 +1,1293 @@
+<!doctype html>
+
+<html lang="zh-CN" data-fancybox-enabled="1">
+<head>
+  
+
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f7f3e9">
+
+<title>拼多多APP恶意代码事件深度复盘：当9亿用户的手机成为&#34;肉鸡&#34; | ZapcoMan&#39;s world</title>
+<meta name="description" content="一款月活近9亿的国民级电商App，被曝利用50+个Android系统漏洞提权、窃取隐私、监控竞品、阻止卸载。这是移动安全史上最令人震惊的”主流App恶意化”事件。 目录 事件概览 时间线：从秘密组建到全球曝光 技术深挖：EvilParcel攻击链如何工作 恶意行为全清单：你的手机经历了什么 百人团队：拼多多的”网络武器”计划 各方反应与博弈 后续影响与法律风...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="拼多多APP恶意代码事件深度复盘：当9亿用户的手机成为&quot;肉鸡&quot; | ZapcoMan&#39;s world">
+<meta property="og:url" content="http://example.com/2026/08/15/20260815/2026081501/">
+<meta property="og:site_name" content="ZapcoMan&#39;s world">
+<meta property="og:description" content="一款月活近9亿的国民级电商App，被曝利用50+个Android系统漏洞提权、窃取隐私、监控竞品、阻止卸载。这是移动安全史上最令人震惊的”主流App恶意化”事件。 目录 事件概览 时间线：从秘密组建到全球曝光 技术深挖：EvilParcel攻击链如何工作 恶意行为全清单：你的手机经历了什么 百人团队：拼多多的”网络武器”计划 各方反应与博弈 后续影响与法律风...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-08-14T16:02:22.000Z">
+<meta property="article:modified_time" content="2026-08-14T16:05:54.177Z">
+<meta property="article:author" content="ZapcoMan">
+<meta property="article:tag" content="漏洞利用">
+<meta property="article:tag" content="社会工程学">
+<meta property="article:tag" content="黑客攻击事件">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="http://example.com/2026/08/15/20260815/2026081501/">
+
+<link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"拼多多APP恶意代码事件深度复盘：当9亿用户的手机成为\"肉鸡\"","name":"拼多多APP恶意代码事件深度复盘：当9亿用户的手机成为\"肉鸡\" | ZapcoMan's world","description":"一款月活近9亿的国民级电商App，被曝利用50+个Android系统漏洞提权、窃取隐私、监控竞品、阻止卸载。这是移动安全史上最令人震惊的”主流App恶意化”事件。 目录 事件概览 时间线：从秘密组建到全球曝光 技术深挖：EvilParcel攻击链如何工作 恶意行为全清单：你的手机经历了什么 百人团队：拼多多的”网络武器”计划 各方反应与博弈 后续影响与法律风...","url":"http://example.com/2026/08/15/20260815/2026081501/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/08/15/20260815/2026081501/","datePublished":"2026-08-14T16:02:22.000Z","dateModified":"2026-08-14T16:05:54.177Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"社会工程学, 漏洞利用, 黑客攻击事件"}</script>
+
+<script>
+  (function () {
+    var accents = { orange: 1, purple: 1, sakura: 1, blue: 1, pink: 1, green: 1, black: 1 };
+    var match = document.cookie.match(/(?:^|;\s*)flatpaper-accent=([^;]+)/);
+    var accent = 'blue';
+    if (match) {
+      try { accent = decodeURIComponent(match[1]); } catch (e) {}
+    }
+    if (!accents[accent]) accent = 'blue';
+    document.documentElement.setAttribute('data-accent', accent);
+    try {
+      if (localStorage.getItem('flatpaper-mode') === 'dark') {
+        document.documentElement.classList.add('dark-mode');
+      }
+    } catch (e) {}
+  })();
+</script>
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
+<script defer src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 8.1.2"><link rel="alternate" href="/atom.xml" title="ZapcoMan's world" type="application/atom+xml">
+</head>
+
+<body
+  class="is-post tag-style-tape bg-style-default"
+  data-default-accent="blue"
+  data-code-theme="dark"
+  data-note-style="sticky"
+  data-note-icons="on"
+  data-button-style="circle"
+  data-strong-accent="on"
+>
+  
+    <div class="page-grain"></div>
+  
+  <svg width="0" height="0" style="position:absolute;z-index:-1;" aria-hidden="true">
+    <defs>
+      <filter id="paper-edge" x="-5%" y="-5%" width="110%" height="110%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.04" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+    </defs>
+  </svg>
+  <svg class="flatpaper-icon-sprite" xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute;width:0;height:0;overflow:hidden;" aria-hidden="true" focusable="false"><defs><symbol id="flatpaper-icon-lucide-layout-grid" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></symbol><symbol id="flatpaper-icon-lucide-house" viewBox="0 0 24 24"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol><symbol id="flatpaper-icon-lucide-archive" viewBox="0 0 24 24"><rect width="20" height="5" x="2" y="3" rx="1"/><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8"/><path d="M10 12h4"/></symbol><symbol id="flatpaper-icon-lucide-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol><symbol id="flatpaper-icon-lucide-user" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol><symbol id="flatpaper-icon-lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></symbol><symbol id="flatpaper-icon-lucide-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol><symbol id="flatpaper-icon-lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></symbol><symbol id="flatpaper-icon-lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></symbol><symbol id="flatpaper-icon-lucide-palette" viewBox="0 0 24 24"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"/><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/></symbol><symbol id="flatpaper-icon-fa-brands-github" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></symbol><symbol id="flatpaper-icon-fa-brands-twitter" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></symbol><symbol id="flatpaper-icon-lucide-mail" viewBox="0 0 24 24"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></symbol><symbol id="flatpaper-icon-lucide-rss" viewBox="0 0 24 24"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></symbol><symbol id="flatpaper-icon-lucide-atom" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><path d="M20.2 20.2c2.04-2.03.02-7.36-4.5-11.9-4.54-4.52-9.87-6.54-11.9-4.5-2.04 2.03-.02 7.36 4.5 11.9 4.54 4.52 9.87 6.54 11.9 4.5Z"/><path d="M15.7 15.7c4.52-4.54 6.54-9.87 4.5-11.9-2.03-2.04-7.36-.02-11.9 4.5-4.52 4.54-6.54 9.87-4.5 11.9 2.03 2.04 7.36.02 11.9-4.5Z"/></symbol><symbol id="flatpaper-icon-lucide-heart" viewBox="0 0 24 24"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></symbol><symbol id="flatpaper-icon-lucide-message-circle" viewBox="0 0 24 24"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></symbol><symbol id="flatpaper-icon-lucide-message-square" viewBox="0 0 24 24"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z"/></symbol><symbol id="flatpaper-icon-lucide-share-2" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></symbol><symbol id="flatpaper-icon-lucide-calendar" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></symbol><symbol id="flatpaper-icon-lucide-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol><symbol id="flatpaper-icon-lucide-shuffle" viewBox="0 0 24 24"><path d="m18 14 4 4-4 4"/><path d="m18 2 4 4-4 4"/><path d="M2 18h1.973a4 4 0 0 0 3.3-1.7l5.454-8.6a4 4 0 0 1 3.3-1.7H22"/><path d="M2 6h1.972a4 4 0 0 1 3.6 2.2"/><path d="M22 18h-6.041a4 4 0 0 1-3.3-1.8l-.359-.45"/></symbol><symbol id="flatpaper-icon-lucide-flame" viewBox="0 0 24 24"><path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4"/></symbol><symbol id="flatpaper-icon-lucide-history" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></symbol><symbol id="flatpaper-icon-lucide-table-of-contents" viewBox="0 0 24 24"><path d="M16 5H3"/><path d="M16 12H3"/><path d="M16 19H3"/><path d="M21 5h.01"/><path d="M21 12h.01"/><path d="M21 19h.01"/></symbol><symbol id="flatpaper-icon-lucide-list-tree" viewBox="0 0 24 24"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></symbol><symbol id="flatpaper-icon-lucide-folder" viewBox="0 0 24 24"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></symbol><symbol id="flatpaper-icon-lucide-tag" viewBox="0 0 24 24"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/></symbol><symbol id="flatpaper-icon-lucide-eye" viewBox="0 0 24 24"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></symbol><symbol id="flatpaper-icon-lucide-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol><symbol id="flatpaper-icon-lucide-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></symbol><symbol id="flatpaper-icon-lucide-arrow-up" viewBox="0 0 24 24"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></symbol><symbol id="flatpaper-icon-lucide-chevron-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol><symbol id="flatpaper-icon-lucide-chevron-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol><symbol id="flatpaper-icon-lucide-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol><symbol id="flatpaper-icon-lucide-chevron-up" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></symbol><symbol id="flatpaper-icon-lucide-send" viewBox="0 0 24 24"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></symbol><symbol id="flatpaper-icon-lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></symbol><symbol id="flatpaper-icon-lucide-panel-left" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/></symbol><symbol id="flatpaper-icon-lucide-leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></symbol><symbol id="flatpaper-icon-lucide-aperture" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m14.31 8 5.74 9.94"/><path d="M9.69 8h11.48"/><path d="m7.38 12 5.74-9.94"/><path d="M9.69 16 3.95 6.06"/><path d="M14.31 16H2.83"/><path d="m16.62 12-5.74 9.94"/></symbol><symbol id="flatpaper-icon-lucide-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"/></symbol><symbol id="flatpaper-icon-lucide-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></symbol><symbol id="flatpaper-icon-lucide-radio" viewBox="0 0 24 24"><path d="M16.247 7.761a6 6 0 0 1 0 8.478"/><path d="M19.075 4.933a10 10 0 0 1 0 14.134"/><path d="M4.925 19.067a10 10 0 0 1 0-14.134"/><path d="M7.753 16.239a6 6 0 0 1 0-8.478"/><circle cx="12" cy="12" r="2"/></symbol><symbol id="flatpaper-icon-lucide-hash" viewBox="0 0 24 24"><line x1="4" x2="20" y1="9" y2="9"/><line x1="4" x2="20" y1="15" y2="15"/><line x1="10" x2="8" y1="3" y2="21"/><line x1="16" x2="14" y1="3" y2="21"/></symbol><symbol id="flatpaper-icon-lucide-gift" viewBox="0 0 24 24"><path d="M12 7v14"/><path d="M20 11v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"/><path d="M7.5 7a1 1 0 0 1 0-5A4.8 8 0 0 1 12 7a4.8 8 0 0 1 4.5-5 1 1 0 0 1 0 5"/><rect x="3" y="7" width="18" height="4" rx="1"/></symbol><symbol id="flatpaper-icon-fa-brands-alipay" viewBox="0 0 448 512"><path d="M377.74 32H70.26C31.41 32 0 63.41 0 102.26v307.48C0 448.59 31.41 480 70.26 480h307.48c38.52 0 69.76-31.08 70.26-69.6-45.96-25.62-110.59-60.34-171.6-88.44-32.07 43.97-84.14 81-148.62 81-70.59 0-93.73-45.3-97.04-76.37-3.97-39.01 14.88-81.5 99.52-81.5 35.38 0 79.35 10.25 127.13 24.96 16.53-30.09 26.45-60.34 26.45-60.34h-178.2v-16.7h92.08v-31.24H88.28v-19.01h109.44V92.34h50.92v50.42h109.44v19.01H248.63v31.24h88.77s-15.21 46.62-38.35 90.92c48.93 16.7 100.01 36.04 148.62 52.74V102.26C447.83 63.57 416.43 32 377.74 32zM47.28 322.95c.99 20.17 10.25 53.73 69.93 53.73 52.07 0 92.58-39.68 117.87-72.9-44.63-18.68-84.48-31.41-109.44-31.41-67.45 0-79.35 33.06-78.36 50.58z"/></symbol><symbol id="flatpaper-icon-fa-brands-paypal" viewBox="0 0 384 512"><path d="M111.4 295.9c-3.5 19.2-17.4 108.7-21.5 134-.3 1.8-1 2.5-3 2.5H12.3c-7.6 0-13.1-6.6-12.1-13.9L58.8 46.6c1.5-9.6 10.1-16.9 20-16.9 152.3 0 165.1-3.7 204 11.4 60.1 23.3 65.6 79.5 44 140.3-21.5 62.6-72.5 89.5-140.1 90.3-43.4.7-69.5-7-75.3 24.2zM357.1 152c-1.8-1.3-2.5-1.8-3 1.3-2 11.4-5.1 22.5-8.8 33.6-39.9 113.8-150.5 103.9-204.5 103.9-6.1 0-10.1 3.3-10.9 9.4-22.6 140.4-27.1 169.7-27.1 169.7-1 7.1 3.5 12.9 10.6 12.9h63.5c8.6 0 15.7-6.3 17.4-14.9.7-5.4-1.1 6.1 14.4-91.3 4.6-22 14.3-19.7 29.3-19.7 71 0 126.4-28.8 142.9-112.3 6.5-34.8 4.6-71.4-23.8-92.6z"/></symbol><symbol id="flatpaper-icon-fa-brands-x-twitter" viewBox="0 0 512 512"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></symbol><symbol id="flatpaper-icon-fa-brands-steam" viewBox="0 0 496 512"><path d="M496 256c0 137-111.2 248-248.4 248-113.8 0-209.6-76.3-239-180.4l95.2 39.3c6.4 32.1 34.9 56.4 68.9 56.4 39.2 0 71.9-32.4 70.2-73.5l84.5-60.2c52.1 1.3 95.8-40.9 95.8-93.5 0-51.6-42-93.5-93.7-93.5s-93.7 42-93.7 93.5v1.2L176.6 279c-15.5-.9-30.7 3.4-43.5 12.1L0 236.1C10.2 108.4 117.1 8 247.6 8 384.8 8 496 119 496 256zM155.7 384.3l-30.5-12.6a52.79 52.79 0 0 0 27.2 25.8c26.9 11.2 57.8-1.6 69-28.4 5.4-13 5.5-27.3.1-40.3-5.4-13-15.5-23.2-28.5-28.6-12.9-5.4-26.7-5.2-38.9-.6l31.5 13c19.8 8.2 29.2 30.9 20.9 50.7-8.3 19.9-31 29.2-50.8 21zm173.8-129.9c-34.4 0-62.4-28-62.4-62.3s28-62.3 62.4-62.3 62.4 28 62.4 62.3-27.9 62.3-62.4 62.3zm.1-15.6c25.9 0 46.9-21 46.9-46.8 0-25.9-21-46.8-46.9-46.8s-46.9 21-46.9 46.8c.1 25.8 21.1 46.8 46.9 46.8z"/></symbol><symbol id="flatpaper-icon-fa-brands-bilibili" viewBox="0 0 512 512"><path d="M488.6 104.1C505.3 122.2 513 143.8 511.9 169.8V372.2C511.5 398.6 502.7 420.3 485.4 437.3C468.2 454.3 446.3 463.2 419.9 464H92.02C65.57 463.2 43.81 454.2 26.74 436.8C9.682 419.4 .7667 396.5 0 368.2V169.8C.7667 143.8 9.682 122.2 26.74 104.1C43.81 87.75 65.57 78.77 92.02 78H121.4L96.05 52.19C90.3 46.46 87.42 39.19 87.42 30.4C87.42 21.6 90.3 14.34 96.05 8.603C101.8 2.868 109.1 0 117.9 0C126.7 0 134 2.868 139.8 8.603L213.1 78H301.1L375.6 8.603C381.7 2.868 389.2 0 398 0C406.8 0 414.1 2.868 419.9 8.603C425.6 14.34 428.5 21.6 428.5 30.4C428.5 39.19 425.6 46.46 419.9 52.19L394.6 78L423.9 78C450.3 78.77 471.9 87.75 488.6 104.1H488.6zM449.8 173.8C449.4 164.2 446.1 156.4 439.1 150.3C433.9 144.2 425.1 140.9 416.4 140.5H96.05C86.46 140.9 78.6 144.2 72.47 150.3C66.33 156.4 63.07 164.2 62.69 173.8V368.2C62.69 377.4 65.95 385.2 72.47 391.7C78.99 398.2 86.85 401.5 96.05 401.5H416.4C425.6 401.5 433.4 398.2 439.7 391.7C446 385.2 449.4 377.4 449.8 368.2L449.8 173.8zM185.5 216.5C191.8 222.8 195.2 230.6 195.6 239.7V273C195.2 282.2 191.9 289.9 185.8 296.2C179.6 302.5 171.8 305.7 162.2 305.7C152.6 305.7 144.7 302.5 138.6 296.2C132.5 289.9 129.2 282.2 128.8 273V239.7C129.2 230.6 132.6 222.8 138.9 216.5C145.2 210.2 152.1 206.9 162.2 206.5C171.4 206.9 179.2 210.2 185.5 216.5H185.5zM377 216.5C383.3 222.8 386.7 230.6 387.1 239.7V273C386.7 282.2 383.4 289.9 377.3 296.2C371.2 302.5 363.3 305.7 353.7 305.7C344.1 305.7 336.3 302.5 330.1 296.2C323.1 289.9 320.7 282.2 320.4 273V239.7C320.7 230.6 324.1 222.8 330.4 216.5C336.7 210.2 344.5 206.9 353.7 206.5C362.9 206.9 370.7 210.2 377 216.5H377z"/></symbol><symbol id="flatpaper-icon-fa-brands-youtube" viewBox="0 0 576 512"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></symbol><symbol id="flatpaper-icon-fa-brands-facebook" viewBox="0 0 512 512"><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></symbol><symbol id="flatpaper-icon-fa-brands-instagram" viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></symbol><symbol id="flatpaper-icon-fa-brands-telegram" viewBox="0 0 496 512"><path d="M248,8C111.033,8,0,119.033,0,256S111.033,504,248,504,496,392.967,496,256,384.967,8,248,8ZM362.952,176.66c-3.732,39.215-19.881,134.378-28.1,178.3-3.476,18.584-10.322,24.816-16.948,25.425-14.4,1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25,5.342-39.5,3.652-3.793,67.107-61.51,68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608,69.142-14.845,10.194-26.894,9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7,18.45-13.7,108.446-47.248,144.628-62.3c68.872-28.647,83.183-33.623,92.511-33.789,2.052-.034,6.639.474,9.61,2.885a10.452,10.452,0,0,1,3.53,6.716A43.765,43.765,0,0,1,362.952,176.66Z"/></symbol><symbol id="flatpaper-icon-fa-brands-weibo" viewBox="0 0 512 512"><path d="M407 177.6c7.6-24-13.4-46.8-37.4-41.7-22 4.8-28.8-28.1-7.1-32.8 50.1-10.9 92.3 37.1 76.5 84.8-6.8 21.2-38.8 10.8-32-10.3zM214.8 446.7C108.5 446.7 0 395.3 0 310.4c0-44.3 28-95.4 76.3-143.7C176 67 279.5 65.8 249.9 161c-4 13.1 12.3 5.7 12.3 6 79.5-33.6 140.5-16.8 114 51.4-3.7 9.4 1.1 10.9 8.3 13.1 135.7 42.3 34.8 215.2-169.7 215.2zm143.7-146.3c-5.4-55.7-78.5-94-163.4-85.7-84.8 8.6-148.8 60.3-143.4 116s78.5 94 163.4 85.7c84.8-8.6 148.8-60.3 143.4-116zM347.9 35.1c-25.9 5.6-16.8 43.7 8.3 38.3 72.3-15.2 134.8 52.8 111.7 124-7.4 24.2 29.1 37 37.4 12 31.9-99.8-55.1-195.9-157.4-174.3zm-78.5 311c-17.1 38.8-66.8 60-109.1 46.3-40.8-13.1-58-53.4-40.3-89.7 17.7-35.4 63.1-55.4 103.4-45.1 42 10.8 63.1 50.2 46 88.5zm-86.3-30c-12.9-5.4-30 .3-38 12.9-8.3 12.9-4.3 28 8.6 34 13.1 6 30.8.3 39.1-12.9 8-13.1 3.7-28.3-9.7-34zm32.6-13.4c-5.1-1.7-11.4.6-14.3 5.4-2.9 5.1-1.4 10.6 3.7 12.9 5.1 2 11.7-.3 14.6-5.4 2.8-5.2 1.1-10.9-4-12.9z"/></symbol></defs></svg>
+  
+  <header class="site-header">
+  
+  <button class="icon-button js-sidebar-toggle sidebar-toggle" type="button" aria-label="打开侧边栏" aria-controls="paper-sidebar-drawer" aria-expanded="false">
+    
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-menu"></use></svg>
+
+  </button>
+
+  <div class="brand">
+    <div class="brand-mark-wrapper">
+      
+        <a class="brand-mark" href="/" aria-label="FlatPaper 首页">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-grid flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-layout-grid"></use></svg>
+
+        </a>
+      
+    </div>
+    <a class="brand-text" href="/">ZapcoMan&#39;s world</a>
+  </div>
+
+  <nav class="site-nav" aria-label="主导航">
+    
+      
+        <a class="site-nav-link " href="/">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-house"></use></svg>
+
+          <span>首页</span>
+        </a>
+      
+    
+      
+        <div class="site-nav-item has-children">
+          <button class="site-nav-link site-nav-parent" type="button" aria-haspopup="true" aria-expanded="false">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+            <span>文章</span>
+          </button>
+          <div class="site-nav-menu" role="menu">
+            
+              <a role="menuitem" class="" href="/categories/">
+                
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+                <span>分类</span>
+              </a>
+            
+              <a role="menuitem" class="" href="/tags/">
+                
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
+
+                <span>标签</span>
+              </a>
+            
+              <a role="menuitem" class="" href="/archives/">
+                
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-archive flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-archive"></use></svg>
+
+                <span>归档</span>
+              </a>
+            
+          </div>
+        </div>
+      
+    
+      
+        <a class="site-nav-link " href="/links/">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-link"></use></svg>
+
+          <span>友链</span>
+        </a>
+      
+    
+      
+        <a class="site-nav-link " href="/about/">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-user"></use></svg>
+
+          <span>关于</span>
+        </a>
+      
+    
+  </nav>
+
+  <div class="header-tools">
+    <button class="icon-button js-search-open" type="button" aria-label="搜索文章">
+      
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-search"></use></svg>
+
+    </button>
+    <div class="accent-picker">
+      <button class="icon-button accent-toggle" type="button" aria-label="选择主题色" title="选择主题色" aria-haspopup="true" aria-expanded="false" aria-controls="accent-menu">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-palette"></use></svg>
+
+      </button>
+      <div class="accent-menu" id="accent-menu" role="menu" aria-label="主题色">
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="橙色" aria-checked="false" data-accent-option="orange">
+          <span class="accent-swatch accent-swatch--orange" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="紫色" aria-checked="false" data-accent-option="purple">
+          <span class="accent-swatch accent-swatch--purple" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="樱花粉" aria-checked="false" data-accent-option="sakura">
+          <span class="accent-swatch accent-swatch--sakura" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="蓝色" aria-checked="false" data-accent-option="blue">
+          <span class="accent-swatch accent-swatch--blue" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="粉色" aria-checked="false" data-accent-option="pink">
+          <span class="accent-swatch accent-swatch--pink" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="绿色" aria-checked="false" data-accent-option="green">
+          <span class="accent-swatch accent-swatch--green" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="黑色" aria-checked="false" data-accent-option="black">
+          <span class="accent-swatch accent-swatch--black" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+    <button class="theme-toggle" type="button" aria-label="切换颜色模式">
+      <span class="theme-icon theme-icon--sun">
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-sun"></use></svg>
+</span>
+      <span class="theme-icon theme-icon--moon">
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-moon"></use></svg>
+</span>
+    </button>
+  </div>
+</header>
+
+
+  
+  <main class="paper-shell paper-shell--article">
+    
+
+<aside id="paper-sidebar-drawer" class="paper-sidebar paper-sidebar--right" aria-label="侧边栏">
+  <div class="drawer-toolbar" aria-label="侧边栏工具">
+    <div class="drawer-accent-options" role="group" aria-label="主题色">
+      <button type="button" class="accent-option" aria-label="橙色" aria-pressed="false" data-accent-option="orange">
+        <span class="accent-swatch accent-swatch--orange" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="紫色" aria-pressed="false" data-accent-option="purple">
+        <span class="accent-swatch accent-swatch--purple" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="樱花粉" aria-pressed="false" data-accent-option="sakura">
+        <span class="accent-swatch accent-swatch--sakura" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="蓝色" aria-pressed="false" data-accent-option="blue">
+        <span class="accent-swatch accent-swatch--blue" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="粉色" aria-pressed="false" data-accent-option="pink">
+        <span class="accent-swatch accent-swatch--pink" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="绿色" aria-pressed="false" data-accent-option="green">
+        <span class="accent-swatch accent-swatch--green" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="黑色" aria-pressed="false" data-accent-option="black">
+        <span class="accent-swatch accent-swatch--black" aria-hidden="true"></span>
+      </button>
+    </div>
+    <button class="icon-button drawer-close js-sidebar-close" type="button" aria-label="关闭侧边栏">
+      
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-x"></use></svg>
+
+    </button>
+  </div>
+
+  <section class="side-card nav-card">
+    <nav class="site-nav-drawer" aria-label="移动端导航">
+      
+        
+          <a class="" href="/">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-house"></use></svg>
+
+            <span>首页</span>
+          </a>
+        
+      
+        
+          <div class="drawer-nav-group">
+            <button class="drawer-nav-parent" type="button" aria-expanded="false">
+              
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+              <span>文章</span>
+            </button>
+            <div class="drawer-nav-children">
+              
+                <a class="" href="/categories/">
+                  
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+                  <span>分类</span>
+                </a>
+              
+                <a class="" href="/tags/">
+                  
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
+
+                  <span>标签</span>
+                </a>
+              
+                <a class="" href="/archives/">
+                  
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-archive flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-archive"></use></svg>
+
+                  <span>归档</span>
+                </a>
+              
+            </div>
+          </div>
+        
+      
+        
+          <a class="" href="/links/">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-link"></use></svg>
+
+            <span>友链</span>
+          </a>
+        
+      
+        
+          <a class="" href="/about/">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-user"></use></svg>
+
+            <span>关于</span>
+          </a>
+        
+      
+    </nav>
+  </section>
+
+  <section class="side-card profile-card">
+    
+      <div class="avatar avatar--image avatar--circle">
+        <img src="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4" alt="ZapcoMan" loading="lazy" referrerpolicy="no-referrer">
+      </div>
+    
+    <h3>ZapcoMan</h3>
+    <p class="profile-role">日常记录</p>
+    <p>独立开发者 主攻方向：Java 后端开发（Spring Boot + Vue3 全栈）Python 脚本开发（网络编程、爬虫、数据处理、信息安全工具、自动化运维,渗透测试工具）</p>
+    
+      <div class="site-info" aria-label="站点信息">
+        
+          
+            <a class="site-info__item" href="/archives/">
+              <strong>96</strong>
+              <span>文章</span>
+            </a>
+          
+        
+          
+            <a class="site-info__item" href="/categories/">
+              <strong>27</strong>
+              <span>分类</span>
+            </a>
+          
+        
+          
+            <a class="site-info__item" href="/tags/">
+              <strong>94</strong>
+              <span>标签</span>
+            </a>
+          
+        
+      </div>
+    
+    <div class="socials">
+      
+        <a href="https://github.com/ZapcoMan" target="_blank" rel="noopener" aria-label="GitHub" data-tooltip="GitHub">
+          
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="lucide lucide-github flatpaper-icon flatpaper-icon--fa-brands" aria-hidden="true"><use href="#flatpaper-icon-fa-brands-github"></use></svg>
+
+          
+        </a>
+      
+        <a href="https://space.bilibili.com/544166891" target="_blank" rel="noopener" aria-label="Bilibili" data-tooltip="Bilibili">
+          
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="lucide lucide-bilibili flatpaper-icon flatpaper-icon--fa-brands" aria-hidden="true"><use href="#flatpaper-icon-fa-brands-bilibili"></use></svg>
+
+          
+        </a>
+      
+        <a href="#" target="_blank" rel="noopener" aria-label="掘金" data-tooltip="掘金">
+          
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-send"></use></svg>
+
+          
+        </a>
+      
+      
+        
+        
+        <a href="/atom.xml" aria-label="RSS feed" data-tooltip="RSS feed">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rss flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-rss"></use></svg>
+
+        </a>
+      
+    </div>
+  </section>
+
+  
+
+  
+    <div class="post-sticky-stack">
+      <section class="side-card toc-card">
+        <header class="toc-card__head">
+          <h2>
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-table-of-contents flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-table-of-contents"></use></svg>
+文章目录</h2>
+          <button type="button" class="toc-toggle-all" data-action="toggle-toc" aria-pressed="false" aria-label="展开全部目录" title="展开全部目录">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-chevron-down"></use></svg>
+
+          </button>
+        </header>
+        <div class="toc-content">
+          
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95"><span class="toc-text">目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E6%A6%82%E8%A7%88"><span class="toc-text">事件概览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E7%BA%BF%EF%BC%9A%E4%BB%8E%E7%A7%98%E5%AF%86%E7%BB%84%E5%BB%BA%E5%88%B0%E5%85%A8%E7%90%83%E6%9B%9D%E5%85%89"><span class="toc-text">时间线：从秘密组建到全球曝光</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%93%85-%E8%AF%A6%E7%BB%86%E6%97%B6%E9%97%B4%E8%BD%B4"><span class="toc-text">📅 详细时间轴</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E6%B7%B1%E6%8C%96%EF%BC%9AEvilParcel%E6%94%BB%E5%87%BB%E9%93%BE%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C"><span class="toc-text">技术深挖：EvilParcel攻击链如何工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E6%BC%8F%E6%B4%9E%EF%BC%9ACVE-2023-20963"><span class="toc-text">核心漏洞：CVE-2023-20963</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EvilParcel%E6%94%BB%E5%87%BB%E6%B5%81%E7%A8%8B"><span class="toc-text">EvilParcel攻击流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82%E4%BA%AE%E7%82%B9"><span class="toc-text">技术细节亮点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%81%B6%E6%84%8F%E8%A1%8C%E4%B8%BA%E5%85%A8%E6%B8%85%E5%8D%95%EF%BC%9A%E4%BD%A0%E7%9A%84%E6%89%8B%E6%9C%BA%E7%BB%8F%E5%8E%86%E4%BA%86%E4%BB%80%E4%B9%88"><span class="toc-text">恶意行为全清单：你的手机经历了什么</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%94%93-%E9%9A%90%E7%A7%81%E6%95%B0%E6%8D%AE%E7%AA%83%E5%8F%96"><span class="toc-text">🔓 隐私数据窃取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%91%81%EF%B8%8F-%E7%AB%9E%E5%93%81%E7%9B%91%E6%8E%A7"><span class="toc-text">👁️ 竞品监控</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%9B%A1%EF%B8%8F-%E7%B3%BB%E7%BB%9F%E6%8E%A7%E5%88%B6"><span class="toc-text">🛡️ 系统控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%93%8A-%E6%95%B0%E6%8D%AE%E9%80%A0%E5%81%87"><span class="toc-text">📊 数据造假</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%99%BE%E4%BA%BA%E5%9B%A2%E9%98%9F%EF%BC%9A%E6%8B%BC%E5%A4%9A%E5%A4%9A%E7%9A%84%E2%80%9D%E7%BD%91%E7%BB%9C%E6%AD%A6%E5%99%A8%E2%80%9D%E8%AE%A1%E5%88%92"><span class="toc-text">百人团队：拼多多的”网络武器”计划</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E7%BB%87%E6%9E%B6%E6%9E%84"><span class="toc-text">组织架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E4%BD%9C%E6%A8%A1%E5%BC%8F"><span class="toc-text">运作模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%A2%E9%98%9F%E8%A7%A3%E6%95%A3%E5%90%8E%E7%9A%84%E5%8E%BB%E5%90%91"><span class="toc-text">团队解散后的去向</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%84%E6%96%B9%E5%8F%8D%E5%BA%94%E4%B8%8E%E5%8D%9A%E5%BC%88"><span class="toc-text">各方反应与博弈</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%94%B4-%E6%8B%BC%E5%A4%9A%E5%A4%9A%E5%AE%98%E6%96%B9%E5%9B%9E%E5%BA%94"><span class="toc-text">🔴 拼多多官方回应</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%94%B5-Google%E7%9A%84%E7%AB%8B%E5%9C%BA"><span class="toc-text">🔵 Google的立场</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%9F%A3-%E5%AE%89%E5%85%A8%E7%A4%BE%E5%8C%BA%E7%9A%84%E5%85%B1%E8%AF%86"><span class="toc-text">🟣 安全社区的共识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%9F%A2-%E4%B8%AD%E5%9B%BD%E7%9B%91%E7%AE%A1%E5%B1%82"><span class="toc-text">🟢 中国监管层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%9F%A1-%E5%85%AC%E5%85%B3%E6%93%8D%E4%BD%9C%EF%BC%88%E6%8D%AE%E5%A4%9A%E6%96%B9%E6%8A%A5%E9%81%93%EF%BC%89"><span class="toc-text">🟡 公关操作（据多方报道）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E7%BB%AD%E5%BD%B1%E5%93%8D%E4%B8%8E%E6%B3%95%E5%BE%8B%E9%A3%8E%E6%9A%B4"><span class="toc-text">后续影响与法律风暴</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%95%E5%BE%8B%E8%AF%89%E8%AE%BC%E8%BF%9B%E5%B1%95"><span class="toc-text">法律诉讼进展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CISA-KEV%E7%9B%AE%E5%BD%95%E6%94%B6%E5%BD%95"><span class="toc-text">CISA KEV目录收录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%8C%E4%B8%9A%E5%BD%B1%E5%93%8D"><span class="toc-text">行业影响</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Temu%E7%9A%84%E8%BF%9E%E5%B8%A6%E9%A3%8E%E9%99%A9"><span class="toc-text">Temu的连带风险</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%B1%E5%B1%82%E6%80%9D%E8%80%83%EF%BC%9A%E8%BF%99%E4%BB%B6%E4%BA%8B%E6%94%B9%E5%8F%98%E4%BA%86%E4%BB%80%E4%B9%88"><span class="toc-text">深层思考：这件事改变了什么</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E2%80%9C%E4%B8%BB%E6%B5%81App%E6%81%B6%E6%84%8F%E5%8C%96%E2%80%9D%E7%9A%84%E5%85%88%E4%BE%8B"><span class="toc-text">1. “主流App恶意化”的先例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-OEM%E5%AE%89%E5%85%A8%E7%9A%84%E7%9B%B2%E5%8C%BA"><span class="toc-text">2. OEM安全的盲区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D%E4%BF%A1%E4%BB%BB%E5%8D%B1%E6%9C%BA"><span class="toc-text">3. 数字签名信任危机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E7%9B%91%E7%AE%A1%E4%B8%8E%E5%88%9B%E6%96%B0%E7%9A%84%E5%BC%A0%E5%8A%9B"><span class="toc-text">4. 监管与创新的张力</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%B2%89%E9%BB%98%E7%9A%84%E5%85%B1%E8%B0%8B%EF%BC%9F"><span class="toc-text">5. 沉默的共谋？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-text">结语</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%9D%A5%E6%BA%90"><span class="toc-text">参考来源</span></a></li></ol>
+          
+        </div>
+      </section>
+      
+
+  <section class="side-card recent-card latest-posts-card">
+    <h2>
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-history flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-history"></use></svg>
+最新文章</h2>
+    <ul class="recent-list">
+      
+        <li>
+          <a class="recent-item" href="/2026/08/14/20260814/2026081402/">
+            <strong>黑客组织 俄罗斯&#34;双熊&#34;：APT29 舒适熊与 APT28 奇幻熊深度解析</strong>
+            <em>2026-08-14</em>
+          </a>
+        </li>
+      
+        <li>
+          <a class="recent-item" href="/2026/08/14/20260814/2026081401/">
+            <strong>快手12·22攻击事件深度复盘：当黑灰产撞上&#34;清朗&#34;行动——一场精心策划的报复？</strong>
+            <em>2026-08-14</em>
+          </a>
+        </li>
+      
+        <li>
+          <a class="recent-item" href="/2026/08/11/20260811/2026081103/">
+            <strong>黑客组织 - DarkSide</strong>
+            <em>2026-08-11</em>
+          </a>
+        </li>
+      
+        <li>
+          <a class="recent-item" href="/2026/08/11/20260811/2026081102/">
+            <strong>深度解析：The Com 网络犯罪帝国与 Hacker Com 的崛起</strong>
+            <em>2026-08-11</em>
+          </a>
+        </li>
+      
+        <li>
+          <a class="recent-item" href="/2026/08/11/20260811/2026081101/">
+            <strong>当&#34;看见&#34;不再可信：Deepfake技术如何攻破企业与个人防线</strong>
+            <em>2026-08-11</em>
+          </a>
+        </li>
+      
+    </ul>
+  </section>
+
+
+    </div>
+  
+
+  
+
+</aside>
+
+    <section class="paper-main">
+      
+
+<div class="article-tape-wrap">
+<span class="tape tape--top-right" aria-hidden="true"></span>
+<article class="article-paper">
+  
+  <header class="article-header">
+    
+      <a class="label-pill" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+        网络安全
+      </a>
+    
+    <h1>拼多多APP恶意代码事件深度复盘：当9亿用户的手机成为&#34;肉鸡&#34;</h1>
+    <div class="meta-line meta-line--article">
+      <span class="meta-date">
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
+2026-08-15</span>
+      
+        <span class="meta-tags">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
+
+          <a class="meta-tag-link" href="/tags/%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6/">#社会工程学</a><a class="meta-tag-link" href="/tags/%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/">#漏洞利用</a><a class="meta-tag-link" href="/tags/%E9%BB%91%E5%AE%A2%E6%94%BB%E5%87%BB%E4%BA%8B%E4%BB%B6/">#黑客攻击事件</a>
+        </span>
+      
+    </div>
+  </header>
+
+  
+
+
+  <div class="article-content">
+    <blockquote>
+<p>一款月活近9亿的国民级电商App，被曝利用50+个Android系统漏洞提权、窃取隐私、监控竞品、阻止卸载。这是移动安全史上最令人震惊的”主流App恶意化”事件。</p>
+</blockquote>
+<hr>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
+<li><a href="#%E4%BA%8B%E4%BB%B6%E6%A6%82%E8%A7%88">事件概览</a></li>
+<li><a href="#%E6%97%B6%E9%97%B4%E7%BA%BF%E4%BB%8E%E7%A7%98%E5%AF%86%E7%BB%84%E5%BB%BA%E5%88%B0%E5%85%A8%E7%90%83%E6%9B%9D%E5%85%89">时间线：从秘密组建到全球曝光</a></li>
+<li><a href="#%E6%8A%80%E6%9C%AF%E6%B7%B1%E6%8C%96evilparcel%E6%94%BB%E5%87%BB%E9%93%BE%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C">技术深挖：EvilParcel攻击链如何工作</a></li>
+<li><a href="#%E6%81%B6%E6%84%8F%E8%A1%8C%E4%B8%BA%E5%85%A8%E6%B8%85%E5%8D%95%E4%BD%A0%E7%9A%84%E6%89%8B%E6%9C%BA%E7%BB%8F%E5%8E%86%E4%BA%86%E4%BB%80%E4%B9%88">恶意行为全清单：你的手机经历了什么</a></li>
+<li><a href="#%E7%99%BE%E4%BA%BA%E5%9B%A2%E9%98%9F%E6%8B%BC%E5%A4%9A%E5%A4%9A%E7%9A%84%E7%BD%91%E7%BB%9C%E6%AD%A6%E5%99%A8%E8%AE%A1%E5%88%92">百人团队：拼多多的”网络武器”计划</a></li>
+<li><a href="#%E5%90%84%E6%96%B9%E5%8F%8D%E5%BA%94%E4%B8%8E%E5%8D%9A%E5%BC%88">各方反应与博弈</a></li>
+<li><a href="#%E5%90%8E%E7%BB%AD%E5%BD%B1%E5%93%8D%E4%B8%8E%E6%B3%95%E5%BE%8B%E9%A3%8E%E6%9A%B4">后续影响与法律风暴</a></li>
+<li><a href="#%E6%B7%B1%E5%B1%82%E6%80%9D%E8%80%83%E8%BF%99%E4%BB%B6%E4%BA%8B%E6%94%B9%E5%8F%98%E4%BA%86%E4%BB%80%E4%B9%88">深层思考：这件事改变了什么</a></li>
+</ul>
+<hr>
+<h2 id="事件概览"><a href="#事件概览" class="headerlink" title="事件概览"></a>事件概览</h2><p><strong>2023年3月</strong>，中国电商巨头拼多多（PDD Holdings旗下）的Android应用被Google从Play Store紧急下架，标记为”有害应用”。随后，卡巴斯基实验室、Lookout、WithSecure等多家顶级安全机构独立确认：</p>
+<blockquote>
+<p><strong>拼多多部分版本包含精心设计的恶意代码，利用Android系统漏洞进行权限提升、后门安装和数据窃取。</strong></p>
+</blockquote>
+<p>这不是某个黑客组织的杰作，而是一家纳斯达克上市公司（NASDAQ: PDD）的<strong>官方产品行为</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>关键数据</th>
+<th>详情</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>受影响版本</td>
+<td>v6.49.0及以下（通过中国第三方应用商店分发）</td>
+</tr>
+<tr>
+<td>利用漏洞数</td>
+<td>约 <strong>50个</strong> Android系统级漏洞</td>
+</tr>
+<tr>
+<td>核心漏洞</td>
+<td><strong>CVE-2023-20963</strong>（CVSS 7.8 高危）</td>
+</tr>
+<tr>
+<td>恶意模块</td>
+<td>超过 <strong>30个</strong> DEX文件</td>
+</tr>
+<tr>
+<td>权限请求</td>
+<td>高达 <strong>83项</strong> 敏感权限</td>
+</tr>
+<tr>
+<td>安全检测标识</td>
+<td><code>HEUR:Backdoor.AndroidOS.Pinduo.a</code></td>
+</tr>
+<tr>
+<td>潜在受害用户</td>
+<td><strong>数亿级别</strong>（中国Android用户占比约75%）</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="时间线：从秘密组建到全球曝光"><a href="#时间线：从秘密组建到全球曝光" class="headerlink" title="时间线：从秘密组建到全球曝光"></a>时间线：从秘密组建到全球曝光</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">2020 ────── 2022.11 ──── 2023.02 ──── 2023.03 ──── 2023.04+</span><br><span class="line"> │           │            │            │            │</span><br><span class="line"> ▼           ▼            ▼            ▼            ▼</span><br><span class="line">成立百人   Project Zero  DarkNavy     Google下架   CNN深度</span><br><span class="line">漏洞团队   警告三星漏洞  发布报告      卡巴斯基确认  法律诉讼</span><br><span class="line">                        BreachForums  团队解散      CISA列入KEV</span><br><span class="line">                        确认身份</span><br></pre></td></tr></table></figure>
+
+<h3 id="📅-详细时间轴"><a href="#📅-详细时间轴" class="headerlink" title="📅 详细时间轴"></a>📅 详细时间轴</h3><h4 id="第一幕：暗处布局（2020-2022）"><a href="#第一幕：暗处布局（2020-2022）" class="headerlink" title="第一幕：暗处布局（2020-2022）"></a>第一幕：暗处布局（2020-2022）</h4><p><strong>2020年 — 百人团队的诞生</strong></p>
+<p>据CNN采访的多位拼多多现任&#x2F;前任员工透露，拼多多母公司PDD Holdings在这一年做出了一个惊人的决定：</p>
+<ul>
+<li>组建约 <strong>100名工程师和产品经理</strong> 的专项团队</li>
+<li><strong>唯一任务</strong>：挖掘Android手机系统漏洞，开发exploit，”将其转化为利润”</li>
+<li>团队运作高度保密，内部代号为特定项目名</li>
+<li><strong>战略选择</strong>：初期只针对<strong>农村和小城镇用户</strong>，刻意避开北京、上海等一线城市的安全研究人员</li>
+<li>目标：通过收集海量用户活动数据 → 构建精准画像 → 优化推荐算法 → 提升转化率</li>
+</ul>
+<blockquote>
+<p>“目标是为了降低被暴露的风险。” —— 匿名拼多多员工，CNN采访</p>
+</blockquote>
+<p><strong>2022年11月 — Google Project Zero的预警</strong></p>
+<p>Google旗下的顶尖安全团队Project Zero发布报告，警告针对三星手机的复杂攻击链：</p>
+<ul>
+<li>串联 <strong>3个安全漏洞</strong>（三星已于2021年3月修复）</li>
+<li>攻击者可读写设备上的任意文件</li>
+<li>归因于”商业监控供应商”，<strong>未点名具体App</strong></li>
+<li>这为后来的拼多多事件埋下了伏笔</li>
+</ul>
+<h4 id="第二幕：曝光与确认（2023年2-3月）"><a href="#第二幕：曝光与确认（2023年2-3月）" class="headerlink" title="第二幕：曝光与确认（2023年2-3月）"></a>第二幕：曝光与确认（2023年2-3月）</h4><p><strong>2023年2月28日 — 深蓝洞察(DarkNavy)引爆炸弹</strong></p>
+<p>中国安全研究机构DarkNavy发布年度重磅报告：</p>
+<blockquote>
+<p><strong>《”深蓝洞察”2022年度最”不可赦”漏洞》</strong></p>
+</blockquote>
+<p>报告披露了一家”大型互联网公司”的App存在以下恶意行为（报告中多处代码截图被打码处理）：</p>
+<ol>
+<li>✅ 利用各Android OEM厂商系统的 <strong>0Day漏洞</strong> 进行提权</li>
+<li>✅ 窃取用户隐私数据</li>
+<li>✅ 攻击竞争对手App</li>
+<li>✅ 使应用<strong>无法被用户卸载</strong></li>
+<li>✅ 虚假提升日活&#x2F;月活数据（静默安装、后台运行）</li>
+</ol>
+<p>报告发布后迅速在中文安全技术社区引发震动。</p>
+<p><strong>2023年3月3日 — 黑客论坛”点名”</strong></p>
+<p>已关闭的黑客论坛BreachForums上，有用户将DarkNavy报告中的打码代码与公开可下载的APK进行对比，<strong>确认涉事App就是拼多多</strong>。</p>
+<p><strong>2023年3月4日 — 微博爆料（后被删）</strong></p>
+<p>电商专家刘华芳在微博公开发文，指认拼多多利用安全漏洞获取市场份额、窃取竞品数据。该帖子<strong>很快被删除</strong>。</p>
+<p><strong>2023年3月5日 — 紧急”消毒”</strong></p>
+<p>拼多多发布 <strong>v6.50.0版本更新</strong>，移除了所有漏洞利用代码。</p>
+<p>但安全专家后来指出：<strong>底层框架代码仍在，可随时重新激活攻击能力</strong>。</p>
+<p><strong>2023年3月7日 — 团队解散与清洗</strong></p>
+<p>在v6.50.0发布两天后：</p>
+<ul>
+<li>百人漏洞挖掘团队被<strong>正式解散</strong></li>
+<li>团队成员发现：<ul>
+<li>内部通讯工具 <strong>Knock被锁定</strong></li>
+<li>失去访问内网文件的权限</li>
+<li>大数据&#x2F;数据表&#x2F;日志系统的访问权限被撤销</li>
+</ul>
+</li>
+<li><strong>大部分成员被转移到Temu</strong>（拼多多2022年推出的跨境电商平台）</li>
+<li>约20名核心网络安全工程师保留在拼多多</li>
+</ul>
+<p><strong>2023年3月20-21日 — Google重拳出击</strong></p>
+<ul>
+<li>Google从Play Store<strong>下架拼多多</strong></li>
+<li>向用户发出警告：”该应用可能有害，可能导致对设备或数据的未经授权访问”</li>
+<li>这是Google对主流App采取的最严厉措施之一</li>
+</ul>
+<p><strong>2023年3月28日 — 三方独立验证同日发布</strong></p>
+<table>
+<thead>
+<tr>
+<th>机构</th>
+<th>发现</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>卡巴斯基实验室</strong></td>
+<td>确认恶意代码存在，检测名为<code>HEUR:Backdoor.AndroidOS.Pinduo.a</code>；利用已知Android漏洞提权，下载执行额外恶意模块</td>
+</tr>
+<tr>
+<td><strong>Lookout</strong></td>
+<td>分析两个非Play版本（SHA256: <code>3c5a0eba...</code>和<code>234aa7a4...</code>），均含CVE-2023-20963利用代码；使用与Play版相同的签名密钥</td>
+</tr>
+</tbody></table>
+<h4 id="第三幕：全球关注（2023年4月及以后）"><a href="#第三幕：全球关注（2023年4月及以后）" class="headerlink" title="第三幕：全球关注（2023年4月及以后）"></a>第三幕：全球关注（2023年4月及以后）</h4><p><strong>2023年4月2日 — CNN深度调查报道</strong></p>
+<p>CNN发表独家调查，采访了：</p>
+<ul>
+<li><strong>6家网络安全团队</strong>（美国、欧洲、亚洲）</li>
+<li><strong>多位拼多多现任&#x2F;前任员工</strong></li>
+</ul>
+<p>核心发现震惊全球安全界。</p>
+<p><strong>2023年4月后 — 持续发酵</strong></p>
+<ul>
+<li><strong>CISA</strong>（美国网络安全和基础设施安全局）将CVE-2023-20963列入<strong>已知利用漏洞(KEV)目录</strong>，要求联邦机构在2023年5月4日前修复</li>
+<li><strong>美国多州</strong>对Temu提起集体诉讼（详见<a href="#%E5%90%8E%E7%BB%AD%E5%BD%B1%E5%93%8D%E4%B8%8E%E6%B3%95%E5%BE%8B%E9%A3%8E%E6%9A%B4">后续影响</a>章节）</li>
+<li><strong>芬兰WithSecure</strong>等机构持续跟踪分析</li>
+</ul>
+<hr>
+<h2 id="技术深挖：EvilParcel攻击链如何工作"><a href="#技术深挖：EvilParcel攻击链如何工作" class="headerlink" title="技术深挖：EvilParcel攻击链如何工作"></a>技术深挖：EvilParcel攻击链如何工作</h2><h3 id="核心漏洞：CVE-2023-20963"><a href="#核心漏洞：CVE-2023-20963" class="headerlink" title="核心漏洞：CVE-2023-20963"></a>核心漏洞：CVE-2023-20963</h3><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CVE编号</td>
+<td>CVE-2023-20963</td>
+</tr>
+<tr>
+<td>漏洞类型</td>
+<td>Android Framework 权限提升(EoP)</td>
+</tr>
+<tr>
+<td>CVSS评分</td>
+<td><strong>7.8 &#x2F; 高危</strong></td>
+</tr>
+<tr>
+<td>影响版本</td>
+<td>Android 11 &#x2F; 12 &#x2F; 12L &#x2F; 13</td>
+</tr>
+<tr>
+<td>利用条件</td>
+<td><strong>无需用户交互</strong></td>
+</tr>
+<tr>
+<td>Google公开日期</td>
+<td>2023年3月6日</td>
+</tr>
+<tr>
+<td>补丁推送</td>
+<td>公开后约2周才到达终端用户</td>
+</tr>
+<tr>
+<td>拼多多利用时间</td>
+<td><strong>早于Google公开日期</strong>（零日利用）</td>
+</tr>
+</tbody></table>
+<h3 id="EvilParcel攻击流程"><a href="#EvilParcel攻击流程" class="headerlink" title="EvilParcel攻击流程"></a>EvilParcel攻击流程</h3><p>Lookout安全公司的逆向工程师Christoph Hebeisen及其团队花费两天时间分析了拼多多APK样本，还原了完整的攻击链：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">┌─────────────────────────────────────────────────────────┐</span><br><span class="line">│ 阶段1：入口                                              │</span><br><span class="line">│                                                          │</span><br><span class="line">│ 拼多多APP (v6.49.0及以下)                                │</span><br><span class="line">│ 通过华为/小米/OPPO等第三方应用商店安装                   │</span><br><span class="line">│ 与Google Play版使用相同数字签名密钥 ✓                    │</span><br><span class="line">└────────────────────────┬────────────────────────────────┘</span><br><span class="line">                         │</span><br><span class="line">                         ▼</span><br><span class="line">┌─────────────────────────────────────────────────────────┐</span><br><span class="line">│ 阶段2：漏洞触发                                          │</span><br><span class="line">│                                                          │</span><br><span class="line">│ EvilParcel Exploit                                      │</span><br><span class="line">│ ├─ 构造恶意Bundle对象                                    │</span><br><span class="line">│ │  └─ 利用Parcel序列化/反序列化不一致性                  │</span><br><span class="line">│ ├─ 隐藏Intent payload                                   │</span><br><span class="line">│ │  └─ 首次反序列化不可见，再次出现时激活                 │</span><br><span class="line">│ └─ 触发android.os.WorkSource类                           │</span><br><span class="line">│    └─ CVE-2023-20963                                    │</span><br><span class="line">│       ★ 无需任何用户交互 ★                               │</span><br><span class="line">└────────────────────────┬────────────────────────────────┘</span><br><span class="line">                         │</span><br><span class="line">                         ▼</span><br><span class="line">┌─────────────────────────────────────────────────────────┐</span><br><span class="line">│ 阶段3：权限提升                                          │</span><br><span class="line">│                                                          │</span><br><span class="line">│ LaunchAnywhere Attack                                   │</span><br><span class="line">│ 通过Account Chooser Activity触发                          │</span><br><span class="line">│ 获得 system 级权限                                      │</span><br><span class="line">│ 绕过 Android Sandbox 完全隔离                            │</span><br><span class="line">└────────────────────────┬────────────────────────────────┘</span><br><span class="line">                         │</span><br><span class="line">              ┌──────────┼──────────┐</span><br><span class="line">              ▼          ▼          ▼</span><br><span class="line">┌──────────────┐ ┌──────────┐ ┌──────────────┐</span><br><span class="line">│ 阶段4A：窃取  │ │阶段4B：  │ │ 阶段4C：持久化│</span><br><span class="line">│              │ │后门部署  │ │              │</span><br><span class="line">│ ·通知内容    │ │ ·从C2服务器│ │ ·阻止卸载    │</span><br><span class="line">│ ·用户文件    │ │ 下载DEX  │ │ ·后台常驻    │</span><br><span class="line">│ ·位置/Wi-Fi  │ │ ·动态执行│ │ ·自启动      │</span><br><span class="line">│ ·联系人/日历 │ │ (30+模块)│ │ ·虚增MAU     │</span><br><span class="line">│ ·相册        │ │          │ │              │</span><br><span class="line">└──────────────┘ └──────────┘ └──────────────┘</span><br></pre></td></tr></table></figure>
+
+<h3 id="技术细节亮点"><a href="#技术细节亮点" class="headerlink" title="技术细节亮点"></a>技术细节亮点</h3><h4 id="1-Bundle-Feng-Shui（Bundle风水）"><a href="#1-Bundle-Feng-Shui（Bundle风水）" class="headerlink" title="1. Bundle Feng Shui（Bundle风水）"></a>1. Bundle Feng Shui（Bundle风水）</h4><p>DarkNavy报告中的术语，描述了一种精巧的序列化攻击：</p>
+<ul>
+<li>构造一个Bundle对象，使其<strong>序列化和反序列化的结果不同</strong></li>
+<li>隐藏的Intent在首次反序列化时不可见</li>
+<li>在第二次反序列化时”复活”</li>
+<li>这种”走私”机制绕过了多项安全检查</li>
+</ul>
+<h4 id="2-LuciferStrategy字符串"><a href="#2-LuciferStrategy字符串" class="headerlink" title="2. LuciferStrategy字符串"></a>2. LuciferStrategy字符串</h4><p>Lookout在分析的样本中发现了与DarkNavy报告完全一致的字符串标识：<code>LuciferStrategy</code>——这直接证实了两者描述的是同一套攻击体系。</p>
+<h4 id="3-多OEM适配"><a href="#3-多OEM适配" class="headerlink" title="3. 多OEM适配"></a>3. 多OEM适配</h4><p>Oversecured创始人Sergey Toshin的分析显示：</p>
+<ul>
+<li><strong>约50个漏洞</strong>中，大部分针对<strong>OEM定制代码</strong></li>
+<li>主要目标厂商：<strong>三星、华为、小米、OPPO</strong></li>
+<li>OEM代码审计频率远低于AOSP主线，因此更容易存在未修复漏洞</li>
+<li>这意味着拼多多针对不同品牌手机开发了<strong>定制化的exploit包</strong></li>
+</ul>
+<h4 id="4-代码伪装技术"><a href="#4-代码伪装技术" class="headerlink" title="4. 代码伪装技术"></a>4. 代码伪装技术</h4><p>Check Point Research发现的反检测手段：</p>
+<ul>
+<li>将恶意组件隐藏在<strong>合法文件名下</strong>（如伪装成Google服务）</li>
+<li>这是专业恶意软件开发者的常用手法</li>
+<li>热更新机制可<strong>绕过应用商店审核</strong>，动态加载新功能</li>
+</ul>
+<h4 id="5-第二阶段Payload"><a href="#5-第二阶段Payload" class="headerlink" title="5. 第二阶段Payload"></a>5. 第二阶段Payload</h4><p>Lookout注意到一个关键细节：</p>
+<ul>
+<li>拼多多会从互联网<strong>下载第二阶段载荷</strong></li>
+<li>该载荷<strong>未进行数字签名</strong></li>
+<li>Lookout无法将其归因于PDD Holdings</li>
+<li>这意味着攻击能力可以<strong>动态扩展</strong>，不仅限于预置的功能</li>
+</ul>
+<hr>
+<h2 id="恶意行为全清单：你的手机经历了什么"><a href="#恶意行为全清单：你的手机经历了什么" class="headerlink" title="恶意行为全清单：你的手机经历了什么"></a>恶意行为全清单：你的手机经历了什么</h2><p>基于CNN联合6家安全团队的综合分析，以下是拼多多恶意代码的完整行为清单：</p>
+<h3 id="🔓-隐私数据窃取"><a href="#🔓-隐私数据窃取" class="headerlink" title="🔓 隐私数据窃取"></a>🔓 隐私数据窃取</h3><table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>访问方式</th>
+<th>用户知情？</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GPS定位信息</td>
+<td>系统级直接读取</td>
+<td>❌ 不需要权限弹窗</td>
+</tr>
+<tr>
+<td>联系人列表</td>
+<td>绕过通讯录权限</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>日历事件</td>
+<td>直接访问</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>通知栏内容</td>
+<td>监听NotificationService</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>相册照片</td>
+<td>读取存储分区</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Wi-Fi网络信息</td>
+<td>获取SSID和BSSID</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>社交媒体账号</td>
+<td>凭证或Session劫持</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>聊天记录</td>
+<td>读取其他App数据库</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>生物识别数据</td>
+<td>访问指纹&#x2F;面部特征(部分报告)</td>
+<td>❌</td>
+</tr>
+</tbody></table>
+<h3 id="👁️-竞品监控"><a href="#👁️-竞品监控" class="headerlink" title="👁️ 竞品监控"></a>👁️ 竞品监控</h3><ul>
+<li><strong>追踪用户在其他购物App的活动</strong>（淘宝、京东等）</li>
+<li><strong>提取竞品的商品浏览记录和购买意向</strong></li>
+<li>用于优化自身推荐算法和营销策略</li>
+<li>违反了Apple和Google的应用商店政策</li>
+</ul>
+<h3 id="🛡️-系统控制"><a href="#🛡️-系统控制" class="headerlink" title="🛡️ 系统控制"></a>🛡️ 系统控制</h3><table>
+<thead>
+<tr>
+<th>行为</th>
+<th>描述</th>
+<th>危害等级</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>修改系统设置</td>
+<td>更改壁纸、铃声等</td>
+<td>⚠️ 中</td>
+</tr>
+<tr>
+<td>静默安装应用</td>
+<td>无通知下载安装其他App</td>
+<td>🔴 高</td>
+</tr>
+<tr>
+<td>阻止卸载</td>
+<td>利用系统漏洞锁定自身</td>
+<td>🔴 高</td>
+</tr>
+<tr>
+<td>后台常驻进程</td>
+<td>即使关闭也继续运行</td>
+<td>🔴 高</td>
+</tr>
+<tr>
+<td>开机自启动</td>
+<td>注册系统级Receiver</td>
+<td>⚠️ 中</td>
+</tr>
+</tbody></table>
+<h3 id="📊-数据造假"><a href="#📊-数据造假" class="headerlink" title="📊 数据造假"></a>📊 数据造假</h3><ul>
+<li><strong>虚假安装</strong>：在用户不知情的情况下安装到其他设备</li>
+<li><strong>虚增DAU&#x2F;MAU</strong>：后台运行算作活跃用户</li>
+<li><strong>刷量行为</strong>：自动化操作模拟真实用户行为</li>
+</ul>
+<hr>
+<h2 id="百人团队：拼多多的”网络武器”计划"><a href="#百人团队：拼多多的”网络武器”计划" class="headerlink" title="百人团队：拼多多的”网络武器”计划"></a>百人团队：拼多多的”网络武器”计划</h2><h3 id="组织架构"><a href="#组织架构" class="headerlink" title="组织架构"></a>组织架构</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">PDD Holdings (拼多多母公司)</span><br><span class="line">└── Android安全团队 (2020年组建, ~100人)</span><br><span class="line">    ├── 漏洞研究员 (~30人)</span><br><span class="line">    │   ├── OEM代码审计组</span><br><span class="line">    │   ├── AOSP漏洞挖掘组</span><br><span class="line">    │   └── 0Day储备管理组</span><br><span class="line">    ├── Exploit开发组 (~40人)</span><br><span class="line">    │   ├── Samsung适配组</span><br><span class="line">    │   ├── Huawei/Xiaomi/OPPO适配组</span><br><span class="line">    │   └─ 通用Exploit框架组</span><br><span class="line">    ├── 产品/运营接口人 (~15人)</span><br><span class="line">    │   └── 将能力转化为业务指标</span><br><span class="line">    └── 反检测/隐蔽组 (~15人)</span><br><span class="line">        ├── 代码混淆</span><br><span class="line">        ├── 签名管理</span><br><span class="line">        └── 热更新架构</span><br></pre></td></tr></table></figure>
+
+<h3 id="运作模式"><a href="#运作模式" class="headerlink" title="运作模式"></a>运作模式</h3><h4 id="目标选择策略"><a href="#目标选择策略" class="headerlink" title="目标选择策略"></a>目标选择策略</h4><blockquote>
+<p>初期只针对<strong>农村和小城镇用户</strong>，避开北京上海等大城市。</p>
+<p>—— CNN引用匿名员工说法</p>
+</blockquote>
+<p>这种策略背后的逻辑：</p>
+<ol>
+<li><strong>低风险</strong>：小城镇用户较少安装安全软件，不易被发现</li>
+<li><strong>高价值</strong>：下沉市场是拼多多的核心用户群，数据价值高</li>
+<li><strong>低技术素养</strong>：即使出现异常行为，用户也不易察觉</li>
+</ol>
+<h4 id="商业化路径"><a href="#商业化路径" class="headerlink" title="商业化路径"></a>商业化路径</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">漏洞利用 → 数据采集 → 用户画像 → 算法优化 → 精准推送 → 转化率提升 → 收入增长</span><br></pre></td></tr></table></figure>
+
+<p>据CNN报道，通过收集用户活动的全面数据，拼多多能够：</p>
+<ul>
+<li>创建用户习惯、兴趣和偏好的<strong>完整画像</strong></li>
+<li>改进机器学习模型</li>
+<li>提供<strong>更个性化的推送通知和广告</strong></li>
+<li>吸引用户打开App并下单</li>
+</ul>
+<h3 id="团队解散后的去向"><a href="#团队解散后的去向" class="headerlink" title="团队解散后的去向"></a>团队解散后的去向</h3><table>
+<thead>
+<tr>
+<th>去向</th>
+<th>人数</th>
+<th>新岗位</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Temu（跨境版拼多多）</strong></td>
+<td>~70人</td>
+<td>营销部门、推送通知开发等</td>
+</tr>
+<tr>
+<td><strong>拼多多留任</strong></td>
+<td>~20人</td>
+<td>核心网络安全工程师</td>
+</tr>
+<tr>
+<td><strong>离职&#x2F;未知</strong></td>
+<td>~10人</td>
+<td>不详</td>
+</tr>
+</tbody></table>
+<p><strong>关键风险</strong>：开发恶意软件的同批工程师现在负责Temu——这款2023年美国下载量第一的App。</p>
+<hr>
+<h2 id="各方反应与博弈"><a href="#各方反应与博弈" class="headerlink" title="各方反应与博弈"></a>各方反应与博弈</h2><h3 id="🔴-拼多多官方回应"><a href="#🔴-拼多多官方回应" class="headerlink" title="🔴 拼多多官方回应"></a>🔴 拼多多官方回应</h3><p><strong>声明要点</strong>：</p>
+<blockquote>
+<p>“我们强烈反对某些匿名研究员和Google非结论性回应关于拼多多APP是恶意的推测和指控。”<br>—— 拼多多发言人Kong Ho（回复TechCrunch）</p>
+</blockquote>
+<p><strong>其他说辞</strong>：</p>
+<ul>
+<li>Google Play称”当前版本不符合政策”，但<strong>未分享更多细节</strong></li>
+<li>“同时被下架的有多个App”（暗示并非单独针对拼多多）</li>
+<li><strong>拒绝CNN多次采访请求</strong></li>
+</ul>
+<h3 id="🔵-Google的立场"><a href="#🔵-Google的立场" class="headerlink" title="🔵 Google的立场"></a>🔵 Google的立场</h3><ul>
+<li>3月21日下架拼多多，标记为**”有害应用(Harmful)”**</li>
+<li>向用户发出警告：可能导致<strong>未经授权的设备&#x2F;数据访问</strong></li>
+<li>未透露更多调查细节（通常做法）</li>
+<li>此举在TikTok被美国议员质疑国家安全的大背景下发生</li>
+</ul>
+<h3 id="🟣-安全社区的共识"><a href="#🟣-安全社区的共识" class="headerlink" title="🟣 安全社区的共识"></a>🟣 安全社区的共识</h3><p><strong>一致结论</strong>（来自6+家独立安全机构）：</p>
+<table>
+<thead>
+<tr>
+<th>机构</th>
+<th>核心观点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>DarkNavy（深蓝洞察）</strong></td>
+<td>首次曝光，提供详细技术证据</td>
+</tr>
+<tr>
+<td><strong>Lookout</strong></td>
+<td>独立验证，确认CVE-2023-20963利用</td>
+</tr>
+<tr>
+<td><strong>卡巴斯基</strong></td>
+<td>检测出后门程序，给出正式命名</td>
+</tr>
+<tr>
+<td><strong>WithSecure</strong></td>
+<td>“非常不寻常”，从未见主流App如此做</td>
+</tr>
+<tr>
+<td><strong>Check Point Research</strong></td>
+<td>发现反检测和热更新机制</td>
+</tr>
+<tr>
+<td><strong>Oversecured</strong></td>
+<td>“最危险的恶意软件”，50+漏洞利用</td>
+</tr>
+<tr>
+<td><strong>Johannes Kepler大学</strong></td>
+<td>请求83项权限，远超购物App需求</td>
+</tr>
+</tbody></table>
+<h3 id="🟢-中国监管层"><a href="#🟢-中国监管层" class="headerlink" title="🟢 中国监管层"></a>🟢 中国监管层</h3><p><strong>工信部（MIIT）</strong>：</p>
+<ul>
+<li><strong>未主动发现</strong>此问题</li>
+<li>被Trivium China科技政策专家Kendra Schaefer批评：<blockquote>
+<p>“这会让工信部很尴尬，因为这是他们的工作。他们本应该检查拼多多，而他们没发现任何问题，这对监管机构来说很尴尬。”</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>法律层面风险</strong>：</p>
+<ul>
+<li>违反《个人信息保护法》(2021)：禁止非法收集、处理、传输个人信息</li>
+<li>禁止利用互联网相关安全漏洞</li>
+<li>禁止从事危害网络安全的行为</li>
+</ul>
+<h3 id="🟡-公关操作（据多方报道）"><a href="#🟡-公关操作（据多方报道）" class="headerlink" title="🟡 公关操作（据多方报道）"></a>🟡 公关操作（据多方报道）</h3><p>蓝点网等媒体披露了拼多多事件后的公关动作：</p>
+<ol>
+<li>✅ 新版本删除恶意代码</li>
+<li>⚠️ 出动公关团队<strong>要求删除网络报道</strong></li>
+<li>⚠️ 在微信公众平台<strong>投诉发布相关内容的公众号</strong></li>
+<li>🔴 即使公众号运营者不承认侵权、微信审核也不认为侵权，<strong>重复发起投诉</strong></li>
+<li>🔴 试图诱导&#x2F;逼迫公众号所有者删除文章</li>
+</ol>
+<hr>
+<h2 id="后续影响与法律风暴"><a href="#后续影响与法律风暴" class="headerlink" title="后续影响与法律风暴"></a>后续影响与法律风暴</h2><h3 id="法律诉讼进展"><a href="#法律诉讼进展" class="headerlink" title="法律诉讼进展"></a>法律诉讼进展</h3><p>截至2025年，美国多个州对Temu&#x2F;PDD Holdings提起集体诉讼：</p>
+<h4 id="肯塔基州诉案（2025年7月）"><a href="#肯塔基州诉案（2025年7月）" class="headerlink" title="肯塔基州诉案（2025年7月）"></a>肯塔基州诉案（2025年7月）</h4><p><strong>案件编号</strong>：Civil Action (Kentucky Circuit Court)</p>
+<p><strong>核心指控</strong>：</p>
+<ul>
+<li>Temu继承了拼多多的恶意代码传统</li>
+<li>PDD将开发恶意软件的团队转移到Temu</li>
+<li>持续侵犯用户隐私权</li>
+<li>拼多多被VirusTotal等多个安全引擎<strong>持续标记为”恶意”</strong></li>
+</ul>
+<h4 id="阿肯色州诉案（2024年6月）"><a href="#阿肯色州诉案（2024年6月）" class="headerlink" title="阿肯色州诉案（2024年6月）"></a>阿肯色州诉案（2024年6月）</h4><p><strong>法院</strong>：Cleburne County Circuit Court</p>
+<p><strong>关键论点</strong>（摘自起诉书原文）：</p>
+<blockquote>
+<p>“PDD招募并雇佣了一支由100名程序员组成的团队，用于查找和利用Android的OEM定制化漏洞……意图利用那些审计频率低于主线的漏洞（估计有超过50个此类漏洞被作为目标）。”</p>
+</blockquote>
+<blockquote>
+<p>“开发出’主流App中发现的最危险恶意软件’的同一批软件工程师和产品经理，在Temu进入市场后的一年内就被调往Temu工作。”</p>
+</blockquote>
+<h3 id="CISA-KEV目录收录"><a href="#CISA-KEV目录收录" class="headerlink" title="CISA KEV目录收录"></a>CISA KEV目录收录</h3><p><strong>2023年4月</strong>，美国网络安全和基础设施安全局(CISA)将CVE-2023-20963加入**Known Exploited Vulnerabilities (KEV)**目录：</p>
+<ul>
+<li>要求<strong>联邦民事行政部门(FCEB)机构</strong>在<strong>2023年5月4日前</strong>完成修复</li>
+<li>基于约束性操作指令(BOD 22-01)</li>
+<li>虽然仅强制联邦机构，但建议<strong>所有组织</strong>优先修复</li>
+</ul>
+<h3 id="行业影响"><a href="#行业影响" class="headerlink" title="行业影响"></a>行业影响</h3><table>
+<thead>
+<tr>
+<th>影响维度</th>
+<th>具体表现</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>用户信任</strong></td>
+<td>中国用户对国产App的数据安全信任度下降</td>
+</tr>
+<tr>
+<td><strong>开发者生态</strong></td>
+<td>引发对”成功是否可以不择手段”的讨论</td>
+</tr>
+<tr>
+<td><strong>应用商店审核</strong></td>
+<td>各大商店加强了对权限请求和native代码的审查</td>
+</tr>
+<tr>
+<td><strong>OEM厂商安全</strong></td>
+<td>三星&#x2F;小米&#x2F;OPPO等加速修补定制代码漏洞</td>
+</tr>
+<tr>
+<td><strong>国际形象</strong></td>
+<td>成为中国App数据安全的负面案例，被外媒广泛引用</td>
+</tr>
+<tr>
+<td><strong>监管政策</strong></td>
+<td>推动中国《 App违法违规收集使用个人信息认定方法》升级</td>
+</tr>
+</tbody></table>
+<h3 id="Temu的连带风险"><a href="#Temu的连带风险" class="headerlink" title="Temu的连带风险"></a>Temu的连带风险</h3><p>由于大部分团队成员转入Temu，安全界普遍担忧：</p>
+<ol>
+<li><strong>人才延续</strong>：具备开发国家级恶意软件能力的工程师现在负责Temu</li>
+<li><strong>文化延续</strong>：同一管理层可能默许类似手段</li>
+<li><strong>代码复用</strong>：底层框架仍在，可快速重新激活</li>
+<li><strong>市场转移</strong>：从中国市场转向全球市场（Temu主要市场在美国）</li>
+</ol>
+<blockquote>
+<p>截至2023年，Temu是美国下载量最高的App之一，这意味着潜在的受影响用户范围从中国扩展到了全球。</p>
+</blockquote>
+<hr>
+<h2 id="深层思考：这件事改变了什么"><a href="#深层思考：这件事改变了什么" class="headerlink" title="深层思考：这件事改变了什么"></a>深层思考：这件事改变了什么</h2><h3 id="1-“主流App恶意化”的先例"><a href="#1-“主流App恶意化”的先例" class="headerlink" title="1. “主流App恶意化”的先例"></a>1. “主流App恶意化”的先例</h3><p>在此之前，恶意软件通常来自：</p>
+<ul>
+<li>小型犯罪团伙</li>
+<li>国家级APT组织</li>
+<li>偶尔失控的广告SDK</li>
+</ul>
+<p>拼多多事件开创了一个<strong>危险的先例</strong>：<strong>大型商业公司</strong>在其主流产品中集成<strong>专业级别的漏洞利用代码</strong>。这打破了”正规公司不会做这种事”的假设。</p>
+<h3 id="2-OEM安全的盲区"><a href="#2-OEM安全的盲区" class="headerlink" title="2. OEM安全的盲区"></a>2. OEM安全的盲区</h3><p>Android生态系统的一个结构性弱点被暴露：</p>
+<ul>
+<li><strong>AOSP主线</strong>：审计严格，漏洞修复快</li>
+<li><strong>OEM定制代码</strong>：审计松散，漏洞存留时间长</li>
+<li>拼多多正是利用了这个<strong>盲区</strong>，针对各厂商定制代码开发专用exploit</li>
+</ul>
+<p>这对整个Android生态链提出了警示：<strong>安全性不能只依赖Google的主线维护</strong>。</p>
+<h3 id="3-数字签名信任危机"><a href="#3-数字签名信任危机" class="headerlink" title="3. 数字签名信任危机"></a>3. 数字签名信任危机</h3><p>一个令人不安的事实：</p>
+<blockquote>
+<p>恶意版本的拼多多APK与Google Play上的正版使用了<strong>相同的数字签名密钥</strong>。</p>
+</blockquote>
+<p>这意味着：</p>
+<ul>
+<li>用户无法通过签名判断版本是否安全</li>
+<li>开发者可以在”干净”和”恶意”模式间<strong>自由切换</strong></li>
+<li>应用商店的分发渠道验证形同虚设</li>
+</ul>
+<h3 id="4-监管与创新的张力"><a href="#4-监管与创新的张力" class="headerlink" title="4. 监管与创新的张力"></a>4. 监管与创新的张力</h3><p>拼多多的事件暴露了中国科技监管的一个困境：</p>
+<ul>
+<li><strong>法规完备</strong>：《个人信息保护法》《网络安全法》等法律框架已经建立</li>
+<li><strong>执行滞后</strong>：如此大规模的恶意行为未被主动发现</li>
+<li><strong>事后追责</strong>：依赖外部安全研究者曝光后才介入</li>
+</ul>
+<p>如何在鼓励创新和保护用户之间找到平衡，仍是未解之题。</p>
+<h3 id="5-沉默的共谋？"><a href="#5-沉默的共谋？" class="headerlink" title="5. 沉默的共谋？"></a>5. 沉默的共谋？</h3><p>一些值得深思的问题：</p>
+<ul>
+<li><strong>2020-2023年间</strong>，为何没有安全软件检测到？</li>
+<li>国内杀毒&#x2F;安全App（如腾讯手机管家、360手机卫士）为何沉默？</li>
+<li>应用商店（华为&#x2F;小米&#x2F;OPPO等）的审核机制是否存在漏洞？</li>
+<li>是否存在某种”本土保护”心态导致审查放松？</li>
+</ul>
+<p>这些问题没有公开答案，但值得每一个从业者反思。</p>
+<hr>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>拼多多恶意代码事件不是一起普通的”App违规收集信息”案例。它是一次<strong>有组织、有预谋、规模化</strong>的网络攻击行动——只不过发起者是一家市值千亿美元的上市公司，目标是它自己的用户。</p>
+<p>当我们在谈论”数据安全””隐私保护”这些概念时，这个事件提供了一个极端的注脚：<strong>最危险的威胁有时就藏在那些你每天打开、最信任的图标后面</strong>。</p>
+<p>对于普通用户，这件事留下的实用建议：</p>
+<ol>
+<li><strong>优先从官方应用商店下载App</strong>（Google Play &#x2F; Apple App Store）</li>
+<li><strong>定期检查App权限</strong>，对异常请求保持警惕</li>
+<li><strong>及时更新系统和App</strong>（补丁可以修复已知漏洞）</li>
+<li><strong>对”过度索取权限”的App说不</strong></li>
+</ol>
+<p>对于行业从业者，这件事提醒我们：</p>
+<blockquote>
+<p>技术能力本身是中性的，但使用技术的方式定义了你是建设者还是破坏者。当一家公司决定用50个系统漏洞来提升月活数据时，它已经越过了那条线。</p>
+</blockquote>
+<hr>
+<h2 id="参考来源"><a href="#参考来源" class="headerlink" title="参考来源"></a>参考来源</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://arstechnica.com/?p=1926914">Ars Technica - Android app executed 0-day exploit on millions of devices</a></li>
+<li><a target="_blank" rel="noopener" href="https://edition.cnn.com/2023/04/02/tech/china-pinduoduo-malware-cybersecurity-analysis-intl-hnk/index.html">CNN - Chinese shopping app spying on users with ‘most dangerous malware’</a></li>
+<li><a target="_blank" rel="noopener" href="https://candid.technology/pinduoduo-app-malware-unauthorised-access/">Candid Technology - Kaspersky confirms Pinduoduo malware</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.techradar.com/news/the-pinduoduo-malware-executed-a-dangerous-zero-day-against-millions-of-android-devices">TechRadar - The Pinduoduo malware zero-day</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.solidot.org/story?sid=74503">Solidot - Lookout确认拼多多的非Play版本包含恶意代码</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.solidot.org/story?sid=74563">Solidot - 拼多多解散了在应用中加入恶意功能的团队</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.computing.co.uk/news/4112203/cisa-adds-android-zero-day-kev-catalogue">Computing.co.uk - CISA adds Android zero-day to KEV catalogue</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.ag.ky.gov/">Kentucky AG - Temu Complaint (2025)</a></li>
+<li><a target="_blank" rel="noopener" href="https://reason.com/wp-content/uploads/2024/06/2024-06-25-temu-complaint.pdf">Arkansas Circuit Court - Temu Complaint (2024)</a></li>
+<li><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%8B%BC%E5%A4%9A%E5%A4%9A">Wikipedia - 拼多多&#x2F;恶意代码条目</a></li>
+</ol>
+<hr>
+<p><em>本文基于公开资料整理编写，仅供技术研究与安全意识教育用途。</em></p>
+<p><strong>最后更新</strong>：2026年8月14日</p>
+<hr>
+<p>© 2026 codervibe’s Blog. All rights reserved.</p>
+
+  </div>
+
+  <footer class="article-reactions">
+    <div class="reaction-group">
+      <button type="button" class="reaction reaction--comment" aria-label="跳转到评论区" data-action="scroll-to-comments">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-message-circle"></use></svg>
+
+      </button>
+      <span class="reaction-label">评论</span>
+      
+    </div>
+    <div class="reaction-group reaction-group--right">
+      
+      <button type="button" class="reaction reaction--share" aria-label="分享" data-action="share">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share-2 flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-share-2"></use></svg>
+
+      </button>
+      <span class="reaction-label">分享</span>
+    </div>
+  </footer>
+
+  
+
+
+  <nav class="article-actions">
+    
+      <span class="article-action article-action--prev is-disabled" aria-disabled="true">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-left"></use></svg>
+
+        <span class="action-label">上一篇</span>
+        <span class="action-title">没有更早的文章了</span>
+      </span>
+    
+    
+      <a class="article-action article-action--next" href="/2026/08/14/20260814/2026081402/">
+        <span class="action-label">下一篇</span>
+        <span class="action-title">黑客组织 俄罗斯&#34;双熊&#34;：APT29 舒适熊与 APT28 奇幻熊深度解析</span>
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
+
+      </a>
+    
+  </nav>
+</article>
+</div>
+
+<button type="button" class="back-to-top" data-action="scroll-to-top" aria-label="返回顶部" hidden>
+  
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-up"></use></svg>
+
+</button>
+
+
+  <section class="related-paper">
+    <header class="related-paper__head">
+      <h2>
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-link"></use></svg>
+相关文章</h2>
+      <a class="related-paper__more" href="/archives/">
+        <span>查看更多</span>
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
+
+      </a>
+    </header>
+    <div class="related-paper__grid">
+      
+        <a class="related-card" href="/2026/08/14/20260814/2026081401/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/../../images/20260814/640.jpg" alt="快手12·22攻击事件深度复盘：当黑灰产撞上&#34;清朗&#34;行动——一场精心策划的报复？" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">快手12·22攻击事件深度复盘：当黑灰产撞上&#34;清朗&#34;行动——一场精心策划的报复？</strong>
+            <em class="related-card__date">2026-08-14</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/08/14/20260814/2026081402/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/mountain.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">黑客组织 俄罗斯&#34;双熊&#34;：APT29 舒适熊与 APT28 奇幻熊深度解析</strong>
+            <em class="related-card__date">2026-08-14</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/08/11/20260811/2026081103/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/notebook.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">黑客组织 - DarkSide</strong>
+            <em class="related-card__date">2026-08-11</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/08/11/20260811/2026081101/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/port.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">当&#34;看见&#34;不再可信：Deepfake技术如何攻破企业与个人防线</strong>
+            <em class="related-card__date">2026-08-11</em>
+          </span>
+        </a>
+      
+    </div>
+  </section>
+
+
+      
+
+
+    </section>
+    
+  </main>
+
+  <div class="sidebar-backdrop js-sidebar-close" aria-hidden="true"></div>
+
+  
+<footer class="site-footer">
+  <span class="site-footer__left">© 2026 By ZapcoMan</span>
+  
+    <span class="site-footer__right">
+      
+        <span class="site-footer__row"><span class="site-footer__powered-prefix">Powered by Theme</span> <a href="https://github.com/Homulilly/hexo-theme-flatpaper" target="_blank" rel="noopener">FlatPaper</a></span>
+      
+    </span>
+  
+</footer>
+
+  
+<div class="search-panel" aria-hidden="true" data-index-url="/flatpaper-search.json">
+  <div class="search-backdrop js-search-close"></div>
+  <section class="search-dialog" role="dialog" aria-modal="true" aria-label="搜索文章">
+    <span class="tape tape--top-left" aria-hidden="true"></span>
+    <header class="search-head">
+      <h2><span class="green-dot"></span>搜索文章</h2>
+      <button class="icon-button js-search-close" type="button" aria-label="关闭搜索">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-x"></use></svg>
+
+      </button>
+    </header>
+    <label class="search-field">
+      
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-search"></use></svg>
+
+      <input id="flatpaper-search" class="search-input" type="search" placeholder="输入关键词，按 Esc 关闭" autocomplete="off">
+    </label>
+    <div class="search-results" data-empty="输入关键词后显示匹配的文章">
+      <p class="search-empty">输入关键词后显示匹配的文章</p>
+    </div>
+  </section>
+</div>
+
+  <script>
+  window.FLATPAPER_I18N = {"language":"zh-CN","common.posts":"文章","common.categories":"分类","common.tags":"标签","common.comments":"评论","common.share":"分享","common.page":"页面","common.archive":"归档","common.post_list":"文章列表","common.search_posts":"搜索文章","common.random_posts":"随机文章","common.reward":"赞赏","common.view_all":"查看全部","pagination.prev":"上一页","pagination.next":"下一页","pagination.post_pager":"文章分页","pagination.archive_pager":"归档分页","index.featured":"精选文章","index.pinned":"置顶","index.read_more":"阅读全文","index.previous_slide":"上一张","index.next_slide":"下一张","index.carousel_pagination":"轮播页码","index.carousel_slide":"第 %d 张","index.latest_posts":"最新文章","index.empty_posts":"还没有文章。创建第一篇文章后，这里会显示最新内容。","archive.title":"归档","archive.post_list":"文章列表","taxonomy.category_count":"%d 篇","taxonomy.empty_categories":"暂时还没有分类。","taxonomy.empty_tags":"暂时还没有标签。","links.label":"友链","links.title":"友情链接","links.empty_data":"暂未加载到友链数据。请确认 source/_data/links.yml 存在并已 hexo clean。","links.rss_label":"%s 的 RSS","friends_feed.label":"朋友圈","friends_feed.title":"友链朋友圈","friends_feed.loading":"正在加载友链动态…","friends_feed.missing_url":"暂未配置 all.json 地址。","friends_feed.load_failed":"友链动态加载失败，请稍后再试。","friends_feed.empty":"暂时没有抓取到友链文章。","friends_feed.load_more":"加载更多","friends_feed.updated_at":"更新于 %s","friends_feed.friend_count":"%d 位友邻","friends_feed.active_count":"%d 位活跃","friends_feed.article_count":"%d 篇文章","friends_feed.unknown_author":"未知站点","friends_feed.date_unknown":"时间未知","post.scroll_to_comments":"跳转到评论区","post.previous":"上一篇","post.next":"下一篇","post.no_previous":"没有更早的文章了","post.no_next":"已经是最新的一篇","post.back_to_top":"返回顶部","post.related_posts":"相关文章","post.view_more":"查看更多","not_found.label":"页面走丢了","not_found.title":"找不到这个页面","not_found.text":"这个地址可能已经移动、删除，或者从未存在。","not_found.home":"返回首页","not_found.search":"搜索文章","search.placeholder":"输入关键词，按 Esc 关闭","search.empty":"输入关键词后显示匹配的文章","search.loading":"正在加载搜索索引…","search.load_failed":"搜索索引加载失败，请重新打开搜索重试","search.no_result":"没有找到与 \"%s\" 相关的文章","search.close":"关闭搜索","code.copy":"复制代码","code.collapse":"折叠代码","code.expand":"展开代码","heading.anchor":"链接到此节: %s","head.tag":"标签：%s","head.category":"分类：%s","head.archive":"归档","head.archive_with_date":"归档：%s","head.page_number":"第 %d 页","navigation.primary":"主导航","navigation.mobile":"移动端导航","navigation.brand_home":"FlatPaper 首页","navigation.brand_menu":"打开站点导航","navigation.open_sidebar":"打开侧边栏","navigation.close_sidebar":"关闭侧边栏","navigation.sidebar":"侧边栏","navigation.sidebar_tools":"侧边栏工具","navigation.site_links":"站点链接","navigation.site_info":"站点信息","colors.choose_theme_color":"选择主题色","colors.theme_color":"主题色","colors.toggle_color_mode":"切换颜色模式","colors.green":"绿色","colors.purple":"紫色","colors.pink":"粉色","colors.sakura":"樱花粉","colors.blue":"蓝色","colors.orange":"橙色","colors.black":"黑色","profile.default_bio":"热爱生活，热爱代码，喜欢分享技术与生活中的点滴。","welcome.cta":"开始阅读","welcome.title":"欢迎来到 FlatPaper","welcome.text":"一个专注于内容与阅读体验的博客主题。","home_hero.label":"首页开屏","home_hero.enter":"开始阅读","home_hero.note":"今日","home_hero.default_subtitle":"日常记录","home_hero.nav_links":"开屏导航","home_hero.profile_links":"个人链接","home_hero.tools":"开屏工具","home_hero.shuffle_stickers":"打乱贴纸位置","home_hero.link":"链接","home_hero.sticker_image":"贴纸图片","home_hero.visit_confirm":"要访问 %s 吗？","home_hero.visit":"访问","home_hero.cancel":"取消","toc.title":"文章目录","toc.empty":"目录会根据文章标题自动生成。","toc.expand_all":"展开全部目录","toc.collapse_all":"收起全部目录","sidebar.hot_tags":"热门标签","sidebar.latest_posts":"最新文章"};
+  </script>
+  
+<script src="/js/main.js"></script>
+
+  
+</body>
+</html>
