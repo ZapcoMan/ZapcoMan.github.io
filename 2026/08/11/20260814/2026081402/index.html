@@ -1,0 +1,1528 @@
+<!doctype html>
+
+<html lang="zh-CN" data-fancybox-enabled="1">
+<head>
+  
+
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f7f3e9">
+
+<title>黑客组织 俄罗斯&#34;双熊&#34;：APT29 舒适熊与 APT28 奇幻熊深度解析 | ZapcoMan&#39;s world</title>
+<meta name="description" content="一提到黑客组织，往往就想到大规模、有计划、有组织的网络攻击。在深入了解这两个组织之前，我们必须先理解一个核心概念——APT。 一、什么是 APT？APT 是 Advanced Persistent Threat（高级持续性威胁）的首字母缩写，也称为定向威胁攻击。这类攻击具有三个显著特征： 高级（Advanced）：使用复杂的攻击技术和定制化恶意软件，远超普通...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="黑客组织 俄罗斯&quot;双熊&quot;：APT29 舒适熊与 APT28 奇幻熊深度解析 | ZapcoMan&#39;s world">
+<meta property="og:url" content="http://example.com/2026/08/11/20260814/2026081402/">
+<meta property="og:site_name" content="ZapcoMan&#39;s world">
+<meta property="og:description" content="一提到黑客组织，往往就想到大规模、有计划、有组织的网络攻击。在深入了解这两个组织之前，我们必须先理解一个核心概念——APT。 一、什么是 APT？APT 是 Advanced Persistent Threat（高级持续性威胁）的首字母缩写，也称为定向威胁攻击。这类攻击具有三个显著特征： 高级（Advanced）：使用复杂的攻击技术和定制化恶意软件，远超普通...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-08-11T13:48:22.000Z">
+<meta property="article:modified_time" content="2026-08-14T15:24:28.458Z">
+<meta property="article:author" content="ZapcoMan">
+<meta property="article:tag" content="社会工程学">
+<meta property="article:tag" content="黑客组织">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="http://example.com/2026/08/11/20260814/2026081402/">
+
+<link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"黑客组织 俄罗斯\"双熊\"：APT29 舒适熊与 APT28 奇幻熊深度解析","name":"黑客组织 俄罗斯\"双熊\"：APT29 舒适熊与 APT28 奇幻熊深度解析 | ZapcoMan's world","description":"一提到黑客组织，往往就想到大规模、有计划、有组织的网络攻击。在深入了解这两个组织之前，我们必须先理解一个核心概念——APT。 一、什么是 APT？APT 是 Advanced Persistent Threat（高级持续性威胁）的首字母缩写，也称为定向威胁攻击。这类攻击具有三个显著特征： 高级（Advanced）：使用复杂的攻击技术和定制化恶意软件，远超普通...","url":"http://example.com/2026/08/11/20260814/2026081402/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/08/11/20260814/2026081402/","datePublished":"2026-08-11T13:48:22.000Z","dateModified":"2026-08-14T15:24:28.458Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"社会工程学, 黑客组织"}</script>
+
+<script>
+  (function () {
+    var accents = { orange: 1, purple: 1, sakura: 1, blue: 1, pink: 1, green: 1, black: 1 };
+    var match = document.cookie.match(/(?:^|;\s*)flatpaper-accent=([^;]+)/);
+    var accent = 'blue';
+    if (match) {
+      try { accent = decodeURIComponent(match[1]); } catch (e) {}
+    }
+    if (!accents[accent]) accent = 'blue';
+    document.documentElement.setAttribute('data-accent', accent);
+    try {
+      if (localStorage.getItem('flatpaper-mode') === 'dark') {
+        document.documentElement.classList.add('dark-mode');
+      }
+    } catch (e) {}
+  })();
+</script>
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
+<script defer src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 8.1.2"><link rel="alternate" href="/atom.xml" title="ZapcoMan's world" type="application/atom+xml">
+</head>
+
+<body
+  class="is-post tag-style-tape bg-style-default"
+  data-default-accent="blue"
+  data-code-theme="dark"
+  data-note-style="sticky"
+  data-note-icons="on"
+  data-button-style="circle"
+  data-strong-accent="on"
+>
+  
+    <div class="page-grain"></div>
+  
+  <svg width="0" height="0" style="position:absolute;z-index:-1;" aria-hidden="true">
+    <defs>
+      <filter id="paper-edge" x="-5%" y="-5%" width="110%" height="110%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.04" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+    </defs>
+  </svg>
+  <svg class="flatpaper-icon-sprite" xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute;width:0;height:0;overflow:hidden;" aria-hidden="true" focusable="false"><defs><symbol id="flatpaper-icon-lucide-layout-grid" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></symbol><symbol id="flatpaper-icon-lucide-house" viewBox="0 0 24 24"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol><symbol id="flatpaper-icon-lucide-archive" viewBox="0 0 24 24"><rect width="20" height="5" x="2" y="3" rx="1"/><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8"/><path d="M10 12h4"/></symbol><symbol id="flatpaper-icon-lucide-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol><symbol id="flatpaper-icon-lucide-user" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol><symbol id="flatpaper-icon-lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></symbol><symbol id="flatpaper-icon-lucide-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol><symbol id="flatpaper-icon-lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></symbol><symbol id="flatpaper-icon-lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></symbol><symbol id="flatpaper-icon-lucide-palette" viewBox="0 0 24 24"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"/><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/></symbol><symbol id="flatpaper-icon-fa-brands-github" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></symbol><symbol id="flatpaper-icon-fa-brands-twitter" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></symbol><symbol id="flatpaper-icon-lucide-mail" viewBox="0 0 24 24"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></symbol><symbol id="flatpaper-icon-lucide-rss" viewBox="0 0 24 24"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></symbol><symbol id="flatpaper-icon-lucide-atom" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><path d="M20.2 20.2c2.04-2.03.02-7.36-4.5-11.9-4.54-4.52-9.87-6.54-11.9-4.5-2.04 2.03-.02 7.36 4.5 11.9 4.54 4.52 9.87 6.54 11.9 4.5Z"/><path d="M15.7 15.7c4.52-4.54 6.54-9.87 4.5-11.9-2.03-2.04-7.36-.02-11.9 4.5-4.52 4.54-6.54 9.87-4.5 11.9 2.03 2.04 7.36.02 11.9-4.5Z"/></symbol><symbol id="flatpaper-icon-lucide-heart" viewBox="0 0 24 24"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></symbol><symbol id="flatpaper-icon-lucide-message-circle" viewBox="0 0 24 24"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></symbol><symbol id="flatpaper-icon-lucide-message-square" viewBox="0 0 24 24"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z"/></symbol><symbol id="flatpaper-icon-lucide-share-2" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></symbol><symbol id="flatpaper-icon-lucide-calendar" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></symbol><symbol id="flatpaper-icon-lucide-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol><symbol id="flatpaper-icon-lucide-shuffle" viewBox="0 0 24 24"><path d="m18 14 4 4-4 4"/><path d="m18 2 4 4-4 4"/><path d="M2 18h1.973a4 4 0 0 0 3.3-1.7l5.454-8.6a4 4 0 0 1 3.3-1.7H22"/><path d="M2 6h1.972a4 4 0 0 1 3.6 2.2"/><path d="M22 18h-6.041a4 4 0 0 1-3.3-1.8l-.359-.45"/></symbol><symbol id="flatpaper-icon-lucide-flame" viewBox="0 0 24 24"><path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4"/></symbol><symbol id="flatpaper-icon-lucide-history" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></symbol><symbol id="flatpaper-icon-lucide-table-of-contents" viewBox="0 0 24 24"><path d="M16 5H3"/><path d="M16 12H3"/><path d="M16 19H3"/><path d="M21 5h.01"/><path d="M21 12h.01"/><path d="M21 19h.01"/></symbol><symbol id="flatpaper-icon-lucide-list-tree" viewBox="0 0 24 24"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></symbol><symbol id="flatpaper-icon-lucide-folder" viewBox="0 0 24 24"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></symbol><symbol id="flatpaper-icon-lucide-tag" viewBox="0 0 24 24"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/></symbol><symbol id="flatpaper-icon-lucide-eye" viewBox="0 0 24 24"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></symbol><symbol id="flatpaper-icon-lucide-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol><symbol id="flatpaper-icon-lucide-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></symbol><symbol id="flatpaper-icon-lucide-arrow-up" viewBox="0 0 24 24"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></symbol><symbol id="flatpaper-icon-lucide-chevron-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol><symbol id="flatpaper-icon-lucide-chevron-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol><symbol id="flatpaper-icon-lucide-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol><symbol id="flatpaper-icon-lucide-chevron-up" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></symbol><symbol id="flatpaper-icon-lucide-send" viewBox="0 0 24 24"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></symbol><symbol id="flatpaper-icon-lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></symbol><symbol id="flatpaper-icon-lucide-panel-left" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/></symbol><symbol id="flatpaper-icon-lucide-leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></symbol><symbol id="flatpaper-icon-lucide-aperture" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m14.31 8 5.74 9.94"/><path d="M9.69 8h11.48"/><path d="m7.38 12 5.74-9.94"/><path d="M9.69 16 3.95 6.06"/><path d="M14.31 16H2.83"/><path d="m16.62 12-5.74 9.94"/></symbol><symbol id="flatpaper-icon-lucide-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"/></symbol><symbol id="flatpaper-icon-lucide-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></symbol><symbol id="flatpaper-icon-lucide-radio" viewBox="0 0 24 24"><path d="M16.247 7.761a6 6 0 0 1 0 8.478"/><path d="M19.075 4.933a10 10 0 0 1 0 14.134"/><path d="M4.925 19.067a10 10 0 0 1 0-14.134"/><path d="M7.753 16.239a6 6 0 0 1 0-8.478"/><circle cx="12" cy="12" r="2"/></symbol><symbol id="flatpaper-icon-lucide-hash" viewBox="0 0 24 24"><line x1="4" x2="20" y1="9" y2="9"/><line x1="4" x2="20" y1="15" y2="15"/><line x1="10" x2="8" y1="3" y2="21"/><line x1="16" x2="14" y1="3" y2="21"/></symbol><symbol id="flatpaper-icon-lucide-gift" viewBox="0 0 24 24"><path d="M12 7v14"/><path d="M20 11v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"/><path d="M7.5 7a1 1 0 0 1 0-5A4.8 8 0 0 1 12 7a4.8 8 0 0 1 4.5-5 1 1 0 0 1 0 5"/><rect x="3" y="7" width="18" height="4" rx="1"/></symbol><symbol id="flatpaper-icon-fa-brands-alipay" viewBox="0 0 448 512"><path d="M377.74 32H70.26C31.41 32 0 63.41 0 102.26v307.48C0 448.59 31.41 480 70.26 480h307.48c38.52 0 69.76-31.08 70.26-69.6-45.96-25.62-110.59-60.34-171.6-88.44-32.07 43.97-84.14 81-148.62 81-70.59 0-93.73-45.3-97.04-76.37-3.97-39.01 14.88-81.5 99.52-81.5 35.38 0 79.35 10.25 127.13 24.96 16.53-30.09 26.45-60.34 26.45-60.34h-178.2v-16.7h92.08v-31.24H88.28v-19.01h109.44V92.34h50.92v50.42h109.44v19.01H248.63v31.24h88.77s-15.21 46.62-38.35 90.92c48.93 16.7 100.01 36.04 148.62 52.74V102.26C447.83 63.57 416.43 32 377.74 32zM47.28 322.95c.99 20.17 10.25 53.73 69.93 53.73 52.07 0 92.58-39.68 117.87-72.9-44.63-18.68-84.48-31.41-109.44-31.41-67.45 0-79.35 33.06-78.36 50.58z"/></symbol><symbol id="flatpaper-icon-fa-brands-paypal" viewBox="0 0 384 512"><path d="M111.4 295.9c-3.5 19.2-17.4 108.7-21.5 134-.3 1.8-1 2.5-3 2.5H12.3c-7.6 0-13.1-6.6-12.1-13.9L58.8 46.6c1.5-9.6 10.1-16.9 20-16.9 152.3 0 165.1-3.7 204 11.4 60.1 23.3 65.6 79.5 44 140.3-21.5 62.6-72.5 89.5-140.1 90.3-43.4.7-69.5-7-75.3 24.2zM357.1 152c-1.8-1.3-2.5-1.8-3 1.3-2 11.4-5.1 22.5-8.8 33.6-39.9 113.8-150.5 103.9-204.5 103.9-6.1 0-10.1 3.3-10.9 9.4-22.6 140.4-27.1 169.7-27.1 169.7-1 7.1 3.5 12.9 10.6 12.9h63.5c8.6 0 15.7-6.3 17.4-14.9.7-5.4-1.1 6.1 14.4-91.3 4.6-22 14.3-19.7 29.3-19.7 71 0 126.4-28.8 142.9-112.3 6.5-34.8 4.6-71.4-23.8-92.6z"/></symbol><symbol id="flatpaper-icon-fa-brands-x-twitter" viewBox="0 0 512 512"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></symbol><symbol id="flatpaper-icon-fa-brands-steam" viewBox="0 0 496 512"><path d="M496 256c0 137-111.2 248-248.4 248-113.8 0-209.6-76.3-239-180.4l95.2 39.3c6.4 32.1 34.9 56.4 68.9 56.4 39.2 0 71.9-32.4 70.2-73.5l84.5-60.2c52.1 1.3 95.8-40.9 95.8-93.5 0-51.6-42-93.5-93.7-93.5s-93.7 42-93.7 93.5v1.2L176.6 279c-15.5-.9-30.7 3.4-43.5 12.1L0 236.1C10.2 108.4 117.1 8 247.6 8 384.8 8 496 119 496 256zM155.7 384.3l-30.5-12.6a52.79 52.79 0 0 0 27.2 25.8c26.9 11.2 57.8-1.6 69-28.4 5.4-13 5.5-27.3.1-40.3-5.4-13-15.5-23.2-28.5-28.6-12.9-5.4-26.7-5.2-38.9-.6l31.5 13c19.8 8.2 29.2 30.9 20.9 50.7-8.3 19.9-31 29.2-50.8 21zm173.8-129.9c-34.4 0-62.4-28-62.4-62.3s28-62.3 62.4-62.3 62.4 28 62.4 62.3-27.9 62.3-62.4 62.3zm.1-15.6c25.9 0 46.9-21 46.9-46.8 0-25.9-21-46.8-46.9-46.8s-46.9 21-46.9 46.8c.1 25.8 21.1 46.8 46.9 46.8z"/></symbol><symbol id="flatpaper-icon-fa-brands-bilibili" viewBox="0 0 512 512"><path d="M488.6 104.1C505.3 122.2 513 143.8 511.9 169.8V372.2C511.5 398.6 502.7 420.3 485.4 437.3C468.2 454.3 446.3 463.2 419.9 464H92.02C65.57 463.2 43.81 454.2 26.74 436.8C9.682 419.4 .7667 396.5 0 368.2V169.8C.7667 143.8 9.682 122.2 26.74 104.1C43.81 87.75 65.57 78.77 92.02 78H121.4L96.05 52.19C90.3 46.46 87.42 39.19 87.42 30.4C87.42 21.6 90.3 14.34 96.05 8.603C101.8 2.868 109.1 0 117.9 0C126.7 0 134 2.868 139.8 8.603L213.1 78H301.1L375.6 8.603C381.7 2.868 389.2 0 398 0C406.8 0 414.1 2.868 419.9 8.603C425.6 14.34 428.5 21.6 428.5 30.4C428.5 39.19 425.6 46.46 419.9 52.19L394.6 78L423.9 78C450.3 78.77 471.9 87.75 488.6 104.1H488.6zM449.8 173.8C449.4 164.2 446.1 156.4 439.1 150.3C433.9 144.2 425.1 140.9 416.4 140.5H96.05C86.46 140.9 78.6 144.2 72.47 150.3C66.33 156.4 63.07 164.2 62.69 173.8V368.2C62.69 377.4 65.95 385.2 72.47 391.7C78.99 398.2 86.85 401.5 96.05 401.5H416.4C425.6 401.5 433.4 398.2 439.7 391.7C446 385.2 449.4 377.4 449.8 368.2L449.8 173.8zM185.5 216.5C191.8 222.8 195.2 230.6 195.6 239.7V273C195.2 282.2 191.9 289.9 185.8 296.2C179.6 302.5 171.8 305.7 162.2 305.7C152.6 305.7 144.7 302.5 138.6 296.2C132.5 289.9 129.2 282.2 128.8 273V239.7C129.2 230.6 132.6 222.8 138.9 216.5C145.2 210.2 152.1 206.9 162.2 206.5C171.4 206.9 179.2 210.2 185.5 216.5H185.5zM377 216.5C383.3 222.8 386.7 230.6 387.1 239.7V273C386.7 282.2 383.4 289.9 377.3 296.2C371.2 302.5 363.3 305.7 353.7 305.7C344.1 305.7 336.3 302.5 330.1 296.2C323.1 289.9 320.7 282.2 320.4 273V239.7C320.7 230.6 324.1 222.8 330.4 216.5C336.7 210.2 344.5 206.9 353.7 206.5C362.9 206.9 370.7 210.2 377 216.5H377z"/></symbol><symbol id="flatpaper-icon-fa-brands-youtube" viewBox="0 0 576 512"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></symbol><symbol id="flatpaper-icon-fa-brands-facebook" viewBox="0 0 512 512"><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></symbol><symbol id="flatpaper-icon-fa-brands-instagram" viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></symbol><symbol id="flatpaper-icon-fa-brands-telegram" viewBox="0 0 496 512"><path d="M248,8C111.033,8,0,119.033,0,256S111.033,504,248,504,496,392.967,496,256,384.967,8,248,8ZM362.952,176.66c-3.732,39.215-19.881,134.378-28.1,178.3-3.476,18.584-10.322,24.816-16.948,25.425-14.4,1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25,5.342-39.5,3.652-3.793,67.107-61.51,68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608,69.142-14.845,10.194-26.894,9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7,18.45-13.7,108.446-47.248,144.628-62.3c68.872-28.647,83.183-33.623,92.511-33.789,2.052-.034,6.639.474,9.61,2.885a10.452,10.452,0,0,1,3.53,6.716A43.765,43.765,0,0,1,362.952,176.66Z"/></symbol><symbol id="flatpaper-icon-fa-brands-weibo" viewBox="0 0 512 512"><path d="M407 177.6c7.6-24-13.4-46.8-37.4-41.7-22 4.8-28.8-28.1-7.1-32.8 50.1-10.9 92.3 37.1 76.5 84.8-6.8 21.2-38.8 10.8-32-10.3zM214.8 446.7C108.5 446.7 0 395.3 0 310.4c0-44.3 28-95.4 76.3-143.7C176 67 279.5 65.8 249.9 161c-4 13.1 12.3 5.7 12.3 6 79.5-33.6 140.5-16.8 114 51.4-3.7 9.4 1.1 10.9 8.3 13.1 135.7 42.3 34.8 215.2-169.7 215.2zm143.7-146.3c-5.4-55.7-78.5-94-163.4-85.7-84.8 8.6-148.8 60.3-143.4 116s78.5 94 163.4 85.7c84.8-8.6 148.8-60.3 143.4-116zM347.9 35.1c-25.9 5.6-16.8 43.7 8.3 38.3 72.3-15.2 134.8 52.8 111.7 124-7.4 24.2 29.1 37 37.4 12 31.9-99.8-55.1-195.9-157.4-174.3zm-78.5 311c-17.1 38.8-66.8 60-109.1 46.3-40.8-13.1-58-53.4-40.3-89.7 17.7-35.4 63.1-55.4 103.4-45.1 42 10.8 63.1 50.2 46 88.5zm-86.3-30c-12.9-5.4-30 .3-38 12.9-8.3 12.9-4.3 28 8.6 34 13.1 6 30.8.3 39.1-12.9 8-13.1 3.7-28.3-9.7-34zm32.6-13.4c-5.1-1.7-11.4.6-14.3 5.4-2.9 5.1-1.4 10.6 3.7 12.9 5.1 2 11.7-.3 14.6-5.4 2.8-5.2 1.1-10.9-4-12.9z"/></symbol></defs></svg>
+  
+  <header class="site-header">
+  
+  <button class="icon-button js-sidebar-toggle sidebar-toggle" type="button" aria-label="打开侧边栏" aria-controls="paper-sidebar-drawer" aria-expanded="false">
+    
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-menu"></use></svg>
+
+  </button>
+
+  <div class="brand">
+    <div class="brand-mark-wrapper">
+      
+        <a class="brand-mark" href="/" aria-label="FlatPaper 首页">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-grid flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-layout-grid"></use></svg>
+
+        </a>
+      
+    </div>
+    <a class="brand-text" href="/">ZapcoMan&#39;s world</a>
+  </div>
+
+  <nav class="site-nav" aria-label="主导航">
+    
+      
+        <a class="site-nav-link " href="/">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-house"></use></svg>
+
+          <span>首页</span>
+        </a>
+      
+    
+      
+        <div class="site-nav-item has-children">
+          <button class="site-nav-link site-nav-parent" type="button" aria-haspopup="true" aria-expanded="false">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+            <span>文章</span>
+          </button>
+          <div class="site-nav-menu" role="menu">
+            
+              <a role="menuitem" class="" href="/categories/">
+                
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+                <span>分类</span>
+              </a>
+            
+              <a role="menuitem" class="" href="/tags/">
+                
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
+
+                <span>标签</span>
+              </a>
+            
+              <a role="menuitem" class="" href="/archives/">
+                
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-archive flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-archive"></use></svg>
+
+                <span>归档</span>
+              </a>
+            
+          </div>
+        </div>
+      
+    
+      
+        <a class="site-nav-link " href="/links/">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-link"></use></svg>
+
+          <span>友链</span>
+        </a>
+      
+    
+      
+        <a class="site-nav-link " href="/about/">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-user"></use></svg>
+
+          <span>关于</span>
+        </a>
+      
+    
+  </nav>
+
+  <div class="header-tools">
+    <button class="icon-button js-search-open" type="button" aria-label="搜索文章">
+      
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-search"></use></svg>
+
+    </button>
+    <div class="accent-picker">
+      <button class="icon-button accent-toggle" type="button" aria-label="选择主题色" title="选择主题色" aria-haspopup="true" aria-expanded="false" aria-controls="accent-menu">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-palette"></use></svg>
+
+      </button>
+      <div class="accent-menu" id="accent-menu" role="menu" aria-label="主题色">
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="橙色" aria-checked="false" data-accent-option="orange">
+          <span class="accent-swatch accent-swatch--orange" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="紫色" aria-checked="false" data-accent-option="purple">
+          <span class="accent-swatch accent-swatch--purple" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="樱花粉" aria-checked="false" data-accent-option="sakura">
+          <span class="accent-swatch accent-swatch--sakura" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="蓝色" aria-checked="false" data-accent-option="blue">
+          <span class="accent-swatch accent-swatch--blue" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="粉色" aria-checked="false" data-accent-option="pink">
+          <span class="accent-swatch accent-swatch--pink" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="绿色" aria-checked="false" data-accent-option="green">
+          <span class="accent-swatch accent-swatch--green" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="黑色" aria-checked="false" data-accent-option="black">
+          <span class="accent-swatch accent-swatch--black" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+    <button class="theme-toggle" type="button" aria-label="切换颜色模式">
+      <span class="theme-icon theme-icon--sun">
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-sun"></use></svg>
+</span>
+      <span class="theme-icon theme-icon--moon">
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-moon"></use></svg>
+</span>
+    </button>
+  </div>
+</header>
+
+
+  
+  <main class="paper-shell paper-shell--article">
+    
+
+<aside id="paper-sidebar-drawer" class="paper-sidebar paper-sidebar--right" aria-label="侧边栏">
+  <div class="drawer-toolbar" aria-label="侧边栏工具">
+    <div class="drawer-accent-options" role="group" aria-label="主题色">
+      <button type="button" class="accent-option" aria-label="橙色" aria-pressed="false" data-accent-option="orange">
+        <span class="accent-swatch accent-swatch--orange" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="紫色" aria-pressed="false" data-accent-option="purple">
+        <span class="accent-swatch accent-swatch--purple" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="樱花粉" aria-pressed="false" data-accent-option="sakura">
+        <span class="accent-swatch accent-swatch--sakura" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="蓝色" aria-pressed="false" data-accent-option="blue">
+        <span class="accent-swatch accent-swatch--blue" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="粉色" aria-pressed="false" data-accent-option="pink">
+        <span class="accent-swatch accent-swatch--pink" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="绿色" aria-pressed="false" data-accent-option="green">
+        <span class="accent-swatch accent-swatch--green" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="黑色" aria-pressed="false" data-accent-option="black">
+        <span class="accent-swatch accent-swatch--black" aria-hidden="true"></span>
+      </button>
+    </div>
+    <button class="icon-button drawer-close js-sidebar-close" type="button" aria-label="关闭侧边栏">
+      
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-x"></use></svg>
+
+    </button>
+  </div>
+
+  <section class="side-card nav-card">
+    <nav class="site-nav-drawer" aria-label="移动端导航">
+      
+        
+          <a class="" href="/">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-house"></use></svg>
+
+            <span>首页</span>
+          </a>
+        
+      
+        
+          <div class="drawer-nav-group">
+            <button class="drawer-nav-parent" type="button" aria-expanded="false">
+              
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+              <span>文章</span>
+            </button>
+            <div class="drawer-nav-children">
+              
+                <a class="" href="/categories/">
+                  
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+                  <span>分类</span>
+                </a>
+              
+                <a class="" href="/tags/">
+                  
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
+
+                  <span>标签</span>
+                </a>
+              
+                <a class="" href="/archives/">
+                  
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-archive flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-archive"></use></svg>
+
+                  <span>归档</span>
+                </a>
+              
+            </div>
+          </div>
+        
+      
+        
+          <a class="" href="/links/">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-link"></use></svg>
+
+            <span>友链</span>
+          </a>
+        
+      
+        
+          <a class="" href="/about/">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-user"></use></svg>
+
+            <span>关于</span>
+          </a>
+        
+      
+    </nav>
+  </section>
+
+  <section class="side-card profile-card">
+    
+      <div class="avatar avatar--image avatar--circle">
+        <img src="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4" alt="ZapcoMan" loading="lazy" referrerpolicy="no-referrer">
+      </div>
+    
+    <h3>ZapcoMan</h3>
+    <p class="profile-role">日常记录</p>
+    <p>独立开发者 主攻方向：Java 后端开发（Spring Boot + Vue3 全栈）Python 脚本开发（网络编程、爬虫、数据处理、信息安全工具、自动化运维,渗透测试工具）</p>
+    
+      <div class="site-info" aria-label="站点信息">
+        
+          
+            <a class="site-info__item" href="/archives/">
+              <strong>95</strong>
+              <span>文章</span>
+            </a>
+          
+        
+          
+            <a class="site-info__item" href="/categories/">
+              <strong>27</strong>
+              <span>分类</span>
+            </a>
+          
+        
+          
+            <a class="site-info__item" href="/tags/">
+              <strong>94</strong>
+              <span>标签</span>
+            </a>
+          
+        
+      </div>
+    
+    <div class="socials">
+      
+        <a href="https://github.com/ZapcoMan" target="_blank" rel="noopener" aria-label="GitHub" data-tooltip="GitHub">
+          
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="lucide lucide-github flatpaper-icon flatpaper-icon--fa-brands" aria-hidden="true"><use href="#flatpaper-icon-fa-brands-github"></use></svg>
+
+          
+        </a>
+      
+        <a href="https://space.bilibili.com/544166891" target="_blank" rel="noopener" aria-label="Bilibili" data-tooltip="Bilibili">
+          
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="lucide lucide-bilibili flatpaper-icon flatpaper-icon--fa-brands" aria-hidden="true"><use href="#flatpaper-icon-fa-brands-bilibili"></use></svg>
+
+          
+        </a>
+      
+        <a href="#" target="_blank" rel="noopener" aria-label="掘金" data-tooltip="掘金">
+          
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-send"></use></svg>
+
+          
+        </a>
+      
+      
+        
+        
+        <a href="/atom.xml" aria-label="RSS feed" data-tooltip="RSS feed">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rss flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-rss"></use></svg>
+
+        </a>
+      
+    </div>
+  </section>
+
+  
+
+  
+    <div class="post-sticky-stack">
+      <section class="side-card toc-card">
+        <header class="toc-card__head">
+          <h2>
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-table-of-contents flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-table-of-contents"></use></svg>
+文章目录</h2>
+          <button type="button" class="toc-toggle-all" data-action="toggle-toc" aria-pressed="false" aria-label="展开全部目录" title="展开全部目录">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-chevron-down"></use></svg>
+
+          </button>
+        </header>
+        <div class="toc-content">
+          
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF-APT%EF%BC%9F"><span class="toc-text">一、什么是 APT？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%88%92%E9%80%82%E7%86%8A-Cozy-Bear%EF%BC%88APT29%EF%BC%89"><span class="toc-text">二、舒适熊 Cozy Bear（APT29）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E7%BB%84%E7%BB%87%E6%A6%82%E5%86%B5"><span class="toc-text">2.1 组织概况</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-1-%E8%8D%B7%E5%85%B0-AIVD-%E7%9A%84%E7%AA%81%E7%A0%B4%E6%80%A7%E5%8F%91%E7%8E%B0%EF%BC%882014%EF%BC%89"><span class="toc-text">2.1.1 荷兰 AIVD 的突破性发现（2014）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-2-%E2%80%9CDuke%E2%80%9D%E7%B3%BB%E5%88%97%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E5%B9%B3%E5%8F%B0%E6%BC%94%E8%BF%9B"><span class="toc-text">2.1.2 “Duke”系列恶意软件平台演进</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E5%8E%86%E5%B9%B4%E6%94%BB%E5%87%BB%E8%A1%8C%E5%8A%A8%E4%B8%80%E8%A7%88"><span class="toc-text">2.2 历年攻击行动一览</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E5%BD%92%E5%9B%A0%E4%BA%89%E8%AE%AE%EF%BC%9A%E7%BD%91%E7%BB%9C%E5%A8%81%E8%83%81%E5%BD%92%E5%9B%A0%E7%9A%84%E4%B8%A4%E9%9D%A2%E6%80%A7"><span class="toc-text">2.3 归因争议：网络威胁归因的两面性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%A5%87%E5%B9%BB%E7%86%8A-Fancy-Bear%EF%BC%88APT28%EF%BC%89"><span class="toc-text">三、奇幻熊 Fancy Bear（APT28）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E7%BB%84%E7%BB%87%E6%A6%82%E5%86%B5"><span class="toc-text">3.1 组织概况</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-1-%E5%AE%8C%E6%95%B4%E6%94%BB%E5%87%BB%E7%9B%AE%E6%A0%87%E6%B8%85%E5%8D%95"><span class="toc-text">3.1.1 完整攻击目标清单</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-2-2023-%E5%B9%B4%EF%BC%9A%E4%B9%8C%E5%85%8B%E5%85%B0%E6%97%A0%E4%BA%BA%E6%9C%BA%E8%A2%AD%E5%87%BB%E5%A5%87%E5%B9%BB%E7%86%8A%E6%80%BB%E9%83%A8"><span class="toc-text">3.1.2 2023 年：乌克兰无人机袭击奇幻熊总部</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E4%B8%BA%E5%95%A5%E8%AF%B4%E5%AE%83%E2%80%9D%E8%B1%AA%E8%BF%88%E2%80%9D%EF%BC%9F"><span class="toc-text">3.2 为啥说它”豪迈”？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F%EF%BC%9A%E4%B8%BA%E4%BD%95%E4%B8%8E%E5%A5%A5%E6%9E%97%E5%8C%B9%E5%85%8B%E2%80%9D%E6%9D%A0%E4%B8%8A%E2%80%9D%EF%BC%9F"><span class="toc-text">3.3 前世今生：为何与奥林匹克”杠上”？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-2016-%E5%B9%B4-WADA-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%85%A5%E4%BE%B5%E4%BA%8B%E4%BB%B6%E2%80%94%E2%80%94%E4%BA%94%E5%BC%B9%E8%BF%9E%E5%8F%91"><span class="toc-text">3.4 2016 年 WADA 数据库入侵事件——五弹连发</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-%E5%90%8E%E7%BB%AD%E5%BD%B1%E5%93%8D"><span class="toc-text">3.5 后续影响</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-6-%E6%95%85%E4%BA%8B%E5%B9%B6%E6%9C%AA%E7%BB%93%E6%9D%9F"><span class="toc-text">3.6 故事并未结束</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-7-%E5%85%B6%E4%BB%96%E9%87%8D%E5%A4%A7%E6%94%BB%E5%87%BB%E4%BA%8B%E4%BB%B6"><span class="toc-text">3.7 其他重大攻击事件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%A5%87%E5%B9%BB%E7%86%8A%E7%9A%84%E6%8A%80%E6%9C%AF%E8%BF%9B%E5%8C%96%E5%8F%B2"><span class="toc-text">四、奇幻熊的技术进化史</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E6%AD%A6%E5%99%A8%E5%8C%96%E6%8A%80%E6%9C%AF%E7%9A%84%E6%BC%94%E8%BF%9B"><span class="toc-text">4.1 武器化技术的演进</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%BC%A0%E6%92%AD%EF%BC%9A%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8"><span class="toc-text">4.2 恶意软件传播：漏洞利用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E9%95%BF%E4%B9%85%E9%A9%BB%E7%95%99%E6%8A%80%E6%9C%AF"><span class="toc-text">4.3 长久驻留技术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E5%85%B8%E5%9E%8B%E6%94%BB%E5%87%BB%E6%A1%88%E4%BE%8B%E6%B7%B1%E5%BA%A6%E5%88%86%E6%9E%90%EF%BC%9A2018-%E5%B9%B4%E7%BD%97%E9%A9%AC%E5%B0%BC%E4%BA%9A%E5%A4%96%E4%BA%A4%E9%83%A8%E6%94%BB%E5%87%BB"><span class="toc-text">4.4 典型攻击案例深度分析：2018 年罗马尼亚外交部攻击</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E2%80%9D%E5%8F%8C%E7%86%8A%E2%80%9D%E5%AF%B9%E6%AF%94%E4%B8%80%E8%A7%88"><span class="toc-text">五、”双熊”对比一览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%80%BB%E7%BB%93%E4%B8%8E%E5%90%AF%E7%A4%BA"><span class="toc-text">六、总结与启示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-%E6%8A%80%E6%9C%AF%E5%B1%82%E9%9D%A2%E7%9A%84%E5%90%AF%E7%A4%BA"><span class="toc-text">6.1 技术层面的启示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-%E6%88%98%E7%95%A5%E5%B1%82%E9%9D%A2%E7%9A%84%E6%80%9D%E8%80%83"><span class="toc-text">6.2 战略层面的思考</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-%E6%9C%AA%E6%9D%A5%E5%B1%95%E6%9C%9B"><span class="toc-text">6.3 未来展望</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99%E6%9D%A5%E6%BA%90"><span class="toc-text">参考资料来源</span></a></li></ol>
+          
+        </div>
+      </section>
+      
+
+  <section class="side-card recent-card latest-posts-card">
+    <h2>
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-history flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-history"></use></svg>
+最新文章</h2>
+    <ul class="recent-list">
+      
+        <li>
+          <a class="recent-item" href="/2026/08/14/20260814/2026081401/">
+            <strong>快手12·22攻击事件深度复盘：当黑灰产撞上&#34;清朗&#34;行动——一场精心策划的报复？</strong>
+            <em>2026-08-14</em>
+          </a>
+        </li>
+      
+        <li>
+          <a class="recent-item" href="/2026/08/11/20260811/2026081103/">
+            <strong>黑客组织 - DarkSide</strong>
+            <em>2026-08-11</em>
+          </a>
+        </li>
+      
+        <li>
+          <a class="recent-item" href="/2026/08/11/20260811/2026081102/">
+            <strong>深度解析：The Com 网络犯罪帝国与 Hacker Com 的崛起</strong>
+            <em>2026-08-11</em>
+          </a>
+        </li>
+      
+        <li>
+          <a class="recent-item" href="/2026/08/11/20260811/2026081101/">
+            <strong>当&#34;看见&#34;不再可信：Deepfake技术如何攻破企业与个人防线</strong>
+            <em>2026-08-11</em>
+          </a>
+        </li>
+      
+        <li>
+          <a class="recent-item" href="/2026/08/04/20260715/2026080401/">
+            <strong>bitchat：连服务器都没有，拿什么监管你？——去中心化、免疫审查的蓝牙 Mesh 即时聊天软件</strong>
+            <em>2026-08-04</em>
+          </a>
+        </li>
+      
+    </ul>
+  </section>
+
+
+    </div>
+  
+
+  
+
+</aside>
+
+    <section class="paper-main">
+      
+
+<div class="article-tape-wrap">
+<span class="tape tape--top-right" aria-hidden="true"></span>
+<article class="article-paper">
+  
+  <header class="article-header">
+    
+      <a class="label-pill" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+        网络安全
+      </a>
+    
+    <h1>黑客组织 俄罗斯&#34;双熊&#34;：APT29 舒适熊与 APT28 奇幻熊深度解析</h1>
+    <div class="meta-line meta-line--article">
+      <span class="meta-date">
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
+2026-08-11</span>
+      
+        <span class="meta-tags">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
+
+          <a class="meta-tag-link" href="/tags/%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6/">#社会工程学</a><a class="meta-tag-link" href="/tags/%E9%BB%91%E5%AE%A2%E7%BB%84%E7%BB%87/">#黑客组织</a>
+        </span>
+      
+    </div>
+  </header>
+
+  
+
+
+  <div class="article-content">
+    <blockquote>
+<p>一提到黑客组织，往往就想到大规模、有计划、有组织的网络攻击。在深入了解这两个组织之前，我们必须先理解一个核心概念——<strong>APT</strong>。</p>
+</blockquote>
+<hr>
+<h2 id="一、什么是-APT？"><a href="#一、什么是-APT？" class="headerlink" title="一、什么是 APT？"></a>一、什么是 APT？</h2><p><strong>APT</strong> 是 <strong>Advanced Persistent Threat</strong>（高级持续性威胁）的首字母缩写，也称为定向威胁攻击。这类攻击具有三个显著特征：</p>
+<ul>
+<li><strong>高级（Advanced）</strong>：使用复杂的攻击技术和定制化恶意软件，远超普通脚本小子的能力范围。</li>
+<li><strong>持续（Persistent）</strong>：攻击者会在目标网络中长期潜伏，持续数月甚至数年，不断收集情报。</li>
+<li><strong>威胁（Threat）</strong>：这类攻击往往不是个人或小众的自发行为，而是由规模较大的群体或组织有计划、有组织地统一发起。</li>
+</ul>
+<p>正因为如此级别的攻击背后往往有国家力量的支撑，黑客组织才逐渐浮出水面，成为国际安全博弈的焦点。</p>
+<p>在众多 APT 组织中，俄罗斯的两个组织尤为引人注目——它们被称为**”双熊”**：<strong>舒适熊（Cozy Bear &#x2F; APT29）</strong> 和 <strong>奇幻熊（Fancy Bear &#x2F; APT28）</strong>。两者均被认为与俄罗斯情报机构存在关联，但分工不同、风格迥异——一个擅长隐蔽渗透，一个偏好高调出击。</p>
+<hr>
+<h2 id="二、舒适熊-Cozy-Bear（APT29）"><a href="#二、舒适熊-Cozy-Bear（APT29）" class="headerlink" title="二、舒适熊 Cozy Bear（APT29）"></a>二、舒适熊 Cozy Bear（APT29）</h2><h3 id="2-1-组织概况"><a href="#2-1-组织概况" class="headerlink" title="2.1 组织概况"></a>2.1 组织概况</h3><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>信息</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>代号</strong></td>
+<td>APT29</td>
+</tr>
+<tr>
+<td><strong>别名</strong></td>
+<td><strong>核心代号</strong>：Cozy Bear、APT29<br><strong>Duke 系列</strong>：The Dukes、CozyDuke、CozyCar、Dark Halo<br><strong>微软命名</strong>：NOBELIUM（Nobelium）、Midnight Blizzard（午夜暴风雪）<br><strong>其他别名</strong>：Office Monkeys、StellarParticle、UNC2452、Yttrium、Iron Hemlock、Minidionis、CloudLook、Group 100<br><strong>合并称呼</strong>：Grizzly Steppe（与 APT28 合称时）</td>
+</tr>
+<tr>
+<td><strong>最早活动时间</strong></td>
+<td>可追溯至 2008 年（部分报告称 2010 年起）</td>
+</tr>
+<tr>
+<td><strong>关联机构</strong></td>
+<td><strong>俄罗斯对外情报局（SVR）</strong>——荷兰 AIVD 和美国情报部门于 2014 年通过入侵其办公室监控摄像头直接确认；CrowdStrike 和爱沙尼亚情报机构同时报告与 FSB 的可能联系<br><strong>商业关联（2023 年披露）</strong>：俄罗斯 IT 公司 NTC Vulkan（《Der Spiegel》文件显示其与 Cozy Bear 行动有关联）</td>
+</tr>
+<tr>
+<td><strong>主要目标</strong></td>
+<td>全球范围：美国（最频繁目标）、西欧 NATO 成员国、五眼联盟国家、亚洲（中国、韩国）、南美洲；行业覆盖政府&#x2F;外交&#x2F;国防&#x2F;情报机构、政党（DNC&#x2F;RNC）、智库&#x2F;NGO、关键基础设施（金融&#x2F;能源&#x2F;电信&#x2F;制造）、医疗卫生（COVID-19 疫苗研发）、科技公司（Microsoft&#x2F;FireEye&#x2F;SolarWinds&#x2F;TeamViewer）</td>
+</tr>
+<tr>
+<td><strong>攻击风格</strong></td>
+<td>隐蔽渗透、供应链攻击、长期潜伏、鱼叉式钓鱼、密码喷洒</td>
+</tr>
+</tbody></table>
+<p>舒适熊由荷兰安全情报部门（AIVD）的情报显示，其由俄罗斯对外情报局（SVR）领导。网络安全公司 CrowdStrike 先前曾建议将其与俄罗斯联邦安全局（FSB）或 SVR 相关联。</p>
+<p>F-Secure 对其的评价是：</p>
+<blockquote>
+<p><strong>“APT29 是一个资源丰富、高度专业和有组织的网络间谍组织，至少从 2008 年开始就为俄罗斯联邦工作，以收集情报支持外交和安全政策的决策。”</strong></p>
+</blockquote>
+<p>舒适熊拥有不同的项目，并且有不同的攻击目标。其中 <strong>“Nemesis Gemina” 项目</strong>重点关注军事、政府、能源、外交和电信部门。有证据表明，其目标涵盖荷兰、挪威、德国、乌兹别克斯坦、韩国和美国的商业实体和政府组织，如美国国务院和白宫。</p>
+<h3 id="2-1-1-荷兰-AIVD-的突破性发现（2014）"><a href="#2-1-1-荷兰-AIVD-的突破性发现（2014）" class="headerlink" title="2.1.1 荷兰 AIVD 的突破性发现（2014）"></a>2.1.1 荷兰 AIVD 的突破性发现（2014）</h3><blockquote>
+<p><strong>“Dutch spies caught Russian hackers on tape”（荷兰间谍当场抓获俄罗斯黑客）</strong></p>
+</blockquote>
+<p>2014 年夏季，荷兰总情报与安全局（AIVD）取得了一次<strong>史无前例的反情报突破</strong>——他们成功渗透了 Cozy Bear 物理办公室的网络摄像头系统，获得了该组织日常运作的直接画面证据。</p>
+<p>这些监控画面证实了 Cozy Bear 对以下目标的攻击活动：</p>
+<ul>
+<li>美国民主党全国委员会（DNC）</li>
+<li>美国国务院</li>
+<li>白宫</li>
+</ul>
+<p>荷兰方面将此关键证据分享给了美国情报机构，这些证据后来被用于 FBI 对 2016 年俄罗斯选举干扰的调查中。这也是迄今为止公开披露的最成功的 APT 组织物理层反渗透行动之一。</p>
+<h3 id="2-1-2-“Duke”系列恶意软件平台演进"><a href="#2-1-2-“Duke”系列恶意软件平台演进" class="headerlink" title="2.1.2 “Duke”系列恶意软件平台演进"></a>2.1.2 “Duke”系列恶意软件平台演进</h3><p>舒适熊的核心武器库是一套代号为 <strong>“Duke”（公爵）</strong> 的恶意软件平台，历经多年持续进化：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">时间线演进：</span><br><span class="line">2008年 → MiniDuke（汇编语言开发，初始版本，体积小巧）</span><br><span class="line">   ↓</span><br><span class="line">2013年 → CosmicDuke（更新版，更灵活的插件框架）</span><br><span class="line">   ↓</span><br><span class="line">2014年 → OnionDuke（利用 Tor 网络隐藏 C2 通信）</span><br><span class="line">        → CozyDuke（增加 C/C++ 组件和反分析功能）</span><br><span class="line">        → SeaDuke（专门用于高价值目标的特洛伊木马）</span><br><span class="line">   ↓</span><br><span class="line">2015年 → HAMMERTOSS（通过 Twitter 和 GitHub 隐蔽通道传递命令）</span><br><span class="line">   ↓</span><br><span class="line">2019年 → PolyglotDuke、RegDuke、FatDuke（Operation Ghost 幽灵行动）</span><br></pre></td></tr></table></figure>
+
+<p><strong>特色技术手段：</strong></p>
+<table>
+<thead>
+<tr>
+<th>技术</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>鱼叉式钓鱼</strong></td>
+<td>使用定制化钓鱼邮件，曾伪装成”有趣的办公室猴子”Flash 文件</td>
+</tr>
+<tr>
+<td><strong>Tor 网络利用</strong></td>
+<td>通过俄罗斯 Tor 出口节点感染传输中的二进制可执行文件</td>
+</tr>
+<tr>
+<td><strong>社交媒体 C2</strong></td>
+<td>HAMMERTOSS 利用 Twitter 和 GitHub 进行隐蔽命令传递</td>
+</tr>
+<tr>
+<td><strong>密码喷洒（Password Spraying）</strong></td>
+<td>2024 年攻击 Microsoft 时使用的暴力破解变体</td>
+</tr>
+<tr>
+<td><strong>供应链攻击</strong></td>
+<td>SolarWinds Orion 软件供应链入侵</td>
+</tr>
+<tr>
+<td><strong>Active Directory 绕过</strong></td>
+<td>FoggyWeb 和 MagicWeb 工具用于绕过 AD 认证</td>
+</tr>
+</tbody></table>
+<p><strong>后期高级工具（2021-2022）：</strong></p>
+<ul>
+<li><strong>FoggyWeb</strong>：从受损的 Active Directory 实例中转储认证令牌</li>
+<li><strong>MagicWeb</strong>：在 Active Directory 联合身份验证服务（AD FS）服务器上绕过用户认证</li>
+</ul>
+<h3 id="2-2-历年攻击行动一览"><a href="#2-2-历年攻击行动一览" class="headerlink" title="2.2 历年攻击行动一览"></a>2.2 历年攻击行动一览</h3><h4 id="2014-年：办公室猴子行动"><a href="#2014-年：办公室猴子行动" class="headerlink" title="2014 年：办公室猴子行动"></a>2014 年：办公室猴子行动</h4><p>2014 年 3 月，位于华盛顿特区的一家私人研究机构的网络上发现了恶意软件包 Cozyduke（Trojan.Cozer）。随后，舒适熊发起了一系列电子邮件活动，试图诱使受害者点击”办公室猴子”（Office Monkeys）的 Flash 视频，其中包含恶意可执行文件。到 2014 年 7 月，该组织将受 Cozyduke 感染的系统上安装了 Miniduke。</p>
+<p>同年夏天，荷兰情报部门通过数字代理对舒适熊进行了<strong>反渗透</strong>，发现其针对美国民主党、国务院和白宫网络发起攻击的情报。</p>
+<h4 id="2015-年：入侵五角大楼"><a href="#2015-年：入侵五角大楼" class="headerlink" title="2015 年：入侵五角大楼"></a>2015 年：入侵五角大楼</h4><p>2015 年 8 月，舒适熊针对五角大楼电子邮件系统发起了鱼叉式网络钓鱼攻击，导致在调查期间<strong>关闭了整个联合参谋部非机密电子邮件系统和互联网访问</strong>。</p>
+<h4 id="2016-年：美国大选与-DNC-攻击"><a href="#2016-年：美国大选与-DNC-攻击" class="headerlink" title="2016 年：美国大选与 DNC 攻击"></a>2016 年：美国大选与 DNC 攻击</h4><p>2016 年 6 月，舒适熊与另一 APT 组织奇幻熊一起卷入了<strong>民主党全国委员会（DNC）网络攻击</strong>，窃取了大量邮件。这些邮件的曝光直接影响了对美国 2016 年总统大选结果的舆论走向。</p>
+<p>2016 年美国总统大选之后，舒适熊又针对美国总部设的智囊团和非政府组织（NGO）发起了一系列经过协调且精心计划的鱼叉式网络钓鱼攻击。</p>
+<h4 id="2017-年：挪威与荷兰政府部门"><a href="#2017-年：挪威与荷兰政府部门" class="headerlink" title="2017 年：挪威与荷兰政府部门"></a>2017 年：挪威与荷兰政府部门</h4><ul>
+<li><strong>挪威</strong>：2017 年 2 月 3 日，挪威警察安全局（PST）报告说，舒适熊尝试伪造挪威国防部、外交部和工党的 9 个人的电子邮件账户，对其目标包括挪威辐射防护局发起攻击。挪威总理埃尔纳·索尔伯格称这些行为是”对我们的民主体制的严重攻击”。</li>
+<li><strong>荷兰</strong>：2017 年 2 月，据透露，在过去的六个月中，舒适熊和奇幻熊曾多次尝试入侵荷兰总务部等政府部门。通用情报与安全局负责人罗伯·伯托利确认黑客是俄罗斯人，曾试图获取政府机密文件。随后，荷兰宣布 2017 年 3 月大选的选票将进行<strong>人工计票</strong>。</li>
+</ul>
+<h4 id="2019-年：幽灵行动"><a href="#2019-年：幽灵行动" class="headerlink" title="2019 年：幽灵行动"></a>2019 年：幽灵行动</h4><p>由于发现了三个归因于舒适熊的新恶意软件家族：<strong>PolyglotDuke、RegDuke 和 FatDuke</strong>，这表明舒适熊并没有停止活动，而是开发了更难发现的新工具。使用这些新发现的软件包进行的行动被统称为**”幽灵行动”（Operation Ghost）**。</p>
+<h4 id="2020-年：两大震惊世界的行动"><a href="#2020-年：两大震惊世界的行动" class="headerlink" title="2020 年：两大震惊世界的行动"></a>2020 年：两大震惊世界的行动</h4><h5 id="（1）窃取-COVID-19-疫苗数据"><a href="#（1）窃取-COVID-19-疫苗数据" class="headerlink" title="（1）窃取 COVID-19 疫苗数据"></a>（1）窃取 COVID-19 疫苗数据</h5><p>2020 年 7 月，NSA、NCSC 和 CSE 联合指控舒适熊窃取了有关 COVID-19 疫苗和治疗方法的数据。英国国家网络安全中心（NCSC）声称有 95% 以上的把握可以确定 APT29 是俄罗斯情报机构的一部分。</p>
+<p>英国外交大臣多米尼克·拉布严厉谴责：”俄罗斯情报部门正将目标投向那些与新冠疫情抗争的人，这是完全不可接受的。”</p>
+<p>该组织使用了名为 <strong>“WellMess”</strong> 和 <strong>“WellMail”</strong> 的自定义恶意软件，通过鱼叉式网络钓鱼攻击疫苗研发机构。克里姆林宫发言人佩斯科夫否认指控，称”俄罗斯与这些企图无关”。</p>
+<blockquote>
+<p>值得注意的是，此次归因在安全行业内引发了巨大争议——英国 NCSC 的报告中<strong>没有提供任何用于归因的技术证据</strong>，引发了卡巴斯基 GReAT 安全研究员 Brian Bartholomew 等人的公开质疑，而具有美国情报界背景的 Jason Kikta 等人则对此进行了猛烈抨击。</p>
+</blockquote>
+<h5 id="（2）SolarWinds-供应链攻击——“史上最大规模、最复杂的网络攻击”"><a href="#（2）SolarWinds-供应链攻击——“史上最大规模、最复杂的网络攻击”" class="headerlink" title="（2）SolarWinds 供应链攻击——“史上最大规模、最复杂的网络攻击”"></a>（2）SolarWinds 供应链攻击——“史上最大规模、最复杂的网络攻击”</h5><p>2020 年 12 月，一场震惊全球的供应链攻击被确认。舒适熊利用美国科技公司 SolarWinds 的 Orion 网络监控软件的更新机制，植入后门程序 <strong>SUNBURST</strong>（微软命名为 Solorigate），使黑客可以访问使用其产品的数千家公司和政府机关。</p>
+<p><strong>攻击机制详解：</strong></p>
+<ol>
+<li>攻击者通过 DLL 劫持技术，将 SolarWinds 产品中的动态库文件替换为修改后的恶意程序</li>
+<li>恶意 DLL 经过<strong>合法数字签名</strong>，再替换官方 DLL 文件，实现绕过防御措施加载</li>
+<li>Solorigate 后门修改了官方 DLL 文件中的 <code>BackgroundInventory.RefreshInstance()</code> 函数，添加 try-catch 处理，将恶意代码内嵌其中</li>
+<li>后门主要功能集中在 <code>OrionImprovementBusinessLayer</code> 类中，核心功能包括：<ul>
+<li>利用 DGA 算法动态生成 C2 服务器域名</li>
+<li>使用 HTTPS 协议与 C2 进行加密通信</li>
+<li>执行远程指令（文件上传&#x2F;下载、命令执行等）</li>
+</ul>
+</li>
+</ol>
+<p><strong>影响范围：</strong></p>
+<ul>
+<li>SolarWinds 全球拥有超过 <strong>300,000 家客户</strong>，包括美国军方、五角大楼、司法部、国务院、商务部、财政部以及 400 多家财富 500 强公司</li>
+<li>潜在受影响客户不到 <strong>18,000 个</strong>，约 <strong>250 个</strong> 政府和企业网络被实际访问</li>
+<li>受影响机构包括：美国商务部、能源部、司法部、财政部、国务院、国土安全部、五角大楼部分区域、国立卫生研究院</li>
+<li>思科、英特尔、德勤等公司也成为受害者</li>
+<li>FireEye 是第一个发现此次攻击的安全公司</li>
+</ul>
+<p>微软总裁布拉德·史密斯在接受 CBS “60 分钟”节目采访时表示：</p>
+<blockquote>
+<p><strong>“从软件工程的角度来看，可以说这是世界上有史以来规模最大、最复杂的攻击。当我们分析了所有内容时，问自己有多少工程师涉及此次攻击行动，我们得出的答案肯定是超过 1000 人。”</strong></p>
+</blockquote>
+<p>美国 FBI、CISA、ODNI 和 NSA 联合工作组发表声明，指控确认与俄罗斯有关的 APT 组织针对 SolarWinds 发起了复杂的供应链攻击。声明称：”少于 10 个”的政府机构受到了威胁。</p>
+<p>俄罗斯大使馆否认三连：”信息领域的恶意活动与俄罗斯外交政策、国家利益和我们对国家间关系的理解相抵触。俄罗斯不会在网络领域进行进攻性行动。”</p>
+<h3 id="2-3-归因争议：网络威胁归因的两面性"><a href="#2-3-归因争议：网络威胁归因的两面性" class="headerlink" title="2.3 归因争议：网络威胁归因的两面性"></a>2.3 归因争议：网络威胁归因的两面性</h3><p>舒适熊的多次攻击行动引发了安全行业对**网络威胁归因（Threat Attribution）**的激烈讨论。归因主要分为两个层次：</p>
+<ol>
+<li><strong>技术层面——活动归因（How）</strong>：对恶意活动进行聚类，通过寻找历史 TTPs（战术、技术和程序）和当前活动 TTPs 的重叠，将不同活动聚类到同一组中</li>
+<li><strong>战略层面——归因到具体威胁行为体和实体（Who）</strong>：追踪攻击者的真实身份和幕后组织者，涉及初始地域来源、特殊设备&#x2F;网络 ID、相关个人或组织三个层面的判定</li>
+</ol>
+<p>在多次归因事件中，政府机构的安全声明往往缺少技术证据支撑，而安全厂商之间的学术争论也常常被大国博弈的政治因素所裹挟。</p>
+<h4 id="2021-2024-年：持续活跃"><a href="#2021-2024-年：持续活跃" class="headerlink" title="2021-2024 年：持续活跃"></a>2021-2024 年：持续活跃</h4><h5 id="2021-年：入侵共和党全国委员会（RNC）"><a href="#2021-年：入侵共和党全国委员会（RNC）" class="headerlink" title="2021 年：入侵共和党全国委员会（RNC）"></a>2021 年：入侵共和党全国委员会（RNC）</h5><p>2021 年 7 月，舒适熊入侵了<strong>美国共和党全国委员会（RNC）</strong>。与 2016 年的 DNC 攻击类似，但这次的目标是共和党。攻击通过被攻陷的第三方 IT 供应商 <strong>Synnex</strong> 实施，显示了该组织对供应链攻击路径的持续偏好。</p>
+<h5 id="2021-年：FoggyWeb-工具披露"><a href="#2021-年：FoggyWeb-工具披露" class="headerlink" title="2021 年：FoggyWeb 工具披露"></a>2021 年：FoggyWeb 工具披露</h5><p>2021 年 9 月，Microsoft 披露了舒适熊使用的 <strong>FoggyWeb</strong> 工具——该工具可从受损的 Active Directory 实例中转储认证令牌，实现持久化访问。</p>
+<h5 id="2022-年：MagicWeb-AD-FS-认证绕过"><a href="#2022-年：MagicWeb-AD-FS-认证绕过" class="headerlink" title="2022 年：MagicWeb AD FS 认证绕过"></a>2022 年：MagicWeb AD FS 认证绕过</h5><p>2022 年 8 月 24 日，Microsoft 披露舒适熊使用 <strong>MagicWeb</strong> 工具在 Active Directory 联合身份验证服务（AD FS）服务器上<strong>绕过用户认证</strong>，这意味着即使受害者修改密码，攻击者仍可维持访问权限。</p>
+<h5 id="2024-年：入侵-Microsoft-自身"><a href="#2024-年：入侵-Microsoft-自身" class="headerlink" title="2024 年：入侵 Microsoft 自身"></a>2024 年：入侵 Microsoft 自身</h5><ul>
+<li><strong>时间线</strong>：2023 年 11 月开始，2024 年 1 月被发现并终止</li>
+<li><strong>目标</strong>：Microsoft 高管及法律&#x2F;网络安全团队的电子邮箱</li>
+<li><strong>手段</strong>：<strong>密码喷洒攻击</strong>（Password Spraying）——一种针对弱密码的暴力破解变体</li>
+<li><strong>目的</strong>：了解 Microsoft 对该组织的调查情况（”调查调查者”）</li>
+<li><strong>影响</strong>：少量企业邮箱账户被访问，未发现对客户环境或 AI 系统造成影响</li>
+</ul>
+<h5 id="2024-年：入侵-TeamViewer"><a href="#2024-年：入侵-TeamViewer" class="headerlink" title="2024 年：入侵 TeamViewer"></a>2024 年：入侵 TeamViewer</h5><p>2024 年 6 月 28 日，德国 <strong>TeamViewer SE</strong> 公司宣布其企业 IT 网络被舒适熊入侵。幸运的是，用户数据和远程桌面产品本身未受影响。这是该组织针对欧洲科技公司的重要案例。</p>
+<hr>
+<h2 id="三、奇幻熊-Fancy-Bear（APT28）"><a href="#三、奇幻熊-Fancy-Bear（APT28）" class="headerlink" title="三、奇幻熊 Fancy Bear（APT28）"></a>三、奇幻熊 Fancy Bear（APT28）</h2><h3 id="3-1-组织概况"><a href="#3-1-组织概况" class="headerlink" title="3.1 组织概况"></a>3.1 组织概况</h3><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>信息</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>代号</strong></td>
+<td>APT28</td>
+</tr>
+<tr>
+<td><strong>别名</strong></td>
+<td><strong>核心别名</strong>：Fancy Bear、APT28、Pawn Storm、Sofacy Group、Sednit<br><strong>厂商命名</strong>：STRONTIUM（微软命名）、Tsar Team、Threat Group-4127、T-APT-12<br><strong>合并称呼</strong>：Grizzly Steppe（与 Cozy Bear&#x2F;APT29 合称时，意为”灰熊步态”）</td>
+</tr>
+<tr>
+<td><strong>成立时间</strong></td>
+<td>可能成立于 2004–2007 年间，活动可追溯至 2000 年代中期</td>
+</tr>
+<tr>
+<td><strong>关联机构</strong></td>
+<td><strong>俄罗斯军事情报总局（GRU）第 26165 部队</strong>——2018 年美国特别顾问调查报告正式认定；该部队总部主要从事网络攻击和骇客数据解密等工作<br><strong>隶属关系</strong>：在俄罗斯”双熊”体系中隶属于”安逸熊”（上级协调组织）</td>
+</tr>
+<tr>
+<td><strong>主要目标</strong></td>
+<td>政府、军队、航空航天、国防、国际组织、媒体、体育机构；<strong>重点区域</strong>：外高加索地区、NATO 北约成员国</td>
+</tr>
+<tr>
+<td><strong>攻击风格</strong></td>
+<td>高调曝光、公开炫耀战果（全球罕见建官网的 APT）、零日漏洞利用、钓鱼网站、定向攻击</td>
+</tr>
+<tr>
+<td><strong>重大事件</strong></td>
+<td><strong>2023 年 7 月 24 日</strong>：奇幻熊总部成为乌克兰无人机攻击目标，总部其中一栋大楼在爆炸式攻击后倒塌</td>
+</tr>
+</tbody></table>
+<p>奇幻熊是一个被认为归属于俄罗斯军事情报局（GRU）的网络间谍组织。防火墙公司 CrowdStrike 表示此组织与俄罗斯军事组织 GRU 存在一定程度的关联。英国外交联邦发展事务所以及网络安全公司 SecureWorks、ThreatConnect、Mandiant 也表示此组织很可能是由俄罗斯政府扶持并运作。</p>
+<p>2018 年，美国特别顾问调查报告认定<strong>奇幻熊为 GRU 第 26165 部队的分支</strong>，该部队主要从事网络攻击和骇客数据解密等工作。</p>
+<p><strong>“奇幻熊”这个名字来自美国资安研究员 Dmitri Alperovitch（CrowdStrike 联合创始人）的命名。</strong></p>
+<p>今天我们要讲的这个组织，颇有些”豪迈”的”英雄气概”，我们暂且把它归为**”豪放派”**。它还有个很霸气、又萌萌哒的名字——<strong>奇幻熊（Fancy Bear）</strong>。</p>
+<h3 id="3-1-1-完整攻击目标清单"><a href="#3-1-1-完整攻击目标清单" class="headerlink" title="3.1.1 完整攻击目标清单"></a>3.1.1 完整攻击目标清单</h3><p>根据维基百科及多方安全机构报告，奇幻熊的攻击目标覆盖全球各大关键领域：</p>
+<table>
+<thead>
+<tr>
+<th>目标类型</th>
+<th>具体受害者&#x2F;机构</th>
+<th>攻击时间</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>政府立法机构</strong></td>
+<td>德国联邦议院</td>
+<td>2014-2015</td>
+</tr>
+<tr>
+<td></td>
+<td>挪威议会</td>
+<td>2014-2017</td>
+</tr>
+<tr>
+<td><strong>政府行政部门</strong></td>
+<td>美国白宫</td>
+<td>2015</td>
+</tr>
+<tr>
+<td></td>
+<td>荷兰政府部门（总务部等）</td>
+<td>2016-2017</td>
+</tr>
+<tr>
+<td><strong>军事&#x2F;防务</strong></td>
+<td>北约（NATO）总部</td>
+<td>2015</td>
+</tr>
+<tr>
+<td></td>
+<td>乌克兰军事部门</td>
+<td>2014-2016</td>
+</tr>
+<tr>
+<td><strong>媒体机构</strong></td>
+<td>法国电视台 TV5Monde</td>
+<td>2015（大规模攻击导致频道瘫痪）</td>
+</tr>
+<tr>
+<td><strong>政党&#x2F;选举</strong></td>
+<td>美国民主党全国委员会（DNC）</td>
+<td>2016</td>
+</tr>
+<tr>
+<td></td>
+<td>法国总统候选人 Emmanuel Macron</td>
+<td>2017（大选期间）</td>
+</tr>
+<tr>
+<td></td>
+<td>希拉里·克林顿总统竞选团队</td>
+<td>2016（SecureWorks 确认）</td>
+</tr>
+<tr>
+<td><strong>国际组织</strong></td>
+<td>欧洲安全与合作组织（OSCE）</td>
+<td>—</td>
+</tr>
+<tr>
+<td></td>
+<td>国际田联（IAAF）</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>体育&#x2F;反兴奋剂</strong></td>
+<td>世界反兴奋剂机构（WADA）</td>
+<td>2016-2018</td>
+</tr>
+<tr>
+<td></td>
+<td>国际奥委会（IOC）&#x2F;美国奥委会</td>
+<td>2018</td>
+</tr>
+<tr>
+<td><strong>其他</strong></td>
+<td>外高加索地区多国政府和机构</td>
+<td>持续</td>
+</tr>
+</tbody></table>
+<h3 id="3-1-2-2023-年：乌克兰无人机袭击奇幻熊总部"><a href="#3-1-2-2023-年：乌克兰无人机袭击奇幻熊总部" class="headerlink" title="3.1.2 2023 年：乌克兰无人机袭击奇幻熊总部"></a>3.1.2 2023 年：乌克兰无人机袭击奇幻熊总部</h3><blockquote>
+<p><strong>物理打击回响网络战</strong></p>
+</blockquote>
+<p>2023 年 7 月 24 日，在俄乌冲突持续背景下，<strong>奇幻熊总部成为乌克兰无人机攻击的目标</strong>。据德国之声（DW）等媒体报道，位于莫斯科的 GRU 第 26165 部队总部大楼在<strong>爆炸式攻击后倒塌</strong>。</p>
+<p>这是极为罕见的案例——一个 APT 黑客组织的<strong>物理总部遭到实体军事打击</strong>。事件标志着网络战与常规军事行动之间的界限进一步模糊，也表明在当代冲突中，网络攻击能力已成为与常规军事力量同等重要的打击目标。</p>
+<h3 id="3-2-为啥说它”豪迈”？"><a href="#3-2-为啥说它”豪迈”？" class="headerlink" title="3.2 为啥说它”豪迈”？"></a>3.2 为啥说它”豪迈”？</h3><p>一般有哪个黑客组织敢这样明目张胆地炫耀自己的”战果”？奇幻熊就这么做了——<strong>它开了自己的官网</strong>。</p>
+<p>“奇幻熊”在自我介绍中是这样说的：</p>
+<blockquote>
+<p><strong>“我们是一个国际黑客组织，致力于维护公平的竞赛和干净的运动。我们宣布开始 ‘#OpOlympics’，将告诉你奥林匹克奖牌是如何赢得的。我们黑进了世界反兴奋剂机构的数据库，被我们所见的给震惊了。我们将从美国队开刀，他们的胜利被玷污，我们也会放出别的世界队伍的消息，你们就等着看著名运动员的服用违禁药的消息吧。”</strong></p>
+</blockquote>
+<p>在其官网上，还有其”揭露”的多个项目：</p>
+<table>
+<thead>
+<tr>
+<th>项目名称</th>
+<th>发布日期</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>U.S. and Canada Sports Officials’ Secret Plot Revealed</td>
+<td>2016-12-13</td>
+</tr>
+<tr>
+<td>U.S. Anti-Doping Agency Staff Emails</td>
+<td>2016-10-06</td>
+</tr>
+<tr>
+<td>WADA databases. Part 6</td>
+<td>2016-09-30</td>
+</tr>
+<tr>
+<td>WADA databases. Part 5</td>
+<td>2016-09-23</td>
+</tr>
+<tr>
+<td>WADA databases. Part 4</td>
+<td>2016-09-19</td>
+</tr>
+<tr>
+<td>WADA databases. Part 3</td>
+<td>2016-09-17</td>
+</tr>
+<tr>
+<td>WADA databases. Part 2</td>
+<td>2016-09-15</td>
+</tr>
+<tr>
+<td>American Athletes Caught Doping</td>
+<td>2016-09-13</td>
+</tr>
+</tbody></table>
+<p>有人会问，它这么”坦诚”，没人找它们喝茶吗？肯定有人找，但未必能找得到——还没人拿到确凿的证据指认”它究竟是谁”。</p>
+<h3 id="3-3-前世今生：为何与奥林匹克”杠上”？"><a href="#3-3-前世今生：为何与奥林匹克”杠上”？" class="headerlink" title="3.3 前世今生：为何与奥林匹克”杠上”？"></a>3.3 前世今生：为何与奥林匹克”杠上”？</h3><p>这还得从多年前说起。当年有人举报俄罗斯队违规使用兴奋剂，相关机构在 2014 年夏季奥运会期间对此展开调查。俄罗斯官员一再否认所有指控，但证据及后续的医学检测均显示，<strong>超过 1000 名俄罗斯运动员涉嫌从其国家资助的兴奋剂计划中受益</strong>，于是俄罗斯队被全面禁赛。</p>
+<p>此后就拉开了奇幻熊的”神奇之旅”。</p>
+<h3 id="3-4-2016-年-WADA-数据库入侵事件——五弹连发"><a href="#3-4-2016-年-WADA-数据库入侵事件——五弹连发" class="headerlink" title="3.4 2016 年 WADA 数据库入侵事件——五弹连发"></a>3.4 2016 年 WADA 数据库入侵事件——五弹连发</h3><p>2016 年，这只奇幻熊侵入了世界反兴奋剂机构（WADA）的数据库。随后，陆续曝光数十位世界级知名运动员”以治疗为目的”在该机构的允许下使用违禁药物。</p>
+<h4 id="第一弹：9月13日-——-全球哗然"><a href="#第一弹：9月13日-——-全球哗然" class="headerlink" title="第一弹：9月13日 —— 全球哗然"></a>第一弹：9月13日 —— 全球哗然</h4><p>第一批名单公布，该资料显示：</p>
+<ul>
+<li><strong>西蒙·拜尔斯</strong>（Simone Biles）：里约奥运会 4 金得主，在 2016 年 8 月奥运会期间兴奋剂检测呈阳性，她在 2012－2014 年期间多次被获准使用禁药用于治疗</li>
+<li><strong>威廉姆斯姐妹</strong>（Serena &amp; Venus Williams）：最近几年都被允许使用含兴奋剂成分的药物</li>
+<li><strong>多恩</strong>（Brittney Griner）：女篮明星也有类似被允许使用特定”禁药”的情况</li>
+</ul>
+<h4 id="第二弹：9月15日"><a href="#第二弹：9月15日" class="headerlink" title="第二弹：9月15日"></a>第二弹：9月15日</h4><p>第二批名单公布。英国广播公司的网站报道称：</p>
+<ul>
+<li><strong>布拉德利·威金斯</strong>（Bradley Wiggins）：里约奥运会场地自行车男子团体追逐赛金牌得主</li>
+<li><strong>克里斯·弗鲁姆</strong>（Chris Froome）：三次环法自行车赛冠军</li>
+</ul>
+<h4 id="第三弹：9月16日-——-触目惊心"><a href="#第三弹：9月16日-——-触目惊心" class="headerlink" title="第三弹：9月16日 —— 触目惊心"></a>第三弹：9月16日 —— 触目惊心</h4><p>第三批名单公布，多名里约奥运会冠军被获准使用兴奋剂治疗伤病：</p>
+<table>
+<thead>
+<tr>
+<th>运动员</th>
+<th>国家</th>
+<th>项目</th>
+<th>成绩</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>尼古拉·亚当斯</td>
+<td>英国</td>
+<td>女子拳击</td>
+<td>冠军</td>
+</tr>
+<tr>
+<td>劳拉·特罗特</td>
+<td>英国</td>
+<td>女子自行车</td>
+<td>冠军</td>
+</tr>
+<tr>
+<td>西沃恩·玛丽·奥康纳</td>
+<td>英国</td>
+<td>女子游泳</td>
+<td>亚军</td>
+</tr>
+<tr>
+<td>奥利维娅·卡内基·布朗</td>
+<td>英国</td>
+<td>女子赛艇</td>
+<td>亚军</td>
+</tr>
+<tr>
+<td>金伯利·布伦南</td>
+<td>澳大利亚</td>
+<td>女子赛艇</td>
+<td>冠军</td>
+</tr>
+<tr>
+<td>亚历山大·别洛诺戈夫</td>
+<td>澳大利亚</td>
+<td>男子赛艇</td>
+<td>亚军</td>
+</tr>
+<tr>
+<td>杰克·博布里奇</td>
+<td>澳大利亚</td>
+<td>男子自行车</td>
+<td>亚军</td>
+</tr>
+</tbody></table>
+<h4 id="第四弹：9月20日-——-世界冠军赫然上榜"><a href="#第四弹：9月20日-——-世界冠军赫然上榜" class="headerlink" title="第四弹：9月20日 —— 世界冠军赫然上榜"></a>第四弹：9月20日 —— 世界冠军赫然上榜</h4><p>第四批名单公布：</p>
+<ul>
+<li><strong>拉斐尔·纳达尔</strong>（Rafael Nadal）：西班牙网球名将</li>
+<li><strong>莫·法拉赫</strong>（Mo Farah）：里约奥运会男子 5000 米和 10000 米双料冠军</li>
+</ul>
+<h4 id="第五弹：9月24日"><a href="#第五弹：9月24日" class="headerlink" title="第五弹：9月24日"></a>第五弹：9月24日</h4><p>第五批名单公布，又包括五名里奥奥运会冠军和一位中国乒乓球迷熟悉的老对手：</p>
+<ul>
+<li><strong>法比安·坎切拉拉</strong>（瑞士）：男子公路自行车个人计时赛冠军</li>
+<li><strong>尼诺·舒尔特</strong>（瑞士）：山地自行车金牌得主<br><strong>汉娜·米尔斯</strong>（英国）：帆船女子双人艇 470 级冠军</li>
+<li><strong>坎贝尔</strong>（澳大利亚）：女子 4×100 米自由泳接力成员，当时 100 米自由泳世界纪录保持者——<strong>名气最响的运动员</strong></li>
+<li><strong>麦迪逊</strong>（澳大利亚）：坎贝尔队友</li>
+<li><strong>蒂姆·波尔</strong>（德国）：乒乓球名将，中国乒乓球队的老对手，被披露曾服用一种肾上腺皮质激素（时间为 2012 年伦敦奥运会前夕）。里约奥运会上，波尔担任了德国代表团的开幕式旗手</li>
+</ul>
+<blockquote>
+<p>值得一提的是，打破女子 100 米自由泳世界纪录的澳大利亚自由泳名将坎贝尔，资料显示她一共服用了三种禁药，曾一日两次使用糖皮质激素和沙美特罗，时间是 2013 年 7 月 21 日之前。</p>
+</blockquote>
+<p>以上运动员不仅在里约奥运会上获得金牌，还获得了**”治疗豁免用药权”（TUE, Therapeutic Use Exemption）**。</p>
+<h3 id="3-5-后续影响"><a href="#3-5-后续影响" class="headerlink" title="3.5 后续影响"></a>3.5 后续影响</h3><p>“奇幻熊”曝光的用药名单给世界体坛带来巨大的震动。同时，作为兴奋剂检测的权威，<strong>世界反兴奋剂机构陷入了严重的信用危机</strong>。国际奥委会主席巴赫对于黑客行为深感忧虑。</p>
+<p>世界反兴奋剂机构表示，这次黑客攻击源自俄罗斯。俄罗斯断然否认”黑客组织与俄政府有关”，也否认了俄政府支持这一黑客行动。</p>
+<p>俄总统普京在独联体峰会期间回应说：</p>
+<blockquote>
+<p><strong>“我们并不赞同黑客行为，但这次事件不可能不受到国家社会，尤其是体育界的关注。国际社会应注意在反兴奋剂行动中存在的双重标准。”</strong></p>
+</blockquote>
+<p>受”奇幻熊”影响，世界舆论把矛头都对准了世界反兴奋剂机构，被牵连的国际奥委会也不得不开展危机公关，表示将成立一个诚信联盟，以应对世界体坛出现的腐败、禁药丑闻等问题。10 月 8 日，国际奥委会在瑞士洛桑召开特别峰会，讨论未来世界反兴奋剂形势。</p>
+<h3 id="3-6-故事并未结束"><a href="#3-6-故事并未结束" class="headerlink" title="3.6 故事并未结束"></a>3.6 故事并未结束</h3><p>你以为故事就此结束了？<strong>NO！</strong></p>
+<h4 id="2018-年：再度出击"><a href="#2018-年：再度出击" class="headerlink" title="2018 年：再度出击"></a>2018 年：再度出击</h4><p>2018 年，奇幻熊再度对 WADA 展开攻击，并于 1 月 10 日在推特发文，声称获取了国际奥委会（IOC）和世界反兴奋剂组织（WADA）的电子邮件，指责美国在内的”盎格鲁·撒克逊（Anglo-Saxon）”国家打着纯洁体育的名义谋求金钱和权力，而俄罗斯被禁赛是政治阴谋。同年，<strong>平昌冬奥会期间也遭受其黑客攻击</strong>。</p>
+<h4 id="2020-年：目标东京奥运会"><a href="#2020-年：目标东京奥运会" class="headerlink" title="2020 年：目标东京奥运会"></a>2020 年：目标东京奥运会</h4><p>从 9 月 16 日开始，微软威胁情报中心的安全研究员追踪到奇幻熊的”新动态”。这次，它的目标对准了 <strong>2020 年东京奥运会</strong>。与以往攻击方法相似，奇幻熊依然采用包括鱼叉式网络钓鱼、密码喷雾、远程侵入互联网设备以及使用开源和自定义恶意软件。这次，在<strong>三大洲至少 16 个国家</strong>的国际体育和反兴奋剂组织均成为攻击目标。</p>
+<h3 id="3-7-其他重大攻击事件"><a href="#3-7-其他重大攻击事件" class="headerlink" title="3.7 其他重大攻击事件"></a>3.7 其他重大攻击事件</h3><p>你以为这些就是奇幻熊全部的”英勇事迹”吗？<strong>NO！</strong></p>
+<p>以下攻击统统都算在了它的头上：</p>
+<table>
+<thead>
+<tr>
+<th>时间</th>
+<th>目标</th>
+<th>详情</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2014-2016</td>
+<td>德国议会</td>
+<td>成功入侵德国联邦议院系统</td>
+</tr>
+<tr>
+<td>2015 年 4 月</td>
+<td>法国电视网络 TV5Monde</td>
+<td>发起大规模网络攻击</td>
+</tr>
+<tr>
+<td>2015 年 8 月</td>
+<td>白宫、北约</td>
+<td>入侵目标系统</td>
+</tr>
+<tr>
+<td>2015 年 10 月</td>
+<td>荷兰安全委员会、MH17 相关记者</td>
+<td>攻击马航 MH17 坠机事件相关记者</td>
+</tr>
+<tr>
+<td>2016 年 3 月</td>
+<td>美国民主党全国委员会（DNC）</td>
+<td>与舒适熊联合攻击，窃取大量邮件</td>
+</tr>
+<tr>
+<td>2016 年 5 月</td>
+<td>美国政府部门</td>
+<td>多个机构遭入侵</td>
+</tr>
+<tr>
+<td>2017 年</td>
+<td>法国总统候选人马克龙</td>
+<td>在大选期间对其发起攻击</td>
+</tr>
+<tr>
+<td>2017 年 2 月</td>
+<td>荷兰政府部门</td>
+<td>试图窃取机密文件</td>
+</tr>
+<tr>
+<td>2018 年 1 月</td>
+<td>国际奥委会和美国奥委会</td>
+<td>再次展开攻击</td>
+</tr>
+<tr>
+<td>2023 年 7 月</td>
+<td>—</td>
+<td>幻想熊总部成为乌克兰无人机攻击的目标，总部一栋大楼在爆炸后倒塌</td>
+</tr>
+</tbody></table>
+<p>尽管不断被曝光和谴责，但该黑客组织的活动似乎一点不受影响，依然十分活跃。</p>
+<hr>
+<h2 id="四、奇幻熊的技术进化史"><a href="#四、奇幻熊的技术进化史" class="headerlink" title="四、奇幻熊的技术进化史"></a>四、奇幻熊的技术进化史</h2><p>根据 Palo Alto Networks、FireEye、思科等多家国外网络安全公司的分析，奇幻熊活跃最为频繁是在 2018 年至 2019 年期间，并在<strong>武器化、恶意软件传播及长久驻留</strong>三大领域进行了重大更新。</p>
+<h3 id="4-1-武器化技术的演进"><a href="#4-1-武器化技术的演进" class="headerlink" title="4.1 武器化技术的演进"></a>4.1 武器化技术的演进</h3><p>武器化可以被理解为一种”战前准备”技术，是指为实施复杂攻击而所做的一切准备，包括搭建基础设施（C2、域名和 IP、证书以及库）、分发恶意软件样本等。</p>
+<table>
+<thead>
+<tr>
+<th>时间段</th>
+<th>使用技术</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2017 - 2018 初</td>
+<td>T1251、T1329、T1336、T1319</td>
+<td>侧重借助第三方资源实施攻击，节省开发成本</td>
+</tr>
+<tr>
+<td>2018 初 - 2018 中</td>
+<td>T1314、T1322、T1328</td>
+<td>开始转向内部专业资源，提高攻击成功率</td>
+</tr>
+<tr>
+<td>2018.10 - 2019.03</td>
+<td>T1345</td>
+<td>引入完全不同的武器化技术，开发能力新提升</td>
+</tr>
+</tbody></table>
+<h3 id="4-2-恶意软件传播：漏洞利用"><a href="#4-2-恶意软件传播：漏洞利用" class="headerlink" title="4.2 恶意软件传播：漏洞利用"></a>4.2 恶意软件传播：漏洞利用</h3><p>利用漏洞来传播恶意软件，是奇幻熊的惯用手法。据称，奇幻熊过去常使用的漏洞包括：</p>
+<h4 id="Windows-系统漏洞"><a href="#Windows-系统漏洞" class="headerlink" title="Windows 系统漏洞"></a>Windows 系统漏洞</h4><table>
+<thead>
+<tr>
+<th>CVE 编号</th>
+<th>漏洞名称 &#x2F; 别名</th>
+<th>漏洞类型</th>
+<th>影响组件</th>
+<th>简要说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>CVE-2017-0144</strong></td>
+<td><strong>EternalBlue（永恒之蓝）</strong></td>
+<td>SMBv1 远程代码执行（RCE）</td>
+<td>Windows SMBv1 协议（srv.sys）</td>
+<td>NSA 开发的 exploit，2017 年由 Shadow Brokers 泄露。利用 SMBv1 处理特制数据包时的堆缓冲区溢出，可实现<strong>无需认证的远程代码执行</strong>，且具备<strong>蠕虫式自我传播能力</strong>。被 WannaCry 勒索病毒和 NotPetya 破坏性恶意软件大规模使用，造成全球数百亿美元损失。微软于 2017 年 3 月发布 MS17-010 补丁修复。CVSS 8.1（高危）</td>
+</tr>
+<tr>
+<td><strong>CVE-2012-0158</strong></td>
+<td><strong>MSCOMCTL.OCX RCE 漏洞</strong></td>
+<td>ActiveX 控件缓冲区溢出 → RCE</td>
+<td>MSCOMCTL.OCX（ListView&#x2F;TreeView 等 Common Controls）</td>
+<td>攻击者可构造畸形 DOC&#x2F;RTF 文件，通过嵌入恶意 ActiveX 控件触发缓冲区溢出，实现远程代码执行。影响 Office 2003&#x2F;2007&#x2F;2010、SQL Server、Visual Basic 6.0 等大量产品。该漏洞发布后<strong>立即被野外大规模利用</strong>，瑞星等安全厂商截获大量基于此漏洞的畸形文档病毒。微软安全公告 MS12-027。CVSS 9.3（严重）</td>
+</tr>
+<tr>
+<td><strong>CVE-2015-1641</strong></td>
+<td><strong>Word 类型混淆漏洞（Type Confusion）</strong></td>
+<td>内存损坏 → RCE</td>
+<td>Microsoft Word（WWLIB.DLL）</td>
+<td>Word 在处理 <code>displacedByCustomXml</code> 属性时，未对 customXml 标签对象进行有效性验证，攻击者可传入其他标签对象导致<strong>类型混淆</strong>，进而实现任意内存写入和远程代码执行。影响 Word 2007&#x2F;2010&#x2F;2013 等。被 Patchwork APT 组织等广泛使用。EPSS 利用概率排名 2015 年 Office 漏洞第一（99.9th 百分位）。CVSS 7.8</td>
+</tr>
+<tr>
+<td><strong>CVE-2015-1642</strong></td>
+<td><strong>Office 内存损坏漏洞</strong></td>
+<td>内存损坏 → RCE</td>
+<td>Microsoft Office</td>
+<td>Office 存在内存损坏漏洞，允许远程攻击者通过精心构造的文档（如 RTF）执行任意代码。与 CVE-2015-1641 同期被发现并利用，属于同一批 Office 零日漏洞之一。CVSS 7.8</td>
+</tr>
+<tr>
+<td><strong>CVE-2015-1701</strong></td>
+<td><strong>Win32k 权限提升漏洞</strong></td>
+<td>本地权限提升（LPE）</td>
+<td>Win32k.sys 内核驱动</td>
+<td>Win32k 内核模式驱动存在未明漏洞，允许本地攻击者通过精心构造的应用程序<strong>从普通用户权限提升至 SYSTEM 权限</strong>。常与其他 RCE 漏洞配合使用，形成完整的”RCE + 提权”攻击链。CISA 已列入已知被利用漏洞目录（KEV）。CVSS 7.8</td>
+</tr>
+<tr>
+<td><strong>CVE-2015-2387</strong></td>
+<td><strong>ATMFD.DLL 内存损坏漏洞（字体驱动提权）</strong></td>
+<td>本地权限提升（LPE）</td>
+<td>ATMFD.DLL（Adobe Type Manager Font Driver）</td>
+<td>ATM 字体驱动存在越界写入漏洞，允许本地用户通过精心构造的应用程序<strong>获取系统最高权限</strong>。影响 Windows Server 2003 至 Windows 8.1 全系列版本。微软安全公告 MS15-077。CISA KEV。CVSS 7.8</td>
+</tr>
+<tr>
+<td><strong>CVE-2015-2590</strong></td>
+<td><strong>Oracle Java SE 远程代码执行</strong></td>
+<td>Java 远程代码执行（RCE）</td>
+<td>Oracle Java Runtime Environment (JRE)</td>
+<td>Oracle Java 库中存在未公开漏洞，允许远程攻击者通过未知向量<strong>危及机密性、完整性和可用性</strong>。常用于攻击使用旧版 Java 插件的浏览器环境。CVSS 9.8（严重）</td>
+</tr>
+<tr>
+<td><strong>CVE-2015-3043</strong></td>
+<td><strong>Flash FLV 缓冲区溢出</strong></td>
+<td>Flash 内存损坏 → RCE</td>
+<td>Adobe Flash Player（FLV 解码器）</td>
+<td>Flash 在播放 FLV 文件时，解压 Nellymoser 压缩的音频 tag 时<strong>未正确检查所需 buffer 长度</strong>，导致缓冲区溢出。可通过构造特定 audio tag 触发并执行恶意代码。CISA KEV。CVSS 9.8</td>
+</tr>
+<tr>
+<td><strong>CVE-2015-4902</strong></td>
+<td><strong>Flash Player 内存损坏</strong></td>
+<td>Flash 内存损坏 → RCE</td>
+<td>Adobe Flash Player</td>
+<td>Flash Player 存在内存损坏漏洞，允许攻击者执行任意代码或造成拒绝服务。CISA 已列入 KEV 目录。CVSS 9.8</td>
+</tr>
+<tr>
+<td><strong>CVE-2015-7645</strong></td>
+<td><strong>Flash IExternalizable.writeExternal 类型混淆</strong></td>
+<td>Flash 任意代码执行（RCE）</td>
+<td>Adobe Flash Player 18.x&#x2F;19.x</td>
+<td>通过构造恶意 SWF 文件，利用 <code>IExternalizable.writeExternal</code> 接口的<strong>类型混淆漏洞</strong>执行任意代码。<strong>被趋势科技确认在野外被 Pawn Storm（即奇幻熊 APT28）活动所利用</strong>。Adobe 安全公告 APSA15-05 &#x2F; APSB15-27。CVSS 9.3</td>
+</tr>
+<tr>
+<td><strong>CVE-2015-5119</strong></td>
+<td><strong>Flash ByteArray Use-After-Free（Hacking Team 漏洞）</strong></td>
+<td>UAF → RCE</td>
+<td>Adobe Flash Player（ActionScript 3 ByteArray 类）</td>
+<td>Flash AS3 的 ByteArray 类存在<strong>释放后重用（UAF）漏洞</strong>，攻击者可通过覆盖 <code>valueOf</code> 函数触发。此漏洞因 <strong>Hacking Team 数据泄露事件</strong>而曝光（泄露了武器化的 exploit 代码），随后在 2015 年 7 月被迅速大规模利用。CVSS 9.8（严重），CISA KEV</td>
+</tr>
+<tr>
+<td><strong>CVE-2017-0262</strong></td>
+<td><strong>Office EPS 远程代码执行</strong></td>
+<td>EPS 解析 → RCE</td>
+<td>Microsoft Office（EPS 过滤器）</td>
+<td>Office 在处理封装 PostScript（EPS）文件时存在<strong>远程命令执行漏洞</strong>。攻击者可向目标发送包含畸形 EPS 对象的 DOC 文档，当用户打开时即可在电脑上执行任意指令。<strong>与 CVE-2017-0263 配合形成”RCE + 提权”完整攻击链</strong>。微软已收到有限定向攻击的报告。CVSS 7.8</td>
+</tr>
+<tr>
+<td><strong>CVE-2017-0263</strong></td>
+<td><strong>Win32k 内核权限提升（Use-After-Free）</strong></td>
+<td>内核 UAF → LPE</td>
+<td>Win32k.sys（Windows 内核模式驱动）</td>
+<td>Win32k 驱动在处理上下文菜单时存在 <strong>Use-After-Free 漏洞</strong>——菜单窗口折叠后内存被释放但指针未清零，本地攻击者可借此<strong>在内核模式下运行任意代码</strong>，从普通用户提升到 SYSTEM 权限。Positive Technologies 专家发现此零日漏洞在被野外利用。CISA KEV。CVSS 7.8</td>
+</tr>
+<tr>
+<td><strong>CVE-2010-3333</strong></td>
+<td><strong>RTF 栈缓冲区溢出漏洞</strong></td>
+<td>RTF 栈溢出 → RCE</td>
+<td>Microsoft Office（Open XML 文件格式转换器）</td>
+<td>Open XML 文件格式转换器在处理 RTF 的 “pFragments” 属性值时，<strong>未正确计算属性值占用的空间大小</strong>，导致栈溢出。攻击者通过构造畸形 RTF 数据即可远程执行代码。影响 Office XP&#x2F;2003&#x2F;2007&#x2F;2010 全系列。”红色十月”（Red October）APT 组织曾利用此漏洞。微软公告 MS10-087。CVSS 9.3</td>
+</tr>
+</tbody></table>
+<h4 id="Adobe-Flash-漏洞"><a href="#Adobe-Flash-漏洞" class="headerlink" title="Adobe Flash 漏洞"></a>Adobe Flash 漏洞</h4><table>
+<thead>
+<tr>
+<th>CVE 编号</th>
+<th>漏洞名称 &#x2F; 别名</th>
+<th>漏洞类型</th>
+<th>影响版本</th>
+<th>简要说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>CVE-2014-0515</strong></td>
+<td><strong>Flash Pixel Bender 缓冲区溢出</strong></td>
+<td>Pixel Bender 组件缓冲区溢出 → RCE</td>
+<td>Flash Player 11.7 以下 &#x2F; 13.0.0.206 以下</td>
+<td>Flash Pixel Bender 组件存在缓冲区溢出漏洞，允许攻击者<strong>远程控制受影响的系统</strong>。CVSS 10.0（极高），无需认证、可完全控制机密性&#x2F;完整性&#x2F;可用性。2014 年 4 月被野外利用。Adobe 公告 APSB14-13</td>
+</tr>
+<tr>
+<td><strong>CVE-2014-4076</strong></td>
+<td><strong>TCP&#x2F;IP 权限提升漏洞</strong></td>
+<td>本地权限提升（LPE）</td>
+<td>Windows Server 2003 SP2</td>
+<td>Windows TCP&#x2F;IP 协议栈驱动（tcpip.sys&#x2F;tcpip6.sys）存在漏洞，允许本地用户通过<strong>精心构造的 IOCTL 调用</strong>提升权限。Exploit-DB 上有公开利用代码（EDB-35936、EDB-37755）。CVSS 7.2</td>
+</tr>
+<tr>
+<td><strong>CVE-2014-1776</strong></td>
+<td><strong>IE&#x2F;Flash 零日漏洞（Operation Clandestine Fox）</strong></td>
+<td>IE VML UAF + Flash 绕过 DEP&#x2F;ASLR → RCE</td>
+<td>Internet Explorer 6-11 + Flash Pixel Bender</td>
+<td><strong>Windows XP 停止支持后的首个重大零日漏洞</strong>！利用 IE 中 VML（向量标记语言）对象的 Use-After-Free 漏洞，结合 Adobe Flash 的 Vector Markup Language <strong>绕过 ASLR 和 DEP 安全防护</strong>。FireEye 发现后被 APT 组织在定向攻击中使用。影响 IE 全版本（6-11），是 Windows XP 用户面临的重大威胁（微软不再为 XP 提供补丁）。卡巴斯基发现攻击源自叙利亚司法部网站挂马。CVSS 9.3</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>注：CVE-2015-3043 同时出现在 Windows 和 Flash 分类中，因其涉及 Flash 组件但也可通过系统层面利用。</p>
+</blockquote>
+<h4 id="Internet-Explorer-其他漏洞"><a href="#Internet-Explorer-其他漏洞" class="headerlink" title="Internet Explorer &#x2F; 其他漏洞"></a>Internet Explorer &#x2F; 其他漏洞</h4><table>
+<thead>
+<tr>
+<th>CVE 编号</th>
+<th>漏洞名称 &#x2F; 别名</th>
+<th>漏洞类型</th>
+<th>影响组件</th>
+<th>简要说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>CVE-2013-3897</strong></td>
+<td><strong>IE CDisplayPointer Use-After-Free（MS13-080）</strong></td>
+<td>IE mshtml.dll UAF → RCE</td>
+<td>Internet Explorer 6-11（mshtml.dll）</td>
+<td>IE 的 CDisplayPointer 类存在 <strong>Use-After-Free 漏洞</strong>，攻击者可通过精心构造的 JavaScript 代码（利用 <code>onpropertychange</code> 事件处理器）触发内存损坏，进而远程执行代码或造成拒绝服务。<strong>2013 年 9-10 月被发现在野外有限定向攻击中使用</strong>。微软安全公告 MS13-080。US-CERT 警告 TA13-288A。CVSS 8.8</td>
+</tr>
+<tr>
+<td><strong>CVE-2013-3906</strong></td>
+<td><strong>Office TIFF 图像远程代码执行</strong></td>
+<td>TIFF 解析 → RCE</td>
+<td>Microsoft Office（TIFF 图像处理）</td>
+<td>允许远程攻击者诱骗用户打开包含<strong>精心构造的 TIFF 图像</strong>的 Word 文档，从而执行任意代码。影响 Microsoft Excel Viewer、Lync、Office 全系列等多个产品。EPSS 利用概率达 99.7th 百分位。CVSS 7.8</td>
+</tr>
+<tr>
+<td><strong>CVE-2013-1347</strong></td>
+<td><strong>IE8 Use-After-Free</strong></td>
+<td>IE8 UAF → RCE</td>
+<td>Internet Explorer 8</td>
+<td>IE8 存在 Use-After-Free 漏洞，允许远程攻击者在 vulnerable 系统上<strong>执行任意代码</strong>。攻击方式为诱骗用户访问恶意网站。EPSS 利用概率 99.5th 百分位。CVSS 8.8</td>
+</tr>
+</tbody></table>
+<p>不难看出，这些漏洞主要集中在 <strong>Windows 系统内核</strong>、<strong>Microsoft Office 文档解析</strong>、<strong>Adobe Flash</strong> 和 <strong>Internet Explorer</strong> 四大领域。但在近年的活动中，安全研究人员发现奇幻熊正开始更多地利用 <strong>Microsoft Office 漏洞</strong>以释放第二阶段有效载荷。</p>
+<blockquote>
+<p>从漏洞时间线来看，奇幻熊的武器库涵盖了 2010 年至 2017 年间的多个关键漏洞，其中不乏 EternalBlue（CVE-2017-0144）、MSCOMCTL（CVE-2012-0158）、Flash UAF（CVE-2015-5119）等<strong>历史上最具破坏力的漏洞</strong>。这也印证了其作为国家级 APT 组织的资源储备和技术实力。</p>
+</blockquote>
+<h3 id="4-3-长久驻留技术"><a href="#4-3-长久驻留技术" class="headerlink" title="4.3 长久驻留技术"></a>4.3 长久驻留技术</h3><p>长久驻留可以通过许多方式来实现，如周期性利用远程代码执行漏洞以及借助恶意软件。</p>
+<table>
+<thead>
+<tr>
+<th>时间段</th>
+<th>主要技术</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2018 年</td>
+<td>T1055、T1045、T1064、T1158、T1037</td>
+<td>大多数属于”脚本”范畴，如 Logon 脚本和 JS&#x2F;WB 脚本</td>
+</tr>
+<tr>
+<td>2018 年中</td>
+<td>T1086、T1140</td>
+<td>开始使用 PowerShell</td>
+</tr>
+<tr>
+<td>2019 年初</td>
+<td>T1221、T1204、T1045、T1047、T1112</td>
+<td>引入更为高级的技术</td>
+</tr>
+</tbody></table>
+<h3 id="4-4-典型攻击案例深度分析：2018-年罗马尼亚外交部攻击"><a href="#4-4-典型攻击案例深度分析：2018-年罗马尼亚外交部攻击" class="headerlink" title="4.4 典型攻击案例深度分析：2018 年罗马尼亚外交部攻击"></a>4.4 典型攻击案例深度分析：2018 年罗马尼亚外交部攻击</h3><p>腾讯御见威胁情报中心检测到奇幻熊利用英国信息服务提供商 IHS Markit 公司的邮箱账号向罗马尼亚外交部发送钓鱼邮件进行定向攻击。</p>
+<p><strong>攻击流程：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">钓鱼邮件 → Excel 附件(含宏) → 启用宏 → certutil.exe 解密 PE 文件 → 执行木马</span><br><span class="line">→ 释放 dll + bat → 修改注册表实现开机自启动 → 注入浏览器进程 → C2 通信</span><br></pre></td></tr></table></figure>
+
+<p><strong>关键技术细节：</strong></p>
+<ol>
+<li><strong>诱饵制作</strong>：邮件主题为《Upcoming Events February 2018》，附件为 Excel 表格，表格大部分内容为空，弹出”启用宏”提示</li>
+<li><strong>白利用技术</strong>：使用微软签名程序 <code>certutil.exe</code> 对 base64 加密的 PE 文件进行解密</li>
+<li><strong>持久化机制</strong>：利用 <code>UserInitMprLogonScript</code> 注册表键值实现开机自启动</li>
+<li><strong>进程注入</strong>：将恶意 DLL 注入 <code>firefox.exe</code> 或 <code>iexplore.exe</code> 浏览器进程</li>
+<li><strong>隐蔽通信</strong>：配置两个 C2 地址（一真一假，<code>google.com</code> 作为伪装），中途不断切换；读取 Firefox 配置文件获取本地代理设置</li>
+<li><strong>木马功能</strong>：基于 Carberp 银行木马的变种，具备信息收集、文件上传下载、截屏等功能</li>
+</ol>
+<hr>
+<h2 id="五、”双熊”对比一览"><a href="#五、”双熊”对比一览" class="headerlink" title="五、”双熊”对比一览"></a>五、”双熊”对比一览</h2><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>舒适熊 APT29</th>
+<th>奇幻熊 APT28</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>归属机构</strong></td>
+<td>SVR（对外情报局）&#x2F; FSB</td>
+<td>GRU（军事情报总局）第 26165 部队</td>
+</tr>
+<tr>
+<td><strong>风格定位</strong></td>
+<td>“婉约派”——隐蔽渗透、长期潜伏</td>
+<td>“豪放派”——高调曝光、公开炫耀</td>
+</tr>
+<tr>
+<td><strong>主要目标</strong></td>
+<td>外交、情报、能源、医疗、疫苗研发</td>
+<td>政府、军队、体育组织、选举干预</td>
+</tr>
+<tr>
+<td><strong>标志性事件</strong></td>
+<td>SolarWinds 供应链攻击、COVID-19 疫苗数据窃取</td>
+<td>WADA 数据库入侵、DNC 邮件泄露</td>
+</tr>
+<tr>
+<td><strong>攻击手段</strong></td>
+<td>供应链攻击、DLL 劫持、高度定制化恶意软件</td>
+<td>零日漏洞利用、钓鱼网站、公开官网发布数据</td>
+</tr>
+<tr>
+<td><strong>命名来源</strong></td>
+<td>CrowdStrike 命名</td>
+<td>CrowdStrike 命名（Dmitri Alperovitch）</td>
+</tr>
+<tr>
+<td><strong>是否建官网</strong></td>
+<td>否</td>
+<td><strong>是</strong>——全球罕见</td>
+</tr>
+<tr>
+<td><strong>活跃时间</strong></td>
+<td>2008 年至今</td>
+<td>2004-2007 年至今</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="六、总结与启示"><a href="#六、总结与启示" class="headerlink" title="六、总结与启示"></a>六、总结与启示</h2><h3 id="6-1-技术层面的启示"><a href="#6-1-技术层面的启示" class="headerlink" title="6.1 技术层面的启示"></a>6.1 技术层面的启示</h3><ol>
+<li><strong>及时更新系统和补丁</strong>：两熊组织都大量利用已知漏洞（尤其是 Office、Flash、Windows），及时打补丁是最基本也是最有效的防御手段</li>
+<li><strong>警惕供应链攻击</strong>：SolarWinds 事件提醒我们，软件供应链将成为未来攻击的重要切入点</li>
+<li><strong>防范钓鱼邮件</strong>：鱼叉式网络钓鱼是两熊组织的共同首选攻击向量，用户安全意识培训至关重要</li>
+<li><strong>零信任原则</strong>：企业应将零信任原则不仅应用于用户，还应应用于应用程序和服务器</li>
+</ol>
+<h3 id="6-2-战略层面的思考"><a href="#6-2-战略层面的思考" class="headerlink" title="6.2 战略层面的思考"></a>6.2 战略层面的思考</h3><ul>
+<li><strong>归因困境</strong>：网络攻击的溯源和归因始终面临技术与政治的双重挑战，确凿证据往往难以获取</li>
+<li><strong>大国博弈工具化</strong>：APT 组织已成为大国之间非对称对抗的重要工具，超越了传统网络安全的范畴</li>
+<li><strong>规则挑战者</strong>：以奇幻熊为代表的组织表现出对国际规则的蔑视，试图挑战那些寻常人从未想过的底线</li>
+</ul>
+<h3 id="6-3-未来展望"><a href="#6-3-未来展望" class="headerlink" title="6.3 未来展望"></a>6.3 未来展望</h3><p>未来，奥运会和各国大选所面临的黑客攻击可能会越来越多。随着数字化程度的加深，关键基础设施、公共卫生系统、民主选举过程都可能成为 APT 组织的目标。</p>
+<p>正如微软总裁所言，SolarWinds 攻击的影响短时间难以消除。而奇幻熊和舒适熊的故事，远未结束。</p>
+<hr>
+<h2 id="参考资料来源"><a href="#参考资料来源" class="headerlink" title="参考资料来源"></a>参考资料来源</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/OcID-4cVndz2ihKtGJY4DQ">动员了超过一千名黑客，史上最大规模的网络攻击行动解密</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/RFxS0xigAF-bMh59KR44cA">从 APT29 看网络威胁归因</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/3ETd2H0XrKCSarNFfbEYRA">俄罗斯”双熊”之”舒适熊”——Cozy Bear APT 组织供应链攻击活动分析</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/koN9-v5al59peCosI0GSOw">英美加指控俄罗斯对新冠研究中心进行网络攻击</a></li>
+<li><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%A5%87%E5%B9%BB%E7%86%8A">维基百科：奇幻熊</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/cMXzwGpCe-R_1cj0mVgYtQ">揭秘：俄黑客组织”奇幻熊”的进化史</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/iEPWMq8c2KNREqPmy8gT0g">“奇幻熊”（APT28）组织最新攻击</a></li>
+</ol>
+<hr>
+<p><em>本文仅供技术研究与安全科普使用，请勿用于非法用途。</em></p>
+
+  </div>
+
+  <footer class="article-reactions">
+    <div class="reaction-group">
+      <button type="button" class="reaction reaction--comment" aria-label="跳转到评论区" data-action="scroll-to-comments">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-message-circle"></use></svg>
+
+      </button>
+      <span class="reaction-label">评论</span>
+      
+    </div>
+    <div class="reaction-group reaction-group--right">
+      
+      <button type="button" class="reaction reaction--share" aria-label="分享" data-action="share">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share-2 flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-share-2"></use></svg>
+
+      </button>
+      <span class="reaction-label">分享</span>
+    </div>
+  </footer>
+
+  
+
+
+  <nav class="article-actions">
+    
+      <a class="article-action article-action--prev" href="/2026/08/11/20260811/2026081103/">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-left"></use></svg>
+
+        <span class="action-label">上一篇</span>
+        <span class="action-title">黑客组织 - DarkSide</span>
+      </a>
+    
+    
+      <a class="article-action article-action--next" href="/2026/08/11/20260811/2026081102/">
+        <span class="action-label">下一篇</span>
+        <span class="action-title">深度解析：The Com 网络犯罪帝国与 Hacker Com 的崛起</span>
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
+
+      </a>
+    
+  </nav>
+</article>
+</div>
+
+<button type="button" class="back-to-top" data-action="scroll-to-top" aria-label="返回顶部" hidden>
+  
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-up"></use></svg>
+
+</button>
+
+
+  <section class="related-paper">
+    <header class="related-paper__head">
+      <h2>
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-link"></use></svg>
+相关文章</h2>
+      <a class="related-paper__more" href="/archives/">
+        <span>查看更多</span>
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
+
+      </a>
+    </header>
+    <div class="related-paper__grid">
+      
+        <a class="related-card" href="/2026/08/11/20260811/2026081103/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/camera.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">黑客组织 - DarkSide</strong>
+            <em class="related-card__date">2026-08-11</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/08/14/20260814/2026081401/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/../../images/20260814/640.jpg" alt="快手12·22攻击事件深度复盘：当黑灰产撞上&#34;清朗&#34;行动——一场精心策划的报复？" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">快手12·22攻击事件深度复盘：当黑灰产撞上&#34;清朗&#34;行动——一场精心策划的报复？</strong>
+            <em class="related-card__date">2026-08-14</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/06/30/2026063001/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/hero-1.jpg" alt="涉密场所办公保密设备 + 通信屏蔽设备完整选型指南" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">涉密场所办公保密设备 + 通信屏蔽设备完整选型指南</strong>
+            <em class="related-card__date">2026-06-30</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/06/29/20260629/2026062902/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/port.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">X（Twitter）平台开源情报调查技巧</strong>
+            <em class="related-card__date">2026-06-29</em>
+          </span>
+        </a>
+      
+    </div>
+  </section>
+
+
+      
+
+
+    </section>
+    
+  </main>
+
+  <div class="sidebar-backdrop js-sidebar-close" aria-hidden="true"></div>
+
+  
+<footer class="site-footer">
+  <span class="site-footer__left">© 2026 By ZapcoMan</span>
+  
+    <span class="site-footer__right">
+      
+        <span class="site-footer__row"><span class="site-footer__powered-prefix">Powered by Theme</span> <a href="https://github.com/Homulilly/hexo-theme-flatpaper" target="_blank" rel="noopener">FlatPaper</a></span>
+      
+    </span>
+  
+</footer>
+
+  
+<div class="search-panel" aria-hidden="true" data-index-url="/flatpaper-search.json">
+  <div class="search-backdrop js-search-close"></div>
+  <section class="search-dialog" role="dialog" aria-modal="true" aria-label="搜索文章">
+    <span class="tape tape--top-left" aria-hidden="true"></span>
+    <header class="search-head">
+      <h2><span class="green-dot"></span>搜索文章</h2>
+      <button class="icon-button js-search-close" type="button" aria-label="关闭搜索">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-x"></use></svg>
+
+      </button>
+    </header>
+    <label class="search-field">
+      
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-search"></use></svg>
+
+      <input id="flatpaper-search" class="search-input" type="search" placeholder="输入关键词，按 Esc 关闭" autocomplete="off">
+    </label>
+    <div class="search-results" data-empty="输入关键词后显示匹配的文章">
+      <p class="search-empty">输入关键词后显示匹配的文章</p>
+    </div>
+  </section>
+</div>
+
+  <script>
+  window.FLATPAPER_I18N = {"language":"zh-CN","common.posts":"文章","common.categories":"分类","common.tags":"标签","common.comments":"评论","common.share":"分享","common.page":"页面","common.archive":"归档","common.post_list":"文章列表","common.search_posts":"搜索文章","common.random_posts":"随机文章","common.reward":"赞赏","common.view_all":"查看全部","pagination.prev":"上一页","pagination.next":"下一页","pagination.post_pager":"文章分页","pagination.archive_pager":"归档分页","index.featured":"精选文章","index.pinned":"置顶","index.read_more":"阅读全文","index.previous_slide":"上一张","index.next_slide":"下一张","index.carousel_pagination":"轮播页码","index.carousel_slide":"第 %d 张","index.latest_posts":"最新文章","index.empty_posts":"还没有文章。创建第一篇文章后，这里会显示最新内容。","archive.title":"归档","archive.post_list":"文章列表","taxonomy.category_count":"%d 篇","taxonomy.empty_categories":"暂时还没有分类。","taxonomy.empty_tags":"暂时还没有标签。","links.label":"友链","links.title":"友情链接","links.empty_data":"暂未加载到友链数据。请确认 source/_data/links.yml 存在并已 hexo clean。","links.rss_label":"%s 的 RSS","friends_feed.label":"朋友圈","friends_feed.title":"友链朋友圈","friends_feed.loading":"正在加载友链动态…","friends_feed.missing_url":"暂未配置 all.json 地址。","friends_feed.load_failed":"友链动态加载失败，请稍后再试。","friends_feed.empty":"暂时没有抓取到友链文章。","friends_feed.load_more":"加载更多","friends_feed.updated_at":"更新于 %s","friends_feed.friend_count":"%d 位友邻","friends_feed.active_count":"%d 位活跃","friends_feed.article_count":"%d 篇文章","friends_feed.unknown_author":"未知站点","friends_feed.date_unknown":"时间未知","post.scroll_to_comments":"跳转到评论区","post.previous":"上一篇","post.next":"下一篇","post.no_previous":"没有更早的文章了","post.no_next":"已经是最新的一篇","post.back_to_top":"返回顶部","post.related_posts":"相关文章","post.view_more":"查看更多","not_found.label":"页面走丢了","not_found.title":"找不到这个页面","not_found.text":"这个地址可能已经移动、删除，或者从未存在。","not_found.home":"返回首页","not_found.search":"搜索文章","search.placeholder":"输入关键词，按 Esc 关闭","search.empty":"输入关键词后显示匹配的文章","search.loading":"正在加载搜索索引…","search.load_failed":"搜索索引加载失败，请重新打开搜索重试","search.no_result":"没有找到与 \"%s\" 相关的文章","search.close":"关闭搜索","code.copy":"复制代码","code.collapse":"折叠代码","code.expand":"展开代码","heading.anchor":"链接到此节: %s","head.tag":"标签：%s","head.category":"分类：%s","head.archive":"归档","head.archive_with_date":"归档：%s","head.page_number":"第 %d 页","navigation.primary":"主导航","navigation.mobile":"移动端导航","navigation.brand_home":"FlatPaper 首页","navigation.brand_menu":"打开站点导航","navigation.open_sidebar":"打开侧边栏","navigation.close_sidebar":"关闭侧边栏","navigation.sidebar":"侧边栏","navigation.sidebar_tools":"侧边栏工具","navigation.site_links":"站点链接","navigation.site_info":"站点信息","colors.choose_theme_color":"选择主题色","colors.theme_color":"主题色","colors.toggle_color_mode":"切换颜色模式","colors.green":"绿色","colors.purple":"紫色","colors.pink":"粉色","colors.sakura":"樱花粉","colors.blue":"蓝色","colors.orange":"橙色","colors.black":"黑色","profile.default_bio":"热爱生活，热爱代码，喜欢分享技术与生活中的点滴。","welcome.cta":"开始阅读","welcome.title":"欢迎来到 FlatPaper","welcome.text":"一个专注于内容与阅读体验的博客主题。","home_hero.label":"首页开屏","home_hero.enter":"开始阅读","home_hero.note":"今日","home_hero.default_subtitle":"日常记录","home_hero.nav_links":"开屏导航","home_hero.profile_links":"个人链接","home_hero.tools":"开屏工具","home_hero.shuffle_stickers":"打乱贴纸位置","home_hero.link":"链接","home_hero.sticker_image":"贴纸图片","home_hero.visit_confirm":"要访问 %s 吗？","home_hero.visit":"访问","home_hero.cancel":"取消","toc.title":"文章目录","toc.empty":"目录会根据文章标题自动生成。","toc.expand_all":"展开全部目录","toc.collapse_all":"收起全部目录","sidebar.hot_tags":"热门标签","sidebar.latest_posts":"最新文章"};
+  </script>
+  
+<script src="/js/main.js"></script>
+
+  
+</body>
+</html>
