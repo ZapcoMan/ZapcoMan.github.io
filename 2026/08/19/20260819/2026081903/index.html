@@ -17,7 +17,7 @@
 <meta property="og:description" content="一边为国家窃取情报，一边为自己”接私活”赚外快——这是史上第一次，安全界看到一个 APT 组织同时戴着两顶帽子。供应链、游戏外挂、勒索、间谍……它的业务版图，横跨黑白两道。 发布时间：2026年8月19日 | 阅读时长：约18分钟 | 标签：网络安全 &#x2F; APT分析 &#x2F; 供应链攻击 引言：一个”公私兼顾”的黑客组织大多数 APT 组织的画...">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-08-19T04:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-18T18:29:56.839Z">
+<meta property="article:modified_time" content="2026-08-18T18:35:08.441Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="APT分析">
 <meta property="article:tag" content="社会工程学">
@@ -27,7 +27,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"黑客组织 - APT41：当\"国家间谍\"与\"网络黑产\"合二为一","name":"黑客组织 - APT41：当\"国家间谍\"与\"网络黑产\"合二为一 | ZapcoMan's world","description":"一边为国家窃取情报，一边为自己”接私活”赚外快——这是史上第一次，安全界看到一个 APT 组织同时戴着两顶帽子。供应链、游戏外挂、勒索、间谍……它的业务版图，横跨黑白两道。 发布时间：2026年8月19日 | 阅读时长：约18分钟 | 标签：网络安全 &#x2F; APT分析 &#x2F; 供应链攻击 引言：一个”公私兼顾”的黑客组织大多数 APT 组织的画...","url":"http://example.com/2026/08/19/20260819/2026081903/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/08/19/20260819/2026081903/","datePublished":"2026-08-19T04:00:00.000Z","dateModified":"2026-08-18T18:29:56.839Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"社会工程学, 黑客组织, APT分析"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"黑客组织 - APT41：当\"国家间谍\"与\"网络黑产\"合二为一","name":"黑客组织 - APT41：当\"国家间谍\"与\"网络黑产\"合二为一 | ZapcoMan's world","description":"一边为国家窃取情报，一边为自己”接私活”赚外快——这是史上第一次，安全界看到一个 APT 组织同时戴着两顶帽子。供应链、游戏外挂、勒索、间谍……它的业务版图，横跨黑白两道。 发布时间：2026年8月19日 | 阅读时长：约18分钟 | 标签：网络安全 &#x2F; APT分析 &#x2F; 供应链攻击 引言：一个”公私兼顾”的黑客组织大多数 APT 组织的画...","url":"http://example.com/2026/08/19/20260819/2026081903/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/08/19/20260819/2026081903/","datePublished":"2026-08-19T04:00:00.000Z","dateModified":"2026-08-18T18:35:08.441Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"社会工程学, 黑客组织, APT分析"}</script>
 
 <script>
   (function () {
@@ -420,7 +420,7 @@
         </header>
         <div class="toc-content">
           
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80%EF%BC%9A%E4%B8%80%E4%B8%AA%E2%80%9D%E5%85%AC%E7%A7%81%E5%85%BC%E9%A1%BE%E2%80%9D%E7%9A%84%E9%BB%91%E5%AE%A2%E7%BB%84%E7%BB%87"><span class="toc-text">引言：一个”公私兼顾”的黑客组织</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%BB%84%E7%BB%87%E6%A6%82%E5%86%B5"><span class="toc-text">一、组织概况</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8B%AC%E7%89%B9%E7%9A%84%E2%80%9D%E5%8F%8C%E9%87%8D%E8%BA%AB%E4%BB%BD%E2%80%9D"><span class="toc-text">独特的”双重身份”</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%8A%80%E6%9C%AF%E6%AD%A6%E5%99%A8%E5%BA%93"><span class="toc-text">二、技术武器库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E6%8B%9B%E7%89%8C%E5%B7%A5%E5%85%B7%EF%BC%9AWinnti-%E6%9C%A8%E9%A9%AC"><span class="toc-text">2.1 招牌工具：Winnti 木马</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E6%A0%87%E5%BF%97%E6%80%A7%E5%B7%A5%E5%85%B7%E9%9B%86"><span class="toc-text">2.2 标志性工具集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E6%8B%9B%E7%89%8C%E6%8A%80%E6%9C%AF%EF%BC%9A%E4%BE%9B%E5%BA%94%E9%93%BE%E6%8A%95%E6%AF%92"><span class="toc-text">2.3 招牌技术：供应链投毒</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%A0%87%E5%BF%97%E6%80%A7%E4%BA%8B%E4%BB%B6%E6%97%B6%E9%97%B4%E7%BA%BF"><span class="toc-text">三、标志性事件时间线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%A0%87%E5%BF%97%E6%80%A7%E6%A1%88%E4%BE%8B%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90"><span class="toc-text">四、标志性案例深度解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E6%B8%B8%E6%88%8F%E8%A1%8C%E4%B8%9A%E2%80%9D%E5%A4%96%E6%8C%82%E5%B8%9D%E5%9B%BD%E2%80%9D%E2%80%94%E2%80%94%E7%8A%AF%E7%BD%AA%E5%B8%BD%E7%9A%84%E5%B7%85%E5%B3%B0"><span class="toc-text">4.1 游戏行业”外挂帝国”——犯罪帽的巅峰</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E4%BE%9B%E5%BA%94%E9%93%BE%E6%8A%95%E6%AF%92%EF%BC%9ACCleaner-%E4%BA%8B%E4%BB%B6%EF%BC%882017%EF%BC%89"><span class="toc-text">4.2 供应链投毒：CCleaner 事件（2017）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-Codecov-%E4%BE%9B%E5%BA%94%E9%93%BE%E6%94%BB%E5%87%BB%EF%BC%882021%EF%BC%89"><span class="toc-text">4.3 Codecov 供应链攻击（2021）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E7%BE%8E%E5%9B%BD%E5%8F%B8%E6%B3%95%E9%83%A8%E8%B5%B7%E8%AF%89%EF%BC%882021%EF%BC%89%E2%80%94%E2%80%94%E2%80%9C%E9%82%AA%E6%81%B6%E7%86%8A%E7%8C%AB%E2%80%9D%E6%B5%AE%E5%87%BA%E6%B0%B4%E9%9D%A2"><span class="toc-text">4.4 美国司法部起诉（2021）——“邪恶熊猫”浮出水面</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81APT41-%E7%9A%84%E7%8B%AC%E7%89%B9%E6%84%8F%E4%B9%89%EF%BC%9A%E9%87%8D%E6%96%B0%E5%AE%9A%E4%B9%89%E2%80%9DAPT%E2%80%9D"><span class="toc-text">五、APT41 的独特意义：重新定义”APT”</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E2%80%9C%E5%9B%BD%E5%AE%B6%E2%80%9D%E4%B8%8E%E2%80%9D%E7%8A%AF%E7%BD%AA%E2%80%9D%E7%9A%84%E7%95%8C%E9%99%90%E6%98%AF%E6%A8%A1%E7%B3%8A%E7%9A%84"><span class="toc-text">1. “国家”与”犯罪”的界限是模糊的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BE%9B%E5%BA%94%E9%93%BE%E6%98%AF%E7%BB%88%E6%9E%81%E6%94%BB%E5%87%BB%E9%9D%A2"><span class="toc-text">2. 供应链是终极攻击面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%BD%92%E5%9B%A0%E7%9A%84%E5%A4%8D%E6%9D%82%E6%80%A7%E4%B8%8A%E5%8D%87"><span class="toc-text">3. 归因的复杂性上升</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E9%98%B2%E5%BE%A1%E5%90%AF%E7%A4%BA"><span class="toc-text">六、防御启示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E6%9C%BA%E6%9E%84"><span class="toc-text">对机构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E4%B8%AA%E4%BA%BA"><span class="toc-text">对个人</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E7%BB%93%E8%AF%AD%EF%BC%9A%E4%B8%80%E9%A1%B6%E5%B8%BD%E5%AD%90%EF%BC%8C%E4%B8%A4%E7%A7%8D%E7%94%9F%E6%84%8F"><span class="toc-text">七、结语：一顶帽子，两种生意</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-text">参考资料</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80%EF%BC%9A%E4%B8%80%E4%B8%AA%E2%80%9D%E5%85%AC%E7%A7%81%E5%85%BC%E9%A1%BE%E2%80%9D%E7%9A%84%E9%BB%91%E5%AE%A2%E7%BB%84%E7%BB%87"><span class="toc-text">引言：一个”公私兼顾”的黑客组织</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%BB%84%E7%BB%87%E6%A6%82%E5%86%B5"><span class="toc-text">一、组织概况</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8B%AC%E7%89%B9%E7%9A%84%E2%80%9D%E5%8F%8C%E9%87%8D%E8%BA%AB%E4%BB%BD%E2%80%9D"><span class="toc-text">独特的”双重身份”</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%8A%80%E6%9C%AF%E6%AD%A6%E5%99%A8%E5%BA%93"><span class="toc-text">二、技术武器库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E6%8B%9B%E7%89%8C%E5%B7%A5%E5%85%B7%EF%BC%9AWinnti-%E6%9C%A8%E9%A9%AC"><span class="toc-text">2.1 招牌工具：Winnti 木马</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E6%A0%87%E5%BF%97%E6%80%A7%E5%B7%A5%E5%85%B7%E9%9B%86"><span class="toc-text">2.2 标志性工具集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E6%8B%9B%E7%89%8C%E6%8A%80%E6%9C%AF%EF%BC%9A%E4%BE%9B%E5%BA%94%E9%93%BE%E6%8A%95%E6%AF%92"><span class="toc-text">2.3 招牌技术：供应链投毒</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E4%BB%A3%E7%A0%81%E7%BA%A7%E6%94%BB%E5%87%BB%E9%93%BE%EF%BC%9ABOOSTWRITE-Winnti-%E7%9A%84-DLL-%E5%8A%AB%E6%8C%81%E4%B8%8E%E5%90%8E%E9%97%A8%E6%A4%8D%E5%85%A5"><span class="toc-text">2.4 代码级攻击链：BOOSTWRITE + Winnti 的 DLL 劫持与后门植入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-%E6%A3%80%E6%B5%8B%E4%B8%8E%E9%98%B2%E5%BE%A1%EF%BC%9A%E5%A6%82%E4%BD%95%E5%8F%91%E7%8E%B0%E2%80%9D%E9%82%AA%E6%81%B6%E7%86%8A%E7%8C%AB%E2%80%9D%E7%9A%84%E7%97%95%E8%BF%B9%EF%BC%9F"><span class="toc-text">2.5 检测与防御：如何发现”邪恶熊猫”的痕迹？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%A0%87%E5%BF%97%E6%80%A7%E4%BA%8B%E4%BB%B6%E6%97%B6%E9%97%B4%E7%BA%BF"><span class="toc-text">三、标志性事件时间线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%A0%87%E5%BF%97%E6%80%A7%E6%A1%88%E4%BE%8B%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90"><span class="toc-text">四、标志性案例深度解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E6%B8%B8%E6%88%8F%E8%A1%8C%E4%B8%9A%E2%80%9D%E5%A4%96%E6%8C%82%E5%B8%9D%E5%9B%BD%E2%80%9D%E2%80%94%E2%80%94%E7%8A%AF%E7%BD%AA%E5%B8%BD%E7%9A%84%E5%B7%85%E5%B3%B0"><span class="toc-text">4.1 游戏行业”外挂帝国”——犯罪帽的巅峰</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E4%BE%9B%E5%BA%94%E9%93%BE%E6%8A%95%E6%AF%92%EF%BC%9ACCleaner-%E4%BA%8B%E4%BB%B6%EF%BC%882017%EF%BC%89"><span class="toc-text">4.2 供应链投毒：CCleaner 事件（2017）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-Codecov-%E4%BE%9B%E5%BA%94%E9%93%BE%E6%94%BB%E5%87%BB%EF%BC%882021%EF%BC%89"><span class="toc-text">4.3 Codecov 供应链攻击（2021）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E7%BE%8E%E5%9B%BD%E5%8F%B8%E6%B3%95%E9%83%A8%E8%B5%B7%E8%AF%89%EF%BC%882021%EF%BC%89%E2%80%94%E2%80%94%E2%80%9C%E9%82%AA%E6%81%B6%E7%86%8A%E7%8C%AB%E2%80%9D%E6%B5%AE%E5%87%BA%E6%B0%B4%E9%9D%A2"><span class="toc-text">4.4 美国司法部起诉（2021）——“邪恶熊猫”浮出水面</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81APT41-%E7%9A%84%E7%8B%AC%E7%89%B9%E6%84%8F%E4%B9%89%EF%BC%9A%E9%87%8D%E6%96%B0%E5%AE%9A%E4%B9%89%E2%80%9DAPT%E2%80%9D"><span class="toc-text">五、APT41 的独特意义：重新定义”APT”</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E2%80%9C%E5%9B%BD%E5%AE%B6%E2%80%9D%E4%B8%8E%E2%80%9D%E7%8A%AF%E7%BD%AA%E2%80%9D%E7%9A%84%E7%95%8C%E9%99%90%E6%98%AF%E6%A8%A1%E7%B3%8A%E7%9A%84"><span class="toc-text">1. “国家”与”犯罪”的界限是模糊的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BE%9B%E5%BA%94%E9%93%BE%E6%98%AF%E7%BB%88%E6%9E%81%E6%94%BB%E5%87%BB%E9%9D%A2"><span class="toc-text">2. 供应链是终极攻击面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%BD%92%E5%9B%A0%E7%9A%84%E5%A4%8D%E6%9D%82%E6%80%A7%E4%B8%8A%E5%8D%87"><span class="toc-text">3. 归因的复杂性上升</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E9%98%B2%E5%BE%A1%E5%90%AF%E7%A4%BA"><span class="toc-text">六、防御启示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E6%9C%BA%E6%9E%84"><span class="toc-text">对机构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E4%B8%AA%E4%BA%BA"><span class="toc-text">对个人</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E7%BB%93%E8%AF%AD%EF%BC%9A%E4%B8%80%E9%A1%B6%E5%B8%BD%E5%AD%90%EF%BC%8C%E4%B8%A4%E7%A7%8D%E7%94%9F%E6%84%8F"><span class="toc-text">七、结语：一顶帽子，两种生意</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-text">参考资料</span></a></li></ol>
           
         </div>
       </section>
@@ -622,6 +622,97 @@
 <li>通过攻击软件公司的<strong>构建&#x2F;签名环境</strong>，让恶意代码”合法签名”后分发。</li>
 <li>这种手法比直接攻击单个目标<strong>扩散面更广、隐蔽性更强</strong>。</li>
 </ul>
+<h3 id="2-4-代码级攻击链：BOOSTWRITE-Winnti-的-DLL-劫持与后门植入"><a href="#2-4-代码级攻击链：BOOSTWRITE-Winnti-的-DLL-劫持与后门植入" class="headerlink" title="2.4 代码级攻击链：BOOSTWRITE + Winnti 的 DLL 劫持与后门植入"></a>2.4 代码级攻击链：BOOSTWRITE + Winnti 的 DLL 劫持与后门植入</h3><p>APT41 的技术中，<strong>BOOSTWRITE</strong> 是最具代表性的加载器——它通过 <strong>DLL 劫持（DLL Side-Loading）</strong> 让恶意代码”寄生”在合法程序上，从而绕过白名单和杀软。我们从代码&#x2F;命令层面还原这条链。</p>
+<p><strong>第一步：DLL 劫持的触发机制</strong></p>
+<p>BOOSTWRITE 的经典手法是<strong>利用合法签名程序加载恶意 DLL</strong>。Windows 程序加载 DLL 有固定的搜索顺序，攻击者把一个恶意的 DLL 放在合法程序会优先搜索的位置，即可完成”劫持”：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">目标：某款合法签名的金融/游戏客户端（如 xxx.exe）</span><br><span class="line">        ↓</span><br><span class="line">程序启动时，按搜索顺序查找某个 DLL（如 version.dll）</span><br><span class="line">        ↓</span><br><span class="line">攻击者将恶意 version.dll 放入程序同目录（优先级最高）</span><br><span class="line">        ↓</span><br><span class="line">合法 exe 加载恶意 DLL → 恶意代码以&quot;合法进程&quot;身份运行</span><br></pre></td></tr></table></figure>
+
+<p><strong>为什么 DLL 劫持如此难防？</strong></p>
+<ul>
+<li>恶意代码运行在<strong>合法、有数字签名的进程</strong>中，杀软和 EDR 很难判断进程”变坏”了。</li>
+<li>不需要破坏任何签名，也不需要提权，隐蔽性极强。</li>
+</ul>
+<p><strong>第二步：恶意 DLL 的”转发导出”技巧</strong></p>
+<p>为了让合法程序”无感”地加载恶意 DLL，攻击者会在恶意 DLL 中把<strong>真实 DLL 的所有导出函数”转发”回去</strong>，同时附加恶意逻辑：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 概念示例：恶意 version.dll 的导出转发（脱敏还原）</span></span><br><span class="line"><span class="comment">// 关键：把合法函数转发给真正的 version.dll，程序功能不受影响</span></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> comment(linker, <span class="string">&quot;/export:GetFileVersionInfoA=real_version.GetFileVersionInfoA,@1&quot;</span>)</span></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> comment(linker, <span class="string">&quot;/export:GetFileVersionInfoW=real_version.GetFileVersionInfoW,@2&quot;</span>)</span></span><br><span class="line"><span class="comment">// ... 其余导出函数同理转发</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// DLL 被加载时，附加执行恶意逻辑</span></span><br><span class="line">BOOL APIENTRY <span class="title function_">DllMain</span><span class="params">(HMODULE hModule, DWORD reason, LPVOID reserved)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (reason == DLL_PROCESS_ATTACH) &#123;</span><br><span class="line">        <span class="comment">// 1. 解密并加载真正的 Winnti 后门（shellcode）</span></span><br><span class="line">        <span class="type">unsigned</span> <span class="type">char</span> *payload = decrypt(embedded_winnti, key);</span><br><span class="line">        <span class="comment">// 2. 在合法进程中内存执行后门</span></span><br><span class="line">        execute_in_memory(payload);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> TRUE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>第三步：Winnti 后门的内存驻留</strong></p>
+<p>BOOSTWRITE 加载的 <strong>Winnti</strong> 后门会直接在内存中运行，实现”<strong>无文件驻留</strong>“：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">恶意 DLL 被合法 exe 加载</span><br><span class="line">        ↓</span><br><span class="line">DllMain 中解密 shellcode → 内存执行 Winnti 后门</span><br><span class="line">        ↓</span><br><span class="line">后门建立 C2 通信、下载执行模块、窃取凭据</span><br><span class="line">        ↓</span><br><span class="line">磁盘上只留下&quot;合法 exe + 看似正常的 DLL&quot;，极难取证</span><br></pre></td></tr></table></figure>
+
+<p><strong>Winnti 后门的典型行为（检测线索）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>行为</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>DLL 劫持</strong></td>
+<td>合法进程加载非预期路径的 DLL</td>
+</tr>
+<tr>
+<td><strong>导出转发</strong></td>
+<td>恶意 DLL 转发全部导出函数以伪装</td>
+</tr>
+<tr>
+<td><strong>内存执行</strong></td>
+<td>后门不落盘，仅在内存运行</td>
+</tr>
+<tr>
+<td><strong>C2 通信</strong></td>
+<td>自定义协议，常加密或伪装成正常流量</td>
+</tr>
+<tr>
+<td><strong>凭据窃取</strong></td>
+<td>结合 Mimikatz 窃取 lsass 中的明文&#x2F;哈希</td>
+</tr>
+</tbody></table>
+<p><strong>BOOSTWRITE 的典型 IOC（失陷指标）示例：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- 文件：合法程序目录下出现异常的 version.dll / msi.dll / dbghelp.dll</span><br><span class="line">- 签名：DLL 无签名，或签名与同目录 exe 不一致</span><br><span class="line">- 行为：合法进程发起对陌生外网 IP/域名的长连接</span><br><span class="line">- 注册表/计划任务：异常的自启动项</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-5-检测与防御：如何发现”邪恶熊猫”的痕迹？"><a href="#2-5-检测与防御：如何发现”邪恶熊猫”的痕迹？" class="headerlink" title="2.5 检测与防御：如何发现”邪恶熊猫”的痕迹？"></a>2.5 检测与防御：如何发现”邪恶熊猫”的痕迹？</h3><p>从蓝队视角，APT41 的供应链与 DLL 劫持手法，可通过以下维度捕捉：</p>
+<table>
+<thead>
+<tr>
+<th>检测维度</th>
+<th>关注点</th>
+<th>工具&#x2F;方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>文件层</strong></td>
+<td>合法目录出现未签名&#x2F;异常 DLL</td>
+<td>文件完整性监控、YARA 规则</td>
+</tr>
+<tr>
+<td><strong>进程层</strong></td>
+<td>合法进程加载了非系统路径 DLL</td>
+<td>Sysmon（事件 ID 7：Image Loaded）</td>
+</tr>
+<tr>
+<td><strong>网络层</strong></td>
+<td>合法进程的异常外联</td>
+<td>流量分析、EDR 网络可视化</td>
+</tr>
+<tr>
+<td><strong>构建层</strong></td>
+<td>CI&#x2F;CD 密钥泄露、构建服务器异常</td>
+<td>密钥扫描、构建环境审计</td>
+</tr>
+<tr>
+<td><strong>依赖层</strong></td>
+<td>第三方库&#x2F;组件被投毒</td>
+<td>SBOM、依赖哈希校验</td>
+</tr>
+</tbody></table>
+<p><strong>一个实用的检测命令（Windows Sysmon &#x2F; PowerShell 侧）：</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 通过 Sysmon 事件 7 检测&quot;合法进程加载可疑 DLL&quot;</span></span><br><span class="line"><span class="built_in">Get-WinEvent</span> <span class="literal">-FilterHashtable</span> <span class="selector-tag">@</span>&#123;LogName=<span class="string">&#x27;Microsoft-Windows-Sysmon/Operational&#x27;</span>; Id=<span class="number">7</span>&#125; |</span><br><span class="line">  <span class="built_in">Where-Object</span> &#123; <span class="variable">$_</span>.Message <span class="operator">-match</span> <span class="string">&#x27;ImageLoaded&#x27;</span> &#125; |</span><br><span class="line">  <span class="built_in">Select-Object</span> <span class="literal">-First</span> <span class="number">30</span> TimeCreated, Message</span><br><span class="line"></span><br><span class="line"><span class="comment"># 校验程序目录下 DLL 的数字签名（找出未签名 DLL）</span></span><br><span class="line"><span class="built_in">Get-ChildItem</span> <span class="string">&quot;C:\Program Files\目标软件\&quot;</span> <span class="literal">-Filter</span> *.dll |</span><br><span class="line">  <span class="built_in">ForEach-Object</span> &#123; <span class="built_in">Get-AuthenticodeSignature</span> <span class="variable">$_</span>.FullName &#125; |</span><br><span class="line">  <span class="built_in">Where-Object</span> &#123; <span class="variable">$_</span>.Status <span class="operator">-ne</span> <span class="string">&#x27;Valid&#x27;</span> &#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>其中 <strong>Sysmon 事件 ID 7（Image Loaded）</strong> 是检测 DLL 劫持的”利器”——它能记录每个进程加载了哪些 DLL，蓝队只需关注”合法进程是否加载了非预期路径、无签名、异常命名的 DLL”。</p>
+</blockquote>
 <hr>
 <h2 id="三、标志性事件时间线"><a href="#三、标志性事件时间线" class="headerlink" title="三、标志性事件时间线"></a>三、标志性事件时间线</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">2006-2011 ── Winnti 木马早期活动，针对游戏/软件供应链</span><br><span class="line">     │</span><br><span class="line">2011-2013 ── 大规模游戏公司入侵，窃取源码、开发外挂</span><br><span class="line">     │</span><br><span class="line">2014-2015 ── 针对电信、科技、医疗行业的情报窃取</span><br><span class="line">     │</span><br><span class="line">2017       ── 针对东南亚电信运营商的长期入侵</span><br><span class="line">     │</span><br><span class="line">2019       ── ⭐ Mandiant 发布重磅报告，首次定义&quot;双重行动&quot;</span><br><span class="line">     │</span><br><span class="line">2020       ── 全球供应链攻击潮：CCleaner、Codecov 等事件关联</span><br><span class="line">     │</span><br><span class="line">2021       ── ⭐ 美国司法部起诉 4 名 APT41 相关黑客</span><br><span class="line">     │</span><br><span class="line">2022-2025 ── 持续针对游戏、加密货币、云服务的混合行动</span><br></pre></td></tr></table></figure>
 
