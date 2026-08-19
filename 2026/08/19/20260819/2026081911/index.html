@@ -16,8 +16,8 @@
 <meta property="og:site_name" content="ZapcoMan&#39;s world">
 <meta property="og:description" content="一个”为了方便”的自动类型解析功能，让 Fastjson 成了黑灰产和 APT 组织的头号目标。它的漏洞修复史，是一场长达数年的”修复 vs 绕过”军备竞赛——黑名单加了一条又一条，绕过却从未停止。 引言：库的”自动类型”之罪在 Java 的 JSON 解析世界里，Fastjson 是一个传奇——它由阿里巴巴开源，以”极快”著称，被全球海量 Java 应用（...">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-08-19T14:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-18T19:29:29.817Z">
+<meta property="article:published_time" content="2026-08-19T01:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-19T05:29:17.689Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="Fastjson">
 <meta property="article:tag" content="Java">
@@ -30,7 +30,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Java 反序列化攻击面（二）：Fastjson 的 autoType 与\"修复 vs 绕过\"拉锯战","name":"Java 反序列化攻击面（二）：Fastjson 的 autoType 与\"修复 vs 绕过\"拉锯战 | ZapcoMan's world","description":"一个”为了方便”的自动类型解析功能，让 Fastjson 成了黑灰产和 APT 组织的头号目标。它的漏洞修复史，是一场长达数年的”修复 vs 绕过”军备竞赛——黑名单加了一条又一条，绕过却从未停止。 引言：库的”自动类型”之罪在 Java 的 JSON 解析世界里，Fastjson 是一个传奇——它由阿里巴巴开源，以”极快”著称，被全球海量 Java 应用（...","url":"http://example.com/2026/08/19/20260819/2026081911/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/08/19/20260819/2026081911/","datePublished":"2026-08-19T14:00:00.000Z","dateModified":"2026-08-18T19:29:29.817Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"网络安全, Java, 反序列化, 漏洞分析, RCE, Fastjson"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Java 反序列化攻击面（二）：Fastjson 的 autoType 与\"修复 vs 绕过\"拉锯战","name":"Java 反序列化攻击面（二）：Fastjson 的 autoType 与\"修复 vs 绕过\"拉锯战 | ZapcoMan's world","description":"一个”为了方便”的自动类型解析功能，让 Fastjson 成了黑灰产和 APT 组织的头号目标。它的漏洞修复史，是一场长达数年的”修复 vs 绕过”军备竞赛——黑名单加了一条又一条，绕过却从未停止。 引言：库的”自动类型”之罪在 Java 的 JSON 解析世界里，Fastjson 是一个传奇——它由阿里巴巴开源，以”极快”著称，被全球海量 Java 应用（...","url":"http://example.com/2026/08/19/20260819/2026081911/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/08/19/20260819/2026081911/","datePublished":"2026-08-19T01:00:00.000Z","dateModified":"2026-08-19T05:29:17.689Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"网络安全, Java, 反序列化, 漏洞分析, RCE, Fastjson"}</script>
 
 <script>
   (function () {
@@ -347,7 +347,7 @@
         
           
             <a class="site-info__item" href="/archives/">
-              <strong>112</strong>
+              <strong>114</strong>
               <span>文章</span>
             </a>
           
@@ -361,7 +361,7 @@
         
           
             <a class="site-info__item" href="/tags/">
-              <strong>113</strong>
+              <strong>117</strong>
               <span>标签</span>
             </a>
           
@@ -436,15 +436,15 @@
     <ul class="recent-list">
       
         <li>
-          <a class="recent-item" href="/2026/08/19/20260819/2026081912/">
-            <strong>Java 反序列化攻击面（三）：Shiro 的 rememberMe 与&#34;默认密钥&#34;之罪</strong>
+          <a class="recent-item" href="/2026/08/19/20260819/2026081909/">
+            <strong>Java 反序列化攻击面（一）：WebLogic 的 T3 协议与&#34;漏洞打地鼠&#34;史</strong>
             <em>2026-08-19</em>
           </a>
         </li>
       
         <li>
-          <a class="recent-item" href="/2026/08/19/20260819/2026081909/">
-            <strong>Java 反序列化攻击面（一）：WebLogic 的 T3 协议与&#34;漏洞打地鼠&#34;史</strong>
+          <a class="recent-item" href="/2026/08/19/20260819/2026081917/">
+            <strong>NPM/PyPI 供应链投毒：从依赖劫持到 typosquatting，开源依赖的隐形风险</strong>
             <em>2026-08-19</em>
           </a>
         </li>
@@ -457,15 +457,15 @@
         </li>
       
         <li>
-          <a class="recent-item" href="/2026/08/19/20260819/2026081915/">
-            <strong>缅甸电诈园区的网络技术供应链：话术工厂、洗钱矩阵与一条看不见的流水线</strong>
+          <a class="recent-item" href="/2026/08/19/20260819/2026081916/">
+            <strong>SolarWinds 事件复盘：一场潜伏九个月、横跨全球的&#34;供应链核爆&#34;</strong>
             <em>2026-08-19</em>
           </a>
         </li>
       
         <li>
-          <a class="recent-item" href="/2026/08/19/20260819/2026081908/">
-            <strong>Log4Shell：一次震动全球 Java 生态的&#34;完美漏洞&#34;</strong>
+          <a class="recent-item" href="/2026/08/19/20260819/2026081915/">
+            <strong>缅甸电诈园区的网络技术供应链：话术工厂、洗钱矩阵与一条看不见的流水线</strong>
             <em>2026-08-19</em>
           </a>
         </li>
@@ -713,18 +713,18 @@
 
   <nav class="article-actions">
     
-      <a class="article-action article-action--prev" href="/2026/08/19/20260819/2026081912/">
+      <a class="article-action article-action--prev" href="/2026/08/19/20260819/2026081901/">
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-left"></use></svg>
 
         <span class="action-label">上一篇</span>
-        <span class="action-title">Java 反序列化攻击面（三）：Shiro 的 rememberMe 与&#34;默认密钥&#34;之罪</span>
+        <span class="action-title">黑客组织 - Lazarus：朝鲜&#34;隐藏眼镜蛇&#34;的全球金融掠夺史</span>
       </a>
     
     
-      <a class="article-action article-action--next" href="/2026/08/19/20260819/2026081909/">
+      <a class="article-action article-action--next" href="/2026/08/17/2026081701/">
         <span class="action-label">下一篇</span>
-        <span class="action-title">Java 反序列化攻击面（一）：WebLogic 的 T3 协议与&#34;漏洞打地鼠&#34;史</span>
+        <span class="action-title">传呼机阴谋：摩萨德如何把口袋里的通讯设备变成炸弹</span>
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
 
@@ -755,7 +755,7 @@
     </header>
     <div class="related-paper__grid">
       
-        <a class="related-card" href="/2026/08/19/20260819/2026081912/">
+        <a class="related-card" href="/2026/08/19/20260819/2026081909/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
@@ -766,12 +766,12 @@
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">Java 反序列化攻击面（三）：Shiro 的 rememberMe 与&#34;默认密钥&#34;之罪</strong>
+            <strong class="related-card__title">Java 反序列化攻击面（一）：WebLogic 的 T3 协议与&#34;漏洞打地鼠&#34;史</strong>
             <em class="related-card__date">2026-08-19</em>
           </span>
         </a>
       
-        <a class="related-card" href="/2026/08/19/20260819/2026081909/">
+        <a class="related-card" href="/2026/08/19/20260819/2026081912/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-1 paper-thumb--cover">
@@ -782,7 +782,7 @@
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">Java 反序列化攻击面（一）：WebLogic 的 T3 协议与&#34;漏洞打地鼠&#34;史</strong>
+            <strong class="related-card__title">Java 反序列化攻击面（三）：Shiro 的 rememberMe 与&#34;默认密钥&#34;之罪</strong>
             <em class="related-card__date">2026-08-19</em>
           </span>
         </a>
@@ -803,7 +803,7 @@
           </span>
         </a>
       
-        <a class="related-card" href="/2026/08/19/20260819/2026081910/">
+        <a class="related-card" href="/2026/08/19/20260819/2026081917/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
@@ -814,7 +814,7 @@
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">SSH 安全全景：从弱口令爆破到供应链劫持</strong>
+            <strong class="related-card__title">NPM/PyPI 供应链投毒：从依赖劫持到 typosquatting，开源依赖的隐形风险</strong>
             <em class="related-card__date">2026-08-19</em>
           </span>
         </a>
