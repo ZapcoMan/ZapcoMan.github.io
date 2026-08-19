@@ -1,0 +1,925 @@
+<!doctype html>
+
+<html lang="zh-CN" data-fancybox-enabled="1">
+<head>
+  
+
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f7f3e9">
+
+<title>Telegram 软件架构与端到端加密拆解：为什么它的「安全」是可选，而非默认 | ZapcoMan&#39;s world</title>
+<meta name="description" content="同样是聊天软件，Telegram 的私密聊天能让服务器「连你发的什么都不知道」，而微信的每一条消息，服务器都「读得一清二楚」。这个差距不是「技术高低」决定的，而是由架构决定的——一端把密钥放在了你的手机里，另一端把密钥放在了服务器上。 引言：一个被「丝滑」掩盖的真相对比 Telegram 与微信，人们常从三个角度切入：性能体验、加密设计、用户协议。表面看这是...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Telegram 软件架构与端到端加密拆解：为什么它的「安全」是可选，而非默认 | ZapcoMan&#39;s world">
+<meta property="og:url" content="http://example.com/2026/08/19/20260819/2026081920/">
+<meta property="og:site_name" content="ZapcoMan&#39;s world">
+<meta property="og:description" content="同样是聊天软件，Telegram 的私密聊天能让服务器「连你发的什么都不知道」，而微信的每一条消息，服务器都「读得一清二楚」。这个差距不是「技术高低」决定的，而是由架构决定的——一端把密钥放在了你的手机里，另一端把密钥放在了服务器上。 引言：一个被「丝滑」掩盖的真相对比 Telegram 与微信，人们常从三个角度切入：性能体验、加密设计、用户协议。表面看这是...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-08-19T07:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-19T08:49:17.993Z">
+<meta property="article:author" content="ZapcoMan">
+<meta property="article:tag" content="MTProto">
+<meta property="article:tag" content="Telegram">
+<meta property="article:tag" content="加密">
+<meta property="article:tag" content="安全架构">
+<meta property="article:tag" content="微信">
+<meta property="article:tag" content="端到端加密">
+<meta property="article:tag" content="隐私">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="http://example.com/2026/08/19/20260819/2026081920/">
+
+<link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Telegram 软件架构与端到端加密拆解：为什么它的「安全」是可选，而非默认","name":"Telegram 软件架构与端到端加密拆解：为什么它的「安全」是可选，而非默认 | ZapcoMan's world","description":"同样是聊天软件，Telegram 的私密聊天能让服务器「连你发的什么都不知道」，而微信的每一条消息，服务器都「读得一清二楚」。这个差距不是「技术高低」决定的，而是由架构决定的——一端把密钥放在了你的手机里，另一端把密钥放在了服务器上。 引言：一个被「丝滑」掩盖的真相对比 Telegram 与微信，人们常从三个角度切入：性能体验、加密设计、用户协议。表面看这是...","url":"http://example.com/2026/08/19/20260819/2026081920/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/08/19/20260819/2026081920/","datePublished":"2026-08-19T07:00:00.000Z","dateModified":"2026-08-19T08:49:17.993Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"Telegram, 端到端加密, MTProto, 加密, 隐私, 微信, 安全架构"}</script>
+
+<script>
+  (function () {
+    var accents = { orange: 1, purple: 1, sakura: 1, blue: 1, pink: 1, green: 1, black: 1 };
+    var match = document.cookie.match(/(?:^|;\s*)flatpaper-accent=([^;]+)/);
+    var accent = 'black';
+    if (match) {
+      try { accent = decodeURIComponent(match[1]); } catch (e) {}
+    }
+    if (!accents[accent]) accent = 'black';
+    document.documentElement.setAttribute('data-accent', accent);
+    try {
+      if (localStorage.getItem('flatpaper-mode') === 'dark') {
+        document.documentElement.classList.add('dark-mode');
+      }
+    } catch (e) {}
+  })();
+</script>
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
+<script defer src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 8.1.2"><link rel="alternate" href="/atom.xml" title="ZapcoMan's world" type="application/atom+xml">
+</head>
+
+<body
+  class="is-post tag-style-tape bg-style-default"
+  data-default-accent="black"
+  data-code-theme="dark"
+  data-note-style="sticky"
+  data-note-icons="on"
+  data-button-style="circle"
+  data-strong-accent="on"
+>
+  
+    <div class="page-grain"></div>
+  
+  <svg width="0" height="0" style="position:absolute;z-index:-1;" aria-hidden="true">
+    <defs>
+      <filter id="paper-edge" x="-5%" y="-5%" width="110%" height="110%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.04" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+    </defs>
+  </svg>
+  <svg class="flatpaper-icon-sprite" xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute;width:0;height:0;overflow:hidden;" aria-hidden="true" focusable="false"><defs><symbol id="flatpaper-icon-lucide-layout-grid" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></symbol><symbol id="flatpaper-icon-lucide-house" viewBox="0 0 24 24"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol><symbol id="flatpaper-icon-lucide-archive" viewBox="0 0 24 24"><rect width="20" height="5" x="2" y="3" rx="1"/><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8"/><path d="M10 12h4"/></symbol><symbol id="flatpaper-icon-lucide-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol><symbol id="flatpaper-icon-lucide-user" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol><symbol id="flatpaper-icon-lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></symbol><symbol id="flatpaper-icon-lucide-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol><symbol id="flatpaper-icon-lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></symbol><symbol id="flatpaper-icon-lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></symbol><symbol id="flatpaper-icon-lucide-palette" viewBox="0 0 24 24"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"/><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/></symbol><symbol id="flatpaper-icon-fa-brands-github" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></symbol><symbol id="flatpaper-icon-fa-brands-twitter" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></symbol><symbol id="flatpaper-icon-lucide-mail" viewBox="0 0 24 24"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></symbol><symbol id="flatpaper-icon-lucide-rss" viewBox="0 0 24 24"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></symbol><symbol id="flatpaper-icon-lucide-atom" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><path d="M20.2 20.2c2.04-2.03.02-7.36-4.5-11.9-4.54-4.52-9.87-6.54-11.9-4.5-2.04 2.03-.02 7.36 4.5 11.9 4.54 4.52 9.87 6.54 11.9 4.5Z"/><path d="M15.7 15.7c4.52-4.54 6.54-9.87 4.5-11.9-2.03-2.04-7.36-.02-11.9 4.5-4.52 4.54-6.54 9.87-4.5 11.9 2.03 2.04 7.36.02 11.9-4.5Z"/></symbol><symbol id="flatpaper-icon-lucide-heart" viewBox="0 0 24 24"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></symbol><symbol id="flatpaper-icon-lucide-message-circle" viewBox="0 0 24 24"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></symbol><symbol id="flatpaper-icon-lucide-message-square" viewBox="0 0 24 24"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z"/></symbol><symbol id="flatpaper-icon-lucide-share-2" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></symbol><symbol id="flatpaper-icon-lucide-calendar" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></symbol><symbol id="flatpaper-icon-lucide-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol><symbol id="flatpaper-icon-lucide-shuffle" viewBox="0 0 24 24"><path d="m18 14 4 4-4 4"/><path d="m18 2 4 4-4 4"/><path d="M2 18h1.973a4 4 0 0 0 3.3-1.7l5.454-8.6a4 4 0 0 1 3.3-1.7H22"/><path d="M2 6h1.972a4 4 0 0 1 3.6 2.2"/><path d="M22 18h-6.041a4 4 0 0 1-3.3-1.8l-.359-.45"/></symbol><symbol id="flatpaper-icon-lucide-flame" viewBox="0 0 24 24"><path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4"/></symbol><symbol id="flatpaper-icon-lucide-history" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></symbol><symbol id="flatpaper-icon-lucide-table-of-contents" viewBox="0 0 24 24"><path d="M16 5H3"/><path d="M16 12H3"/><path d="M16 19H3"/><path d="M21 5h.01"/><path d="M21 12h.01"/><path d="M21 19h.01"/></symbol><symbol id="flatpaper-icon-lucide-list-tree" viewBox="0 0 24 24"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></symbol><symbol id="flatpaper-icon-lucide-folder" viewBox="0 0 24 24"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></symbol><symbol id="flatpaper-icon-lucide-tag" viewBox="0 0 24 24"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/></symbol><symbol id="flatpaper-icon-lucide-eye" viewBox="0 0 24 24"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></symbol><symbol id="flatpaper-icon-lucide-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol><symbol id="flatpaper-icon-lucide-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></symbol><symbol id="flatpaper-icon-lucide-arrow-up" viewBox="0 0 24 24"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></symbol><symbol id="flatpaper-icon-lucide-chevron-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol><symbol id="flatpaper-icon-lucide-chevron-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol><symbol id="flatpaper-icon-lucide-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol><symbol id="flatpaper-icon-lucide-chevron-up" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></symbol><symbol id="flatpaper-icon-lucide-send" viewBox="0 0 24 24"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></symbol><symbol id="flatpaper-icon-lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></symbol><symbol id="flatpaper-icon-lucide-panel-left" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/></symbol><symbol id="flatpaper-icon-lucide-leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></symbol><symbol id="flatpaper-icon-lucide-aperture" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m14.31 8 5.74 9.94"/><path d="M9.69 8h11.48"/><path d="m7.38 12 5.74-9.94"/><path d="M9.69 16 3.95 6.06"/><path d="M14.31 16H2.83"/><path d="m16.62 12-5.74 9.94"/></symbol><symbol id="flatpaper-icon-lucide-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"/></symbol><symbol id="flatpaper-icon-lucide-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></symbol><symbol id="flatpaper-icon-lucide-radio" viewBox="0 0 24 24"><path d="M16.247 7.761a6 6 0 0 1 0 8.478"/><path d="M19.075 4.933a10 10 0 0 1 0 14.134"/><path d="M4.925 19.067a10 10 0 0 1 0-14.134"/><path d="M7.753 16.239a6 6 0 0 1 0-8.478"/><circle cx="12" cy="12" r="2"/></symbol><symbol id="flatpaper-icon-lucide-hash" viewBox="0 0 24 24"><line x1="4" x2="20" y1="9" y2="9"/><line x1="4" x2="20" y1="15" y2="15"/><line x1="10" x2="8" y1="3" y2="21"/><line x1="16" x2="14" y1="3" y2="21"/></symbol><symbol id="flatpaper-icon-lucide-gift" viewBox="0 0 24 24"><path d="M12 7v14"/><path d="M20 11v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"/><path d="M7.5 7a1 1 0 0 1 0-5A4.8 8 0 0 1 12 7a4.8 8 0 0 1 4.5-5 1 1 0 0 1 0 5"/><rect x="3" y="7" width="18" height="4" rx="1"/></symbol><symbol id="flatpaper-icon-fa-brands-alipay" viewBox="0 0 448 512"><path d="M377.74 32H70.26C31.41 32 0 63.41 0 102.26v307.48C0 448.59 31.41 480 70.26 480h307.48c38.52 0 69.76-31.08 70.26-69.6-45.96-25.62-110.59-60.34-171.6-88.44-32.07 43.97-84.14 81-148.62 81-70.59 0-93.73-45.3-97.04-76.37-3.97-39.01 14.88-81.5 99.52-81.5 35.38 0 79.35 10.25 127.13 24.96 16.53-30.09 26.45-60.34 26.45-60.34h-178.2v-16.7h92.08v-31.24H88.28v-19.01h109.44V92.34h50.92v50.42h109.44v19.01H248.63v31.24h88.77s-15.21 46.62-38.35 90.92c48.93 16.7 100.01 36.04 148.62 52.74V102.26C447.83 63.57 416.43 32 377.74 32zM47.28 322.95c.99 20.17 10.25 53.73 69.93 53.73 52.07 0 92.58-39.68 117.87-72.9-44.63-18.68-84.48-31.41-109.44-31.41-67.45 0-79.35 33.06-78.36 50.58z"/></symbol><symbol id="flatpaper-icon-fa-brands-paypal" viewBox="0 0 384 512"><path d="M111.4 295.9c-3.5 19.2-17.4 108.7-21.5 134-.3 1.8-1 2.5-3 2.5H12.3c-7.6 0-13.1-6.6-12.1-13.9L58.8 46.6c1.5-9.6 10.1-16.9 20-16.9 152.3 0 165.1-3.7 204 11.4 60.1 23.3 65.6 79.5 44 140.3-21.5 62.6-72.5 89.5-140.1 90.3-43.4.7-69.5-7-75.3 24.2zM357.1 152c-1.8-1.3-2.5-1.8-3 1.3-2 11.4-5.1 22.5-8.8 33.6-39.9 113.8-150.5 103.9-204.5 103.9-6.1 0-10.1 3.3-10.9 9.4-22.6 140.4-27.1 169.7-27.1 169.7-1 7.1 3.5 12.9 10.6 12.9h63.5c8.6 0 15.7-6.3 17.4-14.9.7-5.4-1.1 6.1 14.4-91.3 4.6-22 14.3-19.7 29.3-19.7 71 0 126.4-28.8 142.9-112.3 6.5-34.8 4.6-71.4-23.8-92.6z"/></symbol><symbol id="flatpaper-icon-fa-brands-x-twitter" viewBox="0 0 512 512"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></symbol><symbol id="flatpaper-icon-fa-brands-steam" viewBox="0 0 496 512"><path d="M496 256c0 137-111.2 248-248.4 248-113.8 0-209.6-76.3-239-180.4l95.2 39.3c6.4 32.1 34.9 56.4 68.9 56.4 39.2 0 71.9-32.4 70.2-73.5l84.5-60.2c52.1 1.3 95.8-40.9 95.8-93.5 0-51.6-42-93.5-93.7-93.5s-93.7 42-93.7 93.5v1.2L176.6 279c-15.5-.9-30.7 3.4-43.5 12.1L0 236.1C10.2 108.4 117.1 8 247.6 8 384.8 8 496 119 496 256zM155.7 384.3l-30.5-12.6a52.79 52.79 0 0 0 27.2 25.8c26.9 11.2 57.8-1.6 69-28.4 5.4-13 5.5-27.3.1-40.3-5.4-13-15.5-23.2-28.5-28.6-12.9-5.4-26.7-5.2-38.9-.6l31.5 13c19.8 8.2 29.2 30.9 20.9 50.7-8.3 19.9-31 29.2-50.8 21zm173.8-129.9c-34.4 0-62.4-28-62.4-62.3s28-62.3 62.4-62.3 62.4 28 62.4 62.3-27.9 62.3-62.4 62.3zm.1-15.6c25.9 0 46.9-21 46.9-46.8 0-25.9-21-46.8-46.9-46.8s-46.9 21-46.9 46.8c.1 25.8 21.1 46.8 46.9 46.8z"/></symbol><symbol id="flatpaper-icon-fa-brands-bilibili" viewBox="0 0 512 512"><path d="M488.6 104.1C505.3 122.2 513 143.8 511.9 169.8V372.2C511.5 398.6 502.7 420.3 485.4 437.3C468.2 454.3 446.3 463.2 419.9 464H92.02C65.57 463.2 43.81 454.2 26.74 436.8C9.682 419.4 .7667 396.5 0 368.2V169.8C.7667 143.8 9.682 122.2 26.74 104.1C43.81 87.75 65.57 78.77 92.02 78H121.4L96.05 52.19C90.3 46.46 87.42 39.19 87.42 30.4C87.42 21.6 90.3 14.34 96.05 8.603C101.8 2.868 109.1 0 117.9 0C126.7 0 134 2.868 139.8 8.603L213.1 78H301.1L375.6 8.603C381.7 2.868 389.2 0 398 0C406.8 0 414.1 2.868 419.9 8.603C425.6 14.34 428.5 21.6 428.5 30.4C428.5 39.19 425.6 46.46 419.9 52.19L394.6 78L423.9 78C450.3 78.77 471.9 87.75 488.6 104.1H488.6zM449.8 173.8C449.4 164.2 446.1 156.4 439.1 150.3C433.9 144.2 425.1 140.9 416.4 140.5H96.05C86.46 140.9 78.6 144.2 72.47 150.3C66.33 156.4 63.07 164.2 62.69 173.8V368.2C62.69 377.4 65.95 385.2 72.47 391.7C78.99 398.2 86.85 401.5 96.05 401.5H416.4C425.6 401.5 433.4 398.2 439.7 391.7C446 385.2 449.4 377.4 449.8 368.2L449.8 173.8zM185.5 216.5C191.8 222.8 195.2 230.6 195.6 239.7V273C195.2 282.2 191.9 289.9 185.8 296.2C179.6 302.5 171.8 305.7 162.2 305.7C152.6 305.7 144.7 302.5 138.6 296.2C132.5 289.9 129.2 282.2 128.8 273V239.7C129.2 230.6 132.6 222.8 138.9 216.5C145.2 210.2 152.1 206.9 162.2 206.5C171.4 206.9 179.2 210.2 185.5 216.5H185.5zM377 216.5C383.3 222.8 386.7 230.6 387.1 239.7V273C386.7 282.2 383.4 289.9 377.3 296.2C371.2 302.5 363.3 305.7 353.7 305.7C344.1 305.7 336.3 302.5 330.1 296.2C323.1 289.9 320.7 282.2 320.4 273V239.7C320.7 230.6 324.1 222.8 330.4 216.5C336.7 210.2 344.5 206.9 353.7 206.5C362.9 206.9 370.7 210.2 377 216.5H377z"/></symbol><symbol id="flatpaper-icon-fa-brands-youtube" viewBox="0 0 576 512"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></symbol><symbol id="flatpaper-icon-fa-brands-facebook" viewBox="0 0 512 512"><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></symbol><symbol id="flatpaper-icon-fa-brands-instagram" viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></symbol><symbol id="flatpaper-icon-fa-brands-telegram" viewBox="0 0 496 512"><path d="M248,8C111.033,8,0,119.033,0,256S111.033,504,248,504,496,392.967,496,256,384.967,8,248,8ZM362.952,176.66c-3.732,39.215-19.881,134.378-28.1,178.3-3.476,18.584-10.322,24.816-16.948,25.425-14.4,1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25,5.342-39.5,3.652-3.793,67.107-61.51,68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608,69.142-14.845,10.194-26.894,9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7,18.45-13.7,108.446-47.248,144.628-62.3c68.872-28.647,83.183-33.623,92.511-33.789,2.052-.034,6.639.474,9.61,2.885a10.452,10.452,0,0,1,3.53,6.716A43.765,43.765,0,0,1,362.952,176.66Z"/></symbol><symbol id="flatpaper-icon-fa-brands-weibo" viewBox="0 0 512 512"><path d="M407 177.6c7.6-24-13.4-46.8-37.4-41.7-22 4.8-28.8-28.1-7.1-32.8 50.1-10.9 92.3 37.1 76.5 84.8-6.8 21.2-38.8 10.8-32-10.3zM214.8 446.7C108.5 446.7 0 395.3 0 310.4c0-44.3 28-95.4 76.3-143.7C176 67 279.5 65.8 249.9 161c-4 13.1 12.3 5.7 12.3 6 79.5-33.6 140.5-16.8 114 51.4-3.7 9.4 1.1 10.9 8.3 13.1 135.7 42.3 34.8 215.2-169.7 215.2zm143.7-146.3c-5.4-55.7-78.5-94-163.4-85.7-84.8 8.6-148.8 60.3-143.4 116s78.5 94 163.4 85.7c84.8-8.6 148.8-60.3 143.4-116zM347.9 35.1c-25.9 5.6-16.8 43.7 8.3 38.3 72.3-15.2 134.8 52.8 111.7 124-7.4 24.2 29.1 37 37.4 12 31.9-99.8-55.1-195.9-157.4-174.3zm-78.5 311c-17.1 38.8-66.8 60-109.1 46.3-40.8-13.1-58-53.4-40.3-89.7 17.7-35.4 63.1-55.4 103.4-45.1 42 10.8 63.1 50.2 46 88.5zm-86.3-30c-12.9-5.4-30 .3-38 12.9-8.3 12.9-4.3 28 8.6 34 13.1 6 30.8.3 39.1-12.9 8-13.1 3.7-28.3-9.7-34zm32.6-13.4c-5.1-1.7-11.4.6-14.3 5.4-2.9 5.1-1.4 10.6 3.7 12.9 5.1 2 11.7-.3 14.6-5.4 2.8-5.2 1.1-10.9-4-12.9z"/></symbol></defs></svg>
+  
+  <header class="site-header">
+  
+  <button class="icon-button js-sidebar-toggle sidebar-toggle" type="button" aria-label="打开侧边栏" aria-controls="paper-sidebar-drawer" aria-expanded="false">
+    
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-menu"></use></svg>
+
+  </button>
+
+  <div class="brand">
+    <div class="brand-mark-wrapper">
+      
+        <a class="brand-mark" href="/" aria-label="FlatPaper 首页">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-grid flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-layout-grid"></use></svg>
+
+        </a>
+      
+    </div>
+    <a class="brand-text" href="/">ZapcoMan&#39;s world</a>
+  </div>
+
+  <nav class="site-nav" aria-label="主导航">
+    
+      
+        <a class="site-nav-link " href="/">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-house"></use></svg>
+
+          <span>首页</span>
+        </a>
+      
+    
+      
+        <div class="site-nav-item has-children">
+          <button class="site-nav-link site-nav-parent" type="button" aria-haspopup="true" aria-expanded="false">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+            <span>文章</span>
+          </button>
+          <div class="site-nav-menu" role="menu">
+            
+              <a role="menuitem" class="" href="/categories/">
+                
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+                <span>分类</span>
+              </a>
+            
+              <a role="menuitem" class="" href="/tags/">
+                
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
+
+                <span>标签</span>
+              </a>
+            
+              <a role="menuitem" class="" href="/archives/">
+                
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-archive flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-archive"></use></svg>
+
+                <span>归档</span>
+              </a>
+            
+          </div>
+        </div>
+      
+    
+      
+        <a class="site-nav-link " href="/links/">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-link"></use></svg>
+
+          <span>友链</span>
+        </a>
+      
+    
+      
+        <a class="site-nav-link " href="/about/">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-user"></use></svg>
+
+          <span>关于</span>
+        </a>
+      
+    
+  </nav>
+
+  <div class="header-tools">
+    <button class="icon-button js-search-open" type="button" aria-label="搜索文章">
+      
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-search"></use></svg>
+
+    </button>
+    <div class="accent-picker">
+      <button class="icon-button accent-toggle" type="button" aria-label="选择主题色" title="选择主题色" aria-haspopup="true" aria-expanded="false" aria-controls="accent-menu">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-palette"></use></svg>
+
+      </button>
+      <div class="accent-menu" id="accent-menu" role="menu" aria-label="主题色">
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="橙色" aria-checked="false" data-accent-option="orange">
+          <span class="accent-swatch accent-swatch--orange" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="紫色" aria-checked="false" data-accent-option="purple">
+          <span class="accent-swatch accent-swatch--purple" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="樱花粉" aria-checked="false" data-accent-option="sakura">
+          <span class="accent-swatch accent-swatch--sakura" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="蓝色" aria-checked="false" data-accent-option="blue">
+          <span class="accent-swatch accent-swatch--blue" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="粉色" aria-checked="false" data-accent-option="pink">
+          <span class="accent-swatch accent-swatch--pink" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="绿色" aria-checked="false" data-accent-option="green">
+          <span class="accent-swatch accent-swatch--green" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="黑色" aria-checked="false" data-accent-option="black">
+          <span class="accent-swatch accent-swatch--black" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+    <button class="theme-toggle" type="button" aria-label="切换颜色模式">
+      <span class="theme-icon theme-icon--sun">
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-sun"></use></svg>
+</span>
+      <span class="theme-icon theme-icon--moon">
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-moon"></use></svg>
+</span>
+    </button>
+  </div>
+</header>
+
+
+  
+  <main class="paper-shell paper-shell--article">
+    
+
+<aside id="paper-sidebar-drawer" class="paper-sidebar paper-sidebar--right" aria-label="侧边栏">
+  <div class="drawer-toolbar" aria-label="侧边栏工具">
+    <div class="drawer-accent-options" role="group" aria-label="主题色">
+      <button type="button" class="accent-option" aria-label="橙色" aria-pressed="false" data-accent-option="orange">
+        <span class="accent-swatch accent-swatch--orange" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="紫色" aria-pressed="false" data-accent-option="purple">
+        <span class="accent-swatch accent-swatch--purple" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="樱花粉" aria-pressed="false" data-accent-option="sakura">
+        <span class="accent-swatch accent-swatch--sakura" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="蓝色" aria-pressed="false" data-accent-option="blue">
+        <span class="accent-swatch accent-swatch--blue" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="粉色" aria-pressed="false" data-accent-option="pink">
+        <span class="accent-swatch accent-swatch--pink" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="绿色" aria-pressed="false" data-accent-option="green">
+        <span class="accent-swatch accent-swatch--green" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="黑色" aria-pressed="false" data-accent-option="black">
+        <span class="accent-swatch accent-swatch--black" aria-hidden="true"></span>
+      </button>
+    </div>
+    <button class="icon-button drawer-close js-sidebar-close" type="button" aria-label="关闭侧边栏">
+      
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-x"></use></svg>
+
+    </button>
+  </div>
+
+  <section class="side-card nav-card">
+    <nav class="site-nav-drawer" aria-label="移动端导航">
+      
+        
+          <a class="" href="/">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-house"></use></svg>
+
+            <span>首页</span>
+          </a>
+        
+      
+        
+          <div class="drawer-nav-group">
+            <button class="drawer-nav-parent" type="button" aria-expanded="false">
+              
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+              <span>文章</span>
+            </button>
+            <div class="drawer-nav-children">
+              
+                <a class="" href="/categories/">
+                  
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+                  <span>分类</span>
+                </a>
+              
+                <a class="" href="/tags/">
+                  
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
+
+                  <span>标签</span>
+                </a>
+              
+                <a class="" href="/archives/">
+                  
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-archive flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-archive"></use></svg>
+
+                  <span>归档</span>
+                </a>
+              
+            </div>
+          </div>
+        
+      
+        
+          <a class="" href="/links/">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-link"></use></svg>
+
+            <span>友链</span>
+          </a>
+        
+      
+        
+          <a class="" href="/about/">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-user"></use></svg>
+
+            <span>关于</span>
+          </a>
+        
+      
+    </nav>
+  </section>
+
+  <section class="side-card profile-card">
+    
+      <div class="avatar avatar--image avatar--circle">
+        <img src="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4" alt="ZapcoMan" loading="lazy" referrerpolicy="no-referrer">
+      </div>
+    
+    <h3>ZapcoMan</h3>
+    <p class="profile-role">日常记录</p>
+    <p>独立开发者 主攻方向：Java 后端开发（Spring Boot + Vue3 全栈）Python 脚本开发（网络编程、爬虫、数据处理、信息安全工具、自动化运维,渗透测试工具）</p>
+    
+      <div class="site-info" aria-label="站点信息">
+        
+          
+            <a class="site-info__item" href="/archives/">
+              <strong>118</strong>
+              <span>文章</span>
+            </a>
+          
+        
+          
+            <a class="site-info__item" href="/categories/">
+              <strong>29</strong>
+              <span>分类</span>
+            </a>
+          
+        
+          
+            <a class="site-info__item" href="/tags/">
+              <strong>132</strong>
+              <span>标签</span>
+            </a>
+          
+        
+      </div>
+    
+    <div class="socials">
+      
+        <a href="https://github.com/ZapcoMan" target="_blank" rel="noopener" aria-label="GitHub" data-tooltip="GitHub">
+          
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="lucide lucide-github flatpaper-icon flatpaper-icon--fa-brands" aria-hidden="true"><use href="#flatpaper-icon-fa-brands-github"></use></svg>
+
+          
+        </a>
+      
+        <a href="https://space.bilibili.com/544166891" target="_blank" rel="noopener" aria-label="Bilibili" data-tooltip="Bilibili">
+          
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="lucide lucide-bilibili flatpaper-icon flatpaper-icon--fa-brands" aria-hidden="true"><use href="#flatpaper-icon-fa-brands-bilibili"></use></svg>
+
+          
+        </a>
+      
+        <a href="#" target="_blank" rel="noopener" aria-label="掘金" data-tooltip="掘金">
+          
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-send"></use></svg>
+
+          
+        </a>
+      
+      
+        
+        
+        <a href="/atom.xml" aria-label="RSS feed" data-tooltip="RSS feed">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rss flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-rss"></use></svg>
+
+        </a>
+      
+    </div>
+  </section>
+
+  
+
+  
+    <div class="post-sticky-stack">
+      <section class="side-card toc-card">
+        <header class="toc-card__head">
+          <h2>
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-table-of-contents flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-table-of-contents"></use></svg>
+文章目录</h2>
+          <button type="button" class="toc-toggle-all" data-action="toggle-toc" aria-pressed="false" aria-label="展开全部目录" title="展开全部目录">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-chevron-down"></use></svg>
+
+          </button>
+        </header>
+        <div class="toc-content">
+          
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80%EF%BC%9A%E4%B8%80%E4%B8%AA%E8%A2%AB%E3%80%8C%E4%B8%9D%E6%BB%91%E3%80%8D%E6%8E%A9%E7%9B%96%E7%9A%84%E7%9C%9F%E7%9B%B8"><span class="toc-text">引言：一个被「丝滑」掩盖的真相</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81Telegram-%E7%9A%84%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%EF%BC%9A%E8%BD%BB%EF%BC%8C%E6%98%AF%E6%9C%89%E5%8E%9F%E5%9B%A0%E7%9A%84"><span class="toc-text">一、Telegram 的软件架构：轻，是有原因的</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AE%A2%E6%88%B7%E7%AB%AF-%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A8%A1%E5%9E%8B%EF%BC%8C%E4%B8%8D%E6%98%AF-P2P"><span class="toc-text">1. 客户端-服务器模型，不是 P2P</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%85%A8%E7%90%83%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%EF%BC%88DC%EF%BC%89%EF%BC%9A%E4%B8%9D%E6%BB%91%E7%9A%84%E7%89%A9%E7%90%86%E5%9F%BA%E7%A1%80"><span class="toc-text">2. 全球数据中心（DC）：丝滑的物理基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-MTProto-%E5%8D%8F%E8%AE%AE-TL-%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-text">3. MTProto 协议 + TL 序列化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81MTProto-2-0%EF%BC%9A%E4%BC%A0%E8%BE%93%E5%B1%82%E6%80%8E%E4%B9%88%E5%8A%A0%E5%AF%86"><span class="toc-text">二、MTProto 2.0：传输层怎么加密</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%AB%AF%E5%88%B0%E7%AB%AF%E5%8A%A0%E5%AF%86%EF%BC%88Secret-Chats%EF%BC%89%EF%BC%9A%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B9%9F%E8%AF%BB%E4%B8%8D%E4%BA%86"><span class="toc-text">三、端到端加密（Secret Chats）：服务器也读不了</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%85%B3%E9%94%AE%E5%8C%BA%E5%88%86%EF%BC%9A%E4%BA%91%E8%81%8A%E5%A4%A9-vs-%E7%A7%81%E5%AF%86%E8%81%8A%E5%A4%A9"><span class="toc-text">1. 关键区分：云聊天 vs 私密聊天</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-E2EE-%E7%9A%84%E6%A0%B8%E5%BF%83%EF%BC%9A%E5%AF%86%E9%92%A5%E5%8F%AA%E5%9C%A8%E4%B8%A4%E7%AB%AF"><span class="toc-text">2. E2EE 的核心：密钥只在两端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%AF%86%E9%92%A5%E6%8C%87%E7%BA%B9%EF%BC%9A%E8%82%89%E7%9C%BC%E9%98%B2%E4%B8%AD%E9%97%B4%E4%BA%BA"><span class="toc-text">3. 密钥指纹：肉眼防中间人</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E9%98%85%E5%90%8E%E5%8D%B3%E7%84%9A%E4%B8%8E%E8%AE%BE%E5%A4%87%E7%BB%91%E5%AE%9A"><span class="toc-text">4. 阅后即焚与设备绑定</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E5%BE%AE%E4%BF%A1%E3%80%8C%E5%81%9A%E4%B8%8D%E5%88%B0%E3%80%8D%EF%BC%9F%E2%80%94%E2%80%94%E6%9E%B6%E6%9E%84%E5%86%B3%E5%AE%9A%E5%8D%8F%E8%AE%AE"><span class="toc-text">四、为什么微信「做不到」？——架构决定协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Telegram-vs-%E5%BE%AE%E4%BF%A1-%E5%85%A8%E6%99%AF%E5%AF%B9%E6%AF%94"><span class="toc-text">Telegram vs 微信 全景对比</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%AE%89%E5%85%A8%E5%90%AF%E7%A4%BA%EF%BC%9AE2EE-%E6%98%AF%E4%B8%80%E6%8A%8A%E5%8F%8C%E5%88%83%E5%89%91"><span class="toc-text">五、安全启示：E2EE 是一把双刃剑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E4%B8%80%E7%AF%87%E9%A2%84%E5%91%8A"><span class="toc-text">下一篇预告</span></a></li></ol>
+          
+        </div>
+      </section>
+      
+
+  <section class="side-card recent-card latest-posts-card">
+    <h2>
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-history flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-history"></use></svg>
+最新文章</h2>
+    <ul class="recent-list">
+      
+        <li>
+          <a class="recent-item" href="/2026/08/19/20260819/2026081921/">
+            <strong>Go 实现仿 Telegram 端到端加密：从 DH 密钥交换到 AES-GCM</strong>
+            <em>2026-08-19</em>
+          </a>
+        </li>
+      
+        <li>
+          <a class="recent-item" href="/2026/08/19/20260819/2026081919/">
+            <strong>让猎物自己为猎手工作：保健品洗脑话术如何开采人类的&#34;人性漏洞&#34;</strong>
+            <em>2026-08-19</em>
+          </a>
+        </li>
+      
+        <li>
+          <a class="recent-item" href="/2026/08/19/20260819/2026081918/">
+            <strong>黑客组织 - 海莲花 OceanLotus：南海暗涌中的&#34;跨平台幽灵&#34;</strong>
+            <em>2026-08-19</em>
+          </a>
+        </li>
+      
+        <li>
+          <a class="recent-item" href="/2026/08/19/20260819/2026081916/">
+            <strong>SolarWinds 事件复盘：一场潜伏九个月、横跨全球的&#34;供应链核爆&#34;</strong>
+            <em>2026-08-19</em>
+          </a>
+        </li>
+      
+        <li>
+          <a class="recent-item" href="/2026/08/19/20260819/2026081915/">
+            <strong>缅甸电诈园区的网络技术供应链：话术工厂、洗钱矩阵与一条看不见的流水线</strong>
+            <em>2026-08-19</em>
+          </a>
+        </li>
+      
+    </ul>
+  </section>
+
+
+    </div>
+  
+
+  
+
+</aside>
+
+    <section class="paper-main">
+      
+
+<div class="article-tape-wrap">
+<span class="tape tape--top-right" aria-hidden="true"></span>
+<article class="article-paper">
+  
+  <header class="article-header">
+    
+      <a class="label-pill" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+        网络安全
+      </a>
+    
+    <h1>Telegram 软件架构与端到端加密拆解：为什么它的「安全」是可选，而非默认</h1>
+    <div class="meta-line meta-line--article">
+      <span class="meta-date">
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
+2026-08-19</span>
+      
+        <span class="meta-tags">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
+
+          <a class="meta-tag-link" href="/tags/Telegram/">#Telegram</a><a class="meta-tag-link" href="/tags/%E7%AB%AF%E5%88%B0%E7%AB%AF%E5%8A%A0%E5%AF%86/">#端到端加密</a><a class="meta-tag-link" href="/tags/MTProto/">#MTProto</a><a class="meta-tag-link" href="/tags/%E5%8A%A0%E5%AF%86/">#加密</a><a class="meta-tag-link" href="/tags/%E9%9A%90%E7%A7%81/">#隐私</a><a class="meta-tag-link" href="/tags/%E5%BE%AE%E4%BF%A1/">#微信</a><a class="meta-tag-link" href="/tags/%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84/">#安全架构</a>
+        </span>
+      
+    </div>
+  </header>
+
+  
+
+
+  <div class="article-content">
+    <blockquote>
+<p>同样是聊天软件，Telegram 的私密聊天能让服务器「连你发的什么都不知道」，而微信的每一条消息，服务器都「读得一清二楚」。<br>这个差距不是「技术高低」决定的，而是由<strong>架构</strong>决定的——一端把密钥放在了你的手机里，另一端把密钥放在了服务器上。</p>
+</blockquote>
+<hr>
+<h2 id="引言：一个被「丝滑」掩盖的真相"><a href="#引言：一个被「丝滑」掩盖的真相" class="headerlink" title="引言：一个被「丝滑」掩盖的真相"></a>引言：一个被「丝滑」掩盖的真相</h2><p>对比 Telegram 与微信，人们常从三个角度切入：<strong>性能体验</strong>、<strong>加密设计</strong>、<strong>用户协议</strong>。表面看这是三件不相干的事，但把它们拼在一起，会得到一个统一的结论：</p>
+<blockquote>
+<p><strong>Telegram 与微信的本质区别，不在 UI 动画谁更顺滑，而在「密钥到底握在谁手里」。</strong></p>
+</blockquote>
+<p>性能、加密、用户协议，其实是同一个架构选择在不同层面的投影：</p>
+<table>
+<thead>
+<tr>
+<th>对比维度</th>
+<th>现象</th>
+<th>背后的架构原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>性能体验</td>
+<td>Telegram 秒开丝滑，微信臃肿笨重</td>
+<td>Telegram 轻量客户端 + 全球 DC 就近接入；微信是「超级 App」基座堆叠</td>
+</tr>
+<tr>
+<td>加密设计</td>
+<td>Telegram 有真正的端到端加密</td>
+<td>Secret Chats 把密钥放在两端设备，服务器只转发密文</td>
+</tr>
+<tr>
+<td>用户协议</td>
+<td>双方隐私条款差距悬殊</td>
+<td>架构差异的法律化表达——服务器读得到，才能「承诺」或「不承诺」</td>
+</tr>
+</tbody></table>
+<p>本文要做的，就是把 Telegram 的<strong>软件架构</strong>和<strong>端到端加密</strong>拆到底：它到底怎么做到「服务器也读不了你的消息」，以及——为什么这一点，微信做不到、或者说，<strong>选择不这么做</strong>。</p>
+<hr>
+<h2 id="一、Telegram-的软件架构：轻，是有原因的"><a href="#一、Telegram-的软件架构：轻，是有原因的" class="headerlink" title="一、Telegram 的软件架构：轻，是有原因的"></a>一、Telegram 的软件架构：轻，是有原因的</h2><h3 id="1-客户端-服务器模型，不是-P2P"><a href="#1-客户端-服务器模型，不是-P2P" class="headerlink" title="1. 客户端-服务器模型，不是 P2P"></a>1. 客户端-服务器模型，不是 P2P</h3><p>很多人以为「安全的聊天」应该像 P2P 一样点对点直连。但 Telegram 恰恰相反——<strong>所有消息都经过服务器中转</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">你的手机 ──密文──▶ Telegram 服务器 ──密文──▶ 对方手机</span><br></pre></td></tr></table></figure>
+
+<p>这带来三个好处：离线消息、多设备同步、服务器端搜索。而「服务器中转」和「服务器能读」是两回事——后者取决于<strong>密钥在哪</strong>，这正是本文后半部分的核心。</p>
+<h3 id="2-全球数据中心（DC）：丝滑的物理基础"><a href="#2-全球数据中心（DC）：丝滑的物理基础" class="headerlink" title="2. 全球数据中心（DC）：丝滑的物理基础"></a>2. 全球数据中心（DC）：丝滑的物理基础</h3><p>Telegram 在全球部署了多个数据中心（DC），用户就近接入，账号归属某个「主 DC」。海量消息并发下仍能「秒开」，靠的不是黑魔法，而是：</p>
+<ul>
+<li>客户端原生 UI 渲染（不靠 WebView 套壳）</li>
+<li>协议紧凑（TL 二进制序列化，而非 JSON&#x2F;XML 明文膨胀）</li>
+<li>DC 分布式就近路由</li>
+</ul>
+<p>而微信这类「超级 App」，内嵌小程序、支付、公众号、视频号等庞杂基座，内存占用和启动成本自然水涨船高。<strong>这是「专一」与「全能」的架构代价差异，无关技术高低。</strong></p>
+<h3 id="3-MTProto-协议-TL-序列化"><a href="#3-MTProto-协议-TL-序列化" class="headerlink" title="3. MTProto 协议 + TL 序列化"></a>3. MTProto 协议 + TL 序列化</h3><p>Telegram 自研了一套二进制加密传输协议 <strong>MTProto 2.0</strong>，配合 <strong>TL（Type Language）</strong> 描述所有对象的序列化格式。它紧凑、跨语言，是 Telegram 传输层的基石。</p>
+<hr>
+<h2 id="二、MTProto-2-0：传输层怎么加密"><a href="#二、MTProto-2-0：传输层怎么加密" class="headerlink" title="二、MTProto 2.0：传输层怎么加密"></a>二、MTProto 2.0：传输层怎么加密</h2><p>MTProto 解决的是「客户端与服务器之间」的通信安全。它的关键机制，浓缩起来是一套「握手 + 派生」的流水线：</p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>机制</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1. 生成 auth_key</td>
+<td>DH-2048（MODP Group）密钥交换</td>
+<td>客户端与服务器协商长期共享密钥</td>
+</tr>
+<tr>
+<td>2. 派生 msg_key</td>
+<td>对明文（含 salt、会话号、消息体）做 SHA-256，取中间 128 位</td>
+<td>派生本次消息的 AES 密钥与 IV</td>
+</tr>
+<tr>
+<td>3. 加密</td>
+<td>AES-256-IGE（Infinite Garble Extension）模式</td>
+<td>加密任意长度数据</td>
+</tr>
+<tr>
+<td>4. 完整性</td>
+<td>SHA-256 校验</td>
+<td>防篡改</td>
+</tr>
+<tr>
+<td>5. 防重放</td>
+<td>server salt + 递增 msg_id</td>
+<td>防重放与降级攻击</td>
+</tr>
+<tr>
+<td>6. 会话</td>
+<td>auth_key 之上建立多个会话，密钥轮换</td>
+<td>隔离与会话管理</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>注意：MTProto 的 IGE 模式是 Telegram 的一个特殊选择。为什么不用更常见的 GCM？——IGE 能对任意长度数据做「整体加密」而无需填充，适合消息流场景。我们下一篇的 Go 实战会用更简单、也更主流的 <strong>AES-GCM</strong> 来演示端到端加密思路，因为「演示原理」和「生产协议」是两码事。</p>
+</blockquote>
+<hr>
+<h2 id="三、端到端加密（Secret-Chats）：服务器也读不了"><a href="#三、端到端加密（Secret-Chats）：服务器也读不了" class="headerlink" title="三、端到端加密（Secret Chats）：服务器也读不了"></a>三、端到端加密（Secret Chats）：服务器也读不了</h2><p>这是整个对比里最核心、也最容易被误解的部分。</p>
+<h3 id="1-关键区分：云聊天-vs-私密聊天"><a href="#1-关键区分：云聊天-vs-私密聊天" class="headerlink" title="1. 关键区分：云聊天 vs 私密聊天"></a>1. 关键区分：云聊天 vs 私密聊天</h3><p>Telegram 有两类聊天，<strong>加密强度天差地别</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>加密</th>
+<th>服务器能读？</th>
+<th>多设备同步</th>
+<th>特性</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>云聊天（Cloud Chats）</td>
+<td>仅传输层加密</td>
+<td><strong>能读明文</strong></td>
+<td>支持</td>
+<td>群聊、频道、机器人</td>
+</tr>
+<tr>
+<td>私密聊天（Secret Chats）</td>
+<td><strong>端到端加密（E2EE）</strong></td>
+<td><strong>不能读</strong></td>
+<td>仅两端设备</td>
+<td>阅后即焚、密钥指纹</td>
+</tr>
+</tbody></table>
+<p><strong>这是一句必须点破的真相</strong>：Telegram 的「安全」主要体现在 Secret Chats，而你日常用的普通云聊天，服务器是能读的。</p>
+<h3 id="2-E2EE-的核心：密钥只在两端"><a href="#2-E2EE-的核心：密钥只在两端" class="headerlink" title="2. E2EE 的核心：密钥只在两端"></a>2. E2EE 的核心：密钥只在两端</h3><p>端到端加密（E2EE）的「端到端」，指的是<strong>密钥只在通信的两端设备上生成和保存，任何中间方（包括服务器）都拿不到</strong>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">        DH 密钥交换（两端本地完成）</span><br><span class="line">你的手机 ────────────公钥 A────────────▶ 对方手机</span><br><span class="line">   │                                       │</span><br><span class="line">   │     私钥 a                            │     私钥 b</span><br><span class="line">   │     s = B^a mod p                    │     s = A^b mod p</span><br><span class="line">   │     key = SHA-256(s)                 │     key = SHA-256(s)</span><br><span class="line">   │                                       │</span><br><span class="line">   └──────── 共享密钥 s（双方相同，服务器不知） ────────┘</span><br></pre></td></tr></table></figure>
+
+<p>服务器在整个过程中只<strong>转发公钥和密文</strong>，它手里只有「公钥 A、公钥 B、一串密文」，唯独没有「私钥」，因此永远算不出共享密钥 s，也就解不开任何一条消息。</p>
+<blockquote>
+<p>这回答了一个尖锐的问题：<strong>「如果执法部门或攻击者逼 Telegram 交出聊天记录，会怎样？」</strong> 答案取决于聊天的类型——云聊天，它能交出来；Secret Chats，它交出来的只有一堆它自己也解不开的密文。</p>
+</blockquote>
+<h3 id="3-密钥指纹：肉眼防中间人"><a href="#3-密钥指纹：肉眼防中间人" class="headerlink" title="3. 密钥指纹：肉眼防中间人"></a>3. 密钥指纹：肉眼防中间人</h3><p>E2EE 最大的天敌是<strong>中间人攻击（MITM）</strong>：攻击者在你和对方之间，各自冒充对方完成 DH 交换，于是你和「假对方」、攻击者和「真对方」各持有一把密钥，明文在攻击者那里裸奔。</p>
+<p>Telegram 的解法是<strong>密钥指纹（key fingerprint）</strong>：</p>
+<ul>
+<li>两端各自计算公钥的指纹（一段可视化图形 &#x2F; 数字串）</li>
+<li>用户通过<strong>另一条可信通道</strong>（打电话、见面）肉眼比对</li>
+<li>指纹一致 → 无中间人；不一致 → 已被窃听</li>
+</ul>
+<p>这个设计被 Signal、WhatsApp 等后续产品广泛借鉴，成为 E2EE 的标配。下一篇实战，我们会在 Go 里亲手实现它。</p>
+<h3 id="4-阅后即焚与设备绑定"><a href="#4-阅后即焚与设备绑定" class="headerlink" title="4. 阅后即焚与设备绑定"></a>4. 阅后即焚与设备绑定</h3><ul>
+<li><strong>阅后即焚</strong>：消息定时销毁，销毁指令端到端同步，两端同时删除。</li>
+<li><strong>设备绑定</strong>：私密聊天绑定在发起设备上，不跨设备同步——因为密钥只存在于那台设备。</li>
+</ul>
+<hr>
+<h2 id="四、为什么微信「做不到」？——架构决定协议"><a href="#四、为什么微信「做不到」？——架构决定协议" class="headerlink" title="四、为什么微信「做不到」？——架构决定协议"></a>四、为什么微信「做不到」？——架构决定协议</h2><p>微信没有默认的端到端加密，这不是「腾讯技术不行」，而是<strong>架构选择</strong>：</p>
+<ol>
+<li><strong>微信是「服务端可读」架构</strong>：聊天记录存储在腾讯服务器，配合实名、监管、支付、反诈等需求，服务器必须能读明文。</li>
+<li><strong>微信不提供私密聊天</strong>：它用「撤回」替代「阅后即焚」，但撤回不等于销毁——服务器上仍有记录。</li>
+<li><strong>用户协议的「坑」由此而来</strong>：当服务器天然能读你的聊天，用户协议里关于「数据使用权限」的条款，就不可能写得像 Telegram 私密聊天那样「我们读不了」。这份「反差」的根源就在这里。</li>
+</ol>
+<h3 id="Telegram-vs-微信-全景对比"><a href="#Telegram-vs-微信-全景对比" class="headerlink" title="Telegram vs 微信 全景对比"></a>Telegram vs 微信 全景对比</h3><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>Telegram</th>
+<th>微信</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>默认加密</td>
+<td>云聊天仅传输层加密；私密聊天 E2EE</td>
+<td>传输层加密，<strong>无默认 E2EE</strong></td>
+</tr>
+<tr>
+<td>E2EE 能力</td>
+<td>Secret Chats 端到端加密</td>
+<td>普通聊天不提供</td>
+</tr>
+<tr>
+<td>服务器可读性</td>
+<td>云聊天可读 &#x2F; 私密聊天不可读</td>
+<td>可读（配合监管合规）</td>
+</tr>
+<tr>
+<td>密钥指纹防 MITM</td>
+<td>支持</td>
+<td>无</td>
+</tr>
+<tr>
+<td>阅后即焚</td>
+<td>支持</td>
+<td>无（仅撤回）</td>
+</tr>
+<tr>
+<td>多设备同步</td>
+<td>云聊天支持，私密聊天单设备</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>客户端体量</td>
+<td>轻量、原生渲染</td>
+<td>超级 App，功能臃肿</td>
+</tr>
+<tr>
+<td>用户协议口径</td>
+<td>私密聊天承诺不读</td>
+<td>数据权限界定宽泛</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="五、安全启示：E2EE-是一把双刃剑"><a href="#五、安全启示：E2EE-是一把双刃剑" class="headerlink" title="五、安全启示：E2EE 是一把双刃剑"></a>五、安全启示：E2EE 是一把双刃剑</h2><p>拆解到最后，我们应该冷静地看待 Telegram 的「安全」：</p>
+<p><strong>它给我们的三个启示：</strong></p>
+<ol>
+<li><p><strong>「安全」是可选配置，不是默认配置</strong>。Telegram 的云聊天同样是服务端可读的——真正的 E2EE 只存在于你主动开启的 Secret Chats 里。默认状态下的「安全」，往往是幻觉。</p>
+</li>
+<li><p><strong>端到端加密的本质，是「把信任从服务器转移到两端」</strong>。它不保证「没人能偷看」，只保证「服务器和中间人偷看不了」——前提是你要亲手核对密钥指纹。</p>
+</li>
+<li><p><strong>架构决定一切</strong>。性能、加密、用户协议，都是「密钥握在谁手里」这一个根本选择的投影。理解了这一点，你就能看穿任何一款聊天软件在隐私宣传上的话术。</p>
+</li>
+</ol>
+<blockquote>
+<p><strong>最后一句：</strong><br>所谓「安全的聊天软件」，安全的从来不是软件本身，而是<strong>密钥的归属</strong>。<br>把密钥放在手机里，服务器就成了「看不懂的邮差」；把密钥放在服务器上，手机就成了「会说话的监控」。<br>你选择用哪一款，本质上是在选择——<strong>让谁，成为你秘密的守门人</strong>。</p>
+</blockquote>
+<hr>
+<h2 id="下一篇预告"><a href="#下一篇预告" class="headerlink" title="下一篇预告"></a>下一篇预告</h2><p>本文把 Telegram 的架构与 E2EE 原理拆到了位。下一篇《Go 实现仿 Telegram 端到端加密：从 DH 密钥交换到 AES-GCM》里，我们用 Go 的标准库，亲手把这套「服务器读不懂的邮差」模型敲出来——DH-2048 交换密钥、SHA-256 派生密钥、AES-GCM 加密、密钥指纹比对，一步步验证「为什么服务器永远解不开你的消息」。</p>
+
+  </div>
+
+  <footer class="article-reactions">
+    <div class="reaction-group">
+      <button type="button" class="reaction reaction--comment" aria-label="跳转到评论区" data-action="scroll-to-comments">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-message-circle"></use></svg>
+
+      </button>
+      <span class="reaction-label">评论</span>
+      
+    </div>
+    <div class="reaction-group reaction-group--right">
+      
+      <button type="button" class="reaction reaction--share" aria-label="分享" data-action="share">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share-2 flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-share-2"></use></svg>
+
+      </button>
+      <span class="reaction-label">分享</span>
+    </div>
+  </footer>
+
+  
+
+
+  <nav class="article-actions">
+    
+      <a class="article-action article-action--prev" href="/2026/08/19/20260819/2026081921/">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-left"></use></svg>
+
+        <span class="action-label">上一篇</span>
+        <span class="action-title">Go 实现仿 Telegram 端到端加密：从 DH 密钥交换到 AES-GCM</span>
+      </a>
+    
+    
+      <a class="article-action article-action--next" href="/2026/08/19/20260819/2026081919/">
+        <span class="action-label">下一篇</span>
+        <span class="action-title">让猎物自己为猎手工作：保健品洗脑话术如何开采人类的&#34;人性漏洞&#34;</span>
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
+
+      </a>
+    
+  </nav>
+</article>
+</div>
+
+<button type="button" class="back-to-top" data-action="scroll-to-top" aria-label="返回顶部" hidden>
+  
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-up"></use></svg>
+
+</button>
+
+
+  <section class="related-paper">
+    <header class="related-paper__head">
+      <h2>
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-link"></use></svg>
+相关文章</h2>
+      <a class="related-paper__more" href="/archives/">
+        <span>查看更多</span>
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
+
+      </a>
+    </header>
+    <div class="related-paper__grid">
+      
+        <a class="related-card" href="/2026/08/19/20260819/2026081921/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/camera.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">Go 实现仿 Telegram 端到端加密：从 DH 密钥交换到 AES-GCM</strong>
+            <em class="related-card__date">2026-08-19</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/08/19/20260819/2026081919/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/mountain.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">让猎物自己为猎手工作：保健品洗脑话术如何开采人类的&#34;人性漏洞&#34;</strong>
+            <em class="related-card__date">2026-08-19</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/08/19/20260819/2026081918/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/notebook.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">黑客组织 - 海莲花 OceanLotus：南海暗涌中的&#34;跨平台幽灵&#34;</strong>
+            <em class="related-card__date">2026-08-19</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/08/19/20260819/2026081916/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/port.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">SolarWinds 事件复盘：一场潜伏九个月、横跨全球的&#34;供应链核爆&#34;</strong>
+            <em class="related-card__date">2026-08-19</em>
+          </span>
+        </a>
+      
+    </div>
+  </section>
+
+
+      
+
+
+    </section>
+    
+  </main>
+
+  <div class="sidebar-backdrop js-sidebar-close" aria-hidden="true"></div>
+
+  
+<footer class="site-footer">
+  <span class="site-footer__left">© 2026 By ZapcoMan</span>
+  
+    <span class="site-footer__right">
+      
+        <span class="site-footer__row"><span class="site-footer__powered-prefix">Powered by Theme</span> <a href="https://github.com/Homulilly/hexo-theme-flatpaper" target="_blank" rel="noopener">FlatPaper</a></span>
+      
+    </span>
+  
+</footer>
+
+  
+<div class="search-panel" aria-hidden="true" data-index-url="/flatpaper-search.json">
+  <div class="search-backdrop js-search-close"></div>
+  <section class="search-dialog" role="dialog" aria-modal="true" aria-label="搜索文章">
+    <span class="tape tape--top-left" aria-hidden="true"></span>
+    <header class="search-head">
+      <h2><span class="green-dot"></span>搜索文章</h2>
+      <button class="icon-button js-search-close" type="button" aria-label="关闭搜索">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-x"></use></svg>
+
+      </button>
+    </header>
+    <label class="search-field">
+      
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-search"></use></svg>
+
+      <input id="flatpaper-search" class="search-input" type="search" placeholder="输入关键词，按 Esc 关闭" autocomplete="off">
+    </label>
+    <div class="search-results" data-empty="输入关键词后显示匹配的文章">
+      <p class="search-empty">输入关键词后显示匹配的文章</p>
+    </div>
+  </section>
+</div>
+
+  <script>
+  window.FLATPAPER_I18N = {"language":"zh-CN","common.posts":"文章","common.categories":"分类","common.tags":"标签","common.comments":"评论","common.share":"分享","common.page":"页面","common.archive":"归档","common.post_list":"文章列表","common.search_posts":"搜索文章","common.random_posts":"随机文章","common.reward":"赞赏","common.view_all":"查看全部","pagination.prev":"上一页","pagination.next":"下一页","pagination.post_pager":"文章分页","pagination.archive_pager":"归档分页","index.featured":"精选文章","index.pinned":"置顶","index.read_more":"阅读全文","index.previous_slide":"上一张","index.next_slide":"下一张","index.carousel_pagination":"轮播页码","index.carousel_slide":"第 %d 张","index.latest_posts":"最新文章","index.empty_posts":"还没有文章。创建第一篇文章后，这里会显示最新内容。","archive.title":"归档","archive.post_list":"文章列表","taxonomy.category_count":"%d 篇","taxonomy.empty_categories":"暂时还没有分类。","taxonomy.empty_tags":"暂时还没有标签。","links.label":"友链","links.title":"友情链接","links.empty_data":"暂未加载到友链数据。请确认 source/_data/links.yml 存在并已 hexo clean。","links.rss_label":"%s 的 RSS","friends_feed.label":"朋友圈","friends_feed.title":"友链朋友圈","friends_feed.loading":"正在加载友链动态…","friends_feed.missing_url":"暂未配置 all.json 地址。","friends_feed.load_failed":"友链动态加载失败，请稍后再试。","friends_feed.empty":"暂时没有抓取到友链文章。","friends_feed.load_more":"加载更多","friends_feed.updated_at":"更新于 %s","friends_feed.friend_count":"%d 位友邻","friends_feed.active_count":"%d 位活跃","friends_feed.article_count":"%d 篇文章","friends_feed.unknown_author":"未知站点","friends_feed.date_unknown":"时间未知","post.scroll_to_comments":"跳转到评论区","post.previous":"上一篇","post.next":"下一篇","post.no_previous":"没有更早的文章了","post.no_next":"已经是最新的一篇","post.back_to_top":"返回顶部","post.related_posts":"相关文章","post.view_more":"查看更多","not_found.label":"页面走丢了","not_found.title":"找不到这个页面","not_found.text":"这个地址可能已经移动、删除，或者从未存在。","not_found.home":"返回首页","not_found.search":"搜索文章","search.placeholder":"输入关键词，按 Esc 关闭","search.empty":"输入关键词后显示匹配的文章","search.loading":"正在加载搜索索引…","search.load_failed":"搜索索引加载失败，请重新打开搜索重试","search.no_result":"没有找到与 \"%s\" 相关的文章","search.close":"关闭搜索","code.copy":"复制代码","code.collapse":"折叠代码","code.expand":"展开代码","heading.anchor":"链接到此节: %s","head.tag":"标签：%s","head.category":"分类：%s","head.archive":"归档","head.archive_with_date":"归档：%s","head.page_number":"第 %d 页","navigation.primary":"主导航","navigation.mobile":"移动端导航","navigation.brand_home":"FlatPaper 首页","navigation.brand_menu":"打开站点导航","navigation.open_sidebar":"打开侧边栏","navigation.close_sidebar":"关闭侧边栏","navigation.sidebar":"侧边栏","navigation.sidebar_tools":"侧边栏工具","navigation.site_links":"站点链接","navigation.site_info":"站点信息","colors.choose_theme_color":"选择主题色","colors.theme_color":"主题色","colors.toggle_color_mode":"切换颜色模式","colors.green":"绿色","colors.purple":"紫色","colors.pink":"粉色","colors.sakura":"樱花粉","colors.blue":"蓝色","colors.orange":"橙色","colors.black":"黑色","profile.default_bio":"热爱生活，热爱代码，喜欢分享技术与生活中的点滴。","welcome.cta":"开始阅读","welcome.title":"欢迎来到 FlatPaper","welcome.text":"一个专注于内容与阅读体验的博客主题。","home_hero.label":"首页开屏","home_hero.enter":"开始阅读","home_hero.note":"今日","home_hero.default_subtitle":"日常记录","home_hero.nav_links":"开屏导航","home_hero.profile_links":"个人链接","home_hero.tools":"开屏工具","home_hero.shuffle_stickers":"打乱贴纸位置","home_hero.link":"链接","home_hero.sticker_image":"贴纸图片","home_hero.visit_confirm":"要访问 %s 吗？","home_hero.visit":"访问","home_hero.cancel":"取消","toc.title":"文章目录","toc.empty":"目录会根据文章标题自动生成。","toc.expand_all":"展开全部目录","toc.collapse_all":"收起全部目录","sidebar.hot_tags":"热门标签","sidebar.latest_posts":"最新文章"};
+  </script>
+  
+<script src="/js/main.js"></script>
+
+  
+</body>
+</html>
