@@ -8,25 +8,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#f7f3e9">
 
-<title>SSH爆破行为IP自动封禁系统：基于日志监控的自动化蓝队防御方案 | ZapcoMan&#39;s world</title>
-<meta name="description" content="本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言SSH服务是Linux服务器远程管理的核心入口，同时也是攻击者最常尝试突破的目标之一。根据各类安全报告统计，SSH暴力破解（Brute Force）始终位列服务器遭受攻击类型的前三名。攻击者通过批量扫描互联网上的22端口，利用字典进行密码爆破，一旦成功即可获取服务器...">
+<title>黑客组织 - 海莲花 OceanLotus：南海暗涌中的&#34;跨平台幽灵&#34; | ZapcoMan&#39;s world</title>
+<meta name="description" content="它出没在南海与东南亚的水域上，既偷商业机密，也偷政治情报；既盯 Windows，也盯 macOS。OceanLotus（海莲花，又名 APT32）——一只最擅长”水坑攻击”、也最”重视苹果生态”的东南亚网络幽灵。 引言：南海暗涌的网络投影在东南亚方向，有一只 APT 组织长期、持续、低调地活动着，它的攻击目标高度集中在南海、海事、越南周边——一个地缘与商业利...">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SSH爆破行为IP自动封禁系统：基于日志监控的自动化蓝队防御方案 | ZapcoMan&#39;s world">
-<meta property="og:url" content="http://example.com/2026/07/06/20260706/2026070601/">
+<meta property="og:title" content="黑客组织 - 海莲花 OceanLotus：南海暗涌中的&quot;跨平台幽灵&quot; | ZapcoMan&#39;s world">
+<meta property="og:url" content="http://example.com/2026/08/19/20260819/2026081918/">
 <meta property="og:site_name" content="ZapcoMan&#39;s world">
-<meta property="og:description" content="本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言SSH服务是Linux服务器远程管理的核心入口，同时也是攻击者最常尝试突破的目标之一。根据各类安全报告统计，SSH暴力破解（Brute Force）始终位列服务器遭受攻击类型的前三名。攻击者通过批量扫描互联网上的22端口，利用字典进行密码爆破，一旦成功即可获取服务器...">
+<meta property="og:description" content="它出没在南海与东南亚的水域上，既偷商业机密，也偷政治情报；既盯 Windows，也盯 macOS。OceanLotus（海莲花，又名 APT32）——一只最擅长”水坑攻击”、也最”重视苹果生态”的东南亚网络幽灵。 引言：南海暗涌的网络投影在东南亚方向，有一只 APT 组织长期、持续、低调地活动着，它的攻击目标高度集中在南海、海事、越南周边——一个地缘与商业利...">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-07-06T01:13:25.000Z">
-<meta property="article:modified_time" content="2026-07-06T01:19:02.008Z">
+<meta property="article:published_time" content="2026-08-19T05:35:00.000Z">
+<meta property="article:modified_time" content="2026-08-19T05:39:19.097Z">
 <meta property="article:author" content="ZapcoMan">
-<meta property="article:tag" content="SSH">
-<meta property="article:tag" content="python">
+<meta property="article:tag" content="APT分析">
+<meta property="article:tag" content="东南亚">
+<meta property="article:tag" content="钓鱼攻击">
+<meta property="article:tag" content="黑客组织">
 <meta name="twitter:card" content="summary">
-<link rel="canonical" href="http://example.com/2026/07/06/20260706/2026070601/">
+<link rel="canonical" href="http://example.com/2026/08/19/20260819/2026081918/">
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"SSH爆破行为IP自动封禁系统：基于日志监控的自动化蓝队防御方案","name":"SSH爆破行为IP自动封禁系统：基于日志监控的自动化蓝队防御方案 | ZapcoMan's world","description":"本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言SSH服务是Linux服务器远程管理的核心入口，同时也是攻击者最常尝试突破的目标之一。根据各类安全报告统计，SSH暴力破解（Brute Force）始终位列服务器遭受攻击类型的前三名。攻击者通过批量扫描互联网上的22端口，利用字典进行密码爆破，一旦成功即可获取服务器...","url":"http://example.com/2026/07/06/20260706/2026070601/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/07/06/20260706/2026070601/","datePublished":"2026-07-06T01:13:25.000Z","dateModified":"2026-07-06T01:19:02.008Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"python, SSH"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"黑客组织 - 海莲花 OceanLotus：南海暗涌中的\"跨平台幽灵\"","name":"黑客组织 - 海莲花 OceanLotus：南海暗涌中的\"跨平台幽灵\" | ZapcoMan's world","description":"它出没在南海与东南亚的水域上，既偷商业机密，也偷政治情报；既盯 Windows，也盯 macOS。OceanLotus（海莲花，又名 APT32）——一只最擅长”水坑攻击”、也最”重视苹果生态”的东南亚网络幽灵。 引言：南海暗涌的网络投影在东南亚方向，有一只 APT 组织长期、持续、低调地活动着，它的攻击目标高度集中在南海、海事、越南周边——一个地缘与商业利...","url":"http://example.com/2026/08/19/20260819/2026081918/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/08/19/20260819/2026081918/","datePublished":"2026-08-19T05:35:00.000Z","dateModified":"2026-08-19T05:39:19.097Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"黑客组织, APT分析, 钓鱼攻击, 东南亚"}</script>
 
 <script>
   (function () {
@@ -419,7 +421,7 @@
         </header>
         <div class="toc-content">
           
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E8%83%8C%E6%99%AF"><span class="toc-text">技术背景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SSH%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97%E6%9C%BA%E5%88%B6"><span class="toc-text">SSH安全日志机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hosts-deny-%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6"><span class="toc-text">hosts.deny 访问控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF%E7%82%B9"><span class="toc-text">关键技术点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF"><span class="toc-text">实现思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="toc-text">核心代码解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%89%88%EF%BC%9A%E8%87%AA%E5%8A%A8%E5%B0%81%E7%A6%81%E6%A0%B8%E5%BF%83%E9%80%BB%E8%BE%91"><span class="toc-text">基础版：自动封禁核心逻辑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A2%9E%E5%BC%BA%E7%89%88%EF%BC%9A%E7%99%BD%E5%90%8D%E5%8D%95-%E6%97%B6%E9%97%B4%E7%AA%97%E5%8F%A3"><span class="toc-text">增强版：白名单 + 时间窗口</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E4%B8%8E%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">部署与使用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E8%A6%81%E6%B1%82"><span class="toc-text">环境要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E6%AD%A5%E9%AA%A4"><span class="toc-text">部署步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E8%B0%83%E4%BC%98%E5%BB%BA%E8%AE%AE"><span class="toc-text">参数调优建议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%B2%E5%BE%A1%E6%95%88%E6%9E%9C%E5%88%86%E6%9E%90"><span class="toc-text">防御效果分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E6%95%88%E6%80%A7"><span class="toc-text">有效性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%80%E9%99%90%E6%80%A7"><span class="toc-text">局限性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B9%E8%BF%9B%E6%96%B9%E5%90%91"><span class="toc-text">改进方向</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80%EF%BC%9A%E5%8D%97%E6%B5%B7%E6%9A%97%E6%B6%8C%E7%9A%84%E7%BD%91%E7%BB%9C%E6%8A%95%E5%BD%B1"><span class="toc-text">引言：南海暗涌的网络投影</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%BB%84%E7%BB%87%E6%A6%82%E5%86%B5"><span class="toc-text">一、组织概况</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%94%BB%E5%87%BB%E6%97%B6%E9%97%B4%E7%BA%BF"><span class="toc-text">二、攻击时间线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%A0%87%E5%BF%97%E6%80%A7%E6%94%BB%E5%87%BB%E6%89%8B%E6%B3%95%E6%B7%B1%E5%BA%A6%E6%8B%86%E8%A7%A3"><span class="toc-text">三、标志性攻击手法深度拆解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E2%80%9C%E6%B0%B4%E5%9D%91%E6%94%BB%E5%87%BB%E2%80%9D%E2%80%94%E2%80%94%E5%AE%88%E6%A0%AA%E5%BE%85%E5%85%94%E5%BC%8F%E7%AA%83%E5%AF%86"><span class="toc-text">3.1 “水坑攻击”——守株待兔式窃密</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E8%B7%A8%E5%B9%B3%E5%8F%B0%E5%90%8E%E9%97%A8%E2%80%94%E2%80%94%E7%BD%95%E8%A7%81%E7%9A%84%E2%80%9D%E8%8B%B9%E6%9E%9C%E7%94%9F%E6%80%81%E9%87%8D%E8%A7%86%E8%80%85%E2%80%9D"><span class="toc-text">3.2 跨平台后门——罕见的”苹果生态重视者”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E4%BB%A3%E7%A0%81%E7%BA%A7%E6%94%BB%E5%87%BB%E9%93%BE%EF%BC%9A%E6%B0%B4%E5%9D%91%E6%B3%A8%E5%85%A5%E4%B8%8E%E8%B7%A8%E5%B9%B3%E5%8F%B0%E5%90%8E%E9%97%A8"><span class="toc-text">3.3 代码级攻击链：水坑注入与跨平台后门</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%8A%80%E6%9C%AF%E6%AD%A6%E5%99%A8%E5%BA%93%E4%B8%8E%E6%94%BB%E5%87%BB%E6%89%8B%E6%B3%95"><span class="toc-text">四、技术武器库与攻击手法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E6%A0%87%E5%BF%97%E6%80%A7%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6"><span class="toc-text">4.1 标志性恶意软件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E6%8B%9B%E7%89%8C%E6%94%BB%E5%87%BB%E6%89%8B%E6%B3%95"><span class="toc-text">4.2 招牌攻击手法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E6%A3%80%E6%B5%8B%E4%B8%8E%E9%98%B2%E5%BE%A1%EF%BC%9A%E5%A6%82%E4%BD%95%E5%8F%91%E7%8E%B0-OceanLotus-%E7%9A%84%E7%97%95%E8%BF%B9%EF%BC%9F"><span class="toc-text">4.3 检测与防御：如何发现 OceanLotus 的痕迹？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E5%85%B8%E5%9E%8B-IOC%EF%BC%88%E5%A4%B1%E9%99%B7%E6%8C%87%E6%A0%87%EF%BC%89%E6%B8%85%E5%8D%95"><span class="toc-text">4.4 典型 IOC（失陷指标）清单</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%BD%92%E5%9B%A0%E4%B8%8E%E4%BA%89%E8%AE%AE"><span class="toc-text">五、归因与争议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%AF%B9%E8%A1%8C%E4%B8%9A%E4%B8%8E%E4%B8%AA%E4%BA%BA%E7%9A%84%E5%90%AF%E7%A4%BA"><span class="toc-text">六、对行业与个人的启示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E6%9C%BA%E6%9E%84%E7%9A%84%E5%90%AF%E7%A4%BA"><span class="toc-text">对机构的启示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E4%B8%AA%E4%BA%BA%E7%9A%84%E5%90%AF%E7%A4%BA"><span class="toc-text">对个人的启示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-5-%E6%A3%80%E6%B5%8B%E5%BB%BA%E8%AE%AE%EF%BC%9A%E4%B8%8E%E6%9C%AC%E7%AB%99%E6%8A%80%E6%9C%AF%E7%B3%BB%E5%88%97%E7%9A%84%E8%81%94%E5%8A%A8"><span class="toc-text">6.5 检测建议：与本站技术系列的联动</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E7%BB%93%E8%AF%AD%EF%BC%9A%E5%8D%97%E6%B5%B7%E6%9A%97%E6%B6%8C%E4%B8%AD%E7%9A%84%E9%9A%90%E5%BD%A2%E4%B9%8B%E6%89%8B"><span class="toc-text">七、结语：南海暗涌中的隐形之手</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-text">参考资料</span></a></li></ol>
           
         </div>
       </section>
@@ -430,13 +432,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-history flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-history"></use></svg>
 最新文章</h2>
     <ul class="recent-list">
-      
-        <li>
-          <a class="recent-item" href="/2026/08/19/20260819/2026081918/">
-            <strong>黑客组织 - 海莲花 OceanLotus：南海暗涌中的&#34;跨平台幽灵&#34;</strong>
-            <em>2026-08-19</em>
-          </a>
-        </li>
       
         <li>
           <a class="recent-item" href="/2026/08/19/20260819/2026081916/">
@@ -466,6 +461,13 @@
           </a>
         </li>
       
+        <li>
+          <a class="recent-item" href="/2026/08/19/20260819/2026081912/">
+            <strong>Java 反序列化攻击面（三）：Shiro 的 rememberMe 与&#34;默认密钥&#34;之罪</strong>
+            <em>2026-08-19</em>
+          </a>
+        </li>
+      
     </ul>
   </section>
 
@@ -486,24 +488,24 @@
   
   <header class="article-header">
     
-      <a class="label-pill" href="/categories/python/">
+      <a class="label-pill" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
 
-        python
+        网络安全
       </a>
     
-    <h1>SSH爆破行为IP自动封禁系统：基于日志监控的自动化蓝队防御方案</h1>
+    <h1>黑客组织 - 海莲花 OceanLotus：南海暗涌中的&#34;跨平台幽灵&#34;</h1>
     <div class="meta-line meta-line--article">
       <span class="meta-date">
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
-2026-07-06</span>
+2026-08-19</span>
       
         <span class="meta-tags">
           
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
 
-          <a class="meta-tag-link" href="/tags/python/">#python</a><a class="meta-tag-link" href="/tags/SSH/">#SSH</a>
+          <a class="meta-tag-link" href="/tags/%E9%BB%91%E5%AE%A2%E7%BB%84%E7%BB%87/">#黑客组织</a><a class="meta-tag-link" href="/tags/APT%E5%88%86%E6%9E%90/">#APT分析</a><a class="meta-tag-link" href="/tags/%E9%92%93%E9%B1%BC%E6%94%BB%E5%87%BB/">#钓鱼攻击</a><a class="meta-tag-link" href="/tags/%E4%B8%9C%E5%8D%97%E4%BA%9A/">#东南亚</a>
         </span>
       
     </div>
@@ -513,100 +515,258 @@
 
 
   <div class="article-content">
-    <h1 id=""><a href="#" class="headerlink" title=""></a></h1><blockquote>
-<p>本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。</p>
+    <blockquote>
+<p>它出没在南海与东南亚的水域上，既偷商业机密，也偷政治情报；既盯 Windows，也盯 macOS。<br>OceanLotus（海莲花，又名 APT32）——一只最擅长”水坑攻击”、也最”重视苹果生态”的东南亚网络幽灵。</p>
 </blockquote>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>SSH服务是Linux服务器远程管理的核心入口，同时也是攻击者最常尝试突破的目标之一。根据各类安全报告统计，SSH暴力破解（Brute Force）始终位列服务器遭受攻击类型的前三名。攻击者通过批量扫描互联网上的22端口，利用字典进行密码爆破，一旦成功即可获取服务器控制权，进而进行横向渗透、数据窃取或植入后门。</p>
-<p>对于蓝队防守人员而言，面对每天成千上万次的SSH爆破尝试，仅靠人工查看日志显然不现实。虽然社区有Fail2Ban、DenyHosts等成熟工具，但理解其底层原理并能够自主实现一套轻量级的自动封禁系统，对于深度掌握安全防御技术、定制化防护策略至关重要。</p>
-<p>本文基于真实项目源码，讲解如何使用Python监控SSH安全日志、识别爆破行为并自动封禁恶意IP，从基础版逐步演进到带有白名单和时间窗口的增强版。</p>
-<h2 id="技术背景"><a href="#技术背景" class="headerlink" title="技术背景"></a>技术背景</h2><h3 id="SSH安全日志机制"><a href="#SSH安全日志机制" class="headerlink" title="SSH安全日志机制"></a>SSH安全日志机制</h3><p>Linux系统（以CentOS&#x2F;RHEL为例）的SSH认证日志记录在 <code>/var/log/secure</code> 文件中。当发生认证失败时，日志中会出现类似以下格式的记录：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Invalid user admin from 192.168.1.100 port 54322</span><br><span class="line">Failed password for invalid user root from 10.0.0.5 port 38912</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="引言：南海暗涌的网络投影"><a href="#引言：南海暗涌的网络投影" class="headerlink" title="引言：南海暗涌的网络投影"></a>引言：南海暗涌的网络投影</h2><p>在东南亚方向，有一只 APT 组织长期、持续、低调地活动着，它的攻击目标高度集中在<strong>南海、海事、越南周边</strong>——一个地缘与商业利益交织的敏感区域。</p>
+<p>它就是 <strong>OceanLotus</strong>（海莲花），安全界代号 <strong>APT32</strong>，微软称之为 <strong>Canvas Cyclone</strong>。</p>
+<p>与只盯政府的传统间谍不同，OceanLotus 是**”商业间谍 + 政治窃密”并重**：它既盯外资企业、科技公司的商业机密，也盯记者、活动人士、以及南海相关的政治目标。这种”双线作战”的定位，让它成为东南亚方向最具代表性的 APT。</p>
+<p>一句话定义它：</p>
+<blockquote>
+<p><strong>OceanLotus &#x3D; 一只游弋在南海暗涌中的”跨平台幽灵”——用”水坑攻击”守株待兔，用跨平台后门渗透 Windows 与 macOS 双生态。</strong></p>
+</blockquote>
+<hr>
+<h2 id="一、组织概况"><a href="#一、组织概况" class="headerlink" title="一、组织概况"></a>一、组织概况</h2><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>信息</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>代号</strong></td>
+<td>OceanLotus（海莲花）</td>
+</tr>
+<tr>
+<td><strong>别名</strong></td>
+<td>APT32、APT-C-00、SeaLotus、Canvas Cyclone（微软命名）</td>
+</tr>
+<tr>
+<td><strong>首次活动</strong></td>
+<td>约 2012-2013 年（部分样本更早）</td>
+</tr>
+<tr>
+<td><strong>归属指向</strong></td>
+<td>多被认为与<strong>越南</strong>有关（安全厂商普遍归因）</td>
+</tr>
+<tr>
+<td><strong>主要目标</strong></td>
+<td>越南周边国家（中国、老挝、柬埔寨、泰国）、外资企业、记者、活动人士、南海相关实体</td>
+</tr>
+<tr>
+<td><strong>攻击风格</strong></td>
+<td>鱼叉钓鱼、水坑攻击、商业间谍与政治窃密并重</td>
+</tr>
+<tr>
+<td><strong>主武器</strong></td>
+<td>鱼叉钓鱼 + 水坑攻击 + 跨平台后门</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>与南亚的 SideWinder 一样，OceanLotus 也走”重社工、重精准”路线，但它的独门绝技是<strong>水坑攻击</strong>和<strong>跨平台能力</strong>。</p>
+</blockquote>
+<hr>
+<h2 id="二、攻击时间线"><a href="#二、攻击时间线" class="headerlink" title="二、攻击时间线"></a>二、攻击时间线</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">2013      ── 首次被公开，针对越南相关实体</span><br><span class="line">     │</span><br><span class="line">2014-2016 ── 针对中国南海相关目标、外资企业、记者</span><br><span class="line">     │</span><br><span class="line">2017      ── 使用&quot;水坑攻击&quot;感染特定行业网站</span><br><span class="line">     │</span><br><span class="line">2018      ── 瞄准 macOS 用户，推出跨平台后门</span><br><span class="line">     │</span><br><span class="line">2019-2021 ── 针对疫苗、疫情相关目标，扩大商业间谍</span><br><span class="line">     │</span><br><span class="line">2022-2025 ── 持续活跃，工具链迭代，转向云与移动端</span><br></pre></td></tr></table></figure>
 
-<p>这些日志包含了攻击来源IP、尝试的用户名、端口号等关键信息，是我们识别爆破行为的<strong>数据源</strong>。</p>
-<h3 id="hosts-deny-访问控制"><a href="#hosts-deny-访问控制" class="headerlink" title="hosts.deny 访问控制"></a>hosts.deny 访问控制</h3><p>Linux的TCP Wrapper机制通过 <code>/etc/hosts.deny</code> 和 <code>/etc/hosts.allow</code> 两个文件实现基于IP的访问控制。当在 <code>hosts.deny</code> 中写入 <code>sshd:1.2.3.4</code> 时，IP为1.2.3.4的主机将被拒绝SSH连接。这是一种轻量级、无需配置防火墙规则即可生效的封禁方式。</p>
-<h3 id="关键技术点"><a href="#关键技术点" class="headerlink" title="关键技术点"></a>关键技术点</h3><ul>
-<li><strong><code>tail -f</code> 实时日志流</strong>：通过持续读取日志新增行，实现近实时响应</li>
-<li><strong>正则表达式提取</strong>：从非结构化日志文本中精确提取IP地址</li>
-<li><strong>计数器与阈值机制</strong>：区分”偶发输错密码”与”恶意爆破行为”</li>
-<li><strong>时间窗口滑动</strong>：在限定时间范围内的计数才有意义，避免误封长期正常用户</li>
+<hr>
+<h2 id="三、标志性攻击手法深度拆解"><a href="#三、标志性攻击手法深度拆解" class="headerlink" title="三、标志性攻击手法深度拆解"></a>三、标志性攻击手法深度拆解</h2><h3 id="3-1-“水坑攻击”——守株待兔式窃密"><a href="#3-1-“水坑攻击”——守株待兔式窃密" class="headerlink" title="3.1 “水坑攻击”——守株待兔式窃密"></a>3.1 “水坑攻击”——守株待兔式窃密</h3><p>OceanLotus 除了鱼叉钓鱼，最擅长的是<strong>水坑攻击（Watering Hole）</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. 锁定目标群体常访问的网站（如某行业论坛、政府门户）</span><br><span class="line">        ↓</span><br><span class="line">2. 入侵该网站，注入恶意脚本</span><br><span class="line">        ↓</span><br><span class="line">3. 当目标访问该网站时，浏览器被&quot;静默&quot;感染</span><br><span class="line">        ↓</span><br><span class="line">4. 植入后门，窃取凭据、文档、邮件</span><br></pre></td></tr></table></figure>
+
+<p><strong>典型案例</strong>：</p>
+<ul>
+<li>曾针对<strong>越南及东南亚的特定行业网站</strong>植入水坑，感染访问者。</li>
+<li>水坑脚本会<strong>精准识别目标</strong>（如按 IP、浏览器指纹判断），只对”高价值访客”投毒，普通访客则”放过”。</li>
 </ul>
-<h2 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h2><p>整体架构是一个<strong>日志监控→模式匹配→计数判定→自动封禁</strong>的闭环流程：</p>
-<ol>
-<li><strong>加载已有黑名单</strong>：程序启动时读取 <code>/etc/hosts.deny</code>，将已封禁IP载入内存字典，避免重复操作</li>
-<li><strong>实时监控日志流</strong>：通过 <code>subprocess.Popen</code> 执行 <code>tail -f /var/log/secure</code>，逐行读取新增日志</li>
-<li><strong>正则匹配攻击特征</strong>：使用正则表达式匹配两类关键日志行——“Invalid user”和”Failed password”</li>
-<li><strong>阈值判定与封禁</strong>：<ul>
-<li>对于”Invalid user”（无效用户名），说明攻击者在猜用户名，<strong>直接封禁</strong></li>
-<li>对于”Failed password”（密码错误），可能是正常用户输错密码，需<strong>累计超过阈值后封禁</strong></li>
+<blockquote>
+<p>水坑攻击的可怕在于：受害者<strong>没有点任何可疑链接</strong>，只是”逛了一个平时常逛的网站”，就中招了。</p>
+</blockquote>
+<h3 id="3-2-跨平台后门——罕见的”苹果生态重视者”"><a href="#3-2-跨平台后门——罕见的”苹果生态重视者”" class="headerlink" title="3.2 跨平台后门——罕见的”苹果生态重视者”"></a>3.2 跨平台后门——罕见的”苹果生态重视者”</h3><p>OceanLotus 是少数<strong>同时开发 Windows 与 macOS 后门</strong>的东南亚 APT：</p>
+<ul>
+<li><strong>Windows 侧</strong>：使用 Cobalt Strike、PHOREAL、KERRDOWN 等工具。</li>
+<li><strong>macOS 侧</strong>：开发专门的 macOS 后门，伪装成合法应用，绕过 Gatekeeper，窃取凭据、邮件、键盘记录。</li>
 </ul>
-</li>
-<li><strong>写入黑名单</strong>：将 <code>sshd:&lt;IP&gt;</code> 追加写入 <code>/etc/hosts.deny</code> 实现封禁</li>
+<blockquote>
+<p>大多数 APT 只盯 Windows，因为它的”市场份额”最高。而 OceanLotus 愿意为 macOS 开发专用后门，说明它的目标群体中<strong>有大量苹果用户</strong>——记者、活动人士、企业高管，正是 macOS 的重度用户。</p>
+</blockquote>
+<h3 id="3-3-代码级攻击链：水坑注入与跨平台后门"><a href="#3-3-代码级攻击链：水坑注入与跨平台后门" class="headerlink" title="3.3 代码级攻击链：水坑注入与跨平台后门"></a>3.3 代码级攻击链：水坑注入与跨平台后门</h3><p>以 OceanLotus 的水坑攻击为例，还原一条典型技术链。</p>
+<p><strong>第一步：入侵目标网站，注入恶意脚本</strong></p>
+<p>攻击者先入侵目标群体常访问的网站，植入一段**”精准识别 + 定向投毒”**的脚本：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 伪代码：水坑注入脚本（概念还原）</span></span><br><span class="line"><span class="comment">// 当访问者打开被投毒网站时执行</span></span><br><span class="line"><span class="keyword">if</span> (<span class="title function_">is_target</span>(visitor)) &#123;          <span class="comment">// 判断是否为高价值目标</span></span><br><span class="line">    <span class="title function_">load_exploit</span>();                 <span class="comment">// 加载浏览器漏洞利用代码</span></span><br><span class="line">    <span class="title function_">drop_backdoor</span>();                <span class="comment">// 投递后门</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 普通访客，不投毒，避免暴露</span></span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>第二步：利用浏览器漏洞或社会工程植入后门</strong></p>
+<ul>
+<li>若目标浏览器存在已知漏洞，直接利用（如旧的 IE、Office 组件）。</li>
+<li>若无漏洞，则诱导下载伪装成”插件””更新”的后门。</li>
+</ul>
+<p><strong>第三步：跨平台后门驻留</strong></p>
+<p>后门会根据目标操作系统，选择对应的驻留方式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Windows：注册表 Run 键、计划任务、服务</span><br><span class="line">macOS：LaunchAgents/LaunchDaemons plist 文件</span><br></pre></td></tr></table></figure>
+
+<p><strong>第四步：窃密与回传</strong></p>
+<p>后门持续窃取<strong>凭据、邮件、文档、通讯录、键盘记录</strong>，通过加密通道回传 C2。</p>
+<blockquote>
+<p>这条链的关键在于”水坑 + 精准识别”——攻击者用<strong>一个被投毒的网站</strong>，就能”筛选并感染”所有符合条件的目标，效率极高。</p>
+</blockquote>
+<hr>
+<h2 id="四、技术武器库与攻击手法"><a href="#四、技术武器库与攻击手法" class="headerlink" title="四、技术武器库与攻击手法"></a>四、技术武器库与攻击手法</h2><h3 id="4-1-标志性恶意软件"><a href="#4-1-标志性恶意软件" class="headerlink" title="4.1 标志性恶意软件"></a>4.1 标志性恶意软件</h3><table>
+<thead>
+<tr>
+<th>工具</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Cobalt Strike</strong></td>
+<td>商用 C2</td>
+<td>广泛用于后期渗透（合法工具被滥用）</td>
+</tr>
+<tr>
+<td><strong>PHOREAL &#x2F; SOUNDBITE</strong></td>
+<td>后门</td>
+<td>跨平台（Windows&#x2F;macOS）后门</td>
+</tr>
+<tr>
+<td><strong>KERRDOWN &#x2F; BEACON</strong></td>
+<td>下载器&#x2F;后门</td>
+<td>多阶段载荷</td>
+</tr>
+<tr>
+<td><strong>macOS 后门</strong></td>
+<td>后门</td>
+<td>针对苹果生态的定制后门</td>
+</tr>
+</tbody></table>
+<h3 id="4-2-招牌攻击手法"><a href="#4-2-招牌攻击手法" class="headerlink" title="4.2 招牌攻击手法"></a>4.2 招牌攻击手法</h3><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>OceanLotus 特征</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>主武器</strong></td>
+<td>鱼叉钓鱼 + 水坑攻击</td>
+</tr>
+<tr>
+<td><strong>社工特点</strong></td>
+<td>伪装行业网站、记者&#x2F;活动人士诱饵</td>
+</tr>
+<tr>
+<td><strong>目标范围</strong></td>
+<td>南海、海事、商业、政治异见</td>
+</tr>
+<tr>
+<td><strong>平台覆盖</strong></td>
+<td>Windows + macOS 跨平台</td>
+</tr>
+<tr>
+<td><strong>窃取重点</strong></td>
+<td>商业机密 + 政治情报并重</td>
+</tr>
+</tbody></table>
+<h3 id="4-3-检测与防御：如何发现-OceanLotus-的痕迹？"><a href="#4-3-检测与防御：如何发现-OceanLotus-的痕迹？" class="headerlink" title="4.3 检测与防御：如何发现 OceanLotus 的痕迹？"></a>4.3 检测与防御：如何发现 OceanLotus 的痕迹？</h3><table>
+<thead>
+<tr>
+<th>检测维度</th>
+<th>关注点</th>
+<th>工具&#x2F;方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>邮件层</strong></td>
+<td>伪装行业&#x2F;新闻的钓鱼邮件</td>
+<td>邮件网关、沙箱</td>
+</tr>
+<tr>
+<td><strong>网络层</strong></td>
+<td>水坑脚本注入、Cobalt Strike 特征流量</td>
+<td>IDS、流量分析</td>
+</tr>
+<tr>
+<td><strong>进程层</strong></td>
+<td>跨平台后门、LaunchAgents 持久化</td>
+<td>EDR、macOS 审计</td>
+</tr>
+<tr>
+<td><strong>行为层</strong></td>
+<td>凭据&#x2F;邮件批量外传、长期潜伏</td>
+<td>DLP、UEBA</td>
+</tr>
+</tbody></table>
+<p><strong>一个实用的检测命令（排查跨平台持久化）：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># macOS：检查 LaunchAgents/LaunchDaemons 持久化</span></span><br><span class="line"><span class="built_in">ls</span> -la ~/Library/LaunchAgents/ /Library/LaunchDaemons/</span><br><span class="line">plutil -p ~/Library/LaunchAgents/*.plist 2&gt;/dev/null | grep -iE <span class="string">&quot;exec|path&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Windows：检查可疑计划任务</span></span><br><span class="line">schtasks /query /fo LIST /v | findstr /i <span class="string">&quot;update guard backup&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查可疑外联</span></span><br><span class="line">ss -tnp | grep ESTAB</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="4-4-典型-IOC（失陷指标）清单"><a href="#4-4-典型-IOC（失陷指标）清单" class="headerlink" title="4.4 典型 IOC（失陷指标）清单"></a>4.4 典型 IOC（失陷指标）清单</h3><p>以下为安全厂商公开披露的 OceanLotus 关联<strong>样例型 IOC</strong>（脱敏示例）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- 后门哈希：b5a4c3...（示例，PHOREAL/跨平台后门）</span><br><span class="line">- C2 域名：xxx-maritime[.]com、xxx-news[.]net（伪装海事/新闻域名）</span><br><span class="line">- 网络特征：Cobalt Strike 特征流量、水坑注入脚本</span><br></pre></td></tr></table></figure>
+
+<p><strong>如何使用这份清单：</strong></p>
+<blockquote>
+<p>OceanLotus 会<strong>频繁更换 C2 与载荷哈希</strong>，静态 IOC 价值有限。更有效的是关注其 <strong>TTP</strong>——尤其是”水坑 + 跨平台后门”这个高辨识度特征。</p>
+</blockquote>
+<hr>
+<h2 id="五、归因与争议"><a href="#五、归因与争议" class="headerlink" title="五、归因与争议"></a>五、归因与争议</h2><ul>
+<li>安全厂商（FireEye&#x2F;Mandiant、Volexity 等）指向越南背景，微软命名为 <strong>Canvas Cyclone</strong>。</li>
+<li>攻击目标围绕<strong>南海、海事、越南周边</strong>，与地缘议题高度吻合。</li>
+<li>官方同样未承认。</li>
+</ul>
+<p><strong>核心争议</strong>：OceanLotus 的归因证据是<strong>间接的</strong>——基于目标动机、TTP 相似性、基础设施关联的”专业推断”，而非司法定罪。对读者而言需要理解：<strong>地域性 APT 尤其隐蔽，更少留下”国籍指纹”。</strong></p>
+<hr>
+<h2 id="六、对行业与个人的启示"><a href="#六、对行业与个人的启示" class="headerlink" title="六、对行业与个人的启示"></a>六、对行业与个人的启示</h2><h3 id="对机构的启示"><a href="#对机构的启示" class="headerlink" title="对机构的启示"></a>对机构的启示</h3><ol>
+<li><strong>南海、海事相关实体是高危目标</strong>：需按”被定向攻击”的假设配置防护。</li>
+<li><strong>警惕水坑攻击</strong>：员工常访问的行业网站也可能被”投毒”，需关注浏览器防护与站点信誉。</li>
+<li><strong>macOS 不再”免疫”</strong>：OceanLotus 的跨平台后门提醒我们，苹果生态同样是攻击目标，需纳入端点防护。</li>
 </ol>
-<p>增强版在此基础上增加了<strong>白名单机制</strong>和<strong>时间窗口滑动</strong>，提升安全性。</p>
-<h2 id="核心代码解析"><a href="#核心代码解析" class="headerlink" title="核心代码解析"></a>核心代码解析</h2><h3 id="基础版：自动封禁核心逻辑"><a href="#基础版：自动封禁核心逻辑" class="headerlink" title="基础版：自动封禁核心逻辑"></a>基础版：自动封禁核心逻辑</h3><p>以下代码来自 <code>autoMaticallyBlockIP.py</code>，实现了基本的日志监控与自动封禁功能：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义安全日志文件路径</span></span><br><span class="line">securityLog = <span class="string">&#x27;/var/log/secure&#x27;</span></span><br><span class="line"><span class="comment"># 定义黑名单文件路径</span></span><br><span class="line">hostDeny = <span class="string">&#x27;/etc/hosts.deny&#x27;</span></span><br><span class="line"><span class="comment"># 定义封禁阈值，即密码错误的次数达到多少次后触发封禁</span></span><br><span class="line">BlockThreshold = <span class="number">5</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">getDenies</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    读取黑名单文件，将已经封禁的IP地址加载到内存中</span></span><br><span class="line"><span class="string">    :return: 返回一个字典，键为已封禁的IP地址，值为标记&#x27;1&#x27;</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    deniedDict = &#123;&#125;</span><br><span class="line">    blackIPList = <span class="built_in">open</span>(hostDeny, <span class="string">&#x27;r&#x27;</span>).readlines()</span><br><span class="line">    <span class="keyword">for</span> ip <span class="keyword">in</span> blackIPList:</span><br><span class="line">        <span class="comment"># 使用正则从每行中提取IP地址</span></span><br><span class="line">        group = re.search(<span class="string">r&#x27;(\d+\.\d+\.d+\.\d+)&#x27;</span>, ip)</span><br><span class="line">        <span class="keyword">if</span> group:</span><br><span class="line">            deniedDict[group[<span class="number">1</span>]] = <span class="string">&#x27;1&#x27;</span></span><br><span class="line">    <span class="keyword">return</span> deniedDict</span><br></pre></td></tr></table></figure>
-
-<p><code>getDenies()</code> 函数在程序启动时加载已有黑名单，构建内存字典用于快速查询。使用字典的 <code>O(1)</code> 查找特性，在后续判断中能高效判断某个IP是否已被封禁。</p>
-<p>核心监控函数 <code>monitor()</code> 是整个系统的心脏：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">monitor</span>(<span class="params">securityLog</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    监控安全日志，自动封禁可疑IP地址</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># 初始化临时字典，用于记录每个IP的密码错误次数</span></span><br><span class="line">    tempIp = &#123;&#125;</span><br><span class="line">    <span class="comment"># 初始化已封禁IP字典，加载已存在的封禁IP</span></span><br><span class="line">    deniedDict = getDenies()</span><br><span class="line">    <span class="comment"># 使用subprocess实时读取安全日志的新增内容</span></span><br><span class="line">    popen = subprocess.Popen(<span class="string">&#x27;tail -f &#x27;</span> + securityLog, stdout=subprocess.PIPE,</span><br><span class="line">                             stderr=subprocess.PIPE, shell=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        time.sleep(<span class="number">0.1</span>)</span><br><span class="line">        line = popen.stdout.readline().strip()</span><br><span class="line">        <span class="keyword">if</span> line:</span><br><span class="line">            <span class="built_in">print</span>(line)</span><br><span class="line">            <span class="comment"># 搜索无效用户登录尝试的IP地址</span></span><br><span class="line">            group = re.search(<span class="string">&#x27;Invalid user \w+ from (\d+\.\d+\.\d+\.\d+) port \d+.+user not known&#x27;</span>, <span class="built_in">str</span>(line))</span><br><span class="line">            <span class="comment"># 如果找到无效用户且该IP未被封禁，则将其加入黑名单</span></span><br><span class="line">            <span class="keyword">if</span> group <span class="keyword">and</span> <span class="keyword">not</span> deniedDict.get(group[<span class="number">1</span>]):</span><br><span class="line">                subprocess.getoutput(<span class="string">&#x27;echo \&#x27;sshd:&#123;&#125;\&#x27; &gt;&gt; &#123;&#125;&#x27;</span>.<span class="built_in">format</span>(group[<span class="number">1</span>], hostDeny))</span><br><span class="line">                deniedDict[group[<span class="number">1</span>]] = <span class="string">&#x27;1&#x27;</span></span><br><span class="line">                time_str = time.strftime(<span class="string">&#x27;%Y-%m-%d %H:%M:%S&#x27;</span>, time.localtime())</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&#x27;&#123;&#125; &gt;&gt;&gt;&gt; add ip:&#123;&#125; to host.deny for invalid user 用户名无效&#x27;</span>.<span class="built_in">format</span>(time_str, group[<span class="number">1</span>]))</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="comment"># 搜索有效用户密码错误的IP地址</span></span><br><span class="line">            group = re.search(<span class="string">&#x27;Failed password for invalid user \w+ from (\d+\.\d+\.\d+\.\d+) port \d+.+user not known&#x27;</span>, <span class="built_in">str</span>(line))</span><br><span class="line">            <span class="keyword">if</span> group:</span><br><span class="line">                ip = group[<span class="number">1</span>]</span><br><span class="line">                <span class="comment"># 统计该IP的密码错误次数</span></span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> tempIp.get(ip):</span><br><span class="line">                    tempIp[ip] = <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    tempIp[ip] += <span class="number">1</span></span><br><span class="line">                <span class="comment"># 超过阈值且未被封禁，则封禁</span></span><br><span class="line">                <span class="keyword">if</span> tempIp[ip] &gt; BlockThreshold <span class="keyword">and</span> <span class="keyword">not</span> deniedDict.get(ip):</span><br><span class="line">                    <span class="keyword">del</span> tempIp[ip]</span><br><span class="line">                    subprocess.getoutput(<span class="string">&#x27;echo \&#x27;sshd:&#123;&#125;\&#x27; &gt;&gt; &#123;&#125;&#x27;</span>.<span class="built_in">format</span>(ip, hostDeny))</span><br><span class="line">                    deniedDict[ip] = <span class="string">&#x27;1&#x27;</span></span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">&#x27;&#123;&#125; &gt;&gt;&gt;&gt; add ip:&#123;&#125; to host.deny 密码无效次数超过阈值 自动封禁&#x27;</span>.<span class="built_in">format</span>(time_str, ip))</span><br></pre></td></tr></table></figure>
-
-<p>代码的关键设计在于<strong>区分两种攻击模式</strong>：</p>
-<ul>
-<li><strong>“Invalid user”直接封禁</strong>：当攻击者尝试不存在的用户名登录时，这几乎是扫描器的标志性行为，正常用户不会频繁输入不存在的用户名，因此直接封禁</li>
-<li><strong>“Failed password”阈值封禁</strong>：密码错误可能是正常用户的手误，因此通过 <code>tempIp</code> 字典累计计数，超过 <code>BlockThreshold</code>（默认5次）后才封禁</li>
+<h3 id="对个人的启示"><a href="#对个人的启示" class="headerlink" title="对个人的启示"></a>对个人的启示</h3><ul>
+<li>关注自己常访问的网站是否被”水坑”污染，善用浏览器隔离与补丁。</li>
+<li>macOS 用户同样需要端点防护，不能”裸奔”。</li>
+<li>对来路不明的”插件””更新”保持警惕。</li>
 </ul>
-<h3 id="增强版：白名单-时间窗口"><a href="#增强版：白名单-时间窗口" class="headerlink" title="增强版：白名单 + 时间窗口"></a>增强版：白名单 + 时间窗口</h3><p><code>punchyAutoMaticallyBlockIP.py</code> 在基础版上做了三个关键增强：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义时间窗口（秒）</span></span><br><span class="line">TimeWindow = <span class="number">900</span>  <span class="comment"># 15分钟</span></span><br><span class="line"><span class="comment"># 定义白名单文件路径</span></span><br><span class="line">whiteList = <span class="string">&#x27;/etc/hosts.allow&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">getWhites</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    读取白名单文件，将可信的IP地址加载到内存中</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    whiteDict = &#123;&#125;</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(whiteList, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        whiteIPList = f.readlines()</span><br><span class="line">    <span class="keyword">for</span> ip <span class="keyword">in</span> whiteIPList:</span><br><span class="line">        group = re.search(<span class="string">r&#x27;(\d+\.\d+\.\d+\.\d+)&#x27;</span>, ip)</span><br><span class="line">        <span class="keyword">if</span> group:</span><br><span class="line">            whiteDict[group[<span class="number">1</span>]] = <span class="string">&#x27;1&#x27;</span></span><br><span class="line">    <span class="keyword">return</span> whiteDict</span><br></pre></td></tr></table></figure>
-
-<p><strong>白名单机制</strong>从 <code>/etc/hosts.allow</code> 加载可信IP，封禁前先检查白名单，避免误封运维人员的IP。</p>
-<p><strong>时间窗口滑动</strong>是增强版的核心改进，使用 <code>defaultdict(list)</code> 记录每次失败的时间戳：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">tempIp = defaultdict(<span class="built_in">list</span>)</span><br><span class="line"><span class="comment"># ...</span></span><br><span class="line">current_time = time.time()</span><br><span class="line">tempIp[ip].append(current_time)</span><br><span class="line"><span class="comment"># 移除时间窗口外的记录</span></span><br><span class="line">tempIp[ip] = [t <span class="keyword">for</span> t <span class="keyword">in</span> tempIp[ip] <span class="keyword">if</span> current_time - t &lt;= TimeWindow]</span><br><span class="line"><span class="keyword">if</span> <span class="built_in">len</span>(tempIp[ip]) &gt; BlockThreshold <span class="keyword">and</span> <span class="keyword">not</span> deniedDict.get(ip):</span><br><span class="line">    <span class="comment"># 执行封禁</span></span><br></pre></td></tr></table></figure>
-
-<p>这段代码的精妙之处在于：它不是简单地累加计数，而是维护一个<strong>时间戳列表</strong>，每次新失败发生时，清除超过15分钟窗口的旧记录，只统计窗口内的失败次数。这样即使用户在过去一年里偶尔输错密码，也不会被封禁——只有<strong>短时间内高频失败</strong>才被视为爆破行为。</p>
-<p>同时，增强版修复了 <code>Popen</code> 的命令注入风险，将 <code>shell=True</code> 改为列表传参：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">popen = subprocess.Popen([<span class="string">&#x27;tail&#x27;</span>, <span class="string">&#x27;-f&#x27;</span>, securityLog], stdout=subprocess.PIPE,</span><br><span class="line">                         stderr=subprocess.PIPE)</span><br></pre></td></tr></table></figure>
-
-<h2 id="部署与使用方法"><a href="#部署与使用方法" class="headerlink" title="部署与使用方法"></a>部署与使用方法</h2><h3 id="环境要求"><a href="#环境要求" class="headerlink" title="环境要求"></a>环境要求</h3><ul>
-<li>操作系统：Linux（CentOS&#x2F;RHEL，日志在 <code>/var/log/secure</code>；Ubuntu需修改为 <code>/var/log/auth.log</code>）</li>
-<li>Python版本：3.6+</li>
-<li>权限：需要root权限（读写 <code>/etc/hosts.deny</code>）</li>
+<hr>
+<h3 id="6-5-检测建议：与本站技术系列的联动"><a href="#6-5-检测建议：与本站技术系列的联动" class="headerlink" title="6.5 检测建议：与本站技术系列的联动"></a>6.5 检测建议：与本站技术系列的联动</h3><table>
+<thead>
+<tr>
+<th>本文技术点</th>
+<th>延伸阅读</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>水坑攻击与浏览器防护</td>
+<td>《SSH 安全全景》《拼多多恶意代码事件》</td>
+</tr>
+<tr>
+<td>Cobalt Strike 滥用</td>
+<td>《Mistic 后门 BOF 动态扩展》、免杀系列</td>
+</tr>
+<tr>
+<td>钓鱼与社工</td>
+<td>社工系列（开盒思路、社工防御体系）</td>
+</tr>
+<tr>
+<td>东南亚 APT 与地缘</td>
+<td>《黑客组织 - APT41》（亚洲背景 APT）、《响尾蛇 SideWinder》（南亚 APT）</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>OceanLotus 的”水坑 + 跨平台后门”路线，与本站的社工系列、CVE 系列形成呼应，也补齐了本站黑客组织系列中”东南亚方向”的空白。</p>
+</blockquote>
+<hr>
+<h2 id="七、结语：南海暗涌中的隐形之手"><a href="#七、结语：南海暗涌中的隐形之手" class="headerlink" title="七、结语：南海暗涌中的隐形之手"></a>七、结语：南海暗涌中的隐形之手</h2><p>OceanLotus 不如 Lazarus、双熊那样”声名显赫”，但它代表了 APT 世界的另一种常态：<strong>低调、持久、精准</strong>。</p>
+<blockquote>
+<p>它不抢钱、不勒索、不搞破坏性攻击——它只是<strong>耐心地偷</strong>，把南海暗涌中的每一个”信息缺口”都填上自己的眼睛。</p>
+</blockquote>
+<p>在网络空间，最危险的往往不是最响亮的，而是<strong>最安静的</strong>。海莲花，正是这句话的最好注脚。</p>
+<hr>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li>FireEye &#x2F; Mandiant：OceanLotus（APT32）技术分析</li>
+<li>Volexity、Microsoft：OceanLotus &#x2F; Canvas Cyclone 相关通告</li>
+<li>各安全厂商：PHOREAL、KERRDOWN、水坑攻击等技术拆解</li>
+<li>公开威胁情报：OceanLotus 的 TTP 与 IOC 汇总</li>
 </ul>
-<h3 id="部署步骤"><a href="#部署步骤" class="headerlink" title="部署步骤"></a>部署步骤</h3><ol>
-<li><p><strong>配置白名单</strong>（推荐使用增强版）：将运维IP写入 <code>/etc/hosts.allow</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sshd:192.168.1.100</span><br><span class="line">sshd:10.0.0.0/24</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>运行脚本</strong>：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 基础版</span></span><br><span class="line"><span class="built_in">sudo</span> python3 autoMaticallyBlockIP.py</span><br><span class="line"></span><br><span class="line"><span class="comment"># 增强版（推荐）</span></span><br><span class="line"><span class="built_in">sudo</span> python3 punchyAutoMaticallyBlockIP.py</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>设为系统服务</strong>（推荐使用systemd实现开机自启）：</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Unit]</span></span><br><span class="line"><span class="attr">Description</span>=SSH Auto Block IP Service</span><br><span class="line"><span class="attr">After</span>=network.target</span><br><span class="line"></span><br><span class="line"><span class="section">[Service]</span></span><br><span class="line"><span class="attr">Type</span>=simple</span><br><span class="line"><span class="attr">ExecStart</span>=/usr/bin/python3 /opt/security/punchyAutoMaticallyBlockIP.py</span><br><span class="line"><span class="attr">Restart</span>=always</span><br><span class="line"></span><br><span class="line"><span class="section">[Install]</span></span><br><span class="line"><span class="attr">WantedBy</span>=multi-user.target</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="参数调优建议"><a href="#参数调优建议" class="headerlink" title="参数调优建议"></a>参数调优建议</h3><ul>
-<li><code>BlockThreshold</code>：建议设为3-5，过低会误封，过高则防护滞后</li>
-<li><code>TimeWindow</code>：建议设为900秒（15分钟），平衡敏感度与误报率</li>
-<li>白名单务必包含所有运维出口IP，避免”封禁自己”的事故</li>
-</ul>
-<h2 id="防御效果分析"><a href="#防御效果分析" class="headerlink" title="防御效果分析"></a>防御效果分析</h2><h3 id="有效性"><a href="#有效性" class="headerlink" title="有效性"></a>有效性</h3><p>该系统能有效应对以下攻击场景：</p>
-<ul>
-<li><strong>SSH字典爆破</strong>：攻击者使用常见用户名密码组合批量尝试，几分钟内即被阈值捕获并封禁</li>
-<li><strong>用户名枚举扫描</strong>：尝试大量不存在的用户名（如admin、test、guest），触发”Invalid user”规则直接封禁</li>
-<li><strong>慢速爆破</strong>：增强版的时间窗口机制可识别低频持续攻击（在窗口内累计达到阈值）</li>
-</ul>
-<h3 id="局限性"><a href="#局限性" class="headerlink" title="局限性"></a>局限性</h3><ul>
-<li><strong>仅依赖日志</strong>：若攻击者绕过SSH认证（如利用SSH漏洞），本系统无法检测</li>
-<li><strong>IP可变</strong>：攻击者使用代理池轮换IP时，单个IP的失败次数可能不触发阈值</li>
-<li><strong>无解封机制</strong>：封禁后无法自动过期，需手动清理 <code>hosts.deny</code></li>
-<li><strong>hosts.deny 依赖</strong>：部分新版本Linux发行版默认不再编译支持TCP Wrapper的sshd，需确认sshd是否启用了libwrap支持</li>
-</ul>
-<h3 id="改进方向"><a href="#改进方向" class="headerlink" title="改进方向"></a>改进方向</h3><p>对于生产环境，建议在上述方案基础上扩展：</p>
-<ul>
-<li>集成iptables&#x2F;nftables封禁，不依赖TCP Wrapper</li>
-<li>增加封禁自动过期机制，避免黑名单无限增长</li>
-<li>接入告警系统（如Webhook通知到企业微信&#x2F;钉钉）</li>
-<li>增加地理IP分析，对异常地区的连接提高敏感度</li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文基于真实Python源码，完整讲解了SSH爆破行为IP自动封禁系统的实现原理。从基础版的日志监控+正则匹配+阈值计数，到增强版的白名单保护+时间窗口滑动，展示了一个蓝队防御工具的完整演进过程。</p>
-<p>这套方案的核心价值在于<strong>轻量、透明、可定制</strong>——无需安装复杂依赖，通过数百行Python代码即可实现与Fail2Ban类似的防护效果，且便于根据业务场景灵活调整规则。对于安全运维人员和蓝队工程师而言，理解并掌握这种基于日志分析的自建防御方案，不仅能提升对SSH攻击的响应能力，更能为后续构建更完善的安全自动化体系打下坚实基础。</p>
+<hr>
+<p><em>本文基于公开资料整理撰写，仅供网络安全研究与教育目的使用，不构成任何安全或法律建议。</em></p>
 
   </div>
 
@@ -636,18 +796,18 @@
 
   <nav class="article-actions">
     
-      <a class="article-action article-action--prev" href="/2026/07/06/20260706/2026070602/">
+      <span class="article-action article-action--prev is-disabled" aria-disabled="true">
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-left"></use></svg>
 
         <span class="action-label">上一篇</span>
-        <span class="action-title">WAF基础实现：基于FastAPI中间件的轻量级Web应用防火墙</span>
-      </a>
+        <span class="action-title">没有更早的文章了</span>
+      </span>
     
     
-      <a class="article-action article-action--next" href="/2026/07/06/20260706/2026070603/">
+      <a class="article-action article-action--next" href="/2026/08/19/20260819/2026081916/">
         <span class="action-label">下一篇</span>
-        <span class="action-title">子域名挖掘（JSFinder实现）：从JS文件中揪出隐藏的攻击面</span>
+        <span class="action-title">SolarWinds 事件复盘：一场潜伏九个月、横跨全球的&#34;供应链核爆&#34;</span>
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
 
@@ -678,7 +838,7 @@
     </header>
     <div class="related-paper__grid">
       
-        <a class="related-card" href="/2026/07/06/20260706/2026070631/">
+        <a class="related-card" href="/2026/08/19/20260819/2026081914/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
@@ -689,12 +849,12 @@
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">从零打造漏洞扫描器：端口扫描 + Web 检测 + 报告生成</strong>
-            <em class="related-card__date">2026-07-06</em>
+            <strong class="related-card__title">黑客组织 - 响尾蛇 SideWinder：南亚地缘棋盘上的&#34;精准狙击手&#34;</strong>
+            <em class="related-card__date">2026-08-19</em>
           </span>
         </a>
       
-        <a class="related-card" href="/2026/07/06/20260706/2026070630/">
+        <a class="related-card" href="/2026/08/19/20260819/2026081906/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-1 paper-thumb--cover">
@@ -705,12 +865,12 @@
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">WAF 指纹识别原理与实现：从 sqlmap 源码学起</strong>
-            <em class="related-card__date">2026-07-06</em>
+            <strong class="related-card__title">黑客组织 - REvil：勒索软件&#34;元老&#34;的疯狂与覆灭</strong>
+            <em class="related-card__date">2026-08-19</em>
           </span>
         </a>
       
-        <a class="related-card" href="/2026/07/06/20260706/2026070628/">
+        <a class="related-card" href="/2026/08/19/20260819/2026081905/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-2 paper-thumb--cover">
@@ -721,12 +881,12 @@
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">图像预处理 + 二维码识别全攻略：9 种方法让模糊二维码无处遁形</strong>
-            <em class="related-card__date">2026-07-06</em>
+            <strong class="related-card__title">黑客组织 - LockBit：勒索软件即服务的&#34;工业帝国&#34;兴衰史</strong>
+            <em class="related-card__date">2026-08-19</em>
           </span>
         </a>
       
-        <a class="related-card" href="/2026/07/06/20260706/2026070629/">
+        <a class="related-card" href="/2026/08/19/20260819/2026081903/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
@@ -737,8 +897,8 @@
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">Vue3 + Flask 全栈实战：从零构建在线二维码解析器</strong>
-            <em class="related-card__date">2026-07-06</em>
+            <strong class="related-card__title">黑客组织 - APT41：当&#34;国家间谍&#34;与&#34;网络黑产&#34;合二为一</strong>
+            <em class="related-card__date">2026-08-19</em>
           </span>
         </a>
       
