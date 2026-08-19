@@ -60,7 +60,7 @@
 <p>同样是聊天软件，Telegram 的私密聊天能让服务器「连你发的什么都不知道」，而微信的每一条消息，服务器都「读得一清二楚」。<br>这个差距不是「技术高低」决定的，而是由<strong>架构</strong>决定的——一端把密钥放在了你的手机里，]]>
     </summary>
     <title>Telegram 软件架构与端到端加密拆解：为什么它的「安全」是可选，而非默认</title>
-    <updated>2026-08-19T08:59:18.448Z</updated>
+    <updated>2026-08-19T12:10:18.848Z</updated>
   </entry>
   <entry>
     <author>
