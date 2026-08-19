@@ -28,11 +28,11 @@
   (function () {
     var accents = { orange: 1, purple: 1, sakura: 1, blue: 1, pink: 1, green: 1, black: 1 };
     var match = document.cookie.match(/(?:^|;\s*)flatpaper-accent=([^;]+)/);
-    var accent = 'blue';
+    var accent = 'black';
     if (match) {
       try { accent = decodeURIComponent(match[1]); } catch (e) {}
     }
-    if (!accents[accent]) accent = 'blue';
+    if (!accents[accent]) accent = 'black';
     document.documentElement.setAttribute('data-accent', accent);
     try {
       if (localStorage.getItem('flatpaper-mode') === 'dark') {
@@ -63,7 +63,7 @@
 
 <body
   class="is-home has-home-hero is-hero-active tag-style-tape bg-style-default"
-  data-default-accent="blue"
+  data-default-accent="black"
   data-code-theme="dark"
   data-note-style="sticky"
   data-note-icons="on"
@@ -648,108 +648,6 @@
           <span class="tape tape--top-center" aria-hidden="true"></span>
           <div class="featured-copy">
             <span class="label-pill">置顶</span>
-            <h1><a href="/2026/08/19/20260819/2026081919/">让猎物自己为猎手工作：保健品洗脑话术如何开采人类的&#34;人性漏洞&#34;</a></h1>
-            <p> 一颗成本 200 元的普通维生素，被包装成”诺奖神药”，卖给老人 9900 元——不是因为它真的有效，而是因为背后有一套比药更”见效”的话术系统。从免费鸡蛋到认干亲，从”健康讲座”到私域直播...</p>
-            <div class="meta-line">
-              <span class="meta-date">
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
-2026-08-19</span>
-              
-                <span class="meta-cat">
-                  
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
-
-                  <a class="meta-cat-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
-                </span>
-              
-              <a class="read-more" href="/2026/08/19/20260819/2026081919/"><span>阅读全文</span>
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
-</a>
-            </div>
-          </div>
-          <div class="featured-thumb featured-thumb--zigzag">
-            
-<div class="paper-thumb paper-thumb-0 paper-thumb--large paper-thumb--cover">
-  
-    <img class="paper-thumb__img" src="/images/cover/camera.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
-  
-</div>
-
-          </div>
-        </article>
-      
-        <article class="featured-paper" data-index="1">
-          <span class="tape tape--top-center" aria-hidden="true"></span>
-          <div class="featured-copy">
-            <span class="label-pill">置顶</span>
-            <h1><a href="/2026/08/19/20260819/2026081905/">黑客组织 - LockBit：勒索软件即服务的&#34;工业帝国&#34;兴衰史</a></h1>
-            <p> 一个把勒索软件做成”特许经营加盟店”的犯罪集团——有客服、有分成、有联盟、有品牌营销。从巅峰期”每 11 秒一次攻击”到被跨国执法”摘牌”，LockBit 的兴衰，就是 RaaS 商业模式本...</p>
-            <div class="meta-line">
-              <span class="meta-date">
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
-2026-08-19</span>
-              
-                <span class="meta-cat">
-                  
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
-
-                  <a class="meta-cat-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
-                </span>
-              
-              <a class="read-more" href="/2026/08/19/20260819/2026081905/"><span>阅读全文</span>
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
-</a>
-            </div>
-          </div>
-          <div class="featured-thumb featured-thumb--zigzag">
-            
-<div class="paper-thumb paper-thumb-1 paper-thumb--large paper-thumb--cover">
-  
-    <img class="paper-thumb__img" src="/images/cover/mountain.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
-  
-</div>
-
-          </div>
-        </article>
-      
-        <article class="featured-paper" data-index="2">
-          <span class="tape tape--top-center" aria-hidden="true"></span>
-          <div class="featured-copy">
-            <span class="label-pill">置顶</span>
-            <h1><a href="/2026/08/19/20260819/2026081907/">xz-utils 后门事件复盘：一次险些瘫痪全球 Linux 的&#34;完美供应链投毒&#34;</a></h1>
-            <p> 一个匿名攻击者，用三年时间”养成”一个可信维护者身份，把一个隐蔽后门塞进了全球几乎所有 Linux 发行版都在用的压缩库。如果不是一位微软工程师偶然发现 SSH 登录慢了 0.5 秒，这场攻...</p>
-            <div class="meta-line">
-              <span class="meta-date">
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
-2026-08-19</span>
-              
-                <span class="meta-cat">
-                  
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
-
-                  <a class="meta-cat-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
-                </span>
-              
-              <a class="read-more" href="/2026/08/19/20260819/2026081907/"><span>阅读全文</span>
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
-</a>
-            </div>
-          </div>
-          <div class="featured-thumb featured-thumb--zigzag">
-            
-<div class="paper-thumb paper-thumb-2 paper-thumb--large paper-thumb--cover">
-  
-    <img class="paper-thumb__img" src="/images/cover/notebook.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
-  
-</div>
-
-          </div>
-        </article>
-      
-        <article class="featured-paper" data-index="3">
-          <span class="tape tape--top-center" aria-hidden="true"></span>
-          <div class="featured-copy">
-            <span class="label-pill">置顶</span>
             <h1><a href="/2026/06/26/20260626/2026062615/">当网络成为广场：匿名者（Anonymous）现象背后的公共议题张力</a></h1>
             <p> 📌 重要法律与立场声明本文系对“Anonymous”（匿名者）作为全球性网络文化现象与社会运动符号的客观梳理与批判性反思，不构成任何形式的技术指导、行动号召或违法行为背书。 根据《中华人民...</p>
             <div class="meta-line">
@@ -774,6 +672,108 @@
 <div class="paper-thumb paper-thumb-0 paper-thumb--large paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/images/IMG_20260626_213649.jpg" alt="当网络成为广场：匿名者（Anonymous）现象背后的公共议题张力" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </div>
+        </article>
+      
+        <article class="featured-paper" data-index="1">
+          <span class="tape tape--top-center" aria-hidden="true"></span>
+          <div class="featured-copy">
+            <span class="label-pill">置顶</span>
+            <h1><a href="/2026/08/19/20260819/2026081919/">让猎物自己为猎手工作：保健品洗脑话术如何开采人类的&#34;人性漏洞&#34;</a></h1>
+            <p> 一颗成本 200 元的普通维生素，被包装成”诺奖神药”，卖给老人 9900 元——不是因为它真的有效，而是因为背后有一套比药更”见效”的话术系统。从免费鸡蛋到认干亲，从”健康讲座”到私域直播...</p>
+            <div class="meta-line">
+              <span class="meta-date">
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
+2026-08-19</span>
+              
+                <span class="meta-cat">
+                  
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+                  <a class="meta-cat-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
+                </span>
+              
+              <a class="read-more" href="/2026/08/19/20260819/2026081919/"><span>阅读全文</span>
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
+</a>
+            </div>
+          </div>
+          <div class="featured-thumb featured-thumb--zigzag">
+            
+<div class="paper-thumb paper-thumb-1 paper-thumb--large paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/mountain.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </div>
+        </article>
+      
+        <article class="featured-paper" data-index="2">
+          <span class="tape tape--top-center" aria-hidden="true"></span>
+          <div class="featured-copy">
+            <span class="label-pill">置顶</span>
+            <h1><a href="/2026/08/19/20260819/2026081905/">黑客组织 - LockBit：勒索软件即服务的&#34;工业帝国&#34;兴衰史</a></h1>
+            <p> 一个把勒索软件做成”特许经营加盟店”的犯罪集团——有客服、有分成、有联盟、有品牌营销。从巅峰期”每 11 秒一次攻击”到被跨国执法”摘牌”，LockBit 的兴衰，就是 RaaS 商业模式本...</p>
+            <div class="meta-line">
+              <span class="meta-date">
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
+2026-08-19</span>
+              
+                <span class="meta-cat">
+                  
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+                  <a class="meta-cat-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
+                </span>
+              
+              <a class="read-more" href="/2026/08/19/20260819/2026081905/"><span>阅读全文</span>
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
+</a>
+            </div>
+          </div>
+          <div class="featured-thumb featured-thumb--zigzag">
+            
+<div class="paper-thumb paper-thumb-2 paper-thumb--large paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/notebook.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </div>
+        </article>
+      
+        <article class="featured-paper" data-index="3">
+          <span class="tape tape--top-center" aria-hidden="true"></span>
+          <div class="featured-copy">
+            <span class="label-pill">置顶</span>
+            <h1><a href="/2026/08/19/20260819/2026081907/">xz-utils 后门事件复盘：一次险些瘫痪全球 Linux 的&#34;完美供应链投毒&#34;</a></h1>
+            <p> 一个匿名攻击者，用三年时间”养成”一个可信维护者身份，把一个隐蔽后门塞进了全球几乎所有 Linux 发行版都在用的压缩库。如果不是一位微软工程师偶然发现 SSH 登录慢了 0.5 秒，这场攻...</p>
+            <div class="meta-line">
+              <span class="meta-date">
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
+2026-08-19</span>
+              
+                <span class="meta-cat">
+                  
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+                  <a class="meta-cat-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
+                </span>
+              
+              <a class="read-more" href="/2026/08/19/20260819/2026081907/"><span>阅读全文</span>
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
+</a>
+            </div>
+          </div>
+          <div class="featured-thumb featured-thumb--zigzag">
+            
+<div class="paper-thumb paper-thumb-0 paper-thumb--large paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/images/cover/port.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
@@ -1612,14 +1612,14 @@
       },
     
       {
-        "title": "QQ 语音通话流量分析：PCAP 解析 + IP 地理定位",
-        "url": "/2026/07/06/20260706/2026070627/",
+        "title": "轻量级 OCR 服务搭建：ddddocr + 异步 HTTP 接口",
+        "url": "/2026/07/06/20260706/2026070626/",
         "date": "2026-07-06"
       },
     
       {
-        "title": "轻量级 OCR 服务搭建：ddddocr + 异步 HTTP 接口",
-        "url": "/2026/07/06/20260706/2026070626/",
+        "title": "QQ 语音通话流量分析：PCAP 解析 + IP 地理定位",
+        "url": "/2026/07/06/20260706/2026070627/",
         "date": "2026-07-06"
       },
     
@@ -1660,14 +1660,14 @@
       },
     
       {
-        "title": "B站视频评论区爬虫",
-        "url": "/2026/07/06/20260706/2026070619/",
+        "title": "京东商品评论爬虫（Selenium模拟浏览器+多线程）",
+        "url": "/2026/07/06/20260706/2026070618/",
         "date": "2026-07-06"
       },
     
       {
-        "title": "京东商品评论爬虫（Selenium模拟浏览器+多线程）",
-        "url": "/2026/07/06/20260706/2026070618/",
+        "title": "B站视频评论区爬虫",
+        "url": "/2026/07/06/20260706/2026070619/",
         "date": "2026-07-06"
       },
     

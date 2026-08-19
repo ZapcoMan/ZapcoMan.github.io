@@ -28,11 +28,11 @@
   (function () {
     var accents = { orange: 1, purple: 1, sakura: 1, blue: 1, pink: 1, green: 1, black: 1 };
     var match = document.cookie.match(/(?:^|;\s*)flatpaper-accent=([^;]+)/);
-    var accent = 'blue';
+    var accent = 'black';
     if (match) {
       try { accent = decodeURIComponent(match[1]); } catch (e) {}
     }
-    if (!accents[accent]) accent = 'blue';
+    if (!accents[accent]) accent = 'black';
     document.documentElement.setAttribute('data-accent', accent);
     try {
       if (localStorage.getItem('flatpaper-mode') === 'dark') {
@@ -63,7 +63,7 @@
 
 <body
   class="is-home tag-style-tape bg-style-default"
-  data-default-accent="blue"
+  data-default-accent="black"
   data-code-theme="dark"
   data-note-style="sticky"
   data-note-icons="on"
@@ -704,8 +704,8 @@
 
     
       
-<article class="post-card" data-title="B站视频评论区爬虫">
-  <a class="post-thumb-link" href="/2026/07/06/20260706/2026070619/" aria-label="B站视频评论区爬虫">
+<article class="post-card" data-title="京东商品评论爬虫（Selenium模拟浏览器+多线程）">
+  <a class="post-thumb-link" href="/2026/07/06/20260706/2026070618/" aria-label="京东商品评论爬虫（Selenium模拟浏览器+多线程）">
     
 <div class="paper-thumb paper-thumb-2 paper-thumb--cover">
   
@@ -715,8 +715,8 @@
 
   </a>
   <div class="post-card-copy">
-    <h3><a href="/2026/07/06/20260706/2026070619/">B站视频评论区爬虫</a></h3>
-    <p>前言弹幕是B站特色的实时评论，而评论区则是用户深度讨论的阵地。无论是为了做舆情监控、用户情感分析，还是训练NLP模型，B站评论区的数据都具有极高的价值。 本文基于真实项目代码，详细介绍如何使用...</p>
+    <h3><a href="/2026/07/06/20260706/2026070618/">京东商品评论爬虫（Selenium模拟浏览器+多线程）</a></h3>
+    <p>前言京东作为国内最大的电商平台之一，其商品评论数据对于竞品分析、用户舆情监控、商品推荐算法训练等场景都具有极高的价值。然而，京东的评论数据并不像12306或B站那样可以通过简单的API直接获取...</p>
     
       <div class="meta-line meta-line--tags">
         <span class="meta-tags">
@@ -745,8 +745,8 @@
 
     
       
-<article class="post-card" data-title="京东商品评论爬虫（Selenium模拟浏览器+多线程）">
-  <a class="post-thumb-link" href="/2026/07/06/20260706/2026070618/" aria-label="京东商品评论爬虫（Selenium模拟浏览器+多线程）">
+<article class="post-card" data-title="B站视频评论区爬虫">
+  <a class="post-thumb-link" href="/2026/07/06/20260706/2026070619/" aria-label="B站视频评论区爬虫">
     
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
   
@@ -756,8 +756,8 @@
 
   </a>
   <div class="post-card-copy">
-    <h3><a href="/2026/07/06/20260706/2026070618/">京东商品评论爬虫（Selenium模拟浏览器+多线程）</a></h3>
-    <p>前言京东作为国内最大的电商平台之一，其商品评论数据对于竞品分析、用户舆情监控、商品推荐算法训练等场景都具有极高的价值。然而，京东的评论数据并不像12306或B站那样可以通过简单的API直接获取...</p>
+    <h3><a href="/2026/07/06/20260706/2026070619/">B站视频评论区爬虫</a></h3>
+    <p>前言弹幕是B站特色的实时评论，而评论区则是用户深度讨论的阵地。无论是为了做舆情监控、用户情感分析，还是训练NLP模型，B站评论区的数据都具有极高的价值。 本文基于真实项目代码，详细介绍如何使用...</p>
     
       <div class="meta-line meta-line--tags">
         <span class="meta-tags">
@@ -1291,14 +1291,14 @@
       },
     
       {
-        "title": "QQ 语音通话流量分析：PCAP 解析 + IP 地理定位",
-        "url": "/2026/07/06/20260706/2026070627/",
+        "title": "轻量级 OCR 服务搭建：ddddocr + 异步 HTTP 接口",
+        "url": "/2026/07/06/20260706/2026070626/",
         "date": "2026-07-06"
       },
     
       {
-        "title": "轻量级 OCR 服务搭建：ddddocr + 异步 HTTP 接口",
-        "url": "/2026/07/06/20260706/2026070626/",
+        "title": "QQ 语音通话流量分析：PCAP 解析 + IP 地理定位",
+        "url": "/2026/07/06/20260706/2026070627/",
         "date": "2026-07-06"
       },
     
@@ -1339,14 +1339,14 @@
       },
     
       {
-        "title": "B站视频评论区爬虫",
-        "url": "/2026/07/06/20260706/2026070619/",
+        "title": "京东商品评论爬虫（Selenium模拟浏览器+多线程）",
+        "url": "/2026/07/06/20260706/2026070618/",
         "date": "2026-07-06"
       },
     
       {
-        "title": "京东商品评论爬虫（Selenium模拟浏览器+多线程）",
-        "url": "/2026/07/06/20260706/2026070618/",
+        "title": "B站视频评论区爬虫",
+        "url": "/2026/07/06/20260706/2026070619/",
         "date": "2026-07-06"
       },
     

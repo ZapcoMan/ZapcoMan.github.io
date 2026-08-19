@@ -28,11 +28,11 @@
   (function () {
     var accents = { orange: 1, purple: 1, sakura: 1, blue: 1, pink: 1, green: 1, black: 1 };
     var match = document.cookie.match(/(?:^|;\s*)flatpaper-accent=([^;]+)/);
-    var accent = 'blue';
+    var accent = 'black';
     if (match) {
       try { accent = decodeURIComponent(match[1]); } catch (e) {}
     }
-    if (!accents[accent]) accent = 'blue';
+    if (!accents[accent]) accent = 'black';
     document.documentElement.setAttribute('data-accent', accent);
     try {
       if (localStorage.getItem('flatpaper-mode') === 'dark') {
@@ -63,7 +63,7 @@
 
 <body
   class="is-home tag-style-tape bg-style-default"
-  data-default-accent="blue"
+  data-default-accent="black"
   data-code-theme="dark"
   data-note-style="sticky"
   data-note-icons="on"
@@ -600,7 +600,7 @@
           
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
 
-          <a class="meta-tag-link" href="/tags/%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6/">#社会工程学</a><a class="meta-tag-link" href="/tags/%E9%BB%91%E5%AE%A2%E6%94%BB%E5%87%BB%E4%BA%8B%E4%BB%B6/">#黑客攻击事件</a><a class="meta-tag-link" href="/tags/%E9%BB%91%E7%81%B0%E4%BA%A7/">#黑灰产</a>
+          <a class="meta-tag-link" href="/tags/%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6/">#社会工程学</a><a class="meta-tag-link" href="/tags/%E9%BB%91%E7%81%B0%E4%BA%A7/">#黑灰产</a><a class="meta-tag-link" href="/tags/%E9%BB%91%E5%AE%A2%E6%94%BB%E5%87%BB%E4%BA%8B%E4%BB%B6/">#黑客攻击事件</a>
         </span>
       </div>
     
@@ -805,7 +805,7 @@
           
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
 
-          <a class="meta-tag-link" href="/tags/GrapheneOS/">#GrapheneOS</a><a class="meta-tag-link" href="/tags/%E6%89%8B%E6%9C%BA%E5%8F%96%E8%AF%81/">#手机取证</a><a class="meta-tag-link" href="/tags/%E9%9A%90%E7%A7%81%E4%BF%9D%E6%8A%A4/">#隐私保护</a>
+          <a class="meta-tag-link" href="/tags/GrapheneOS/">#GrapheneOS</a><a class="meta-tag-link" href="/tags/%E9%9A%90%E7%A7%81%E4%BF%9D%E6%8A%A4/">#隐私保护</a><a class="meta-tag-link" href="/tags/%E6%89%8B%E6%9C%BA%E5%8F%96%E8%AF%81/">#手机取证</a>
         </span>
       </div>
     
@@ -1291,14 +1291,14 @@
       },
     
       {
-        "title": "QQ 语音通话流量分析：PCAP 解析 + IP 地理定位",
-        "url": "/2026/07/06/20260706/2026070627/",
+        "title": "轻量级 OCR 服务搭建：ddddocr + 异步 HTTP 接口",
+        "url": "/2026/07/06/20260706/2026070626/",
         "date": "2026-07-06"
       },
     
       {
-        "title": "轻量级 OCR 服务搭建：ddddocr + 异步 HTTP 接口",
-        "url": "/2026/07/06/20260706/2026070626/",
+        "title": "QQ 语音通话流量分析：PCAP 解析 + IP 地理定位",
+        "url": "/2026/07/06/20260706/2026070627/",
         "date": "2026-07-06"
       },
     
@@ -1339,14 +1339,14 @@
       },
     
       {
-        "title": "B站视频评论区爬虫",
-        "url": "/2026/07/06/20260706/2026070619/",
+        "title": "京东商品评论爬虫（Selenium模拟浏览器+多线程）",
+        "url": "/2026/07/06/20260706/2026070618/",
         "date": "2026-07-06"
       },
     
       {
-        "title": "京东商品评论爬虫（Selenium模拟浏览器+多线程）",
-        "url": "/2026/07/06/20260706/2026070618/",
+        "title": "B站视频评论区爬虫",
+        "url": "/2026/07/06/20260706/2026070619/",
         "date": "2026-07-06"
       },
     
