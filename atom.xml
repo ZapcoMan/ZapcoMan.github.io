@@ -9,7 +9,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   <rights>All rights reserved 2026, ZapcoMan</rights>
   <title>ZapcoMan's world</title>
-  <updated>2026-08-19T08:47:54.854Z</updated>
+  <updated>2026-08-20T01:11:06.800Z</updated>
   <entry>
     <author>
       <name>ZapcoMan</name>
@@ -35,7 +35,7 @@
 <hr>]]>
     </summary>
     <title>Go 实现仿 Telegram 端到端加密：从 DH 密钥交换到 AES-GCM</title>
-    <updated>2026-08-19T08:47:54.854Z</updated>
+    <updated>2026-08-20T01:11:06.800Z</updated>
   </entry>
   <entry>
     <author>
@@ -61,7 +61,7 @@
 <p>同样是聊天软件，Telegram 的私密聊天能让服务器「连你发的什么都不知道」，而微信]]>
     </summary>
     <title>Telegram 软件架构与端到端加密拆解：为什么它的「安全」是可选，而非默认</title>
-    <updated>2026-08-19T12:17:33.284Z</updated>
+    <updated>2026-08-20T01:11:06.892Z</updated>
   </entry>
   <entry>
     <author>
