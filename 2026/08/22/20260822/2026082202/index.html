@@ -17,7 +17,7 @@
 <meta property="og:description" content="场景定位：你的位置信息从何而来？设备层（基站、WiFi、蓝牙、IMEI）、物理层（针孔摄像头、车底定位器）与城市层（人脸、车牌、监控网）三条追踪链路，是如何拼出你的完整行踪轨迹的？本文先拆解机制，再给出「不依赖非法对抗」的行踪反制措施。 合规边界：本文仅用于防范商业追踪、私人跟踪与行踪泄露，不针对司法与执法机关的合法侦查（该类场景非技术手段能解决，且规避侦查...">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-08-22T06:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-22T14:40:43.581Z">
+<meta property="article:modified_time" content="2026-08-22T15:04:40.397Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="人脸识别">
 <meta property="article:tag" content="反侦察">
@@ -29,7 +29,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"行踪反侦察：从基站定位到城市监控网，你的位置是如何被拿到的","name":"行踪反侦察：从基站定位到城市监控网，你的位置是如何被拿到的 | ZapcoMan's world","description":"场景定位：你的位置信息从何而来？设备层（基站、WiFi、蓝牙、IMEI）、物理层（针孔摄像头、车底定位器）与城市层（人脸、车牌、监控网）三条追踪链路，是如何拼出你的完整行踪轨迹的？本文先拆解机制，再给出「不依赖非法对抗」的行踪反制措施。 合规边界：本文仅用于防范商业追踪、私人跟踪与行踪泄露，不针对司法与执法机关的合法侦查（该类场景非技术手段能解决，且规避侦查...","url":"http://example.com/2026/08/22/20260822/2026082202/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/08/22/20260822/2026082202/","datePublished":"2026-08-22T06:00:00.000Z","dateModified":"2026-08-22T14:40:43.581Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"隐私保护, 人脸识别, 反侦察, 定位追踪, 行踪管理"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"行踪反侦察：从基站定位到城市监控网，你的位置是如何被拿到的","name":"行踪反侦察：从基站定位到城市监控网，你的位置是如何被拿到的 | ZapcoMan's world","description":"场景定位：你的位置信息从何而来？设备层（基站、WiFi、蓝牙、IMEI）、物理层（针孔摄像头、车底定位器）与城市层（人脸、车牌、监控网）三条追踪链路，是如何拼出你的完整行踪轨迹的？本文先拆解机制，再给出「不依赖非法对抗」的行踪反制措施。 合规边界：本文仅用于防范商业追踪、私人跟踪与行踪泄露，不针对司法与执法机关的合法侦查（该类场景非技术手段能解决，且规避侦查...","url":"http://example.com/2026/08/22/20260822/2026082202/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/08/22/20260822/2026082202/","datePublished":"2026-08-22T06:00:00.000Z","dateModified":"2026-08-22T15:04:40.397Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"隐私保护, 人脸识别, 反侦察, 定位追踪, 行踪管理"}</script>
 
 <script>
   (function () {
@@ -782,6 +782,8 @@
 <td>逐个检查定位权限，把「始终允许」清零</td>
 </tr>
 </tbody></table>
+<p><strong>比现金更难追踪的一档</strong>：现金虽然匿名，但并非零痕迹——取款会留下 ATM&#x2F;银行流水（关联到身份），极端场景下钞票序列号也能形成链路。如果你需要的是「完全脱离支付系统」的交易，还可以考虑<strong>以物易物</strong>：用高保值、易流通的物品（苹果手机、黄金、二手数码产品）直接交换商品或服务。它没有任何渠道记录、没有交易流水、不经过任何实名系统——<strong>在匿名梯度上，比现金还要高一级</strong>。代价是：需要交易双方达成一致、物品有折旧损耗、当面交易可能带来新的物理暴露（见 5.4）。所以它只适合极少数高敏感场景，作为「现金之上」的最后一档，而非日常替代。</p>
+<p><strong>虚拟货币：匿名梯度的「技术档」</strong>：如果你要交易的是数字类的东西（域名、服务器、虚拟商品），还有一条不依赖当面见人的路——虚拟货币。但要泼一盆冷水：<strong>比特币 ≠ 匿名</strong>。比特币账本是公开的，任何一笔转账从哪个地址流向哪个地址都永久可查；只要你在交易所买过币（KYC 实名）、或把币从交易所转进转出过，链上分析就能把「匿名地址」一路拼回你的实名身份。真正面向隐私的币（如门罗币）用隐藏地址、隐藏金额、环签名混淆交易来源，才接近「现金级」匿名。而且**「币怎么来的」比「用什么币」更关键**：交易所买币 &#x3D; 实名，从实名账户转出的第一跳，就是你的身份锚点。虚拟货币的适用场景主要是数字交易；线下实物交易它反而不如现金——现金不依赖钱包与私钥安全、不需要暴露网络出口（见 5.2 的固定代理 IP）。</p>
 <h3 id="5-2-断链：切断「设备-↔-身份」的关联"><a href="#5-2-断链：切断「设备-↔-身份」的关联" class="headerlink" title="5.2 断链：切断「设备 ↔ 身份」的关联"></a>5.2 断链：切断「设备 ↔ 身份」的关联</h3><p>这是行踪反制里<strong>性价比最高</strong>的一步：</p>
 <ul>
 <li>隐私副机（不插实名卡、不登实名账号）——你之前的《在国内搭一台隐私副机》已完整覆盖</li>
