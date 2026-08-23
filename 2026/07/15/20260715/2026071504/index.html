@@ -16,17 +16,19 @@
 <meta property="og:site_name" content="ZapcoMan&#39;s world">
 <meta property="og:description" content="本文以防御视角讨论安全测试工具的架构设计，所有内容仅用于授权渗透测试和安全研究。 WebShell 管理工具是渗透测试中验证 Web 漏洞利用链的关键组件。AES 加密是数据保护的基础。Javassist 字节码操作是理解运行时注入的关键。本文从安全研究角度，把加密通信和字节码操作的完整知识体系讲透。 第一章：WebShell 管理工具架构演进1.1 桌面版...">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2026/07/15/images/20260715/2026071504-sec-tool.png">
 <meta property="article:published_time" content="2026-07-15T00:58:22.000Z">
-<meta property="article:modified_time" content="2026-07-15T01:30:17.579Z">
+<meta property="article:modified_time" content="2026-08-23T12:48:45.340Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="GodzillaX">
 <meta property="article:tag" content="网络安全">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2026/07/15/images/20260715/2026071504-sec-tool.png">
 <link rel="canonical" href="http://example.com/2026/07/15/20260715/2026071504/">
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"安全工具开发：加密通信与字节码操作","name":"安全工具开发：加密通信与字节码操作 | ZapcoMan's world","description":"本文以防御视角讨论安全测试工具的架构设计，所有内容仅用于授权渗透测试和安全研究。 WebShell 管理工具是渗透测试中验证 Web 漏洞利用链的关键组件。AES 加密是数据保护的基础。Javassist 字节码操作是理解运行时注入的关键。本文从安全研究角度，把加密通信和字节码操作的完整知识体系讲透。 第一章：WebShell 管理工具架构演进1.1 桌面版...","url":"http://example.com/2026/07/15/20260715/2026071504/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/07/15/20260715/2026071504/","datePublished":"2026-07-15T00:58:22.000Z","dateModified":"2026-07-15T01:30:17.579Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"网络安全, GodzillaX"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"安全工具开发：加密通信与字节码操作","name":"安全工具开发：加密通信与字节码操作 | ZapcoMan's world","description":"本文以防御视角讨论安全测试工具的架构设计，所有内容仅用于授权渗透测试和安全研究。 WebShell 管理工具是渗透测试中验证 Web 漏洞利用链的关键组件。AES 加密是数据保护的基础。Javassist 字节码操作是理解运行时注入的关键。本文从安全研究角度，把加密通信和字节码操作的完整知识体系讲透。 第一章：WebShell 管理工具架构演进1.1 桌面版...","url":"http://example.com/2026/07/15/20260715/2026071504/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260715/2026071504-sec-tool.png"],"mainEntityOfPage":"http://example.com/2026/07/15/20260715/2026071504/","datePublished":"2026-07-15T00:58:22.000Z","dateModified":"2026-08-23T12:48:45.340Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"网络安全, GodzillaX"}</script>
 
 <script>
   (function () {
@@ -725,7 +727,7 @@
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/images/cover/camera.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20260715/2026071505-fullstack.png" alt="行业全栈项目实战与架构选型" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
@@ -741,7 +743,7 @@
             
 <div class="paper-thumb paper-thumb-1 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/images/cover/mountain.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20260626/2026062614-strategy-pattern.png" alt="基于策略模式优化 Java 系统角色相关功能的方案文档" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
@@ -757,7 +759,7 @@
             
 <div class="paper-thumb paper-thumb-2 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/images/cover/notebook.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20260626/2026062607-service-generic.png" alt="Spring Boot 服务层泛型抽象与代码复用实战" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
@@ -773,7 +775,7 @@
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/images/cover/port.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20260626/2026062605-vue-axios-springboot.png" alt="使用 Vue3 + Axios 与 Spring Boot 高效对接（含 token 处理）" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 

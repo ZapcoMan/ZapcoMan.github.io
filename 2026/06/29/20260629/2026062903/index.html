@@ -16,8 +16,9 @@
 <meta property="og:site_name" content="ZapcoMan&#39;s world">
 <meta property="og:description" content="注意点 上线后第一条命令不要执行 whoami，可以执行 ipconfig 等 个人杀软鸡肋，企业标配 EDR.IPS.IDS.NDR.XDR，一般分为主控和 agent wd 大于国内其他杀软 早期杀软大多数凭借特征库 &#x2F; 病毒库对比查杀 常用 C2（Command &amp; Control Server）： Cobalt Strike（最常见...">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2026/06/29/images/20260629/2026062903-bypass-basic.png">
 <meta property="article:published_time" content="2026-06-29T14:39:51.000Z">
-<meta property="article:modified_time" content="2026-07-01T13:50:32.603Z">
+<meta property="article:modified_time" content="2026-08-23T12:48:42.507Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="Kali  Linux">
 <meta property="article:tag" content="免杀">
@@ -28,11 +29,12 @@
 <meta property="article:tag" content="终端安全">
 <meta property="article:tag" content="网络安全">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2026/06/29/images/20260629/2026062903-bypass-basic.png">
 <link rel="canonical" href="http://example.com/2026/06/29/20260629/2026062903/">
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"免杀对抗之一 基础了解","name":"免杀对抗之一 基础了解 | ZapcoMan's world","description":"注意点 上线后第一条命令不要执行 whoami，可以执行 ipconfig 等 个人杀软鸡肋，企业标配 EDR.IPS.IDS.NDR.XDR，一般分为主控和 agent wd 大于国内其他杀软 早期杀软大多数凭借特征库 &#x2F; 病毒库对比查杀 常用 C2（Command &amp; Control Server）： Cobalt Strike（最常见...","url":"http://example.com/2026/06/29/20260629/2026062903/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/06/29/20260629/2026062903/","datePublished":"2026-06-29T14:39:51.000Z","dateModified":"2026-07-01T13:50:32.603Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"网络安全, 渗透测试, Kali Linux, 免杀, 免杀技术, 终端安全, 加壳, 免杀验证"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"免杀对抗之一 基础了解","name":"免杀对抗之一 基础了解 | ZapcoMan's world","description":"注意点 上线后第一条命令不要执行 whoami，可以执行 ipconfig 等 个人杀软鸡肋，企业标配 EDR.IPS.IDS.NDR.XDR，一般分为主控和 agent wd 大于国内其他杀软 早期杀软大多数凭借特征库 &#x2F; 病毒库对比查杀 常用 C2（Command &amp; Control Server）： Cobalt Strike（最常见...","url":"http://example.com/2026/06/29/20260629/2026062903/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260629/2026062903-bypass-basic.png"],"mainEntityOfPage":"http://example.com/2026/06/29/20260629/2026062903/","datePublished":"2026-06-29T14:39:51.000Z","dateModified":"2026-08-23T12:48:42.507Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"网络安全, 渗透测试, Kali Linux, 免杀, 免杀技术, 终端安全, 加壳, 免杀验证"}</script>
 
 <script>
   (function () {
@@ -677,7 +679,7 @@
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="https://mmbiz.qpic.cn/sz_mmbiz_png/MSDUaqtwboR1zDBP6fjpsqreyj512zLwlmicsBwUf0CtNOwCPUDW0icgFCnvWCK4sT3icb1sfGKcuhGBLYGyT40y7gaNiaXXFSqdoA5C9AbTGtQ/640?wx_fmt=png&amp;from=appmsg" alt="若依常见漏洞一把梭（上）" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20260626/2026062620-ruoyi-vulns1.png" alt="若依常见漏洞一把梭（上）" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
@@ -693,7 +695,7 @@
             
 <div class="paper-thumb paper-thumb-1 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/images/cover/mountain.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20260626/2026062621-ruoyi-vulns2.png" alt="若依常见漏洞一把梭（下）" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
@@ -725,7 +727,7 @@
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/images/cover/port.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20260626/2026062619-phone-unlock.png" alt="破解手机锁屏密码" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 

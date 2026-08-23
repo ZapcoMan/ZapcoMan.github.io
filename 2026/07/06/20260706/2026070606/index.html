@@ -16,17 +16,19 @@
 <meta property="og:site_name" content="ZapcoMan&#39;s world">
 <meta property="og:description" content="本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言在网络编程中，TCP是流式传输协议——它像一条没有边界的管道，发送方写入的数据会被任意分割和合并。你调用send发送了”ABC”和”DEF”两次，接收方可能一次recv就收到”ABCDEF”。这就是所谓的”粘包”问题。 要解决这个问题，应用层必须自行定义消息边界——...">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2026/07/06/images/20260706/2026070606-bin-proto.png">
 <meta property="article:published_time" content="2026-07-06T02:09:25.000Z">
-<meta property="article:modified_time" content="2026-07-06T02:12:26.196Z">
+<meta property="article:modified_time" content="2026-08-23T12:48:43.404Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="渗透测试">
 <meta property="article:tag" content="自定义通讯协议">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2026/07/06/images/20260706/2026070606-bin-proto.png">
 <link rel="canonical" href="http://example.com/2026/07/06/20260706/2026070606/">
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"自定义网络通讯协议：基于struct的二进制协议设计","name":"自定义网络通讯协议：基于struct的二进制协议设计 | ZapcoMan's world","description":"本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言在网络编程中，TCP是流式传输协议——它像一条没有边界的管道，发送方写入的数据会被任意分割和合并。你调用send发送了”ABC”和”DEF”两次，接收方可能一次recv就收到”ABCDEF”。这就是所谓的”粘包”问题。 要解决这个问题，应用层必须自行定义消息边界——...","url":"http://example.com/2026/07/06/20260706/2026070606/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/07/06/20260706/2026070606/","datePublished":"2026-07-06T02:09:25.000Z","dateModified":"2026-07-06T02:12:26.196Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"渗透测试, 自定义通讯协议"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"自定义网络通讯协议：基于struct的二进制协议设计","name":"自定义网络通讯协议：基于struct的二进制协议设计 | ZapcoMan's world","description":"本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言在网络编程中，TCP是流式传输协议——它像一条没有边界的管道，发送方写入的数据会被任意分割和合并。你调用send发送了”ABC”和”DEF”两次，接收方可能一次recv就收到”ABCDEF”。这就是所谓的”粘包”问题。 要解决这个问题，应用层必须自行定义消息边界——...","url":"http://example.com/2026/07/06/20260706/2026070606/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260706/2026070606-bin-proto.png"],"mainEntityOfPage":"http://example.com/2026/07/06/20260706/2026070606/","datePublished":"2026-07-06T02:09:25.000Z","dateModified":"2026-08-23T12:48:43.404Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"渗透测试, 自定义通讯协议"}</script>
 
 <script>
   (function () {
@@ -702,7 +704,7 @@
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/images/cover/camera.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20260706/2026070631-vul-scan.png" alt="从零打造漏洞扫描器：端口扫描 + Web 检测 + 报告生成" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
@@ -718,7 +720,7 @@
             
 <div class="paper-thumb paper-thumb-1 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/images/cover/mountain.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20260706/2026070630-waf-fprint.png" alt="WAF 指纹识别原理与实现：从 sqlmap 源码学起" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
@@ -734,7 +736,7 @@
             
 <div class="paper-thumb paper-thumb-2 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/images/cover/notebook.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20260706/2026070628-img-qr.png" alt="图像预处理 + 二维码识别全攻略：9 种方法让模糊二维码无处遁形" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
@@ -750,7 +752,7 @@
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/images/cover/port.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20260706/2026070629-qr-web.png" alt="Vue3 + Flask 全栈实战：从零构建在线二维码解析器" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 

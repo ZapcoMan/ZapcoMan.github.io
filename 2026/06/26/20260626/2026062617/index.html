@@ -16,17 +16,19 @@
 <meta property="og:site_name" content="ZapcoMan&#39;s world">
 <meta property="og:description" content="一、核心定义序列化（Serialization） 序列化是指将内存中对象的完整状态（包括字段值、类型元数据、继承关系、甚至嵌套对象图）转换为一种可持久化或可传输的线性格式的过程。 其核心目标有三： 持久化：将对象存入文件、数据库或分布式缓存（如 Redis）； 传输：通过网络（HTTP、RPC、消息队列）在进程间、服务间、语言间传递对象； 重建：为后续反序列...">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2026/06/26/images/20260626/2026062617-serialization.png">
 <meta property="article:published_time" content="2026-06-26T11:00:00.000Z">
-<meta property="article:modified_time" content="2026-06-26T11:01:26.211Z">
+<meta property="article:modified_time" content="2026-08-23T12:48:42.041Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="反序列化">
 <meta property="article:tag" content="序列化">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2026/06/26/images/20260626/2026062617-serialization.png">
 <link rel="canonical" href="http://example.com/2026/06/26/20260626/2026062617/">
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"📚 序列化与反序列化：原理、实现、风险与现代开发实践","name":"📚 序列化与反序列化：原理、实现、风险与现代开发实践 | ZapcoMan's world","description":"一、核心定义序列化（Serialization） 序列化是指将内存中对象的完整状态（包括字段值、类型元数据、继承关系、甚至嵌套对象图）转换为一种可持久化或可传输的线性格式的过程。 其核心目标有三： 持久化：将对象存入文件、数据库或分布式缓存（如 Redis）； 传输：通过网络（HTTP、RPC、消息队列）在进程间、服务间、语言间传递对象； 重建：为后续反序列...","url":"http://example.com/2026/06/26/20260626/2026062617/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/06/26/20260626/2026062617/","datePublished":"2026-06-26T11:00:00.000Z","dateModified":"2026-06-26T11:01:26.211Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"序列化, 反序列化"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"📚 序列化与反序列化：原理、实现、风险与现代开发实践","name":"📚 序列化与反序列化：原理、实现、风险与现代开发实践 | ZapcoMan's world","description":"一、核心定义序列化（Serialization） 序列化是指将内存中对象的完整状态（包括字段值、类型元数据、继承关系、甚至嵌套对象图）转换为一种可持久化或可传输的线性格式的过程。 其核心目标有三： 持久化：将对象存入文件、数据库或分布式缓存（如 Redis）； 传输：通过网络（HTTP、RPC、消息队列）在进程间、服务间、语言间传递对象； 重建：为后续反序列...","url":"http://example.com/2026/06/26/20260626/2026062617/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260626/2026062617-serialization.png"],"mainEntityOfPage":"http://example.com/2026/06/26/20260626/2026062617/","datePublished":"2026-06-26T11:00:00.000Z","dateModified":"2026-08-23T12:48:42.041Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"序列化, 反序列化"}</script>
 
 <script>
   (function () {

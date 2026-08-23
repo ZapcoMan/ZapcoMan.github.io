@@ -16,19 +16,19 @@
 <meta property="og:site_name" content="ZapcoMan&#39;s world">
 <meta property="og:description" content="一句 Executive Summary数据库和服务层的性能问题本质上是“无谓工作”的累加：无谓扫描、无谓回表、无谓网络往返与无谓资源创建。通过索引与查询改写减少扫描行数、通过批量化与缓存减少往返、通过架构化治理减少阻塞，完成从“能跑”到“能扩展”的跃迁。 引子公司某报表系统每天上午 9:00 准时卡顿：单条查询等待约 30 秒，用户抱怨不断。排查发现一条...">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://pic1.zhimg.com/v2-ce806dc227aba6e52fdc4f5895fd21ac_r.jpg">
+<meta property="og:image" content="http://example.com/2026/06/26/images/20260626/2026062624-sql-performance.png">
 <meta property="article:published_time" content="2026-06-26T11:49:51.000Z">
-<meta property="article:modified_time" content="2026-07-05T12:07:50.914Z">
+<meta property="article:modified_time" content="2026-08-23T12:48:42.273Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="SQL">
 <meta property="article:tag" content="SQl注入漏洞">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://pic1.zhimg.com/v2-ce806dc227aba6e52fdc4f5895fd21ac_r.jpg">
+<meta name="twitter:image" content="http://example.com/2026/06/26/images/20260626/2026062624-sql-performance.png">
 <link rel="canonical" href="http://example.com/2026/06/26/20260626/2026062624/">
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"从秒到毫秒：掌控 SQL 性能的 21 条硬核策略与服务层性能陷阱","name":"从秒到毫秒：掌控 SQL 性能的 21 条硬核策略与服务层性能陷阱 | ZapcoMan's world","description":"一句 Executive Summary数据库和服务层的性能问题本质上是“无谓工作”的累加：无谓扫描、无谓回表、无谓网络往返与无谓资源创建。通过索引与查询改写减少扫描行数、通过批量化与缓存减少往返、通过架构化治理减少阻塞，完成从“能跑”到“能扩展”的跃迁。 引子公司某报表系统每天上午 9:00 准时卡顿：单条查询等待约 30 秒，用户抱怨不断。排查发现一条...","url":"http://example.com/2026/06/26/20260626/2026062624/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/06/26/20260626/2026062624/","datePublished":"2026-06-26T11:49:51.000Z","dateModified":"2026-07-05T12:07:50.914Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"SQL, SQl注入漏洞"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"从秒到毫秒：掌控 SQL 性能的 21 条硬核策略与服务层性能陷阱","name":"从秒到毫秒：掌控 SQL 性能的 21 条硬核策略与服务层性能陷阱 | ZapcoMan's world","description":"一句 Executive Summary数据库和服务层的性能问题本质上是“无谓工作”的累加：无谓扫描、无谓回表、无谓网络往返与无谓资源创建。通过索引与查询改写减少扫描行数、通过批量化与缓存减少往返、通过架构化治理减少阻塞，完成从“能跑”到“能扩展”的跃迁。 引子公司某报表系统每天上午 9:00 准时卡顿：单条查询等待约 30 秒，用户抱怨不断。排查发现一条...","url":"http://example.com/2026/06/26/20260626/2026062624/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260626/2026062624-sql-performance.png"],"mainEntityOfPage":"http://example.com/2026/06/26/20260626/2026062624/","datePublished":"2026-06-26T11:49:51.000Z","dateModified":"2026-08-23T12:48:42.273Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"SQL, SQl注入漏洞"}</script>
 
 <script>
   (function () {

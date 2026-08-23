@@ -16,8 +16,9 @@
 <meta property="og:site_name" content="ZapcoMan&#39;s world">
 <meta property="og:description" content="详解如何设计基于泛型的 BaseService + BaseServiceImpl 模板，极大减少业务层重复 CRUD 代码，提高代码可维护性和扩展性。 🎯 设计目标 统一定义 CRUD 接口 抽象公共实现，业务专注差异化 避免重复代码膨胀 提升开发效率与代码质量 🧱 代码设计1. BaseService 接口1234567public interfac...">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2026/06/26/images/20260626/2026062607-service-generic.png">
 <meta property="article:published_time" content="2026-06-26T08:54:50.000Z">
-<meta property="article:modified_time" content="2026-06-26T08:54:55.100Z">
+<meta property="article:modified_time" content="2026-08-23T12:48:41.665Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="Git">
 <meta property="article:tag" content="Java">
@@ -25,11 +26,12 @@
 <meta property="article:tag" content="Springboot">
 <meta property="article:tag" content="Vue3">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2026/06/26/images/20260626/2026062607-service-generic.png">
 <link rel="canonical" href="http://example.com/2026/06/26/20260626/2026062607/">
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Spring Boot 服务层泛型抽象与代码复用实战","name":"Spring Boot 服务层泛型抽象与代码复用实战 | ZapcoMan's world","description":"详解如何设计基于泛型的 BaseService + BaseServiceImpl 模板，极大减少业务层重复 CRUD 代码，提高代码可维护性和扩展性。 🎯 设计目标 统一定义 CRUD 接口 抽象公共实现，业务专注差异化 避免重复代码膨胀 提升开发效率与代码质量 🧱 代码设计1. BaseService 接口1234567public interfac...","url":"http://example.com/2026/06/26/20260626/2026062607/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/06/26/20260626/2026062607/","datePublished":"2026-06-26T08:54:50.000Z","dateModified":"2026-06-26T08:54:55.100Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"Springboot, Java, Mybatis, Vue3, Git"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Spring Boot 服务层泛型抽象与代码复用实战","name":"Spring Boot 服务层泛型抽象与代码复用实战 | ZapcoMan's world","description":"详解如何设计基于泛型的 BaseService + BaseServiceImpl 模板，极大减少业务层重复 CRUD 代码，提高代码可维护性和扩展性。 🎯 设计目标 统一定义 CRUD 接口 抽象公共实现，业务专注差异化 避免重复代码膨胀 提升开发效率与代码质量 🧱 代码设计1. BaseService 接口1234567public interfac...","url":"http://example.com/2026/06/26/20260626/2026062607/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260626/2026062607-service-generic.png"],"mainEntityOfPage":"http://example.com/2026/06/26/20260626/2026062607/","datePublished":"2026-06-26T08:54:50.000Z","dateModified":"2026-08-23T12:48:41.665Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"Springboot, Java, Mybatis, Vue3, Git"}</script>
 
 <script>
   (function () {
@@ -592,9 +594,9 @@
       </a>
     
     
-      <a class="article-action article-action--next" href="/2026/06/26/20260626/2026062608/">
+      <a class="article-action article-action--next" href="/2026/06/26/20260626/2026062609/">
         <span class="action-label">下一篇</span>
-        <span class="action-title">多协议蜜罐初体验 🐝</span>
+        <span class="action-title">多协议蜜罐日志解析与可视化 📊</span>
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
 
@@ -630,7 +632,7 @@
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/images/cover/camera.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20260626/2026062605-vue-axios-springboot.png" alt="使用 Vue3 + Axios 与 Spring Boot 高效对接（含 token 处理）" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
@@ -646,7 +648,7 @@
             
 <div class="paper-thumb paper-thumb-1 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/images/cover/mountain.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20260626/2026062604-spring-security.png" alt="如何用 Spring Security 构建无状态权限控制系统（含角色菜单控制）" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
@@ -662,7 +664,7 @@
             
 <div class="paper-thumb paper-thumb-2 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/images/cover/notebook.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20260626/2026062603-edu-system.png" alt="从 0 到 1，我如何独立开发一套教务系统（EduCore）" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
@@ -678,7 +680,7 @@
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/images/cover/port.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20260626/2026062614-strategy-pattern.png" alt="基于策略模式优化 Java 系统角色相关功能的方案文档" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 

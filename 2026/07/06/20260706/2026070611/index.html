@@ -16,18 +16,20 @@
 <meta property="og:site_name" content="ZapcoMan&#39;s world">
 <meta property="og:description" content="本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言React Server Components（RSC）是React 19引入的服务端组件架构，Next.js作为最流行的React框架率先集成。然而，CVE-2025-55182漏洞揭示了RSC在处理Function对象反序列化时的严重安全缺陷。攻击者无需任何认证...">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2026/07/06/images/20260706/2026070611-cve-nextjs.png">
 <meta property="article:published_time" content="2026-07-06T02:30:25.000Z">
-<meta property="article:modified_time" content="2026-07-06T02:38:41.345Z">
+<meta property="article:modified_time" content="2026-08-23T12:48:44.175Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="CVE">
 <meta property="article:tag" content="POC">
 <meta property="article:tag" content="漏洞利用">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2026/07/06/images/20260706/2026070611-cve-nextjs.png">
 <link rel="canonical" href="http://example.com/2026/07/06/20260706/2026070611/">
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"CVE-2025-55182 POC与反弹Shell——Next.js React Server Components RCE深度剖析","name":"CVE-2025-55182 POC与反弹Shell——Next.js React Server Components RCE深度剖析 | ZapcoMan's world","description":"本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言React Server Components（RSC）是React 19引入的服务端组件架构，Next.js作为最流行的React框架率先集成。然而，CVE-2025-55182漏洞揭示了RSC在处理Function对象反序列化时的严重安全缺陷。攻击者无需任何认证...","url":"http://example.com/2026/07/06/20260706/2026070611/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/07/06/20260706/2026070611/","datePublished":"2026-07-06T02:30:25.000Z","dateModified":"2026-07-06T02:38:41.345Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"CVE, POC, 漏洞利用"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"CVE-2025-55182 POC与反弹Shell——Next.js React Server Components RCE深度剖析","name":"CVE-2025-55182 POC与反弹Shell——Next.js React Server Components RCE深度剖析 | ZapcoMan's world","description":"本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言React Server Components（RSC）是React 19引入的服务端组件架构，Next.js作为最流行的React框架率先集成。然而，CVE-2025-55182漏洞揭示了RSC在处理Function对象反序列化时的严重安全缺陷。攻击者无需任何认证...","url":"http://example.com/2026/07/06/20260706/2026070611/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260706/2026070611-cve-nextjs.png"],"mainEntityOfPage":"http://example.com/2026/07/06/20260706/2026070611/","datePublished":"2026-07-06T02:30:25.000Z","dateModified":"2026-08-23T12:48:44.175Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"CVE, POC, 漏洞利用"}</script>
 
 <script>
   (function () {
@@ -637,18 +639,18 @@
 
   <nav class="article-actions">
     
-      <a class="article-action article-action--prev" href="/2026/07/06/20260706/2026070612/">
+      <a class="article-action article-action--prev" href="/2026/07/06/2026070312/">
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-left"></use></svg>
 
         <span class="action-label">上一篇</span>
-        <span class="action-title">CVE-2022-22965 Spring4Shell RCE漏洞利用——从原理到EXP实现</span>
+        <span class="action-title">CVE-2025-55184 React漏洞利用——RSC DoS框架与WAF绕过实战</span>
       </a>
     
     
-      <a class="article-action article-action--next" href="/2026/07/06/20260706/2026070610/">
+      <a class="article-action article-action--next" href="/2026/07/06/20260706/2026070612/">
         <span class="action-label">下一篇</span>
-        <span class="action-title">CVE-2025-24813 Tomcat PUT漏洞POC——反序列化RCE的完整利用链</span>
+        <span class="action-title">CVE-2022-22965 Spring4Shell RCE漏洞利用——从原理到EXP实现</span>
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
 
@@ -684,7 +686,7 @@
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/images/cover/camera.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../images/20260706/2026070312-cve-react.png" alt="CVE-2025-55184 React漏洞利用——RSC DoS框架与WAF绕过实战" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
@@ -700,7 +702,7 @@
             
 <div class="paper-thumb paper-thumb-1 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/images/cover/mountain.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20260706/2026070612-cve-spring4shell.png" alt="CVE-2022-22965 Spring4Shell RCE漏洞利用——从原理到EXP实现" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
@@ -716,7 +718,7 @@
             
 <div class="paper-thumb paper-thumb-2 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/images/cover/notebook.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20260706/2026070610-cve-tomcat.png" alt="CVE-2025-24813 Tomcat PUT漏洞POC——反序列化RCE的完整利用链" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
@@ -732,7 +734,7 @@
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/images/cover/port.webp" alt="" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20260706/2026070609-cve-vite.png" alt="CVE-2025-30208 Vite任意文件读取漏洞——多路径绕过与批量检测实现" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
