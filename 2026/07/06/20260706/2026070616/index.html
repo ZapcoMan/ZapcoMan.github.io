@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/07/06/images/20260706/2026070616-taobao-comment.png">
 <meta property="article:published_time" content="2026-07-06T02:41:22.000Z">
-<meta property="article:modified_time" content="2026-08-23T12:48:44.455Z">
+<meta property="article:modified_time" content="2026-08-23T15:27:28.621Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="爬虫">
@@ -28,7 +28,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"淘宝商品评论爬虫：JSONP解析与DrissionPage API监听实战","name":"淘宝商品评论爬虫：JSONP解析与DrissionPage API监听实战 | ZapcoMan's world","description":"前言淘宝作为国内最大的电商平台，其商品评论数据对于选品分析、竞品研究、舆情监控等场景至关重要。然而，淘宝的反爬机制非常复杂，评论数据通过 JSONP 格式返回，且涉及签名验证、Cookie 管理等多重防护。 本文基于真实的淘宝商品评论爬虫项目源码，从三个维度展开讲解：纯 requests 请求 + JSONP 正则解析、CSV 数据结构化存储、以及使用 Dr...","url":"http://example.com/2026/07/06/20260706/2026070616/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260706/2026070616-taobao-comment.png"],"mainEntityOfPage":"http://example.com/2026/07/06/20260706/2026070616/","datePublished":"2026-07-06T02:41:22.000Z","dateModified":"2026-08-23T12:48:44.455Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"python, 爬虫"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"淘宝商品评论爬虫：JSONP解析与DrissionPage API监听实战","name":"淘宝商品评论爬虫：JSONP解析与DrissionPage API监听实战 | ZapcoMan's world","description":"前言淘宝作为国内最大的电商平台，其商品评论数据对于选品分析、竞品研究、舆情监控等场景至关重要。然而，淘宝的反爬机制非常复杂，评论数据通过 JSONP 格式返回，且涉及签名验证、Cookie 管理等多重防护。 本文基于真实的淘宝商品评论爬虫项目源码，从三个维度展开讲解：纯 requests 请求 + JSONP 正则解析、CSV 数据结构化存储、以及使用 Dr...","url":"http://example.com/2026/07/06/20260706/2026070616/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260706/2026070616-taobao-comment.png"],"mainEntityOfPage":"http://example.com/2026/07/06/20260706/2026070616/","datePublished":"2026-07-06T02:41:22.000Z","dateModified":"2026-08-23T15:27:28.621Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"python, 爬虫"}</script>
 
 <script>
   (function () {
@@ -421,7 +421,7 @@
         </header>
         <div class="toc-content">
           
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E8%83%8C%E6%99%AF"><span class="toc-text">技术背景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%98%E5%AE%9D%E8%AF%84%E8%AE%BA%E6%8E%A5%E5%8F%A3%E5%88%86%E6%9E%90"><span class="toc-text">淘宝评论接口分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JSONP-%E6%A0%BC%E5%BC%8F%E8%AF%B4%E6%98%8E"><span class="toc-text">JSONP 格式说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%89%E5%8F%8A%E7%9A%84%E5%BA%93"><span class="toc-text">涉及的库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF"><span class="toc-text">实现思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="toc-text">核心代码解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%9F%BA%E7%A1%80%E7%89%88%EF%BC%9AJSONP-%E6%AD%A3%E5%88%99%E8%A7%A3%E6%9E%90"><span class="toc-text">1. 基础版：JSONP 正则解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%88%86%E6%9E%90%E7%89%88%EF%BC%9ACSV-%E7%BB%93%E6%9E%84%E5%8C%96%E5%AD%98%E5%82%A8"><span class="toc-text">2. 分析版：CSV 结构化存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%8D%95%E6%9D%A1%E8%AF%84%E8%AE%BA%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-text">3. 单条评论数据结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-DrissionPage-%E7%89%88%EF%BC%9AAPI-%E7%9B%91%E5%90%AC%E6%96%B9%E6%A1%88"><span class="toc-text">4. DrissionPage 版：API 监听方案</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C"><span class="toc-text">运行效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E5%90%91"><span class="toc-text">总结与优化方向</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E8%83%8C%E6%99%AF"><span class="toc-text">技术背景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%98%E5%AE%9D%E8%AF%84%E8%AE%BA%E6%8E%A5%E5%8F%A3%E5%88%86%E6%9E%90"><span class="toc-text">淘宝评论接口分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JSONP-%E6%A0%BC%E5%BC%8F%E8%AF%B4%E6%98%8E"><span class="toc-text">JSONP 格式说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%89%E5%8F%8A%E7%9A%84%E5%BA%93"><span class="toc-text">涉及的库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF"><span class="toc-text">实现思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="toc-text">核心代码解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%9F%BA%E7%A1%80%E7%89%88%EF%BC%9AJSONP-%E6%AD%A3%E5%88%99%E8%A7%A3%E6%9E%90"><span class="toc-text">1. 基础版：JSONP 正则解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%88%86%E6%9E%90%E7%89%88%EF%BC%9ACSV-%E7%BB%93%E6%9E%84%E5%8C%96%E5%AD%98%E5%82%A8"><span class="toc-text">2. 分析版：CSV 结构化存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%8D%95%E6%9D%A1%E8%AF%84%E8%AE%BA%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-text">3. 单条评论数据结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-DrissionPage-%E7%89%88%EF%BC%9AAPI-%E7%9B%91%E5%90%AC%E6%96%B9%E6%A1%88"><span class="toc-text">4. DrissionPage 版：API 监听方案</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C"><span class="toc-text">运行效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E5%90%91"><span class="toc-text">总结与优化方向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%96%87%E7%AB%A0"><span class="toc-text">相关文章</span></a></li></ol>
           
         </div>
       </section>
@@ -655,6 +655,13 @@
 <li><strong>定时监控</strong>：配合定时任务，监控指定商品评论变化，及时发现差评</li>
 </ol>
 <p>淘宝评论爬虫的核心挑战在于 <code>sign</code> 签名的获取和 JSONP 格式的解析。掌握了正则提取和 DrissionPage 监听两种方案，就能灵活应对各种 JSONP 接口的数据采集需求。</p>
+<hr>
+<h2 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/07/06/20260706/2026070614/">《闲鱼商品爬虫与多线程链接刷新：MD5签名逆向与浏览器自动化实战》</a> —— 阿里系签名逆向的姊妹实践</li>
+<li><a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/07/06/20260706/2026070618/">《京东商品评论爬虫（Selenium模拟浏览器+多线程）》</a> —— 电商评论采集的横向对比</li>
+<li><a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/07/06/20260706/2026070613/">《抖音视频评论爬取：逆向分析Web端评论接口》</a> —— 同为签名逆向的评论爬虫</li>
+</ul>
+<hr>
 
   </div>
 
@@ -684,18 +691,18 @@
 
   <nav class="article-actions">
     
-      <a class="article-action article-action--prev" href="/2026/07/06/20260706/2026070621/">
+      <a class="article-action article-action--prev" href="/2026/07/06/20260706/2026070620/">
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-left"></use></svg>
 
         <span class="action-label">上一篇</span>
-        <span class="action-title">B站视频弹幕爬取实战</span>
+        <span class="action-title">12306火车票查询爬虫全流程</span>
       </a>
     
     
-      <a class="article-action article-action--next" href="/2026/07/06/20260706/2026070617/">
+      <a class="article-action article-action--next" href="/2026/07/06/20260706/2026070618/">
         <span class="action-label">下一篇</span>
-        <span class="action-title">鱼皮面试鸭面试题爬虫：从API接口到批量数据采集</span>
+        <span class="action-title">京东商品评论爬虫（Selenium模拟浏览器+多线程）</span>
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
 
@@ -742,26 +749,10 @@
           </span>
         </a>
       
-        <a class="related-card" href="/2026/07/06/20260706/2026070620/">
-          <span class="related-card__thumb">
-            
-<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
-  
-    <img class="paper-thumb__img" src="/../../images/20260706/2026070620-train12306.png" alt="12306火车票查询爬虫全流程" loading="lazy" referrerpolicy="no-referrer">
-  
-</div>
-
-          </span>
-          <span class="related-card__body">
-            <strong class="related-card__title">12306火车票查询爬虫全流程</strong>
-            <em class="related-card__date">2026-07-06</em>
-          </span>
-        </a>
-      
         <a class="related-card" href="/2026/07/06/20260706/2026070621/">
           <span class="related-card__thumb">
             
-<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
+<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/../../images/20260706/2026070621-bili-danmu2.png" alt="B站视频弹幕爬取实战" loading="lazy" referrerpolicy="no-referrer">
   
@@ -774,18 +765,34 @@
           </span>
         </a>
       
-        <a class="related-card" href="/2026/07/06/20260706/2026070617/">
+        <a class="related-card" href="/2026/07/06/20260706/2026070620/">
           <span class="related-card__thumb">
             
-<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/../../images/20260706/2026070617-mianshiya.png" alt="鱼皮面试鸭面试题爬虫：从API接口到批量数据采集" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20260706/2026070620-train12306.png" alt="12306火车票查询爬虫全流程" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">鱼皮面试鸭面试题爬虫：从API接口到批量数据采集</strong>
+            <strong class="related-card__title">12306火车票查询爬虫全流程</strong>
+            <em class="related-card__date">2026-07-06</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/07/06/20260706/2026070618/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/../../images/20260706/2026070618-jd-comment.png" alt="京东商品评论爬虫（Selenium模拟浏览器+多线程）" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">京东商品评论爬虫（Selenium模拟浏览器+多线程）</strong>
             <em class="related-card__date">2026-07-06</em>
           </span>
         </a>

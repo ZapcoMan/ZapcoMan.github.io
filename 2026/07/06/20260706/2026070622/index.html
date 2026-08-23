@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/07/06/images/20260706/2026070622-ths-stock.png">
 <meta property="article:published_time" content="2026-07-06T02:55:22.000Z">
-<meta property="article:modified_time" content="2026-08-23T12:48:44.774Z">
+<meta property="article:modified_time" content="2026-08-23T15:27:42.451Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="爬虫">
@@ -28,7 +28,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"同花顺股票数据爬虫","name":"同花顺股票数据爬虫 | ZapcoMan's world","description":"前言同花顺是国内最受欢迎的金融数据平台之一，其”问财”和行情中心提供了全面的A股、港股、美股等市场数据。对于量化交易爱好者、金融数据分析师来说，能够自动化获取这些数据是非常有价值的技能。 然而，同花顺对爬虫有较为严格的反爬虫措施：其关键API需要在Cookie中携带一个由JavaScript动态生成的 v 参数。本文将深入讲解如何使用 PyExecJS 在P...","url":"http://example.com/2026/07/06/20260706/2026070622/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260706/2026070622-ths-stock.png"],"mainEntityOfPage":"http://example.com/2026/07/06/20260706/2026070622/","datePublished":"2026-07-06T02:55:22.000Z","dateModified":"2026-08-23T12:48:44.774Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"python, 爬虫"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"同花顺股票数据爬虫","name":"同花顺股票数据爬虫 | ZapcoMan's world","description":"前言同花顺是国内最受欢迎的金融数据平台之一，其”问财”和行情中心提供了全面的A股、港股、美股等市场数据。对于量化交易爱好者、金融数据分析师来说，能够自动化获取这些数据是非常有价值的技能。 然而，同花顺对爬虫有较为严格的反爬虫措施：其关键API需要在Cookie中携带一个由JavaScript动态生成的 v 参数。本文将深入讲解如何使用 PyExecJS 在P...","url":"http://example.com/2026/07/06/20260706/2026070622/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260706/2026070622-ths-stock.png"],"mainEntityOfPage":"http://example.com/2026/07/06/20260706/2026070622/","datePublished":"2026-07-06T02:55:22.000Z","dateModified":"2026-08-23T15:27:42.451Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"python, 爬虫"}</script>
 
 <script>
   (function () {
@@ -421,7 +421,7 @@
         </header>
         <div class="toc-content">
           
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E8%83%8C%E6%99%AF"><span class="toc-text">技术背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF"><span class="toc-text">实现思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="toc-text">核心代码解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-JavaScript%E6%B7%B7%E6%B7%86%E4%B8%8Ev%E5%8F%82%E6%95%B0%E7%94%9F%E6%88%90"><span class="toc-text">1. JavaScript混淆与v参数生成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%9E%84%E9%80%A0Cookie%E5%B9%B6%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82"><span class="toc-text">2. 构造Cookie并发送请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%BD%BF%E7%94%A8parsel%E8%A7%A3%E6%9E%90HTML%E8%A1%A8%E6%A0%BC"><span class="toc-text">3. 使用parsel解析HTML表格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E4%BD%BF%E7%94%A8PrettyTable%E7%BE%8E%E5%8C%96%E7%BB%88%E7%AB%AF%E8%BE%93%E5%87%BA"><span class="toc-text">4. 使用PrettyTable美化终端输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E4%BC%98%E5%8C%96%E7%89%88%EF%BC%9A%E5%A2%9E%E5%8A%A0%E9%9A%8F%E6%9C%BAUser-Agent"><span class="toc-text">5. 优化版：增加随机User-Agent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81%E6%B1%87%E6%80%BB"><span class="toc-text">6. 完整代码汇总</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C"><span class="toc-text">运行效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E5%90%91"><span class="toc-text">总结与优化方向</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E8%83%8C%E6%99%AF"><span class="toc-text">技术背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF"><span class="toc-text">实现思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="toc-text">核心代码解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-JavaScript%E6%B7%B7%E6%B7%86%E4%B8%8Ev%E5%8F%82%E6%95%B0%E7%94%9F%E6%88%90"><span class="toc-text">1. JavaScript混淆与v参数生成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%9E%84%E9%80%A0Cookie%E5%B9%B6%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82"><span class="toc-text">2. 构造Cookie并发送请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%BD%BF%E7%94%A8parsel%E8%A7%A3%E6%9E%90HTML%E8%A1%A8%E6%A0%BC"><span class="toc-text">3. 使用parsel解析HTML表格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E4%BD%BF%E7%94%A8PrettyTable%E7%BE%8E%E5%8C%96%E7%BB%88%E7%AB%AF%E8%BE%93%E5%87%BA"><span class="toc-text">4. 使用PrettyTable美化终端输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E4%BC%98%E5%8C%96%E7%89%88%EF%BC%9A%E5%A2%9E%E5%8A%A0%E9%9A%8F%E6%9C%BAUser-Agent"><span class="toc-text">5. 优化版：增加随机User-Agent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81%E6%B1%87%E6%80%BB"><span class="toc-text">6. 完整代码汇总</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C"><span class="toc-text">运行效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E5%90%91"><span class="toc-text">总结与优化方向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%96%87%E7%AB%A0"><span class="toc-text">相关文章</span></a></li></ol>
           
         </div>
       </section>
@@ -632,6 +632,13 @@
 <blockquote>
 <p><strong>免责声明</strong>：本项目仅供学习交流使用。同花顺网站的数据版权归同花顺公司所有，请勿将爬取的数据用于商业目的。使用本代码产生的任何后果由使用者自行承担。</p>
 </blockquote>
+<hr>
+<h2 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/07/06/20260706/2026070620/">《12306火车票查询爬虫全流程》</a> —— 数据查询类爬虫对照</li>
+<li><a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/07/06/20260706/2026070617/">《鱼皮面试鸭面试题爬虫：从API接口到批量数据采集》</a> —— API 批量采集实践</li>
+<li><a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/07/06/20260706/2026070608/">《数据清洗实战：从鳄鱼数据到加密货币数据的全流程处理》</a> —— 金融数据的清洗处理衔接</li>
+</ul>
+<hr>
 
   </div>
 
@@ -670,9 +677,9 @@
       </a>
     
     
-      <a class="article-action article-action--next" href="/2026/07/06/20260706/2026070620/">
+      <a class="article-action article-action--next" href="/2026/07/06/20260706/2026070621/">
         <span class="action-label">下一篇</span>
-        <span class="action-title">12306火车票查询爬虫全流程</span>
+        <span class="action-title">B站视频弹幕爬取实战</span>
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
 
@@ -703,26 +710,10 @@
     </header>
     <div class="related-paper__grid">
       
-        <a class="related-card" href="/2026/07/06/20260706/2026070620/">
-          <span class="related-card__thumb">
-            
-<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
-  
-    <img class="paper-thumb__img" src="/../../images/20260706/2026070620-train12306.png" alt="12306火车票查询爬虫全流程" loading="lazy" referrerpolicy="no-referrer">
-  
-</div>
-
-          </span>
-          <span class="related-card__body">
-            <strong class="related-card__title">12306火车票查询爬虫全流程</strong>
-            <em class="related-card__date">2026-07-06</em>
-          </span>
-        </a>
-      
         <a class="related-card" href="/2026/07/06/20260706/2026070621/">
           <span class="related-card__thumb">
             
-<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/../../images/20260706/2026070621-bili-danmu2.png" alt="B站视频弹幕爬取实战" loading="lazy" referrerpolicy="no-referrer">
   
@@ -731,6 +722,22 @@
           </span>
           <span class="related-card__body">
             <strong class="related-card__title">B站视频弹幕爬取实战</strong>
+            <em class="related-card__date">2026-07-06</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/07/06/20260706/2026070620/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/../../images/20260706/2026070620-train12306.png" alt="12306火车票查询爬虫全流程" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">12306火车票查询爬虫全流程</strong>
             <em class="related-card__date">2026-07-06</em>
           </span>
         </a>
@@ -751,18 +758,18 @@
           </span>
         </a>
       
-        <a class="related-card" href="/2026/07/06/20260706/2026070617/">
+        <a class="related-card" href="/2026/07/06/20260706/2026070618/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/../../images/20260706/2026070617-mianshiya.png" alt="鱼皮面试鸭面试题爬虫：从API接口到批量数据采集" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20260706/2026070618-jd-comment.png" alt="京东商品评论爬虫（Selenium模拟浏览器+多线程）" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">鱼皮面试鸭面试题爬虫：从API接口到批量数据采集</strong>
+            <strong class="related-card__title">京东商品评论爬虫（Selenium模拟浏览器+多线程）</strong>
             <em class="related-card__date">2026-07-06</em>
           </span>
         </a>

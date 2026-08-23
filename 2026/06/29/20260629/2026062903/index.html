@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/06/29/images/20260629/2026062903-bypass-basic.png">
 <meta property="article:published_time" content="2026-06-29T14:39:51.000Z">
-<meta property="article:modified_time" content="2026-08-23T12:48:42.507Z">
+<meta property="article:modified_time" content="2026-08-23T15:16:25.877Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="Kali  Linux">
 <meta property="article:tag" content="免杀">
@@ -34,7 +34,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"免杀对抗之一 基础了解","name":"免杀对抗之一 基础了解 | ZapcoMan's world","description":"注意点 上线后第一条命令不要执行 whoami，可以执行 ipconfig 等 个人杀软鸡肋，企业标配 EDR.IPS.IDS.NDR.XDR，一般分为主控和 agent wd 大于国内其他杀软 早期杀软大多数凭借特征库 &#x2F; 病毒库对比查杀 常用 C2（Command &amp; Control Server）： Cobalt Strike（最常见...","url":"http://example.com/2026/06/29/20260629/2026062903/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260629/2026062903-bypass-basic.png"],"mainEntityOfPage":"http://example.com/2026/06/29/20260629/2026062903/","datePublished":"2026-06-29T14:39:51.000Z","dateModified":"2026-08-23T12:48:42.507Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"网络安全, 渗透测试, Kali Linux, 免杀, 免杀技术, 终端安全, 加壳, 免杀验证"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"免杀对抗之一 基础了解","name":"免杀对抗之一 基础了解 | ZapcoMan's world","description":"注意点 上线后第一条命令不要执行 whoami，可以执行 ipconfig 等 个人杀软鸡肋，企业标配 EDR.IPS.IDS.NDR.XDR，一般分为主控和 agent wd 大于国内其他杀软 早期杀软大多数凭借特征库 &#x2F; 病毒库对比查杀 常用 C2（Command &amp; Control Server）： Cobalt Strike（最常见...","url":"http://example.com/2026/06/29/20260629/2026062903/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260629/2026062903-bypass-basic.png"],"mainEntityOfPage":"http://example.com/2026/06/29/20260629/2026062903/","datePublished":"2026-06-29T14:39:51.000Z","dateModified":"2026-08-23T15:16:25.877Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"网络安全, 渗透测试, Kali Linux, 免杀, 免杀技术, 终端安全, 加壳, 免杀验证"}</script>
 
 <script>
   (function () {
@@ -427,7 +427,7 @@
         </header>
         <div class="toc-content">
           
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%9C%AF%E8%AF%AD%E8%A7%A3%E6%9E%90"><span class="toc-text">一、术语解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81VT-%E7%9A%84%E6%A0%B8%E5%BF%83%E6%9C%BA%E5%88%B6-%E2%89%A0-%E7%BA%AF%E4%BA%91%E6%B2%99%E7%AE%B1"><span class="toc-text">二、VT 的核心机制 ≠ 纯云沙箱</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E2%80%9C%E5%BE%88%E5%82%BB%E2%80%9D%EF%BC%9F"><span class="toc-text">三、为什么“很傻”？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%8D%E6%9D%80%E6%8A%80%E6%9C%AF%E6%A0%B8%E5%BF%83"><span class="toc-text">免杀技术核心</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%8D%E6%9D%80%E9%9A%BE%E7%82%B9"><span class="toc-text">免杀难点</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%9C%AF%E8%AF%AD%E8%A7%A3%E6%9E%90"><span class="toc-text">一、术语解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81VT-%E7%9A%84%E6%A0%B8%E5%BF%83%E6%9C%BA%E5%88%B6-%E2%89%A0-%E7%BA%AF%E4%BA%91%E6%B2%99%E7%AE%B1"><span class="toc-text">二、VT 的核心机制 ≠ 纯云沙箱</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E2%80%9C%E5%BE%88%E5%82%BB%E2%80%9D%EF%BC%9F"><span class="toc-text">三、为什么“很傻”？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%8D%E6%9D%80%E6%8A%80%E6%9C%AF%E6%A0%B8%E5%BF%83"><span class="toc-text">免杀技术核心</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%8D%E6%9D%80%E9%9A%BE%E7%82%B9"><span class="toc-text">免杀难点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%96%87%E7%AB%A0"><span class="toc-text">相关文章</span></a></li></ol>
           
         </div>
       </section>
@@ -603,6 +603,13 @@
 <li><p>流量查杀<br>比如态势感知这种设备对传输流量进行解密识别，检测是否远控传输，比如 webshell 流量，cs 流量</p>
 </li>
 </ol>
+<hr>
+<h2 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/07/01/2026070103/">《免杀技术（Bypass AV&#x2F;EDR）》</a> —— 免杀对抗的系统化梳理，可与本文基础认知互补</li>
+<li><a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/07/05/20260705/2026070502/">《Python实现MSF免杀技术：Base64加密 + 字符替换 + 反调试反沙箱》</a> —— 免杀技术的 Python 落地实践</li>
+<li><a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/07/05/20260705/2026070503/">《Shellcode加密免杀技术：Base64编码与字符替换实战》</a> —— Shellcode 层加密免杀的实战进阶</li>
+</ul>
+<hr>
 
   </div>
 

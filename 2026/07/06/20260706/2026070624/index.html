@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/07/06/images/20260706/2026070624-cnvd-auto.png">
 <meta property="article:published_time" content="2026-07-06T03:08:22.000Z">
-<meta property="article:modified_time" content="2026-08-23T12:48:44.808Z">
+<meta property="article:modified_time" content="2026-08-23T15:27:51.695Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="信息收集">
@@ -29,7 +29,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"自动化资产信息收集：CNVD 漏洞报送辅助工具","name":"自动化资产信息收集：CNVD 漏洞报送辅助工具 | ZapcoMan's world","description":"做漏洞报送最头疼的不是挖漏洞，而是资产信息收集——ICP 备案、百度权重、子域名、开放端口、Whois……每项都要手动查一遍。这个工具把信息收集自动化，输入域名，输出一份结构化的 CSV 资产清单。 收集哪些信息 维度 数据 来源 备案信息 ICP 备案号、备案主体、备案性质 ICP 备案查询 API SEO 信息 百度权重、关键词排名、预估流量 爱站&#x...","url":"http://example.com/2026/07/06/20260706/2026070624/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260706/2026070624-cnvd-auto.png"],"mainEntityOfPage":"http://example.com/2026/07/06/20260706/2026070624/","datePublished":"2026-07-06T03:08:22.000Z","dateModified":"2026-08-23T12:48:44.808Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"渗透测试, 信息收集, python"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"自动化资产信息收集：CNVD 漏洞报送辅助工具","name":"自动化资产信息收集：CNVD 漏洞报送辅助工具 | ZapcoMan's world","description":"做漏洞报送最头疼的不是挖漏洞，而是资产信息收集——ICP 备案、百度权重、子域名、开放端口、Whois……每项都要手动查一遍。这个工具把信息收集自动化，输入域名，输出一份结构化的 CSV 资产清单。 收集哪些信息 维度 数据 来源 备案信息 ICP 备案号、备案主体、备案性质 ICP 备案查询 API SEO 信息 百度权重、关键词排名、预估流量 爱站&#x...","url":"http://example.com/2026/07/06/20260706/2026070624/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260706/2026070624-cnvd-auto.png"],"mainEntityOfPage":"http://example.com/2026/07/06/20260706/2026070624/","datePublished":"2026-07-06T03:08:22.000Z","dateModified":"2026-08-23T15:27:51.695Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"渗透测试, 信息收集, python"}</script>
 
 <script>
   (function () {
@@ -422,7 +422,7 @@
         </header>
         <div class="toc-content">
           
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%B6%E9%9B%86%E5%93%AA%E4%BA%9B%E4%BF%A1%E6%81%AF"><span class="toc-text">收集哪些信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E4%B8%80%EF%BC%9AICP-%E5%A4%87%E6%A1%88%E6%9F%A5%E8%AF%A2"><span class="toc-text">模块一：ICP 备案查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E4%BA%8C%EF%BC%9A%E7%99%BE%E5%BA%A6%E6%9D%83%E9%87%8D%E6%9F%A5%E8%AF%A2"><span class="toc-text">模块二：百度权重查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E4%B8%89%EF%BC%9AWhois-%E6%9F%A5%E8%AF%A2"><span class="toc-text">模块三：Whois 查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E5%9B%9B%EF%BC%9AIP-%E5%8F%8A-CDN-%E4%BF%A1%E6%81%AF"><span class="toc-text">模块四：IP 及 CDN 信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E6%B5%81%E7%A8%8B%EF%BC%9A%E6%89%B9%E9%87%8F%E6%94%B6%E9%9B%86%E5%B9%B6%E8%BE%93%E5%87%BA-CSV"><span class="toc-text">主流程：批量收集并输出 CSV</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CNVD-%E6%BC%8F%E6%B4%9E%E6%8A%A5%E9%80%81%E6%B5%81%E7%A8%8B%E4%B8%AD%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8"><span class="toc-text">CNVD 漏洞报送流程中如何使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%B6%E9%9B%86%E5%93%AA%E4%BA%9B%E4%BF%A1%E6%81%AF"><span class="toc-text">收集哪些信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E4%B8%80%EF%BC%9AICP-%E5%A4%87%E6%A1%88%E6%9F%A5%E8%AF%A2"><span class="toc-text">模块一：ICP 备案查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E4%BA%8C%EF%BC%9A%E7%99%BE%E5%BA%A6%E6%9D%83%E9%87%8D%E6%9F%A5%E8%AF%A2"><span class="toc-text">模块二：百度权重查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E4%B8%89%EF%BC%9AWhois-%E6%9F%A5%E8%AF%A2"><span class="toc-text">模块三：Whois 查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E5%9B%9B%EF%BC%9AIP-%E5%8F%8A-CDN-%E4%BF%A1%E6%81%AF"><span class="toc-text">模块四：IP 及 CDN 信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E6%B5%81%E7%A8%8B%EF%BC%9A%E6%89%B9%E9%87%8F%E6%94%B6%E9%9B%86%E5%B9%B6%E8%BE%93%E5%87%BA-CSV"><span class="toc-text">主流程：批量收集并输出 CSV</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CNVD-%E6%BC%8F%E6%B4%9E%E6%8A%A5%E9%80%81%E6%B5%81%E7%A8%8B%E4%B8%AD%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8"><span class="toc-text">CNVD 漏洞报送流程中如何使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%96%87%E7%AB%A0"><span class="toc-text">相关文章</span></a></li></ol>
           
         </div>
       </section>
@@ -585,6 +585,12 @@
 <p>这个工具帮你快速完成前三条的信息收集，剩下的挖漏洞和截图才是真本事。</p>
 <hr>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>资产信息收集的关键价值是<strong>把重复劳动自动化</strong>。查一个域名要 5 分钟，查 100 个要 500 分钟——工具 30 秒跑完。省下来的时间拿去挖漏洞。</p>
+<hr>
+<h2 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/07/06/20260706/2026070603/">《子域名挖掘（JSFinder实现）：从JS文件中揪出隐藏的攻击面》</a> —— 资产收集的入口层</li>
+<li><a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/07/06/20260706/2026070631/">《从零打造漏洞扫描器：端口扫描 + Web 检测 + 报告生成》</a> —— 资产收集之后的漏洞检测</li>
+<li><a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/07/06/20260706/2026070625/">《dirsearch 二开实战：集成 EHole 指纹识别与 Swagger 未授权检测》</a> —— 资产层面的目录发现</li>
+</ul>
 <hr>
 
   </div>

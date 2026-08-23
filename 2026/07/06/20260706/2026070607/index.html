@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/07/06/images/20260706/2026070607-bili-stat.png">
 <meta property="article:published_time" content="2026-07-06T02:10:25.000Z">
-<meta property="article:modified_time" content="2026-08-23T12:48:43.469Z">
+<meta property="article:modified_time" content="2026-08-23T15:27:03.252Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="爬虫">
 <meta property="article:tag" content="词频分析">
@@ -28,7 +28,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"B站弹幕数据处理与词频分析","name":"B站弹幕数据处理与词频分析 | ZapcoMan's world","description":"前言弹幕（Danmaku）作为B站最具特色的互动形式之一，承载了用户在观看视频时的即时情感表达和观点碰撞。每一条弹幕都是一粒数据沙砾，当它们汇聚成数千、数万条的规模时，就构成了一座可供挖掘的”民意矿山”。通过对弹幕数据进行系统的采集、清洗、分词和可视化分析，我们能够洞察观众的关注焦点、情绪倾向以及讨论的时间分布规律。 本文基于一个真实的B站弹幕分析项目，完整...","url":"http://example.com/2026/07/06/20260706/2026070607/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260706/2026070607-bili-stat.png"],"mainEntityOfPage":"http://example.com/2026/07/06/20260706/2026070607/","datePublished":"2026-07-06T02:10:25.000Z","dateModified":"2026-08-23T12:48:43.469Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"爬虫, 词频分析"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"B站弹幕数据处理与词频分析","name":"B站弹幕数据处理与词频分析 | ZapcoMan's world","description":"前言弹幕（Danmaku）作为B站最具特色的互动形式之一，承载了用户在观看视频时的即时情感表达和观点碰撞。每一条弹幕都是一粒数据沙砾，当它们汇聚成数千、数万条的规模时，就构成了一座可供挖掘的”民意矿山”。通过对弹幕数据进行系统的采集、清洗、分词和可视化分析，我们能够洞察观众的关注焦点、情绪倾向以及讨论的时间分布规律。 本文基于一个真实的B站弹幕分析项目，完整...","url":"http://example.com/2026/07/06/20260706/2026070607/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260706/2026070607-bili-stat.png"],"mainEntityOfPage":"http://example.com/2026/07/06/20260706/2026070607/","datePublished":"2026-07-06T02:10:25.000Z","dateModified":"2026-08-23T15:27:03.252Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"爬虫, 词频分析"}</script>
 
 <script>
   (function () {
@@ -421,7 +421,7 @@
         </header>
         <div class="toc-content">
           
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E8%83%8C%E6%99%AF"><span class="toc-text">技术背景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%BC%B9%E5%B9%95%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-text">1. 弹幕数据结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D%E5%8E%9F%E7%90%86"><span class="toc-text">2. 中文分词原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%81%9C%E7%94%A8%E8%AF%8D%E8%BF%87%E6%BB%A4"><span class="toc-text">3. 停用词过滤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8A%80%E6%9C%AF%E6%A0%88"><span class="toc-text">4. 可视化技术栈</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF"><span class="toc-text">实现思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="toc-text">核心代码解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%B8%AD%E6%96%87%E5%AD%97%E4%BD%93%E5%A4%84%E7%90%86"><span class="toc-text">4.1 环境配置与中文字体处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E6%95%B0%E6%8D%AE%E5%8A%A0%E8%BD%BD%E4%B8%8E%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-text">4.2 数据加载与预处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D%E4%B8%8E%E5%81%9C%E7%94%A8%E8%AF%8D%E8%BF%87%E6%BB%A4"><span class="toc-text">4.3 中文分词与停用词过滤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E5%BC%B9%E5%B9%95%E6%97%B6%E9%97%B4%E5%88%86%E5%B8%83%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-text">4.4 弹幕时间分布可视化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-%E8%AF%8D%E4%BA%91%E5%9B%BE%E7%94%9F%E6%88%90%EF%BC%88%E5%90%AB%E5%AD%97%E4%BD%93%E5%AE%B9%E9%94%99%E5%A4%84%E7%90%86%EF%BC%89"><span class="toc-text">4.5 词云图生成（含字体容错处理）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-%E5%85%B3%E9%94%AE%E8%AF%8D%E5%AE%9A%E5%90%91%E7%BB%9F%E8%AE%A1%E4%B8%8E%E6%95%B0%E5%80%BC%E6%A0%87%E6%B3%A8"><span class="toc-text">4.6 关键词定向统计与数值标注</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-7-%E5%BC%B9%E5%B9%95%E9%95%BF%E5%BA%A6%E5%88%86%E5%B8%83%E4%B8%8E%E7%BB%9F%E8%AE%A1%E4%BF%A1%E6%81%AF"><span class="toc-text">4.7 弹幕长度分布与统计信息</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90"><span class="toc-text">运行效果与数据分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E8%83%8C%E6%99%AF"><span class="toc-text">技术背景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%BC%B9%E5%B9%95%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-text">1. 弹幕数据结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D%E5%8E%9F%E7%90%86"><span class="toc-text">2. 中文分词原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%81%9C%E7%94%A8%E8%AF%8D%E8%BF%87%E6%BB%A4"><span class="toc-text">3. 停用词过滤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8A%80%E6%9C%AF%E6%A0%88"><span class="toc-text">4. 可视化技术栈</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF"><span class="toc-text">实现思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="toc-text">核心代码解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%B8%AD%E6%96%87%E5%AD%97%E4%BD%93%E5%A4%84%E7%90%86"><span class="toc-text">4.1 环境配置与中文字体处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E6%95%B0%E6%8D%AE%E5%8A%A0%E8%BD%BD%E4%B8%8E%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-text">4.2 数据加载与预处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D%E4%B8%8E%E5%81%9C%E7%94%A8%E8%AF%8D%E8%BF%87%E6%BB%A4"><span class="toc-text">4.3 中文分词与停用词过滤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E5%BC%B9%E5%B9%95%E6%97%B6%E9%97%B4%E5%88%86%E5%B8%83%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-text">4.4 弹幕时间分布可视化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-%E8%AF%8D%E4%BA%91%E5%9B%BE%E7%94%9F%E6%88%90%EF%BC%88%E5%90%AB%E5%AD%97%E4%BD%93%E5%AE%B9%E9%94%99%E5%A4%84%E7%90%86%EF%BC%89"><span class="toc-text">4.5 词云图生成（含字体容错处理）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-%E5%85%B3%E9%94%AE%E8%AF%8D%E5%AE%9A%E5%90%91%E7%BB%9F%E8%AE%A1%E4%B8%8E%E6%95%B0%E5%80%BC%E6%A0%87%E6%B3%A8"><span class="toc-text">4.6 关键词定向统计与数值标注</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-7-%E5%BC%B9%E5%B9%95%E9%95%BF%E5%BA%A6%E5%88%86%E5%B8%83%E4%B8%8E%E7%BB%9F%E8%AE%A1%E4%BF%A1%E6%81%AF"><span class="toc-text">4.7 弹幕长度分布与统计信息</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90"><span class="toc-text">运行效果与数据分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%96%87%E7%AB%A0"><span class="toc-text">相关文章</span></a></li></ol>
           
         </div>
       </section>
@@ -588,6 +588,13 @@
 <li><strong>工程化细节</strong>决定代码健壮性，字体容错处理、固定随机种子、数值标签标注等小技巧让结果更专业。</li>
 </ul>
 <p>这个项目的扩展空间很大：可以引入情感分析（如snownlp）判断弹幕情绪倾向，可以加入TF-IDF替代简单词频以凸显关键词的重要性，也可以对接B站API实现弹幕实时采集与流式分析。希望本文能为你的数据分析实践提供有价值的参考。</p>
+<hr>
+<h2 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/07/06/20260706/2026070621/">《B站视频弹幕爬取实战》</a> —— 弹幕数据的采集源头</li>
+<li><a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/07/06/20260706/2026070608/">《数据清洗实战：从鳄鱼数据到加密货币数据的全流程处理》</a> —— 数据处理流程的通用方法论</li>
+<li><a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/07/06/20260706/2026070619/">《B站视频评论区爬虫》</a> —— 同一平台的评论数据采集</li>
+</ul>
+<hr>
 
   </div>
 
@@ -675,26 +682,10 @@
           </span>
         </a>
       
-        <a class="related-card" href="/2026/07/06/20260706/2026070620/">
-          <span class="related-card__thumb">
-            
-<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
-  
-    <img class="paper-thumb__img" src="/../../images/20260706/2026070620-train12306.png" alt="12306火车票查询爬虫全流程" loading="lazy" referrerpolicy="no-referrer">
-  
-</div>
-
-          </span>
-          <span class="related-card__body">
-            <strong class="related-card__title">12306火车票查询爬虫全流程</strong>
-            <em class="related-card__date">2026-07-06</em>
-          </span>
-        </a>
-      
         <a class="related-card" href="/2026/07/06/20260706/2026070621/">
           <span class="related-card__thumb">
             
-<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
+<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/../../images/20260706/2026070621-bili-danmu2.png" alt="B站视频弹幕爬取实战" loading="lazy" referrerpolicy="no-referrer">
   
@@ -703,6 +694,22 @@
           </span>
           <span class="related-card__body">
             <strong class="related-card__title">B站视频弹幕爬取实战</strong>
+            <em class="related-card__date">2026-07-06</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/07/06/20260706/2026070620/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/../../images/20260706/2026070620-train12306.png" alt="12306火车票查询爬虫全流程" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">12306火车票查询爬虫全流程</strong>
             <em class="related-card__date">2026-07-06</em>
           </span>
         </a>

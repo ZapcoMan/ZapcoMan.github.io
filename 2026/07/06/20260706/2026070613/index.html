@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/07/06/images/20260706/2026070613-douyin-comment.png">
 <meta property="article:published_time" content="2026-07-06T02:36:30.000Z">
-<meta property="article:modified_time" content="2026-08-23T12:48:44.320Z">
+<meta property="article:modified_time" content="2026-08-23T15:27:25.932Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="JS逆向">
 <meta property="article:tag" content="python">
@@ -29,7 +29,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"抖音视频评论爬取：逆向分析Web端评论接口","name":"抖音视频评论爬取：逆向分析Web端评论接口 | ZapcoMan's world","description":"前言抖音作为国内最大的短视频平台，每天产生海量的用户评论数据。这些评论数据对于舆情分析、用户画像、产品反馈等场景具有重要价值。然而，抖音的反爬机制非常严格，涉及到参数签名、设备指纹、Cookie验证等多重防护。 本文基于真实的抖音视频评论爬虫源码，讲解如何通过分析抖音Web端的评论接口，构造完整的请求参数来获取指定视频的评论数据。重点会拆解 a_bogus...","url":"http://example.com/2026/07/06/20260706/2026070613/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260706/2026070613-douyin-comment.png"],"mainEntityOfPage":"http://example.com/2026/07/06/20260706/2026070613/","datePublished":"2026-07-06T02:36:30.000Z","dateModified":"2026-08-23T12:48:44.320Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"python, 爬虫, JS逆向"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"抖音视频评论爬取：逆向分析Web端评论接口","name":"抖音视频评论爬取：逆向分析Web端评论接口 | ZapcoMan's world","description":"前言抖音作为国内最大的短视频平台，每天产生海量的用户评论数据。这些评论数据对于舆情分析、用户画像、产品反馈等场景具有重要价值。然而，抖音的反爬机制非常严格，涉及到参数签名、设备指纹、Cookie验证等多重防护。 本文基于真实的抖音视频评论爬虫源码，讲解如何通过分析抖音Web端的评论接口，构造完整的请求参数来获取指定视频的评论数据。重点会拆解 a_bogus...","url":"http://example.com/2026/07/06/20260706/2026070613/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260706/2026070613-douyin-comment.png"],"mainEntityOfPage":"http://example.com/2026/07/06/20260706/2026070613/","datePublished":"2026-07-06T02:36:30.000Z","dateModified":"2026-08-23T15:27:25.932Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"python, 爬虫, JS逆向"}</script>
 
 <script>
   (function () {
@@ -422,7 +422,7 @@
         </header>
         <div class="toc-content">
           
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E8%83%8C%E6%99%AF"><span class="toc-text">技术背景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%96%E9%9F%B3Web%E7%AB%AF%E6%8E%A5%E5%8F%A3%E5%88%86%E6%9E%90"><span class="toc-text">抖音Web端接口分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E7%88%AC%E6%9C%BA%E5%88%B6"><span class="toc-text">反爬机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%89%E5%8F%8A%E7%9A%84%E5%BA%93"><span class="toc-text">涉及的库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF"><span class="toc-text">实现思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="toc-text">核心代码解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AE%9A%E4%B9%89%E8%AF%B7%E6%B1%82URL"><span class="toc-text">1. 定义请求URL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%9E%84%E9%80%A0%E8%AF%B7%E6%B1%82%E5%A4%B4"><span class="toc-text">2. 构造请求头</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%9E%84%E9%80%A0%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0"><span class="toc-text">3. 构造请求参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82%E4%B8%8E%E8%A7%A3%E6%9E%90%E8%AF%84%E8%AE%BA"><span class="toc-text">4. 发送请求与解析评论</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E8%AF%84%E8%AE%BA%E7%BF%BB%E9%A1%B5"><span class="toc-text">5. 评论翻页</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C"><span class="toc-text">运行效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E5%90%91"><span class="toc-text">总结与优化方向</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E8%83%8C%E6%99%AF"><span class="toc-text">技术背景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%96%E9%9F%B3Web%E7%AB%AF%E6%8E%A5%E5%8F%A3%E5%88%86%E6%9E%90"><span class="toc-text">抖音Web端接口分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E7%88%AC%E6%9C%BA%E5%88%B6"><span class="toc-text">反爬机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%89%E5%8F%8A%E7%9A%84%E5%BA%93"><span class="toc-text">涉及的库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF"><span class="toc-text">实现思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="toc-text">核心代码解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AE%9A%E4%B9%89%E8%AF%B7%E6%B1%82URL"><span class="toc-text">1. 定义请求URL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%9E%84%E9%80%A0%E8%AF%B7%E6%B1%82%E5%A4%B4"><span class="toc-text">2. 构造请求头</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%9E%84%E9%80%A0%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0"><span class="toc-text">3. 构造请求参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82%E4%B8%8E%E8%A7%A3%E6%9E%90%E8%AF%84%E8%AE%BA"><span class="toc-text">4. 发送请求与解析评论</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E8%AF%84%E8%AE%BA%E7%BF%BB%E9%A1%B5"><span class="toc-text">5. 评论翻页</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C"><span class="toc-text">运行效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E5%90%91"><span class="toc-text">总结与优化方向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%96%87%E7%AB%A0"><span class="toc-text">相关文章</span></a></li></ol>
           
         </div>
       </section>
@@ -587,6 +587,13 @@
 <li><strong>代理IP池</strong>：高频请求时使用代理IP，避免IP被封禁</li>
 </ol>
 <p>抖音爬虫的难点不在于代码本身，而在于对反爬机制的理解和签名参数的获取。随着抖音反爬不断升级，纯参数硬编码的方式越来越难以维持，JS逆向和浏览器自动化是未来的主流方向。</p>
+<hr>
+<h2 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/07/06/20260706/2026070616/">《淘宝商品评论爬虫：JSONP解析与DrissionPage API监听实战》</a> —— 同为签名逆向爬虫</li>
+<li><a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/07/06/20260706/2026070614/">《闲鱼商品爬虫与多线程链接刷新：MD5签名逆向与浏览器自动化实战》</a> —— 同为平台签名机制逆向</li>
+<li><a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/07/06/20260706/2026070619/">《B站视频评论区爬虫》</a> —— 评论数据采集的通用思路</li>
+</ul>
+<hr>
 
   </div>
 
@@ -690,26 +697,10 @@
           </span>
         </a>
       
-        <a class="related-card" href="/2026/07/06/20260706/2026070620/">
-          <span class="related-card__thumb">
-            
-<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
-  
-    <img class="paper-thumb__img" src="/../../images/20260706/2026070620-train12306.png" alt="12306火车票查询爬虫全流程" loading="lazy" referrerpolicy="no-referrer">
-  
-</div>
-
-          </span>
-          <span class="related-card__body">
-            <strong class="related-card__title">12306火车票查询爬虫全流程</strong>
-            <em class="related-card__date">2026-07-06</em>
-          </span>
-        </a>
-      
         <a class="related-card" href="/2026/07/06/20260706/2026070621/">
           <span class="related-card__thumb">
             
-<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/../../images/20260706/2026070621-bili-danmu2.png" alt="B站视频弹幕爬取实战" loading="lazy" referrerpolicy="no-referrer">
   
@@ -718,6 +709,22 @@
           </span>
           <span class="related-card__body">
             <strong class="related-card__title">B站视频弹幕爬取实战</strong>
+            <em class="related-card__date">2026-07-06</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/07/06/20260706/2026070620/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/../../images/20260706/2026070620-train12306.png" alt="12306火车票查询爬虫全流程" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">12306火车票查询爬虫全流程</strong>
             <em class="related-card__date">2026-07-06</em>
           </span>
         </a>

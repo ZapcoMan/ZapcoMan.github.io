@@ -421,8 +421,8 @@
       <name>ZapcoMan</name>
     </author>
     <category term="网络安全" scheme="http://example.com/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
-    <category term="Java" scheme="http://example.com/tags/Java/"/>
     <category term="供应链攻击" scheme="http://example.com/tags/%E4%BE%9B%E5%BA%94%E9%93%BE%E6%94%BB%E5%87%BB/"/>
+    <category term="Java" scheme="http://example.com/tags/Java/"/>
     <category term="开源安全" scheme="http://example.com/tags/%E5%BC%80%E6%BA%90%E5%AE%89%E5%85%A8/"/>
     <category term="NPM" scheme="http://example.com/tags/NPM/"/>
     <category term="PyPI" scheme="http://example.com/tags/PyPI/"/>

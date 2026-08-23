@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/07/06/images/20260706/2026070619-bili-comment.png">
 <meta property="article:published_time" content="2026-07-06T02:41:22.000Z">
-<meta property="article:modified_time" content="2026-08-23T12:48:44.642Z">
+<meta property="article:modified_time" content="2026-08-23T15:27:31.174Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="爬虫">
@@ -28,7 +28,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"B站视频评论区爬虫","name":"B站视频评论区爬虫 | ZapcoMan's world","description":"前言弹幕是B站特色的实时评论，而评论区则是用户深度讨论的阵地。无论是为了做舆情监控、用户情感分析，还是训练NLP模型，B站评论区的数据都具有极高的价值。 本文基于真实项目代码，详细介绍如何使用Python爬取B站视频的评论区数据。与弹幕不同，评论区数据通过JSON API返回，需要处理分页、用户信息提取、数据持久化等问题。文章还会对比原版代码和AI优化版代码...","url":"http://example.com/2026/07/06/20260706/2026070619/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260706/2026070619-bili-comment.png"],"mainEntityOfPage":"http://example.com/2026/07/06/20260706/2026070619/","datePublished":"2026-07-06T02:41:22.000Z","dateModified":"2026-08-23T12:48:44.642Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"python, 爬虫"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"B站视频评论区爬虫","name":"B站视频评论区爬虫 | ZapcoMan's world","description":"前言弹幕是B站特色的实时评论，而评论区则是用户深度讨论的阵地。无论是为了做舆情监控、用户情感分析，还是训练NLP模型，B站评论区的数据都具有极高的价值。 本文基于真实项目代码，详细介绍如何使用Python爬取B站视频的评论区数据。与弹幕不同，评论区数据通过JSON API返回，需要处理分页、用户信息提取、数据持久化等问题。文章还会对比原版代码和AI优化版代码...","url":"http://example.com/2026/07/06/20260706/2026070619/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260706/2026070619-bili-comment.png"],"mainEntityOfPage":"http://example.com/2026/07/06/20260706/2026070619/","datePublished":"2026-07-06T02:41:22.000Z","dateModified":"2026-08-23T15:27:31.174Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"python, 爬虫"}</script>
 
 <script>
   (function () {
@@ -421,7 +421,7 @@
         </header>
         <div class="toc-content">
           
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E8%83%8C%E6%99%AF"><span class="toc-text">技术背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF"><span class="toc-text">实现思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="toc-text">核心代码解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%8E%9F%E7%89%88%E4%BB%A3%E7%A0%81%EF%BC%9A%E7%AE%80%E5%8D%95%E7%9B%B4%E6%8E%A5%E4%BD%86%E4%B8%8D%E5%A4%9F%E5%81%A5%E5%A3%AE"><span class="toc-text">1. 原版代码：简单直接但不够健壮</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-AI%E4%BC%98%E5%8C%96%E7%89%88%EF%BC%9A%E5%A2%9E%E5%8A%A0%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E6%96%87%E4%BB%B6%E5%90%8D"><span class="toc-text">2. AI优化版：增加异常处理和动态文件名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%AE%8C%E6%95%B4%E7%9A%84%E5%88%86%E9%A1%B5%E7%88%AC%E5%8F%96%E5%AE%9E%E7%8E%B0"><span class="toc-text">3. 完整的分页爬取实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E8%AF%84%E8%AE%BA%E6%95%B0%E6%8D%AE%E5%AD%97%E6%AE%B5%E8%AF%A6%E8%A7%A3"><span class="toc-text">4. 评论数据字段详解</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C"><span class="toc-text">运行效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E5%90%91"><span class="toc-text">总结与优化方向</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E8%83%8C%E6%99%AF"><span class="toc-text">技术背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF"><span class="toc-text">实现思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="toc-text">核心代码解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%8E%9F%E7%89%88%E4%BB%A3%E7%A0%81%EF%BC%9A%E7%AE%80%E5%8D%95%E7%9B%B4%E6%8E%A5%E4%BD%86%E4%B8%8D%E5%A4%9F%E5%81%A5%E5%A3%AE"><span class="toc-text">1. 原版代码：简单直接但不够健壮</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-AI%E4%BC%98%E5%8C%96%E7%89%88%EF%BC%9A%E5%A2%9E%E5%8A%A0%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E6%96%87%E4%BB%B6%E5%90%8D"><span class="toc-text">2. AI优化版：增加异常处理和动态文件名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%AE%8C%E6%95%B4%E7%9A%84%E5%88%86%E9%A1%B5%E7%88%AC%E5%8F%96%E5%AE%9E%E7%8E%B0"><span class="toc-text">3. 完整的分页爬取实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E8%AF%84%E8%AE%BA%E6%95%B0%E6%8D%AE%E5%AD%97%E6%AE%B5%E8%AF%A6%E8%A7%A3"><span class="toc-text">4. 评论数据字段详解</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C"><span class="toc-text">运行效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E5%90%91"><span class="toc-text">总结与优化方向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%96%87%E7%AB%A0"><span class="toc-text">相关文章</span></a></li></ol>
           
         </div>
       </section>
@@ -585,6 +585,13 @@
 <blockquote>
 <p><strong>注意</strong>：请合理设置请求频率（建议每页间隔至少1秒），避免对B站服务器造成过大压力。请将代码中的Cookie替换为你自己的B站登录Cookie。</p>
 </blockquote>
+<hr>
+<h2 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/07/06/20260706/2026070621/">《B站视频弹幕爬取实战》</a> —— B 站数据采集的同源实践</li>
+<li><a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/07/06/20260706/2026070615/">《B站获取关注UP主列表与去重：Cookie认证与分页API全解析》</a> —— B 站账号 API 的另一个维度</li>
+<li><a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/07/06/20260706/2026070607/">《B站弹幕数据处理与词频分析》</a> —— 评论&#x2F;弹幕数据的后续分析处理</li>
+</ul>
+<hr>
 
   </div>
 
@@ -623,9 +630,9 @@
       </a>
     
     
-      <a class="article-action article-action--next" href="/2026/07/06/20260706/2026070615/">
+      <a class="article-action article-action--next" href="/2026/07/06/20260706/2026070617/">
         <span class="action-label">下一篇</span>
-        <span class="action-title">B站获取关注UP主列表与去重：Cookie认证与分页API全解析</span>
+        <span class="action-title">鱼皮面试鸭面试题爬虫：从API接口到批量数据采集</span>
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
 
@@ -672,26 +679,10 @@
           </span>
         </a>
       
-        <a class="related-card" href="/2026/07/06/20260706/2026070620/">
-          <span class="related-card__thumb">
-            
-<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
-  
-    <img class="paper-thumb__img" src="/../../images/20260706/2026070620-train12306.png" alt="12306火车票查询爬虫全流程" loading="lazy" referrerpolicy="no-referrer">
-  
-</div>
-
-          </span>
-          <span class="related-card__body">
-            <strong class="related-card__title">12306火车票查询爬虫全流程</strong>
-            <em class="related-card__date">2026-07-06</em>
-          </span>
-        </a>
-      
         <a class="related-card" href="/2026/07/06/20260706/2026070621/">
           <span class="related-card__thumb">
             
-<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
+<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/../../images/20260706/2026070621-bili-danmu2.png" alt="B站视频弹幕爬取实战" loading="lazy" referrerpolicy="no-referrer">
   
@@ -700,6 +691,22 @@
           </span>
           <span class="related-card__body">
             <strong class="related-card__title">B站视频弹幕爬取实战</strong>
+            <em class="related-card__date">2026-07-06</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/07/06/20260706/2026070620/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/../../images/20260706/2026070620-train12306.png" alt="12306火车票查询爬虫全流程" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">12306火车票查询爬虫全流程</strong>
             <em class="related-card__date">2026-07-06</em>
           </span>
         </a>

@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/07/06/images/20260706/2026070618-jd-comment.png">
 <meta property="article:published_time" content="2026-07-06T02:41:22.000Z">
-<meta property="article:modified_time" content="2026-08-23T12:48:44.577Z">
+<meta property="article:modified_time" content="2026-08-23T15:27:30.314Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="爬虫">
@@ -28,7 +28,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"京东商品评论爬虫（Selenium模拟浏览器+多线程）","name":"京东商品评论爬虫（Selenium模拟浏览器+多线程） | ZapcoMan's world","description":"前言京东作为国内最大的电商平台之一，其商品评论数据对于竞品分析、用户舆情监控、商品推荐算法训练等场景都具有极高的价值。然而，京东的评论数据并不像12306或B站那样可以通过简单的API直接获取——评论数据是通过动态加载的，需要模拟浏览器行为才能获取。 本文将基于真实项目代码，详细介绍如何使用 DrissionPage（一个比Selenium更强大的浏览器自动...","url":"http://example.com/2026/07/06/20260706/2026070618/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260706/2026070618-jd-comment.png"],"mainEntityOfPage":"http://example.com/2026/07/06/20260706/2026070618/","datePublished":"2026-07-06T02:41:22.000Z","dateModified":"2026-08-23T12:48:44.577Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"python, 爬虫"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"京东商品评论爬虫（Selenium模拟浏览器+多线程）","name":"京东商品评论爬虫（Selenium模拟浏览器+多线程） | ZapcoMan's world","description":"前言京东作为国内最大的电商平台之一，其商品评论数据对于竞品分析、用户舆情监控、商品推荐算法训练等场景都具有极高的价值。然而，京东的评论数据并不像12306或B站那样可以通过简单的API直接获取——评论数据是通过动态加载的，需要模拟浏览器行为才能获取。 本文将基于真实项目代码，详细介绍如何使用 DrissionPage（一个比Selenium更强大的浏览器自动...","url":"http://example.com/2026/07/06/20260706/2026070618/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260706/2026070618-jd-comment.png"],"mainEntityOfPage":"http://example.com/2026/07/06/20260706/2026070618/","datePublished":"2026-07-06T02:41:22.000Z","dateModified":"2026-08-23T15:27:30.314Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"python, 爬虫"}</script>
 
 <script>
   (function () {
@@ -421,7 +421,7 @@
         </header>
         <div class="toc-content">
           
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E8%83%8C%E6%99%AF"><span class="toc-text">技术背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF"><span class="toc-text">实现思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="toc-text">核心代码解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%85%8D%E7%BD%AE%E6%B5%8F%E8%A7%88%E5%99%A8%EF%BC%88%E9%A6%96%E6%AC%A1%E8%BF%90%E8%A1%8C%E9%9C%80%E8%A6%81%EF%BC%89"><span class="toc-text">1. 配置浏览器（首次运行需要）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8D%95%E7%BA%BF%E7%A8%8B%E7%89%88%EF%BC%9A%E5%9F%BA%E7%A1%80%E7%88%AC%E5%8F%96%E9%80%BB%E8%BE%91"><span class="toc-text">2. 单线程版：基础爬取逻辑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%AF%84%E8%AE%BA%E6%95%B0%E6%8D%AE%E5%AD%97%E6%AE%B5%E8%AF%A6%E8%A7%A3"><span class="toc-text">3. 评论数据字段详解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%89%88%EF%BC%9A%E5%A4%A7%E5%B9%85%E6%8F%90%E5%8D%87%E7%88%AC%E5%8F%96%E6%95%88%E7%8E%87"><span class="toc-text">4. 多线程版：大幅提升爬取效率</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C"><span class="toc-text">运行效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E5%90%91"><span class="toc-text">总结与优化方向</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E8%83%8C%E6%99%AF"><span class="toc-text">技术背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF"><span class="toc-text">实现思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="toc-text">核心代码解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%85%8D%E7%BD%AE%E6%B5%8F%E8%A7%88%E5%99%A8%EF%BC%88%E9%A6%96%E6%AC%A1%E8%BF%90%E8%A1%8C%E9%9C%80%E8%A6%81%EF%BC%89"><span class="toc-text">1. 配置浏览器（首次运行需要）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8D%95%E7%BA%BF%E7%A8%8B%E7%89%88%EF%BC%9A%E5%9F%BA%E7%A1%80%E7%88%AC%E5%8F%96%E9%80%BB%E8%BE%91"><span class="toc-text">2. 单线程版：基础爬取逻辑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%AF%84%E8%AE%BA%E6%95%B0%E6%8D%AE%E5%AD%97%E6%AE%B5%E8%AF%A6%E8%A7%A3"><span class="toc-text">3. 评论数据字段详解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%89%88%EF%BC%9A%E5%A4%A7%E5%B9%85%E6%8F%90%E5%8D%87%E7%88%AC%E5%8F%96%E6%95%88%E7%8E%87"><span class="toc-text">4. 多线程版：大幅提升爬取效率</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C"><span class="toc-text">运行效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E4%B8%8E%E4%BC%98%E5%8C%96%E6%96%B9%E5%90%91"><span class="toc-text">总结与优化方向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%96%87%E7%AB%A0"><span class="toc-text">相关文章</span></a></li></ol>
           
         </div>
       </section>
@@ -580,6 +580,13 @@
 <blockquote>
 <p><strong>注意</strong>：使用浏览器自动化爬取数据时，请合理控制频率，避免对京东服务器造成过大压力。本代码仅供学习交流使用。</p>
 </blockquote>
+<hr>
+<h2 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/07/06/20260706/2026070616/">《淘宝商品评论爬虫：JSONP解析与DrissionPage API监听实战》</a> —— 电商评论采集的横向对照</li>
+<li><a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/07/06/20260706/2026070614/">《闲鱼商品爬虫与多线程链接刷新：MD5签名逆向与浏览器自动化实战》</a> —— 多线程与浏览器自动化的组合实战</li>
+<li><a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/07/06/20260706/2026070620/">《12306火车票查询爬虫全流程》</a> —— 自动化采集的另一种形态</li>
+</ul>
+<hr>
 
   </div>
 
@@ -609,12 +616,12 @@
 
   <nav class="article-actions">
     
-      <a class="article-action article-action--prev" href="/2026/07/06/20260706/2026070617/">
+      <a class="article-action article-action--prev" href="/2026/07/06/20260706/2026070616/">
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-left"></use></svg>
 
         <span class="action-label">上一篇</span>
-        <span class="action-title">鱼皮面试鸭面试题爬虫：从API接口到批量数据采集</span>
+        <span class="action-title">淘宝商品评论爬虫：JSONP解析与DrissionPage API监听实战</span>
       </a>
     
     
@@ -667,26 +674,10 @@
           </span>
         </a>
       
-        <a class="related-card" href="/2026/07/06/20260706/2026070620/">
-          <span class="related-card__thumb">
-            
-<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
-  
-    <img class="paper-thumb__img" src="/../../images/20260706/2026070620-train12306.png" alt="12306火车票查询爬虫全流程" loading="lazy" referrerpolicy="no-referrer">
-  
-</div>
-
-          </span>
-          <span class="related-card__body">
-            <strong class="related-card__title">12306火车票查询爬虫全流程</strong>
-            <em class="related-card__date">2026-07-06</em>
-          </span>
-        </a>
-      
         <a class="related-card" href="/2026/07/06/20260706/2026070621/">
           <span class="related-card__thumb">
             
-<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
+<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/../../images/20260706/2026070621-bili-danmu2.png" alt="B站视频弹幕爬取实战" loading="lazy" referrerpolicy="no-referrer">
   
@@ -695,6 +686,22 @@
           </span>
           <span class="related-card__body">
             <strong class="related-card__title">B站视频弹幕爬取实战</strong>
+            <em class="related-card__date">2026-07-06</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/07/06/20260706/2026070620/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/../../images/20260706/2026070620-train12306.png" alt="12306火车票查询爬虫全流程" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">12306火车票查询爬虫全流程</strong>
             <em class="related-card__date">2026-07-06</em>
           </span>
         </a>
