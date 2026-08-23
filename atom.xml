@@ -134,7 +134,7 @@
 <hr>]]>
     </summary>
     <title>Go 实现仿 Telegram 端到端加密：从 DH 密钥交换到 AES-GCM</title>
-    <updated>2026-08-20T01:11:06.800Z</updated>
+    <updated>2026-08-23T11:04:00.713Z</updated>
   </entry>
   <entry>
     <author>
@@ -186,7 +186,7 @@
 <p>一颗成本 200 元的普通维生素，被包装成”诺奖神药”，卖给老人 9900 元——不是因为它真的有效，而是因为背后有一套<strong>比药更”见效”的话术系统</strong>。<br>从免费鸡蛋到认干亲，从”健康讲座”到私域直播，保健品骗局换了]]>
     </summary>
     <title>让猎物自己为猎手工作：保健品洗脑话术如何开采人类的&quot;人性漏洞&quot;</title>
-    <updated>2026-08-19T23:09:24.247Z</updated>
+    <updated>2026-08-23T11:04:00.527Z</updated>
   </entry>
   <entry>
     <author>
@@ -210,7 +210,7 @@
 </blockqu]]>
     </summary>
     <title>黑客组织 - 海莲花 OceanLotus：南海暗涌中的&quot;跨平台幽灵&quot;</title>
-    <updated>2026-08-19T05:39:19.097Z</updated>
+    <updated>2026-08-23T11:04:00.314Z</updated>
   </entry>
   <entry>
     <author>
@@ -233,7 +233,7 @@
 <p>一家几乎所有美国联邦机构和大企业都在用的网络管理软件，被注入了一个潜伏九个月的后门。<br>当它被发现的 2020 年 12 月，攻击者已经”合法地”进入了美国财政部、国务院、国土安全部、微软、英特尔……直到今天，受害者的完整名单仍是个谜。</p>]]>
     </summary>
     <title>SolarWinds 事件复盘：一场潜伏九个月、横跨全球的&quot;供应链核爆&quot;</title>
-    <updated>2026-08-19T05:32:20.306Z</updated>
+    <updated>2026-08-23T11:03:59.220Z</updated>
   </entry>
   <entry>
     <author>
@@ -257,7 +257,7 @@
 <p>妙瓦底、果敢、大其力——这些地名背后，是一台台日夜运转的”诈骗机器”。<br>但很多人只看到了”被骗”的结果，却不知道支撑这台机器的，是一套极其成熟的<strong>网络技术供应链</strong>：话术是产品，技术是生产线，洗钱是物流。</p>]]>
     </summary>
     <title>缅甸电诈园区的网络技术供应链：话术工厂、洗钱矩阵与一条看不见的流水线</title>
-    <updated>2026-08-19T05:32:20.346Z</updated>
+    <updated>2026-08-23T11:03:59.044Z</updated>
   </entry>
   <entry>
     <author>
@@ -281,7 +281,7 @@
 </blockquote>]]>
     </summary>
     <title>黑客组织 - 响尾蛇 SideWinder：南亚地缘棋盘上的&quot;精准狙击手&quot;</title>
-    <updated>2026-08-19T05:38:14.392Z</updated>
+    <updated>2026-08-23T11:03:58.863Z</updated>
   </entry>
   <entry>
     <author>
@@ -305,7 +305,7 @@
 </bl]]>
     </summary>
     <title>黑客组织 - FIN7 / Carbanak：披着&quot;销售公司&quot;外衣的金融犯罪机器</title>
-    <updated>2026-08-19T05:32:20.262Z</updated>
+    <updated>2026-08-23T11:03:58.661Z</updated>
   </entry>
   <entry>
     <author>
@@ -332,7 +332,7 @@
 <h2 id]]>
     </summary>
     <title>Java 反序列化攻击面（三）：Shiro 的 rememberMe 与&quot;默认密钥&quot;之罪</title>
-    <updated>2026-08-19T05:32:20.432Z</updated>
+    <updated>2026-08-23T11:03:58.472Z</updated>
   </entry>
   <entry>
     <author>
@@ -358,7 +358,7 @@
 <h]]>
     </summary>
     <title>Java 反序列化攻击面（二）：Fastjson 的 autoType 与&quot;修复 vs 绕过&quot;拉锯战</title>
-    <updated>2026-08-19T05:32:20.184Z</updated>
+    <updated>2026-08-23T11:03:58.310Z</updated>
   </entry>
   <entry>
     <author>
@@ -381,7 +381,7 @@
 <p>你只是 <code>npm install</code> 了一个”看起来正常”的包，或者 <code>pip install</code> 了一个”拼写很像官方”的库。<br>但你的服务器，可能已经在后台偷偷运行了一段恶意代码——它可能窃取你的环境]]>
     </summary>
     <title>NPM/PyPI 供应链投毒：从依赖劫持到 typosquatting，开源依赖的隐形风险</title>
-    <updated>2026-08-19T05:32:20.283Z</updated>
+    <updated>2026-08-23T11:04:00.113Z</updated>
   </entry>
   <entry>
     <author>
@@ -406,7 +406,7 @@
 <h2 id="引言：2]]>
     </summary>
     <title>SSH 安全全景：从弱口令爆破到供应链劫持</title>
-    <updated>2026-08-19T05:32:20.521Z</updated>
+    <updated>2026-08-23T11:03:58.106Z</updated>
   </entry>
   <entry>
     <author>
@@ -430,7 +430,7 @@
 <p>一个默认开启、无需认证的 T3 协议，把 Oracle 最重量级的中间件变成了”扫描器一扫一个准”的靶子。<br>从 CVE-2015-4852 到 CVE-2023-21839，WebLogic 的反序列化漏洞修一个、冒一个，堪称 Java 生态]]>
     </summary>
     <title>Java 反序列化攻击面（一）：WebLogic 的 T3 协议与&quot;漏洞打地鼠&quot;史</title>
-    <updated>2026-08-19T05:32:20.494Z</updated>
+    <updated>2026-08-23T11:03:57.962Z</updated>
   </entry>
   <entry>
     <author>
@@ -452,7 +452,7 @@
 <p>一行 <code>${jndi:ldap://...}</code>，就足以让全球半数以上的 Java 应用”主动连接”攻击者的服务器，并交出执行权限。<br>它被评为 Java 生态史上影响最广的漏洞，连朝鲜的 Lazarus、伊朗的 APT 都]]>
     </summary>
     <title>Log4Shell：一次震动全球 Java 生态的&quot;完美漏洞&quot;</title>
-    <updated>2026-08-19T05:32:20.234Z</updated>
+    <updated>2026-08-23T11:03:57.805Z</updated>
   </entry>
   <entry>
     <author>
@@ -475,7 +475,7 @@
 </blockquote]]>
     </summary>
     <title>xz-utils 后门事件复盘：一次险些瘫痪全球 Linux 的&quot;完美供应链投毒&quot;</title>
-    <updated>2026-08-19T05:32:20.211Z</updated>
+    <updated>2026-08-23T11:03:57.663Z</updated>
   </entry>
   <entry>
     <author>
@@ -498,6 +498,6 @@
 <p>它是 RaaS 商业模式的”开创者”之一，也是 DarkSide 的”母体”，更曾用一次供应链攻击勒索 7000 万美元。<br>从 JBS 到 Kaseya，从嚣张喊话到一夜消失——REvil 的兴衰，写满了勒索软件黄金时代的狂傲与教训。</p>]]>
     </summary>
     <title>黑客组织 - REvil：勒索软件&quot;元老&quot;的疯狂与覆灭</title>
-    <updated>2026-08-19T05:32:20.124Z</updated>
+    <updated>2026-08-23T11:03:57.504Z</updated>
   </entry>
 </feed>
