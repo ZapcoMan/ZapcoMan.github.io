@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/06/26/images/20260626/2026062607-service-generic.png">
 <meta property="article:published_time" content="2026-06-26T08:54:50.000Z">
-<meta property="article:modified_time" content="2026-08-23T12:48:41.665Z">
+<meta property="article:modified_time" content="2026-08-23T14:48:26.603Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="Git">
 <meta property="article:tag" content="Java">
@@ -31,7 +31,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Spring Boot 服务层泛型抽象与代码复用实战","name":"Spring Boot 服务层泛型抽象与代码复用实战 | ZapcoMan's world","description":"详解如何设计基于泛型的 BaseService + BaseServiceImpl 模板，极大减少业务层重复 CRUD 代码，提高代码可维护性和扩展性。 🎯 设计目标 统一定义 CRUD 接口 抽象公共实现，业务专注差异化 避免重复代码膨胀 提升开发效率与代码质量 🧱 代码设计1. BaseService 接口1234567public interfac...","url":"http://example.com/2026/06/26/20260626/2026062607/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260626/2026062607-service-generic.png"],"mainEntityOfPage":"http://example.com/2026/06/26/20260626/2026062607/","datePublished":"2026-06-26T08:54:50.000Z","dateModified":"2026-08-23T12:48:41.665Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"Springboot, Java, Mybatis, Vue3, Git"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Spring Boot 服务层泛型抽象与代码复用实战","name":"Spring Boot 服务层泛型抽象与代码复用实战 | ZapcoMan's world","description":"详解如何设计基于泛型的 BaseService + BaseServiceImpl 模板，极大减少业务层重复 CRUD 代码，提高代码可维护性和扩展性。 🎯 设计目标 统一定义 CRUD 接口 抽象公共实现，业务专注差异化 避免重复代码膨胀 提升开发效率与代码质量 🧱 代码设计1. BaseService 接口1234567public interfac...","url":"http://example.com/2026/06/26/20260626/2026062607/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260626/2026062607-service-generic.png"],"mainEntityOfPage":"http://example.com/2026/06/26/20260626/2026062607/","datePublished":"2026-06-26T08:54:50.000Z","dateModified":"2026-08-23T14:48:26.603Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"Springboot, Java, Mybatis, Vue3, Git"}</script>
 
 <script>
   (function () {
@@ -424,7 +424,7 @@
         </header>
         <div class="toc-content">
           
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8E%AF-%E8%AE%BE%E8%AE%A1%E7%9B%AE%E6%A0%87"><span class="toc-text">🎯 设计目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%B1-%E4%BB%A3%E7%A0%81%E8%AE%BE%E8%AE%A1"><span class="toc-text">🧱 代码设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-BaseService-%E6%8E%A5%E5%8F%A3"><span class="toc-text">1. BaseService 接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-BaseServiceImpl-%E6%8A%BD%E8%B1%A1%E5%AE%9E%E7%8E%B0"><span class="toc-text">2. BaseServiceImpl 抽象实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9A%99%EF%B8%8F-%E4%B8%9A%E5%8A%A1%E6%8E%A5%E5%85%A5%E7%A4%BA%E4%BE%8B"><span class="toc-text">⚙️ 业务接入示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8C-%E5%AE%9E%E8%B7%B5%E5%BB%BA%E8%AE%AE"><span class="toc-text">📌 实践建议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%9A-%E6%80%BB%E7%BB%93"><span class="toc-text">🔚 总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%97-%E9%A1%B9%E7%9B%AE%E6%BA%90%E7%A0%81%E5%9C%B0%E5%9D%80"><span class="toc-text">🔗 项目源码地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%99%8B%E2%80%8D%E2%99%82%EF%B8%8F-%E5%A6%82%E6%9E%9C%E4%BD%A0%E8%A7%89%E5%BE%97%E8%BF%99%E7%AF%87%E6%96%87%E7%AB%A0%E6%9C%89%E5%B8%AE%E5%8A%A9%EF%BC%9A"><span class="toc-text">🙋‍♂️ 如果你觉得这篇文章有帮助：</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8E%AF-%E8%AE%BE%E8%AE%A1%E7%9B%AE%E6%A0%87"><span class="toc-text">🎯 设计目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%B1-%E4%BB%A3%E7%A0%81%E8%AE%BE%E8%AE%A1"><span class="toc-text">🧱 代码设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-BaseService-%E6%8E%A5%E5%8F%A3"><span class="toc-text">1. BaseService 接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-BaseServiceImpl-%E6%8A%BD%E8%B1%A1%E5%AE%9E%E7%8E%B0"><span class="toc-text">2. BaseServiceImpl 抽象实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9A%99%EF%B8%8F-%E4%B8%9A%E5%8A%A1%E6%8E%A5%E5%85%A5%E7%A4%BA%E4%BE%8B"><span class="toc-text">⚙️ 业务接入示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8C-%E5%AE%9E%E8%B7%B5%E5%BB%BA%E8%AE%AE"><span class="toc-text">📌 实践建议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%9A-%E6%80%BB%E7%BB%93"><span class="toc-text">🔚 总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%97-%E9%A1%B9%E7%9B%AE%E6%BA%90%E7%A0%81%E5%9C%B0%E5%9D%80"><span class="toc-text">🔗 项目源码地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%99%8B%E2%80%8D%E2%99%82%EF%B8%8F-%E5%A6%82%E6%9E%9C%E4%BD%A0%E8%A7%89%E5%BE%97%E8%BF%99%E7%AF%87%E6%96%87%E7%AB%A0%E6%9C%89%E5%B8%AE%E5%8A%A9%EF%BC%9A"><span class="toc-text">🙋‍♂️ 如果你觉得这篇文章有帮助：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%96%87%E7%AB%A0"><span class="toc-text">相关文章</span></a></li></ol>
           
         </div>
       </section>
@@ -556,6 +556,14 @@
 <li>评论 💬</li>
 <li>关注我 👇 获取后续实战内容</li>
 </ul>
+<hr>
+<h2 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h2><p>本文是「Java 开发基础」系列的一员：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/06/26/20260626/2026062602/">《Java 集合框架与数据结构核心速记笔记》</a> —— 数据结构基础</li>
+<li><a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/06/26/20260626/2026062614/">《基于策略模式优化 Java 系统角色相关功能的方案文档》</a> —— 设计模式的工程落地</li>
+<li><a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/06/26/20260626/2026062603/">《从 0 到 1，我如何独立开发一套教务系统（EduCore）》</a> —— 服务层抽象的完整实践</li>
+</ul>
+<hr>
 
   </div>
 
