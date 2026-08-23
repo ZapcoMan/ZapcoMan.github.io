@@ -16,8 +16,11 @@
 <meta property="og:site_name" content="ZapcoMan&#39;s world">
 <meta property="og:description" content="你的手机没开任何 App、房间没有任何摄像头，但房间里的路由器”知道”有人进来了——不是联网，不是监听，它只是”感受”到了你移动时扰动的那一丝无线电波。2026 年开源项目 RuView 把这件事推到了风口：号称用普通 Wi-Fi 信号就能实时还原人体姿态、隔墙感知、监测呼吸心率，GitHub 上 star 一度冲到 9 万+。但”看见”和”看懂”是两回事...">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/20260823/ruview-seed.png">
+<meta property="og:image" content="http://example.com/images/20260823/ruview-small-gemini.jpg">
+<meta property="og:image" content="http://example.com/images/20260823/rucelium-hero.png">
 <meta property="article:published_time" content="2026-08-23T07:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-23T10:13:45.276Z">
+<meta property="article:modified_time" content="2026-08-23T10:37:06.321Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="CSI">
 <meta property="article:tag" content="Wi-Fi 感知">
@@ -27,11 +30,12 @@
 <meta property="article:tag" content="行踪">
 <meta property="article:tag" content="隐私">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/20260823/ruview-seed.png">
 <link rel="canonical" href="http://example.com/2026/08/23/20260823/2026082302/">
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"路由器正在\"看见\"你：Wi-Fi 感知技术祛魅与\"没有摄像头的监控\"","name":"路由器正在\"看见\"你：Wi-Fi 感知技术祛魅与\"没有摄像头的监控\" | ZapcoMan's world","description":"你的手机没开任何 App、房间没有任何摄像头，但房间里的路由器”知道”有人进来了——不是联网，不是监听，它只是”感受”到了你移动时扰动的那一丝无线电波。2026 年开源项目 RuView 把这件事推到了风口：号称用普通 Wi-Fi 信号就能实时还原人体姿态、隔墙感知、监测呼吸心率，GitHub 上 star 一度冲到 9 万+。但”看见”和”看懂”是两回事...","url":"http://example.com/2026/08/23/20260823/2026082302/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/08/23/20260823/2026082302/","datePublished":"2026-08-23T07:00:00.000Z","dateModified":"2026-08-23T10:13:45.276Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"隐私, Wi-Fi 感知, CSI, 反监控, 行踪, 智能家居, 技术祛魅"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"路由器正在\"看见\"你：Wi-Fi 感知技术祛魅与\"没有摄像头的监控\"","name":"路由器正在\"看见\"你：Wi-Fi 感知技术祛魅与\"没有摄像头的监控\" | ZapcoMan's world","description":"你的手机没开任何 App、房间没有任何摄像头，但房间里的路由器”知道”有人进来了——不是联网，不是监听，它只是”感受”到了你移动时扰动的那一丝无线电波。2026 年开源项目 RuView 把这件事推到了风口：号称用普通 Wi-Fi 信号就能实时还原人体姿态、隔墙感知、监测呼吸心率，GitHub 上 star 一度冲到 9 万+。但”看见”和”看懂”是两回事...","url":"http://example.com/2026/08/23/20260823/2026082302/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"mainEntityOfPage":"http://example.com/2026/08/23/20260823/2026082302/","datePublished":"2026-08-23T07:00:00.000Z","dateModified":"2026-08-23T10:37:06.321Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"隐私, Wi-Fi 感知, CSI, 反监控, 行踪, 智能家居, 技术祛魅"}</script>
 
 <script>
   (function () {
@@ -424,7 +428,7 @@
         </header>
         <div class="toc-content">
           
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80%EF%BC%9A%E4%B8%80%E9%83%A8%E6%B2%A1%E6%9C%89%E9%95%9C%E5%A4%B4%E7%9A%84%E2%80%9D%E6%91%84%E5%83%8F%E5%A4%B4%E2%80%9D"><span class="toc-text">引言：一部没有镜头的”摄像头”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%8E%9F%E7%90%86%EF%BC%9AWi-Fi-%E6%80%8E%E4%B9%88%E2%80%9D%E7%9C%8B%E8%A7%81%E2%80%9D%E4%BA%BA"><span class="toc-text">一、原理：Wi-Fi 怎么”看见”人</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%A5%9B%E9%AD%85%EF%BC%9A%E5%BA%95%E5%B1%82%E6%9C%89%E7%82%B9%E7%9C%9F%EF%BC%8C%E4%B8%8A%E5%B1%82%E5%A4%A7%E5%8D%8A%E6%98%AF%E8%99%9A%E7%9A%84"><span class="toc-text">二、祛魅：底层有点真，上层大半是虚的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AE%83%E7%9C%9F%E6%AD%A3%E8%83%BD%E5%B9%B2%E4%BB%80%E4%B9%88%EF%BC%9A%E7%B2%97%E7%B2%92%E5%BA%A6%E6%84%9F%E7%9F%A5%E7%9A%84%E5%90%88%E7%90%86%E5%9C%BA%E6%99%AF"><span class="toc-text">三、它真正能干什么：粗粒度感知的合理场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E9%9A%90%E7%A7%81%E9%9D%A2%EF%BC%9A%E6%B2%A1%E6%9C%89%E6%91%84%E5%83%8F%E5%A4%B4%EF%BC%8C%E4%B8%8D%E7%AD%89%E4%BA%8E%E6%B2%A1%E6%9C%89%E7%9B%91%E6%8E%A7"><span class="toc-text">四、隐私面：没有摄像头，不等于没有监控</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E5%9B%9B%E6%9D%A1%E6%94%BB%E5%87%BB%E9%9D%A2"><span class="toc-text">4.1 四条攻击面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E5%A6%82%E6%9E%9C%E5%AE%83%E8%90%BD%E5%88%B0%E9%BB%91%E7%81%B0%E4%BA%A7%E6%89%8B%E9%87%8C%EF%BC%9A%E4%B8%80%E4%BB%BD%E2%80%9D%E5%AE%9E%E6%97%B6%E6%83%85%E6%8A%A5%E2%80%9D%E7%9A%84%E4%BB%B7%E5%80%BC%E6%B8%85%E5%8D%95"><span class="toc-text">4.2 如果它落到黑灰产手里：一份”实时情报”的价值清单</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E9%98%B2%E5%BE%A1%EF%BC%9A%E6%8A%8A%E2%80%9D%E7%8E%AF%E5%A2%83%E6%84%9F%E7%9F%A5%E2%80%9D%E8%A3%85%E8%BF%9B%E4%BD%A0%E7%9A%84%E9%98%B2%E5%BE%A1%E4%BD%93%E7%B3%BB"><span class="toc-text">五、防御：把”环境感知”装进你的防御体系</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E8%AF%86%E5%88%AB%EF%BC%9A%E5%85%88%E7%9F%A5%E9%81%93%E5%AE%B6%E9%87%8C%E6%9C%89%E4%BB%80%E4%B9%88%E5%9C%A8%E2%80%9D%E6%84%9F%E7%9F%A5%E2%80%9D"><span class="toc-text">5.1 识别：先知道家里有什么在”感知”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E9%9A%94%E7%A6%BB%EF%BC%9A%E7%BB%99%E7%A9%BA%E9%97%B4%E5%88%86%E2%80%9D%E6%95%8F%E6%84%9F%E5%8C%BA%E2%80%9D"><span class="toc-text">5.2 隔离：给空间分”敏感区”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-%E6%96%AD%E9%93%BE%EF%BC%9A%E5%88%87%E6%96%AD%E2%80%9D%E8%AE%BE%E5%A4%87-%E2%86%94-%E7%8E%AF%E5%A2%83%E8%BA%AB%E4%BB%BD%E2%80%9D%E7%9A%84%E5%85%B3%E8%81%94"><span class="toc-text">5.3 断链：切断”设备 ↔ 环境身份”的关联</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-%E5%BA%94%E6%80%A5%EF%BC%9A%E5%8F%91%E7%8E%B0%E8%A2%AB%E6%84%9F%E7%9F%A5%E8%AE%BE%E5%A4%87%EF%BC%8C%E5%88%AB%E6%80%A5%E7%9D%80%E6%8B%86"><span class="toc-text">5.4 应急：发现被感知设备，别急着拆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-5-%E4%B8%80%E5%8F%A5%E8%AF%9D%E9%98%B2%E5%BE%A1%E6%80%BB%E7%BA%B2"><span class="toc-text">5.5 一句话防御总纲</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E8%B7%9F%E4%BD%A0%E7%9A%84%E2%80%9D%E8%A1%8C%E8%B8%AA%E2%80%9D%E6%9C%89%E5%85%B3"><span class="toc-text">六、为什么这跟你的”行踪”有关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E8%BE%B9%E7%95%8C%E5%A3%B0%E6%98%8E"><span class="toc-text">七、边界声明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E5%88%97%E5%85%B3%E8%81%94"><span class="toc-text">系列关联</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80%EF%BC%9A%E4%B8%80%E9%83%A8%E6%B2%A1%E6%9C%89%E9%95%9C%E5%A4%B4%E7%9A%84%E2%80%9D%E6%91%84%E5%83%8F%E5%A4%B4%E2%80%9D"><span class="toc-text">引言：一部没有镜头的”摄像头”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%8E%9F%E7%90%86%EF%BC%9AWi-Fi-%E6%80%8E%E4%B9%88%E2%80%9D%E7%9C%8B%E8%A7%81%E2%80%9D%E4%BA%BA"><span class="toc-text">一、原理：Wi-Fi 怎么”看见”人</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%A5%9B%E9%AD%85%EF%BC%9A%E5%BA%95%E5%B1%82%E6%9C%89%E7%82%B9%E7%9C%9F%EF%BC%8C%E4%B8%8A%E5%B1%82%E5%A4%A7%E5%8D%8A%E6%98%AF%E8%99%9A%E7%9A%84"><span class="toc-text">二、祛魅：底层有点真，上层大半是虚的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AE%83%E7%9C%9F%E6%AD%A3%E8%83%BD%E5%B9%B2%E4%BB%80%E4%B9%88%EF%BC%9A%E7%B2%97%E7%B2%92%E5%BA%A6%E6%84%9F%E7%9F%A5%E7%9A%84%E5%90%88%E7%90%86%E5%9C%BA%E6%99%AF"><span class="toc-text">三、它真正能干什么：粗粒度感知的合理场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E9%9A%90%E7%A7%81%E9%9D%A2%EF%BC%9A%E6%B2%A1%E6%9C%89%E6%91%84%E5%83%8F%E5%A4%B4%EF%BC%8C%E4%B8%8D%E7%AD%89%E4%BA%8E%E6%B2%A1%E6%9C%89%E7%9B%91%E6%8E%A7"><span class="toc-text">四、隐私面：没有摄像头，不等于没有监控</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E5%9B%9B%E6%9D%A1%E6%94%BB%E5%87%BB%E9%9D%A2"><span class="toc-text">4.1 四条攻击面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E5%A6%82%E6%9E%9C%E5%AE%83%E8%90%BD%E5%88%B0%E9%BB%91%E7%81%B0%E4%BA%A7%E6%89%8B%E9%87%8C%EF%BC%9A%E4%B8%80%E4%BB%BD%E2%80%9D%E5%AE%9E%E6%97%B6%E6%83%85%E6%8A%A5%E2%80%9D%E7%9A%84%E4%BB%B7%E5%80%BC%E6%B8%85%E5%8D%95"><span class="toc-text">4.2 如果它落到黑灰产手里：一份”实时情报”的价值清单</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E5%AE%98%E6%96%B9%E5%8D%96%E7%82%B9%E9%87%8C%E7%9A%84%E7%BA%A2%E6%97%97%EF%BC%9A%E2%80%9D%E6%97%A0%E9%9C%80%E9%80%89%E6%8B%A9%E5%8A%A0%E5%85%A5%E2%80%9D"><span class="toc-text">4.3 官方卖点里的红旗：”无需选择加入”</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E9%98%B2%E5%BE%A1%EF%BC%9A%E6%8A%8A%E2%80%9D%E7%8E%AF%E5%A2%83%E6%84%9F%E7%9F%A5%E2%80%9D%E8%A3%85%E8%BF%9B%E4%BD%A0%E7%9A%84%E9%98%B2%E5%BE%A1%E4%BD%93%E7%B3%BB"><span class="toc-text">五、防御：把”环境感知”装进你的防御体系</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E8%AF%86%E5%88%AB%EF%BC%9A%E5%85%88%E7%9F%A5%E9%81%93%E5%AE%B6%E9%87%8C%E6%9C%89%E4%BB%80%E4%B9%88%E5%9C%A8%E2%80%9D%E6%84%9F%E7%9F%A5%E2%80%9D"><span class="toc-text">5.1 识别：先知道家里有什么在”感知”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E9%9A%94%E7%A6%BB%EF%BC%9A%E7%BB%99%E7%A9%BA%E9%97%B4%E5%88%86%E2%80%9D%E6%95%8F%E6%84%9F%E5%8C%BA%E2%80%9D"><span class="toc-text">5.2 隔离：给空间分”敏感区”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-%E6%96%AD%E9%93%BE%EF%BC%9A%E5%88%87%E6%96%AD%E2%80%9D%E8%AE%BE%E5%A4%87-%E2%86%94-%E7%8E%AF%E5%A2%83%E8%BA%AB%E4%BB%BD%E2%80%9D%E7%9A%84%E5%85%B3%E8%81%94"><span class="toc-text">5.3 断链：切断”设备 ↔ 环境身份”的关联</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-%E5%BA%94%E6%80%A5%EF%BC%9A%E5%8F%91%E7%8E%B0%E8%A2%AB%E6%84%9F%E7%9F%A5%E8%AE%BE%E5%A4%87%EF%BC%8C%E5%88%AB%E6%80%A5%E7%9D%80%E6%8B%86"><span class="toc-text">5.4 应急：发现被感知设备，别急着拆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-5-%E4%B8%80%E5%8F%A5%E8%AF%9D%E9%98%B2%E5%BE%A1%E6%80%BB%E7%BA%B2"><span class="toc-text">5.5 一句话防御总纲</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E8%B7%9F%E4%BD%A0%E7%9A%84%E2%80%9D%E8%A1%8C%E8%B8%AA%E2%80%9D%E6%9C%89%E5%85%B3"><span class="toc-text">六、为什么这跟你的”行踪”有关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E8%BE%B9%E7%95%8C%E5%A3%B0%E6%98%8E"><span class="toc-text">七、边界声明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A0%E6%9D%90%E6%9D%A5%E6%BA%90"><span class="toc-text">素材来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E5%88%97%E5%85%B3%E8%81%94"><span class="toc-text">系列关联</span></a></li></ol>
           
         </div>
       </section>
@@ -518,7 +522,8 @@
 
 
   <div class="article-content">
-    <blockquote>
+    <p><img src="/../../images/20260823/ruview-seed.png" alt="ruview-seed.png"><br><img src="/../../images/20260823/ruview-small-gemini.jpg" alt="ruview-seed.png"><br><img src="/../../images/20260823/rucelium-hero.png" alt="rucelium-hero.png"></p>
+<blockquote>
 <p>你的手机没开任何 App、房间没有任何摄像头，但房间里的路由器”知道”有人进来了——不是联网，不是监听，它只是”感受”到了你移动时扰动的那一丝无线电波。<br>2026 年开源项目 RuView 把这件事推到了风口：号称用普通 Wi-Fi 信号就能实时还原人体姿态、隔墙感知、监测呼吸心率，GitHub 上 star 一度冲到 9 万+。<br>但”看见”和”看懂”是两回事。本文要做的，是给这项技术泼一盆冷水，再把它放进你真正该关心的位置：<strong>它到底是什么、能做什么、以及”没有摄像头”为什么不等于”没有监控”。</strong></p>
 </blockquote>
 <hr>
@@ -575,26 +580,32 @@
 <td>⚠️ 需自行验证</td>
 </tr>
 <tr>
+<td>跌倒检测</td>
+<td>✅ 官方实现（&lt;200ms 触发）</td>
+<td>⚠️ 需实测</td>
+</tr>
+<tr>
+<td>人数统计</td>
+<td>✅ 官方有已验证计数模型（自适应校准）</td>
+<td>⚠️ 单节点需实测</td>
+</tr>
+<tr>
 <td>姿态骨架</td>
 <td>✅ MM-Fi 模型 82.69%，SOTA</td>
 <td>❌ 官方自标 stub（准确率仅 3%）</td>
 </tr>
 <tr>
-<td>人数统计</td>
-<td>⚠️ 环境干扰大</td>
-<td>⚠️ 不可靠</td>
-</tr>
-<tr>
 <td>隔墙感知</td>
-<td>✅ 有研究背书</td>
-<td>⚠️ 依赖专用设备</td>
+<td>✅ 官方宣称可达 ~5m（Fresnel 区模型）</td>
+<td>⚠️ 依赖多节点&#x2F;专用硬件</td>
 </tr>
 </tbody></table>
 <p>这张表的关键，在于**「完整系统」和「民用单节点」是两个完全不同的东西**：前者是几台 ESP32 + 专业研究网卡搭出来的实验室配置，后者才是”普通人的路由器”。宣传片的画面来自前者，你手里能跑的是后者——<strong>“它行”和”你行”之间，隔着一套几千块的设备。</strong></p>
+<p>还有一个官方自己划清的能力边界值得记住：<strong>「认得出有人」≠「认得出是谁」。</strong> 项目在波束成形反馈层（BFLD）上做过实测——仅靠 WiFi 的心跳与呼吸通道，两个人几乎不可区分（差距约 0.0005），命名级身份识别被官方明确标注为”实验性、数据门控”的研究能力，不承诺交付。而单节点姿态为什么做不准，官方也给了物理层面的解释：<strong>单天线、56 个子载波、20 帧窗口的 CSI 流，携带不了多天线研究网卡那种细粒度空间信息</strong>——不是工程不够努力，是信息量物理上就不够。</p>
 <p><strong>最有力的证据有两个，而且都来自项目官方自己。</strong></p>
 <p>第一个是”翻车”细节：很多人发现，RuView 默认的 Docker 部署常常落在 <code>simulated</code>（模拟）模式——<strong>把网卡都卸掉之后，画面上的”人体骨架”依然在动</strong>。也就是说，你看到的大部分精美演示，根本不是在感知你的房间，而是在播放一段预设的动画。</p>
 <p>第二个更坦诚：项目给自己设了一套<strong>三级能力标签</strong>——「真实有效 &#x2F; 实验性 &#x2F; 仅架构无权重」——并且<strong>公开撤回了早期宣传的”100% 检测率”</strong>，诚实重测后改为 82.3%；单节点姿态模型被官方标注为”实验性”，实测准确率仅 3%，运行时还是置信度恒为 0 的桩代码（stub）。<strong>连作者都在给自己的 demo 泼冷水，围观群众更不该被那几段动画说服。</strong></p>
-<p>这背后是技术圈一个普遍存在的现象：<strong>项目靠 demo 吸引眼球，star 跟着涨，但真实能力要靠自己跑一遍才知道</strong>。而绝大多数围观者，只会被那几段动画”说服”。</p>
+<p>这背后是技术圈一个普遍存在的现象：<strong>项目靠 demo 吸引眼球，star 跟着涨，但真实能力要靠自己跑一遍才知道</strong>。而绝大多数围观者，只会被那几段动画”说服”。这里还有一重营销引擎：项目设有 25% 佣金的创作者返利计划，专门面向 TikTok &#x2F; Instagram &#x2F; YouTube 博主推广带货——<strong>爆火的项目，未必火在技术上。</strong></p>
 <blockquote>
 <p><strong>别被精美的 demo 骗走判断力。理解信号，再决定信不信宣传——这条规则适用于 RuView，也适用于所有”看起来无所不能”的新技术。</strong></p>
 </blockquote>
@@ -608,6 +619,38 @@
 </ul>
 <p>这类场景的共同特点：<strong>不关心你是谁、什么姿势、几个人，只关心”有没有人活动”</strong>。RSSI 级别的信号波动足够应付，误报率在可接受范围内。</p>
 <p>换句话说，<strong>RuView 最适合的位置是”廉价的、无摄像头的存在传感器”，而不是”Wi-Fi 摄像头”</strong>。把期望放对位置，它就是好工具；放错位置，它就是又一个”看起来无所不能、实际上啥都不准”的营销神话。</p>
+<p>再看官方自己的场景文档——它把应用场景分成<strong>四个层级</strong>，四层并列放在一起，信息量比单看任何一层都大：</p>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>官方场景</th>
+<th>本质</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>日常层</td>
+<td>养老院跌倒检测、医院病房呼吸监测、办公室占用、酒店节能、餐厅翻台</td>
+<td>善意场景：养老、医疗、节能</td>
+</tr>
+<tr>
+<td>专业层</td>
+<td>托儿所&#x2F;学校午睡监测、活动场馆拥挤预警、博物馆人流热图、地铁站台拥挤度</td>
+<td>公共管理与服务</td>
+</tr>
+<tr>
+<td>工业层</td>
+<td>协作机器人安全区、仓库盲角、工地安全、洁净室人数管控</td>
+<td>工业安全</td>
+</tr>
+<tr>
+<td>极端层</td>
+<td>监狱牢房占用、军事穿墙探测、边境隧道人体探测、消防穿烟搜救</td>
+<td>监控终极形态：无镜头、穿墙、被动式</td>
+</tr>
+</tbody></table>
+<p>注意官方藏在表格里的两个”小字”：场景表开头自带免责声明——“研究原型，不是医疗设备，使用前必须在确切硬件上独立验证”；scaling 的真实边界——<strong>每个 AP 只能区分约 3–5 人，4 个 AP 的零售 mesh 也就覆盖 15–20 人</strong>。换句话说，它更适合房间级的粗粒度感知，而不是人流密集的公共场所——又一个”看着全能、实际挑场景”的例子。</p>
+<p>四层并列的真正含义是：<strong>同一个技术，一边在救老人（跌倒检测），一边在”看”囚犯（牢房占用）——善用与恶用之间没有技术分界，只有部署者。</strong> 顺便说一句：官方把”地铁站台拥挤度、公共卫生间占用”也列进了市政场景——<strong>你以为的”智能市政”，和监控之间，只差一个部署者。</strong></p>
 <hr>
 <h2 id="四、隐私面：没有摄像头，不等于没有监控"><a href="#四、隐私面：没有摄像头，不等于没有监控" class="headerlink" title="四、隐私面：没有摄像头，不等于没有监控"></a>四、隐私面：没有摄像头，不等于没有监控</h2><p>现在进入这篇文章对你最有价值的部分。</p>
 <p>很多人听到”无摄像头感知”会松一口气——“太好了，房间没有摄像头，我的隐私安全了”。<strong>这个推理是错的，而且错得很危险。</strong></p>
@@ -633,9 +676,62 @@
 </tr>
 </tbody></table>
 <p><strong>作息规律、独居状态、深夜活动模式</strong>——这些”行为指纹”和一张照片一样，都属于极其敏感的个人信息。监控的可怕从来不只在”看得见你的脸”，更在”<strong>摸清你的生活模式</strong>“。</p>
+<p>而且”推断”这个词，在官方文档里是字面意思——不是我们替它想象的。RuView 每个节点直接输出 <strong>21 个实体（11 条原始信号 + 10 条推断语义状态）</strong>，官方明确列出的语义状态包括：</p>
+<table>
+<thead>
+<tr>
+<th>官方语义状态</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>someone-sleeping</code></td>
+<td>有人在睡觉</td>
+</tr>
+<tr>
+<td><code>possible-distress</code></td>
+<td>可能处于痛苦&#x2F;困境</td>
+</tr>
+<tr>
+<td><code>room-active</code></td>
+<td>房间有人活动</td>
+</tr>
+<tr>
+<td><code>elderly-inactivity-anomaly</code></td>
+<td>老人异常长时间不活动</td>
+</tr>
+<tr>
+<td><code>meeting-in-progress</code></td>
+<td>会议正在进行</td>
+</tr>
+<tr>
+<td><code>bathroom-occupied</code></td>
+<td>浴室有人</td>
+</tr>
+<tr>
+<td><code>fall-risk-elevated</code></td>
+<td>跌倒风险升高</td>
+</tr>
+<tr>
+<td><code>bed-exit</code></td>
+<td>有人离床</td>
+</tr>
+<tr>
+<td><code>no-movement</code></td>
+<td>无移动</td>
+</tr>
+<tr>
+<td><code>multi-room-transition</code></td>
+<td>跨房间移动</td>
+</tr>
+</tbody></table>
+<p>注意：这些不是原始信号，而是<strong>语义级结论</strong>——设备不再只是”记录信号”，它直接在告诉你”这家人正在开会””老人今天异常安静””浴室有人”。<strong>从”传感器”到”理解者”，这是监控的下一步。</strong> 官方还提供了<strong>个体移动签名（person track）<strong>能力：给不同的人建立移动指纹，输出”某人进入了客厅”级别的轨迹——命名级身份识别被官方标注为”实验性、不承诺交付”，但</strong>“区分个体并跟踪其移动”是官方明确列出的能力</strong>。</p>
+<blockquote>
+<p><strong>摄像头记录”发生了什么”，Wi-Fi 感知直接告诉你”正在发生什么”——前者留证据，后者下结论。</strong></p>
+</blockquote>
 <p>更值得警惕的是攻击面。Wi-Fi 感知的设备不需要被看到，它可以被<strong>藏起来</strong>——塞在沙发底下、伪装成充电器、粘在路由器旁边。而这正好接上我们拆过的物理攻击线：</p>
 <h3 id="4-1-四条攻击面"><a href="#4-1-四条攻击面" class="headerlink" title="4.1 四条攻击面"></a>4.1 四条攻击面</h3><ol>
-<li><strong>放置式威胁</strong>：一枚 ESP32-S3（几美元）+ 供电，就能藏在目标家里做”有人&#x2F;无人”感知——<strong>不需要镜头，所以常规的”摄像头排查”（射频探测器、检查可疑孔洞）对它无效</strong>；</li>
+<li><strong>放置式威胁</strong>：一枚 ESP32-S3（几美元）+ 供电，就能藏在目标家里做”有人&#x2F;无人”感知——<strong>不需要镜头，所以常规的”摄像头排查”（射频探测器、检查可疑孔洞）对它无效</strong>；更麻烦的是，官方明确说这套系统<strong>可以把邻居家的路由器当”免费雷达”用</strong>——放置一个节点，借环境中任何 WiFi 信号当反射源，甚至不需要目标家里存在现成的感知设备；</li>
 <li><strong>公共 Wi-Fi 陷阱</strong>：恶意部署的公共 Wi-Fi 热点、酒店&#x2F;咖啡厅的”免费 Wi-Fi”，理论上同样可以利用 CSI 感知周边人群的活动规律；</li>
 <li><strong>智能家居的”双面性”</strong>：家里已经布满 Wi-Fi 设备（音箱、电视、扫地机器人、路由器），它们都是潜在的”感知节点”——你为了便利装进家里的设备越多，能”看见”你的传感器就越多；</li>
 <li><strong>数据上云风险</strong>：很多这类设备默认把数据传上云端——意味着”你家有没有人”这个状态，掌握在设备厂商手里。厂商会怎么用？没人能保证。</li>
@@ -689,6 +785,47 @@
 <blockquote>
 <p><strong>“没有摄像头”改变的只是监控的形态，不是监控的存在。摄像头是明哨，Wi-Fi 感知是暗哨——暗哨更难发现，所以更该警惕。</strong></p>
 </blockquote>
+<h3 id="4-3-官方卖点里的红旗：”无需选择加入”"><a href="#4-3-官方卖点里的红旗：”无需选择加入”" class="headerlink" title="4.3 官方卖点里的红旗：”无需选择加入”"></a>4.3 官方卖点里的红旗：”无需选择加入”</h3><p>前面讲的是攻击者视角，现在换回项目官方自己的说法——而这恰恰是全文最该警惕的一段话。在官方文档里，”无摄像头”被当成<strong>合规红利</strong>来卖：</p>
+<ul>
+<li>场景文档开头明写：”部署<strong>天然规避（by design）</strong> GDPR 影像与 HIPAA 影像隐私法规”；</li>
+<li>零售场景直接写”<strong>无需选择加入（no opt-in）、GDPR 友好</strong>“。</li>
+</ul>
+<p>把这两句翻译成人话：<strong>“你不会被通知，也不会有知情的环节。”</strong> 摄像头装在你身边，至少你看得见镜头、商家按规定要贴告示；Wi-Fi 感知装在你身边，你什么都看不见、也没人问过你。<strong>当”不触发隐私法规”被当作卖点，恰恰说明它绕过的，是你本来该有的知情权与同意权。</strong></p>
+<p>再看它配套的 105 个边缘模块，”廉价存在传感器”的定位就兜不住了：</p>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>干什么</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>behavioral-profiler</code></td>
+<td>学习”正常行为”，标记任何”异常”</td>
+</tr>
+<tr>
+<td><code>emotion-detect</code></td>
+<td>从体态与呼吸读取压力与情绪</td>
+</tr>
+<tr>
+<td><code>dwell-heatmap</code> &#x2F; <code>shelf-engagement</code></td>
+<td>顾客停留热区、货架互动检测</td>
+</tr>
+<tr>
+<td><code>loitering</code> &#x2F; <code>tailgating</code></td>
+<td>徘徊预警、尾随检测</td>
+</tr>
+<tr>
+<td><code>weapon-detect</code></td>
+<td>探测人体上隐藏的金属物</td>
+</tr>
+<tr>
+<td><code>intrusion</code> &#x2F; <code>perimeter-breach</code></td>
+<td>未经授权进入预警、周界闯入</td>
+</tr>
+</tbody></table>
+<p>这已经不是”存在传感器”的清单，而是<strong>行为分析、情绪识别、商业监控的完整工具箱</strong>——全都”无摄像头、无通知、无 opt-in”。官方文档甚至把用例写到了监狱（牢房占用验证）、军事战术（穿墙人员检测、人质生命体征）、边境（隧道中被动探测人体）——<strong>同一份场景表里，”养老院跌倒检测”和”监狱牢房占用”并列而坐，善用与恶用之间没有任何技术门槛，只有部署者的选择。</strong></p>
+<p>官方还得意地把成本优势写成了卖点：”<strong>每区 0–8 美元</strong>（复用现有 WiFi 或加一枚 ESP32），而摄像头系统<strong>每区 200–2000 美元</strong>。”——这句话对善者是”便宜的养老监测”，对恶者是”便宜的暗哨布防”：<strong>同一条价格优势，同时便宜了救人的人和害人的人。</strong> <strong>“无摄像头”不是隐私的护城河，是隐私的暗门：没有镜头、没有告示、没有同意，它无声无息就能装到你身边。</strong></p>
 <hr>
 <h2 id="五、防御：把”环境感知”装进你的防御体系"><a href="#五、防御：把”环境感知”装进你的防御体系" class="headerlink" title="五、防御：把”环境感知”装进你的防御体系"></a>五、防御：把”环境感知”装进你的防御体系</h2><p>如果说摄像头监控的防御是”找到镜头遮住它”，那么 Wi-Fi 感知的防御要换个思路——<strong>你看不见信号，但可以管理设备、管理环境</strong>。更重要的是：<strong>这不是孤立的技巧，我们系列里已经建好的防御框架，现在要往里再挂一个模块。</strong></p>
 <p>回顾我们拆过的防御体系：开盒篇教「<strong>收敛 + 隔离 + 应急</strong>」，行踪篇教「<strong>减面 + 断链</strong>」。环境感知的防御，用的就是同一套骨架——<strong>识别、隔离、断链、应急</strong>四个动作。</p>
@@ -786,6 +923,12 @@
 <li><strong>合规提醒</strong>：在他人住处、场所未经同意部署任何感知、监听设备属违法行为（《治安管理处罚法》第四十二条、《刑法》相关侵犯公民个人信息、非法侵入住宅等条款）；本文所有拆解仅用于识别风险与自我保护，请勿尝试。</li>
 </ul>
 <hr>
+<h2 id="素材来源"><a href="#素材来源" class="headerlink" title="素材来源"></a>素材来源</h2><ul>
+<li>RuView 官方 GitHub 仓库 <code>ruvnet/RuView</code>（README 及官方文档，2026-08 检索）</li>
+<li>微信公众平台文章《你家的 Wi-Fi 正在”看见”你》（2026-08）</li>
+<li>本文涉及「官方标注」「实测」「SOTA」的技术结论，均可在官方 README「Model weights: what’s real, what’s not」与能力一览表中逐条核对</li>
+</ul>
+<hr>
 <h2 id="系列关联"><a href="#系列关联" class="headerlink" title="系列关联"></a>系列关联</h2><p>本文是「隐私与反侦察」系列的<strong>环境感知篇</strong>，补齐了监控威胁的最后一块拼图：</p>
 <ul>
 <li>《行踪反侦察》——管理”手机定位”维度的行踪；本文管理”环境传感器”维度的行踪，两者合并才是完整的行踪防御</li>
@@ -794,6 +937,7 @@
 </ul>
 <p><strong>一套防御框架</strong>：识别 → 隔离 → 断链 → 应急——开盒篇讲「信息怎么被关联与隔离」，行踪篇讲「位置怎么被拼图与断链」，本文讲「环境怎么被感知与排查」。三篇的防御清单拼在一起，才覆盖从「数据」到「身体」的完整攻击面。</p>
 <p><strong>一条主线</strong>：监控的形态在进化——从镜头，到信号，到”环境本身”。防御也要跟着进化：<strong>不只看哪里有镜头，还要看哪里有设备在感知。</strong> 技术祛魅 + 隐私警觉，才是这个时代最便宜的”安全网”。</p>
+<p>而官方文档里还躺着下一步：把 WiFi CSI、毫米波雷达、UWB、5G 信号统一进一个 <strong>“RF 空间世界模型”</strong>——到那时，”环境感知”将不再只是 Wi-Fi 的专属，任何无线信号都能成为感知的原料。<strong>监控的形态进化没有终点：从镜头，到信号，到”环境本身”，再到”所有信号的融合”。</strong></p>
 
   </div>
 
