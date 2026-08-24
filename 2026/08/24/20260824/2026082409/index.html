@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/08/24/images/20260824/proximity-drone-cover.png">
 <meta property="article:published_time" content="2026-08-24T06:31:00.000Z">
-<meta property="article:modified_time" content="2026-08-24T06:50:31.948Z">
+<meta property="article:modified_time" content="2026-08-24T07:16:10.565Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="Flipper Zero">
 <meta property="article:tag" content="Watch Dogs">
@@ -36,7 +36,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"游戏里的\"看门狗\"，现实里的\"近源渗透车\"：无人机与遥控车的近源攻击可行性研究——从 ctOS 到 Wi-Fi Pineapple","name":"游戏里的\"看门狗\"，现实里的\"近源渗透车\"：无人机与遥控车的近源攻击可行性研究——从 ctOS 到 Wi-Fi Pineapple | ZapcoMan's world","description":"《看门狗 2》（Watch Dogs 2）里有一幕很带感：你操控一架小型四轴无人机或一台遥控小车，悄无声息地溜进目标区域——钻过通风口、绕过保安、停在你黑不进去的那扇窗下，然后从它身上发射信号，把大楼里原本碰不到的设备一个一个拿下。ctOS 让整个城市的信息系统连成一张网，而你的车，就是你在这张网边缘伸出去的那只手。 这个画面让我想起昨天隐私反侦察系列里写过...","url":"http://example.com/2026/08/24/20260824/2026082409/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260824/proximity-drone-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/24/20260824/2026082409/","datePublished":"2026-08-24T06:31:00.000Z","dateModified":"2026-08-24T06:50:31.948Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"近源渗透, Flipper Zero, 物理安全, 无人机, 看门狗, Watch Dogs, 无人车, 无线攻击, Wi-Fi Pineapple, 红队"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"游戏里的\"看门狗\"，现实里的\"近源渗透车\"：无人机与遥控车的近源攻击可行性研究——从 ctOS 到 Wi-Fi Pineapple","name":"游戏里的\"看门狗\"，现实里的\"近源渗透车\"：无人机与遥控车的近源攻击可行性研究——从 ctOS 到 Wi-Fi Pineapple | ZapcoMan's world","description":"《看门狗 2》（Watch Dogs 2）里有一幕很带感：你操控一架小型四轴无人机或一台遥控小车，悄无声息地溜进目标区域——钻过通风口、绕过保安、停在你黑不进去的那扇窗下，然后从它身上发射信号，把大楼里原本碰不到的设备一个一个拿下。ctOS 让整个城市的信息系统连成一张网，而你的车，就是你在这张网边缘伸出去的那只手。 这个画面让我想起昨天隐私反侦察系列里写过...","url":"http://example.com/2026/08/24/20260824/2026082409/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260824/proximity-drone-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/24/20260824/2026082409/","datePublished":"2026-08-24T06:31:00.000Z","dateModified":"2026-08-24T07:16:10.565Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"近源渗透, Flipper Zero, 物理安全, 无人机, 看门狗, Watch Dogs, 无人车, 无线攻击, Wi-Fi Pineapple, 红队"}</script>
 
 <script>
   (function () {
@@ -599,7 +599,7 @@
 </tr>
 </tbody></table>
 <p>而”载体”本身：消费级无人机（如 DJI Mini 系列，250g 以下）、遥控车&#x2F;机器人底盘、甚至有团队玩过<strong>把攻击载荷装在儿童玩具车底盘上</strong>——形态伪装是近源渗透的老传统了（还记得儿童手表吗）。</p>
-<p><strong>再补一个被忽略的形态：van-based（面包车近源）。</strong> 现实中大量”近源渗透”根本不飞天，就是把设备装进一辆普通面包车停在目标楼下，人在车里操作，完了开走。这比无人机更安静、更持久（供电、散热、坐人操作都舒服），是红队实践里的常规操作——<strong>“无人车”的上位替代，其实是一辆”很平常的车”。</strong></p>
+<p><strong>再补一个被忽略的形态：van-based（面包车近源）。</strong> 现实中大量”近源渗透”根本不飞天，就是把设备装进一辆普通面包车停在目标楼下，人在车里操作，完了开走。这比无人机更安静、更持久（供电、散热、坐人操作都舒服），是红队实践里的常规操作。但别把它当成无人车的”上位替代”——面包车进不了胡同、死角、通风口和室内，而这些恰恰是遥控无人车不可替代的舞台：它小到能钻进楼道、管道井、柜台缝，把载荷送到任何”一条面包车开不进去的路”的尽头。<strong>面包车是”坐镇”形态（持久、大载荷、人舒服），遥控车是”钻死角”形态（机动、贴脸、无孔不入）——近源渗透的两个极端，它们各占一头。</strong></p>
 <h2 id="三、为什么”物理接近”永远值得被认真对待"><a href="#三、为什么”物理接近”永远值得被认真对待" class="headerlink" title="三、为什么”物理接近”永远值得被认真对待"></a>三、为什么”物理接近”永远值得被认真对待</h2><p>有人会问：既然黑客都能远程了，干嘛还费劲让机器靠近？</p>
 <p>答案是物理学的宿命：<strong>射频信号在大气里走不远，而攻击往往需要”够得着”。</strong> 自由空间路径损耗公式（FSPL）告诉我们，信号强度随距离大致按 20log10(d) 衰减——<strong>距离每翻一倍，信号掉 6dB</strong>。而现实里最值得被攻击的协议，恰恰都是短腿的：</p>
 <table>
@@ -636,8 +636,15 @@
 <ol>
 <li><strong>噪音是硬伤。</strong> 无人机桨叶在夜间安静街区是”自带 BGM”的；遥控车在柏油路上的胎噪、电机声同样藏不住。保安的耳朵和摄像头的”AI 移动侦测”，对付的就是”有东西在动、有声音在响”——<strong>无人载具的近源渗透，本质是在赌”监控恰好没看见”</strong>。</li>
 <li><strong>信号暴露是把双刃剑。</strong> 攻击载荷要工作就必须发射信号——而这恰好是本系列 2408《电磁反侦察》讲过的死穴：<strong>频谱扫描能发现”不该存在的信号”，测向能定位”信号从哪里来”</strong>。游戏里无人车是隐形的；现实里它是一盏会移动的”无线探照灯”。</li>
-<li><strong>物证是终局。</strong> 无人机坠毁、遥控车被截获——里面的载荷（设备、数据卡、指纹）就是完整犯罪链条的证据。游戏里可以一键自毁，现实里电子取证专家最擅长的就是从”坏掉的设备”里恢复一切。</li>
+<li><strong>物证是终局。</strong> 无人机坠毁、遥控车被截获——里面的载荷（设备、数据卡、指纹）就是完整犯罪链条的证据。游戏里可以一键自毁，现实里”自毁”恰恰是取证专家最熟悉的考题：鞭炮级的小装置制造的是”焦壳”而不是”灰烬”——冲击波方向不可控，又小又轻的 SD 卡往往被崩飞而不是粉碎，毫秒级的爆燃火焰来不及穿透封装、把硅片（熔点 1414°C）真正熔毁。要把数据烧成灰烬，需要的是铝热剂或焚烧炉那种持续高温——而这类”确定性销毁”手段，全在管制名单上。于是攻击者能合法搞到的”自毁”，永远只是把设备变成”坏掉的设备”——而电子取证（Chip-off 裸片读取、NAND 重组）最擅长的，恰恰是从坏掉的设备里恢复一切。</li>
 </ol>
+<p>当然，”自毁”存在一个理论上能做到”真销毁”的激进版本：<strong>用铝热剂（2000°C+ 持续燃烧数秒，军用销毁标准）先烧穿存储芯片，让硅片熔融氧化、数据物理死亡；再用一次小威力爆炸把整台载具连同残骸彻底炸散</strong>——数据层、物证层双保险。更妙的是，这声爆炸本身还能充当”声东击西”：响动瞬间吸走目标与保安的注意力，给操作者制造脱身的窗口。这个战术逻辑在军事与特工领域是成立的（诱饵爆炸、转移注意力是成熟战术），也是”看门狗”式无人车自毁的终极形态。</p>
+<p>但放到 2026 年的城市现实里，代价是三重叠加的：</p>
+<ul>
+<li><strong>双料重罪</strong>：铝热剂与炸药均在严格管制之列，非法制造、运输、储存任何一样，都触犯《刑法》第 125 条（3-10 年起，情节严重可至无期、死刑）</li>
+<li><strong>危害公共安全</strong>：在城市环境引爆，无论目标是自己的车还是别的什么，都构成《刑法》第 114&#x2F;115 条放火、爆炸罪——已是”十年以上、无期或死刑”的量级</li>
+<li><strong>声东击西的悖论</strong>：爆炸确实能吸走注意力——但吸来的是整条街乃至全城的注意力：报警、应急响应、监控回溯会以爆炸点为圆心展开。电影里爆炸是掩护，现实里爆炸是给调查者发的定位信标——它引来的目光，比你脱身的速度快得多。于是”脱身窗口”变成了”通缉起点”，这正是游戏里”一键自毁”与现实之间最厚的一层滤镜。</li>
+</ul>
 <blockquote>
 <p>一句话：游戏里的车会飞，现实里的车会响——而”响”，就是被发现。</p>
 </blockquote>
