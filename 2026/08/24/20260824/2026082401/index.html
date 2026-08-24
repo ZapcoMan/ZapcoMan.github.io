@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/08/24/images/20260824/sdr-cover.png">
 <meta property="article:published_time" content="2026-08-24T02:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-24T10:15:46.645Z">
+<meta property="article:modified_time" content="2026-08-24T11:16:01.482Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="RTL-SDR">
 <meta property="article:tag" content="SDR">
@@ -34,7 +34,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"空气里飘着整个城市的数据：SDR 软件无线电入门——用一百块的\"电视棒\"打开电磁世界","name":"空气里飘着整个城市的数据：SDR 软件无线电入门——用一百块的\"电视棒\"打开电磁世界 | ZapcoMan's world","description":"你抬头看不见它，但空气里正飘着整座城市的数据：头顶 400 架飞机的坐标、隔壁楼的对讲机语音、汽车遥控器的开锁码、气象卫星传回的云图、每一部手机的入网请求。这些信号穿过你的身体、你的墙壁、你的房间，24 小时不停。绝大多数人一辈子都不知道它们存在——直到花一百块买一根”电视棒”，然后第一次看见频谱图上涌动的信号海。 这一篇是入口。我们不讲攻击，先讲清楚一件事...","url":"http://example.com/2026/08/24/20260824/2026082401/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260824/sdr-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/24/20260824/2026082401/","datePublished":"2026-08-24T02:00:00.000Z","dateModified":"2026-08-24T10:15:46.645Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"近源渗透, 反监控, SDR, RTL-SDR, 软件无线电, 无线电, 信号分析, 频谱"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"空气里飘着整个城市的数据：SDR 软件无线电入门——用一百块的\"电视棒\"打开电磁世界","name":"空气里飘着整个城市的数据：SDR 软件无线电入门——用一百块的\"电视棒\"打开电磁世界 | ZapcoMan's world","description":"你抬头看不见它，但空气里正飘着整座城市的数据：头顶 400 架飞机的坐标、隔壁楼的对讲机语音、汽车遥控器的开锁码、气象卫星传回的云图、每一部手机的入网请求。这些信号穿过你的身体、你的墙壁、你的房间，24 小时不停。绝大多数人一辈子都不知道它们存在——直到花一百块买一根”电视棒”，然后第一次看见频谱图上涌动的信号海。 这一篇是入口。我们不讲攻击，先讲清楚一件事...","url":"http://example.com/2026/08/24/20260824/2026082401/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260824/sdr-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/24/20260824/2026082401/","datePublished":"2026-08-24T02:00:00.000Z","dateModified":"2026-08-24T11:16:01.482Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"近源渗透, 反监控, SDR, RTL-SDR, 软件无线电, 无线电, 信号分析, 频谱"}</script>
 
 <script>
   (function () {
@@ -697,6 +697,12 @@
 <li><strong>RTL433</strong>：433&#x2F;868MHz ISM 频段传感器解码（气象站、胎压监测、遥控插座）。</li>
 <li><strong>multimon-ng &#x2F; PDW</strong>：POCSAG 寻呼等旧式数字协议解码。</li>
 </ul>
+<p><strong>深读 README：SDR 生态的三根”地基梁”。</strong> 上面这串工具，绝大多数底层都踩在同几个开源项目上，读它们的 README 等于看 SDR 生态的”地基图”：</p>
+<ul>
+<li><strong>rtl-sdr（osmocom 社区）</strong>：就是 2012 年把电视棒”破解”成 SDR 的那个项目本体。它的 README 写得很直白：核心是一个 <strong>librtlsdr 库</strong> + 一组命令行工具——<code>rtl_sdr</code>（把原始 I&#x2F;Q 采样 dump 到文件）、<code>rtl_tcp</code>（把棒子变成”网络 SDR 服务器”，局域网里共享给多台机器）、<code>rtl_fm</code>（FM 解调）。现在几乎每一个图形化 SDR 前端（SDR#、GQRX…）底层调用的都是这同一套驱动——<strong>你买的电视棒、装的软件、看到的频谱，全村的根基就是这一个 GitHub 仓库。</strong></li>
+<li><strong>Universal Radio Hacker（URH，Johannes Pohl）</strong>：Python 写的”协议逆向工作台”，GitHub 12k+ star，论文发在安全顶会 WOOT’18（USENIX 进攻性技术研讨会）。它的 README 把功能说得非常清楚：<strong>录制</strong>（把空中的原始信号 dump 下来）→ <strong>解调</strong>（自动识别调制参数）→ <strong>分析</strong>（自动推断协议字段结构）→ <strong>攻击</strong>（录制回放、重放注入、状态协议仿真、模糊测试）。一句话：后面讲遥控器复制、门禁回放时，URH 就是”一条龙”的研究平台。它 2026 年 3 月刚被作者归档为只读——项目不再更新，但代码和文档完好，仍是研究无线协议的标准起点。</li>
+<li>顺带一提开源世界的”仪式感”：全球最大的黑客大会 DEF CON 专门设有 <strong>Hardware Hacking Village（硬件黑客村）</strong>，2008 年（DC16）建立，2017 年（DC25）办过十周年——爱好者带自己的板子、示波器、SDR 现场焊、现场刷、现场破解，SDR 一直是村里最热闹的话题之一。</li>
+</ul>
 <p>把它们串起来，你能合法体验到的经典场景：</p>
 <table>
 <thead>
@@ -781,6 +787,9 @@
 <li>知乎《最便宜的高速 ADC：RTL2832U 的 ADC》（2025-01）</li>
 <li>CSDN《低成本SDR实战：从零搭建航空信号监听站》（2026-05）</li>
 <li>ARISS 国际空间站业余无线电频率资料（145.800 MHz）</li>
+<li>osmocom&#x2F;rtl-sdr GitHub README（librtlsdr 库与 rtl_sdr&#x2F;rtl_tcp&#x2F;rtl_fm 工具说明）</li>
+<li>jopohl&#x2F;urh GitHub README（Universal Radio Hacker：录制&#x2F;解调&#x2F;协议字段推断&#x2F;回放攻击，WOOT’18 论文；2026-03 归档为只读）</li>
+<li>DEF CON Hardware Hacking Village 官网 dchhv.org（DC16 建立、DC25 十周年）</li>
 </ul>
 <h2 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h2><ul>
 <li>供应链攻击系列 —— <a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/17/2026081701/">2026081701 传呼机阴谋：摩萨德如何把口袋里的通讯设备变成炸弹</a></li>

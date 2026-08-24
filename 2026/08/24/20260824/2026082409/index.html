@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/08/24/images/20260824/proximity-drone-cover.png">
 <meta property="article:published_time" content="2026-08-24T06:31:00.000Z">
-<meta property="article:modified_time" content="2026-08-24T10:27:08.506Z">
+<meta property="article:modified_time" content="2026-08-24T11:21:48.999Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="Flipper Zero">
 <meta property="article:tag" content="Wi-Fi Pineapple">
@@ -34,7 +34,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"看门狗游戏里的无人车，现实里的\"近源渗透车\"：无人机与遥控车的近源攻击可行性研究——从 ctOS 到 Wi-Fi Pineapple","name":"看门狗游戏里的无人车，现实里的\"近源渗透车\"：无人机与遥控车的近源攻击可行性研究——从 ctOS 到 Wi-Fi Pineapple | ZapcoMan's world","description":"《看门狗 2》（Watch Dogs 2）里有一幕很带感：你操控一架小型四轴无人机或一台遥控小车，悄无声息地溜进目标区域——钻过通风口、绕过保安、停在你黑不进去的那扇窗下，然后从它身上发射信号，把大楼里原本碰不到的设备一个一个拿下。ctOS 让整个城市的信息系统连成一张网，而你的车，就是你在这张网边缘伸出去的那只手。 这个画面让我想起昨天隐私反侦察系列里写过...","url":"http://example.com/2026/08/24/20260824/2026082409/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260824/proximity-drone-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/24/20260824/2026082409/","datePublished":"2026-08-24T06:31:00.000Z","dateModified":"2026-08-24T10:27:08.506Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"近源渗透, Flipper Zero, 物理安全, 无人机, 无人车, 无线攻击, Wi-Fi Pineapple, 红队"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"看门狗游戏里的无人车，现实里的\"近源渗透车\"：无人机与遥控车的近源攻击可行性研究——从 ctOS 到 Wi-Fi Pineapple","name":"看门狗游戏里的无人车，现实里的\"近源渗透车\"：无人机与遥控车的近源攻击可行性研究——从 ctOS 到 Wi-Fi Pineapple | ZapcoMan's world","description":"《看门狗 2》（Watch Dogs 2）里有一幕很带感：你操控一架小型四轴无人机或一台遥控小车，悄无声息地溜进目标区域——钻过通风口、绕过保安、停在你黑不进去的那扇窗下，然后从它身上发射信号，把大楼里原本碰不到的设备一个一个拿下。ctOS 让整个城市的信息系统连成一张网，而你的车，就是你在这张网边缘伸出去的那只手。 这个画面让我想起昨天隐私反侦察系列里写过...","url":"http://example.com/2026/08/24/20260824/2026082409/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260824/proximity-drone-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/24/20260824/2026082409/","datePublished":"2026-08-24T06:31:00.000Z","dateModified":"2026-08-24T11:21:48.999Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"近源渗透, Flipper Zero, 物理安全, 无人机, 无人车, 无线攻击, Wi-Fi Pineapple, 红队"}</script>
 
 <script>
   (function () {
@@ -598,6 +598,7 @@
 </tbody></table>
 <p>而”载体”本身：消费级无人机（如 DJI Mini 系列，250g 以下）、遥控车&#x2F;机器人底盘、甚至有团队玩过<strong>把攻击载荷装在儿童玩具车底盘上</strong>——形态伪装是近源渗透的老传统了（还记得儿童手表吗）。</p>
 <p><strong>再补一个被忽略的形态：van-based（面包车近源）。</strong> 现实中大量”近源渗透”根本不飞天，就是把设备装进一辆普通面包车停在目标楼下，人在车里操作，完了开走。这比无人机更安静、更持久（供电、散热、坐人操作都舒服），是红队实践里的常规操作。但别把它当成无人车的”上位替代”——面包车进不了胡同、死角、通风口和室内，而这些恰恰是遥控无人车不可替代的舞台：它小到能钻进楼道、管道井、柜台缝，把载荷送到任何”一条面包车开不进去的路”的尽头。<strong>面包车是”坐镇”形态（持久、大载荷、人舒服），遥控车是”钻死角”形态（机动、贴脸、无孔不入）——近源渗透的两个极端，它们各占一头。</strong></p>
+<p><strong>深读 README：Flipper Zero 固件的”全家桶”能力。</strong> 第二节表格里的 Flipper Zero 值得单独深读——它的官方固件仓库（flipperdevices&#x2F;flipperzero-firmware，GitHub 16.5k star，GPL-3.0）把整台设备的能力写得清清楚楚：<strong>SubGHz</strong>（433&#x2F;868&#x2F;915MHz 等低频无线收发）、<strong>RFID</strong>（125kHz 低频卡）、<strong>NFC</strong>（13.56MHz 门禁&#x2F;交通卡）、<strong>红外</strong>（家电遥控学习与发射）、<strong>BLE</strong>、<strong>iButton&#x2F;OneWire</strong> 七路无线接口，跑在 STM32 芯片上，还支持自定义应用生态（官方 <code>applications</code> + 社区应用目录）。<strong>换句话说，看门狗车里”挂载 Flipper”不是一句比喻——它本身就是一台完整的多协议近源攻击载荷，巴掌大小、免接线、即插即用。</strong></p>
 <h2 id="三、为什么”物理接近”永远值得被认真对待"><a href="#三、为什么”物理接近”永远值得被认真对待" class="headerlink" title="三、为什么”物理接近”永远值得被认真对待"></a>三、为什么”物理接近”永远值得被认真对待</h2><p>有人会问：既然黑客都能远程了，干嘛还费劲让机器靠近？</p>
 <p>答案是物理学的宿命：<strong>射频信号在大气里走不远，而攻击往往需要”够得着”。</strong> 自由空间路径损耗公式（FSPL）告诉我们，信号强度随距离大致按 20log10(d) 衰减——<strong>距离每翻一倍，信号掉 6dB</strong>。而现实里最值得被攻击的协议，恰恰都是短腿的：</p>
 <table>
@@ -654,6 +655,7 @@
 <li>治安管理处罚法、个人信息保护法（行踪轨迹属敏感个人信息）：侦察环节采集的信息同样违法</li>
 </ul>
 <p>一个有意思的现实注脚：2024 年 2 月，加拿大政府宣布拟禁 Flipper Zero 及同类设备，理由是这类”射频多面手”与汽车盗窃激增被关联——尽管业界反复澄清”它并没有传说中的超能力”。<strong>监管对”近源工具”的态度已经很明确了：不看你实际能不能干成，看你客观上具备什么能力。</strong> 无人载具 + 近源载荷的组合，在监管视角里只会更”显眼”，而不是更”隐蔽”。</p>
+<p><strong>黑客大会上的”近源渗透”叙事。</strong> 近源渗透在国内外的黑客大会上都是常客：<strong>DEF CON CHINA</strong>（2018 年在北京举办首届，360 协办）设置了 KEYNOTE + HACK VILLAGE 破解体验营 + BCTF 攻防赛，把”现场破解智能硬件”从美国搬到了中国主场；<strong>KCon</strong>（知道创宇 404 团队，2012 年起）历届议题大量覆盖无线与物联网攻击，2024 年第十三届更是把 AI 大模型、车联网列为热点；<strong>ISC</strong>（360 主办，2013 年起）则长期设有智能硬件&#x2F;物联网安全专场。<strong>这些会议的共同信号是：当”近源渗透”从黑客的玩法变成会议的固定栏目，它就已经是行业共识，而不是都市传说。</strong></p>
 <h2 id="六、防御清单：让”看门狗车”变成”看门狗”的饭碗"><a href="#六、防御清单：让”看门狗车”变成”看门狗”的饭碗" class="headerlink" title="六、防御清单：让”看门狗车”变成”看门狗”的饭碗"></a>六、防御清单：让”看门狗车”变成”看门狗”的饭碗</h2><p>对防御方（尤其企业、园区、楼宇）来说，防”无人近源渗透”不需要什么魔法，就是把三线都做到位：</p>
 <p><strong>第一线：物理安防（让机器进不来、停不住）</strong></p>
 <ul>
@@ -685,6 +687,9 @@
 <li>BleepingComputer《Canada to ban the Flipper Zero to stop surge in car thefts》（2024-02-09）、SecurityAffairs（2024-02-12）：加拿大拟禁 Flipper Zero 及同类设备</li>
 <li>《无人驾驶航空器飞行管理暂行条例》（国务院、中央军委 2023-06 公布，2024-01-01 施行）</li>
 <li>自由空间路径损耗公式（FSPL）与 BLE&#x2F;NFC&#x2F;Wi-Fi 典型通信距离（公开通信基础知识）</li>
+<li>flipperdevices&#x2F;flipperzero-firmware GitHub README（16.5k star，GPL-3.0：SubGHz&#x2F;RFID 125kHz&#x2F;NFC 13.56MHz&#x2F;红外&#x2F;BLE&#x2F;iButton&#x2F;OneWire 七路无线接口，STM32，应用生态）</li>
+<li>DEF CON CHINA 2018（北京首届、360 协办）：KEYNOTE + HACK VILLAGE 破解体验营 + BCTF 攻防赛</li>
+<li>KCon 2024（第十三届，知道创宇 404）公开报道：AI 大模型、车联网等热点议题；ISC（360，2013 年起）智能硬件&#x2F;物联网安全专场</li>
 </ul>
 <h2 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h2><ul>
 <li>隐私反侦察系列（近源渗透第一形态）—— <a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/23/20260823/2026082303/">2026082303 智能家居安全：从路由器到儿童电话手表</a>（儿童手表 &#x3D; 人带攻击装备走）</li>

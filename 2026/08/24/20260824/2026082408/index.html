@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/08/24/images/20260824/rf-surveillance-cover.png">
 <meta property="article:published_time" content="2026-08-24T06:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-24T10:26:34.528Z">
+<meta property="article:modified_time" content="2026-08-24T11:21:48.835Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="GPS定位器">
 <meta property="article:tag" content="SDR">
@@ -36,7 +36,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"你的车里藏着\"眼睛\"：电磁反侦察——用 SDR 揪出身边的 GPS 定位器、窃听器与偷拍镜头","name":"你的车里藏着\"眼睛\"：电磁反侦察——用 SDR 揪出身边的 GPS 定位器、窃听器与偷拍镜头 | ZapcoMan's world","description":"还记得 SDR 入门时埋过的那个伏笔吗：一个爱好者拿 SDR 在楼里扫一圈频谱，就能知道谁家有无线摄像头、哪层楼有人用对讲机——反过来，你的车底如果被人塞了一个 GPS 定位器，它 24 小时在发射信号，而”必须发射”正是它的死穴。 这一篇，把”听”的本事用回自己身上。公开报道里，有人伪装成代驾在豪车底下装定位器跟踪独行女性；有人黑进智慧停车系统倒卖车辆位置...","url":"http://example.com/2026/08/24/20260824/2026082408/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260824/rf-surveillance-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/24/20260824/2026082408/","datePublished":"2026-08-24T06:00:00.000Z","dateModified":"2026-08-24T10:26:34.528Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"隐私, 反侦察, SDR, 电磁安全, GPS定位器, 窃听器, 偷拍, 测向, 频谱扫描, 反跟踪"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"你的车里藏着\"眼睛\"：电磁反侦察——用 SDR 揪出身边的 GPS 定位器、窃听器与偷拍镜头","name":"你的车里藏着\"眼睛\"：电磁反侦察——用 SDR 揪出身边的 GPS 定位器、窃听器与偷拍镜头 | ZapcoMan's world","description":"还记得 SDR 入门时埋过的那个伏笔吗：一个爱好者拿 SDR 在楼里扫一圈频谱，就能知道谁家有无线摄像头、哪层楼有人用对讲机——反过来，你的车底如果被人塞了一个 GPS 定位器，它 24 小时在发射信号，而”必须发射”正是它的死穴。 这一篇，把”听”的本事用回自己身上。公开报道里，有人伪装成代驾在豪车底下装定位器跟踪独行女性；有人黑进智慧停车系统倒卖车辆位置...","url":"http://example.com/2026/08/24/20260824/2026082408/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260824/rf-surveillance-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/24/20260824/2026082408/","datePublished":"2026-08-24T06:00:00.000Z","dateModified":"2026-08-24T11:21:48.835Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"隐私, 反侦察, SDR, 电磁安全, GPS定位器, 窃听器, 偷拍, 测向, 频谱扫描, 反跟踪"}</script>
 
 <script>
   (function () {
@@ -634,6 +634,7 @@
 </tr>
 </tbody></table>
 <p>对多数人来说，几百块的 RTL-SDR 已经覆盖了 80% 的场景——车用定位器、无线摄像头、窃听器几乎都在 1.7GHz 以下。</p>
+<p><strong>开源项目：rtl_433——让 300 多种无线设备”开口说话”。</strong> 读 rtl_433（merbanan 维护，GitHub 7.7k star）的 README 会打开一个新世界：这个开源解码器内置 <strong>300 多种 ISM 频段无线协议</strong>（433.92MHz &#x2F; 868MHz &#x2F; 315MHz &#x2F; 345MHz &#x2F; 915MHz），覆盖气象站、无线插座遥控、<strong>汽车胎压监测（TPMS）</strong>、<strong>汽车遥控钥匙</strong>、门窗磁传感器、烟雾报警器、智能电表&#x2F;水表、太阳能逆变器……你家里绝大多数”默默发信号”的小设备，它都能直接读出”谁在发、发了什么”。它的协议列表还标注了哪些默认启用、哪些需手动打开，并支持自定义解码器（<code>-X</code> 参数）解析未知协议。<strong>对反侦察来说，它的价值是把”异常信号”变成”可读信息”：扫一圈，附近有几块胎压传感器、哪家门锁在广播、有没有”不该出现的 433MHz 心跳”，一目了然。</strong></p>
 <h2 id="三、真实的”身边之眼”：近年的公开案例"><a href="#三、真实的”身边之眼”：近年的公开案例" class="headerlink" title="三、真实的”身边之眼”：近年的公开案例"></a>三、真实的”身边之眼”：近年的公开案例</h2><ul>
 <li><strong>伪装代驾装定位器（2026 年公开报道）</strong>：犯罪团伙专盯豪车女司机，秘密在车辆上安装 GPS 定位器长期跟踪，再伪装成代驾或外卖员，伺机对独行女性实施暴力抢劫——<strong>跟踪是第一步，抢劫是目的</strong>，2025 年 9 月该案被侦破</li>
 <li><strong>黑客入侵停车系统（2026 年公开报道）</strong>：不法分子入侵多地智慧停车系统，非法获取车辆位置信息，并招募人员线下安装 GPS 定位器做”实时追踪”，形成一条”位置数据黑产链”；检察日报 2025 年也报道过”帮人找车偷装 GPS 定位器”的买卖位置信息案</li>
@@ -642,6 +643,7 @@
 </ul>
 <p>其中伪装代驾案的手法链条值得拆开看：<strong>踩点（锁定豪车与独行女司机）→ 装器（伪装代驾&#x2F;外卖员，把 GPS 定位器贴到车底）→ 跟踪（实时掌握车辆位置与停靠规律）→ 抢劫（专挑目标落单、车辆停在不便求助处的时机下手）</strong>——跟踪是前置，抢劫才是目的。警方通报还点出一个反侦察细节：这类团伙的定位器往往<strong>先”休眠”潜伏几天、摸清规律后再启用</strong>，专挑目标落单时动手。它最终被破获，靠的是车主偶然发现车底异常报警 + 警方顺藤摸瓜——<strong>定位器不是”被发现才危险”，而是”一直在被使用才危险”。</strong></p>
 <p>这些案例的共同教训：<strong>监视你的人并不高明，他们只是赌你从不检查。</strong> 你的反侦察目标不是”防住天才”，而是”让平庸的坏人放弃你、去挑更软的目标”。</p>
+<p><strong>黑客大会上的”抓鬼”：反侦察也有公开课。</strong> 反偷拍&#x2F;反侦察同样是黑客大会的舞台：2019 年 <strong>GeekPwn（极棒）</strong> 上，百度安全团队演示了利用 <strong>Wi-Fi 及针孔摄像头底层协议</strong>实现对房间内隐蔽针孔摄像头的<strong>硬件+软件联合侦测</strong>——不是”拿手电筒照插座孔”的土办法，而是直接分析针孔摄像头联网行为、从协议层识别出”房间里藏着一台正在推流的摄像头”。这印证了本篇的核心原理：<strong>再隐蔽的偷拍设备，一旦联网推流，就在协议层留下了指纹。</strong></p>
 <h2 id="四、合法边界：查可以，反制要当心"><a href="#四、合法边界：查可以，反制要当心" class="headerlink" title="四、合法边界：查可以，反制要当心"></a>四、合法边界：查可以，反制要当心</h2><p>发现可疑设备后的正确动作，是<strong>固定证据 → 报警 → 让执法部门处理</strong>，而不是自行”反制”：</p>
 <ul>
 <li>法律上，<strong>个人</strong>无权私自干扰、屏蔽他人信号（哪怕对方违法在先）：《刑法》第 288 条（扰乱无线电通讯管理秩序罪）管的是”擅自设置、使用无线电设备干扰通信秩序”，你拿干扰器怼别人的定位器，自己也违法</li>
@@ -681,6 +683,8 @@
 <li>公安部《公安机关破获涉窃听窃照等违法犯罪系列案件》（2024-12-27，含”防偷拍检测仪”藏偷拍模块）</li>
 <li>百度百科《非法使用窃听、窃照专用器材罪》（《刑法》第 284 条）</li>
 <li>无线电测向原理公开资料（信号强度比较法&#x2F;多普勒测向&#x2F;到达角 AOA，RTL-SDR 与 HackRF 官方规格）</li>
+<li>merbanan&#x2F;rtl_433 GitHub README（7.7k star：内置 300+ ISM 频段解码协议、433&#x2F;868&#x2F;315&#x2F;345&#x2F;915MHz、TPMS&#x2F;车钥匙&#x2F;安防&#x2F;仪表覆盖、-X 自定义解码器）</li>
+<li>新浪财经（2019-10-24）：GeekPwn 极棒百度安全团队利用 Wi-Fi 及针孔摄像头底层协议实现硬件+软件联合侦测</li>
 </ul>
 <h2 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h2><ul>
 <li>上一篇（无人机射频安全）—— <a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/24/2026082407/">2026082407 被一句谎话拐走的天空之眼：无人机射频安全</a></li>

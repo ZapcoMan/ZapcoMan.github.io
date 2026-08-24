@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/08/24/images/20260824/bluetooth-cover.png">
 <meta property="article:published_time" content="2026-08-24T05:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-24T10:18:20.504Z">
+<meta property="article:modified_time" content="2026-08-24T11:19:42.280Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="2.4GHz">
 <meta property="article:tag" content="AirTag">
@@ -38,7 +38,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"2.4GHz 频段里的人精：蓝牙/BLE 安全——你的耳机、手环、车钥匙和门锁在裸奔什么","name":"2.4GHz 频段里的人精：蓝牙/BLE 安全——你的耳机、手环、车钥匙和门锁在裸奔什么 | ZapcoMan's world","description":"你的口袋里、手腕上、耳朵里、车钥匙扣上、家门口的锁芯里——至少有五六台设备在 2.4GHz 频段里用蓝牙广播自己，几乎从不关机。2017 年，一个叫 BlueBorne 的漏洞不需要你点任何链接、不需要配对，就能隔空接管你的手机；2026 年 6 月，安全研究员演示了在 15 米外把一个蓝牙音箱变成”隐形键盘”。蓝牙不是”短距离所以安全”——恰恰相反，正因为...","url":"http://example.com/2026/08/24/20260824/2026082404/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260824/bluetooth-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/24/20260824/2026082404/","datePublished":"2026-08-24T05:00:00.000Z","dateModified":"2026-08-24T10:18:20.504Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"Flipper Zero, 蓝牙, BLE, BlueBorne, KNOB, SweynTooth, BLUFFS, AirTag, 追踪, 中继攻击, 2.4GHz, 物联网安全"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"2.4GHz 频段里的人精：蓝牙/BLE 安全——你的耳机、手环、车钥匙和门锁在裸奔什么","name":"2.4GHz 频段里的人精：蓝牙/BLE 安全——你的耳机、手环、车钥匙和门锁在裸奔什么 | ZapcoMan's world","description":"你的口袋里、手腕上、耳朵里、车钥匙扣上、家门口的锁芯里——至少有五六台设备在 2.4GHz 频段里用蓝牙广播自己，几乎从不关机。2017 年，一个叫 BlueBorne 的漏洞不需要你点任何链接、不需要配对，就能隔空接管你的手机；2026 年 6 月，安全研究员演示了在 15 米外把一个蓝牙音箱变成”隐形键盘”。蓝牙不是”短距离所以安全”——恰恰相反，正因为...","url":"http://example.com/2026/08/24/20260824/2026082404/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260824/bluetooth-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/24/20260824/2026082404/","datePublished":"2026-08-24T05:00:00.000Z","dateModified":"2026-08-24T11:19:42.280Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"Flipper Zero, 蓝牙, BLE, BlueBorne, KNOB, SweynTooth, BLUFFS, AirTag, 追踪, 中继攻击, 2.4GHz, 物联网安全"}</script>
 
 <script>
   (function () {
@@ -604,12 +604,18 @@
 </tbody></table>
 <p>规律很清楚：<strong>协议层漏洞从不针对某一款设备，而是”凡是用了蓝牙的设备全中招”。</strong> 这也是为什么每次蓝牙漏洞通报的波及面都以”十亿”为单位。</p>
 <p>以 BlueBorne 为例拆开看，你会更理解”协议层攻击”的可怕之处：Armis 实验室 2017 年披露的 8 个漏洞分布在 Android 蓝牙网络封装协议（CVE-2017-0781&#x2F;0782 远程代码执行、0783 逻辑漏洞、0785 信息泄露）和 Linux 蓝牙协议栈（CVE-2017-1000250&#x2F;1000251）等多个层面，当时影响面估计高达 <strong>53 亿台设备</strong>。它的三个”不需要”至今仍是蓝牙攻击的经典模板：<strong>不需要用户点击任何链接、不需要与目标配对、甚至不需要目标联网</strong>——只要蓝牙开着、在攻击范围内，就能在链路层直接执行代码、完全接管设备。Armis 还演示过一个令人后背发凉的场景：带着一台被感染的手机走进银行，周边所有开着蓝牙的设备都会被感染——这意味着<strong>即便内网与互联网物理隔离（”气隙”网络），只要有一台设备开了蓝牙，隔离就破了</strong>。安全界当时拿它类比 WannaCry：不是”你点了什么才中毒”，而是”你开着蓝牙就可能中毒”。</p>
+<p><strong>开源项目：攻击者（和研究者）手里的蓝牙”手术刀”。</strong> 蓝牙攻防的研究工具在开源社区一应俱全，读 README 就明白攻击的每一层是怎么来的：</p>
+<ul>
+<li><strong>Ubertooth（Great Scott Gadgets）</strong>：开源蓝牙”嗅探平台”——一块巴掌大的 USB 板，专门监听 BLE 数据包（也能部分抓取经典蓝牙），配套 libbtbb 解析库能直接进 Wireshark 看包结构。README 说得直白：它就是”capable BLE sniffer”。对安全研究而言，它是观察”设备在广播什么”的显微镜——AirTag 类追踪器的广播包、BLE 外设的配对握手，在它面前都是透明的。</li>
+<li><strong>InternalBlue（德国达姆施塔特工业大学 SEEMOO 实验室）</strong>：更狠的”固件手术刀”。它不满足于嗅探，而是直接逆向 Broadcom&#x2F;Cypress 蓝牙芯片固件，实现<strong>运行时打补丁、向已建立连接注入任意数据包、零丢包监控</strong>。README 里最有说服力的履历是：<strong>KNOB、BIAS 这两个教科书级蓝牙攻击的原型，都是用 InternalBlue 搭出来的</strong>——也就是说，你在漏洞通报里看到的”密钥熵被降到 8 位”，最初就是在实验室里用这个开源框架一点点调出来的。</li>
+</ul>
 <h2 id="四、设备层攻击：Flipper-Zero-与”隐形键盘”"><a href="#四、设备层攻击：Flipper-Zero-与”隐形键盘”" class="headerlink" title="四、设备层攻击：Flipper Zero 与”隐形键盘”"></a>四、设备层攻击：Flipper Zero 与”隐形键盘”</h2><p>协议漏洞要等厂商修，设备层漏洞则每天都在被现实利用。两个代表性场景：</p>
 <p><strong>场景一：BLE 键盘注入（Flipper Zero 经典玩法）。</strong> 很多廉价 BLE 键盘&#x2F;鼠标（以及大量把 BLE 当 HID 用的设备）配对时<strong>不需要认证</strong>或使用弱 PIN。攻击者用 Flipper Zero 这类设备扫描附近可配对的 BLE 外设，直接连上去，伪装成”键盘”输入命令——在目标电脑上执行 PowerShell、下载木马、改系统设置，一气呵成。这在安全圈叫”无线 BadUSB”：不插线，靠 2.4GHz 完成同样的事。</p>
 <p><strong>场景二：蓝牙音箱变”键盘”（2026 年 6 月最新研究）。</strong> 安全研究员拉斯穆斯·穆拉茨公开披露：某些主流蓝牙音箱存在固件漏洞，攻击者可在 <strong>15 米内</strong>无声接管设备，把它改造成”隐形键盘”——用户听着歌，音箱却在背后替他敲键盘。这类攻击的共同点：<strong>设备把”连接”和”信任”混为一谈，谁连得上就等于谁可信。</strong></p>
 <blockquote>
 <p>金句：蓝牙的默认哲学是”连接就是朋友”——而在攻击者眼里，连接就是入口。</p>
 </blockquote>
+<p><strong>黑客大会上的蓝牙攻击。</strong> 蓝牙&#x2F;近场设备的攻击一直是黑客大会的常客，国内最典型的是 <strong>GeekPwn（极棒）</strong>：2021 年上海”极棒之夜”上，选手曾颖涛演示了通过<strong>蓝牙侵入胰岛素泵的控制器</strong>，在几秒内推出加大剂量胰岛素——一个”可以远程给药”的慢性病设备被证明可被无线接管；同届还有手机数字钥匙的破解挑战。2023 年赛事更名为 GEEKCON 安全极客大赛后，公开报道中最震撼的一次是选手<strong>在 20 分钟内黑掉一台智能车</strong>——车钥匙、车机、门锁的无线链路被逐层打穿。这些展示说明一件事：<strong>蓝牙攻击早已不是”耳机被蹭连”的段位，它已经摸到了人命关天的设备。</strong></p>
 <h2 id="五、追踪器：AirTag-与猫鼠游戏"><a href="#五、追踪器：AirTag-与猫鼠游戏" class="headerlink" title="五、追踪器：AirTag 与猫鼠游戏"></a>五、追踪器：AirTag 与猫鼠游戏</h2><p>蓝牙最”沉默”的应用是低功耗追踪器——AirTag 这类拇指大的设备，靠 BLE 广播 + 全网手机”顺路打零工”定位，让”跟踪一个人”的成本降到两百块。</p>
 <p>苹果的应对（反追踪机制）：</p>
 <ul>
@@ -649,6 +655,10 @@
 <li>KU Leuven COSIC《Passive Keyless Entry and Start Systems: Security Evaluation of Tesla Model S》（2018-09）及 The Verge 报道</li>
 <li>Wired &#x2F; Carscoops《Tesla’s Keyless Entry Hacked With Cheap Relay Device》（2024-05，15 英尺外中继开走特斯拉）</li>
 <li>多家媒体关于无钥匙进入中继攻击的公开演示报道</li>
+<li>greatscottgadgets&#x2F;ubertooth GitHub README（BLE 嗅探平台、libbtbb 解析库、开放硬件）</li>
+<li>seemoo-lab&#x2F;InternalBlue GitHub README（达姆施塔特工业大学 SEEMOO：固件运行时补丁、向已建立连接注入数据包、零丢包监控；KNOB&#x2F;BIAS 攻击原型研究平台）</li>
+<li>中新网上海（2021-10-25）：GeekPwn 极棒之夜 曾颖涛通过蓝牙侵入胰岛素泵控制器演示</li>
+<li>公开报道（2023-11）：GEEKCON 安全极客大赛选手 20 分钟黑掉智能车</li>
 </ul>
 <h2 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h2><ul>
 <li>上一篇（SDR 无线电入门）—— <a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/24/2026082401/">2026082401 SDR 软件无线电入门：用一百块的”电视棒”打开电磁世界</a></li>

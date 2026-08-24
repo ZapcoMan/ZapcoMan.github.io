@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/08/24/images/20260824/drone-rf-cover.png">
 <meta property="article:published_time" content="2026-08-24T05:35:00.000Z">
-<meta property="article:modified_time" content="2026-08-24T10:22:31.553Z">
+<meta property="article:modified_time" content="2026-08-24T11:21:42.996Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="GPS欺骗">
 <meta property="article:tag" content="SkyJack">
@@ -36,7 +36,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"被一句谎话拐走的天空之眼：无人机射频安全——从 SkyJack 到图传裸奔","name":"被一句谎话拐走的天空之眼：无人机射频安全——从 SkyJack 到图传裸奔 | ZapcoMan's world","description":"上一篇讲完 GPS 欺骗，这一篇讲它最经典的受害者：无人机。无人机飞在天上，靠三条看不见的线活着——控制信号、图传信号、GPS 信号。这三条线里任何一条被截断或篡改，一架几千块的无人机，就成了别人手里的提线木偶。 2013 年，黑客 Samy Kamkar 用一台树莓派和一架 Parrot 无人机，在 DEF CON 之外的场合表演了”僵尸无人机军团”：他的...","url":"http://example.com/2026/08/24/20260824/2026082407/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260824/drone-rf-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/24/20260824/2026082407/","datePublished":"2026-08-24T05:35:00.000Z","dateModified":"2026-08-24T10:22:31.553Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"干扰, 无人机, UAV, SkyJack, GPS欺骗, 图传, 射频, 反无人机, 劫持, 低空安全"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"被一句谎话拐走的天空之眼：无人机射频安全——从 SkyJack 到图传裸奔","name":"被一句谎话拐走的天空之眼：无人机射频安全——从 SkyJack 到图传裸奔 | ZapcoMan's world","description":"上一篇讲完 GPS 欺骗，这一篇讲它最经典的受害者：无人机。无人机飞在天上，靠三条看不见的线活着——控制信号、图传信号、GPS 信号。这三条线里任何一条被截断或篡改，一架几千块的无人机，就成了别人手里的提线木偶。 2013 年，黑客 Samy Kamkar 用一台树莓派和一架 Parrot 无人机，在 DEF CON 之外的场合表演了”僵尸无人机军团”：他的...","url":"http://example.com/2026/08/24/20260824/2026082407/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260824/drone-rf-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/24/20260824/2026082407/","datePublished":"2026-08-24T05:35:00.000Z","dateModified":"2026-08-24T11:21:42.996Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"干扰, 无人机, UAV, SkyJack, GPS欺骗, 图传, 射频, 反无人机, 劫持, 低空安全"}</script>
 
 <script>
   (function () {
@@ -574,6 +574,8 @@
 <li><strong>扩张</strong>：被劫持的无人机反过来可以成为新的”劫持母机”，去接管更多无人机——<strong>形成一支”僵尸无人机军团”</strong></li>
 </ol>
 <p>SkyJack 能成立，根源在于 Parrot AR.Drone 2.0 的<strong>控制接口不设任何认证</strong>——它的飞行控制暴露在一个开放的 Wi-Fi 网络上，任何人只要连上同一个 Wi-Fi、向对应端口发送指令就能操控这架飞机。Kamkar 做的只是把”抢连接”自动化：先发 Wi-Fi 去认证包（deauth）把原飞手踢下线，再接入自己的指令流，全程无需破解任何加密——因为压根没有加密。Kamkar 的演示里，这套设备还能从地面运行，劫持头顶飞过的同类无人机。当时的剑桥大学教授评论称这是”基础设计上的严重失误”（basic design blunder）。<strong>注意年代：2013 年，Android 4 时代</strong>。今天的主流消费无人机（DJI 等）控制链路已经加密、做了大量加固，SkyJack 这类”开盒即用”的劫持在 2026 年已经很难对现代机型奏效——但它的价值在于揭示了无人机安全的第一原理：<strong>凡是”认证”做得不严的链路，就一定会有人接管它</strong>。</p>
+<p><strong>深读 README：SkyJack 的”攻击面”比想象中更宽。</strong> 回到 SkyJack 的仓库本身，README 里藏着一个常被忽略的细节：2015 年 8 月的更新给项目加入了<strong>对 3DR 无人机的攻击概念验证</strong>——不再走 Wi-Fi，而是用亚 GHz 射频收发器（TI CC1111 芯片组），通过<strong>预测 3DR 遥测模块的跳频规律和模块 ID</strong>，在完全不用 Wi-Fi 的情况下接管附近的 3DR 无人机。这意味着”劫持无人机”的路径至少有两条：Wi-Fi 层（去认证 + 冒充接入）和射频层（预测跳频接管）。SkyJack 的依赖清单也说明它的”平民化”程度：树莓派 + Alfa AWUS036H 网卡 + aircrack-ng + node.js，全是安全研究里的标准件。<strong>2013 年一个黑客周末拼出的东西，把”无人机可被无线接管”钉进了安全史。</strong></p>
+<p><strong>黑客大会上的”无人机猎手”。</strong> 无人机攻防是国内黑客大会的常驻节目，<strong>GeekPwn（极棒）</strong> 2015 年就现场演示过<strong>对市售大疆无人机的无线劫持</strong>（无接触接管，被媒体称为”黑客奥运会”的名场面）；2020 年，清华-奇安信联合研究中心的选手利用未知安全漏洞，<strong>劫持了正在作业的植保无人机并远程篡改其工作内容</strong>——从”飞着玩的玩具”到”干活的农业机械”，攻击面在变大，劫持演示也年年升级。这些展示和 SkyJack 说的是同一件事：<strong>凡是通过无线电控制的东西，就有被无线电夺走的可能。</strong></p>
 <h2 id="四、被”偷看”：图传裸奔"><a href="#四、被”偷看”：图传裸奔" class="headerlink" title="四、被”偷看”：图传裸奔"></a>四、被”偷看”：图传裸奔</h2><p>如果说控制链路是”门锁”，那图传链路很多情况下是”没装门”。</p>
 <p>2024 年 IEEE Spectrum 的一篇深度报道（《乌克兰是第一场”黑客战争”》）指出：<strong>大量模拟图传系统（analog video transmitter）完全没有加密</strong>——任何在附近、懂点无线电的人，用一台接收机就能截获无人机的实时画面。这就是为什么战场上双方都能”看对方的无人机视角”，也是为什么近年无人机厂商在推数字图传 + 加密方案（如 HDZero、Walksnail 等）——<strong>给”眼睛”装上密码锁</strong>。</p>
 <p>对普通人来说，”图传被截”的直接后果是隐私泄露：你飞无人机拍的画面，别人在几百米外用接收器就能看直播。它不会夺走你的无人机，但会偷走你的”视野”。</p>
@@ -635,6 +637,8 @@
 <h2 id="八、边界声明"><a href="#八、边界声明" class="headerlink" title="八、边界声明"></a>八、边界声明</h2><p>本文为无人机射频安全科普，案例（SkyJack、RQ-170、图传截获）均来自公开报道与公开研究（Samy Kamkar 2013 年发布、IEEE Spectrum 2024 年报道等）。文中不提供任何劫持、干扰、欺骗的实现方法、协议细节或设备配置。非法控制他人无人机、干扰无人机通信、在禁飞区飞行、非法使用无线电频率，均属违法犯罪行为，将面临《中华人民共和国刑法》第 285&#x2F;286&#x2F;288 条、《无人驾驶航空器飞行管理暂行条例》及治安管理处罚法的追责。请勿尝试。</p>
 <h2 id="素材来源"><a href="#素材来源" class="headerlink" title="素材来源"></a>素材来源</h2><ul>
 <li>Samy Kamkar《SkyJack》项目（2013-12 发布，GitHub samyk&#x2F;skyjack）及新浪科技、IKCEST 等 2013 年报道</li>
+<li>samyk&#x2F;skyjack GitHub README（2015-08 更新：3DR 无人机亚 GHz 射频攻击 PoC，TI CC1111 预测跳频与模块 ID；树莓派+Alfa AWUS036H 依赖清单）</li>
+<li>百度百科「黑客奥运会」词条（GeekPwn 2015 大疆无人机无线劫持现场演示）及搜狐 GeekPwn 2020 回顾（TQL 清华-奇安信劫持植保无人机、远程篡改工作内容）</li>
 <li>IEEE Spectrum《Ukraine Is the First “Hackers’ War”》（2024-04）：模拟图传无加密、可被任意接收器截获</li>
 <li>伊朗 2011 年 RQ-170 事件（公开报道，详见上一篇 2402 素材）</li>
 <li>《无人驾驶航空器飞行管理暂行条例》（国务院、中央军委 2023-06 公布，2024-01-01 施行）</li>

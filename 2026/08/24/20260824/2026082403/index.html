@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/08/24/images/20260824/fake-base-station-cover.png">
 <meta property="article:published_time" content="2026-08-24T04:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-24T10:18:11.867Z">
+<meta property="article:modified_time" content="2026-08-24T11:17:35.130Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="2G">
 <meta property="article:tag" content="GSM">
@@ -36,7 +36,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"冒充运营商的信号：伪基站与 IMSI 猫——为什么你的手机会\"自愿\"投奔骗子","name":"冒充运营商的信号：伪基站与 IMSI 猫——为什么你的手机会\"自愿\"投奔骗子 | ZapcoMan's world","description":"你有没有过这样的瞬间：走在街上，手机信号突然掉到”2G”，然后”叮”一声——一条”您的积分即将过期，请点击链接兑换”的短信进来，发件人号码长得跟运营商官方号码一模一样。你以为这是运营商发的，其实那一刻，你的手机正连着一个藏在汽车后备箱里的”假基站”。 上一篇我们说过，伪基站是让监管者头疼几十年的老对手。这一篇把它拆开：为什么一个老掉牙的 2G 漏洞，今天还能...","url":"http://example.com/2026/08/24/20260824/2026082403/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260824/fake-base-station-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/24/20260824/2026082403/","datePublished":"2026-08-24T04:00:00.000Z","dateModified":"2026-08-24T10:18:11.867Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"伪基站, IMSI, IMSI猫, GSM, 2G, 单向认证, 降级攻击, 电信诈骗, Stingray, 移动安全"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"冒充运营商的信号：伪基站与 IMSI 猫——为什么你的手机会\"自愿\"投奔骗子","name":"冒充运营商的信号：伪基站与 IMSI 猫——为什么你的手机会\"自愿\"投奔骗子 | ZapcoMan's world","description":"你有没有过这样的瞬间：走在街上，手机信号突然掉到”2G”，然后”叮”一声——一条”您的积分即将过期，请点击链接兑换”的短信进来，发件人号码长得跟运营商官方号码一模一样。你以为这是运营商发的，其实那一刻，你的手机正连着一个藏在汽车后备箱里的”假基站”。 上一篇我们说过，伪基站是让监管者头疼几十年的老对手。这一篇把它拆开：为什么一个老掉牙的 2G 漏洞，今天还能...","url":"http://example.com/2026/08/24/20260824/2026082403/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260824/fake-base-station-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/24/20260824/2026082403/","datePublished":"2026-08-24T04:00:00.000Z","dateModified":"2026-08-24T11:17:35.130Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"伪基站, IMSI, IMSI猫, GSM, 2G, 单向认证, 降级攻击, 电信诈骗, Stingray, 移动安全"}</script>
 
 <script>
   (function () {
@@ -589,6 +589,13 @@
 </tbody></table>
 <p>被动式 IMSI 猫的门槛低到什么程度？DEF CON 黑客大会上有人演示：用一根 HackRF 配合开源软件，不到 10 分钟就捕获了会场内几十部手机的 IMSI。这类设备连无人机都能挂——已有厂商把 IMSI 猫做成无人机载荷，飞过一片区域就能”点名”下面所有手机。执法机构手里的著名型号叫 <strong>Stingray</strong>，过去十几年在美国被大量使用，也引发了巨大的隐私争议——它不挑目标，路过的人全被”点名”。</p>
 <p>IMSI 猫的硬件本身也毫无神秘感：一个多频段 GSM 收发模块（一块砖头大小的射频板）、一根天线、一部旧手机当”靶机”验证连接、一台电脑跑开源软件。主动式版本还要加一个 SIM 卡槽——插一张普通 SIM 卡，用来”借”运营商的网络参数伪装自己，让手机更愿意连过来。全套成本从几百到几千元不等，在淘宝和海外网店都能买到现成的”伪基站套餐”。<strong>它不贵、不难、不挑人——这就是为什么它和伪基站一起，成为监管者几十年的心头大患。</strong></p>
+<p><strong>开源项目：伪基站攻防的”同一套代码”。</strong> IMSI 猫和伪基站并不神秘——它们所用的收发与解码能力，在开源社区都是公开的项目，读 README 就懂原理：</p>
+<ul>
+<li><strong>OpenBTS（RangeNetworks）</strong>：README 的第一句就是”把 GSM&#x2F;GPRS 基站做成一个软件”。它让一台普通的 Linux 电脑 + 一块 SDR（如 USRP）就变成一座能接入真手机的 GSM 基站，还带 SIP 电话网关、短信服务、GPRS 数据支持。<strong>它最初的定位是”给偏远地区做便宜基站”，但同一个软件装进后备箱，就是伪基站的”发射端”。</strong> 这解释了一个关键事实：伪基站不是军工科技，是”开源的基站软件 + 几百块的 SDR”。</li>
+<li><strong>gr-gsm（Osmocom，Piotr Krysik）</strong>：GSM 信号的”监听&#x2F;解码工具链”。README 列出的模块包括 GSM 下行接收、<strong>语音信道解复用与解码</strong>、<strong>GSM 全部加密算法的解密模块</strong>、突发脉冲（burst）存储读取、跳频反转等——它是从”空气中采集 GSM 信号”到”解出里面的信令和内容”这条链路的开源实现。被动式 IMSI 猫的软件层，很多就建立在它之上。</li>
+<li><strong>AIMSICD（CellularPrivacy）</strong>：防守侧的对应物，Android 上的开源”伪基站检测器”。README 明确它的能力：监控基站一致性、检测异常降级与静默短信、识别疑似 IMSI Catcher&#x2F;StingRay 信号。这就是第八节防御指南里”开源检测工具”的具体所指。</li>
+</ul>
+<p><strong>黑客大会上的”GSM 攻防史”。</strong> 早在 2008-2009 年，柏林 CCC 黑客大会（25C3&#x2F;26C3）上，Karsten Nohl 团队就公开演示过<strong>低成本破解 GSM 加密（A5&#x2F;1）</strong>：预计算”彩虹表” + 抓包实时比对，用几百欧元的普通硬件在几分钟内解出 GSM 通话内容。这直接改写了”GSM 很安全”的叙事——<strong>通信加密能被廉价破解，基站又从不验证身份，2G 的”伪基站可乘之机”其实是连环漏洞。</strong></p>
 <h2 id="四、攻击链与黑产价值：一条短信背后的产业"><a href="#四、攻击链与黑产价值：一条短信背后的产业" class="headerlink" title="四、攻击链与黑产价值：一条短信背后的产业"></a>四、攻击链与黑产价值：一条短信背后的产业</h2><p>伪基站从来不是孤立的，它是电信诈骗产业链的”引流环节”：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">伪基站群发钓鱼短信 → 诱导点击钓鱼链接/回拨 → 钓鱼网站骗取密码验证码 → 洗钱团伙变现</span><br></pre></td></tr></table></figure>
 
@@ -710,6 +717,10 @@
 <li>工信部关于 2G 退网与老年人、物联网保障的公开答复（2023 年底）</li>
 <li>3GPP 5G 标准 SUCI（Subscription Concealed Identifier）机制说明</li>
 <li>GrapheneOS 等安全项目文档：关闭 2G &#x2F; LTE-only 缓解降级攻击的建议</li>
+<li>RangeNetworks&#x2F;OpenBTS GitHub README（Linux + SDR 变 GSM&#x2F;GPRS 基站、SIP 电话网关、GPRS 支持）</li>
+<li>osmocom&#x2F;gr-gsm GitHub README（Piotr Krysik；GSM 接收&#x2F;语音信道解码&#x2F;全部加密算法解密模块&#x2F;burst 存储）</li>
+<li>CellularPrivacy&#x2F;AIMSICD GitHub README（Android 开源伪基站&#x2F;IMSI Catcher 检测）</li>
+<li>Ars Technica（2009-12-28）：Karsten Nohl 团队在柏林 CCC 大会（25C3&#x2F;26C3）演示低成本破解 GSM 加密（A5&#x2F;1 彩虹表预计算）</li>
 <li>《中华人民共和国刑法》第 253、285、286、288 条</li>
 </ul>
 <h2 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h2><ul>

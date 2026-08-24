@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/08/24/images/20260824/satellite-hack-cover.png">
 <meta property="article:published_time" content="2026-08-24T03:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-24T10:26:45.143Z">
+<meta property="article:modified_time" content="2026-08-24T11:16:23.740Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="Hack-A-Sat">
 <meta property="article:tag" content="ISEE-3">
@@ -36,7 +36,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"《一键日卫星》 是真的吗：卫星攻击史——从 ROSAT 到 KA-SAT，从地面站到废弃卫星","name":"《一键日卫星》 是真的吗：卫星攻击史——从 ROSAT 到 KA-SAT，从地面站到废弃卫星 | ZapcoMan's world","description":"上一篇讲了”一键收卫星信号”之后，评论区最热闹的追问是：那能不能”一键日卫星”？——先说清楚，”日”在这里是黑客圈的黑话，意思是攻击、黑掉，不是别的意思；而”一键”也不是说这事简单得跟喝水一样，它指的是黑客圈里那种**”按下一个键，预置脚本自动跑完一整套攻击流程”**的做法：漏洞探测 → 漏洞利用 → 提权 → 注入指令 → 拿到控制权限，一次按键全流程执行...","url":"http://example.com/2026/08/24/20260824/2026082402/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260824/satellite-hack-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/24/20260824/2026082402/","datePublished":"2026-08-24T03:00:00.000Z","dateModified":"2026-08-24T10:26:45.143Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"卫星, 卫星安全, 黑客攻击, 太空安全, ROSAT, Viasat, ISEE-3, Hack-A-Sat, 地面站, 废弃卫星"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"《一键日卫星》 是真的吗：卫星攻击史——从 ROSAT 到 KA-SAT，从地面站到废弃卫星","name":"《一键日卫星》 是真的吗：卫星攻击史——从 ROSAT 到 KA-SAT，从地面站到废弃卫星 | ZapcoMan's world","description":"上一篇讲了”一键收卫星信号”之后，评论区最热闹的追问是：那能不能”一键日卫星”？——先说清楚，”日”在这里是黑客圈的黑话，意思是攻击、黑掉，不是别的意思；而”一键”也不是说这事简单得跟喝水一样，它指的是黑客圈里那种**”按下一个键，预置脚本自动跑完一整套攻击流程”**的做法：漏洞探测 → 漏洞利用 → 提权 → 注入指令 → 拿到控制权限，一次按键全流程执行...","url":"http://example.com/2026/08/24/20260824/2026082402/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260824/satellite-hack-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/24/20260824/2026082402/","datePublished":"2026-08-24T03:00:00.000Z","dateModified":"2026-08-24T11:16:23.740Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"卫星, 卫星安全, 黑客攻击, 太空安全, ROSAT, Viasat, ISEE-3, Hack-A-Sat, 地面站, 废弃卫星"}</script>
 
 <script>
   (function () {
@@ -689,6 +689,11 @@
 <li><strong>Anik F1R 直播劫持（2021）</strong>：一颗 2005 年发射、2020 年寿命到期的加拿大地球同步轨道通信卫星 Anik F1R，退役后被黑客团体 Shadytel 的成员（Karl Koscher 等）”接管”了转发器——2021 年 DEF CON 黑客大会上，他们用这颗卫星<strong>直播大会实况、放起了黑客电影</strong>。这既不是攻击军用系统、也没有破坏任何东西，但它把”退役卫星可被民间接管”从科幻变成了现实：<strong>卫星退役不等于关机，转发器还在工作，而”没人管”本身就是邀请函。</strong></li>
 </ul>
 <p>把这三件事放一起看，逻辑就通了：<strong>废弃卫星”一定有漏洞”不是夸张——它们是”没加密 + 文档公开 + 无人值守”的完美组合。</strong> 但别急着兴奋，下一页泼冷水。</p>
+<p><strong>开源项目：普通人也能”摸到”天上的卫星。</strong> 上面这些”民间正面操作”不是孤例——接收和解析卫星信号，本身就是开源社区深耕多年的领域，读 README 就懂：</p>
+<ul>
+<li><strong>gr-satellites（daniestevez，2015 年至今）</strong>：GNU Radio 的卫星解码外置模块，目标是”解码所有在业余无线电频段发射信号的卫星遥测”。README 列出的协议覆盖 <strong>AX.25</strong>（经典业余无线电分组协议）、<strong>GOMspace NanoCom</strong>（商用小卫星常见数传调制解调器）、<strong>CCSDS 空间数据链路标准</strong>等。它的输出不只是十六进制帧——内置部分卫星的遥测格式定义，能把下行数据解析成<strong>人类可读的工程值</strong>（卫星总线电压、电流、姿态），还能在接收过程中<strong>实时重组卫星下传的 JPEG 图像</strong>。想”亲手收一张卫星照片”，这条路是现成的。</li>
+<li><strong>SatNOGS（全球联网开放地面站网络）</strong>：把”地面站”做成开源+共享——业余爱好者在世界各地部署小型接收站，通过一个公共网络平台调度观测任务、共享数据。读它的仓库会发现整个项目拆成 Client（地面站端软件）、Network（全球调度）、DB（观测数据）几块，任何人有 RTL-SDR 都能注册一台地面站加入网络。<strong>它证明了”听卫星”不是少数人的特权，而是一个全球协作的开源工程。</strong></li>
+</ul>
 <h2 id="五、泼冷水：为什么你还是”一键”不了"><a href="#五、泼冷水：为什么你还是”一键”不了" class="headerlink" title="五、泼冷水：为什么你还是”一键”不了"></a>五、泼冷水：为什么你还是”一键”不了</h2><p>就算废弃卫星是软柿子，”一键日卫星”在现实里依然是伪命题：</p>
 <ul>
 <li><strong>上行功率门槛</strong>：指令上行要穿透几百到几万公里，需要几十瓦级发射功率 + 高增益定向天线——上一篇文章说过，RTL-SDR 只能听不能发，普通设备连上行链路都建不起来。</li>
@@ -702,6 +707,7 @@
 <blockquote>
 <p>金句：收益挡得住贪心的人，但挡不住好奇的人——所以最好的防线不是墙，是靶场。</p>
 </blockquote>
+<p>顺带一提，DEF CON 27（2019）就专门设立了 <strong>Satellite Hacking Village（卫星黑客村）</strong>，把卫星信号接收、测控协议分析做成面向所有人的现场工作坊；而在国内，XCon（2002 年起，北京）等老牌会议也常年把<strong>无线电安全、卫星网络与天基网络</strong>列入议题——“天上的安全”早已不是少数人的桌面，而是两大半球安全会议的共同选题。</p>
 <p>所以”一键日卫星”的正确打开方式，是去参加 <strong>Hack-A-Sat</strong> 那样的官方竞赛——那里有真卫星（Moonlighter）给你合法黑，有全额报销，还有太空军的关注。<strong>把攻击欲望转化成攻防竞赛，是这类技术兴趣唯一干净的出路。</strong></p>
 <h2 id="六、普通人视角：离你最近的”卫星攻击”其实是-GPS"><a href="#六、普通人视角：离你最近的”卫星攻击”其实是-GPS" class="headerlink" title="六、普通人视角：离你最近的”卫星攻击”其实是 GPS"></a>六、普通人视角：离你最近的”卫星攻击”其实是 GPS</h2><p>对普通用户，”日卫星”最现实的版本是<strong>射频攻击</strong>而不是网络攻击：</p>
 <ul>
@@ -771,6 +777,9 @@
 <li>Hack-A-Sat 官方网站 hackasat.com &#x2F; AFRL《Moonlighter》官方介绍：Hack-A-Sat 4（2024）首次在轨 CTF、五支决赛队、真实卫星赛题</li>
 <li>安全内参《美军”黑掉卫星”演习分析》（2023-08-11）：DEF CON 31 首个太空夺旗演习决赛细节</li>
 <li>The Guardian &#x2F; BBC（2025-06、2025-09）：欧盟 13 国干扰与欺骗警报、波兰&#x2F;立陶宛干扰事件统计、欧盟委员会主席专机遭 GPS 干扰</li>
+<li>daniestevez&#x2F;gr-satellites GitHub README（2015 年至今；AX.25&#x2F;GOMspace NanoCom&#x2F;CCSDS 协议族；工程值解析与实时 JPEG 重组）</li>
+<li>SatNOGS 官方文档 satnogs.org（全球联网开放地面站网络，Client&#x2F;Network&#x2F;DB 架构）</li>
+<li>XCon 安全焦点（百度百科）：2002 年起北京举办，议题覆盖无线电安全、卫星网络、天基网络</li>
 <li>中华人民共和国刑法第 285、286、288 条</li>
 </ul>
 <h2 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h2><ul>

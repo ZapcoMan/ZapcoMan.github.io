@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/08/24/images/20260824/rfid-cover.png">
 <meta property="article:published_time" content="2026-08-24T05:15:00.000Z">
-<meta property="article:modified_time" content="2026-08-24T10:22:12.937Z">
+<meta property="article:modified_time" content="2026-08-24T11:19:42.644Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="125kHz">
 <meta property="article:tag" content="13.56MHz">
@@ -36,7 +36,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"你刷的每一张卡，都是一段射频故事：RFID/NFC 门禁卡安全——从 125kHz 到 13.56MHz 的攻防终局","name":"你刷的每一张卡，都是一段射频故事：RFID/NFC 门禁卡安全——从 125kHz 到 13.56MHz 的攻防终局 | ZapcoMan's world","description":"你的包里有一张让你进小区、进公司、进停车场的卡——它没有密码、没有按键、没有屏幕，你刷它进门的时候它甚至不亮。但就是这张沉默的塑料片，可能比你的电脑更容易被复制：花几十块买个读卡器，对着它”扫”十秒，再花几块钱买张白卡”烧”进去，一个一模一样的”你”就诞生了。2018 年，MIFARE Classic 门禁卡的破解工具链已经成熟到”小白点几下就能复制”；20...","url":"http://example.com/2026/08/24/20260824/2026082405/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260824/rfid-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/24/20260824/2026082405/","datePublished":"2026-08-24T05:15:00.000Z","dateModified":"2026-08-24T10:22:12.937Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"RFID, NFC, 门禁卡, MIFARE, 125kHz, 13.56MHz, 复制卡, 访问控制, 物理安全, 物联网"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"你刷的每一张卡，都是一段射频故事：RFID/NFC 门禁卡安全——从 125kHz 到 13.56MHz 的攻防终局","name":"你刷的每一张卡，都是一段射频故事：RFID/NFC 门禁卡安全——从 125kHz 到 13.56MHz 的攻防终局 | ZapcoMan's world","description":"你的包里有一张让你进小区、进公司、进停车场的卡——它没有密码、没有按键、没有屏幕，你刷它进门的时候它甚至不亮。但就是这张沉默的塑料片，可能比你的电脑更容易被复制：花几十块买个读卡器，对着它”扫”十秒，再花几块钱买张白卡”烧”进去，一个一模一样的”你”就诞生了。2018 年，MIFARE Classic 门禁卡的破解工具链已经成熟到”小白点几下就能复制”；20...","url":"http://example.com/2026/08/24/20260824/2026082405/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260824/rfid-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/24/20260824/2026082405/","datePublished":"2026-08-24T05:15:00.000Z","dateModified":"2026-08-24T11:19:42.644Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"RFID, NFC, 门禁卡, MIFARE, 125kHz, 13.56MHz, 复制卡, 访问控制, 物理安全, 物联网"}</script>
 
 <script>
   (function () {
@@ -576,6 +576,8 @@
 <li><strong>mfoc</strong>：实现”嵌套认证攻击（Nested Authentication）”——先用出厂默认密钥撕开一个扇区，再以此为跳板逐扇区递推，最终拿到全卡密钥（Nethemba 团队的首个开源实现）</li>
 </ul>
 <p>两者配合一张几十块的 PN532 读卡器，2018 年后”一键脚本”满天飞——这就是”网店门禁卡复制服务”的技术底座。2024 年 11 月还有安全研究者披露：国产 M1 兼容芯片（如复旦微 FM11RF08(S) 系列）存在<strong>后门密钥与可预测随机数</strong>问题，等于连”破解”都省了，直接读出厂密钥——<strong>这个生态已经退化到”有手就行”。</strong></p>
+<p><strong>开源项目：从”命令行小工具”到”射频瑞士军刀”。</strong> mfoc&#x2F;mfcuk 只是读卡链条的一环，真正把整个 RFID 世界收进一个工具的是 <strong>Proxmark3</strong>——一块开源硬件，README 自称”RFID 领域的瑞士军刀（swiss-army tool of RFID）”。它的能力清单几乎覆盖整张频率表：<strong>低频（125kHz）<strong>读写 EM4100、HID Prox、Indala、T55xx 等 ID 卡；<strong>高频（13.56MHz）<strong>处理 MIFARE Classic&#x2F;Ultralight&#x2F;DESFire、NTAG、iCLASS 甚至部分银行卡（EMV）协议；还能</strong>嗅探</strong>（监听卡与读卡器之间的通信、逆向协议）、<strong>模拟</strong>（把自己伪装成任意标签）、执行 tearoff 等高级测试。社区维护最活跃的分支（RfidResearchGroup 的 Iceman 版）内置大量</strong>已知密钥字典与恢复算法</strong>——等于把”破解”的搜索空间替你跑完了。一句话：<strong>低端到 EM4100、高端到 DESFire，Proxmark3 全部读写模拟——这就是”物理安全测试”的标准配置。</strong></p>
+<p><strong>黑客大会上的门禁攻防。</strong> 智能门锁&#x2F;门禁的破解是国内黑客大会的保留节目，<strong>GeekPwn（极棒）</strong> 几乎年年有：2017 年，百度安全实验室研究员演示<strong>无物理接触、无拆解破解果加智能门锁</strong>——可远程获取任意网关下所有门锁密码，波及百万用户；2018 年，腾讯安全团队在极棒上海站现场<strong>远程打开豪力士、奥哲美、优点三款智能门锁</strong>（全程不接触手机、不连 WiFi）。这些展示的共同结论是：<strong>“智能”门锁如果只把安全押在”一把锁”上，那它和普通门锁没有本质区别——只是把撬锁换成了发指令。</strong></p>
 <blockquote>
 <p>金句：1994 年设计的”加密”，到今天 2026 年还在大量小区门上服役——这不是技术的胜利，是成本的惯性。</p>
 </blockquote>
@@ -663,6 +665,9 @@
 <li>看雪社区《当全加密M1卡沦陷之后……》（2024-11）：国产 M1 兼容芯片（复旦微 FM11RF08(S) 等）后门密钥与可预测随机数问题</li>
 <li>今日头条&#x2F;新浪财经 2026 报道：新疆轮台县手机 NFC 复制门禁卡入室行窃案（2026-03）、南京邻里复制门禁卡 5 次入户盗窃案</li>
 <li>搜狐《电子门禁卡可被盗刷：深圳福田科技园实验证实 RFID 卡近场盗刷风险》（2026-02）</li>
+<li>RfidResearchGroup&#x2F;proxmark3 GitHub README（Iceman 分支：LF&#x2F;HF 全协议族读写&#x2F;嗅探&#x2F;模拟&#x2F;tearoff 攻击、内置密钥字典与恢复算法）</li>
+<li>观察者网（2017-05-13）：百度安全实验室 GeekPwn 现场无物理接触破解果加智能门锁（波及百万用户）</li>
+<li>中国经济网（2018-10-29）：腾讯安全团队 GeekPwn 上海站远程打开豪力士&#x2F;奥哲美&#x2F;优点三款智能门锁</li>
 </ul>
 <h2 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h2><ul>
 <li>上一篇（蓝牙&#x2F;BLE）—— <a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/24/2026082404/">2026082404 2.4GHz 频段里的人精：蓝牙&#x2F;BLE 安全</a></li>
