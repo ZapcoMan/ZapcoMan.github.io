@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/08/24/images/20260824/rfid-cover.png">
 <meta property="article:published_time" content="2026-08-24T05:15:00.000Z">
-<meta property="article:modified_time" content="2026-08-24T06:50:32.758Z">
+<meta property="article:modified_time" content="2026-08-24T10:22:12.937Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="125kHz">
 <meta property="article:tag" content="13.56MHz">
@@ -36,7 +36,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"你刷的每一张卡，都是一段射频故事：RFID/NFC 门禁卡安全——从 125kHz 到 13.56MHz 的攻防终局","name":"你刷的每一张卡，都是一段射频故事：RFID/NFC 门禁卡安全——从 125kHz 到 13.56MHz 的攻防终局 | ZapcoMan's world","description":"你的包里有一张让你进小区、进公司、进停车场的卡——它没有密码、没有按键、没有屏幕，你刷它进门的时候它甚至不亮。但就是这张沉默的塑料片，可能比你的电脑更容易被复制：花几十块买个读卡器，对着它”扫”十秒，再花几块钱买张白卡”烧”进去，一个一模一样的”你”就诞生了。2018 年，MIFARE Classic 门禁卡的破解工具链已经成熟到”小白点几下就能复制”；20...","url":"http://example.com/2026/08/24/20260824/2026082405/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260824/rfid-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/24/20260824/2026082405/","datePublished":"2026-08-24T05:15:00.000Z","dateModified":"2026-08-24T06:50:32.758Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"RFID, NFC, 门禁卡, MIFARE, 125kHz, 13.56MHz, 复制卡, 访问控制, 物理安全, 物联网"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"你刷的每一张卡，都是一段射频故事：RFID/NFC 门禁卡安全——从 125kHz 到 13.56MHz 的攻防终局","name":"你刷的每一张卡，都是一段射频故事：RFID/NFC 门禁卡安全——从 125kHz 到 13.56MHz 的攻防终局 | ZapcoMan's world","description":"你的包里有一张让你进小区、进公司、进停车场的卡——它没有密码、没有按键、没有屏幕，你刷它进门的时候它甚至不亮。但就是这张沉默的塑料片，可能比你的电脑更容易被复制：花几十块买个读卡器，对着它”扫”十秒，再花几块钱买张白卡”烧”进去，一个一模一样的”你”就诞生了。2018 年，MIFARE Classic 门禁卡的破解工具链已经成熟到”小白点几下就能复制”；20...","url":"http://example.com/2026/08/24/20260824/2026082405/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260824/rfid-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/24/20260824/2026082405/","datePublished":"2026-08-24T05:15:00.000Z","dateModified":"2026-08-24T10:22:12.937Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"RFID, NFC, 门禁卡, MIFARE, 125kHz, 13.56MHz, 复制卡, 访问控制, 物理安全, 物联网"}</script>
 
 <script>
   (function () {
@@ -429,7 +429,7 @@
         </header>
         <div class="toc-content">
           
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%B0%84%E9%A2%91%E8%AF%86%E5%88%AB%E7%9A%84%E4%B8%96%E7%95%8C%EF%BC%9A125kHz-%E4%B8%8E-13-56MHz-%E4%B8%A4%E5%A4%A7%E5%AE%B6%E6%97%8F"><span class="toc-text">一、射频识别的世界：125kHz 与 13.56MHz 两大家族</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81MIFARE-Classic%EF%BC%9A%E8%A2%AB%E9%80%86%E5%90%91-16-%E5%B9%B4%E7%9A%84%E2%80%9D%E8%80%81%E6%9C%8B%E5%8F%8B%E2%80%9D"><span class="toc-text">二、MIFARE Classic：被逆向 16 年的”老朋友”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%A4%8D%E5%88%B6%E9%93%BE%E8%B7%AF%EF%BC%9A%E4%BB%8E%E2%80%9D%E6%89%AB%E2%80%9D%E5%88%B0%E2%80%9D%E7%83%A7%E2%80%9D%E7%9A%84%E4%B8%89%E6%AD%A5"><span class="toc-text">三、复制链路：从”扫”到”烧”的三步</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%89%8B%E6%9C%BA%E6%A8%A1%E6%8B%9F%E9%97%A8%E7%A6%81%E5%8D%A1%EF%BC%9A%E4%BE%BF%E5%88%A9%E4%B8%8E%E8%BE%B9%E7%95%8C"><span class="toc-text">四、手机模拟门禁卡：便利与边界</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E9%A3%8E%E9%99%A9%E5%85%A8%E8%B2%8C%EF%BC%9A%E4%B8%80%E5%BC%A0%E5%8D%A1%E8%83%BD%E6%8E%80%E8%B5%B7%E5%A4%9A%E5%A4%A7%E6%B5%AA"><span class="toc-text">五、风险全貌：一张卡能掀起多大浪</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E9%98%B2%E5%BE%A1%E6%8C%87%E5%8D%97%EF%BC%9A%E7%89%A9%E4%B8%9A%E4%B8%8E%E4%BC%81%E4%B8%9A%E7%89%88"><span class="toc-text">六、防御指南：物业与企业版</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E7%B3%BB%E5%88%97%E6%94%B6%E5%AE%98%EF%BC%9A%E4%BA%94%E7%AF%87%E6%8B%BC%E5%87%BA%E7%9A%84%E5%AE%8C%E6%95%B4%E5%9B%BE%E6%99%AF"><span class="toc-text">七、系列收官：五篇拼出的完整图景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E8%BE%B9%E7%95%8C%E5%A3%B0%E6%98%8E"><span class="toc-text">八、边界声明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A0%E6%9D%90%E6%9D%A5%E6%BA%90"><span class="toc-text">素材来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%96%87%E7%AB%A0"><span class="toc-text">相关文章</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%B0%84%E9%A2%91%E8%AF%86%E5%88%AB%E7%9A%84%E4%B8%96%E7%95%8C%EF%BC%9A125kHz-%E4%B8%8E-13-56MHz-%E4%B8%A4%E5%A4%A7%E5%AE%B6%E6%97%8F"><span class="toc-text">一、射频识别的世界：125kHz 与 13.56MHz 两大家族</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81MIFARE-Classic%EF%BC%9A%E8%A2%AB%E9%80%86%E5%90%91-16-%E5%B9%B4%E7%9A%84%E2%80%9D%E8%80%81%E6%9C%8B%E5%8F%8B%E2%80%9D"><span class="toc-text">二、MIFARE Classic：被逆向 16 年的”老朋友”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%A4%8D%E5%88%B6%E9%93%BE%E8%B7%AF%EF%BC%9A%E4%BB%8E%E2%80%9D%E6%89%AB%E2%80%9D%E5%88%B0%E2%80%9D%E7%83%A7%E2%80%9D%E7%9A%84%E4%B8%89%E6%AD%A5"><span class="toc-text">三、复制链路：从”扫”到”烧”的三步</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%89%8B%E6%9C%BA%E6%A8%A1%E6%8B%9F%E9%97%A8%E7%A6%81%E5%8D%A1%EF%BC%9A%E4%BE%BF%E5%88%A9%E4%B8%8E%E8%BE%B9%E7%95%8C"><span class="toc-text">四、手机模拟门禁卡：便利与边界</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E9%A3%8E%E9%99%A9%E5%85%A8%E8%B2%8C%EF%BC%9A%E4%B8%80%E5%BC%A0%E5%8D%A1%E8%83%BD%E6%8E%80%E8%B5%B7%E5%A4%9A%E5%A4%A7%E6%B5%AA"><span class="toc-text">五、风险全貌：一张卡能掀起多大浪</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E9%98%B2%E5%BE%A1%E6%8C%87%E5%8D%97%EF%BC%9A%E7%89%A9%E4%B8%9A%E4%B8%8E%E4%BC%81%E4%B8%9A%E7%89%88"><span class="toc-text">六、防御指南：物业与企业版</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E6%94%B6%E6%9D%9F%EF%BC%9A%E6%8A%8A%E8%BF%99%E5%87%A0%E6%9D%A1%E5%B0%84%E9%A2%91%E7%BA%BF%E7%B4%A2%E4%B8%B2%E6%88%90%E4%B8%80%E6%9D%A1%E7%BA%BF"><span class="toc-text">七、收束：把这几条射频线索串成一条线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E8%BE%B9%E7%95%8C%E5%A3%B0%E6%98%8E"><span class="toc-text">八、边界声明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A0%E6%9D%90%E6%9D%A5%E6%BA%90"><span class="toc-text">素材来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%96%87%E7%AB%A0"><span class="toc-text">相关文章</span></a></li></ol>
           
         </div>
       </section>
@@ -525,7 +525,7 @@
   <div class="article-content">
     <blockquote>
 <p>你的包里有一张让你进小区、进公司、进停车场的卡——它没有密码、没有按键、没有屏幕，你刷它进门的时候它甚至不亮。但就是这张沉默的塑料片，可能比你的电脑更容易被复制：花几十块买个读卡器，对着它”扫”十秒，再花几块钱买张白卡”烧”进去，一个一模一样的”你”就诞生了。2018 年，MIFARE Classic 门禁卡的破解工具链已经成熟到”小白点几下就能复制”；2026 年，这类技术早已下沉成网店里的”门禁卡复制服务”。</p>
-<p>这是无线电系列收官篇。五篇下来，我们从”听”（SDR）到”攻”（卫星、伪基站、蓝牙），最后落到最贴近你日常的一道门：RFID&#x2F;NFC。刷卡的十厘米，就是物理世界与数字世界的最后一段射频距离。</p>
+<p>我们从”听”（SDR）到”攻”（卫星、伪基站、蓝牙），这一篇落到最贴近你日常的一道门：RFID&#x2F;NFC。刷卡的十厘米，就是物理世界与数字世界的最后一段射频距离。</p>
 </blockquote>
 <h2 id="一、射频识别的世界：125kHz-与-13-56MHz-两大家族"><a href="#一、射频识别的世界：125kHz-与-13-56MHz-两大家族" class="headerlink" title="一、射频识别的世界：125kHz 与 13.56MHz 两大家族"></a>一、射频识别的世界：125kHz 与 13.56MHz 两大家族</h2><p>RFID（射频识别）是”用无线电波读取数据”的总称，门禁卡只是它的一个分支。按频率分两大门派：</p>
 <table>
@@ -570,6 +570,12 @@
 <li><strong>2018 年至今</strong>：破解工具链（mfoc、mfcuk、MifareOneTool + PN532 读卡器）成熟到”照着教程点几下”就能跑，网上”门禁卡复制”服务更是把整套流程做成了付费傻瓜包。</li>
 </ul>
 <p>破解原理一句话：Crypto1 的密钥生成存在可预测的随机性，配合卡片返回的”认证失败响应”，攻击者能在有限次尝试内<strong>穷举出扇区密钥</strong>（经典场景：一个扇区默认密钥 + 两次认证尝试即可推导，密钥空间实际被压缩到极低）。一旦拿到密钥，卡内的所有数据区随意读写——复制、修改、写白卡、模拟，全开。</p>
+<p>2008 年演示之后，社区把这条攻击路线固化成了两个开源工具，从此”破解 MIFARE”不再是逆向专家专属：</p>
+<ul>
+<li><strong>mfcuk</strong>：实现”Darkside（暗黑侧）”攻击——不需要任何已知密钥，仅靠反复制造认证失败、观察卡片的响应随机性，就能从零恢复一个扇区密钥</li>
+<li><strong>mfoc</strong>：实现”嵌套认证攻击（Nested Authentication）”——先用出厂默认密钥撕开一个扇区，再以此为跳板逐扇区递推，最终拿到全卡密钥（Nethemba 团队的首个开源实现）</li>
+</ul>
+<p>两者配合一张几十块的 PN532 读卡器，2018 年后”一键脚本”满天飞——这就是”网店门禁卡复制服务”的技术底座。2024 年 11 月还有安全研究者披露：国产 M1 兼容芯片（如复旦微 FM11RF08(S) 系列）存在<strong>后门密钥与可预测随机数</strong>问题，等于连”破解”都省了，直接读出厂密钥——<strong>这个生态已经退化到”有手就行”。</strong></p>
 <blockquote>
 <p>金句：1994 年设计的”加密”，到今天 2026 年还在大量小区门上服役——这不是技术的胜利，是成本的惯性。</p>
 </blockquote>
@@ -617,6 +623,13 @@
 </tr>
 </tbody></table>
 <p>物理安全圈有个老说法：<strong>门禁卡的”门禁”属性，本质上只是”知道这个数字”——它不验证”这个人是不是真的”</strong>。所以复制卡从来不是最终目的，它只是”进入”这一环的工具，后面跟着的可能是偷盗、窃密、甚至是更严重的入侵。这也是为什么真正的要害部门从不只用刷卡，而是”刷卡 + 人脸&#x2F;指纹&#x2F;警卫”多层叠加。</p>
+<p>“复制卡进门的浪能掀多大”不是假设，近两年就有几起教科书级案例：</p>
+<ul>
+<li><strong>新疆轮台县案（2026-03）</strong>：一名嫌疑人用手机 NFC 复制了亲兄弟家的门禁卡，先后 10 余次潜入其家中行窃——直到多次失窃才被发现。复制过程没有任何”高科技”，就是手机对着卡刷一下。</li>
+<li><strong>南京邻里案</strong>：业主郇某的门禁卡被邻居邢某复制，一年内遭遇 <strong>5 次入户盗窃、损失上万元</strong>——盗窃案从”撬锁”进化成了”刷卡”，连门窗完好无损。</li>
+<li><strong>深圳福田实验（2026-02）</strong>：媒体在科技园实测证实，RFID 卡近距离可以被便捷设备盗刷，风险真实存在。</li>
+</ul>
+<p>这些案子有一个共同特征：<strong>作案者没有破解任何”系统”，只是复制了”一张卡”</strong>——而整套流程的起点，往往只是”卡离开过你的手几秒钟”。</p>
 <h2 id="六、防御指南：物业与企业版"><a href="#六、防御指南：物业与企业版" class="headerlink" title="六、防御指南：物业与企业版"></a>六、防御指南：物业与企业版</h2><p>给物业&#x2F;企业&#x2F;个人的防御清单：</p>
 <p><strong>给物业&#x2F;企业（最该改的）</strong>：</p>
 <ol>
@@ -633,42 +646,7 @@
 <li><strong>留意异常开锁通知</strong>：智能门锁&#x2F;门禁若支持 App 通知，开启它；发现”人在家却提示开门”立即查。</li>
 <li><strong>不买&#x2F;不用来路不明的复制服务</strong>：帮人复制门禁卡、买复制卡，都是给黑产送生意，也把自己送进风险。</li>
 </ol>
-<h2 id="七、系列收官：五篇拼出的完整图景"><a href="#七、系列收官：五篇拼出的完整图景" class="headerlink" title="七、系列收官：五篇拼出的完整图景"></a>七、系列收官：五篇拼出的完整图景</h2><p>到这一篇，无线电与信号安全系列拼完了：</p>
-<table>
-<thead>
-<tr>
-<th>篇目</th>
-<th>主题</th>
-<th>一句话</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>2401</td>
-<td>SDR 入门</td>
-<td>一根”电视棒”，打开电磁世界</td>
-</tr>
-<tr>
-<td>2402</td>
-<td>卫星攻击史</td>
-<td>天上的眼睛，够不着的梦</td>
-</tr>
-<tr>
-<td>2403</td>
-<td>伪基站与 IMSI 猫</td>
-<td>冒充运营商的信号</td>
-</tr>
-<tr>
-<td>2404</td>
-<td>蓝牙&#x2F;BLE</td>
-<td>2.4GHz 里的人精</td>
-</tr>
-<tr>
-<td>2405</td>
-<td>RFID&#x2F;NFC</td>
-<td>你刷的每一张卡，都是一段射频故事</td>
-</tr>
-</tbody></table>
-<p>五篇合起来其实是一条逻辑线：<strong>先学会”听”（SDR 频谱）→ 再看懂”攻”（卫星&#x2F;伪基站&#x2F;蓝牙&#x2F;门禁的漏洞）→ 最后落到”守”（每一篇的防御指南）</strong>。物理安全从来没有”一招封神”，它是频谱感知 + 协议理解 + 行为纪律三者的叠加——而这三样，都不需要你成为黑客，只需要你停止想当然。</p>
+<h2 id="七、收束：把这几条射频线索串成一条线"><a href="#七、收束：把这几条射频线索串成一条线" class="headerlink" title="七、收束：把这几条射频线索串成一条线"></a>七、收束：把这几条射频线索串成一条线</h2><p>到这里，从 SDR 入门、卫星攻击史、伪基站、蓝牙到门禁卡，其实是一条完整的逻辑线：<strong>先学会”听”（SDR 频谱）→ 再看懂”攻”（卫星&#x2F;伪基站&#x2F;蓝牙&#x2F;门禁的漏洞）→ 最后落到”守”（每一篇的防御指南）</strong>。物理安全从来没有”一招封神”，它是频谱感知 + 协议理解 + 行为纪律三者的叠加——而这三样，都不需要你成为黑客，只需要你停止想当然。</p>
 <blockquote>
 <p>金句：电磁波看不见，但它的故事一直在广播——听懂它，是保护自己的第一步。</p>
 </blockquote>
@@ -681,23 +659,20 @@
 <li>MIUI 官方《搞定加密卡！小米门禁卡模拟那些事》</li>
 <li>知乎《iPhone + NFC 手环门禁卡&#x2F;公交卡模拟深度使用分享》（苹果 NFC 权限限制）</li>
 <li>博客园《复制 MIFARE Classic 小区门禁卡记录》等公开技术文章（原理说明）</li>
+<li>nfc-tools&#x2F;mfcuk（GitHub）与 Nethemba 团队 mfoc（嵌套认证攻击首个开源实现）；GitCode《Mifare Classic安全研究的技术突破：MFOC工具深度解析》（2026-03）</li>
+<li>看雪社区《当全加密M1卡沦陷之后……》（2024-11）：国产 M1 兼容芯片（复旦微 FM11RF08(S) 等）后门密钥与可预测随机数问题</li>
+<li>今日头条&#x2F;新浪财经 2026 报道：新疆轮台县手机 NFC 复制门禁卡入室行窃案（2026-03）、南京邻里复制门禁卡 5 次入户盗窃案</li>
+<li>搜狐《电子门禁卡可被盗刷：深圳福田科技园实验证实 RFID 卡近场盗刷风险》（2026-02）</li>
 </ul>
 <h2 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h2><ul>
-<li>无线电与信号安全系列（全八篇）：<ul>
-<li><a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/24/2026082401/">2026082401 SDR 软件无线电入门</a></li>
-<li><a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/24/2026082402/">2026082402 “一键日卫星”卫星攻击史</a></li>
-<li><a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/24/2026082403/">2026082403 冒充运营商的信号：伪基站与 IMSI 猫</a></li>
-<li><a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/24/2026082404/">2026082404 2.4GHz 频段里的人精：蓝牙&#x2F;BLE 安全</a></li>
-<li><a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/24/2026082405/">2026082405 你刷的每一张卡，都是一段射频故事（本篇）</a></li>
-<li><a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/24/2026082406/">2026082406 你手机里的”真北”是谁说的：GPS 欺骗与导航战</a></li>
-<li><a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/24/2026082407/">2026082407 被一句谎话拐走的天空之眼：无人机射频安全</a></li>
-<li><a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/24/2026082408/">2026082408 你的车里藏着”眼睛”：电磁反侦察</a></li>
-</ul>
-</li>
+<li>上一篇（蓝牙&#x2F;BLE）—— <a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/24/2026082404/">2026082404 2.4GHz 频段里的人精：蓝牙&#x2F;BLE 安全</a></li>
+<li>下一篇（GPS 欺骗与导航战）—— <a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/24/2026082406/">2026082406 你手机里的”真北”是谁说的：GPS 欺骗与导航战</a></li>
+<li>无人机射频安全 —— <a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/24/2026082407/">2026082407 被一句谎话拐走的天空之眼：无人机射频安全</a></li>
+<li>电磁反侦察 —— <a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/24/2026082408/">2026082408 你的车里藏着”眼睛”：电磁反侦察</a></li>
 <li>近源渗透系列 —— <a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/06/27/20260627/2026062702/">2026062702 玩转 Flipper Zero：RFID 全功能介绍</a></li>
 <li>隐私反侦察系列 —— <a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/23/20260823/2026082301/">2026082301 Wi-Fi 感知攻击</a></li>
 </ul>
-<p><strong>系列预告</strong>：前五篇暂告一段落，系列继续扩展——GPS 欺骗与导航战、无人机射频安全、电磁反侦察三篇随后就到，八篇合起来才是完整的”听—攻—守”全链路。</p>
+<p><strong>下篇预告</strong>：下一篇进入 GPS 欺骗与导航战——你手机里的”真北”是谁说的，以及它怎么被伪造；随后还有无人机射频安全与电磁反侦察两篇，合起来才是完整的”听—攻—守”链路。</p>
 
   </div>
 

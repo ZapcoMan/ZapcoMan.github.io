@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/08/24/images/20260824/bluetooth-cover.png">
 <meta property="article:published_time" content="2026-08-24T05:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-24T06:50:32.078Z">
+<meta property="article:modified_time" content="2026-08-24T10:18:20.504Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="2.4GHz">
 <meta property="article:tag" content="AirTag">
@@ -38,7 +38,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"2.4GHz 频段里的人精：蓝牙/BLE 安全——你的耳机、手环、车钥匙和门锁在裸奔什么","name":"2.4GHz 频段里的人精：蓝牙/BLE 安全——你的耳机、手环、车钥匙和门锁在裸奔什么 | ZapcoMan's world","description":"你的口袋里、手腕上、耳朵里、车钥匙扣上、家门口的锁芯里——至少有五六台设备在 2.4GHz 频段里用蓝牙广播自己，几乎从不关机。2017 年，一个叫 BlueBorne 的漏洞不需要你点任何链接、不需要配对，就能隔空接管你的手机；2026 年 6 月，安全研究员演示了在 15 米外把一个蓝牙音箱变成”隐形键盘”。蓝牙不是”短距离所以安全”——恰恰相反，正因为...","url":"http://example.com/2026/08/24/20260824/2026082404/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260824/bluetooth-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/24/20260824/2026082404/","datePublished":"2026-08-24T05:00:00.000Z","dateModified":"2026-08-24T06:50:32.078Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"Flipper Zero, 蓝牙, BLE, BlueBorne, KNOB, SweynTooth, BLUFFS, AirTag, 追踪, 中继攻击, 2.4GHz, 物联网安全"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"2.4GHz 频段里的人精：蓝牙/BLE 安全——你的耳机、手环、车钥匙和门锁在裸奔什么","name":"2.4GHz 频段里的人精：蓝牙/BLE 安全——你的耳机、手环、车钥匙和门锁在裸奔什么 | ZapcoMan's world","description":"你的口袋里、手腕上、耳朵里、车钥匙扣上、家门口的锁芯里——至少有五六台设备在 2.4GHz 频段里用蓝牙广播自己，几乎从不关机。2017 年，一个叫 BlueBorne 的漏洞不需要你点任何链接、不需要配对，就能隔空接管你的手机；2026 年 6 月，安全研究员演示了在 15 米外把一个蓝牙音箱变成”隐形键盘”。蓝牙不是”短距离所以安全”——恰恰相反，正因为...","url":"http://example.com/2026/08/24/20260824/2026082404/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260824/bluetooth-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/24/20260824/2026082404/","datePublished":"2026-08-24T05:00:00.000Z","dateModified":"2026-08-24T10:18:20.504Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"Flipper Zero, 蓝牙, BLE, BlueBorne, KNOB, SweynTooth, BLUFFS, AirTag, 追踪, 中继攻击, 2.4GHz, 物联网安全"}</script>
 
 <script>
   (function () {
@@ -527,7 +527,7 @@
   <div class="article-content">
     <blockquote>
 <p>你的口袋里、手腕上、耳朵里、车钥匙扣上、家门口的锁芯里——至少有五六台设备在 2.4GHz 频段里用蓝牙广播自己，几乎从不关机。2017 年，一个叫 BlueBorne 的漏洞不需要你点任何链接、不需要配对，就能隔空接管你的手机；2026 年 6 月，安全研究员演示了在 15 米外把一个蓝牙音箱变成”隐形键盘”。蓝牙不是”短距离所以安全”——恰恰相反，正因为人人都觉得它近、它小、它不重要，它才成了攻击者最爱钻的空子。</p>
-<p>这一篇是系列第四篇。我们从”蓝牙怎么认朋友”讲起，把协议漏洞、设备漏洞、追踪器滥用、车钥匙中继挨个过一遍，最后给你一套能直接落地的防御清单。</p>
+<p>这一篇我们从”蓝牙怎么认朋友”讲起，把协议漏洞、设备漏洞、追踪器滥用、车钥匙中继挨个过一遍，最后给你一套能直接落地的防御清单。</p>
 </blockquote>
 <h2 id="一、先分清楚：蓝牙其实有两套规矩"><a href="#一、先分清楚：蓝牙其实有两套规矩" class="headerlink" title="一、先分清楚：蓝牙其实有两套规矩"></a>一、先分清楚：蓝牙其实有两套规矩</h2><p>蓝牙不是一个协议，是同一屋檐下的两家人：</p>
 <table>
@@ -603,6 +603,7 @@
 </tr>
 </tbody></table>
 <p>规律很清楚：<strong>协议层漏洞从不针对某一款设备，而是”凡是用了蓝牙的设备全中招”。</strong> 这也是为什么每次蓝牙漏洞通报的波及面都以”十亿”为单位。</p>
+<p>以 BlueBorne 为例拆开看，你会更理解”协议层攻击”的可怕之处：Armis 实验室 2017 年披露的 8 个漏洞分布在 Android 蓝牙网络封装协议（CVE-2017-0781&#x2F;0782 远程代码执行、0783 逻辑漏洞、0785 信息泄露）和 Linux 蓝牙协议栈（CVE-2017-1000250&#x2F;1000251）等多个层面，当时影响面估计高达 <strong>53 亿台设备</strong>。它的三个”不需要”至今仍是蓝牙攻击的经典模板：<strong>不需要用户点击任何链接、不需要与目标配对、甚至不需要目标联网</strong>——只要蓝牙开着、在攻击范围内，就能在链路层直接执行代码、完全接管设备。Armis 还演示过一个令人后背发凉的场景：带着一台被感染的手机走进银行，周边所有开着蓝牙的设备都会被感染——这意味着<strong>即便内网与互联网物理隔离（”气隙”网络），只要有一台设备开了蓝牙，隔离就破了</strong>。安全界当时拿它类比 WannaCry：不是”你点了什么才中毒”，而是”你开着蓝牙就可能中毒”。</p>
 <h2 id="四、设备层攻击：Flipper-Zero-与”隐形键盘”"><a href="#四、设备层攻击：Flipper-Zero-与”隐形键盘”" class="headerlink" title="四、设备层攻击：Flipper Zero 与”隐形键盘”"></a>四、设备层攻击：Flipper Zero 与”隐形键盘”</h2><p>协议漏洞要等厂商修，设备层漏洞则每天都在被现实利用。两个代表性场景：</p>
 <p><strong>场景一：BLE 键盘注入（Flipper Zero 经典玩法）。</strong> 很多廉价 BLE 键盘&#x2F;鼠标（以及大量把 BLE 当 HID 用的设备）配对时<strong>不需要认证</strong>或使用弱 PIN。攻击者用 Flipper Zero 这类设备扫描附近可配对的 BLE 外设，直接连上去，伪装成”键盘”输入命令——在目标电脑上执行 PowerShell、下载木马、改系统设置，一气呵成。这在安全圈叫”无线 BadUSB”：不插线，靠 2.4GHz 完成同样的事。</p>
 <p><strong>场景二：蓝牙音箱变”键盘”（2026 年 6 月最新研究）。</strong> 安全研究员拉斯穆斯·穆拉茨公开披露：某些主流蓝牙音箱存在固件漏洞，攻击者可在 <strong>15 米内</strong>无声接管设备，把它改造成”隐形键盘”——用户听着歌，音箱却在背后替他敲键盘。这类攻击的共同点：<strong>设备把”连接”和”信任”混为一谈，谁连得上就等于谁可信。</strong></p>
@@ -616,11 +617,12 @@
 <li><strong>未知追踪检测</strong>：iOS 14.5+ 若检测到不属于你的 AirTag 一直跟着你移动，会推送”检测到 AirTag 在你附近”；Android 侧，2024 年 5 月起苹果与谷歌联合推出行业规范，iOS 17.5 &#x2F; Android 6.0+ 都能收到”未知追踪器”告警。</li>
 <li><strong>发声提醒</strong>：离开物主一段时间后 AirTag 会发声。</li>
 </ul>
-<p>但猫鼠游戏还在继续：2026 年 8 月，美国密歇根州两名女性起诉苹果，称 AirTag 防跟踪机制未能发挥作用，导致她们疑似遭前伴侣追踪——<strong>机制存在 ≠ 机制总能生效</strong>。现实里更阴的是”关系型追踪”：礼物、共享车辆、委托转交的物品里被塞进追踪器，受害者往往在几个月后才察觉。这类追踪不依赖任何漏洞，纯粹是”合法设备 + 恶意用途”，防起来比漏洞攻击更难。</p>
+<p>但猫鼠游戏还在继续：2026 年 8 月 10 日，两名底特律女性（化名 Jane Doe）在密歇根联邦法院起诉苹果，指控 AirTag 存在<strong>设计缺陷与过失</strong>——明知 AirTag 极易被用于跟踪，却未提供充分的防滥用保护，导致她们被前伴侣反复追踪（CBS Detroit、AppleInsider 报道）——<strong>机制存在 ≠ 机制总能生效</strong>。现实里更阴的是”关系型追踪”：礼物、共享车辆、委托转交的物品里被塞进追踪器，受害者往往在几个月后才察觉。这类追踪不依赖任何漏洞，纯粹是”合法设备 + 恶意用途”，防起来比漏洞攻击更难——因为你要防的不是”被入侵”，而是”被一个你信任过的人盯上”。</p>
 <h2 id="六、车钥匙与智能锁：中继攻击"><a href="#六、车钥匙与智能锁：中继攻击" class="headerlink" title="六、车钥匙与智能锁：中继攻击"></a>六、车钥匙与智能锁：中继攻击</h2><p>BLE 无钥匙进入（车钥匙、智能门锁）最大的敌人是<strong>中继攻击（Relay Attack）</strong>：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">攻击者A站在车旁（车内无钥匙）</span><br><span class="line">    ⇅ 同步转发信号</span><br><span class="line">攻击者B拿着中继设备贴着车主的包/口袋</span><br><span class="line">    → 车辆以为是钥匙在附近 → 解锁</span><br></pre></td></tr></table></figure>
 
-<p>两个攻击者一个贴车、一个贴人，把钥匙和车之间的 BLE 信号”接力”放大——车主在几百米外的商场吃饭，车却被”远程打开”。多家车企的无钥匙进入系统都被演示过中继攻击；即使钥匙和车都有加密，只要中继的是”合法会话”本身，加密也防不住。智能门锁同理：贴着门锁转发，屋里没人的家就被”隔空解锁”。</p>
+<p>两个攻击者一个贴车、一个贴人，把钥匙和车之间的 BLE 信号”接力”放大——车主在几百米外的商场吃饭，车却被”远程打开”。</p>
+<p>这不是理论，是反复被公开演示过的现实：2018 年 9 月，比利时鲁汶大学（KU Leuven）团队演示了对特斯拉 Model S 钥匙卡系统（PKES）的中继攻击；2024 年 5 月的新研究更直接——攻击者用<strong>廉价自制中继设备</strong>在 **15 英尺（约 4.5 米）**外就开走了一辆特斯拉（Wired 拿到实测视频）。多家车企的无钥匙进入系统都被演示过同类攻击；更糟的是加密帮不上忙：<strong>只要中继的是”合法会话”本身，加密也防不住</strong>——因为对方转发的不是”破解后的钥匙”，而是”钥匙本人的合法信号”。智能门锁同理：贴着门锁转发，屋里没人的家就被”隔空解锁”。</p>
 <p>防御现实很骨感：厂商在硬件里加入 UWB（超宽带）测距（苹果数字车钥匙、部分新车型）来判断”钥匙真的在几米内”，是当前最有效的一招；老设备只能靠”钥匙离身就禁用”或物理习惯（把钥匙放金属盒&#x2F;关机）缓解。</p>
 <h2 id="七、防御清单：普通人能做的十件事"><a href="#七、防御清单：普通人能做的十件事" class="headerlink" title="七、防御清单：普通人能做的十件事"></a>七、防御清单：普通人能做的十件事</h2><ol>
 <li><strong>不用就关</strong>：耳机、手环、智能锁的蓝牙在不用时关闭（尤其手机蓝牙，很多手机允许”关闭但保留查找网络”——注意这不是真关）。</li>
@@ -636,25 +638,27 @@
 </ol>
 <h2 id="八、边界声明"><a href="#八、边界声明" class="headerlink" title="八、边界声明"></a>八、边界声明</h2><p>本文为蓝牙&#x2F;无线电安全科普，所有漏洞与攻击描述均基于公开研究（Armis、SUTD、CISPA 等）与公开报道，仅用于理解危害与防御。文中不提供任何利用方法、攻击代码或漏洞细节。未经授权入侵他人设备、截获他人通信、非法跟踪他人，均属违法犯罪行为，将面临《中华人民共和国刑法》第 253 条（侵犯公民个人信息罪）、第 285&#x2F;286 条的追责。请勿尝试。</p>
 <h2 id="素材来源"><a href="#素材来源" class="headerlink" title="素材来源"></a>素材来源</h2><ul>
-<li>Armis Labs《BlueBorne》技术报告（2017）及一年后跟进统计</li>
+<li>Armis Labs《BlueBorne》技术报告（2017）及一年后跟进统计（影响 53 亿台设备、银行场景测试、CVE-2017-0781&#x2F;0782&#x2F;0785、CVE-2017-1000250&#x2F;1000251）</li>
 <li>CVE-2019-9506（KNOB）：新加坡科技设计大学 SUTD &#x2F; CISPA &#x2F; 牛津大学联合研究（2019）</li>
 <li>SweynTooth 研究（Assured &amp; NCC Group，2020）</li>
 <li>CVE-2023-27320（BLUFFS）：Daniele Antonioli（2023）</li>
 <li>FreeBuf《无声劫持：蓝牙音箱成为攻击者的隐形键盘》（2026-06，研究员 Rasmus Moorats 披露）</li>
 <li>Apple 支持页《检测非预期跟踪器》《关于非自愿跟踪警告》（2024）</li>
 <li>Apple Newsroom《Apple 与 Google 交付防跟踪行业规范》（2024-05）</li>
-<li>网易&#x2F;新浪 2026-08-17 报道《密歇根女性起诉苹果：AirTag 防跟踪机制失效》</li>
+<li>CBS Detroit &#x2F; AppleInsider《Michigan women sue Apple over AirTag anti-stalking failures》（2026-08-17，密歇根联邦法院 2026-08-10 立案）</li>
+<li>KU Leuven COSIC《Passive Keyless Entry and Start Systems: Security Evaluation of Tesla Model S》（2018-09）及 The Verge 报道</li>
+<li>Wired &#x2F; Carscoops《Tesla’s Keyless Entry Hacked With Cheap Relay Device》（2024-05，15 英尺外中继开走特斯拉）</li>
 <li>多家媒体关于无钥匙进入中继攻击的公开演示报道</li>
 </ul>
 <h2 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h2><ul>
-<li>无线电与信号安全系列（开篇）—— <a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/24/2026082401/">2026082401 SDR 软件无线电入门：用一百块的”电视棒”打开电磁世界</a></li>
-<li>无线电与信号安全系列（卫星篇）—— <a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/24/2026082402/">2026082402 “一键日卫星”卫星攻击史</a></li>
-<li>无线电与信号安全系列（伪基站篇）—— <a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/24/2026082403/">2026082403 冒充运营商的信号：伪基站与 IMSI 猫</a></li>
+<li>上一篇（SDR 无线电入门）—— <a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/24/2026082401/">2026082401 SDR 软件无线电入门：用一百块的”电视棒”打开电磁世界</a></li>
+<li>上一篇（卫星攻击史）—— <a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/24/2026082402/">2026082402 “一键日卫星”卫星攻击史</a></li>
+<li>上一篇（伪基站与 IMSI 猫）—— <a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/24/2026082403/">2026082403 冒充运营商的信号：伪基站与 IMSI 猫</a></li>
 <li>近源渗透系列 —— <a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/06/27/20260627/2026062702/">2026062702 玩转 Flipper Zero：RFID 全功能介绍</a></li>
 <li>隐私反侦察系列 —— <a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/23/20260823/2026082301/">2026082301 Wi-Fi 感知攻击：你的路由器在出卖你</a></li>
-<li>无线电与信号安全系列（无人机篇）—— <a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/24/2026082407/">2026082407 被一句谎话拐走的天空之眼：无人机射频安全</a></li>
+<li>无人机射频安全 —— <a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/24/2026082407/">2026082407 被一句谎话拐走的天空之眼：无人机射频安全</a></li>
 </ul>
-<p><strong>系列预告</strong>：下一篇系列收官——RFID&#x2F;NFC 门禁克隆：你刷的每一张卡，都是一段可以被复制的射频故事。前五篇走完”听—攻—守”主线后，系列继续扩展：GPS 欺骗、无人机、电磁反侦察随后就到。</p>
+<p><strong>下篇预告</strong>：下一篇进入 RFID&#x2F;NFC 门禁克隆——你刷的每一张卡，都是一段可以被复制的射频故事。</p>
 
   </div>
 

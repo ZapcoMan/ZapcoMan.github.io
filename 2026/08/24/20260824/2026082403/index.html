@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/08/24/images/20260824/fake-base-station-cover.png">
 <meta property="article:published_time" content="2026-08-24T04:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-24T06:50:31.787Z">
+<meta property="article:modified_time" content="2026-08-24T10:18:11.867Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="2G">
 <meta property="article:tag" content="GSM">
@@ -36,7 +36,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"冒充运营商的信号：伪基站与 IMSI 猫——为什么你的手机会\"自愿\"投奔骗子","name":"冒充运营商的信号：伪基站与 IMSI 猫——为什么你的手机会\"自愿\"投奔骗子 | ZapcoMan's world","description":"你有没有过这样的瞬间：走在街上，手机信号突然掉到”2G”，然后”叮”一声——一条”您的积分即将过期，请点击链接兑换”的短信进来，发件人号码长得跟运营商官方号码一模一样。你以为这是运营商发的，其实那一刻，你的手机正连着一个藏在汽车后备箱里的”假基站”。 上一篇我们说过，伪基站是让监管者头疼几十年的老对手。这一篇把它拆开：为什么一个老掉牙的 2G 漏洞，今天还能...","url":"http://example.com/2026/08/24/20260824/2026082403/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260824/fake-base-station-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/24/20260824/2026082403/","datePublished":"2026-08-24T04:00:00.000Z","dateModified":"2026-08-24T06:50:31.787Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"伪基站, IMSI, IMSI猫, GSM, 2G, 单向认证, 降级攻击, 电信诈骗, Stingray, 移动安全"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"冒充运营商的信号：伪基站与 IMSI 猫——为什么你的手机会\"自愿\"投奔骗子","name":"冒充运营商的信号：伪基站与 IMSI 猫——为什么你的手机会\"自愿\"投奔骗子 | ZapcoMan's world","description":"你有没有过这样的瞬间：走在街上，手机信号突然掉到”2G”，然后”叮”一声——一条”您的积分即将过期，请点击链接兑换”的短信进来，发件人号码长得跟运营商官方号码一模一样。你以为这是运营商发的，其实那一刻，你的手机正连着一个藏在汽车后备箱里的”假基站”。 上一篇我们说过，伪基站是让监管者头疼几十年的老对手。这一篇把它拆开：为什么一个老掉牙的 2G 漏洞，今天还能...","url":"http://example.com/2026/08/24/20260824/2026082403/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260824/fake-base-station-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/24/20260824/2026082403/","datePublished":"2026-08-24T04:00:00.000Z","dateModified":"2026-08-24T10:18:11.867Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"伪基站, IMSI, IMSI猫, GSM, 2G, 单向认证, 降级攻击, 电信诈骗, Stingray, 移动安全"}</script>
 
 <script>
   (function () {
@@ -588,6 +588,7 @@
 </tr>
 </tbody></table>
 <p>被动式 IMSI 猫的门槛低到什么程度？DEF CON 黑客大会上有人演示：用一根 HackRF 配合开源软件，不到 10 分钟就捕获了会场内几十部手机的 IMSI。这类设备连无人机都能挂——已有厂商把 IMSI 猫做成无人机载荷，飞过一片区域就能”点名”下面所有手机。执法机构手里的著名型号叫 <strong>Stingray</strong>，过去十几年在美国被大量使用，也引发了巨大的隐私争议——它不挑目标，路过的人全被”点名”。</p>
+<p>IMSI 猫的硬件本身也毫无神秘感：一个多频段 GSM 收发模块（一块砖头大小的射频板）、一根天线、一部旧手机当”靶机”验证连接、一台电脑跑开源软件。主动式版本还要加一个 SIM 卡槽——插一张普通 SIM 卡，用来”借”运营商的网络参数伪装自己，让手机更愿意连过来。全套成本从几百到几千元不等，在淘宝和海外网店都能买到现成的”伪基站套餐”。<strong>它不贵、不难、不挑人——这就是为什么它和伪基站一起，成为监管者几十年的心头大患。</strong></p>
 <h2 id="四、攻击链与黑产价值：一条短信背后的产业"><a href="#四、攻击链与黑产价值：一条短信背后的产业" class="headerlink" title="四、攻击链与黑产价值：一条短信背后的产业"></a>四、攻击链与黑产价值：一条短信背后的产业</h2><p>伪基站从来不是孤立的，它是电信诈骗产业链的”引流环节”：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">伪基站群发钓鱼短信 → 诱导点击钓鱼链接/回拨 → 钓鱼网站骗取密码验证码 → 洗钱团伙变现</span><br></pre></td></tr></table></figure>
 
@@ -596,6 +597,7 @@
 <li><strong>短信引流</strong>：以运营商名义群发，成本极低、触达极广，是电诈获客的”廉价广告位”。</li>
 <li><strong>IMSI 收集</strong>：抄走的 IMSI + IMEI 组成”设备指纹库”，可以卖给灰产做精准营销、甚至二次诈骗。2021 年北京通州破获的案子很有代表性：嫌疑人通过交友 APP 找”兼职”，接单的正是境外（缅北）电诈集团，让他们带着伪基站设备在街头”发单”，按日结薪。</li>
 </ul>
+<p><strong>近亲：短信轰炸（呼死你）。</strong> 伪基站的邻居是另一条黑产链——短信轰炸。2026 年 4 月太原警方打掉的一条黑产链很有代表性：一名自学编程的嫌疑人从 2022 年开始代理”爆破手”短信轰炸软件，2023 年自行开发同类软件、以<strong>五级代理</strong>模式分层售卖，一层层转包到最终使用者手里。这类软件的原理不是架设备，而是<strong>批量调用大量正规网站的短信验证码接口</strong>，让网站们替黑产”轰炸”目标手机——所以打击它的难点不在信号层，而在平台层：黑产反复变换接口，平台疲于封堵。短信轰炸和伪基站的共同点，是它们都把”正常通信功能”拧成了”骚扰武器”——一个用基站冒充运营商，一个用网站冒充关怀。</p>
 <h2 id="五、真实案例：从”骚扰罪”到”诈骗罪”的量刑进化"><a href="#五、真实案例：从”骚扰罪”到”诈骗罪”的量刑进化" class="headerlink" title="五、真实案例：从”骚扰罪”到”诈骗罪”的量刑进化"></a>五、真实案例：从”骚扰罪”到”诈骗罪”的量刑进化</h2><p>伪基站案件的司法定性，本身就是一部”危害认识”进化史：</p>
 <table>
 <thead>
@@ -642,7 +644,37 @@
 <h2 id="七、降级攻击：4G-5G-时代伪基站怎么还活着"><a href="#七、降级攻击：4G-5G-时代伪基站怎么还活着" class="headerlink" title="七、降级攻击：4G&#x2F;5G 时代伪基站怎么还活着"></a>七、降级攻击：4G&#x2F;5G 时代伪基站怎么还活着</h2><p>有人问：我手机用 4G&#x2F;5G，伪基站不是没辙了吗？——对，但攻击者会<strong>逼你降级</strong>：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">攻击者先释放干扰信号，压制你周围的 4G/5G 信号</span><br><span class="line">  ↓</span><br><span class="line">你的手机找不到&quot;更好的网络&quot;，自动回落到 2G（很多手机允许自动降级）</span><br><span class="line">  ↓</span><br><span class="line">2G 网络不验证基站 → 伪基站接管 → 收割 IMSI / 发钓鱼短信</span><br></pre></td></tr></table></figure>
 
-<p>这就是著名的<strong>降级攻击（Downgrade Attack）</strong>：不是黑掉你的 5G，而是把战场拖回 2G 老规则。4G&#x2F;5G 协议本身做了双向认证、加密 IMSI（SUCI）等加固，但它管不到”你主动掉进 2G”这件事。所以你会看到：信号满格却突然显示 2G、网速消失、收到钓鱼短信——<strong>这几个信号凑在一起，几乎就是伪基站在附近。</strong></p>
+<p>这就是著名的<strong>降级攻击（Downgrade Attack）</strong>：不是黑掉你的 5G，而是把战场拖回 2G 老规则。</p>
+<p>先看 5G 到底做了什么加固，你就明白攻击者为什么非降级不可：</p>
+<table>
+<thead>
+<tr>
+<th>代际</th>
+<th>身份传输</th>
+<th>基站认证</th>
+<th>短板</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2G</td>
+<td>注册时明文上报 IMSI</td>
+<td>几乎不验证（单向）</td>
+<td>身份与连接双双裸奔</td>
+</tr>
+<tr>
+<td>3G&#x2F;4G</td>
+<td>IMSI 部分加密，但部分流程仍会明文出现</td>
+<td>有双向认证</td>
+<td>降级路径存在、加密不彻底</td>
+</tr>
+<tr>
+<td>5G</td>
+<td>用 <strong>SUCI</strong>（隐藏标识符）加密身份，运营商私钥才解得出</td>
+<td>完整双向认证</td>
+<td>加密管不住”你主动掉回 2G”</td>
+</tr>
+</tbody></table>
+<p>5G 的 SUCI 机制相当漂亮：手机把 IMSI 用运营商的公钥加密后再发出去，空中飘着的只有一串密文，伪基站就算截获了也解不开。<strong>但它管不到”你主动掉进 2G”这件事</strong>——攻击者先用干扰设备压制周围的 4G&#x2F;5G 信号，手机找不到”更好的网络”就自动回落 2G（很多手机默认允许自动降级），一进 2G，SUCI 的加密全部作废，身份重新变成明文。所以你会看到：信号满格却突然显示 2G、网速消失、收到钓鱼短信——<strong>这几个信号凑在一起，几乎就是伪基站在附近。</strong></p>
 <h2 id="八、防御指南：普通人怎么防"><a href="#八、防御指南：普通人怎么防" class="headerlink" title="八、防御指南：普通人怎么防"></a>八、防御指南：普通人怎么防</h2><p>防御分三档，由硬到软：</p>
 <p><strong>第一档：系统级关掉 2G</strong></p>
 <ul>
@@ -676,17 +708,19 @@
 <li>DEF CON 公开演示报道（HackRF 被动 IMSI 捕获）</li>
 <li>澎湃新闻、新浪财经关于 2G&#x2F;3G 退网的系列报道（2026 年中，联通 2G 停止服务、浙江联通 3G 关停、陕西移动退网公告）</li>
 <li>工信部关于 2G 退网与老年人、物联网保障的公开答复（2023 年底）</li>
+<li>3GPP 5G 标准 SUCI（Subscription Concealed Identifier）机制说明</li>
+<li>GrapheneOS 等安全项目文档：关闭 2G &#x2F; LTE-only 缓解降级攻击的建议</li>
 <li>《中华人民共和国刑法》第 253、285、286、288 条</li>
 </ul>
 <h2 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h2><ul>
-<li>无线电与信号安全系列（开篇）—— <a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/24/2026082401/">2026082401 SDR 软件无线电入门：用一百块的”电视棒”打开电磁世界</a></li>
-<li>无线电与信号安全系列（插播）—— <a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/24/2026082402/">2026082402 “一键日卫星”卫星攻击史：从 ROSAT 到 KA-SAT</a></li>
+<li>上一篇（SDR 无线电入门）—— <a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/24/2026082401/">2026082401 SDR 软件无线电入门：用一百块的”电视棒”打开电磁世界</a></li>
+<li>上一篇（卫星攻击史）—— <a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/24/2026082402/">2026082402 “一键日卫星”卫星攻击史：从 ROSAT 到 KA-SAT</a></li>
 <li>隐私反侦察系列 —— <a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/23/20260823/2026082301/">2026082301 Wi-Fi 感知攻击：你的路由器在出卖你</a></li>
 <li>隐私反侦察系列 —— <a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/22/20260822/2026082202/">2026082202 行踪反侦察：用尽技术手段也别让人定位你</a></li>
 <li>近源渗透系列 —— <a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/06/27/20260627/2026062702/">2026062702 玩转 Flipper Zero：RFID 全功能介绍</a></li>
-<li>无线电与信号安全系列（导航篇）—— <a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/24/2026082406/">2026082406 你手机里的”真北”是谁说的：GPS 欺骗与导航战</a></li>
+<li>GPS 欺骗与导航战 —— <a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/24/2026082406/">2026082406 你手机里的”真北”是谁说的：GPS 欺骗与导航战</a></li>
 </ul>
-<p><strong>系列预告</strong>：下一篇进入蓝牙&#x2F;BLE 安全——你的耳机、手环、车钥匙、智能门锁，都在同一个 2.4GHz 频段里裸奔着什么。</p>
+<p><strong>下篇预告</strong>：下一篇进入蓝牙&#x2F;BLE 安全——你的耳机、手环、车钥匙、智能门锁，都在同一个 2.4GHz 频段里裸奔着什么。</p>
 
   </div>
 

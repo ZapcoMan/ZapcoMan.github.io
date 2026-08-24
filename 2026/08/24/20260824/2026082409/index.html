@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/08/24/images/20260824/proximity-drone-cover.png">
 <meta property="article:published_time" content="2026-08-24T06:31:00.000Z">
-<meta property="article:modified_time" content="2026-08-24T10:05:38.361Z">
+<meta property="article:modified_time" content="2026-08-24T10:27:08.506Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="Flipper Zero">
 <meta property="article:tag" content="Wi-Fi Pineapple">
@@ -34,7 +34,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"看门狗游戏里的无人车，现实里的\"近源渗透车\"：无人机与遥控车的近源攻击可行性研究——从 ctOS 到 Wi-Fi Pineapple","name":"看门狗游戏里的无人车，现实里的\"近源渗透车\"：无人机与遥控车的近源攻击可行性研究——从 ctOS 到 Wi-Fi Pineapple | ZapcoMan's world","description":"《看门狗 2》（Watch Dogs 2）里有一幕很带感：你操控一架小型四轴无人机或一台遥控小车，悄无声息地溜进目标区域——钻过通风口、绕过保安、停在你黑不进去的那扇窗下，然后从它身上发射信号，把大楼里原本碰不到的设备一个一个拿下。ctOS 让整个城市的信息系统连成一张网，而你的车，就是你在这张网边缘伸出去的那只手。 这个画面让我想起昨天隐私反侦察系列里写过...","url":"http://example.com/2026/08/24/20260824/2026082409/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260824/proximity-drone-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/24/20260824/2026082409/","datePublished":"2026-08-24T06:31:00.000Z","dateModified":"2026-08-24T10:05:38.361Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"近源渗透, Flipper Zero, 物理安全, 无人机, 无人车, 无线攻击, Wi-Fi Pineapple, 红队"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"看门狗游戏里的无人车，现实里的\"近源渗透车\"：无人机与遥控车的近源攻击可行性研究——从 ctOS 到 Wi-Fi Pineapple","name":"看门狗游戏里的无人车，现实里的\"近源渗透车\"：无人机与遥控车的近源攻击可行性研究——从 ctOS 到 Wi-Fi Pineapple | ZapcoMan's world","description":"《看门狗 2》（Watch Dogs 2）里有一幕很带感：你操控一架小型四轴无人机或一台遥控小车，悄无声息地溜进目标区域——钻过通风口、绕过保安、停在你黑不进去的那扇窗下，然后从它身上发射信号，把大楼里原本碰不到的设备一个一个拿下。ctOS 让整个城市的信息系统连成一张网，而你的车，就是你在这张网边缘伸出去的那只手。 这个画面让我想起昨天隐私反侦察系列里写过...","url":"http://example.com/2026/08/24/20260824/2026082409/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260824/proximity-drone-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/24/20260824/2026082409/","datePublished":"2026-08-24T06:31:00.000Z","dateModified":"2026-08-24T10:27:08.506Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"近源渗透, Flipper Zero, 物理安全, 无人机, 无人车, 无线攻击, Wi-Fi Pineapple, 红队"}</script>
 
 <script>
   (function () {
@@ -593,7 +593,7 @@
 <tr>
 <td>SDR（HackRF 等）</td>
 <td>无线电频谱攻击、IMSI 嗅探</td>
-<td>呼应本系列 2401（SDR 入门）、2403（IMSI 猫）</td>
+<td>呼应前面的 2401（SDR 入门）、2403（IMSI 猫）</td>
 </tr>
 </tbody></table>
 <p>而”载体”本身：消费级无人机（如 DJI Mini 系列，250g 以下）、遥控车&#x2F;机器人底盘、甚至有团队玩过<strong>把攻击载荷装在儿童玩具车底盘上</strong>——形态伪装是近源渗透的老传统了（还记得儿童手表吗）。</p>
@@ -633,7 +633,7 @@
 <h2 id="四、但是：游戏滤镜最厚的地方"><a href="#四、但是：游戏滤镜最厚的地方" class="headerlink" title="四、但是：游戏滤镜最厚的地方"></a>四、但是：游戏滤镜最厚的地方</h2><p>如果这套装备真的”七分可行”，为什么现实里没人天天这么干？因为游戏故意省略了三样东西——<strong>噪音、信号暴露、物证</strong>：</p>
 <ol>
 <li><strong>噪音是硬伤。</strong> 无人机桨叶在夜间安静街区是”自带 BGM”的；遥控车在柏油路上的胎噪、电机声同样藏不住。保安的耳朵和摄像头的”AI 移动侦测”，对付的就是”有东西在动、有声音在响”——<strong>无人载具的近源渗透，本质是在赌”监控恰好没看见”</strong>。</li>
-<li><strong>信号暴露是把双刃剑。</strong> 攻击载荷要工作就必须发射信号——而这恰好是本系列 2408《电磁反侦察》讲过的死穴：<strong>频谱扫描能发现”不该存在的信号”，测向能定位”信号从哪里来”</strong>。游戏里无人车是隐形的；现实里它是一盏会移动的”无线探照灯”。</li>
+<li><strong>信号暴露是把双刃剑。</strong> 攻击载荷要工作就必须发射信号——而这恰好是 2408《电磁反侦察》讲过的死穴：<strong>频谱扫描能发现”不该存在的信号”，测向能定位”信号从哪里来”</strong>。游戏里无人车是隐形的；现实里它是一盏会移动的”无线探照灯”。</li>
 <li><strong>物证是终局。</strong> 无人机坠毁、遥控车被截获——里面的载荷（设备、数据卡、指纹）就是完整犯罪链条的证据。游戏里可以一键自毁，现实里”自毁”恰恰是取证专家最熟悉的考题：鞭炮级的小装置制造的是”焦壳”而不是”灰烬”——冲击波方向不可控，又小又轻的 SD 卡往往被崩飞而不是粉碎，毫秒级的爆燃火焰来不及穿透封装、把硅片（熔点 1414°C）真正熔毁。要把数据烧成灰烬，需要的是铝热剂或焚烧炉那种持续高温——而这类”确定性销毁”手段，全在管制名单上。于是攻击者能合法搞到的”自毁”，永远只是把设备变成”坏掉的设备”——而电子取证（Chip-off 裸片读取、NAND 重组）最擅长的，恰恰是从坏掉的设备里恢复一切。</li>
 </ol>
 <p>当然，”自毁”存在一个理论上能做到”真销毁”的激进版本：<strong>用铝热剂（2000°C+ 持续燃烧数秒，军用销毁标准）先烧穿存储芯片，让硅片熔融氧化、数据物理死亡；再用一次小威力爆炸把整台载具连同残骸彻底炸散</strong>——数据层、物证层双保险。更妙的是，这声爆炸本身还能充当”声东击西”：响动瞬间吸走目标与保安的注意力，给操作者制造脱身的窗口。这个战术逻辑在军事与特工领域是成立的（诱饵爆炸、转移注意力是成熟战术），也是”看门狗”式无人车自毁的终极形态。</p>
@@ -688,16 +688,13 @@
 </ul>
 <h2 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h2><ul>
 <li>隐私反侦察系列（近源渗透第一形态）—— <a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/23/20260823/2026082303/">2026082303 智能家居安全：从路由器到儿童电话手表</a>（儿童手表 &#x3D; 人带攻击装备走）</li>
-<li>无线电与信号安全系列：<ul>
-<li><a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/24/2026082401/">2026082401 SDR 软件无线电入门</a>（近源渗透的”无线电地基”）</li>
-<li><a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/24/2026082403/">2026082403 冒充运营商的信号：伪基站与 IMSI 猫</a>（无人机 IMSI 载荷的出处）</li>
-<li><a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/24/2026082407/">2026082407 被一句谎话拐走的天空之眼：无人机射频安全</a>（反无人机 &#x3D; 防御第三线）</li>
-<li><a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/24/2026082408/">2026082408 你的车里藏着”眼睛”：电磁反侦察</a>（频谱扫描 &#x3D; 防御第二线）</li>
-</ul>
-</li>
+<li>SDR 无线电入门 —— <a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/24/2026082401/">2026082401 SDR 软件无线电入门</a>（近源渗透的”无线电地基”）</li>
+<li>伪基站与 IMSI 猫 —— <a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/24/2026082403/">2026082403 冒充运营商的信号：伪基站与 IMSI 猫</a>（无人机 IMSI 载荷的出处）</li>
+<li>无人机射频安全 —— <a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/24/2026082407/">2026082407 被一句谎话拐走的天空之眼：无人机射频安全</a>（反无人机 &#x3D; 防御第三线）</li>
+<li>电磁反侦察 —— <a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/08/24/2026082408/">2026082408 你的车里藏着”眼睛”：电磁反侦察</a>（频谱扫描 &#x3D; 防御第二线）</li>
 <li>近源渗透系列 —— <a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/06/27/20260627/2026062702/">2026062702 玩转 Flipper Zero：RFID 全功能介绍</a>、<a target="_blank" rel="noopener" href="https://zapcoman.github.io/2026/07/01/20260701/2026070102/">2026070102 Flipper One：口袋里的开放 Linux 计算机——从愿景到现实</a></li>
 </ul>
-<p><strong>系列预告</strong>：本篇作为「无线电与信号安全」系列的近源渗透延伸番外，至此系列已有 9 篇。下一篇正式开启新话题。</p>
+<p><strong>下篇预告</strong>：本篇作为近源渗透载体的延伸思考就此收住，下一篇开启全新话题。</p>
 
   </div>
 
