@@ -1550,12 +1550,22 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else if (action === 'share') {
       var data = { title: document.title, url: location.href };
-      if (navigator.share) {
+      // Only use the native share sheet on touch-first devices (mobile).
+      // On desktop browsers (esp. Windows) navigator.share opens the OS
+      // share dialog which often fails with "can't show all sharing options".
+      var isCoarse = window.matchMedia && matchMedia('(pointer: coarse)').matches;
+      var isMobileUA = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+      if (navigator.share && (isCoarse || isMobileUA)) {
         navigator.share(data).catch(function () { /* user cancelled */ });
-      } else if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(location.href).catch(function () { fallbackCopy(location.href); });
       } else {
-        fallbackCopy(location.href);
+        copyText(location.href, function () {
+          var label = btn.querySelector('.reaction-label');
+          if (label) {
+            var oldText = label.textContent;
+            label.textContent = t('common.copied');
+            setTimeout(function () { label.textContent = oldText; }, 1600);
+          }
+        });
       }
     } else if (action === 'toggle-pop') {
       var willOpen = btn.getAttribute('aria-expanded') !== 'true'
