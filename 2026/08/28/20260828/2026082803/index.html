@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/08/28/images/20260828/lock-teardown-cover.png">
 <meta property="article:published_time" content="2026-08-28T14:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-27T23:18:17.844Z">
+<meta property="article:modified_time" content="2026-08-27T23:41:34.540Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="BLE">
 <meta property="article:tag" content="固件逆向">
@@ -34,7 +34,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"二手智能门锁安全研究：选型、攻击路线与逆向路线图","name":"二手智能门锁安全研究：选型、攻击路线与逆向路线图 | ZapcoMan's world","description":"我一直有个想法：买几把市面上常见的、老旧一点的二手电子门锁回来——就是前几年、甚至前年去年的那种型号，二手三手的价格比新品低一大截——然后按「电子」的方式去拆它、研究它。不是撬锁，是把它的固件、它的蓝牙通信、它和手机 App 之间的对话，一层层扒开来看。这一篇，先把这个想法的边界说清楚，然后把「该买哪几把锁、为什么买它们」的选型调研做实。 一、先把边界说清楚...","url":"http://example.com/2026/08/28/20260828/2026082803/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260828/lock-teardown-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/28/20260828/2026082803/","datePublished":"2026-08-28T14:00:00.000Z","dateModified":"2026-08-27T23:18:17.844Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"近源渗透, 蓝牙, BLE, 硬件安全, 固件逆向, 智能门锁, 果加, 安全研究"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"二手智能门锁安全研究：选型、攻击路线与逆向路线图","name":"二手智能门锁安全研究：选型、攻击路线与逆向路线图 | ZapcoMan's world","description":"我一直有个想法：买几把市面上常见的、老旧一点的二手电子门锁回来——就是前几年、甚至前年去年的那种型号，二手三手的价格比新品低一大截——然后按「电子」的方式去拆它、研究它。不是撬锁，是把它的固件、它的蓝牙通信、它和手机 App 之间的对话，一层层扒开来看。这一篇，先把这个想法的边界说清楚，然后把「该买哪几把锁、为什么买它们」的选型调研做实。 一、先把边界说清楚...","url":"http://example.com/2026/08/28/20260828/2026082803/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260828/lock-teardown-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/28/20260828/2026082803/","datePublished":"2026-08-28T14:00:00.000Z","dateModified":"2026-08-27T23:41:34.540Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"近源渗透, 蓝牙, BLE, 硬件安全, 固件逆向, 智能门锁, 果加, 安全研究"}</script>
 
 <script>
   (function () {
@@ -429,7 +429,7 @@
         </header>
         <div class="toc-content">
           
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%85%88%E6%8A%8A%E8%BE%B9%E7%95%8C%E8%AF%B4%E6%B8%85%E6%A5%9A%EF%BC%9A%E8%BF%99%E6%98%AF%E3%80%8C%E7%A0%94%E7%A9%B6%E3%80%8D%EF%BC%8C%E4%B8%8D%E6%98%AF%E3%80%8C%E5%BC%80%E9%94%81%E3%80%8D"><span class="toc-text">一、先把边界说清楚：这是「研究」，不是「开锁」</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E3%80%8C%E4%BA%8C%E6%89%8B%E8%80%81%E9%94%81%E3%80%8D%EF%BC%9F%E2%80%94%E2%80%94%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA%E9%80%89%E5%9E%8B%E9%80%BB%E8%BE%91%E9%97%AE%E9%A2%98"><span class="toc-text">二、为什么是「二手老锁」？——这是一个选型逻辑问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E9%80%89%E5%9E%8B%E8%B0%83%E7%A0%94%EF%BC%9A%E5%93%AA%E4%BA%9B%E9%94%81%E3%80%8C%E5%80%BC%E5%BE%97%E4%B9%B0%E5%9B%9E%E6%9D%A5%E6%8B%86%E3%80%8D"><span class="toc-text">三、选型调研：哪些锁「值得买回来拆」</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E6%9E%9C%E5%8A%A0%E6%99%BA%E8%83%BD%E9%97%A8%E9%94%81%E2%80%94%E2%80%94%E5%9B%BD%E5%86%85%E5%85%AC%E5%BC%80%E9%80%86%E5%90%91%E8%B5%84%E6%96%99%E6%9C%80%E5%AE%8C%E6%95%B4%E7%9A%84%E4%B8%80%E6%8A%8A%E9%94%81"><span class="toc-text">3.1 果加智能门锁——国内公开逆向资料最完整的一把锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E6%9E%9C%E5%8A%A0%E9%97%A8%E9%94%81%E7%9A%84%E6%8A%80%E6%9C%AF%E7%94%BB%E5%83%8F%E2%80%94%E2%80%94%E6%8B%86%E5%BC%80%E5%AE%83%E4%BC%9A%E7%9C%8B%E5%88%B0%E4%BB%80%E4%B9%88"><span class="toc-text">3.2 果加门锁的技术画像——拆开它会看到什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E8%80%B6%E9%B2%81%EF%BC%88Yale%EF%BC%89%E6%99%BA%E8%83%BD%E9%97%A8%E9%94%81%E2%80%94%E2%80%94%E6%B5%B7%E5%A4%96%E5%93%81%E7%89%8C%E7%9A%84%E3%80%8C%E5%AF%B9%E7%85%A7%E6%A0%B7%E6%9C%AC%E3%80%8D"><span class="toc-text">3.3 耶鲁（Yale）智能门锁——海外品牌的「对照样本」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E8%80%B6%E9%B2%81%EF%BC%88Yale%EF%BC%89%E6%99%BA%E8%83%BD%E9%97%A8%E9%94%81%E2%80%94%E2%80%94%E6%B5%B7%E5%A4%96%E5%93%81%E7%89%8C%E7%9A%84%E3%80%8C%E5%AF%B9%E7%85%A7%E6%A0%B7%E6%9C%AC%E3%80%8D-1"><span class="toc-text">3.3 耶鲁（Yale）智能门锁——海外品牌的「对照样本」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E6%B5%B7%E5%BA%B7%E8%90%A4%E7%9F%B3%E6%99%BA%E8%83%BD%E9%97%A8%E9%94%81%E2%80%94%E2%80%94%E3%80%8C%E7%BD%91%E5%85%B3%E5%9E%8B%E3%80%8D%E9%94%81%E7%9A%84%E6%A0%B7%E6%9C%AC"><span class="toc-text">3.4 海康萤石智能门锁——「网关型」锁的样本</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%9B%9B%E6%9D%A1%E6%94%BB%E5%87%BB%E8%B7%AF%E7%BA%BF%EF%BC%8C%E5%AF%B9%E5%BA%94%E5%9B%9B%E7%B1%BB%E5%B7%A5%E5%85%B7"><span class="toc-text">四、四条攻击路线，对应四类工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%88%91%E7%9A%84%E8%AE%A1%E5%88%92%E4%B8%8E%E8%A3%85%E5%A4%87%E6%B8%85%E5%8D%95"><span class="toc-text">五、我的计划与装备清单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%99%AE%E9%80%9A%E4%BA%BA%E6%80%8E%E4%B9%88%E9%98%B2%EF%BC%9A%E4%BB%8E%E3%80%8C%E9%97%A8%E9%94%81%E8%84%86%E5%BC%B1%E6%80%A7%E3%80%8D%E5%8F%8D%E6%8E%A8%E9%98%B2%E5%BE%A1"><span class="toc-text">六、普通人怎么防：从「门锁脆弱性」反推防御</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%C2%B7%E8%A1%A5%EF%BC%9A%E4%B8%80%E4%B8%AA%E3%80%8C%E9%9B%B6%E5%9F%BA%E7%A1%80%E3%80%8D%E4%B9%9F%E8%83%BD%E7%85%A7%E5%81%9A%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%AE%9E%E9%AA%8C"><span class="toc-text">六·补：一个「零基础」也能照做的第一个实验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E7%BB%93%E8%AF%AD%EF%BC%9A%E4%BB%8E%E3%80%8C%E5%86%99%E8%AE%BE%E5%A4%87%E3%80%8D%E5%88%B0%E3%80%8C%E6%91%B8%E8%AE%BE%E5%A4%87%E3%80%8D"><span class="toc-text">七、结语：从「写设备」到「摸设备」</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%85%88%E6%8A%8A%E8%BE%B9%E7%95%8C%E8%AF%B4%E6%B8%85%E6%A5%9A%EF%BC%9A%E8%BF%99%E6%98%AF%E3%80%8C%E7%A0%94%E7%A9%B6%E3%80%8D%EF%BC%8C%E4%B8%8D%E6%98%AF%E3%80%8C%E5%BC%80%E9%94%81%E3%80%8D"><span class="toc-text">一、先把边界说清楚：这是「研究」，不是「开锁」</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E3%80%8C%E4%BA%8C%E6%89%8B%E8%80%81%E9%94%81%E3%80%8D%EF%BC%9F%E2%80%94%E2%80%94%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA%E9%80%89%E5%9E%8B%E9%80%BB%E8%BE%91%E9%97%AE%E9%A2%98"><span class="toc-text">二、为什么是「二手老锁」？——这是一个选型逻辑问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E9%80%89%E5%9E%8B%E8%B0%83%E7%A0%94%EF%BC%9A%E5%93%AA%E4%BA%9B%E9%94%81%E3%80%8C%E5%80%BC%E5%BE%97%E4%B9%B0%E5%9B%9E%E6%9D%A5%E6%8B%86%E3%80%8D"><span class="toc-text">三、选型调研：哪些锁「值得买回来拆」</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E6%9E%9C%E5%8A%A0%E6%99%BA%E8%83%BD%E9%97%A8%E9%94%81%E2%80%94%E2%80%94%E5%9B%BD%E5%86%85%E5%85%AC%E5%BC%80%E9%80%86%E5%90%91%E8%B5%84%E6%96%99%E6%9C%80%E5%AE%8C%E6%95%B4%E7%9A%84%E4%B8%80%E6%8A%8A%E9%94%81"><span class="toc-text">3.1 果加智能门锁——国内公开逆向资料最完整的一把锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E6%9E%9C%E5%8A%A0%E9%97%A8%E9%94%81%E7%9A%84%E6%8A%80%E6%9C%AF%E7%94%BB%E5%83%8F%E2%80%94%E2%80%94%E6%8B%86%E5%BC%80%E5%AE%83%E4%BC%9A%E7%9C%8B%E5%88%B0%E4%BB%80%E4%B9%88"><span class="toc-text">3.2 果加门锁的技术画像——拆开它会看到什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E8%80%B6%E9%B2%81%EF%BC%88Yale%EF%BC%89%E6%99%BA%E8%83%BD%E9%97%A8%E9%94%81%E2%80%94%E2%80%94%E6%B5%B7%E5%A4%96%E5%93%81%E7%89%8C%E7%9A%84%E3%80%8C%E5%AF%B9%E7%85%A7%E6%A0%B7%E6%9C%AC%E3%80%8D"><span class="toc-text">3.3 耶鲁（Yale）智能门锁——海外品牌的「对照样本」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E8%80%B6%E9%B2%81%EF%BC%88Yale%EF%BC%89%E6%99%BA%E8%83%BD%E9%97%A8%E9%94%81%E2%80%94%E2%80%94%E6%B5%B7%E5%A4%96%E5%93%81%E7%89%8C%E7%9A%84%E3%80%8C%E5%AF%B9%E7%85%A7%E6%A0%B7%E6%9C%AC%E3%80%8D-1"><span class="toc-text">3.3 耶鲁（Yale）智能门锁——海外品牌的「对照样本」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E6%B5%B7%E5%BA%B7%E8%90%A4%E7%9F%B3%E6%99%BA%E8%83%BD%E9%97%A8%E9%94%81%E2%80%94%E2%80%94%E3%80%8C%E7%BD%91%E5%85%B3%E5%9E%8B%E3%80%8D%E9%94%81%E7%9A%84%E6%A0%B7%E6%9C%AC"><span class="toc-text">3.4 海康萤石智能门锁——「网关型」锁的样本</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%9B%9B%E6%9D%A1%E6%94%BB%E5%87%BB%E8%B7%AF%E7%BA%BF%EF%BC%8C%E5%AF%B9%E5%BA%94%E5%9B%9B%E7%B1%BB%E5%B7%A5%E5%85%B7"><span class="toc-text">四、四条攻击路线，对应四类工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E3%80%8C%E6%9E%9C%E5%8A%A0%E3%80%8D%E6%98%AF%E6%9C%80%E4%BC%98%E7%9A%84%E3%80%8C%E7%AC%AC%E4%B8%80%E6%8A%8A%E9%94%81%E3%80%8D%E2%80%94%E2%80%94%E4%B8%89%E6%9D%A1%E7%90%86%E7%94%B1"><span class="toc-text">为什么「果加」是最优的「第一把锁」——三条理由</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%88%91%E7%9A%84%E8%AE%A1%E5%88%92%E4%B8%8E%E8%A3%85%E5%A4%87%E6%B8%85%E5%8D%95"><span class="toc-text">五、我的计划与装备清单</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E6%9D%A1%E3%80%8C%E9%A2%84%E7%AE%97%E5%8F%8B%E5%A5%BD%E7%9A%84%E9%87%87%E8%B4%AD%E6%B8%85%E5%8D%95%E3%80%8D%EF%BC%9A%E5%85%88%E4%B9%B0%E4%BB%80%E4%B9%88%E3%80%81%E5%90%8E%E4%B9%B0%E4%BB%80%E4%B9%88"><span class="toc-text">一条「预算友好的采购清单」：先买什么、后买什么</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%99%AE%E9%80%9A%E4%BA%BA%E6%80%8E%E4%B9%88%E9%98%B2%EF%BC%9A%E4%BB%8E%E3%80%8C%E9%97%A8%E9%94%81%E8%84%86%E5%BC%B1%E6%80%A7%E3%80%8D%E5%8F%8D%E6%8E%A8%E9%98%B2%E5%BE%A1"><span class="toc-text">六、普通人怎么防：从「门锁脆弱性」反推防御</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%C2%B7%E8%A1%A5%EF%BC%9A%E4%B8%80%E4%B8%AA%E3%80%8C%E9%9B%B6%E5%9F%BA%E7%A1%80%E3%80%8D%E4%B9%9F%E8%83%BD%E7%85%A7%E5%81%9A%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%AE%9E%E9%AA%8C"><span class="toc-text">六·补：一个「零基础」也能照做的第一个实验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E7%BB%93%E8%AF%AD%EF%BC%9A%E4%BB%8E%E3%80%8C%E5%86%99%E8%AE%BE%E5%A4%87%E3%80%8D%E5%88%B0%E3%80%8C%E6%91%B8%E8%AE%BE%E5%A4%87%E3%80%8D"><span class="toc-text">七、结语：从「写设备」到「摸设备」</span></a></li></ol>
           
         </div>
       </section>
@@ -642,6 +642,16 @@
 <p><strong>② 固件提取与逆向</strong>：先在手机上装 Fiddler 的根证书、开代理，再触发 App 的「检查更新」，就能抓到门锁固件的下载 URL，把 <code>.bin</code> 文件拉下来；接着用 IDA（手动指定 Armv7-M 架构、ROM 起始地址 <code>0x08000000</code>）加载，从中断向量表找到入口点开始反汇编。</p>
 <p><strong>③ App 逆向</strong>：用 JEB 或 Jadx 反编译 App，重点看 <code>ble</code> 相关的包和 native 库（<code>.so</code> 文件）；这些 native 库里藏着 BLE 指令的生成逻辑和加解密函数，是「还原开锁协议」的关键。</p>
 <p><strong>④ 物理调试口</strong>：拆机找 UART 焊盘，用万用表识别 GND&#x2F;TX&#x2F;RX，接 USB-TTL 转接板读启动日志；运气好的话能直接进 shell 或 U-Boot，把 Flash 里的固件整段 dump 出来。</p>
+<h3 id="为什么「果加」是最优的「第一把锁」——三条理由"><a href="#为什么「果加」是最优的「第一把锁」——三条理由" class="headerlink" title="为什么「果加」是最优的「第一把锁」——三条理由"></a>为什么「果加」是最优的「第一把锁」——三条理由</h3><p>前面 3.1 说”果加作为第一把入手的目标没有悬念”，这里把理由讲透，因为它其实是一个”选型方法论”的示范：</p>
+<ol>
+<li><p><strong>资料最全 &#x3D; 学习成本最低</strong>：胖猴实验室的 Part 1-7 系列，已经把”从固件提取到加密算法定位”的每一步都写清楚了。对学习者来说，这等于有了”参考答案”——你逆向遇到瓶颈，可以回头查”别人是怎么过的这一关”。<strong>“有参考答案”和”盲人摸象”，学习效率差一个数量级。</strong></p>
+</li>
+<li><p><strong>二手便宜 &#x3D; 试错成本低</strong>：果加是早期公寓市场霸主，二手市场上几十到一百多块就能收到。这意味着你可以放心拆、放心接调试口、放心试错——<strong>拆坏了不心疼，才能放开手脚学。</strong> 如果用一把几千块的新锁学逆向，反而会束手束脚。</p>
+</li>
+<li><p><strong>架构典型 &#x3D; 迁移价值高</strong>：果加用的是 STM32L071（Arm Cortex-M0+），这是嵌入式世界最主流的芯片家族之一。你吃透了它的逆向方法，换一把同样用 STM32 的门锁、手环、传感器，方法是通用的。<strong>学的是”果加”，练的是”整个 STM32 生态”的逆向功夫。</strong></p>
+</li>
+</ol>
+<p>这三条理由，其实可以套用到任何”买设备来学安全”的选型上：<strong>优先选”资料全、便宜、架构典型”的目标。</strong> 反过来，最该避开的，是”资料零、贵、架构冷门”的设备——那不是学习，是自讨苦吃。</p>
 <h2 id="五、我的计划与装备清单"><a href="#五、我的计划与装备清单" class="headerlink" title="五、我的计划与装备清单"></a>五、我的计划与装备清单</h2><p><strong>分三步走：</strong></p>
 <ol>
 <li><strong>选型采购</strong>（现在）：先收一把果加家庭版&#x2F;公寓版二手锁，价格低、资料全。</li>
@@ -679,6 +689,43 @@
 </tr>
 </tbody></table>
 <p>起步成本大约 <strong>¥200-400</strong>，符合「二手低价」的思路。</p>
+<h3 id="一条「预算友好的采购清单」：先买什么、后买什么"><a href="#一条「预算友好的采购清单」：先买什么、后买什么" class="headerlink" title="一条「预算友好的采购清单」：先买什么、后买什么"></a>一条「预算友好的采购清单」：先买什么、后买什么</h3><p>把装备清单按”优先级 + 依赖关系”重新排一下，会更实用——因为你不必一次买齐，而是按学习进度”滚雪球”：</p>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>买什么</th>
+<th>花费</th>
+<th>能做什么</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>第一批（软件侧）</td>
+<td>二手果加锁 + Fiddler + JEB&#x2F;Jadx</td>
+<td>¥100-200</td>
+<td>逆向 App、抓固件、定位加密逻辑（零硬件）</td>
+</tr>
+<tr>
+<td>第二批（物理侧）</td>
+<td>螺丝刀 + 撬片 + 万用表 + USB-TTL</td>
+<td>¥100</td>
+<td>拆机、找调试口、读串口日志</td>
+</tr>
+<tr>
+<td>第三批（无线侧）</td>
+<td>nRF52840 Dongle</td>
+<td>¥100-200</td>
+<td>BLE 抓包、验证重放</td>
+</tr>
+<tr>
+<td>第四批（进阶）</td>
+<td>逻辑分析仪 &#x2F; 编程器</td>
+<td>¥100-200</td>
+<td>SPI 嗅探、Flash 直读</td>
+</tr>
+</tbody></table>
+<p>这份清单的排序逻辑是：<strong>先”软件”（零硬件成本，最便宜），再”物理”（拆机找接口），再”无线”（抓蓝牙），最后”进阶”（深入芯片）。</strong> 每一批的产出，都是下一批的前提——先逆向出 App 里的加密逻辑，才知道抓 BLE 包时要”看什么字段”；先拆机找到调试口，才谈得上”从 UART 读固件”。</p>
+<p><strong>总预算约 ¥500-700，分四批投入，就能走完整条”门锁逆向”链路。</strong> 这和”一次买几千块的设备、却不知道从哪下手”相比，是更聪明、也更符合”二手低价”思路的路径。</p>
 <h2 id="六、普通人怎么防：从「门锁脆弱性」反推防御"><a href="#六、普通人怎么防：从「门锁脆弱性」反推防御" class="headerlink" title="六、普通人怎么防：从「门锁脆弱性」反推防御"></a>六、普通人怎么防：从「门锁脆弱性」反推防御</h2><p>研究攻击面的最终目的，是搞清楚「普通用户到底该怎么选、怎么防」。把上面的攻击路线反过来看，能得出几条非常实用的结论：</p>
 <ol>
 <li><strong>优先选大牌、在售、持续更新的型号</strong>：虽然我也研究旧锁，但那是「研究用」。普通人买锁，恰恰要反着来——选大牌在售款，因为它们在出厂前经过了更严格的安全测试，且漏洞能被及时 OTA 修复。旧锁的问题不是「能被研究」，而是「被研究出漏洞后没人修」。</li>
@@ -705,7 +752,13 @@
 <p><strong>这几件事做完，你就不再是「纸上谈兵」，而是真正摸过工具、见过信号的人了。</strong> 这也是我买锁回来之前，想先让自己具备的基本功。</p>
 <h2 id="七、结语：从「写设备」到「摸设备」"><a href="#七、结语：从「写设备」到「摸设备」" class="headerlink" title="七、结语：从「写设备」到「摸设备」"></a>七、结语：从「写设备」到「摸设备」</h2><p>这个系列对我自己有个特殊的意义。过去我写了很多安全文章，但坦诚地讲，不少内容是资料研究，设备我并没有真正摸过。买几把二手锁回来拆，是想把这件事从「纸上」落到「手上」。</p>
 <p>后面的每一篇，我都会如实记录：哪一步成功了、哪一步卡住了、我猜错了什么。<strong>失败的过程，和成功一样有记录价值</strong>——因为真实的安全研究，本来就是反复试错，而不是照着答案念。</p>
-<p>如果你也对这个过程感兴趣，或者手里有闲置的旧门锁、旧智能家居设备想一起研究，欢迎在评论区聊聊。下一期，我会从「收到第一把锁 + 逆向果加 App」开始。</p>
+<p>下一期，我会从「收到第一把锁 + 逆向果加 App」开始，把这套方法真正落到一次动手实践上。</p>
+<blockquote>
+<p>最后，把这一篇的核心判断再钉一次：<strong>研究二手门锁，不是”玩票”，而是一次严肃的”从资料研究转向硬件实战”的转身。</strong> 我过去写的很多安全文章，素材来自公开资料，设备并没有真正摸过。买几把锁回来拆，是为了把”纸上谈兵”变成”手上见真章”。无论最终破得开还是破不开，这个过程本身，就是我想要的那一类内容——<strong>真实、可复现、有血有肉。</strong></p>
+</blockquote>
+<blockquote>
+<p>如果你也曾经”写了很多设备相关的文章，却从没摸过那台设备”，那这个系列，或许就是给你的一个示范：<strong>设备不贵，门槛不高，缺的只是一次”真的下单买回来”的决心。</strong></p>
+</blockquote>
 <hr>
 <p><strong>素材来源与延伸阅读</strong>：</p>
 <ul>

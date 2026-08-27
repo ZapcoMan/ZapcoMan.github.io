@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/08/24/images/20260824/sdr-cover.png">
 <meta property="article:published_time" content="2026-08-24T02:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-24T11:16:01.482Z">
+<meta property="article:modified_time" content="2026-08-27T23:39:40.675Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="RTL-SDR">
 <meta property="article:tag" content="SDR">
@@ -34,7 +34,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"空气里飘着整个城市的数据：SDR 软件无线电入门——用一百块的\"电视棒\"打开电磁世界","name":"空气里飘着整个城市的数据：SDR 软件无线电入门——用一百块的\"电视棒\"打开电磁世界 | ZapcoMan's world","description":"你抬头看不见它，但空气里正飘着整座城市的数据：头顶 400 架飞机的坐标、隔壁楼的对讲机语音、汽车遥控器的开锁码、气象卫星传回的云图、每一部手机的入网请求。这些信号穿过你的身体、你的墙壁、你的房间，24 小时不停。绝大多数人一辈子都不知道它们存在——直到花一百块买一根”电视棒”，然后第一次看见频谱图上涌动的信号海。 这一篇是入口。我们不讲攻击，先讲清楚一件事...","url":"http://example.com/2026/08/24/20260824/2026082401/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260824/sdr-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/24/20260824/2026082401/","datePublished":"2026-08-24T02:00:00.000Z","dateModified":"2026-08-24T11:16:01.482Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"近源渗透, 反监控, SDR, RTL-SDR, 软件无线电, 无线电, 信号分析, 频谱"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"空气里飘着整个城市的数据：SDR 软件无线电入门——用一百块的\"电视棒\"打开电磁世界","name":"空气里飘着整个城市的数据：SDR 软件无线电入门——用一百块的\"电视棒\"打开电磁世界 | ZapcoMan's world","description":"你抬头看不见它，但空气里正飘着整座城市的数据：头顶 400 架飞机的坐标、隔壁楼的对讲机语音、汽车遥控器的开锁码、气象卫星传回的云图、每一部手机的入网请求。这些信号穿过你的身体、你的墙壁、你的房间，24 小时不停。绝大多数人一辈子都不知道它们存在——直到花一百块买一根”电视棒”，然后第一次看见频谱图上涌动的信号海。 这一篇是入口。我们不讲攻击，先讲清楚一件事...","url":"http://example.com/2026/08/24/20260824/2026082401/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260824/sdr-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/24/20260824/2026082401/","datePublished":"2026-08-24T02:00:00.000Z","dateModified":"2026-08-27T23:39:40.675Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"近源渗透, 反监控, SDR, RTL-SDR, 软件无线电, 无线电, 信号分析, 频谱"}</script>
 
 <script>
   (function () {
@@ -429,7 +429,7 @@
         </header>
         <div class="toc-content">
           
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%85%88%E8%AE%A4%E8%AF%86%E7%94%B5%E7%A3%81%E4%B8%96%E7%95%8C%EF%BC%9A%E7%A9%BA%E6%B0%94%E9%87%8C%E5%88%B0%E5%BA%95%E6%9C%89%E4%BB%80%E4%B9%88"><span class="toc-text">一、先认识电磁世界：空气里到底有什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81SDR-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9A%E6%8A%8A%E6%94%B6%E9%9F%B3%E6%9C%BA%E4%BB%8E%E2%80%9D%E7%A1%AC%E4%BB%B6%E2%80%9D%E5%8F%98%E6%88%90%E2%80%9D%E8%BD%AF%E4%BB%B6%E2%80%9D"><span class="toc-text">二、SDR 是什么：把收音机从”硬件”变成”软件”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%B8%80%E7%99%BE%E5%9D%97%E7%9A%84%E5%85%A5%E5%9C%BA%E5%88%B8%EF%BC%9ARTL-SDR-%E7%9A%84%E4%BC%A0%E5%A5%87"><span class="toc-text">三、一百块的入场券：RTL-SDR 的传奇</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7%E9%93%BE%EF%BC%9A%E4%BB%8E%E2%80%9D%E5%90%AC%E5%B9%BF%E6%92%AD%E2%80%9D%E5%88%B0%E2%80%9D%E7%9C%8B%E9%A3%9E%E6%9C%BA%E2%80%9D"><span class="toc-text">四、软件工具链：从”听广播”到”看飞机”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E8%83%BD%E5%90%AC-%E2%89%A0-%E8%83%BD%E7%A2%B0%EF%BC%9A%E5%90%88%E6%B3%95%E6%8E%A5%E6%94%B6%E7%9A%84%E8%BE%B9%E7%95%8C"><span class="toc-text">五、能听 ≠ 能碰：合法接收的边界</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%9A%97%E9%9D%A2%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E2%80%9D%E4%B8%80%E6%A0%B9%E7%94%B5%E8%A7%86%E6%A3%92%E2%80%9D%E8%AE%A9%E7%9B%91%E7%AE%A1%E8%80%85%E5%A4%B4%E7%96%BC"><span class="toc-text">六、暗面：为什么”一根电视棒”让监管者头疼</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E9%98%B2%E5%BE%A1%E8%A7%86%E8%A7%92%EF%BC%9A%E5%A6%82%E6%9E%9C%E4%BD%A0%E6%98%AF%E8%A2%AB%E7%9B%91%E5%90%AC%E7%9A%84%E4%BA%BA"><span class="toc-text">七、防御视角：如果你是被监听的人</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E8%BE%B9%E7%95%8C%E5%A3%B0%E6%98%8E"><span class="toc-text">八、边界声明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A0%E6%9D%90%E6%9D%A5%E6%BA%90"><span class="toc-text">素材来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%96%87%E7%AB%A0"><span class="toc-text">相关文章</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%85%88%E8%AE%A4%E8%AF%86%E7%94%B5%E7%A3%81%E4%B8%96%E7%95%8C%EF%BC%9A%E7%A9%BA%E6%B0%94%E9%87%8C%E5%88%B0%E5%BA%95%E6%9C%89%E4%BB%80%E4%B9%88"><span class="toc-text">一、先认识电磁世界：空气里到底有什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81SDR-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9A%E6%8A%8A%E6%94%B6%E9%9F%B3%E6%9C%BA%E4%BB%8E%E2%80%9D%E7%A1%AC%E4%BB%B6%E2%80%9D%E5%8F%98%E6%88%90%E2%80%9D%E8%BD%AF%E4%BB%B6%E2%80%9D"><span class="toc-text">二、SDR 是什么：把收音机从”硬件”变成”软件”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%B8%80%E7%99%BE%E5%9D%97%E7%9A%84%E5%85%A5%E5%9C%BA%E5%88%B8%EF%BC%9ARTL-SDR-%E7%9A%84%E4%BC%A0%E5%A5%87"><span class="toc-text">三、一百块的入场券：RTL-SDR 的传奇</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%85%B7%E9%93%BE%EF%BC%9A%E4%BB%8E%E2%80%9D%E5%90%AC%E5%B9%BF%E6%92%AD%E2%80%9D%E5%88%B0%E2%80%9D%E7%9C%8B%E9%A3%9E%E6%9C%BA%E2%80%9D"><span class="toc-text">四、软件工具链：从”听广播”到”看飞机”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E8%83%BD%E5%90%AC-%E2%89%A0-%E8%83%BD%E7%A2%B0%EF%BC%9A%E5%90%88%E6%B3%95%E6%8E%A5%E6%94%B6%E7%9A%84%E8%BE%B9%E7%95%8C"><span class="toc-text">五、能听 ≠ 能碰：合法接收的边界</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%9A%97%E9%9D%A2%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E2%80%9D%E4%B8%80%E6%A0%B9%E7%94%B5%E8%A7%86%E6%A3%92%E2%80%9D%E8%AE%A9%E7%9B%91%E7%AE%A1%E8%80%85%E5%A4%B4%E7%96%BC"><span class="toc-text">六、暗面：为什么”一根电视棒”让监管者头疼</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E9%98%B2%E5%BE%A1%E8%A7%86%E8%A7%92%EF%BC%9A%E5%A6%82%E6%9E%9C%E4%BD%A0%E6%98%AF%E8%A2%AB%E7%9B%91%E5%90%AC%E7%9A%84%E4%BA%BA"><span class="toc-text">七、防御视角：如果你是被监听的人</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%99%E6%96%B0%E6%89%8B%E7%9A%84%E4%B8%80%E5%91%A8%E7%BB%83%E6%89%8B%E6%B8%85%E5%8D%95"><span class="toc-text">给新手的一周练手清单</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E8%BE%B9%E7%95%8C%E5%A3%B0%E6%98%8E"><span class="toc-text">八、边界声明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A0%E6%9D%90%E6%9D%A5%E6%BA%90"><span class="toc-text">素材来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%96%87%E7%AB%A0"><span class="toc-text">相关文章</span></a></li></ol>
           
         </div>
       </section>
@@ -769,6 +769,9 @@
 <blockquote>
 <p>金句：技术本身是中立的，但频谱是公共资源，占用公共资源扰乱公共秩序，法律一定看得见。</p>
 </blockquote>
+<blockquote>
+<p>最后补一句给”第一次拿起 SDR”的你：<strong>别急着去”破解什么”，先学会”听见什么”。</strong> 当你第一次在频谱图上看到头顶那架飞机的广播、听到 ISS 掠过时的太空通话，你会真正理解一句话——<strong>我们从未脱离电磁世界，我们只是长期对它视而不见。</strong> SDR 的价值，首先在于睁开这双眼睛。</p>
+</blockquote>
 <p>这些暗面内容，后面的文章都会展开——伪基站怎么骗过你的手机、IMSI 猫怎么抄你的身份、遥控器怎么被复制。这一篇你只需要记住：<strong>它们是同一套物理世界的延伸，SDR 是打开这个世界的门。</strong></p>
 <h2 id="七、防御视角：如果你是被监听的人"><a href="#七、防御视角：如果你是被监听的人" class="headerlink" title="七、防御视角：如果你是被监听的人"></a>七、防御视角：如果你是被监听的人</h2><p>把视角翻转过来——理解了”空气里全是信号”，也就理解了反侦察：</p>
 <ul>
@@ -776,6 +779,60 @@
 <li>反侦察的基本功之一，就是定期用 SDR 对自家车位、门前、办公室做频谱扫描，找”不该出现的发射源”。这个思路和我们之前讲的隐私反侦察系列一脉相承：<strong>监控必须发射信号，发射就有痕迹，有痕迹就能被反制。</strong></li>
 </ul>
 <p>这也是值得单独开一篇讲它的原因：无线电不是孤立的知识点，它是物理攻击、近源渗透、反监控的公共地基。</p>
+<h3 id="给新手的一周练手清单"><a href="#给新手的一周练手清单" class="headerlink" title="给新手的一周练手清单"></a>给新手的一周练手清单</h3><p>如果你刚买了第一根 RTL-SDR，这一份”第一周练手清单”能帮你快速建立手感，按难度递进：</p>
+<table>
+<thead>
+<tr>
+<th>天数</th>
+<th>任务</th>
+<th>目标</th>
+<th>需要工具</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Day 1</td>
+<td>装 SDR#，插棒子，看 FM 广播频谱</td>
+<td>跑通”硬件→软件”链路</td>
+<td>RTL-SDR + SDR#</td>
+</tr>
+<tr>
+<td>Day 2</td>
+<td>听 FM 广播，认识频谱图上的”峰”</td>
+<td>建立”看见信号”的直觉</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>Day 3</td>
+<td>收 1090MHz ADS-B，用 dump1090 看飞机</td>
+<td>第一次”解码真实数据”</td>
+<td>同上 + dump1090</td>
+</tr>
+<tr>
+<td>Day 4</td>
+<td>收 433MHz 气象站&#x2F;遥控器，用 RTL433</td>
+<td>理解”短包信号”</td>
+<td>同上 + RTL433</td>
+</tr>
+<tr>
+<td>Day 5</td>
+<td>收 NOAA 气象卫星（137MHz）APT 云图</td>
+<td>体验”跨学科”乐趣</td>
+<td>同上 + 解码软件</td>
+</tr>
+<tr>
+<td>Day 6</td>
+<td>用 URH 录一段遥控器信号并解调</td>
+<td>迈出”协议逆向”第一步</td>
+<td>同上 + URH</td>
+</tr>
+<tr>
+<td>Day 7</td>
+<td>扫一遍自家频谱，识别”谁在发射”</td>
+<td>把技能用于”环境感知”</td>
+<td>同上</td>
+</tr>
+</tbody></table>
+<p>这份清单的精髓是：<strong>每天都只推进一小步，但每一步都是”看得见结果”的</strong>——第一天看到频谱、第三天看到飞机、第五天收到卫星云图。这种”即时反馈”是入门期最宝贵的东西，它会让”学 SDR”从”啃文档”变成”玩游戏”。</p>
 <h2 id="八、边界声明"><a href="#八、边界声明" class="headerlink" title="八、边界声明"></a>八、边界声明</h2><p>本文仅为网络安全与无线电技术科普，讲解 SDR 原理、合法接收公共信号的入门方法与法律红线。文中所有关于非法行为的描述（伪基站、监听、干扰等）均为科普性说明，用于让读者理解其危害与法律后果。请勿用于任何违法用途：非法设置、使用无线电台，非法监听他人通信，干扰无线电通讯秩序，均属违法行为，将面临治安处罚乃至刑事追责。</p>
 <h2 id="素材来源"><a href="#素材来源" class="headerlink" title="素材来源"></a>素材来源</h2><ul>
 <li>osmocom 社区 RTL-SDR 项目与 RTL2832U 破解史（2012）</li>
