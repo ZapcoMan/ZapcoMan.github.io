@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/08/24/images/20260824/rfid-cover.png">
 <meta property="article:published_time" content="2026-08-24T05:15:00.000Z">
-<meta property="article:modified_time" content="2026-08-24T11:19:42.644Z">
+<meta property="article:modified_time" content="2026-08-27T23:32:22.169Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="125kHz">
 <meta property="article:tag" content="13.56MHz">
@@ -36,7 +36,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"你刷的每一张卡，都是一段射频故事：RFID/NFC 门禁卡安全——从 125kHz 到 13.56MHz 的攻防终局","name":"你刷的每一张卡，都是一段射频故事：RFID/NFC 门禁卡安全——从 125kHz 到 13.56MHz 的攻防终局 | ZapcoMan's world","description":"你的包里有一张让你进小区、进公司、进停车场的卡——它没有密码、没有按键、没有屏幕，你刷它进门的时候它甚至不亮。但就是这张沉默的塑料片，可能比你的电脑更容易被复制：花几十块买个读卡器，对着它”扫”十秒，再花几块钱买张白卡”烧”进去，一个一模一样的”你”就诞生了。2018 年，MIFARE Classic 门禁卡的破解工具链已经成熟到”小白点几下就能复制”；20...","url":"http://example.com/2026/08/24/20260824/2026082405/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260824/rfid-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/24/20260824/2026082405/","datePublished":"2026-08-24T05:15:00.000Z","dateModified":"2026-08-24T11:19:42.644Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"RFID, NFC, 门禁卡, MIFARE, 125kHz, 13.56MHz, 复制卡, 访问控制, 物理安全, 物联网"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"你刷的每一张卡，都是一段射频故事：RFID/NFC 门禁卡安全——从 125kHz 到 13.56MHz 的攻防终局","name":"你刷的每一张卡，都是一段射频故事：RFID/NFC 门禁卡安全——从 125kHz 到 13.56MHz 的攻防终局 | ZapcoMan's world","description":"你的包里有一张让你进小区、进公司、进停车场的卡——它没有密码、没有按键、没有屏幕，你刷它进门的时候它甚至不亮。但就是这张沉默的塑料片，可能比你的电脑更容易被复制：花几十块买个读卡器，对着它”扫”十秒，再花几块钱买张白卡”烧”进去，一个一模一样的”你”就诞生了。2018 年，MIFARE Classic 门禁卡的破解工具链已经成熟到”小白点几下就能复制”；20...","url":"http://example.com/2026/08/24/20260824/2026082405/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260824/rfid-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/24/20260824/2026082405/","datePublished":"2026-08-24T05:15:00.000Z","dateModified":"2026-08-27T23:32:22.169Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"RFID, NFC, 门禁卡, MIFARE, 125kHz, 13.56MHz, 复制卡, 访问控制, 物理安全, 物联网"}</script>
 
 <script>
   (function () {
@@ -355,21 +355,21 @@
         
           
             <a class="site-info__item" href="/archives/">
-              <strong>138</strong>
+              <strong>141</strong>
               <span>文章</span>
             </a>
           
         
           
             <a class="site-info__item" href="/categories/">
-              <strong>34</strong>
+              <strong>35</strong>
               <span>分类</span>
             </a>
           
         
           
             <a class="site-info__item" href="/tags/">
-              <strong>263</strong>
+              <strong>276</strong>
               <span>标签</span>
             </a>
           
@@ -431,7 +431,7 @@
         </header>
         <div class="toc-content">
           
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%B0%84%E9%A2%91%E8%AF%86%E5%88%AB%E7%9A%84%E4%B8%96%E7%95%8C%EF%BC%9A125kHz-%E4%B8%8E-13-56MHz-%E4%B8%A4%E5%A4%A7%E5%AE%B6%E6%97%8F"><span class="toc-text">一、射频识别的世界：125kHz 与 13.56MHz 两大家族</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81MIFARE-Classic%EF%BC%9A%E8%A2%AB%E9%80%86%E5%90%91-16-%E5%B9%B4%E7%9A%84%E2%80%9D%E8%80%81%E6%9C%8B%E5%8F%8B%E2%80%9D"><span class="toc-text">二、MIFARE Classic：被逆向 16 年的”老朋友”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%A4%8D%E5%88%B6%E9%93%BE%E8%B7%AF%EF%BC%9A%E4%BB%8E%E2%80%9D%E6%89%AB%E2%80%9D%E5%88%B0%E2%80%9D%E7%83%A7%E2%80%9D%E7%9A%84%E4%B8%89%E6%AD%A5"><span class="toc-text">三、复制链路：从”扫”到”烧”的三步</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%89%8B%E6%9C%BA%E6%A8%A1%E6%8B%9F%E9%97%A8%E7%A6%81%E5%8D%A1%EF%BC%9A%E4%BE%BF%E5%88%A9%E4%B8%8E%E8%BE%B9%E7%95%8C"><span class="toc-text">四、手机模拟门禁卡：便利与边界</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E9%A3%8E%E9%99%A9%E5%85%A8%E8%B2%8C%EF%BC%9A%E4%B8%80%E5%BC%A0%E5%8D%A1%E8%83%BD%E6%8E%80%E8%B5%B7%E5%A4%9A%E5%A4%A7%E6%B5%AA"><span class="toc-text">五、风险全貌：一张卡能掀起多大浪</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E9%98%B2%E5%BE%A1%E6%8C%87%E5%8D%97%EF%BC%9A%E7%89%A9%E4%B8%9A%E4%B8%8E%E4%BC%81%E4%B8%9A%E7%89%88"><span class="toc-text">六、防御指南：物业与企业版</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E6%94%B6%E6%9D%9F%EF%BC%9A%E6%8A%8A%E8%BF%99%E5%87%A0%E6%9D%A1%E5%B0%84%E9%A2%91%E7%BA%BF%E7%B4%A2%E4%B8%B2%E6%88%90%E4%B8%80%E6%9D%A1%E7%BA%BF"><span class="toc-text">七、收束：把这几条射频线索串成一条线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E8%BE%B9%E7%95%8C%E5%A3%B0%E6%98%8E"><span class="toc-text">八、边界声明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A0%E6%9D%90%E6%9D%A5%E6%BA%90"><span class="toc-text">素材来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%96%87%E7%AB%A0"><span class="toc-text">相关文章</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%B0%84%E9%A2%91%E8%AF%86%E5%88%AB%E7%9A%84%E4%B8%96%E7%95%8C%EF%BC%9A125kHz-%E4%B8%8E-13-56MHz-%E4%B8%A4%E5%A4%A7%E5%AE%B6%E6%97%8F"><span class="toc-text">一、射频识别的世界：125kHz 与 13.56MHz 两大家族</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81MIFARE-Classic%EF%BC%9A%E8%A2%AB%E9%80%86%E5%90%91-16-%E5%B9%B4%E7%9A%84%E2%80%9D%E8%80%81%E6%9C%8B%E5%8F%8B%E2%80%9D"><span class="toc-text">二、MIFARE Classic：被逆向 16 年的”老朋友”</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Crypto1-%E4%B8%BA%E4%BB%80%E4%B9%88%E2%80%9D%E7%9C%8B%E4%BC%BC%E5%8A%A0%E5%AF%86%E3%80%81%E5%AE%9E%E5%88%99%E8%A3%B8%E5%A5%94%E2%80%9D"><span class="toc-text">Crypto1 为什么”看似加密、实则裸奔”</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%A4%8D%E5%88%B6%E9%93%BE%E8%B7%AF%EF%BC%9A%E4%BB%8E%E2%80%9D%E6%89%AB%E2%80%9D%E5%88%B0%E2%80%9D%E7%83%A7%E2%80%9D%E7%9A%84%E4%B8%89%E6%AD%A5"><span class="toc-text">三、复制链路：从”扫”到”烧”的三步</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%89%8B%E6%9C%BA%E6%A8%A1%E6%8B%9F%E9%97%A8%E7%A6%81%E5%8D%A1%EF%BC%9A%E4%BE%BF%E5%88%A9%E4%B8%8E%E8%BE%B9%E7%95%8C"><span class="toc-text">四、手机模拟门禁卡：便利与边界</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%A8%E7%A6%81%E5%8D%A1%E7%9A%84%E3%80%8C%E6%BC%94%E8%BF%9B%E5%8F%B2%E3%80%8D%EF%BC%9A%E4%BB%8E%E2%80%9D%E5%8D%B0%E5%8F%B7%E7%A0%81%E2%80%9D%E5%88%B0%E2%80%9D%E5%B8%A6%E5%AF%86%E9%92%A5%E2%80%9D"><span class="toc-text">门禁卡的「演进史」：从”印号码”到”带密钥”</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E9%A3%8E%E9%99%A9%E5%85%A8%E8%B2%8C%EF%BC%9A%E4%B8%80%E5%BC%A0%E5%8D%A1%E8%83%BD%E6%8E%80%E8%B5%B7%E5%A4%9A%E5%A4%A7%E6%B5%AA"><span class="toc-text">五、风险全貌：一张卡能掀起多大浪</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E8%A2%AB%E4%BD%8E%E4%BC%B0%E7%9A%84%E5%A8%81%E8%83%81%EF%BC%9A%E8%BF%9C%E8%B7%9D%E7%A6%BB%E3%80%8C%E5%97%85%E6%8E%A2%E3%80%8D%E5%88%B7%E5%8D%A1"><span class="toc-text">一个被低估的威胁：远距离「嗅探」刷卡</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E9%98%B2%E5%BE%A1%E6%8C%87%E5%8D%97%EF%BC%9A%E7%89%A9%E4%B8%9A%E4%B8%8E%E4%BC%81%E4%B8%9A%E7%89%88"><span class="toc-text">六、防御指南：物业与企业版</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E6%80%9D%EF%BC%9A%E9%97%A8%E7%A6%81%E7%9A%84%E3%80%8C%E5%AE%89%E5%85%A8%E6%84%9F%E3%80%8D%EF%BC%8C%E9%94%99%E9%85%8D%E5%9C%A8%E5%93%AA%E9%87%8C"><span class="toc-text">反思：门禁的「安全感」，错配在哪里</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E6%94%B6%E6%9D%9F%EF%BC%9A%E6%8A%8A%E8%BF%99%E5%87%A0%E6%9D%A1%E5%B0%84%E9%A2%91%E7%BA%BF%E7%B4%A2%E4%B8%B2%E6%88%90%E4%B8%80%E6%9D%A1%E7%BA%BF"><span class="toc-text">七、收束：把这几条射频线索串成一条线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E8%BE%B9%E7%95%8C%E5%A3%B0%E6%98%8E"><span class="toc-text">八、边界声明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A0%E6%9D%90%E6%9D%A5%E6%BA%90"><span class="toc-text">素材来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%96%87%E7%AB%A0"><span class="toc-text">相关文章</span></a></li></ol>
           
         </div>
       </section>
@@ -444,6 +444,27 @@
     <ul class="recent-list">
       
         <li>
+          <a class="recent-item" href="/2026/08/28/20260828/2026082803/">
+            <strong>二手智能门锁安全研究：选型、攻击路线与逆向路线图</strong>
+            <em>2026-08-28</em>
+          </a>
+        </li>
+      
+        <li>
+          <a class="recent-item" href="/2026/08/28/20260828/2026082802/">
+            <strong>IoT 设备安全审计：固件提取、Binwalk 拆解与 MQTT 抓包</strong>
+            <em>2026-08-28</em>
+          </a>
+        </li>
+      
+        <li>
+          <a class="recent-item" href="/2026/08/28/20260828/2026082801/">
+            <strong>钓鱼攻击的完整产业链：从伪造域名到会话 Cookie 变现</strong>
+            <em>2026-08-28</em>
+          </a>
+        </li>
+      
+        <li>
           <a class="recent-item" href="/2026/08/25/20260825/2026082504/">
             <strong>电话那头，不再是「人类」：新一代社工攻击——vishing、SIM 卡交换、二维码钓鱼与「2FA 克星」Evilginx</strong>
             <em>2026-08-25</em>
@@ -454,27 +475,6 @@
           <a class="recent-item" href="/2026/08/25/20260825/2026082503/">
             <strong>你部署的每个接口，都在被自动化工具扫描：Web 安全全景——从 OWASP Top 10 到一条完整的攻击链</strong>
             <em>2026-08-25</em>
-          </a>
-        </li>
-      
-        <li>
-          <a class="recent-item" href="/2026/08/25/20260825/2026082502/">
-            <strong>你的声音，不再属于你：AI 语音克隆与 Deepfake 诈骗——从「孙子求救」到 2 亿港币的视频会议</strong>
-            <em>2026-08-25</em>
-          </a>
-        </li>
-      
-        <li>
-          <a class="recent-item" href="/2026/08/25/20260825/2026082501/">
-            <strong>芯片是最后一道防线，但它真的守得住吗：硬件安全入门——从调试接口、固件提取到侧信道攻击</strong>
-            <em>2026-08-25</em>
-          </a>
-        </li>
-      
-        <li>
-          <a class="recent-item" href="/2026/08/24/20260824/2026082409/">
-            <strong>看门狗游戏里的无人车，现实里的&#34;近源渗透车&#34;：无人机与遥控车的近源攻击可行性研究——从 ctOS 到 Wi-Fi Pineapple</strong>
-            <em>2026-08-24</em>
           </a>
         </li>
       
@@ -583,6 +583,18 @@
 <blockquote>
 <p>金句：1994 年设计的”加密”，到今天 2026 年还在大量小区门上服役——这不是技术的胜利，是成本的惯性。</p>
 </blockquote>
+<h3 id="Crypto1-为什么”看似加密、实则裸奔”"><a href="#Crypto1-为什么”看似加密、实则裸奔”" class="headerlink" title="Crypto1 为什么”看似加密、实则裸奔”"></a>Crypto1 为什么”看似加密、实则裸奔”</h3><p>很多人会问：MIFARE Classic 不是”有加密”吗？为什么说它”名存实亡”？这里把 Crypto1 的”死因”讲清楚：</p>
+<ol>
+<li><p><strong>私有算法 &#x3D; 没有公开审查</strong>：Crypto1 是 NXP 的<strong>私有加密算法</strong>，从不公开设计。密码学界有句铁律——<strong>“私有算法”本身就是一个危险信号</strong>，因为没人能公开检验它到底有没有漏洞。公开的 AES、RSA 经过了全球密码学家几十年的攻击检验，而私有算法只能”赌没人研究”。</p>
+</li>
+<li><p><strong>2008 年被物理逆向</strong>：Plötz 和 Nohl 不是”破解了算法”，而是<strong>把芯片放在显微镜下，一层层读出了它的电路，反推出了 Crypto1 的完整逻辑</strong>。一旦算法被逆向，”私有”就彻底失效——因为”保密”依赖的是”没人知道怎么算”，而现在已经”人人都知道”。</p>
+</li>
+<li><p><strong>随机数可预测</strong>：Crypto1 的密钥协商过程依赖一个<strong>伪随机数发生器（PRNG）</strong>，而这个 PRNG 的随机性有缺陷——它产生的”随机数”可以预测。攻击者利用这个可预测性，配合卡片返回的认证失败响应，就能在有限次尝试内<strong>穷举出扇区密钥</strong>。</p>
+</li>
+<li><p><strong>默认密钥大量存在</strong>：更致命的是，海量厂商出厂时根本没改默认密钥（比如 <code>FFFFFFFFFFFF</code>），攻击者连”破解”都省了，直接用默认密钥就能读写整张卡。</p>
+</li>
+</ol>
+<p>这四点合起来，就是 MIFARE Classic 的完整死因：<strong>私有算法被逆向 + 随机数可预测 + 默认密钥泛滥</strong>。它告诉我们一个深刻的道理：<strong>加密的安全性，永远取决于”算法是否公开、随机数是否真随机、密钥是否真保密”——任何一点失守，前面的努力全部归零。</strong></p>
 <h2 id="三、复制链路：从”扫”到”烧”的三步"><a href="#三、复制链路：从”扫”到”烧”的三步" class="headerlink" title="三、复制链路：从”扫”到”烧”的三步"></a>三、复制链路：从”扫”到”烧”的三步</h2><p>一套典型的门禁卡复制流程（全部基于公开工具，用于说明原理）：</p>
 <ol>
 <li><strong>读取</strong>：PN532 这类 USB 读卡器贴近卡，用 mfoc&#x2F;mfcuk 等工具扫描，穷举出扇区密钥，导出卡内数据（UID + 数据块）。</li>
@@ -597,6 +609,52 @@
 <li><strong>iPhone 的特殊性</strong>：iOS 的 NFC 权限封闭，普通用户能模拟的门禁卡场景远少于安卓；加上 Apple Pay 生态，苹果更倾向”让你用钱包里的卡”而不是”复制你的卡”。</li>
 </ul>
 <p>手机模拟的<strong>安全边界</strong>：自己复刻自己的卡（丢卡备用）通常没大问题，但复制他人的卡、批量复制门禁卡倒卖，就是实打实的违法行为了——“模拟”二字不改变”复制他人凭证”的性质。</p>
+<h3 id="门禁卡的「演进史」：从”印号码”到”带密钥”"><a href="#门禁卡的「演进史」：从”印号码”到”带密钥”" class="headerlink" title="门禁卡的「演进史」：从”印号码”到”带密钥”"></a>门禁卡的「演进史」：从”印号码”到”带密钥”</h3><p>理解了 MIFARE Classic 的教训，再看门禁卡技术的整体演进，会更清楚”该往哪迁”：</p>
+<table>
+<thead>
+<tr>
+<th>代际</th>
+<th>代表</th>
+<th>安全机制</th>
+<th>破解难度</th>
+<th>现状</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>第一代：ID 卡</td>
+<td>EM4100</td>
+<td><strong>无</strong>（只读固定 ID，明文）</td>
+<td>零（抄号即可）</td>
+<td>老旧小区仍在用</td>
+</tr>
+<tr>
+<td>第二代：逻辑加密卡</td>
+<td>MIFARE Classic（S50）</td>
+<td>Crypto1 私有算法</td>
+<td>低（已公开破解）</td>
+<td>大量存量，正在淘汰</td>
+</tr>
+<tr>
+<td>第三代：CPU 卡</td>
+<td>MIFARE Plus &#x2F; Desfire EV2</td>
+<td>公开算法（AES&#x2F;3DES）+ 双向认证 + 防克隆</td>
+<td>高（暂无通用破解）</td>
+<td>新系统主流</td>
+</tr>
+<tr>
+<td>第四代：手机&#x2F;动态凭证</td>
+<td>手机 NFC + 动态码 &#x2F; 手机门禁</td>
+<td>每次动态变化 + 平台鉴权</td>
+<td>极高</td>
+<td>未来方向</td>
+</tr>
+</tbody></table>
+<p>这张表的规律很清晰：<strong>门禁卡的安全演进，就是”从静态 ID 走向动态凭证”的过程。</strong></p>
+<ul>
+<li>ID 卡和 Classic 卡是”静态的”——卡里存的是<strong>固定不变</strong>的数据，复制 &#x3D; 拷贝这份固定数据。</li>
+<li>CPU 卡和手机动态码是”动态的”——每次刷卡都生成<strong>不同的</strong>认证凭据，复制”上一次的凭证”对下一次无效。</li>
+</ul>
+<p>这也是为什么”治本”的方案不是”换更复杂的加密”，而是”换成动态凭证”——<strong>静态的东西，永远可以被复制；只有动态的东西，才能让复制失去意义。</strong></p>
 <h2 id="五、风险全貌：一张卡能掀起多大浪"><a href="#五、风险全貌：一张卡能掀起多大浪" class="headerlink" title="五、风险全貌：一张卡能掀起多大浪"></a>五、风险全貌：一张卡能掀起多大浪</h2><table>
 <thead>
 <tr>
@@ -634,6 +692,19 @@
 <li><strong>深圳福田实验（2026-02）</strong>：媒体在科技园实测证实，RFID 卡近距离可以被便捷设备盗刷，风险真实存在。</li>
 </ul>
 <p>这些案子有一个共同特征：<strong>作案者没有破解任何”系统”，只是复制了”一张卡”</strong>——而整套流程的起点，往往只是”卡离开过你的手几秒钟”。</p>
+<h3 id="一个被低估的威胁：远距离「嗅探」刷卡"><a href="#一个被低估的威胁：远距离「嗅探」刷卡" class="headerlink" title="一个被低估的威胁：远距离「嗅探」刷卡"></a>一个被低估的威胁：远距离「嗅探」刷卡</h3><p>大多数人对 NFC 的理解是”贴近才安全”（几厘米内才能读），但这里有一个技术细节常被忽略：<strong>NFC 的”官方读取距离”是几厘米，但攻击者的”嗅探距离”可以远得多。</strong></p>
+<p>原理在于：</p>
+<ul>
+<li>读卡器主动”问话”（发射能量场），卡被动”应答”（反射调制信号）——卡片的应答信号虽然弱，但<strong>用高增益天线 + 灵敏接收机，可以在比官方距离远得多的地方”偷听”</strong>。</li>
+<li>关键不在于”能读卡里数据”（那确实要很近），而在于”能抓到你正在刷卡的瞬间”——攻击者只要在刷卡点附近放一个嗅探设备，就能<strong>记录下你刷卡时的通信</strong>。</li>
+<li>配合定向天线，有研究者演示过在<strong>几十厘米到一两米</strong>外嗅探 NFC&#x2F;RFID 通信的可行性。</li>
+</ul>
+<p>这个威胁的现实意义：</p>
+<ul>
+<li>地铁闸机、门禁读卡器、POS 机，都是”固定地点、高频刷卡”的目标——攻击者在旁边放个嗅探器，一天就能抓到大量卡的通信。</li>
+<li>虽然<strong>加密卡的数据抓到了也未必能直接解</strong>（取决于卡的加密强度），但<strong>ID 卡、未加密卡、以及”只校验 UID”的门禁系统</strong>，抓到的数据就是可以直接复制的。</li>
+</ul>
+<p>所以”卡不离身、卡不贴手机”的建议，本质是防的<strong>两种东西</strong>：一是”被贴近偷读”（近距离），二是”被远距离嗅探”（刷卡瞬间）。前者靠”卡不离开视线”，后者靠”少在公共读卡器刷卡 + 用加密卡”。<strong>物理世界的”射频安全”，从来不是”卡在口袋里就万事大吉”。</strong></p>
 <h2 id="六、防御指南：物业与企业版"><a href="#六、防御指南：物业与企业版" class="headerlink" title="六、防御指南：物业与企业版"></a>六、防御指南：物业与企业版</h2><p>给物业&#x2F;企业&#x2F;个人的防御清单：</p>
 <p><strong>给物业&#x2F;企业（最该改的）</strong>：</p>
 <ol>
@@ -650,9 +721,20 @@
 <li><strong>留意异常开锁通知</strong>：智能门锁&#x2F;门禁若支持 App 通知，开启它；发现”人在家却提示开门”立即查。</li>
 <li><strong>不买&#x2F;不用来路不明的复制服务</strong>：帮人复制门禁卡、买复制卡，都是给黑产送生意，也把自己送进风险。</li>
 </ol>
+<h3 id="反思：门禁的「安全感」，错配在哪里"><a href="#反思：门禁的「安全感」，错配在哪里" class="headerlink" title="反思：门禁的「安全感」，错配在哪里"></a>反思：门禁的「安全感」，错配在哪里</h3><p>写完这一篇，有一个值得反复咀嚼的结论：<strong>门禁卡的安全问题，本质是”安全投入”和”威胁认知”的错配。</strong></p>
+<ul>
+<li><strong>物业&#x2F;企业</strong>：花几十万装了一套门禁系统，却让系统跑在”1994 年的加密”上，因为”看起来能用”就满足了——<strong>安全预算花在了”看得见的硬件”上，却没花在”看不见的协议”上</strong>。</li>
+<li><strong>普通用户</strong>：以为”刷卡进门很安全”，却不知道自己的卡可能被”几秒钟复制”，因为”复制门禁卡”这个威胁，从来不在大众的认知清单里。</li>
+<li><strong>攻击者</strong>：不需要攻破门禁系统，只需要”复制一张卡”——<strong>用最低的成本，撬动最贵的资产</strong>（进入物理空间）。</li>
+</ul>
+<p>这三方的错配，导致了一个荒诞的现实：<strong>门禁系统是”物理安全”的第一道防线，却常常是”数字安全”的盲区。</strong> 大家默认”物理门禁”比”网络防火墙”更可靠，但事实是——一张 MIFARE Classic 卡，比一个没打补丁的服务器更好攻破。</p>
+<p>所以真正的教训不是”换张好卡”，而是<strong>改变认知</strong>：物理安全和数字安全，本质上已经合流。你的门禁卡，就是你物理世界的”密码”——而”密码”如果 30 年不换算法，就一定会被人破解。</p>
 <h2 id="七、收束：把这几条射频线索串成一条线"><a href="#七、收束：把这几条射频线索串成一条线" class="headerlink" title="七、收束：把这几条射频线索串成一条线"></a>七、收束：把这几条射频线索串成一条线</h2><p>到这里，从 SDR 入门、卫星攻击史、伪基站、蓝牙到门禁卡，其实是一条完整的逻辑线：<strong>先学会”听”（SDR 频谱）→ 再看懂”攻”（卫星&#x2F;伪基站&#x2F;蓝牙&#x2F;门禁的漏洞）→ 最后落到”守”（每一篇的防御指南）</strong>。物理安全从来没有”一招封神”，它是频谱感知 + 协议理解 + 行为纪律三者的叠加——而这三样，都不需要你成为黑客，只需要你停止想当然。</p>
 <blockquote>
 <p>金句：电磁波看不见，但它的故事一直在广播——听懂它，是保护自己的第一步。</p>
+</blockquote>
+<blockquote>
+<p>最后补一句务实的：如果你此刻用的还是”刷一下就能进”的老旧门禁卡，不必恐慌——绝大多数”复制卡”的风险，需要攻击者”拿到你的卡”或”靠近你刷卡”。真正该做的，是推动物业升级卡型、自己保管好卡、开启门禁 App 的通知。<strong>把风险认知放在心里，把焦虑放回兜里。</strong></p>
 </blockquote>
 <h2 id="八、边界声明"><a href="#八、边界声明" class="headerlink" title="八、边界声明"></a>八、边界声明</h2><p>本文为 RFID&#x2F;NFC 技术科普，全部原理与破解描述均基于公开研究（2008 年 Chaos Communication Congress 逆向演示、Nohl 团队荷兰公交破解等）与公开资料，仅用于理解门禁卡安全原理与风险。文中不提供任何破解工具的使用教程、密钥推导细节或攻击方法。复制他人门禁卡、破解门禁系统、倒卖复制卡均属违法犯罪行为，将面临《中华人民共和国刑法》第 253 条（侵犯公民个人信息罪）、第 285&#x2F;286 条（非法获取计算机信息系统数据罪）及治安管理处罚法的追责。请勿尝试。</p>
 <h2 id="素材来源"><a href="#素材来源" class="headerlink" title="素材来源"></a>素材来源</h2><ul>

@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/08/19/images/20260819/2026081912-shiro.png">
 <meta property="article:published_time" content="2026-08-19T05:21:00.000Z">
-<meta property="article:modified_time" content="2026-08-23T14:33:50.833Z">
+<meta property="article:modified_time" content="2026-08-27T23:20:39.802Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="RCE">
@@ -32,7 +32,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Java 反序列化攻击面（三）：Shiro 的 rememberMe 与\"默认密钥\"之罪","name":"Java 反序列化攻击面（三）：Shiro 的 rememberMe 与\"默认密钥\"之罪 | ZapcoMan's world","description":"一个”记住我”的贴心功能，因为一个硬编码的默认密钥，把全球无数 Java 应用的认证大门彻底打开。攻击者不需要破解密码，只需要”知道那个密钥”——而那个密钥，早就公开在了互联网上。 引言：框架的”RememberMe”之罪在 Java Web 开发中，Apache Shiro 是最流行的安全框架之一，负责认证、授权、会话管理。几乎每个”会做登录”的 Java...","url":"http://example.com/2026/08/19/20260819/2026081912/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260819/2026081912-shiro.png"],"mainEntityOfPage":"http://example.com/2026/08/19/20260819/2026081912/","datePublished":"2026-08-19T05:21:00.000Z","dateModified":"2026-08-23T14:33:50.833Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"网络安全, Java, 反序列化, 漏洞分析, RCE, Shiro"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Java 反序列化攻击面（三）：Shiro 的 rememberMe 与\"默认密钥\"之罪","name":"Java 反序列化攻击面（三）：Shiro 的 rememberMe 与\"默认密钥\"之罪 | ZapcoMan's world","description":"一个”记住我”的贴心功能，因为一个硬编码的默认密钥，把全球无数 Java 应用的认证大门彻底打开。攻击者不需要破解密码，只需要”知道那个密钥”——而那个密钥，早就公开在了互联网上。 引言：框架的”RememberMe”之罪在 Java Web 开发中，Apache Shiro 是最流行的安全框架之一，负责认证、授权、会话管理。几乎每个”会做登录”的 Java...","url":"http://example.com/2026/08/19/20260819/2026081912/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260819/2026081912-shiro.png"],"mainEntityOfPage":"http://example.com/2026/08/19/20260819/2026081912/","datePublished":"2026-08-19T05:21:00.000Z","dateModified":"2026-08-27T23:20:39.802Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"网络安全, Java, 反序列化, 漏洞分析, RCE, Shiro"}</script>
 
 <script>
   (function () {
@@ -351,21 +351,21 @@
         
           
             <a class="site-info__item" href="/archives/">
-              <strong>138</strong>
+              <strong>141</strong>
               <span>文章</span>
             </a>
           
         
           
             <a class="site-info__item" href="/categories/">
-              <strong>34</strong>
+              <strong>35</strong>
               <span>分类</span>
             </a>
           
         
           
             <a class="site-info__item" href="/tags/">
-              <strong>263</strong>
+              <strong>276</strong>
               <span>标签</span>
             </a>
           
@@ -427,7 +427,7 @@
         </header>
         <div class="toc-content">
           
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80%EF%BC%9A%E6%A1%86%E6%9E%B6%E7%9A%84%E2%80%9DRememberMe%E2%80%9D%E4%B9%8B%E7%BD%AA"><span class="toc-text">引言：框架的”RememberMe”之罪</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81rememberMe-%E6%9C%BA%E5%88%B6%EF%BC%9A%E8%B4%B4%E5%BF%83%E5%8A%9F%E8%83%BD%E5%A6%82%E4%BD%95%E5%8F%98%E6%88%90%E5%90%8E%E9%97%A8%EF%BC%9F"><span class="toc-text">一、rememberMe 机制：贴心功能如何变成后门？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E2%80%9C%E8%AE%B0%E4%BD%8F%E6%88%91%E2%80%9D%E7%9A%84%E6%AD%A3%E5%B8%B8%E6%B5%81%E7%A8%8B"><span class="toc-text">1.1 “记住我”的正常流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E4%B8%A4%E4%B8%AA%E8%87%B4%E5%91%BD%E9%97%AE%E9%A2%98"><span class="toc-text">1.2 两个致命问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%BC%8F%E6%B4%9E%E8%AF%A6%E6%83%85%EF%BC%9ACVE-2016-4437"><span class="toc-text">二、漏洞详情：CVE-2016-4437</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E6%BC%8F%E6%B4%9E%E6%A6%82%E8%BF%B0"><span class="toc-text">2.1 漏洞概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E9%BB%98%E8%AE%A4%E5%AF%86%E9%92%A5%E7%9A%84%E2%80%9D%E5%85%AC%E5%BC%80%E5%8C%96%E2%80%9D"><span class="toc-text">2.2 默认密钥的”公开化”</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%BB%A3%E7%A0%81%E7%BA%A7%E6%94%BB%E5%87%BB%E9%93%BE%EF%BC%9A%E4%BB%8E-ysoserial-%E5%88%B0-Shiro-RCE"><span class="toc-text">三、代码级攻击链：从 ysoserial 到 Shiro RCE</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E7%94%9F%E6%88%90%E6%81%B6%E6%84%8F%E5%BA%8F%E5%88%97%E5%8C%96%E5%AF%B9%E8%B1%A1"><span class="toc-text">3.1 第一步：生成恶意序列化对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E7%94%A8%E9%BB%98%E8%AE%A4%E5%AF%86%E9%92%A5-AES-%E5%8A%A0%E5%AF%86"><span class="toc-text">3.2 第二步：用默认密钥 AES 加密</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9ABase64-%E7%BC%96%E7%A0%81%E5%90%8E%E6%94%BE%E5%85%A5-Cookie"><span class="toc-text">3.3 第三步：Base64 编码后放入 Cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E8%8E%B7%E5%BE%97-RCE"><span class="toc-text">3.4 第四步：获得 RCE</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81Shiro-%E6%BC%8F%E6%B4%9E%E7%9A%84%E2%80%9D%E5%8F%98%E7%A7%8D%E2%80%9D%E4%B8%8E%E2%80%9D%E8%BF%9B%E9%98%B6%E2%80%9D"><span class="toc-text">四、Shiro 漏洞的”变种”与”进阶”</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E6%97%A0%E9%BB%98%E8%AE%A4%E5%AF%86%E9%92%A5%E6%97%B6%E7%9A%84%E5%AF%86%E9%92%A5%E7%88%86%E7%A0%B4"><span class="toc-text">4.1 无默认密钥时的密钥爆破</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E4%B8%8D%E5%90%8C-gadget-%E9%93%BE%E7%9A%84%E9%80%82%E9%85%8D"><span class="toc-text">4.2 不同 gadget 链的适配</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81Shiro-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%9A%84%E7%89%B9%E5%BE%81%E4%B8%8E%E6%A3%80%E6%B5%8B"><span class="toc-text">五、Shiro 反序列化的特征与检测</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E8%AF%86%E5%88%AB-Shiro-%E5%BA%94%E7%94%A8"><span class="toc-text">5.1 识别 Shiro 应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E6%A3%80%E6%B5%8B%E7%BB%B4%E5%BA%A6"><span class="toc-text">5.2 检测维度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-%E4%B8%80%E4%B8%AA%E5%AE%9E%E7%94%A8%E7%9A%84%E6%A3%80%E6%B5%8B%E5%91%BD%E4%BB%A4"><span class="toc-text">5.3 一个实用的检测命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E9%98%B2%E5%BE%A1%EF%BC%9A%E5%A6%82%E4%BD%95%E5%A0%B5%E4%BD%8F-Shiro-%E7%9A%84%E2%80%9D%E9%BB%98%E8%AE%A4%E5%AF%86%E9%92%A5%E2%80%9D%E6%BC%8F%E6%B4%9E%EF%BC%9F"><span class="toc-text">六、防御：如何堵住 Shiro 的”默认密钥”漏洞？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-%E6%A0%B8%E5%BF%83%E9%98%B2%E5%BE%A1%EF%BC%88%E5%BF%85%E9%A1%BB%E5%81%9A%EF%BC%89"><span class="toc-text">6.1 核心防御（必须做）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-%E7%BA%B5%E6%B7%B1%E9%98%B2%E5%BE%A1"><span class="toc-text">6.2 纵深防御</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-%E5%AF%86%E9%92%A5%E7%AE%A1%E7%90%86%E7%9A%84%E5%90%AF%E7%A4%BA"><span class="toc-text">6.3 密钥管理的启示</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E7%BB%93%E8%AF%AD%EF%BC%9A%E9%BB%98%E8%AE%A4%E5%80%BC%EF%BC%8C%E6%98%AF%E5%AE%89%E5%85%A8%E7%9A%84%E5%A4%A7%E5%BF%8C"><span class="toc-text">七、结语：默认值，是安全的大忌</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-text">参考资料</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%96%87%E7%AB%A0"><span class="toc-text">相关文章</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80%EF%BC%9A%E6%A1%86%E6%9E%B6%E7%9A%84%E2%80%9DRememberMe%E2%80%9D%E4%B9%8B%E7%BD%AA"><span class="toc-text">引言：框架的”RememberMe”之罪</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81rememberMe-%E6%9C%BA%E5%88%B6%EF%BC%9A%E8%B4%B4%E5%BF%83%E5%8A%9F%E8%83%BD%E5%A6%82%E4%BD%95%E5%8F%98%E6%88%90%E5%90%8E%E9%97%A8%EF%BC%9F"><span class="toc-text">一、rememberMe 机制：贴心功能如何变成后门？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E2%80%9C%E8%AE%B0%E4%BD%8F%E6%88%91%E2%80%9D%E7%9A%84%E6%AD%A3%E5%B8%B8%E6%B5%81%E7%A8%8B"><span class="toc-text">1.1 “记住我”的正常流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E4%B8%A4%E4%B8%AA%E8%87%B4%E5%91%BD%E9%97%AE%E9%A2%98"><span class="toc-text">1.2 两个致命问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%BC%8F%E6%B4%9E%E8%AF%A6%E6%83%85%EF%BC%9ACVE-2016-4437"><span class="toc-text">二、漏洞详情：CVE-2016-4437</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E6%BC%8F%E6%B4%9E%E6%A6%82%E8%BF%B0"><span class="toc-text">2.1 漏洞概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E9%BB%98%E8%AE%A4%E5%AF%86%E9%92%A5%E7%9A%84%E2%80%9D%E5%85%AC%E5%BC%80%E5%8C%96%E2%80%9D"><span class="toc-text">2.2 默认密钥的”公开化”</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%BB%A3%E7%A0%81%E7%BA%A7%E6%94%BB%E5%87%BB%E9%93%BE%EF%BC%9A%E4%BB%8E-ysoserial-%E5%88%B0-Shiro-RCE"><span class="toc-text">三、代码级攻击链：从 ysoserial 到 Shiro RCE</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E7%94%9F%E6%88%90%E6%81%B6%E6%84%8F%E5%BA%8F%E5%88%97%E5%8C%96%E5%AF%B9%E8%B1%A1"><span class="toc-text">3.1 第一步：生成恶意序列化对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E7%94%A8%E9%BB%98%E8%AE%A4%E5%AF%86%E9%92%A5-AES-%E5%8A%A0%E5%AF%86"><span class="toc-text">3.2 第二步：用默认密钥 AES 加密</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9ABase64-%E7%BC%96%E7%A0%81%E5%90%8E%E6%94%BE%E5%85%A5-Cookie"><span class="toc-text">3.3 第三步：Base64 编码后放入 Cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E8%8E%B7%E5%BE%97-RCE"><span class="toc-text">3.4 第四步：获得 RCE</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81Shiro-%E6%BC%8F%E6%B4%9E%E7%9A%84%E2%80%9D%E5%8F%98%E7%A7%8D%E2%80%9D%E4%B8%8E%E2%80%9D%E8%BF%9B%E9%98%B6%E2%80%9D"><span class="toc-text">四、Shiro 漏洞的”变种”与”进阶”</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E6%97%A0%E9%BB%98%E8%AE%A4%E5%AF%86%E9%92%A5%E6%97%B6%E7%9A%84%E5%AF%86%E9%92%A5%E7%88%86%E7%A0%B4"><span class="toc-text">4.1 无默认密钥时的密钥爆破</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E4%B8%8D%E5%90%8C-gadget-%E9%93%BE%E7%9A%84%E9%80%82%E9%85%8D"><span class="toc-text">4.2 不同 gadget 链的适配</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81Shiro-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%9A%84%E7%89%B9%E5%BE%81%E4%B8%8E%E6%A3%80%E6%B5%8B"><span class="toc-text">五、Shiro 反序列化的特征与检测</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E8%AF%86%E5%88%AB-Shiro-%E5%BA%94%E7%94%A8"><span class="toc-text">5.1 识别 Shiro 应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E6%A3%80%E6%B5%8B%E7%BB%B4%E5%BA%A6"><span class="toc-text">5.2 检测维度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-%E4%B8%80%E4%B8%AA%E5%AE%9E%E7%94%A8%E7%9A%84%E6%A3%80%E6%B5%8B%E5%91%BD%E4%BB%A4"><span class="toc-text">5.3 一个实用的检测命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E9%98%B2%E5%BE%A1%EF%BC%9A%E5%A6%82%E4%BD%95%E5%A0%B5%E4%BD%8F-Shiro-%E7%9A%84%E2%80%9D%E9%BB%98%E8%AE%A4%E5%AF%86%E9%92%A5%E2%80%9D%E6%BC%8F%E6%B4%9E%EF%BC%9F"><span class="toc-text">六、防御：如何堵住 Shiro 的”默认密钥”漏洞？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-%E6%A0%B8%E5%BF%83%E9%98%B2%E5%BE%A1%EF%BC%88%E5%BF%85%E9%A1%BB%E5%81%9A%EF%BC%89"><span class="toc-text">6.1 核心防御（必须做）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-%E7%BA%B5%E6%B7%B1%E9%98%B2%E5%BE%A1"><span class="toc-text">6.2 纵深防御</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-%E5%AF%86%E9%92%A5%E7%AE%A1%E7%90%86%E7%9A%84%E5%90%AF%E7%A4%BA"><span class="toc-text">6.3 密钥管理的启示</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%C2%B7%E8%A1%A5%EF%BC%9A%E4%B8%80%E4%B8%AA%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E7%9A%84%E3%80%8CShiro-%E5%A4%B1%E5%AE%88%E3%80%8D%E5%A4%8D%E7%9B%98"><span class="toc-text">六·补：一个真实世界的「Shiro 失守」复盘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E3%80%8C%E6%8D%A2%E4%B8%AA%E5%AF%86%E9%92%A5%E3%80%8D%E5%B9%B6%E4%B8%8D%E8%83%BD%E4%B8%80%E5%8A%B3%E6%B0%B8%E9%80%B8"><span class="toc-text">为什么「换个密钥」并不能一劳永逸</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E7%BB%93%E8%AF%AD%EF%BC%9A%E9%BB%98%E8%AE%A4%E5%80%BC%EF%BC%8C%E6%98%AF%E5%AE%89%E5%85%A8%E7%9A%84%E5%A4%A7%E5%BF%8C"><span class="toc-text">七、结语：默认值，是安全的大忌</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-text">参考资料</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%96%87%E7%AB%A0"><span class="toc-text">相关文章</span></a></li></ol>
           
         </div>
       </section>
@@ -440,6 +440,27 @@
     <ul class="recent-list">
       
         <li>
+          <a class="recent-item" href="/2026/08/28/20260828/2026082803/">
+            <strong>二手智能门锁安全研究：选型、攻击路线与逆向路线图</strong>
+            <em>2026-08-28</em>
+          </a>
+        </li>
+      
+        <li>
+          <a class="recent-item" href="/2026/08/28/20260828/2026082802/">
+            <strong>IoT 设备安全审计：固件提取、Binwalk 拆解与 MQTT 抓包</strong>
+            <em>2026-08-28</em>
+          </a>
+        </li>
+      
+        <li>
+          <a class="recent-item" href="/2026/08/28/20260828/2026082801/">
+            <strong>钓鱼攻击的完整产业链：从伪造域名到会话 Cookie 变现</strong>
+            <em>2026-08-28</em>
+          </a>
+        </li>
+      
+        <li>
           <a class="recent-item" href="/2026/08/25/20260825/2026082504/">
             <strong>电话那头，不再是「人类」：新一代社工攻击——vishing、SIM 卡交换、二维码钓鱼与「2FA 克星」Evilginx</strong>
             <em>2026-08-25</em>
@@ -450,27 +471,6 @@
           <a class="recent-item" href="/2026/08/25/20260825/2026082503/">
             <strong>你部署的每个接口，都在被自动化工具扫描：Web 安全全景——从 OWASP Top 10 到一条完整的攻击链</strong>
             <em>2026-08-25</em>
-          </a>
-        </li>
-      
-        <li>
-          <a class="recent-item" href="/2026/08/25/20260825/2026082502/">
-            <strong>你的声音，不再属于你：AI 语音克隆与 Deepfake 诈骗——从「孙子求救」到 2 亿港币的视频会议</strong>
-            <em>2026-08-25</em>
-          </a>
-        </li>
-      
-        <li>
-          <a class="recent-item" href="/2026/08/25/20260825/2026082501/">
-            <strong>芯片是最后一道防线，但它真的守得住吗：硬件安全入门——从调试接口、固件提取到侧信道攻击</strong>
-            <em>2026-08-25</em>
-          </a>
-        </li>
-      
-        <li>
-          <a class="recent-item" href="/2026/08/24/20260824/2026082409/">
-            <strong>看门狗游戏里的无人车，现实里的&#34;近源渗透车&#34;：无人机与遥控车的近源攻击可行性研究——从 ctOS 到 Wi-Fi Pineapple</strong>
-            <em>2026-08-24</em>
           </a>
         </li>
       
@@ -650,6 +650,22 @@
 <p>Shiro 的教训是<strong>通用</strong>的：<strong>任何”硬编码的密钥”，无论是默认密码、默认 token、还是默认 API key，都等同于”公开的密钥”。</strong> 密钥管理的第一原则，是”每个部署实例使用独立、随机、受保护的密钥”。</p>
 </blockquote>
 <hr>
+<h2 id="六·补：一个真实世界的「Shiro-失守」复盘"><a href="#六·补：一个真实世界的「Shiro-失守」复盘" class="headerlink" title="六·补：一个真实世界的「Shiro 失守」复盘"></a>六·补：一个真实世界的「Shiro 失守」复盘</h2><p>光讲原理太抽象，我们把 Shiro 漏洞放到真实场景里走一遍，理解它为什么会成为「渗透测试里最常见的入口之一」：</p>
+<ol>
+<li><strong>发现目标</strong>：攻击者在信息收集阶段，随手访问目标站点，发现响应头里 <code>Set-Cookie: rememberMe=deleteMe</code>——这是 Shiro 未登录时的标志性特征，等于「自报家门」。</li>
+<li><strong>判断密钥</strong>：攻击者用 Shiro 默认密钥 <code>kPH+bIxk5D2deZiIxcaaaA==</code> 尝试解密自己构造的 Cookie，如果「签名校验通过」，说明目标还在用默认密钥。</li>
+<li><strong>选 gadget 链</strong>：探测目标 classpath 里有哪些库——有 Commons Collections 就用 CC 链，有 Commons Beanutils 就用 CB 链，什么依赖都没有就试 JDK 自带的链。</li>
+<li><strong>生成 payload</strong>：用 ysoserial 生成对应的恶意序列化对象，用默认密钥 AES 加密、Base64 编码，塞进 <code>rememberMe</code> Cookie。</li>
+<li><strong>拿到 RCE</strong>：请求一发，Shiro 解密、反序列化、触发 gadget，反弹 shell 到手。</li>
+</ol>
+<p>这条链之所以「屡试不爽」，根源在于<strong>三个「默认」的叠加</strong>：默认密钥（没换）、默认机制（rememberMe 自动反序列化）、默认依赖（classpath 里的 gadget 库）。任何一个「默认」被打破，攻击就难一个数量级——这恰恰是防御的切入点。</p>
+<h3 id="为什么「换个密钥」并不能一劳永逸"><a href="#为什么「换个密钥」并不能一劳永逸" class="headerlink" title="为什么「换个密钥」并不能一劳永逸"></a>为什么「换个密钥」并不能一劳永逸</h3><p>很多开发者以为「把默认密钥换掉就安全了」，这是一个危险的错觉。原因有三：</p>
+<ol>
+<li><strong>密钥爆破依然可能</strong>：Shiro 的 rememberMe Cookie 有固定的明文特征（前缀），攻击者可以据此做「已知明文攻击」，从弱密钥字典里爆破出你的自定义密钥——如果密钥不够强、不够随机，照样被破。</li>
+<li><strong>反序列化本身的缺陷仍在</strong>：即使密钥固若金汤，只要 rememberMe 还走「解密 → 反序列化」，而 classpath 里还有 gadget 库，攻击者一旦拿到密钥，威胁依旧存在。</li>
+<li><strong>根本问题在「自动反序列化」</strong>：真正该做的，是<strong>从协议层面杜绝「反序列化不可信数据」</strong>，而不是只在「加密」这一层打补丁。</li>
+</ol>
+<p>所以正确的防御是「三层叠加」：换强随机密钥（治标）+ 升级版本&#x2F;关闭 rememberMe 反序列化（治本）+ 移除多余 gadget 库（减少攻击面）。</p>
 <h2 id="七、结语：默认值，是安全的大忌"><a href="#七、结语：默认值，是安全的大忌" class="headerlink" title="七、结语：默认值，是安全的大忌"></a>七、结语：默认值，是安全的大忌</h2><p>Shiro 的反序列化漏洞，技术原理并不复杂，却影响了全球无数 Java 应用，根源只有一个：</p>
 <blockquote>
 <p><strong>一个硬编码的”默认密钥”，让”记住我”这个贴心功能，变成了攻击者的”万能钥匙”。</strong></p>

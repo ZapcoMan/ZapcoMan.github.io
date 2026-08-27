@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/08/24/images/20260824/bluetooth-cover.png">
 <meta property="article:published_time" content="2026-08-24T05:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-24T11:19:42.280Z">
+<meta property="article:modified_time" content="2026-08-27T23:33:05.884Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="2.4GHz">
 <meta property="article:tag" content="AirTag">
@@ -38,7 +38,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"2.4GHz 频段里的人精：蓝牙/BLE 安全——你的耳机、手环、车钥匙和门锁在裸奔什么","name":"2.4GHz 频段里的人精：蓝牙/BLE 安全——你的耳机、手环、车钥匙和门锁在裸奔什么 | ZapcoMan's world","description":"你的口袋里、手腕上、耳朵里、车钥匙扣上、家门口的锁芯里——至少有五六台设备在 2.4GHz 频段里用蓝牙广播自己，几乎从不关机。2017 年，一个叫 BlueBorne 的漏洞不需要你点任何链接、不需要配对，就能隔空接管你的手机；2026 年 6 月，安全研究员演示了在 15 米外把一个蓝牙音箱变成”隐形键盘”。蓝牙不是”短距离所以安全”——恰恰相反，正因为...","url":"http://example.com/2026/08/24/20260824/2026082404/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260824/bluetooth-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/24/20260824/2026082404/","datePublished":"2026-08-24T05:00:00.000Z","dateModified":"2026-08-24T11:19:42.280Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"Flipper Zero, 蓝牙, BLE, BlueBorne, KNOB, SweynTooth, BLUFFS, AirTag, 追踪, 中继攻击, 2.4GHz, 物联网安全"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"2.4GHz 频段里的人精：蓝牙/BLE 安全——你的耳机、手环、车钥匙和门锁在裸奔什么","name":"2.4GHz 频段里的人精：蓝牙/BLE 安全——你的耳机、手环、车钥匙和门锁在裸奔什么 | ZapcoMan's world","description":"你的口袋里、手腕上、耳朵里、车钥匙扣上、家门口的锁芯里——至少有五六台设备在 2.4GHz 频段里用蓝牙广播自己，几乎从不关机。2017 年，一个叫 BlueBorne 的漏洞不需要你点任何链接、不需要配对，就能隔空接管你的手机；2026 年 6 月，安全研究员演示了在 15 米外把一个蓝牙音箱变成”隐形键盘”。蓝牙不是”短距离所以安全”——恰恰相反，正因为...","url":"http://example.com/2026/08/24/20260824/2026082404/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260824/bluetooth-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/24/20260824/2026082404/","datePublished":"2026-08-24T05:00:00.000Z","dateModified":"2026-08-27T23:33:05.884Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"Flipper Zero, 蓝牙, BLE, BlueBorne, KNOB, SweynTooth, BLUFFS, AirTag, 追踪, 中继攻击, 2.4GHz, 物联网安全"}</script>
 
 <script>
   (function () {
@@ -357,21 +357,21 @@
         
           
             <a class="site-info__item" href="/archives/">
-              <strong>138</strong>
+              <strong>141</strong>
               <span>文章</span>
             </a>
           
         
           
             <a class="site-info__item" href="/categories/">
-              <strong>34</strong>
+              <strong>35</strong>
               <span>分类</span>
             </a>
           
         
           
             <a class="site-info__item" href="/tags/">
-              <strong>263</strong>
+              <strong>276</strong>
               <span>标签</span>
             </a>
           
@@ -433,7 +433,7 @@
         </header>
         <div class="toc-content">
           
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%85%88%E5%88%86%E6%B8%85%E6%A5%9A%EF%BC%9A%E8%93%9D%E7%89%99%E5%85%B6%E5%AE%9E%E6%9C%89%E4%B8%A4%E5%A5%97%E8%A7%84%E7%9F%A9"><span class="toc-text">一、先分清楚：蓝牙其实有两套规矩</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%93%9D%E7%89%99%E6%80%8E%E4%B9%88%E2%80%9D%E8%AE%A4%E6%9C%8B%E5%8F%8B%E2%80%9D%EF%BC%9A%E4%BF%A1%E4%BB%BB%E7%9A%84%E9%94%9A%E5%9C%A8%E5%93%AA%E9%87%8C"><span class="toc-text">二、蓝牙怎么”认朋友”：信任的锚在哪里</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%8D%8F%E8%AE%AE%E5%B1%82%E6%94%BB%E5%87%BB%EF%BC%9A%E4%B8%80%E7%AB%BF%E5%AD%90%E6%8D%85%E5%88%B0%E5%BA%95%E7%9A%84%E5%8E%86%E5%8F%B2%E6%BC%8F%E6%B4%9E"><span class="toc-text">三、协议层攻击：一竿子捅到底的历史漏洞</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E8%AE%BE%E5%A4%87%E5%B1%82%E6%94%BB%E5%87%BB%EF%BC%9AFlipper-Zero-%E4%B8%8E%E2%80%9D%E9%9A%90%E5%BD%A2%E9%94%AE%E7%9B%98%E2%80%9D"><span class="toc-text">四、设备层攻击：Flipper Zero 与”隐形键盘”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E8%BF%BD%E8%B8%AA%E5%99%A8%EF%BC%9AAirTag-%E4%B8%8E%E7%8C%AB%E9%BC%A0%E6%B8%B8%E6%88%8F"><span class="toc-text">五、追踪器：AirTag 与猫鼠游戏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E8%BD%A6%E9%92%A5%E5%8C%99%E4%B8%8E%E6%99%BA%E8%83%BD%E9%94%81%EF%BC%9A%E4%B8%AD%E7%BB%A7%E6%94%BB%E5%87%BB"><span class="toc-text">六、车钥匙与智能锁：中继攻击</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E9%98%B2%E5%BE%A1%E6%B8%85%E5%8D%95%EF%BC%9A%E6%99%AE%E9%80%9A%E4%BA%BA%E8%83%BD%E5%81%9A%E7%9A%84%E5%8D%81%E4%BB%B6%E4%BA%8B"><span class="toc-text">七、防御清单：普通人能做的十件事</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E8%BE%B9%E7%95%8C%E5%A3%B0%E6%98%8E"><span class="toc-text">八、边界声明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A0%E6%9D%90%E6%9D%A5%E6%BA%90"><span class="toc-text">素材来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%96%87%E7%AB%A0"><span class="toc-text">相关文章</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%85%88%E5%88%86%E6%B8%85%E6%A5%9A%EF%BC%9A%E8%93%9D%E7%89%99%E5%85%B6%E5%AE%9E%E6%9C%89%E4%B8%A4%E5%A5%97%E8%A7%84%E7%9F%A9"><span class="toc-text">一、先分清楚：蓝牙其实有两套规矩</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%93%9D%E7%89%99%E6%80%8E%E4%B9%88%E2%80%9D%E8%AE%A4%E6%9C%8B%E5%8F%8B%E2%80%9D%EF%BC%9A%E4%BF%A1%E4%BB%BB%E7%9A%84%E9%94%9A%E5%9C%A8%E5%93%AA%E9%87%8C"><span class="toc-text">二、蓝牙怎么”认朋友”：信任的锚在哪里</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%8D%8F%E8%AE%AE%E5%B1%82%E6%94%BB%E5%87%BB%EF%BC%9A%E4%B8%80%E7%AB%BF%E5%AD%90%E6%8D%85%E5%88%B0%E5%BA%95%E7%9A%84%E5%8E%86%E5%8F%B2%E6%BC%8F%E6%B4%9E"><span class="toc-text">三、协议层攻击：一竿子捅到底的历史漏洞</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E8%AE%BE%E5%A4%87%E5%B1%82%E6%94%BB%E5%87%BB%EF%BC%9AFlipper-Zero-%E4%B8%8E%E2%80%9D%E9%9A%90%E5%BD%A2%E9%94%AE%E7%9B%98%E2%80%9D"><span class="toc-text">四、设备层攻击：Flipper Zero 与”隐形键盘”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E8%BF%BD%E8%B8%AA%E5%99%A8%EF%BC%9AAirTag-%E4%B8%8E%E7%8C%AB%E9%BC%A0%E6%B8%B8%E6%88%8F"><span class="toc-text">五、追踪器：AirTag 与猫鼠游戏</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%BD%E8%B8%AA%E5%99%A8%E7%9A%84%E3%80%8C%E7%8C%AB%E9%BC%A0%E6%B8%B8%E6%88%8F%E3%80%8D%EF%BC%9A%E4%B8%89%E4%B8%AA%E5%B1%82%E6%AC%A1"><span class="toc-text">追踪器的「猫鼠游戏」：三个层次</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E8%BD%A6%E9%92%A5%E5%8C%99%E4%B8%8E%E6%99%BA%E8%83%BD%E9%94%81%EF%BC%9A%E4%B8%AD%E7%BB%A7%E6%94%BB%E5%87%BB"><span class="toc-text">六、车钥匙与智能锁：中继攻击</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E9%98%B2%E5%BE%A1%E6%B8%85%E5%8D%95%EF%BC%9A%E6%99%AE%E9%80%9A%E4%BA%BA%E8%83%BD%E5%81%9A%E7%9A%84%E5%8D%81%E4%BB%B6%E4%BA%8B"><span class="toc-text">七、防御清单：普通人能做的十件事</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E8%BE%B9%E7%95%8C%E5%A3%B0%E6%98%8E"><span class="toc-text">八、边界声明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A0%E6%9D%90%E6%9D%A5%E6%BA%90"><span class="toc-text">素材来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%96%87%E7%AB%A0"><span class="toc-text">相关文章</span></a></li></ol>
           
         </div>
       </section>
@@ -446,6 +446,27 @@
     <ul class="recent-list">
       
         <li>
+          <a class="recent-item" href="/2026/08/28/20260828/2026082803/">
+            <strong>二手智能门锁安全研究：选型、攻击路线与逆向路线图</strong>
+            <em>2026-08-28</em>
+          </a>
+        </li>
+      
+        <li>
+          <a class="recent-item" href="/2026/08/28/20260828/2026082802/">
+            <strong>IoT 设备安全审计：固件提取、Binwalk 拆解与 MQTT 抓包</strong>
+            <em>2026-08-28</em>
+          </a>
+        </li>
+      
+        <li>
+          <a class="recent-item" href="/2026/08/28/20260828/2026082801/">
+            <strong>钓鱼攻击的完整产业链：从伪造域名到会话 Cookie 变现</strong>
+            <em>2026-08-28</em>
+          </a>
+        </li>
+      
+        <li>
           <a class="recent-item" href="/2026/08/25/20260825/2026082504/">
             <strong>电话那头，不再是「人类」：新一代社工攻击——vishing、SIM 卡交换、二维码钓鱼与「2FA 克星」Evilginx</strong>
             <em>2026-08-25</em>
@@ -456,27 +477,6 @@
           <a class="recent-item" href="/2026/08/25/20260825/2026082503/">
             <strong>你部署的每个接口，都在被自动化工具扫描：Web 安全全景——从 OWASP Top 10 到一条完整的攻击链</strong>
             <em>2026-08-25</em>
-          </a>
-        </li>
-      
-        <li>
-          <a class="recent-item" href="/2026/08/25/20260825/2026082502/">
-            <strong>你的声音，不再属于你：AI 语音克隆与 Deepfake 诈骗——从「孙子求救」到 2 亿港币的视频会议</strong>
-            <em>2026-08-25</em>
-          </a>
-        </li>
-      
-        <li>
-          <a class="recent-item" href="/2026/08/25/20260825/2026082501/">
-            <strong>芯片是最后一道防线，但它真的守得住吗：硬件安全入门——从调试接口、固件提取到侧信道攻击</strong>
-            <em>2026-08-25</em>
-          </a>
-        </li>
-      
-        <li>
-          <a class="recent-item" href="/2026/08/24/20260824/2026082409/">
-            <strong>看门狗游戏里的无人车，现实里的&#34;近源渗透车&#34;：无人机与遥控车的近源攻击可行性研究——从 ctOS 到 Wi-Fi Pineapple</strong>
-            <em>2026-08-24</em>
           </a>
         </li>
       
@@ -619,6 +619,8 @@
 </blockquote>
 <p><strong>黑客大会上的蓝牙攻击。</strong> 蓝牙&#x2F;近场设备的攻击一直是黑客大会的常客，国内最典型的是 <strong>GeekPwn（极棒）</strong>：2021 年上海”极棒之夜”上，选手曾颖涛演示了通过<strong>蓝牙侵入胰岛素泵的控制器</strong>，在几秒内推出加大剂量胰岛素——一个”可以远程给药”的慢性病设备被证明可被无线接管；同届还有手机数字钥匙的破解挑战。2023 年赛事更名为 GEEKCON 安全极客大赛后，公开报道中最震撼的一次是选手<strong>在 20 分钟内黑掉一台智能车</strong>——车钥匙、车机、门锁的无线链路被逐层打穿。这些展示说明一件事：<strong>蓝牙攻击早已不是”耳机被蹭连”的段位，它已经摸到了人命关天的设备。</strong></p>
 <h2 id="五、追踪器：AirTag-与猫鼠游戏"><a href="#五、追踪器：AirTag-与猫鼠游戏" class="headerlink" title="五、追踪器：AirTag 与猫鼠游戏"></a>五、追踪器：AirTag 与猫鼠游戏</h2><p>蓝牙最”沉默”的应用是低功耗追踪器——AirTag 这类拇指大的设备，靠 BLE 广播 + 全网手机”顺路打零工”定位，让”跟踪一个人”的成本降到两百块。</p>
+<p>在讲 AirTag 的反追踪机制之前，先理解它”为什么能定位”：AirTag 本身<strong>没有 GPS、没有蜂窝网络</strong>，它只是一个会持续广播”我是谁”的蓝牙信标。它定位的关键，是<strong>全球上亿台 iPhone 组成的”众包网络”</strong>——任何一台路过的 iPhone 收到 AirTag 的广播，就顺手把”我在这个位置、遇到了这个 AirTag”匿名上报给苹果服务器。于是，物主在手机上看 AirTag 的位置，其实看的是”最近哪台 iPhone 帮我发现了它”。</p>
+<p>这个设计的巧妙与隐患是同一件事：<strong>它让”追踪器”变得极其便宜、极其隐蔽（无需 SIM 卡、无需充电）</strong>——但也意味着，任何被塞进别人包里、车里的 AirTag，都会”借”着全球 iPhone 网络，把受害者的位置源源不断地传给跟踪者。</p>
 <p>苹果的应对（反追踪机制）：</p>
 <ul>
 <li><strong>随机标识符</strong>：AirTag 的蓝牙标识符频繁更换，防止被持续扫描识别。</li>
@@ -626,12 +628,50 @@
 <li><strong>发声提醒</strong>：离开物主一段时间后 AirTag 会发声。</li>
 </ul>
 <p>但猫鼠游戏还在继续：2026 年 8 月 10 日，两名底特律女性（化名 Jane Doe）在密歇根联邦法院起诉苹果，指控 AirTag 存在<strong>设计缺陷与过失</strong>——明知 AirTag 极易被用于跟踪，却未提供充分的防滥用保护，导致她们被前伴侣反复追踪（CBS Detroit、AppleInsider 报道）——<strong>机制存在 ≠ 机制总能生效</strong>。现实里更阴的是”关系型追踪”：礼物、共享车辆、委托转交的物品里被塞进追踪器，受害者往往在几个月后才察觉。这类追踪不依赖任何漏洞，纯粹是”合法设备 + 恶意用途”，防起来比漏洞攻击更难——因为你要防的不是”被入侵”，而是”被一个你信任过的人盯上”。</p>
+<h3 id="追踪器的「猫鼠游戏」：三个层次"><a href="#追踪器的「猫鼠游戏」：三个层次" class="headerlink" title="追踪器的「猫鼠游戏」：三个层次"></a>追踪器的「猫鼠游戏」：三个层次</h3><p>AirTag 的反追踪机制和绕过它的手段，构成了一场持续升级的”猫鼠游戏”，可以分三个层次看：</p>
+<table>
+<thead>
+<tr>
+<th>层次</th>
+<th>防御方（苹果&#x2F;谷歌）</th>
+<th>攻击方（跟踪者）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>标识符</td>
+<td>随机化蓝牙标识符，防止被持续识别</td>
+<td>改用更隐蔽的第三方追踪器（无”未知追踪”告警）</td>
+</tr>
+<tr>
+<td>告警</td>
+<td>iOS&#x2F;Android 检测”不属于你的追踪器一直跟着你”</td>
+<td>关系型追踪：把追踪器藏在”你信任的人送的礼物”里</td>
+</tr>
+<tr>
+<td>物理</td>
+<td>离开物主后发声提醒</td>
+<td>拆除扬声器、改装静音版 AirTag（黑市有售）</td>
+</tr>
+</tbody></table>
+<p>三个层次的博弈，揭示了一个根本矛盾：<strong>追踪器的”防滥用”，本质是在”物主找回”和”防止跟踪”之间走钢丝。</strong></p>
+<ul>
+<li>如果追踪器”太容易被发现”，它就失去了”找回物品”的价值（小偷第一时间发现并丢弃）；</li>
+<li>如果追踪器”太难被发现”，它就成了完美的跟踪工具（受害者浑然不觉）。</li>
+</ul>
+<p>苹果的方案是”折中”：正常场景下静默（帮物主找回），异常场景下告警（帮受害者发现）。但这个折中，被”关系型追踪”（熟人作案）和”改装静音版”（物理绕过）两个口子撕开了——<strong>因为机制能防”陌生人的恶意”，却难防”信任者的恶意”。</strong> 这正是 2026 年那起底特律诉讼的核心：机制存在，不等于机制总能生效。</p>
 <h2 id="六、车钥匙与智能锁：中继攻击"><a href="#六、车钥匙与智能锁：中继攻击" class="headerlink" title="六、车钥匙与智能锁：中继攻击"></a>六、车钥匙与智能锁：中继攻击</h2><p>BLE 无钥匙进入（车钥匙、智能门锁）最大的敌人是<strong>中继攻击（Relay Attack）</strong>：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">攻击者A站在车旁（车内无钥匙）</span><br><span class="line">    ⇅ 同步转发信号</span><br><span class="line">攻击者B拿着中继设备贴着车主的包/口袋</span><br><span class="line">    → 车辆以为是钥匙在附近 → 解锁</span><br></pre></td></tr></table></figure>
 
 <p>两个攻击者一个贴车、一个贴人，把钥匙和车之间的 BLE 信号”接力”放大——车主在几百米外的商场吃饭，车却被”远程打开”。</p>
 <p>这不是理论，是反复被公开演示过的现实：2018 年 9 月，比利时鲁汶大学（KU Leuven）团队演示了对特斯拉 Model S 钥匙卡系统（PKES）的中继攻击；2024 年 5 月的新研究更直接——攻击者用<strong>廉价自制中继设备</strong>在 **15 英尺（约 4.5 米）**外就开走了一辆特斯拉（Wired 拿到实测视频）。多家车企的无钥匙进入系统都被演示过同类攻击；更糟的是加密帮不上忙：<strong>只要中继的是”合法会话”本身，加密也防不住</strong>——因为对方转发的不是”破解后的钥匙”，而是”钥匙本人的合法信号”。智能门锁同理：贴着门锁转发，屋里没人的家就被”隔空解锁”。</p>
 <p>防御现实很骨感：厂商在硬件里加入 UWB（超宽带）测距（苹果数字车钥匙、部分新车型）来判断”钥匙真的在几米内”，是当前最有效的一招；老设备只能靠”钥匙离身就禁用”或物理习惯（把钥匙放金属盒&#x2F;关机）缓解。</p>
+<p>这里把”中继攻击为什么加密也防不住”讲透，因为这是理解”近场攻击”的一个关键心结：</p>
+<ul>
+<li><strong>加密防的是”内容被看懂”，防不住”内容被转发”</strong>。中继攻击攻击者不需要”破解钥匙的信号”，他只需要把”钥匙发出的合法信号”原样转发出去。</li>
+<li>打个比方：钥匙和车之间的通信，就像”两个人在对暗号”。加密让暗号内容”别人听不懂”，但中继攻击者干的是——<strong>站在两个人中间，把 A 说的话原样复述给 B，把 B 的回答原样复述给 A</strong>。暗号照样对上了，但中间人全程”只是传话”。</li>
+<li>车判断”钥匙在附近”的唯一依据，是”我收到了合法钥匙的信号”。中继攻击让这个”合法信号”隔着几百米也能到达车，于是车”以为”钥匙就在门边。</li>
+</ul>
+<p><strong>所以真正能防中继的，不是”更强的加密”，而是”测距”</strong>——让车能判断”钥匙到底离我多远”。UWB 超宽带测距就是干这个的：它通过测量信号飞行时间，精确算出”钥匙真的在 3 米内”，而不是”信号被中转后伪装成在附近”。这也是为什么新车型才逐渐上 UWB，而老车型的”无钥匙进入”至今仍是中继攻击的重灾区。</p>
 <h2 id="七、防御清单：普通人能做的十件事"><a href="#七、防御清单：普通人能做的十件事" class="headerlink" title="七、防御清单：普通人能做的十件事"></a>七、防御清单：普通人能做的十件事</h2><ol>
 <li><strong>不用就关</strong>：耳机、手环、智能锁的蓝牙在不用时关闭（尤其手机蓝牙，很多手机允许”关闭但保留查找网络”——注意这不是真关）。</li>
 <li><strong>设备设为”不可发现”</strong>：Ble 设备默认不可被发现，能大幅降低被扫描点名概率。</li>
@@ -758,10 +798,26 @@
           </span>
         </a>
       
-        <a class="related-card" href="/2026/08/24/20260824/2026082408/">
+        <a class="related-card" href="/2026/08/28/20260828/2026082803/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-1 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/../../images/20260828/lock-teardown-cover.png" alt="二手智能门锁安全研究：选型、攻击路线与逆向路线图" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">二手智能门锁安全研究：选型、攻击路线与逆向路线图</strong>
+            <em class="related-card__date">2026-08-28</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/08/24/20260824/2026082408/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/../../images/20260824/rf-surveillance-cover.png" alt="你的车里藏着&#34;眼睛&#34;：电磁反侦察——用 SDR 揪出身边的 GPS 定位器、窃听器与偷拍镜头" loading="lazy" referrerpolicy="no-referrer">
   
@@ -777,7 +833,7 @@
         <a class="related-card" href="/2026/08/24/20260824/2026082407/">
           <span class="related-card__thumb">
             
-<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/../../images/20260824/drone-rf-cover.png" alt="被一句谎话拐走的天空之眼：无人机射频安全——从 SkyJack 到图传裸奔" loading="lazy" referrerpolicy="no-referrer">
   
@@ -786,22 +842,6 @@
           </span>
           <span class="related-card__body">
             <strong class="related-card__title">被一句谎话拐走的天空之眼：无人机射频安全——从 SkyJack 到图传裸奔</strong>
-            <em class="related-card__date">2026-08-24</em>
-          </span>
-        </a>
-      
-        <a class="related-card" href="/2026/08/24/20260824/2026082406/">
-          <span class="related-card__thumb">
-            
-<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
-  
-    <img class="paper-thumb__img" src="/../../images/20260824/gps-spoofing-cover.png" alt="你手机里的&#34;真北&#34;是谁说的：GPS 欺骗与导航战——从 RQ-170 到黑海的&#34;位置谎言&#34;" loading="lazy" referrerpolicy="no-referrer">
-  
-</div>
-
-          </span>
-          <span class="related-card__body">
-            <strong class="related-card__title">你手机里的&#34;真北&#34;是谁说的：GPS 欺骗与导航战——从 RQ-170 到黑海的&#34;位置谎言&#34;</strong>
             <em class="related-card__date">2026-08-24</em>
           </span>
         </a>

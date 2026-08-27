@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/08/24/images/20260824/drone-rf-cover.png">
 <meta property="article:published_time" content="2026-08-24T05:35:00.000Z">
-<meta property="article:modified_time" content="2026-08-24T11:21:42.996Z">
+<meta property="article:modified_time" content="2026-08-27T23:30:33.754Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="GPS欺骗">
 <meta property="article:tag" content="SkyJack">
@@ -36,7 +36,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"被一句谎话拐走的天空之眼：无人机射频安全——从 SkyJack 到图传裸奔","name":"被一句谎话拐走的天空之眼：无人机射频安全——从 SkyJack 到图传裸奔 | ZapcoMan's world","description":"上一篇讲完 GPS 欺骗，这一篇讲它最经典的受害者：无人机。无人机飞在天上，靠三条看不见的线活着——控制信号、图传信号、GPS 信号。这三条线里任何一条被截断或篡改，一架几千块的无人机，就成了别人手里的提线木偶。 2013 年，黑客 Samy Kamkar 用一台树莓派和一架 Parrot 无人机，在 DEF CON 之外的场合表演了”僵尸无人机军团”：他的...","url":"http://example.com/2026/08/24/20260824/2026082407/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260824/drone-rf-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/24/20260824/2026082407/","datePublished":"2026-08-24T05:35:00.000Z","dateModified":"2026-08-24T11:21:42.996Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"干扰, 无人机, UAV, SkyJack, GPS欺骗, 图传, 射频, 反无人机, 劫持, 低空安全"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"被一句谎话拐走的天空之眼：无人机射频安全——从 SkyJack 到图传裸奔","name":"被一句谎话拐走的天空之眼：无人机射频安全——从 SkyJack 到图传裸奔 | ZapcoMan's world","description":"上一篇讲完 GPS 欺骗，这一篇讲它最经典的受害者：无人机。无人机飞在天上，靠三条看不见的线活着——控制信号、图传信号、GPS 信号。这三条线里任何一条被截断或篡改，一架几千块的无人机，就成了别人手里的提线木偶。 2013 年，黑客 Samy Kamkar 用一台树莓派和一架 Parrot 无人机，在 DEF CON 之外的场合表演了”僵尸无人机军团”：他的...","url":"http://example.com/2026/08/24/20260824/2026082407/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260824/drone-rf-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/24/20260824/2026082407/","datePublished":"2026-08-24T05:35:00.000Z","dateModified":"2026-08-27T23:30:33.754Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"干扰, 无人机, UAV, SkyJack, GPS欺骗, 图传, 射频, 反无人机, 劫持, 低空安全"}</script>
 
 <script>
   (function () {
@@ -355,21 +355,21 @@
         
           
             <a class="site-info__item" href="/archives/">
-              <strong>138</strong>
+              <strong>141</strong>
               <span>文章</span>
             </a>
           
         
           
             <a class="site-info__item" href="/categories/">
-              <strong>34</strong>
+              <strong>35</strong>
               <span>分类</span>
             </a>
           
         
           
             <a class="site-info__item" href="/tags/">
-              <strong>263</strong>
+              <strong>276</strong>
               <span>标签</span>
             </a>
           
@@ -431,7 +431,7 @@
         </header>
         <div class="toc-content">
           
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%97%A0%E4%BA%BA%E6%9C%BA%E7%9A%84%E4%B8%89%E6%9D%A1%E2%80%9D%E5%91%BD%E8%84%89%E2%80%9D"><span class="toc-text">一、无人机的三条”命脉”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%A2%AB%E2%80%9D%E6%8B%90%E8%B5%B0%E2%80%9D%EF%BC%9AGPS-%E6%AC%BA%E9%AA%97%E5%8A%AB%E6%8C%81"><span class="toc-text">二、被”拐走”：GPS 欺骗劫持</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E8%A2%AB%E2%80%9D%E5%A4%BA%E6%9D%83%E2%80%9D%EF%BC%9ASkyJack-%E4%B8%8E%E2%80%9D%E5%83%B5%E5%B0%B8%E6%97%A0%E4%BA%BA%E6%9C%BA%E2%80%9D"><span class="toc-text">三、被”夺权”：SkyJack 与”僵尸无人机”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E8%A2%AB%E2%80%9D%E5%81%B7%E7%9C%8B%E2%80%9D%EF%BC%9A%E5%9B%BE%E4%BC%A0%E8%A3%B8%E5%A5%94"><span class="toc-text">四、被”偷看”：图传裸奔</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%8F%8D%E6%97%A0%E4%BA%BA%E6%9C%BA%EF%BC%9A%E4%B8%80%E5%9C%BA%E2%80%9D%E7%A9%BA%E4%B8%AD%E5%86%9B%E5%A4%87%E7%AB%9E%E8%B5%9B%E2%80%9D"><span class="toc-text">五、反无人机：一场”空中军备竞赛”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%B3%95%E8%A7%84%E4%B8%8E%E8%BE%B9%E7%95%8C%EF%BC%9A%E5%A4%A9%E7%A9%BA%E4%B8%8D%E6%98%AF%E6%B3%95%E5%A4%96%E4%B9%8B%E5%9C%B0"><span class="toc-text">六、法规与边界：天空不是法外之地</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E9%A3%9E%E6%89%8B%E9%98%B2%E5%BE%A1%E6%B8%85%E5%8D%95"><span class="toc-text">七、飞手防御清单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E8%BE%B9%E7%95%8C%E5%A3%B0%E6%98%8E"><span class="toc-text">八、边界声明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A0%E6%9D%90%E6%9D%A5%E6%BA%90"><span class="toc-text">素材来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%96%87%E7%AB%A0"><span class="toc-text">相关文章</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%97%A0%E4%BA%BA%E6%9C%BA%E7%9A%84%E4%B8%89%E6%9D%A1%E2%80%9D%E5%91%BD%E8%84%89%E2%80%9D"><span class="toc-text">一、无人机的三条”命脉”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%A2%AB%E2%80%9D%E6%8B%90%E8%B5%B0%E2%80%9D%EF%BC%9AGPS-%E6%AC%BA%E9%AA%97%E5%8A%AB%E6%8C%81"><span class="toc-text">二、被”拐走”：GPS 欺骗劫持</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E8%A2%AB%E2%80%9D%E5%A4%BA%E6%9D%83%E2%80%9D%EF%BC%9ASkyJack-%E4%B8%8E%E2%80%9D%E5%83%B5%E5%B0%B8%E6%97%A0%E4%BA%BA%E6%9C%BA%E2%80%9D"><span class="toc-text">三、被”夺权”：SkyJack 与”僵尸无人机”</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E7%8E%B0%E4%BB%A3%E6%97%A0%E4%BA%BA%E6%9C%BA%E3%80%8C%E9%9A%BE%E5%8A%AB%E6%8C%81%E3%80%8D%E4%BA%86%EF%BC%9F%E2%80%94%E2%80%94SkyJack-%E4%B9%8B%E5%90%8E%E5%8D%81%E5%B9%B4%E7%9A%84%E5%86%9B%E5%A4%87%E7%AB%9E%E8%B5%9B"><span class="toc-text">为什么现代无人机「难劫持」了？——SkyJack 之后十年的军备竞赛</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SkyJack-%E7%9A%84%E3%80%8C%E5%9B%9B%E6%AD%A5%E6%8E%A5%E7%AE%A1%E3%80%8D%E8%AF%A6%E8%A7%A3"><span class="toc-text">SkyJack 的「四步接管」详解</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E8%A2%AB%E2%80%9D%E5%81%B7%E7%9C%8B%E2%80%9D%EF%BC%9A%E5%9B%BE%E4%BC%A0%E8%A3%B8%E5%A5%94"><span class="toc-text">四、被”偷看”：图传裸奔</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%8F%8D%E6%97%A0%E4%BA%BA%E6%9C%BA%EF%BC%9A%E4%B8%80%E5%9C%BA%E2%80%9D%E7%A9%BA%E4%B8%AD%E5%86%9B%E5%A4%87%E7%AB%9E%E8%B5%9B%E2%80%9D"><span class="toc-text">五、反无人机：一场”空中军备竞赛”</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E4%BC%A0%E3%80%8C%E8%A3%B8%E5%A5%94%E3%80%8D%E7%9A%84%E6%8A%80%E6%9C%AF%E6%A0%B9%E6%BA%90%EF%BC%9A%E6%A8%A1%E6%8B%9F%E5%9B%BE%E4%BC%A0%E7%9A%84%E3%80%8C%E5%85%88%E5%A4%A9%E7%BC%BA%E9%99%B7%E3%80%8D"><span class="toc-text">图传「裸奔」的技术根源：模拟图传的「先天缺陷」</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%B3%95%E8%A7%84%E4%B8%8E%E8%BE%B9%E7%95%8C%EF%BC%9A%E5%A4%A9%E7%A9%BA%E4%B8%8D%E6%98%AF%E6%B3%95%E5%A4%96%E4%B9%8B%E5%9C%B0"><span class="toc-text">六、法规与边界：天空不是法外之地</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E6%97%A0%E4%BA%BA%E6%9C%BA%E4%B8%89%E5%A4%A7%E8%B7%AF%E7%BA%BF%E7%9A%84%E3%80%8C%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF%E3%80%8D%E5%AF%B9%E7%85%A7"><span class="toc-text">反无人机三大路线的「适用场景」对照</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E9%A3%9E%E6%89%8B%E9%98%B2%E5%BE%A1%E6%B8%85%E5%8D%95"><span class="toc-text">七、飞手防御清单</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E6%9D%A1%E5%91%BD%E8%84%89%E7%9A%84%E3%80%8C%E9%A3%8E%E9%99%A9%E7%AD%89%E7%BA%A7%E3%80%8D%E6%80%BB%E7%BB%93"><span class="toc-text">三条命脉的「风险等级」总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E2%80%9D%E6%94%BB%E5%87%BB%E6%97%A0%E4%BA%BA%E6%9C%BA%E2%80%9D%E5%88%B0%E2%80%9D%E6%97%A0%E4%BA%BA%E6%9C%BA%E8%A2%AB%E5%BD%93%E6%AD%A6%E5%99%A8%E2%80%9D"><span class="toc-text">从”攻击无人机”到”无人机被当武器”</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E8%BE%B9%E7%95%8C%E5%A3%B0%E6%98%8E"><span class="toc-text">八、边界声明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A0%E6%9D%90%E6%9D%A5%E6%BA%90"><span class="toc-text">素材来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%96%87%E7%AB%A0"><span class="toc-text">相关文章</span></a></li></ol>
           
         </div>
       </section>
@@ -444,6 +444,27 @@
     <ul class="recent-list">
       
         <li>
+          <a class="recent-item" href="/2026/08/28/20260828/2026082803/">
+            <strong>二手智能门锁安全研究：选型、攻击路线与逆向路线图</strong>
+            <em>2026-08-28</em>
+          </a>
+        </li>
+      
+        <li>
+          <a class="recent-item" href="/2026/08/28/20260828/2026082802/">
+            <strong>IoT 设备安全审计：固件提取、Binwalk 拆解与 MQTT 抓包</strong>
+            <em>2026-08-28</em>
+          </a>
+        </li>
+      
+        <li>
+          <a class="recent-item" href="/2026/08/28/20260828/2026082801/">
+            <strong>钓鱼攻击的完整产业链：从伪造域名到会话 Cookie 变现</strong>
+            <em>2026-08-28</em>
+          </a>
+        </li>
+      
+        <li>
           <a class="recent-item" href="/2026/08/25/20260825/2026082504/">
             <strong>电话那头，不再是「人类」：新一代社工攻击——vishing、SIM 卡交换、二维码钓鱼与「2FA 克星」Evilginx</strong>
             <em>2026-08-25</em>
@@ -454,27 +475,6 @@
           <a class="recent-item" href="/2026/08/25/20260825/2026082503/">
             <strong>你部署的每个接口，都在被自动化工具扫描：Web 安全全景——从 OWASP Top 10 到一条完整的攻击链</strong>
             <em>2026-08-25</em>
-          </a>
-        </li>
-      
-        <li>
-          <a class="recent-item" href="/2026/08/25/20260825/2026082502/">
-            <strong>你的声音，不再属于你：AI 语音克隆与 Deepfake 诈骗——从「孙子求救」到 2 亿港币的视频会议</strong>
-            <em>2026-08-25</em>
-          </a>
-        </li>
-      
-        <li>
-          <a class="recent-item" href="/2026/08/25/20260825/2026082501/">
-            <strong>芯片是最后一道防线，但它真的守得住吗：硬件安全入门——从调试接口、固件提取到侧信道攻击</strong>
-            <em>2026-08-25</em>
-          </a>
-        </li>
-      
-        <li>
-          <a class="recent-item" href="/2026/08/24/20260824/2026082409/">
-            <strong>看门狗游戏里的无人车，现实里的&#34;近源渗透车&#34;：无人机与遥控车的近源攻击可行性研究——从 ctOS 到 Wi-Fi Pineapple</strong>
-            <em>2026-08-24</em>
           </a>
         </li>
       
@@ -568,6 +568,13 @@
 <li><strong>2012 年以来的公开演示</strong>：研究团队反复证明，<strong>民用无人机对 GPS 欺骗几乎毫无抵抗</strong>——攻击者可以让无人机以为自己在别处，进而诱导它朝错误方向飞，甚至让它误以为”电量不足自动返航”，飞向攻击者设定好的”家”。</li>
 </ul>
 <p>对反制方来说，GPS 欺骗打无人机有两个致命优势：<strong>不接触、不留痕</strong>——无人机看起来是”自己飞走的”，飞手在遥控器上甚至可能看到”无人机正常返航中”。这正是它比”直接把无人机打下来”更阴险的地方。</p>
+<p>这里要澄清一个常见的误解：<strong>GPS 欺骗劫持，骗的不是”无人机”，而是”无人机的 GPS 接收机”。</strong> 攻击者发射一个比真卫星信号更强的假信号，无人机接收机”择优录取”了假信号，于是：</p>
+<ul>
+<li>无人机的飞控系统”以为”自己在别的位置；</li>
+<li>飞控为了”回到预设航线”或”返航”，自动调整飞行方向；</li>
+<li>结果却是朝攻击者预设的”假位置”飞去。</li>
+</ul>
+<p>整个过程，无人机<strong>全程”自主飞行”</strong>，没有收到任何”外部劫持指令”——是它自己的导航系统，被一个”假位置”骗得主动改变了航线。这也是为什么 GPS 欺骗”不留痕”：从飞控日志看，无人机只是”正常地执行了一次导航决策”，只是这个决策基于一个错误的位置输入。<strong>欺骗攻击的可怕，正在于它让受害者”心甘情愿”地走错路。</strong></p>
 <h2 id="三、被”夺权”：SkyJack-与”僵尸无人机”"><a href="#三、被”夺权”：SkyJack-与”僵尸无人机”" class="headerlink" title="三、被”夺权”：SkyJack 与”僵尸无人机”"></a>三、被”夺权”：SkyJack 与”僵尸无人机”</h2><p>2013 年 12 月，黑客 Samy Kamkar 发布 <strong>SkyJack</strong>：一套装在树莓派上的系统，配一架 Parrot AR.Drone 和两个无线发射器。它的工作方式是：</p>
 <ol>
 <li><strong>搜索</strong>：扫描附近所有 Parrot 和 3DR 无人机的 Wi-Fi&#x2F;控制信号</li>
@@ -578,6 +585,56 @@
 <p>SkyJack 能成立，根源在于 Parrot AR.Drone 2.0 的<strong>控制接口不设任何认证</strong>——它的飞行控制暴露在一个开放的 Wi-Fi 网络上，任何人只要连上同一个 Wi-Fi、向对应端口发送指令就能操控这架飞机。Kamkar 做的只是把”抢连接”自动化：先发 Wi-Fi 去认证包（deauth）把原飞手踢下线，再接入自己的指令流，全程无需破解任何加密——因为压根没有加密。Kamkar 的演示里，这套设备还能从地面运行，劫持头顶飞过的同类无人机。当时的剑桥大学教授评论称这是”基础设计上的严重失误”（basic design blunder）。<strong>注意年代：2013 年，Android 4 时代</strong>。今天的主流消费无人机（DJI 等）控制链路已经加密、做了大量加固，SkyJack 这类”开盒即用”的劫持在 2026 年已经很难对现代机型奏效——但它的价值在于揭示了无人机安全的第一原理：<strong>凡是”认证”做得不严的链路，就一定会有人接管它</strong>。</p>
 <p><strong>深读 README：SkyJack 的”攻击面”比想象中更宽。</strong> 回到 SkyJack 的仓库本身，README 里藏着一个常被忽略的细节：2015 年 8 月的更新给项目加入了<strong>对 3DR 无人机的攻击概念验证</strong>——不再走 Wi-Fi，而是用亚 GHz 射频收发器（TI CC1111 芯片组），通过<strong>预测 3DR 遥测模块的跳频规律和模块 ID</strong>，在完全不用 Wi-Fi 的情况下接管附近的 3DR 无人机。这意味着”劫持无人机”的路径至少有两条：Wi-Fi 层（去认证 + 冒充接入）和射频层（预测跳频接管）。SkyJack 的依赖清单也说明它的”平民化”程度：树莓派 + Alfa AWUS036H 网卡 + aircrack-ng + node.js，全是安全研究里的标准件。<strong>2013 年一个黑客周末拼出的东西，把”无人机可被无线接管”钉进了安全史。</strong></p>
 <p><strong>黑客大会上的”无人机猎手”。</strong> 无人机攻防是国内黑客大会的常驻节目，<strong>GeekPwn（极棒）</strong> 2015 年就现场演示过<strong>对市售大疆无人机的无线劫持</strong>（无接触接管，被媒体称为”黑客奥运会”的名场面）；2020 年，清华-奇安信联合研究中心的选手利用未知安全漏洞，<strong>劫持了正在作业的植保无人机并远程篡改其工作内容</strong>——从”飞着玩的玩具”到”干活的农业机械”，攻击面在变大，劫持演示也年年升级。这些展示和 SkyJack 说的是同一件事：<strong>凡是通过无线电控制的东西，就有被无线电夺走的可能。</strong></p>
+<p>把这两个国内案例拆开看，能读出无人机攻击的”演化脉络”：</p>
+<ul>
+<li><strong>2015 年大疆劫持</strong>：针对的是消费级”飞着玩”的无人机，劫持的后果是”玩具失控”，象征意义大于实际危害——但它第一次向公众证明了”无人机可以被无线夺走”。</li>
+<li><strong>2020 年植保机劫持</strong>：目标升级为”干活的农业机械”，劫持的后果是”作业内容被篡改”（比如改变喷洒路径、剂量），已经触及”生产安全”和”人身安全”。</li>
+</ul>
+<p>这两次演示之间的五年，恰好对应了无人机从”极客玩具”到”生产力工具”的产业变迁——<strong>而攻击者的目标，永远追着”设备越重要、越值得攻”的方向走。</strong> 这个趋势到今天还在继续：当无人机开始送快递、做巡检、参与救援，它被攻击的”价值”也在同步上升。</p>
+<p><strong>2026 年的现实是</strong>：主流消费无人机（DJI 等）的控制链路已经大幅加固，SkyJack 式的”开盒即用劫持”对现代机型已难奏效；但「特定机型的协议级漏洞」「GPS 欺骗」「图传截获」依然是真实存在的攻击面——尤其是<strong>大量仍在服役的老机型、以及廉价白牌无人机</strong>，它们的安全水平参差不齐，是攻击者最现实的切入点。</p>
+<h3 id="为什么现代无人机「难劫持」了？——SkyJack-之后十年的军备竞赛"><a href="#为什么现代无人机「难劫持」了？——SkyJack-之后十年的军备竞赛" class="headerlink" title="为什么现代无人机「难劫持」了？——SkyJack 之后十年的军备竞赛"></a>为什么现代无人机「难劫持」了？——SkyJack 之后十年的军备竞赛</h3><p>SkyJack 之后，无人机厂商做了一件事，把「开盒即用」的劫持几乎堵死：<strong>给控制链路加认证和加密</strong>。这里的关键词是「认证」——它和「加密」是两回事，但常常被混为一谈：</p>
+<ul>
+<li><strong>加密（Encryption）</strong>：让第三方「看不懂」控制指令的内容。SkyJack 当年面对的 Parrot AR.Drone，控制指令是<strong>明文</strong>，谁都能读。</li>
+<li><strong>认证（Authentication）</strong>：让第三方「冒充不了」合法飞手。即使指令加密了，如果攻击者能「伪造成飞手」发送合法加密指令，依然能劫持。真正堵住 SkyJack 的是「认证」——无人机只认那个「配对过的遥控器」的指令。</li>
+</ul>
+<p>现代 DJI 等机型的控制链路，做的是「加密 + 认证 + 跳频」三件套：</p>
+<table>
+<thead>
+<tr>
+<th>机制</th>
+<th>作用</th>
+<th>对付的攻击</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AES 加密</td>
+<td>指令不可读</td>
+<td>抓包分析、明文重放</td>
+</tr>
+<tr>
+<td>双向认证&#x2F;配对</td>
+<td>只认合法遥控器</td>
+<td>冒充接管（SkyJack 式）</td>
+</tr>
+<tr>
+<td>跳频（FHSS）</td>
+<td>信号频率快速跳变</td>
+<td>定点干扰、持续阻塞</td>
+</tr>
+</tbody></table>
+<p>这也是为什么 2026 年「劫持一架现代无人机」已经不是 2013 年那种「连上 Wi-Fi 发指令」的玩具操作，而是需要针对具体机型的协议级漏洞（就像 GeekPwn 2020 植保机劫持那样，靠的是厂商未知漏洞，而非通用套路）。<strong>但反过来，这也意味着：一旦某个机型被爆出认证缺陷，后果依然是「整机失守」——因为无人机不像电脑，没有「打补丁」的便捷通道。</strong></p>
+<h3 id="SkyJack-的「四步接管」详解"><a href="#SkyJack-的「四步接管」详解" class="headerlink" title="SkyJack 的「四步接管」详解"></a>SkyJack 的「四步接管」详解</h3><p>第三节提到 SkyJack，这里把它的四步工作方式完整展开，因为它几乎定义了”无人机劫持”的标准范式：</p>
+<ol>
+<li><p><strong>搜索</strong>：树莓派 + 无线网卡扫描附近的 Parrot &#x2F; 3DR 无人机。原理是：这些无人机的控制信号走的是开放的 Wi-Fi 网络，扫描 Wi-Fi 就能发现”有一台无人机在附近”。</p>
+</li>
+<li><p><strong>断开</strong>：向原飞手与无人机之间的连接发送 <strong>deauth（去认证）包</strong>——这是 Wi-Fi 协议里一个”踢下线”的合法机制，攻击者用它把原飞手强制断开。SkyJack 的聪明之处在于：它不需要破解任何加密，只需要”把对方挤下线”。</p>
+</li>
+<li><p><strong>接管</strong>：原飞手被踢下线后，无人机”失联”，SkyJack 趁机与无人机建立新的连接。由于 Parrot AR.Drone 2.0 的飞行控制接口<strong>完全不设认证</strong>（谁连上谁就能发飞行指令），SkyJack 一接入就拿到了完全控制权。</p>
+</li>
+<li><p><strong>扩张</strong>：最巧妙的一步——被劫持的无人机本身也跑着 SkyJack，于是它变成新的”劫持母机”，继续去扫描、去踢、去接管更多无人机，形成<strong>指数级扩张的”僵尸无人机军团”</strong>。</p>
+</li>
+</ol>
+<p>这四步的技术含量其实不高（deauth、连 Wi-Fi、发指令，都是现成工具），但它精准命中了 Parrot 无人机”控制接口不设认证”这一致命设计缺陷。<strong>这给所有 IoT 设备上了一课：凡是”连接即信任”的无线设备，就一定会被”踢下线 + 冒充”式接管。</strong></p>
 <h2 id="四、被”偷看”：图传裸奔"><a href="#四、被”偷看”：图传裸奔" class="headerlink" title="四、被”偷看”：图传裸奔"></a>四、被”偷看”：图传裸奔</h2><p>如果说控制链路是”门锁”，那图传链路很多情况下是”没装门”。</p>
 <p>2024 年 IEEE Spectrum 的一篇深度报道（《乌克兰是第一场”黑客战争”》）指出：<strong>大量模拟图传系统（analog video transmitter）完全没有加密</strong>——任何在附近、懂点无线电的人，用一台接收机就能截获无人机的实时画面。这就是为什么战场上双方都能”看对方的无人机视角”，也是为什么近年无人机厂商在推数字图传 + 加密方案（如 HDZero、Walksnail 等）——<strong>给”眼睛”装上密码锁</strong>。</p>
 <p>对普通人来说，”图传被截”的直接后果是隐私泄露：你飞无人机拍的画面，别人在几百米外用接收器就能看直播。它不会夺走你的无人机，但会偷走你的”视野”。</p>
@@ -617,6 +674,13 @@
 <li><strong>激光武器</strong>：需要<strong>秒级持续照射</strong>烧毁目标，功率达到<strong>数十千瓦量级</strong>的系统才谈得上实战，多为车载&#x2F;舰载，造价高昂</li>
 </ul>
 <p>而且随着”蜂群”（多架小无人机协同）概念兴起，反无人机的核心矛盾从”打掉一架”变成了”识别并处理一群”——<strong>射频识别（发现目标）比击落更关键</strong>，因为打不准的拦截毫无意义。</p>
+<h3 id="图传「裸奔」的技术根源：模拟图传的「先天缺陷」"><a href="#图传「裸奔」的技术根源：模拟图传的「先天缺陷」" class="headerlink" title="图传「裸奔」的技术根源：模拟图传的「先天缺陷」"></a>图传「裸奔」的技术根源：模拟图传的「先天缺陷」</h3><p>第四节说模拟图传”没加密”，这里把技术根源拆清楚，你会更理解为什么它”裸奔”是注定的：</p>
+<ul>
+<li><strong>模拟图传的本质是”广播电视”</strong>：传统模拟图传（如早期 5.8GHz FPV 系统）就是一台小功率的”电视台”，把摄像头画面调制成射频信号，向四周广播。任何调对频率的接收机，都能”收看”这个频道——<strong>这跟你看电视是同一个物理过程，区别只是”频道是别人的”</strong>。</li>
+<li><strong>没有”加密”这个概念</strong>：模拟信号是连续的波形，根本没有”数字加密”的载体。你没法给一段”连续变化的电压波形”加 AES——加密的前提是”先把内容数字化”，而模拟图传压根没数字化这一步。</li>
+<li><strong>数字图传才有加密的可能</strong>：HDZero、Walksnail、DJI O4 这些数字图传系统，先把画面压缩成数字流，再加密、再调制发射——这时”没密码就看不了”才成立。<strong>所以”图传裸奔”不是厂商偷懒，而是模拟图传这个技术路线的”出厂设定”。</strong></li>
+</ul>
+<p>这也是为什么战场上”双方都能看对方无人机视角”——因为战场上大量用的还是廉价、抗干扰、即插即用的模拟图传，而它的”即插即用”和”谁都能看”，是同一枚硬币的两面。</p>
 <h2 id="六、法规与边界：天空不是法外之地"><a href="#六、法规与边界：天空不是法外之地" class="headerlink" title="六、法规与边界：天空不是法外之地"></a>六、法规与边界：天空不是法外之地</h2><p>无人机安全不是只有技术，还有明确的法律边界。中国的《无人驾驶航空器飞行管理暂行条例》（国务院、中央军委公布，<strong>2024 年 1 月 1 日起施行</strong>）规定了：</p>
 <ul>
 <li><strong>实名登记</strong>：民用无人驾驶航空器所有者应当依法进行实名登记（第 10 条）</li>
@@ -625,6 +689,37 @@
 <li><strong>违法后果</strong>：未经批准在禁飞区飞行、干扰公共秩序，面临治安处罚乃至刑事追责</li>
 </ul>
 <p>而<strong>针对无人机的干扰&#x2F;欺骗</strong>同样受约束：《刑法》第 288 条（扰乱无线电通讯管理秩序罪）同样适用于非法发射无线电信号干扰无人机或其他通信秩序的行为。<strong>反无人机的合法前提是”得到授权的执法&#x2F;安保场景”</strong>——个人在公共场合架设备干扰别人的无人机，本身就可能违法。</p>
+<h3 id="反无人机三大路线的「适用场景」对照"><a href="#反无人机三大路线的「适用场景」对照" class="headerlink" title="反无人机三大路线的「适用场景」对照"></a>反无人机三大路线的「适用场景」对照</h3><p>第五节讲了反无人机的三路手段，但”哪一路适合哪个场景”往往比”有哪些手段”更实用。这里补一张对照表：</p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>推荐手段</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>机场&#x2F;重要设施周界</td>
+<td>射频探测 + 干扰&#x2F;诱骗</td>
+<td>目标明确、范围可控，软杀伤比物理击落更安全</td>
+</tr>
+<tr>
+<td>大型活动现场</td>
+<td>网枪&#x2F;物理捕获</td>
+<td>人群密集，干扰会误伤周边通信，物理捕获更精准</td>
+</tr>
+<tr>
+<td>军事&#x2F;边境</td>
+<td>激光 + 拦截弹</td>
+<td>目标多、威胁大，需要硬杀伤</td>
+</tr>
+<tr>
+<td>个人隐私防护</td>
+<td>尽量规避 + 举报</td>
+<td>个人无权反制（见下节法律边界），发现可疑无人机应报警</td>
+</tr>
+</tbody></table>
+<p>关键认知：<strong>反无人机的”成本不对称”依然存在</strong>——一架几百块的消费无人机，可能需要几十万的反制系统来”认真应对”。所以对多数场景来说，<strong>“检测发现”比”击落拦截”更现实、更划算</strong>：先知道”有无人机来了”，再决定”怎么处置”，而不是一上来就上昂贵硬杀伤。</p>
 <h2 id="七、飞手防御清单"><a href="#七、飞手防御清单" class="headerlink" title="七、飞手防御清单"></a>七、飞手防御清单</h2><ul>
 <li><strong>更新固件、开启加密</strong>：现代机型默认开启控制链路加密，别用”精简模式”降级</li>
 <li><strong>数字图传优先</strong>：买带数字图传 + 加密的机型（如 DJI O4&#x2F;Lightbridge 等），远离”裸奔”的模拟图传玩具机</li>
@@ -636,6 +731,46 @@
 <blockquote>
 <p>金句：无人机飞得再高，也悬在三条射频线上——与其担心它被偷走，不如先确认线攥在自己手里。</p>
 </blockquote>
+<blockquote>
+<p>补充一句：如果你是飞手，别把这篇看成”劝退”。无人机带来的航拍、测绘、救援价值，远大于它的安全风险。关键是——<strong>把它当成一台”会飞的小型服务器”来对待</strong>：更新固件、开加密、别去高风险空域，就像你会给电脑装杀毒、设密码一样。安全意识和飞行乐趣，从来不是对立面。</p>
+</blockquote>
+<h3 id="三条命脉的「风险等级」总结"><a href="#三条命脉的「风险等级」总结" class="headerlink" title="三条命脉的「风险等级」总结"></a>三条命脉的「风险等级」总结</h3><p>回到开头说的”三条命脉”，把它们的安全性放一起做个收束对比：</p>
+<table>
+<thead>
+<tr>
+<th>链路</th>
+<th>加密&#x2F;认证现状</th>
+<th>被攻击后果</th>
+<th>防御难度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>控制链路</td>
+<td>现代机型有加密+认证+跳频</td>
+<td>被劫持（最严重）</td>
+<td>中（厂商已加固，但依赖机型）</td>
+</tr>
+<tr>
+<td>图传链路</td>
+<td>模拟图传完全裸奔；数字图传加密</td>
+<td>隐私泄露（画面被看）</td>
+<td>低-中（选对机型即可）</td>
+</tr>
+<tr>
+<td>导航链路</td>
+<td>GPS 公开无认证</td>
+<td>被欺骗&#x2F;拐走</td>
+<td>高（GPS 本身不设防）</td>
+</tr>
+</tbody></table>
+<p>这张表能解释一个现象：<strong>为什么”GPS 欺骗”是无人机安全的”万年老大难”</strong>——因为控制链路厂商能加密、图传链路厂商能数字化，唯独 GPS 是”公开的卫星信号”，无人机厂商<strong>改不了 GPS 协议本身</strong>，只能靠”多源融合 + 返航点校验”来缓解。这跟上一篇 GPS 欺骗讲的是同一件事：<strong>导航的脆弱性，是无人机先天继承的，不是后天能补的。</strong></p>
+<h3 id="从”攻击无人机”到”无人机被当武器”"><a href="#从”攻击无人机”到”无人机被当武器”" class="headerlink" title="从”攻击无人机”到”无人机被当武器”"></a>从”攻击无人机”到”无人机被当武器”</h3><p>最后补一个容易被忽视的延伸：无人机安全不只是”你的无人机被劫持”，还包括”别人的无人机主动来攻击你”。近年公开报道里，已出现：</p>
+<ul>
+<li>用改装无人机携带爆炸物、干扰器、投放装置进行攻击；</li>
+<li>用无人机走私（越境投递）、侦察（偷拍、测绘敏感区域）；</li>
+<li>用”蜂群”（多架协同）实施饱和式干扰或袭击。</li>
+</ul>
+<p>这类威胁的本质，是”无人机”从”被攻击的目标”变成了”攻击的载体”——它的三条命脉（控制、图传、导航）反而成了防御方”识别和反制它”的抓手。<strong>这跟上一篇写”近源渗透车”是同一枚硬币：无人机既可以是受害的”天空之眼”，也可以是作恶的”会飞的载荷”。</strong> 技术本身没有立场，全看谁在操控它。</p>
 <h2 id="八、边界声明"><a href="#八、边界声明" class="headerlink" title="八、边界声明"></a>八、边界声明</h2><p>本文为无人机射频安全科普，案例（SkyJack、RQ-170、图传截获）均来自公开报道与公开研究（Samy Kamkar 2013 年发布、IEEE Spectrum 2024 年报道等）。文中不提供任何劫持、干扰、欺骗的实现方法、协议细节或设备配置。非法控制他人无人机、干扰无人机通信、在禁飞区飞行、非法使用无线电频率，均属违法犯罪行为，将面临《中华人民共和国刑法》第 285&#x2F;286&#x2F;288 条、《无人驾驶航空器飞行管理暂行条例》及治安管理处罚法的追责。请勿尝试。</p>
 <h2 id="素材来源"><a href="#素材来源" class="headerlink" title="素材来源"></a>素材来源</h2><ul>
 <li>Samy Kamkar《SkyJack》项目（2013-12 发布，GitHub samyk&#x2F;skyjack）及新浪科技、IKCEST 等 2013 年报道</li>

@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/08/24/images/20260824/rf-surveillance-cover.png">
 <meta property="article:published_time" content="2026-08-24T06:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-24T11:21:48.835Z">
+<meta property="article:modified_time" content="2026-08-27T23:15:46.764Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="GPS定位器">
 <meta property="article:tag" content="SDR">
@@ -36,7 +36,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"你的车里藏着\"眼睛\"：电磁反侦察——用 SDR 揪出身边的 GPS 定位器、窃听器与偷拍镜头","name":"你的车里藏着\"眼睛\"：电磁反侦察——用 SDR 揪出身边的 GPS 定位器、窃听器与偷拍镜头 | ZapcoMan's world","description":"还记得 SDR 入门时埋过的那个伏笔吗：一个爱好者拿 SDR 在楼里扫一圈频谱，就能知道谁家有无线摄像头、哪层楼有人用对讲机——反过来，你的车底如果被人塞了一个 GPS 定位器，它 24 小时在发射信号，而”必须发射”正是它的死穴。 这一篇，把”听”的本事用回自己身上。公开报道里，有人伪装成代驾在豪车底下装定位器跟踪独行女性；有人黑进智慧停车系统倒卖车辆位置...","url":"http://example.com/2026/08/24/20260824/2026082408/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260824/rf-surveillance-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/24/20260824/2026082408/","datePublished":"2026-08-24T06:00:00.000Z","dateModified":"2026-08-24T11:21:48.835Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"隐私, 反侦察, SDR, 电磁安全, GPS定位器, 窃听器, 偷拍, 测向, 频谱扫描, 反跟踪"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"你的车里藏着\"眼睛\"：电磁反侦察——用 SDR 揪出身边的 GPS 定位器、窃听器与偷拍镜头","name":"你的车里藏着\"眼睛\"：电磁反侦察——用 SDR 揪出身边的 GPS 定位器、窃听器与偷拍镜头 | ZapcoMan's world","description":"还记得 SDR 入门时埋过的那个伏笔吗：一个爱好者拿 SDR 在楼里扫一圈频谱，就能知道谁家有无线摄像头、哪层楼有人用对讲机——反过来，你的车底如果被人塞了一个 GPS 定位器，它 24 小时在发射信号，而”必须发射”正是它的死穴。 这一篇，把”听”的本事用回自己身上。公开报道里，有人伪装成代驾在豪车底下装定位器跟踪独行女性；有人黑进智慧停车系统倒卖车辆位置...","url":"http://example.com/2026/08/24/20260824/2026082408/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260824/rf-surveillance-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/24/20260824/2026082408/","datePublished":"2026-08-24T06:00:00.000Z","dateModified":"2026-08-27T23:15:46.764Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"隐私, 反侦察, SDR, 电磁安全, GPS定位器, 窃听器, 偷拍, 测向, 频谱扫描, 反跟踪"}</script>
 
 <script>
   (function () {
@@ -355,21 +355,21 @@
         
           
             <a class="site-info__item" href="/archives/">
-              <strong>138</strong>
+              <strong>141</strong>
               <span>文章</span>
             </a>
           
         
           
             <a class="site-info__item" href="/categories/">
-              <strong>34</strong>
+              <strong>35</strong>
               <span>分类</span>
             </a>
           
         
           
             <a class="site-info__item" href="/tags/">
-              <strong>263</strong>
+              <strong>276</strong>
               <span>标签</span>
             </a>
           
@@ -431,7 +431,7 @@
         </header>
         <div class="toc-content">
           
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%8F%8D%E4%BE%A6%E5%AF%9F%E7%9A%84%E7%AC%AC%E4%B8%80%E5%8E%9F%E7%90%86%EF%BC%9A%E6%B2%A1%E6%9C%89%E2%80%9D%E6%B2%89%E9%BB%98%E7%9A%84%E7%9B%91%E8%A7%86%E2%80%9D"><span class="toc-text">一、反侦察的第一原理：没有”沉默的监视”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%89%BE%E5%8F%91%E5%B0%84%E5%99%A8%E7%9A%84%E4%B8%89%E4%BB%B6%E5%A5%97%E6%96%B9%E6%B3%95"><span class="toc-text">二、找发射器的三件套方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%9C%9F%E5%AE%9E%E7%9A%84%E2%80%9D%E8%BA%AB%E8%BE%B9%E4%B9%8B%E7%9C%BC%E2%80%9D%EF%BC%9A%E8%BF%91%E5%B9%B4%E7%9A%84%E5%85%AC%E5%BC%80%E6%A1%88%E4%BE%8B"><span class="toc-text">三、真实的”身边之眼”：近年的公开案例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%90%88%E6%B3%95%E8%BE%B9%E7%95%8C%EF%BC%9A%E6%9F%A5%E5%8F%AF%E4%BB%A5%EF%BC%8C%E5%8F%8D%E5%88%B6%E8%A6%81%E5%BD%93%E5%BF%83"><span class="toc-text">四、合法边界：查可以，反制要当心</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E9%98%B2%E5%BE%A1%E6%B8%85%E5%8D%95"><span class="toc-text">五、防御清单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E8%BE%B9%E7%95%8C%E5%A3%B0%E6%98%8E"><span class="toc-text">六、边界声明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A0%E6%9D%90%E6%9D%A5%E6%BA%90"><span class="toc-text">素材来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%96%87%E7%AB%A0"><span class="toc-text">相关文章</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%8F%8D%E4%BE%A6%E5%AF%9F%E7%9A%84%E7%AC%AC%E4%B8%80%E5%8E%9F%E7%90%86%EF%BC%9A%E6%B2%A1%E6%9C%89%E2%80%9D%E6%B2%89%E9%BB%98%E7%9A%84%E7%9B%91%E8%A7%86%E2%80%9D"><span class="toc-text">一、反侦察的第一原理：没有”沉默的监视”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%89%BE%E5%8F%91%E5%B0%84%E5%99%A8%E7%9A%84%E4%B8%89%E4%BB%B6%E5%A5%97%E6%96%B9%E6%B3%95"><span class="toc-text">二、找发射器的三件套方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E6%AC%A1%E3%80%8C%E8%BD%A6%E5%BA%95%E5%AE%9A%E4%BD%8D%E5%99%A8%E8%87%AA%E6%9F%A5%E3%80%8D%E7%9A%84%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B"><span class="toc-text">一次「车底定位器自查」的完整流程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%9C%9F%E5%AE%9E%E7%9A%84%E2%80%9D%E8%BA%AB%E8%BE%B9%E4%B9%8B%E7%9C%BC%E2%80%9D%EF%BC%9A%E8%BF%91%E5%B9%B4%E7%9A%84%E5%85%AC%E5%BC%80%E6%A1%88%E4%BE%8B"><span class="toc-text">三、真实的”身边之眼”：近年的公开案例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%90%88%E6%B3%95%E8%BE%B9%E7%95%8C%EF%BC%9A%E6%9F%A5%E5%8F%AF%E4%BB%A5%EF%BC%8C%E5%8F%8D%E5%88%B6%E8%A6%81%E5%BD%93%E5%BF%83"><span class="toc-text">四、合法边界：查可以，反制要当心</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E9%98%B2%E5%BE%A1%E6%B8%85%E5%8D%95"><span class="toc-text">五、防御清单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E8%BE%B9%E7%95%8C%E5%A3%B0%E6%98%8E"><span class="toc-text">六、边界声明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A0%E6%9D%90%E6%9D%A5%E6%BA%90"><span class="toc-text">素材来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%96%87%E7%AB%A0"><span class="toc-text">相关文章</span></a></li></ol>
           
         </div>
       </section>
@@ -444,6 +444,27 @@
     <ul class="recent-list">
       
         <li>
+          <a class="recent-item" href="/2026/08/28/20260828/2026082803/">
+            <strong>二手智能门锁安全研究：选型、攻击路线与逆向路线图</strong>
+            <em>2026-08-28</em>
+          </a>
+        </li>
+      
+        <li>
+          <a class="recent-item" href="/2026/08/28/20260828/2026082802/">
+            <strong>IoT 设备安全审计：固件提取、Binwalk 拆解与 MQTT 抓包</strong>
+            <em>2026-08-28</em>
+          </a>
+        </li>
+      
+        <li>
+          <a class="recent-item" href="/2026/08/28/20260828/2026082801/">
+            <strong>钓鱼攻击的完整产业链：从伪造域名到会话 Cookie 变现</strong>
+            <em>2026-08-28</em>
+          </a>
+        </li>
+      
+        <li>
           <a class="recent-item" href="/2026/08/25/20260825/2026082504/">
             <strong>电话那头，不再是「人类」：新一代社工攻击——vishing、SIM 卡交换、二维码钓鱼与「2FA 克星」Evilginx</strong>
             <em>2026-08-25</em>
@@ -454,27 +475,6 @@
           <a class="recent-item" href="/2026/08/25/20260825/2026082503/">
             <strong>你部署的每个接口，都在被自动化工具扫描：Web 安全全景——从 OWASP Top 10 到一条完整的攻击链</strong>
             <em>2026-08-25</em>
-          </a>
-        </li>
-      
-        <li>
-          <a class="recent-item" href="/2026/08/25/20260825/2026082502/">
-            <strong>你的声音，不再属于你：AI 语音克隆与 Deepfake 诈骗——从「孙子求救」到 2 亿港币的视频会议</strong>
-            <em>2026-08-25</em>
-          </a>
-        </li>
-      
-        <li>
-          <a class="recent-item" href="/2026/08/25/20260825/2026082501/">
-            <strong>芯片是最后一道防线，但它真的守得住吗：硬件安全入门——从调试接口、固件提取到侧信道攻击</strong>
-            <em>2026-08-25</em>
-          </a>
-        </li>
-      
-        <li>
-          <a class="recent-item" href="/2026/08/24/20260824/2026082409/">
-            <strong>看门狗游戏里的无人车，现实里的&#34;近源渗透车&#34;：无人机与遥控车的近源攻击可行性研究——从 ctOS 到 Wi-Fi Pineapple</strong>
-            <em>2026-08-24</em>
           </a>
         </li>
       
@@ -606,6 +606,15 @@
 </tbody></table>
 <p><strong>第三步：三角定位，锁定”在哪个角落”</strong><br>在两个以上不同位置分别测向，方向线在地图上交叉，交叉点就是发射源。这是最古老也最可靠的定位术——<strong>反无人机、反窃听、搜救，用的都是同一套几何原理。</strong></p>
 <p>对普通人的现实建议：这套流程<strong>专业但不神秘</strong>，一把带 SDR 的 RTL-SDR（几百块）+ 定向天线 + 手机频谱软件就能搭起来；但对多数人来说，更实际的触发场景是”车底定位器自查”——可以到修车厂举升机抬车，重点检查<strong>保险杠内侧、备胎槽、底盘护板、油箱附近、座椅下方、手套箱深处</strong>这些隐蔽位（不法分子最爱塞的位置）。</p>
+<h3 id="一次「车底定位器自查」的完整流程"><a href="#一次「车底定位器自查」的完整流程" class="headerlink" title="一次「车底定位器自查」的完整流程"></a>一次「车底定位器自查」的完整流程</h3><p>把上面三件套方法落到一个最实际的场景——检查自己车里有没有被塞 GPS 定位器，完整流程是这样的：</p>
+<ol>
+<li><strong>选时机</strong>：定位器为了省电，很多是「定时上报」而非「常发」。选一个它「该发」的时间点检测更有效——比如清晨（很多定位器设定每日固定时刻上报位置）。</li>
+<li><strong>先扫频</strong>：把 RTL-SDR 架在车内&#x2F;车旁，全频段扫一遍，重点看 2G&#x2F;4G 蜂窝频段和 433MHz。正常车里有 TPMS 胎压、遥控钥匙的偶发信号，但**一个「规律性、周期性的强心跳」**就是可疑目标。</li>
+<li><strong>再测向</strong>：发现可疑信号后，换定向天线，绕车一周，记录每个方向信号强度的变化——信号最强的方向，就是定位器所在的大致方位。</li>
+<li><strong>物理排查</strong>：结合测向结果，重点检查保险杠内侧、备胎槽、底盘护板、油箱附近、座椅下方、手套箱深处。定位器通常是带磁吸的小黑盒，磁吸在车底铁皮上。</li>
+<li><strong>发现后</strong>：不触碰、拍照录像固定位置，报警处理（见下文「合法边界」）。</li>
+</ol>
+<p>一个关键的辨别技巧：<strong>车上的「正常信号」和「定位器信号」的区别，在于规律性</strong>。TPMS 只在轮胎转动&#x2F;特定条件发，遥控钥匙只在按键时发；而定位器是「每隔固定时间、雷打不动地发一条位置报告」。这个「雷打不动的规律心跳」，就是它暴露的马脚。</p>
 <p>配套的设备账本（全部公开市售、合法）：</p>
 <table>
 <thead>
