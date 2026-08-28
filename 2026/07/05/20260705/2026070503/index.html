@@ -18,9 +18,9 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/07/05/images/20260705/2026070503-shellcode.png">
 <meta property="article:published_time" content="2026-07-05T12:28:35.000Z">
-<meta property="article:modified_time" content="2026-08-23T12:48:42.905Z">
+<meta property="article:modified_time" content="2026-08-28T11:29:17.338Z">
 <meta property="article:author" content="ZapcoMan">
-<meta property="article:tag" content="python">
+<meta property="article:tag" content="Python">
 <meta property="article:tag" content="shellcode">
 <meta property="article:tag" content="免杀">
 <meta name="twitter:card" content="summary">
@@ -29,7 +29,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Shellcode加密免杀技术：Base64编码与字符替换实战","name":"Shellcode加密免杀技术：Base64编码与字符替换实战 | ZapcoMan's world","description":"本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言在上一篇文章中，我们讨论了MSF免杀的整体架构和分层递进方案。本文将聚焦其中一个关键环节——Shellcode的加密与变换技术。 Shellcode是渗透测试中payload的核心载体，其原始形态（无论是Hex字符串还是二进制字节）都包含大量可被安全软件识别的特征码...","url":"http://example.com/2026/07/05/20260705/2026070503/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260705/2026070503-shellcode.png"],"mainEntityOfPage":"http://example.com/2026/07/05/20260705/2026070503/","datePublished":"2026-07-05T12:28:35.000Z","dateModified":"2026-08-23T12:48:42.905Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"python, 免杀, shellcode"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Shellcode加密免杀技术：Base64编码与字符替换实战","name":"Shellcode加密免杀技术：Base64编码与字符替换实战 | ZapcoMan's world","description":"本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言在上一篇文章中，我们讨论了MSF免杀的整体架构和分层递进方案。本文将聚焦其中一个关键环节——Shellcode的加密与变换技术。 Shellcode是渗透测试中payload的核心载体，其原始形态（无论是Hex字符串还是二进制字节）都包含大量可被安全软件识别的特征码...","url":"http://example.com/2026/07/05/20260705/2026070503/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260705/2026070503-shellcode.png"],"mainEntityOfPage":"http://example.com/2026/07/05/20260705/2026070503/","datePublished":"2026-07-05T12:28:35.000Z","dateModified":"2026-08-28T11:29:17.338Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"Python, 免杀, shellcode"}</script>
 
 <script>
   (function () {
@@ -362,7 +362,7 @@
         
           
             <a class="site-info__item" href="/tags/">
-              <strong>297</strong>
+              <strong>298</strong>
               <span>标签</span>
             </a>
           
@@ -491,11 +491,11 @@
   
   <header class="article-header">
     
-      <a class="label-pill" href="/categories/%E7%BA%A2%E9%98%9F%E6%94%BB%E9%98%B2/">
+      <a class="label-pill" href="/categories/%E5%85%8D%E6%9D%80/">
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
 
-        红队攻防
+        免杀
       </a>
     
     <h1>Shellcode加密免杀技术：Base64编码与字符替换实战</h1>
@@ -508,7 +508,7 @@
           
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
 
-          <a class="meta-tag-link" href="/tags/python/">#python</a><a class="meta-tag-link" href="/tags/%E5%85%8D%E6%9D%80/">#免杀</a><a class="meta-tag-link" href="/tags/shellcode/">#shellcode</a>
+          <a class="meta-tag-link" href="/tags/Python/">#Python</a><a class="meta-tag-link" href="/tags/%E5%85%8D%E6%9D%80/">#免杀</a><a class="meta-tag-link" href="/tags/shellcode/">#shellcode</a>
         </span>
       
     </div>
@@ -688,26 +688,10 @@
     </header>
     <div class="related-paper__grid">
       
-        <a class="related-card" href="/2026/07/05/20260705/2026070504/">
-          <span class="related-card__thumb">
-            
-<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
-  
-    <img class="paper-thumb__img" src="/../../images/20260705/2026070504-social-dict.png" alt="社会工程学字典生成器：基于个人信息的多维度密码组合工具" loading="lazy" referrerpolicy="no-referrer">
-  
-</div>
-
-          </span>
-          <span class="related-card__body">
-            <strong class="related-card__title">社会工程学字典生成器：基于个人信息的多维度密码组合工具</strong>
-            <em class="related-card__date">2026-07-05</em>
-          </span>
-        </a>
-      
         <a class="related-card" href="/2026/07/05/20260705/2026070502/">
           <span class="related-card__thumb">
             
-<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/../../images/20260705/2026070502-msf-bypass.png" alt="Python实现MSF免杀技术：Base64加密 + 字符替换 + 反调试反沙箱" loading="lazy" referrerpolicy="no-referrer">
   
@@ -723,7 +707,7 @@
         <a class="related-card" href="/2026/07/06/20260706/2026070631/">
           <span class="related-card__thumb">
             
-<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
+<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/../../images/20260706/2026070631-vul-scan.png" alt="从零打造漏洞扫描器：端口扫描 + Web 检测 + 报告生成" loading="lazy" referrerpolicy="no-referrer">
   
@@ -739,7 +723,7 @@
         <a class="related-card" href="/2026/07/06/20260706/2026070630/">
           <span class="related-card__thumb">
             
-<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/../../images/20260706/2026070630-waf-fprint.png" alt="WAF 指纹识别原理与实现：从 sqlmap 源码学起" loading="lazy" referrerpolicy="no-referrer">
   
@@ -748,6 +732,22 @@
           </span>
           <span class="related-card__body">
             <strong class="related-card__title">WAF 指纹识别原理与实现：从 sqlmap 源码学起</strong>
+            <em class="related-card__date">2026-07-06</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/07/06/20260706/2026070628/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/../../images/20260706/2026070628-img-qr.png" alt="图像预处理 + 二维码识别全攻略：9 种方法让模糊二维码无处遁形" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">图像预处理 + 二维码识别全攻略：9 种方法让模糊二维码无处遁形</strong>
             <em class="related-card__date">2026-07-06</em>
           </span>
         </a>

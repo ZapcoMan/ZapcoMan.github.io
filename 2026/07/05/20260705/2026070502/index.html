@@ -18,17 +18,18 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/07/05/images/20260705/2026070502-msf-bypass.png">
 <meta property="article:published_time" content="2026-07-05T12:05:51.000Z">
-<meta property="article:modified_time" content="2026-08-23T12:48:42.847Z">
+<meta property="article:modified_time" content="2026-08-28T11:29:19.467Z">
 <meta property="article:author" content="ZapcoMan">
-<meta property="article:tag" content="python">
+<meta property="article:tag" content="Python">
 <meta property="article:tag" content="免杀">
+<meta property="article:tag" content="红队攻防">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/2026/07/05/images/20260705/2026070502-msf-bypass.png">
 <link rel="canonical" href="http://example.com/2026/07/05/20260705/2026070502/">
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Python实现MSF免杀技术：Base64加密 + 字符替换 + 反调试反沙箱","name":"Python实现MSF免杀技术：Base64加密 + 字符替换 + 反调试反沙箱 | ZapcoMan's world","description":"本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言在红队攻防演练中，Metasploit Framework（MSF）是最常用的渗透测试框架之一。然而，MSF生成的原始payload往往会被主流杀毒软件和EDR产品轻易拦截。免杀（AV Evasion）技术因此成为红队武器库中的关键一环。 本文基于真实的Python...","url":"http://example.com/2026/07/05/20260705/2026070502/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260705/2026070502-msf-bypass.png"],"mainEntityOfPage":"http://example.com/2026/07/05/20260705/2026070502/","datePublished":"2026-07-05T12:05:51.000Z","dateModified":"2026-08-23T12:48:42.847Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"python, 免杀"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Python实现MSF免杀技术：Base64加密 + 字符替换 + 反调试反沙箱","name":"Python实现MSF免杀技术：Base64加密 + 字符替换 + 反调试反沙箱 | ZapcoMan's world","description":"本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言在红队攻防演练中，Metasploit Framework（MSF）是最常用的渗透测试框架之一。然而，MSF生成的原始payload往往会被主流杀毒软件和EDR产品轻易拦截。免杀（AV Evasion）技术因此成为红队武器库中的关键一环。 本文基于真实的Python...","url":"http://example.com/2026/07/05/20260705/2026070502/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260705/2026070502-msf-bypass.png"],"mainEntityOfPage":"http://example.com/2026/07/05/20260705/2026070502/","datePublished":"2026-07-05T12:05:51.000Z","dateModified":"2026-08-28T11:29:19.467Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"Python, 免杀, 红队攻防"}</script>
 
 <script>
   (function () {
@@ -361,7 +362,7 @@
         
           
             <a class="site-info__item" href="/tags/">
-              <strong>297</strong>
+              <strong>298</strong>
               <span>标签</span>
             </a>
           
@@ -507,7 +508,7 @@
           
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
 
-          <a class="meta-tag-link" href="/tags/python/">#python</a><a class="meta-tag-link" href="/tags/%E5%85%8D%E6%9D%80/">#免杀</a>
+          <a class="meta-tag-link" href="/tags/Python/">#Python</a><a class="meta-tag-link" href="/tags/%E5%85%8D%E6%9D%80/">#免杀</a><a class="meta-tag-link" href="/tags/%E7%BA%A2%E9%98%9F%E6%94%BB%E9%98%B2/">#红队攻防</a>
         </span>
       
     </div>
@@ -664,26 +665,10 @@
     </header>
     <div class="related-paper__grid">
       
-        <a class="related-card" href="/2026/07/05/20260705/2026070504/">
-          <span class="related-card__thumb">
-            
-<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
-  
-    <img class="paper-thumb__img" src="/../../images/20260705/2026070504-social-dict.png" alt="社会工程学字典生成器：基于个人信息的多维度密码组合工具" loading="lazy" referrerpolicy="no-referrer">
-  
-</div>
-
-          </span>
-          <span class="related-card__body">
-            <strong class="related-card__title">社会工程学字典生成器：基于个人信息的多维度密码组合工具</strong>
-            <em class="related-card__date">2026-07-05</em>
-          </span>
-        </a>
-      
         <a class="related-card" href="/2026/07/05/20260705/2026070503/">
           <span class="related-card__thumb">
             
-<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/../../images/20260705/2026070503-shellcode.png" alt="Shellcode加密免杀技术：Base64编码与字符替换实战" loading="lazy" referrerpolicy="no-referrer">
   
@@ -696,35 +681,51 @@
           </span>
         </a>
       
-        <a class="related-card" href="/2026/07/06/20260706/2026070631/">
+        <a class="related-card" href="/2026/07/06/20260706/2026070604/">
           <span class="related-card__thumb">
             
-<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
+<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/../../images/20260706/2026070631-vul-scan.png" alt="从零打造漏洞扫描器：端口扫描 + Web 检测 + 报告生成" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20260706/2026070604-stegano.png" alt="图片隐写术检测与提取" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">从零打造漏洞扫描器：端口扫描 + Web 检测 + 报告生成</strong>
+            <strong class="related-card__title">图片隐写术检测与提取</strong>
             <em class="related-card__date">2026-07-06</em>
           </span>
         </a>
       
-        <a class="related-card" href="/2026/07/06/20260706/2026070630/">
+        <a class="related-card" href="/2026/07/06/20260706/2026070605/">
           <span class="related-card__thumb">
             
-<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/../../images/20260706/2026070630-waf-fprint.png" alt="WAF 指纹识别原理与实现：从 sqlmap 源码学起" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20260706/2026070605-contacts.png" alt="批量生成联系人信息并可以导入到手机通讯录" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">WAF 指纹识别原理与实现：从 sqlmap 源码学起</strong>
+            <strong class="related-card__title">批量生成联系人信息并可以导入到手机通讯录</strong>
             <em class="related-card__date">2026-07-06</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/07/05/20260705/2026070505/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/../../images/20260705/2026070505-phone-geo.png" alt="手机号归属地查询与社工接口：多维度信息收集工具链解析" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">手机号归属地查询与社工接口：多维度信息收集工具链解析</strong>
+            <em class="related-card__date">2026-07-05</em>
           </span>
         </a>
       

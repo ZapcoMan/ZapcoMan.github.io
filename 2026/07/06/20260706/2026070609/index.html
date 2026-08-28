@@ -18,10 +18,11 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/07/06/images/20260706/2026070609-cve-vite.png">
 <meta property="article:published_time" content="2026-07-06T02:14:25.000Z">
-<meta property="article:modified_time" content="2026-08-23T15:27:05.841Z">
+<meta property="article:modified_time" content="2026-08-28T11:28:59.195Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="CVE">
 <meta property="article:tag" content="POC">
+<meta property="article:tag" content="Python">
 <meta property="article:tag" content="漏洞利用">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/2026/07/06/images/20260706/2026070609-cve-vite.png">
@@ -29,7 +30,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"CVE-2025-30208 Vite任意文件读取漏洞——多路径绕过与批量检测实现","name":"CVE-2025-30208 Vite任意文件读取漏洞——多路径绕过与批量检测实现 | ZapcoMan's world","description":"本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言Vite作为新一代前端构建工具，凭借其极速的开发服务器和优秀的开发体验，迅速成为前端生态的主流选择。然而，2025年初披露的CVE-2025-30208漏洞给使用Vite的开发环境敲响了安全警钟。该漏洞允许攻击者绕过Vite开发服务器的文件访问限制，读取服务器上的任...","url":"http://example.com/2026/07/06/20260706/2026070609/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260706/2026070609-cve-vite.png"],"mainEntityOfPage":"http://example.com/2026/07/06/20260706/2026070609/","datePublished":"2026-07-06T02:14:25.000Z","dateModified":"2026-08-23T15:27:05.841Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"CVE, POC, 漏洞利用"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"CVE-2025-30208 Vite任意文件读取漏洞——多路径绕过与批量检测实现","name":"CVE-2025-30208 Vite任意文件读取漏洞——多路径绕过与批量检测实现 | ZapcoMan's world","description":"本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言Vite作为新一代前端构建工具，凭借其极速的开发服务器和优秀的开发体验，迅速成为前端生态的主流选择。然而，2025年初披露的CVE-2025-30208漏洞给使用Vite的开发环境敲响了安全警钟。该漏洞允许攻击者绕过Vite开发服务器的文件访问限制，读取服务器上的任...","url":"http://example.com/2026/07/06/20260706/2026070609/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260706/2026070609-cve-vite.png"],"mainEntityOfPage":"http://example.com/2026/07/06/20260706/2026070609/","datePublished":"2026-07-06T02:14:25.000Z","dateModified":"2026-08-28T11:28:59.195Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"Python, CVE, POC, 漏洞利用"}</script>
 
 <script>
   (function () {
@@ -362,7 +363,7 @@
         
           
             <a class="site-info__item" href="/tags/">
-              <strong>297</strong>
+              <strong>298</strong>
               <span>标签</span>
             </a>
           
@@ -491,11 +492,11 @@
   
   <header class="article-header">
     
-      <a class="label-pill" href="/categories/python/">
+      <a class="label-pill" href="/categories/%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/">
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
 
-        python
+        漏洞利用
       </a>
     
     <h1>CVE-2025-30208 Vite任意文件读取漏洞——多路径绕过与批量检测实现</h1>
@@ -508,7 +509,7 @@
           
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
 
-          <a class="meta-tag-link" href="/tags/CVE/">#CVE</a><a class="meta-tag-link" href="/tags/POC/">#POC</a><a class="meta-tag-link" href="/tags/%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/">#漏洞利用</a>
+          <a class="meta-tag-link" href="/tags/Python/">#Python</a><a class="meta-tag-link" href="/tags/CVE/">#CVE</a><a class="meta-tag-link" href="/tags/POC/">#POC</a><a class="meta-tag-link" href="/tags/%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/">#漏洞利用</a>
         </span>
       
     </div>
@@ -708,26 +709,10 @@
           </span>
         </a>
       
-        <a class="related-card" href="/2026/07/06/20260706/2026070612/">
-          <span class="related-card__thumb">
-            
-<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
-  
-    <img class="paper-thumb__img" src="/../../images/20260706/2026070612-cve-spring4shell.png" alt="CVE-2022-22965 Spring4Shell RCE漏洞利用——从原理到EXP实现" loading="lazy" referrerpolicy="no-referrer">
-  
-</div>
-
-          </span>
-          <span class="related-card__body">
-            <strong class="related-card__title">CVE-2022-22965 Spring4Shell RCE漏洞利用——从原理到EXP实现</strong>
-            <em class="related-card__date">2026-07-06</em>
-          </span>
-        </a>
-      
         <a class="related-card" href="/2026/07/06/20260706/2026070611/">
           <span class="related-card__thumb">
             
-<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
+<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/../../images/20260706/2026070611-cve-nextjs.png" alt="CVE-2025-55182 POC与反弹Shell——Next.js React Server Components RCE深度剖析" loading="lazy" referrerpolicy="no-referrer">
   
@@ -736,6 +721,22 @@
           </span>
           <span class="related-card__body">
             <strong class="related-card__title">CVE-2025-55182 POC与反弹Shell——Next.js React Server Components RCE深度剖析</strong>
+            <em class="related-card__date">2026-07-06</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/07/06/20260706/2026070612/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/../../images/20260706/2026070612-cve-spring4shell.png" alt="CVE-2022-22965 Spring4Shell RCE漏洞利用——从原理到EXP实现" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">CVE-2022-22965 Spring4Shell RCE漏洞利用——从原理到EXP实现</strong>
             <em class="related-card__date">2026-07-06</em>
           </span>
         </a>
