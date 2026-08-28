@@ -236,8 +236,8 @@
     </author>
     <category term="网络安全" scheme="http://example.com/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
     <category term="无线电安全" scheme="http://example.com/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/%E6%97%A0%E7%BA%BF%E7%94%B5%E5%AE%89%E5%85%A8/"/>
-    <category term="隐私" scheme="http://example.com/tags/%E9%9A%90%E7%A7%81/"/>
     <category term="反侦察" scheme="http://example.com/tags/%E5%8F%8D%E4%BE%A6%E5%AF%9F/"/>
+    <category term="隐私" scheme="http://example.com/tags/%E9%9A%90%E7%A7%81/"/>
     <category term="SDR" scheme="http://example.com/tags/SDR/"/>
     <category term="电磁安全" scheme="http://example.com/tags/%E7%94%B5%E7%A3%81%E5%AE%89%E5%85%A8/"/>
     <category term="GPS定位器" scheme="http://example.com/tags/GPS%E5%AE%9A%E4%BD%8D%E5%99%A8/"/>
