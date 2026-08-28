@@ -9,7 +9,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   <rights>All rights reserved 2026, ZapcoMan</rights>
   <title>ZapcoMan's world</title>
-  <updated>2026-08-27T23:53:46.484Z</updated>
+  <updated>2026-08-28T09:11:48.522Z</updated>
   <entry>
     <author>
       <name>ZapcoMan</name>
@@ -35,7 +35,7 @@
 <p>我一直有个想法：买几把市面上常见的、老旧一点的二手电子门锁回来——就是前几年、甚至前年去年的那种型号，二手三手的价格比新品低一大截——然后按「电子」的方式去拆它、研究它。不是撬锁，是把它的固件、它的蓝牙通信、它和手机 App 之间的对话，一层层扒开]]>
     </summary>
     <title>二手智能门锁安全研究：选型、攻击路线与逆向路线图</title>
-    <updated>2026-08-27T23:53:46.484Z</updated>
+    <updated>2026-08-28T09:11:48.522Z</updated>
   </entry>
   <entry>
     <author>
@@ -62,7 +62,7 @@
 <p>你花几十块钱买了个智能插座，觉得挺好用——手机一按，灯就亮。但你可能不知道，这台小玩意儿里跑着一个简化版 Linux，出厂时带着默认密码，固件从来没更新过，还和你家的 Wi-Fi 共用同一个网段。在 2026 年，这样的设备不是「智能家居」，而是一]]>
     </summary>
     <title>IoT 设备安全审计：固件提取、Binwalk 拆解与 MQTT 抓包</title>
-    <updated>2026-08-28T00:06:12.800Z</updated>
+    <updated>2026-08-28T09:11:48.236Z</updated>
   </entry>
   <entry>
     <author>
@@ -89,7 +89,7 @@
 <p>大多数人印象里的「钓鱼」，还停留在一封拼写错漏、措辞生硬的英文诈骗邮件。但 2026 年的钓鱼，早已不是「一封邮件骗一个人」的手工作坊，而是一条高度分工、模块化、可规模化的流水线：有人专门注册域名，有人专门搭反代服务器，有人专门写 AI 生成话术，]]>
     </summary>
     <title>钓鱼攻击的完整产业链：从伪造域名到会话 Cookie 变现</title>
-    <updated>2026-08-27T23:46:47.703Z</updated>
+    <updated>2026-08-28T09:11:48.770Z</updated>
   </entry>
   <entry>
     <author>
@@ -236,8 +236,8 @@
     </author>
     <category term="网络安全" scheme="http://example.com/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
     <category term="无线电安全" scheme="http://example.com/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/%E6%97%A0%E7%BA%BF%E7%94%B5%E5%AE%89%E5%85%A8/"/>
-    <category term="反侦察" scheme="http://example.com/tags/%E5%8F%8D%E4%BE%A6%E5%AF%9F/"/>
     <category term="隐私" scheme="http://example.com/tags/%E9%9A%90%E7%A7%81/"/>
+    <category term="反侦察" scheme="http://example.com/tags/%E5%8F%8D%E4%BE%A6%E5%AF%9F/"/>
     <category term="SDR" scheme="http://example.com/tags/SDR/"/>
     <category term="电磁安全" scheme="http://example.com/tags/%E7%94%B5%E7%A3%81%E5%AE%89%E5%85%A8/"/>
     <category term="GPS定位器" scheme="http://example.com/tags/GPS%E5%AE%9A%E4%BD%8D%E5%99%A8/"/>

@@ -16,9 +16,9 @@
 <meta property="og:site_name" content="ZapcoMan&#39;s world">
 <meta property="og:description" content="你花几十块钱买了个智能插座，觉得挺好用——手机一按，灯就亮。但你可能不知道，这台小玩意儿里跑着一个简化版 Linux，出厂时带着默认密码，固件从来没更新过，还和你家的 Wi-Fi 共用同一个网段。在 2026 年，这样的设备不是「智能家居」，而是一个没人看管的、随时可能被远程控制的小型服务器。今天这一篇，带你走一遍 IoT 安全审计的完整流程——搞清楚你家的...">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2026/08/28/images/20260828/iot-audit-cover.png">
+<meta property="og:image" content="http://example.com/2026/08/28/images/20260828/2026082802-iot-audit-cover.png">
 <meta property="article:published_time" content="2026-08-28T08:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-28T00:06:12.800Z">
+<meta property="article:modified_time" content="2026-08-28T09:11:48.236Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="Binwalk">
 <meta property="article:tag" content="IoT">
@@ -29,12 +29,12 @@
 <meta property="article:tag" content="摄像头">
 <meta property="article:tag" content="智能家居">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2026/08/28/images/20260828/iot-audit-cover.png">
+<meta name="twitter:image" content="http://example.com/2026/08/28/images/20260828/2026082802-iot-audit-cover.png">
 <link rel="canonical" href="http://example.com/2026/08/28/20260828/2026082802/">
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"IoT 设备安全审计：固件提取、Binwalk 拆解与 MQTT 抓包","name":"IoT 设备安全审计：固件提取、Binwalk 拆解与 MQTT 抓包 | ZapcoMan's world","description":"你花几十块钱买了个智能插座，觉得挺好用——手机一按，灯就亮。但你可能不知道，这台小玩意儿里跑着一个简化版 Linux，出厂时带着默认密码，固件从来没更新过，还和你家的 Wi-Fi 共用同一个网段。在 2026 年，这样的设备不是「智能家居」，而是一个没人看管的、随时可能被远程控制的小型服务器。今天这一篇，带你走一遍 IoT 安全审计的完整流程——搞清楚你家的...","url":"http://example.com/2026/08/28/20260828/2026082802/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260828/iot-audit-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/28/20260828/2026082802/","datePublished":"2026-08-28T08:00:00.000Z","dateModified":"2026-08-28T00:06:12.800Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"智能家居, IoT, 固件逆向, MQTT, Binwalk, 摄像头, Mirai, 安全审计"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"IoT 设备安全审计：固件提取、Binwalk 拆解与 MQTT 抓包","name":"IoT 设备安全审计：固件提取、Binwalk 拆解与 MQTT 抓包 | ZapcoMan's world","description":"你花几十块钱买了个智能插座，觉得挺好用——手机一按，灯就亮。但你可能不知道，这台小玩意儿里跑着一个简化版 Linux，出厂时带着默认密码，固件从来没更新过，还和你家的 Wi-Fi 共用同一个网段。在 2026 年，这样的设备不是「智能家居」，而是一个没人看管的、随时可能被远程控制的小型服务器。今天这一篇，带你走一遍 IoT 安全审计的完整流程——搞清楚你家的...","url":"http://example.com/2026/08/28/20260828/2026082802/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260828/2026082802-iot-audit-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/28/20260828/2026082802/","datePublished":"2026-08-28T08:00:00.000Z","dateModified":"2026-08-28T09:11:48.236Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"智能家居, IoT, 固件逆向, MQTT, Binwalk, 摄像头, Mirai, 安全审计"}</script>
 
 <script>
   (function () {
@@ -809,7 +809,7 @@
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/../../images/20260828/lock-teardown-cover.png" alt="二手智能门锁安全研究：选型、攻击路线与逆向路线图" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20260828/2026082803-lock-teardown-cover.png" alt="二手智能门锁安全研究：选型、攻击路线与逆向路线图" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
@@ -857,7 +857,7 @@
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/../../images/20260828/phishing-chain-cover.png" alt="钓鱼攻击的完整产业链：从伪造域名到会话 Cookie 变现" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20260828/2026082801-phishing-chain-cover.png" alt="钓鱼攻击的完整产业链：从伪造域名到会话 Cookie 变现" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 

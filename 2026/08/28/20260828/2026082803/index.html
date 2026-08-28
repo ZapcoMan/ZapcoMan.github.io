@@ -16,9 +16,9 @@
 <meta property="og:site_name" content="ZapcoMan&#39;s world">
 <meta property="og:description" content="我一直有个想法：买几把市面上常见的、老旧一点的二手电子门锁回来——就是前几年、甚至前年去年的那种型号，二手三手的价格比新品低一大截——然后按「电子」的方式去拆它、研究它。不是撬锁，是把它的固件、它的蓝牙通信、它和手机 App 之间的对话，一层层扒开来看。这一篇，先把这个想法的边界说清楚，然后把「该买哪几把锁、为什么买它们」的选型调研做实。 一、先把边界说清楚...">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2026/08/28/images/20260828/lock-teardown-cover.png">
+<meta property="og:image" content="http://example.com/2026/08/28/images/20260828/2026082803-lock-teardown-cover.png">
 <meta property="article:published_time" content="2026-08-28T14:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-27T23:53:46.484Z">
+<meta property="article:modified_time" content="2026-08-28T09:11:48.522Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="BLE">
 <meta property="article:tag" content="固件逆向">
@@ -29,12 +29,12 @@
 <meta property="article:tag" content="蓝牙">
 <meta property="article:tag" content="近源渗透">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2026/08/28/images/20260828/lock-teardown-cover.png">
+<meta name="twitter:image" content="http://example.com/2026/08/28/images/20260828/2026082803-lock-teardown-cover.png">
 <link rel="canonical" href="http://example.com/2026/08/28/20260828/2026082803/">
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"二手智能门锁安全研究：选型、攻击路线与逆向路线图","name":"二手智能门锁安全研究：选型、攻击路线与逆向路线图 | ZapcoMan's world","description":"我一直有个想法：买几把市面上常见的、老旧一点的二手电子门锁回来——就是前几年、甚至前年去年的那种型号，二手三手的价格比新品低一大截——然后按「电子」的方式去拆它、研究它。不是撬锁，是把它的固件、它的蓝牙通信、它和手机 App 之间的对话，一层层扒开来看。这一篇，先把这个想法的边界说清楚，然后把「该买哪几把锁、为什么买它们」的选型调研做实。 一、先把边界说清楚...","url":"http://example.com/2026/08/28/20260828/2026082803/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260828/lock-teardown-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/28/20260828/2026082803/","datePublished":"2026-08-28T14:00:00.000Z","dateModified":"2026-08-27T23:53:46.484Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"近源渗透, 蓝牙, BLE, 硬件安全, 固件逆向, 智能门锁, 果加, 安全研究"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"二手智能门锁安全研究：选型、攻击路线与逆向路线图","name":"二手智能门锁安全研究：选型、攻击路线与逆向路线图 | ZapcoMan's world","description":"我一直有个想法：买几把市面上常见的、老旧一点的二手电子门锁回来——就是前几年、甚至前年去年的那种型号，二手三手的价格比新品低一大截——然后按「电子」的方式去拆它、研究它。不是撬锁，是把它的固件、它的蓝牙通信、它和手机 App 之间的对话，一层层扒开来看。这一篇，先把这个想法的边界说清楚，然后把「该买哪几把锁、为什么买它们」的选型调研做实。 一、先把边界说清楚...","url":"http://example.com/2026/08/28/20260828/2026082803/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260828/2026082803-lock-teardown-cover.png"],"mainEntityOfPage":"http://example.com/2026/08/28/20260828/2026082803/","datePublished":"2026-08-28T14:00:00.000Z","dateModified":"2026-08-28T09:11:48.522Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"近源渗透, 蓝牙, BLE, 硬件安全, 固件逆向, 智能门锁, 果加, 安全研究"}</script>
 
 <script>
   (function () {
@@ -866,7 +866,7 @@
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/../../images/20260828/iot-audit-cover.png" alt="IoT 设备安全审计：固件提取、Binwalk 拆解与 MQTT 抓包" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20260828/2026082802-iot-audit-cover.png" alt="IoT 设备安全审计：固件提取、Binwalk 拆解与 MQTT 抓包" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
