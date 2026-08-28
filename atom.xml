@@ -20,8 +20,8 @@
     <category term="蓝牙" scheme="http://example.com/tags/%E8%93%9D%E7%89%99/"/>
     <category term="BLE" scheme="http://example.com/tags/BLE/"/>
     <category term="硬件安全" scheme="http://example.com/tags/%E7%A1%AC%E4%BB%B6%E5%AE%89%E5%85%A8/"/>
-    <category term="固件逆向" scheme="http://example.com/tags/%E5%9B%BA%E4%BB%B6%E9%80%86%E5%90%91/"/>
     <category term="智能门锁" scheme="http://example.com/tags/%E6%99%BA%E8%83%BD%E9%97%A8%E9%94%81/"/>
+    <category term="固件逆向" scheme="http://example.com/tags/%E5%9B%BA%E4%BB%B6%E9%80%86%E5%90%91/"/>
     <category term="果加" scheme="http://example.com/tags/%E6%9E%9C%E5%8A%A0/"/>
     <category term="安全研究" scheme="http://example.com/tags/%E5%AE%89%E5%85%A8%E7%A0%94%E7%A9%B6/"/>
     <content>
