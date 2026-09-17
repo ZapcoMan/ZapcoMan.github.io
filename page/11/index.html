@@ -9,12 +9,12 @@
 <meta name="theme-color" content="#f7f3e9">
 
 <title>第 11 页 | ZapcoMan&#39;s world</title>
-<meta name="description" content="ZapcoMan&#39;s world收录 10 篇文章，包括批量生成联系人信息并可以导入到手机通讯录、WAF基础实现：基于FastAPI中间件的轻量级Web应用防火墙、SSH爆破行为IP自动封禁系统：基于日志监控的自动化蓝队防御方案。 第 11 页。">
+<meta name="description" content="ZapcoMan&#39;s world收录 10 篇文章，包括CVE-2025-30208 Vite任意文件读取漏洞——多路径绕过与批量检测实现、数据清洗实战：从鳄鱼数据到加密货币数据的全流程处理、B站弹幕数据处理与词频分析。 第 11 页。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="第 11 页 | ZapcoMan&#39;s world">
 <meta property="og:url" content="http://example.com/page/11/">
 <meta property="og:site_name" content="ZapcoMan&#39;s world">
-<meta property="og:description" content="ZapcoMan&#39;s world收录 10 篇文章，包括批量生成联系人信息并可以导入到手机通讯录、WAF基础实现：基于FastAPI中间件的轻量级Web应用防火墙、SSH爆破行为IP自动封禁系统：基于日志监控的自动化蓝队防御方案。 第 11 页。">
+<meta property="og:description" content="ZapcoMan&#39;s world收录 10 篇文章，包括CVE-2025-30208 Vite任意文件读取漏洞——多路径绕过与批量检测实现、数据清洗实战：从鳄鱼数据到加密货币数据的全流程处理、B站弹幕数据处理与词频分析。 第 11 页。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="ZapcoMan">
 <meta name="twitter:card" content="summary">
@@ -22,7 +22,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Blog","headline":"第 11 页 | ZapcoMan's world","name":"第 11 页 | ZapcoMan's world","description":"ZapcoMan's world收录 10 篇文章，包括批量生成联系人信息并可以导入到手机通讯录、WAF基础实现：基于FastAPI中间件的轻量级Web应用防火墙、SSH爆破行为IP自动封禁系统：基于日志监控的自动化蓝队防御方案。 第 11 页。","url":"http://example.com/page/11/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"about":"第 11 页"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Blog","headline":"第 11 页 | ZapcoMan's world","name":"第 11 页 | ZapcoMan's world","description":"ZapcoMan's world收录 10 篇文章，包括CVE-2025-30208 Vite任意文件读取漏洞——多路径绕过与批量检测实现、数据清洗实战：从鳄鱼数据到加密货币数据的全流程处理、B站弹幕数据处理与词频分析。 第 11 页。","url":"http://example.com/page/11/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"about":"第 11 页"}</script>
 
 <script>
   (function () {
@@ -336,21 +336,21 @@
         
           
             <a class="site-info__item" href="/archives/">
-              <strong>148</strong>
+              <strong>153</strong>
               <span>文章</span>
             </a>
           
         
           
             <a class="site-info__item" href="/categories/">
-              <strong>39</strong>
+              <strong>41</strong>
               <span>分类</span>
             </a>
           
         
           
             <a class="site-info__item" href="/tags/">
-              <strong>328</strong>
+              <strong>359</strong>
               <span>标签</span>
             </a>
           
@@ -406,7 +406,7 @@
         <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">
           <span class="dot dot-0"></span>
           <strong>网络安全</strong>
-          <em>81</em>
+          <em>86</em>
         </a>
       
         <a href="/categories/%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/">
@@ -499,10 +499,215 @@
   <div class="post-list">
     
       
+<article class="post-card" data-title="CVE-2025-30208 Vite任意文件读取漏洞——多路径绕过与批量检测实现">
+  <a class="post-thumb-link" href="/2026/07/06/20260706/2026070609/" aria-label="CVE-2025-30208 Vite任意文件读取漏洞——多路径绕过与批量检测实现">
+    
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/../../images/20260706/2026070609-cve-vite.png" alt="CVE-2025-30208 Vite任意文件读取漏洞——多路径绕过与批量检测实现" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+  </a>
+  <div class="post-card-copy">
+    <h3><a href="/2026/07/06/20260706/2026070609/">CVE-2025-30208 Vite任意文件读取漏洞——多路径绕过与批量检测实现</a></h3>
+    <p>本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言Vite作为新一代前端构建工具，凭借其极速的开发服务器和优秀的开发体验，迅速成为前端生态的主流选择...</p>
+    
+      <div class="meta-line meta-line--tags">
+        <span class="meta-tags">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
+
+          <a class="meta-tag-link" href="/tags/Python/">#Python</a><a class="meta-tag-link" href="/tags/CVE/">#CVE</a><a class="meta-tag-link" href="/tags/POC/">#POC</a><a class="meta-tag-link" href="/tags/%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/">#漏洞利用</a>
+        </span>
+      </div>
+    
+    <div class="meta-line meta-line--tax">
+      <span class="meta-date">
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
+2026-07-06</span>
+      
+        <span class="meta-cat">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+          <a class="meta-cat-link" href="/categories/%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/">漏洞利用</a>
+        </span>
+      
+    </div>
+  </div>
+</article>
+
+    
+      
+<article class="post-card" data-title="数据清洗实战：从鳄鱼数据到加密货币数据的全流程处理">
+  <a class="post-thumb-link" href="/2026/07/06/20260706/2026070608/" aria-label="数据清洗实战：从鳄鱼数据到加密货币数据的全流程处理">
+    
+<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/../../images/20260706/2026070608-data-clean.png" alt="数据清洗实战：从鳄鱼数据到加密货币数据的全流程处理" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+  </a>
+  <div class="post-card-copy">
+    <h3><a href="/2026/07/06/20260706/2026070608/">数据清洗实战：从鳄鱼数据到加密货币数据的全流程处理</a></h3>
+    <p>前言在真实的数据分析工作中，有一个被反复验证的规律：80%的时间花在数据清洗上，只有20%的时间用于真正的分析建模。拿到的原始数据往往充满了重复值、异常值、格式混乱的字符串和缺失字段，如果不经...</p>
+    
+      <div class="meta-line meta-line--tags">
+        <span class="meta-tags">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
+
+          <a class="meta-tag-link" href="/tags/Python/">#Python</a><a class="meta-tag-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">#数据分析</a><a class="meta-tag-link" href="/tags/%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97/">#数据清洗</a>
+        </span>
+      </div>
+    
+    <div class="meta-line meta-line--tax">
+      <span class="meta-date">
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
+2026-07-06</span>
+      
+        <span class="meta-cat">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+          <a class="meta-cat-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">数据分析</a>
+        </span>
+      
+    </div>
+  </div>
+</article>
+
+    
+      
+<article class="post-card" data-title="B站弹幕数据处理与词频分析">
+  <a class="post-thumb-link" href="/2026/07/06/20260706/2026070607/" aria-label="B站弹幕数据处理与词频分析">
+    
+<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/../../images/20260706/2026070607-bili-stat.png" alt="B站弹幕数据处理与词频分析" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+  </a>
+  <div class="post-card-copy">
+    <h3><a href="/2026/07/06/20260706/2026070607/">B站弹幕数据处理与词频分析</a></h3>
+    <p>前言弹幕（Danmaku）作为B站最具特色的互动形式之一，承载了用户在观看视频时的即时情感表达和观点碰撞。每一条弹幕都是一粒数据沙砾，当它们汇聚成数千、数万条的规模时，就构成了一座可供挖掘的”...</p>
+    
+      <div class="meta-line meta-line--tags">
+        <span class="meta-tags">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
+
+          <a class="meta-tag-link" href="/tags/Python/">#Python</a><a class="meta-tag-link" href="/tags/%E8%AF%8D%E9%A2%91%E5%88%86%E6%9E%90/">#词频分析</a>
+        </span>
+      </div>
+    
+    <div class="meta-line meta-line--tax">
+      <span class="meta-date">
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
+2026-07-06</span>
+      
+        <span class="meta-cat">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+          <a class="meta-cat-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">数据分析</a>
+        </span>
+      
+    </div>
+  </div>
+</article>
+
+    
+      
+<article class="post-card" data-title="自定义网络通讯协议：基于struct的二进制协议设计">
+  <a class="post-thumb-link" href="/2026/07/06/20260706/2026070606/" aria-label="自定义网络通讯协议：基于struct的二进制协议设计">
+    
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/../../images/20260706/2026070606-bin-proto.png" alt="自定义网络通讯协议：基于struct的二进制协议设计" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+  </a>
+  <div class="post-card-copy">
+    <h3><a href="/2026/07/06/20260706/2026070606/">自定义网络通讯协议：基于struct的二进制协议设计</a></h3>
+    <p>本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言在网络编程中，TCP是流式传输协议——它像一条没有边界的管道，发送方写入的数据会被任意分割和合并。...</p>
+    
+      <div class="meta-line meta-line--tags">
+        <span class="meta-tags">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
+
+          <a class="meta-tag-link" href="/tags/Python/">#Python</a><a class="meta-tag-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">#渗透测试</a><a class="meta-tag-link" href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE/">#自定义通讯协议</a>
+        </span>
+      </div>
+    
+    <div class="meta-line meta-line--tax">
+      <span class="meta-date">
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
+2026-07-06</span>
+      
+        <span class="meta-cat">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+          <a class="meta-cat-link" href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">渗透测试</a>
+        </span>
+      
+    </div>
+  </div>
+</article>
+
+    
+      
+<article class="post-card" data-title="图片隐写术检测与提取">
+  <a class="post-thumb-link" href="/2026/07/06/20260706/2026070604/" aria-label="图片隐写术检测与提取">
+    
+<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/../../images/20260706/2026070604-stegano.png" alt="图片隐写术检测与提取" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+  </a>
+  <div class="post-card-copy">
+    <h3><a href="/2026/07/06/20260706/2026070604/">图片隐写术检测与提取</a></h3>
+    <p>图片隐写术检测与提取 本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言在网络安全攻防对抗中，信息隐藏（Steganography）是一种将秘密数据...</p>
+    
+      <div class="meta-line meta-line--tags">
+        <span class="meta-tags">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
+
+          <a class="meta-tag-link" href="/tags/Python/">#Python</a><a class="meta-tag-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">#渗透测试</a><a class="meta-tag-link" href="/tags/CTF/">#CTF</a><a class="meta-tag-link" href="/tags/%E7%BA%A2%E9%98%9F%E6%94%BB%E9%98%B2/">#红队攻防</a><a class="meta-tag-link" href="/tags/%E9%9A%90%E5%86%99%E6%9C%AF/">#隐写术</a>
+        </span>
+      </div>
+    
+    <div class="meta-line meta-line--tax">
+      <span class="meta-date">
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
+2026-07-06</span>
+      
+        <span class="meta-cat">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+          <a class="meta-cat-link" href="/categories/CTF/">CTF</a>
+        </span>
+      
+    </div>
+  </div>
+</article>
+
+    
+      
 <article class="post-card" data-title="批量生成联系人信息并可以导入到手机通讯录">
   <a class="post-thumb-link" href="/2026/07/06/20260706/2026070605/" aria-label="批量生成联系人信息并可以导入到手机通讯录">
     
-<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/../../images/20260706/2026070605-contacts.png" alt="批量生成联系人信息并可以导入到手机通讯录" loading="lazy" referrerpolicy="no-referrer">
   
@@ -543,7 +748,7 @@
 <article class="post-card" data-title="WAF基础实现：基于FastAPI中间件的轻量级Web应用防火墙">
   <a class="post-thumb-link" href="/2026/07/06/20260706/2026070602/" aria-label="WAF基础实现：基于FastAPI中间件的轻量级Web应用防火墙">
     
-<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/../../images/20260706/2026070602-waf-basic.png" alt="WAF基础实现：基于FastAPI中间件的轻量级Web应用防火墙" loading="lazy" referrerpolicy="no-referrer">
   
@@ -584,7 +789,7 @@
 <article class="post-card" data-title="SSH爆破行为IP自动封禁系统：基于日志监控的自动化蓝队防御方案">
   <a class="post-thumb-link" href="/2026/07/06/20260706/2026070601/" aria-label="SSH爆破行为IP自动封禁系统：基于日志监控的自动化蓝队防御方案">
     
-<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
+<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/../../images/20260706/2026070601-ssh-block.png" alt="SSH爆破行为IP自动封禁系统：基于日志监控的自动化蓝队防御方案" loading="lazy" referrerpolicy="no-referrer">
   
@@ -625,7 +830,7 @@
 <article class="post-card" data-title="子域名挖掘（JSFinder实现）：从JS文件中揪出隐藏的攻击面">
   <a class="post-thumb-link" href="/2026/07/06/20260706/2026070603/" aria-label="子域名挖掘（JSFinder实现）：从JS文件中揪出隐藏的攻击面">
     
-<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/../../images/20260706/2026070603-subdomain.png" alt="子域名挖掘（JSFinder实现）：从JS文件中揪出隐藏的攻击面" loading="lazy" referrerpolicy="no-referrer">
   
@@ -666,7 +871,7 @@
 <article class="post-card" data-title="QRCode二维码扫描解析器">
   <a class="post-thumb-link" href="/2026/07/05/20260705/2026070506/" aria-label="QRCode二维码扫描解析器">
     
-<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/../../images/20260705/2026070506-qr-scanner.png" alt="QRCode二维码扫描解析器" loading="lazy" referrerpolicy="no-referrer">
   
@@ -703,211 +908,6 @@
 </article>
 
     
-      
-<article class="post-card" data-title="手机号归属地查询与社工接口：多维度信息收集工具链解析">
-  <a class="post-thumb-link" href="/2026/07/05/20260705/2026070505/" aria-label="手机号归属地查询与社工接口：多维度信息收集工具链解析">
-    
-<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
-  
-    <img class="paper-thumb__img" src="/../../images/20260705/2026070505-phone-geo.png" alt="手机号归属地查询与社工接口：多维度信息收集工具链解析" loading="lazy" referrerpolicy="no-referrer">
-  
-</div>
-
-  </a>
-  <div class="post-card-copy">
-    <h3><a href="/2026/07/05/20260705/2026070505/">手机号归属地查询与社工接口：多维度信息收集工具链解析</a></h3>
-    <p>本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言在红队信息收集阶段，手机号码是一个关键的信息枢纽。通过手机号可以关联出归属地、运营商、社交账号注册...</p>
-    
-      <div class="meta-line meta-line--tags">
-        <span class="meta-tags">
-          
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
-
-          <a class="meta-tag-link" href="/tags/%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6/">#社会工程学</a><a class="meta-tag-link" href="/tags/Python/">#Python</a><a class="meta-tag-link" href="/tags/%E7%BA%A2%E9%98%9F%E6%94%BB%E9%98%B2/">#红队攻防</a>
-        </span>
-      </div>
-    
-    <div class="meta-line meta-line--tax">
-      <span class="meta-date">
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
-2026-07-05</span>
-      
-        <span class="meta-cat">
-          
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
-
-          <a class="meta-cat-link" href="/categories/%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6/">社会工程学</a>
-        </span>
-      
-    </div>
-  </div>
-</article>
-
-    
-      
-<article class="post-card" data-title="社会工程学字典生成器：基于个人信息的多维度密码组合工具">
-  <a class="post-thumb-link" href="/2026/07/05/20260705/2026070504/" aria-label="社会工程学字典生成器：基于个人信息的多维度密码组合工具">
-    
-<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
-  
-    <img class="paper-thumb__img" src="/../../images/20260705/2026070504-social-dict.png" alt="社会工程学字典生成器：基于个人信息的多维度密码组合工具" loading="lazy" referrerpolicy="no-referrer">
-  
-</div>
-
-  </a>
-  <div class="post-card-copy">
-    <h3><a href="/2026/07/05/20260705/2026070504/">社会工程学字典生成器：基于个人信息的多维度密码组合工具</a></h3>
-    <p>本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言在渗透测试和红队评估中，密码爆破仍然是获取系统权限的重要手段之一。然而，面对现代密码策略（要求大小...</p>
-    
-      <div class="meta-line meta-line--tags">
-        <span class="meta-tags">
-          
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
-
-          <a class="meta-tag-link" href="/tags/%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6/">#社会工程学</a><a class="meta-tag-link" href="/tags/Python/">#Python</a><a class="meta-tag-link" href="/tags/%E5%AF%86%E7%A0%81%E5%AD%97%E5%85%B8/">#密码字典</a>
-        </span>
-      </div>
-    
-    <div class="meta-line meta-line--tax">
-      <span class="meta-date">
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
-2026-07-05</span>
-      
-        <span class="meta-cat">
-          
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
-
-          <a class="meta-cat-link" href="/categories/%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6/">社会工程学</a>
-        </span>
-      
-    </div>
-  </div>
-</article>
-
-    
-      
-<article class="post-card" data-title="Shellcode加密免杀技术：Base64编码与字符替换实战">
-  <a class="post-thumb-link" href="/2026/07/05/20260705/2026070503/" aria-label="Shellcode加密免杀技术：Base64编码与字符替换实战">
-    
-<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
-  
-    <img class="paper-thumb__img" src="/../../images/20260705/2026070503-shellcode.png" alt="Shellcode加密免杀技术：Base64编码与字符替换实战" loading="lazy" referrerpolicy="no-referrer">
-  
-</div>
-
-  </a>
-  <div class="post-card-copy">
-    <h3><a href="/2026/07/05/20260705/2026070503/">Shellcode加密免杀技术：Base64编码与字符替换实战</a></h3>
-    <p>本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言在上一篇文章中，我们讨论了MSF免杀的整体架构和分层递进方案。本文将聚焦其中一个关键环节——She...</p>
-    
-      <div class="meta-line meta-line--tags">
-        <span class="meta-tags">
-          
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
-
-          <a class="meta-tag-link" href="/tags/Python/">#Python</a><a class="meta-tag-link" href="/tags/%E5%85%8D%E6%9D%80/">#免杀</a><a class="meta-tag-link" href="/tags/shellcode/">#shellcode</a>
-        </span>
-      </div>
-    
-    <div class="meta-line meta-line--tax">
-      <span class="meta-date">
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
-2026-07-05</span>
-      
-        <span class="meta-cat">
-          
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
-
-          <a class="meta-cat-link" href="/categories/%E5%85%8D%E6%9D%80/">免杀</a>
-        </span>
-      
-    </div>
-  </div>
-</article>
-
-    
-      
-<article class="post-card" data-title="Python实现MSF免杀技术：Base64加密 + 字符替换 + 反调试反沙箱">
-  <a class="post-thumb-link" href="/2026/07/05/20260705/2026070502/" aria-label="Python实现MSF免杀技术：Base64加密 + 字符替换 + 反调试反沙箱">
-    
-<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
-  
-    <img class="paper-thumb__img" src="/../../images/20260705/2026070502-msf-bypass.png" alt="Python实现MSF免杀技术：Base64加密 + 字符替换 + 反调试反沙箱" loading="lazy" referrerpolicy="no-referrer">
-  
-</div>
-
-  </a>
-  <div class="post-card-copy">
-    <h3><a href="/2026/07/05/20260705/2026070502/">Python实现MSF免杀技术：Base64加密 + 字符替换 + 反调试反沙箱</a></h3>
-    <p>本文仅供合法授权的安全研究与学习使用，请勿用于非法用途。读者应确保行为符合当地法律法规。 前言在红队攻防演练中，Metasploit Framework（MSF）是最常用的渗透测试框架之一。然...</p>
-    
-      <div class="meta-line meta-line--tags">
-        <span class="meta-tags">
-          
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
-
-          <a class="meta-tag-link" href="/tags/Python/">#Python</a><a class="meta-tag-link" href="/tags/%E5%85%8D%E6%9D%80/">#免杀</a><a class="meta-tag-link" href="/tags/%E7%BA%A2%E9%98%9F%E6%94%BB%E9%98%B2/">#红队攻防</a>
-        </span>
-      </div>
-    
-    <div class="meta-line meta-line--tax">
-      <span class="meta-date">
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
-2026-07-05</span>
-      
-        <span class="meta-cat">
-          
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
-
-          <a class="meta-cat-link" href="/categories/%E5%85%8D%E6%9D%80/">免杀</a>
-        </span>
-      
-    </div>
-  </div>
-</article>
-
-    
-      
-<article class="post-card" data-title="我潜入了一个&#34;消费返利&#34;项目的启动大会——这是我的现场记录">
-  <a class="post-thumb-link" href="/2026/07/05/20260705/2026070501/" aria-label="我潜入了一个&#34;消费返利&#34;项目的启动大会——这是我的现场记录">
-    
-<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
-  
-    <img class="paper-thumb__img" src="/../../images/20260705/HackAttack_20260703_204746.jpg" alt="我潜入了一个&#34;消费返利&#34;项目的启动大会——这是我的现场记录" loading="lazy" referrerpolicy="no-referrer">
-  
-</div>
-
-  </a>
-  <div class="post-card-copy">
-    <h3><a href="/2026/07/05/20260705/2026070501/">我潜入了一个&#34;消费返利&#34;项目的启动大会——这是我的现场记录</a></h3>
-    <p>2025年9月9日，一个叫”盟盟惠”的平台举办了启动大会。我以参会者身份进入现场，全程记录。一年后，我将这份材料整理成文。 一、这个项目是什么？一句话： 一个以”绿色积分””通证经济””数商模...</p>
-    
-      <div class="meta-line meta-line--tags">
-        <span class="meta-tags">
-          
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
-
-          <a class="meta-tag-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">#网络安全</a><a class="meta-tag-link" href="/tags/%E7%A4%BE%E5%B7%A5/">#社工</a><a class="meta-tag-link" href="/tags/%E8%AF%88%E9%AA%97/">#诈骗</a>
-        </span>
-      </div>
-    
-    <div class="meta-line meta-line--tax">
-      <span class="meta-date">
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
-2026-07-05</span>
-      
-        <span class="meta-cat">
-          
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
-
-          <a class="meta-cat-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
-        </span>
-      
-    </div>
-  </div>
-</article>
-
-    
   </div>
 
 
@@ -922,7 +922,7 @@
       </a>
     
 
-    <span class="pager-pages">11 / 15</span>
+    <span class="pager-pages">11 / 16</span>
 
     
       <a class="pager-link pager-link--next" href="/page/12/">
@@ -966,43 +966,73 @@
     <ul class="recent-list js-random-posts">
       
         <li>
-          <a class="recent-item" href="/2026/09/14/20260914/2026091402/">
-            <strong>当 2570 万行物流数据在暗网标价：DLP 落在哪、拦什么、怎么不被绕过——数据防泄漏实战全景</strong>
-            <em>2026-09-14</em>
+          <a class="recent-item" href="/2026/09/18/20260918/2026091802/">
+            <strong>当智能体拿到生产权限：OWASP 2026 智能体十大安全风险逐条拆解</strong>
+            <em>2026-09-18</em>
           </a>
         </li>
       
         <li>
-          <a class="recent-item" href="/2026/09/14/20260914/2026091401/">
-            <strong>伪装：从推着清洁车的「维修工」，到视频会议里的「CFO」——社会工程学的第一性功课、七条原则与破绽清单</strong>
-            <em>2026-09-14</em>
+          <a class="recent-item" href="/2026/09/18/20260918/2026091801/">
+            <strong>3.6 万起、十起案例、四种犯罪模型——公安部「净网—2026」通报里，网络犯罪是怎么被拆成流水线的</strong>
+            <em>2026-09-18</em>
           </a>
         </li>
       
         <li>
-          <a class="recent-item" href="/2026/09/11/20260911/2026091102/">
-            <strong>没人碰你的手机，骗子只用了一根电话线：通信线路窃听、&#34;小黑盒&#34;盗接与两个 9 分话机漏洞</strong>
-            <em>2026-09-11</em>
+          <a class="recent-item" href="/2026/09/17/20260917/2026091703/">
+            <strong>2026 网安周：AI 治理框架一年一更，今年为什么把「智能体」单独拎出来</strong>
+            <em>2026-09-17</em>
           </a>
         </li>
       
         <li>
-          <a class="recent-item" href="/2026/09/11/20260911/2026091101/">
-            <strong>一通没接的微信来电，就能接管你的账号：WeWorm 零点击蠕虫、AI 两天造出 RCE，与 14 亿用户的 40 天攻防</strong>
-            <em>2026-09-11</em>
+          <a class="recent-item" href="/2026/09/17/20260917/2026091702/">
+            <strong>冒充公检法诈骗已经下沉到小学生：从「捐款返利」到屏幕共享，孩子是怎么被一步步逼进密室的</strong>
+            <em>2026-09-17</em>
           </a>
         </li>
       
         <li>
-          <a class="recent-item" href="/2026/09/03/20260903/2026090302/">
-            <strong>一张&#34;普通&#34;的自拍，能出卖你多少：从瞳孔反光到 AI 地理定位，你的照片正在变成一份档案</strong>
-            <em>2026-09-03</em>
+          <a class="recent-item" href="/2026/09/17/20260917/2026091701/">
+            <strong>不转账、不扫码，骗子却让你把现金装进奶粉罐寄走——「两金」线下交付产业链拆解</strong>
+            <em>2026-09-17</em>
           </a>
         </li>
       
     </ul>
     <script type="application/json" class="js-random-posts-data">
     [
+    
+      {
+        "title": "当智能体拿到生产权限：OWASP 2026 智能体十大安全风险逐条拆解",
+        "url": "/2026/09/18/20260918/2026091802/",
+        "date": "2026-09-18"
+      },
+    
+      {
+        "title": "3.6 万起、十起案例、四种犯罪模型——公安部「净网—2026」通报里，网络犯罪是怎么被拆成流水线的",
+        "url": "/2026/09/18/20260918/2026091801/",
+        "date": "2026-09-18"
+      },
+    
+      {
+        "title": "2026 网安周：AI 治理框架一年一更，今年为什么把「智能体」单独拎出来",
+        "url": "/2026/09/17/20260917/2026091703/",
+        "date": "2026-09-17"
+      },
+    
+      {
+        "title": "冒充公检法诈骗已经下沉到小学生：从「捐款返利」到屏幕共享，孩子是怎么被一步步逼进密室的",
+        "url": "/2026/09/17/20260917/2026091702/",
+        "date": "2026-09-17"
+      },
+    
+      {
+        "title": "不转账、不扫码，骗子却让你把现金装进奶粉罐寄走——「两金」线下交付产业链拆解",
+        "url": "/2026/09/17/20260917/2026091701/",
+        "date": "2026-09-17"
+      },
     
       {
         "title": "当 2570 万行物流数据在暗网标价：DLP 落在哪、拦什么、怎么不被绕过——数据防泄漏实战全景",
@@ -1449,14 +1479,20 @@
       },
     
       {
+        "title": "图像预处理 + 二维码识别全攻略：9 种方法让模糊二维码无处遁形",
+        "url": "/2026/07/06/20260706/2026070628/",
+        "date": "2026-07-06"
+      },
+    
+      {
         "title": "Vue3 + Flask 全栈实战：从零构建在线二维码解析器",
         "url": "/2026/07/06/20260706/2026070629/",
         "date": "2026-07-06"
       },
     
       {
-        "title": "图像预处理 + 二维码识别全攻略：9 种方法让模糊二维码无处遁形",
-        "url": "/2026/07/06/20260706/2026070628/",
+        "title": "自动化资产信息收集：CNVD 漏洞报送辅助工具",
+        "url": "/2026/07/06/20260706/2026070624/",
         "date": "2026-07-06"
       },
     
@@ -1475,12 +1511,6 @@
       {
         "title": "QQ 语音通话流量分析：PCAP 解析 + IP 地理定位",
         "url": "/2026/07/06/20260706/2026070627/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "自动化资产信息收集：CNVD 漏洞报送辅助工具",
-        "url": "/2026/07/06/20260706/2026070624/",
         "date": "2026-07-06"
       },
     
@@ -1515,12 +1545,6 @@
       },
     
       {
-        "title": "京东商品评论爬虫（Selenium模拟浏览器+多线程）",
-        "url": "/2026/07/06/20260706/2026070618/",
-        "date": "2026-07-06"
-      },
-    
-      {
         "title": "鱼皮面试鸭面试题爬虫：从API接口到批量数据采集",
         "url": "/2026/07/06/20260706/2026070617/",
         "date": "2026-07-06"
@@ -1529,6 +1553,12 @@
       {
         "title": "B站视频评论区爬虫",
         "url": "/2026/07/06/20260706/2026070619/",
+        "date": "2026-07-06"
+      },
+    
+      {
+        "title": "京东商品评论爬虫（Selenium模拟浏览器+多线程）",
+        "url": "/2026/07/06/20260706/2026070618/",
         "date": "2026-07-06"
       },
     
@@ -1571,36 +1601,6 @@
       {
         "title": "CVE-2025-24813 Tomcat PUT漏洞POC——反序列化RCE的完整利用链",
         "url": "/2026/07/06/20260706/2026070610/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "CVE-2025-30208 Vite任意文件读取漏洞——多路径绕过与批量检测实现",
-        "url": "/2026/07/06/20260706/2026070609/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "数据清洗实战：从鳄鱼数据到加密货币数据的全流程处理",
-        "url": "/2026/07/06/20260706/2026070608/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "B站弹幕数据处理与词频分析",
-        "url": "/2026/07/06/20260706/2026070607/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "自定义网络通讯协议：基于struct的二进制协议设计",
-        "url": "/2026/07/06/20260706/2026070606/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "图片隐写术检测与提取",
-        "url": "/2026/07/06/20260706/2026070604/",
         "date": "2026-07-06"
       }
     
