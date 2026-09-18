@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/09/18/images/20260918/2026091802-owasp-agentic-cover.png">
 <meta property="article:published_time" content="2026-09-18T13:00:00.000Z">
-<meta property="article:modified_time" content="2026-09-17T23:45:25.661Z">
+<meta property="article:modified_time" content="2026-09-18T00:15:51.769Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="Agentic AI">
 <meta property="article:tag" content="MCP">
@@ -36,7 +36,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"当智能体拿到生产权限：OWASP 2026 智能体十大安全风险逐条拆解","name":"当智能体拿到生产权限：OWASP 2026 智能体十大安全风险逐条拆解 | ZapcoMan's world","description":"2025 年 12 月 9 日，OWASP GenAI Security 项目发布《OWASP Top 10 for Agentic Applications for 2026》。 官方定位写得很直白：这是一份面向自主与智能体 AI 系统的清单，由 100 多位行业专家、研究者与实践者共同评审产出，目标是给「会规划、会行动、会跨工作流做决策」的 AI 智能体...","url":"http://example.com/2026/09/18/20260918/2026091802/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260918/2026091802-owasp-agentic-cover.png"],"mainEntityOfPage":"http://example.com/2026/09/18/20260918/2026091802/","datePublished":"2026-09-18T13:00:00.000Z","dateModified":"2026-09-17T23:45:25.661Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"供应链攻击, OWASP, 智能体安全, Agentic AI, 提示词注入, MCP, 权限滥用, RAG投毒, 最小权限, 可观测性"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"当智能体拿到生产权限：OWASP 2026 智能体十大安全风险逐条拆解","name":"当智能体拿到生产权限：OWASP 2026 智能体十大安全风险逐条拆解 | ZapcoMan's world","description":"2025 年 12 月 9 日，OWASP GenAI Security 项目发布《OWASP Top 10 for Agentic Applications for 2026》。 官方定位写得很直白：这是一份面向自主与智能体 AI 系统的清单，由 100 多位行业专家、研究者与实践者共同评审产出，目标是给「会规划、会行动、会跨工作流做决策」的 AI 智能体...","url":"http://example.com/2026/09/18/20260918/2026091802/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20260918/2026091802-owasp-agentic-cover.png"],"mainEntityOfPage":"http://example.com/2026/09/18/20260918/2026091802/","datePublished":"2026-09-18T13:00:00.000Z","dateModified":"2026-09-18T00:15:51.769Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"供应链攻击, OWASP, 智能体安全, Agentic AI, 提示词注入, MCP, 权限滥用, RAG投毒, 最小权限, 可观测性"}</script>
 
 <script>
   (function () {
@@ -355,21 +355,21 @@
         
           
             <a class="site-info__item" href="/archives/">
-              <strong>153</strong>
+              <strong>158</strong>
               <span>文章</span>
             </a>
           
         
           
             <a class="site-info__item" href="/categories/">
-              <strong>41</strong>
+              <strong>43</strong>
               <span>分类</span>
             </a>
           
         
           
             <a class="site-info__item" href="/tags/">
-              <strong>359</strong>
+              <strong>395</strong>
               <span>标签</span>
             </a>
           
@@ -431,7 +431,7 @@
         </header>
         <div class="toc-content">
           
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%85%88%E5%8E%98%E6%B8%85%E4%B8%80%E4%B8%AA%E6%A0%B9%E6%9C%AC%E5%B7%AE%E5%88%AB%EF%BC%9A%E4%BB%8E%E3%80%8C%E8%BE%93%E5%87%BA%E8%A2%AB%E6%93%8D%E7%BA%B5%E3%80%8D%E5%88%B0%E3%80%8C%E8%A1%8C%E4%B8%BA%E8%A2%AB%E6%93%8D%E7%BA%B5%E3%80%8D"><span class="toc-text">一、先厘清一个根本差别：从「输出被操纵」到「行为被操纵」</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%8D%81%E5%A4%A7%E9%A3%8E%E9%99%A9%E6%B8%85%E5%8D%95"><span class="toc-text">二、十大风险清单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%9B%AE%E6%A0%87%E8%A2%AB%E5%8A%AB%E6%8C%81%EF%BC%9AASI01-%E4%B8%8E-ASI06"><span class="toc-text">三、目标被劫持：ASI01 与 ASI06</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ASI01-%E6%99%BA%E8%83%BD%E4%BD%93%E7%9B%AE%E6%A0%87%E5%8A%AB%E6%8C%81"><span class="toc-text">ASI01 智能体目标劫持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ASI06-%E5%86%85%E5%AD%98%E4%B8%8E%E4%B8%8A%E4%B8%8B%E6%96%87%E6%8A%95%E6%AF%92"><span class="toc-text">ASI06 内存与上下文投毒</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%9D%83%E9%99%90%E8%A2%AB%E6%94%BE%E5%A4%A7%EF%BC%9AASI02%E3%80%81ASI03%E3%80%81ASI04%E3%80%81ASI05"><span class="toc-text">四、权限被放大：ASI02、ASI03、ASI04、ASI05</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ASI02-%E5%B7%A5%E5%85%B7%E6%BB%A5%E7%94%A8%E4%B8%8E%E5%88%A9%E7%94%A8"><span class="toc-text">ASI02 工具滥用与利用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ASI03-%E8%BA%AB%E4%BB%BD%E4%B8%8E%E6%9D%83%E9%99%90%E6%BB%A5%E7%94%A8"><span class="toc-text">ASI03 身份与权限滥用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ASI04-%E6%99%BA%E8%83%BD%E4%BD%93%E4%BE%9B%E5%BA%94%E9%93%BE%E6%BC%8F%E6%B4%9E"><span class="toc-text">ASI04 智能体供应链漏洞</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ASI05-%E6%84%8F%E5%A4%96%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%EF%BC%88RCE%EF%BC%89"><span class="toc-text">ASI05 意外代码执行（RCE）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E7%B3%BB%E7%BB%9F%E5%A4%B1%E6%8E%A7%EF%BC%9AASI07%E3%80%81ASI08%E3%80%81ASI09%E3%80%81ASI10"><span class="toc-text">五、系统失控：ASI07、ASI08、ASI09、ASI10</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ASI07-%E4%B8%8D%E5%AE%89%E5%85%A8%E7%9A%84%E6%99%BA%E8%83%BD%E4%BD%93%E9%97%B4%E9%80%9A%E4%BF%A1"><span class="toc-text">ASI07 不安全的智能体间通信</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ASI08-%E7%BA%A7%E8%81%94%E6%95%85%E9%9A%9C"><span class="toc-text">ASI08 级联故障</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ASI09-%E4%BA%BA%E6%9C%BA%E4%BF%A1%E4%BB%BB%E5%88%A9%E7%94%A8"><span class="toc-text">ASI09 人机信任利用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ASI10-%E6%81%B6%E6%84%8F%E6%99%BA%E8%83%BD%E4%BD%93"><span class="toc-text">ASI10 恶意智能体</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%8A%8A%E5%8D%81%E6%9D%A1%E4%B8%B2%E8%B5%B7%E6%9D%A5%EF%BC%9A%E4%B8%80%E6%AC%A1%E5%AE%8C%E6%95%B4%E6%94%BB%E5%87%BB%E9%93%BE%E6%8E%A8%E6%BC%94"><span class="toc-text">六、把十条串起来：一次完整攻击链推演</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%A0%E7%BB%9F%E9%98%B2%E6%8A%A4%E5%9C%A8%E8%BF%99%E6%9D%A1%E9%93%BE%E4%B8%8A%E5%85%A8%E7%BA%BF%E5%A4%B1%E6%95%88"><span class="toc-text">为什么传统防护在这条链上全线失效</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%80%BC%E5%BE%97%E5%81%9A%E6%88%90%E6%A3%80%E6%B5%8B%E6%8C%87%E6%A0%87%E7%9A%84%E5%87%A0%E6%9D%A1"><span class="toc-text">值得做成检测指标的几条</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E5%8D%81%E6%9D%A1%E8%83%8C%E5%90%8E%E7%9A%84%E4%B8%A4%E6%9D%A1%E4%B8%BB%E7%BA%BF%EF%BC%9A%E6%9C%80%E5%B0%8F-Agent-%E5%8E%9F%E5%88%99%E4%B8%8E%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7"><span class="toc-text">七、十条背后的两条主线：最小 Agent 原则与可观测性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E7%BB%99%E4%B8%8D%E5%90%8C%E8%A7%92%E8%89%B2%E7%9A%84%E8%90%BD%E5%9C%B0%E6%B8%85%E5%8D%95"><span class="toc-text">八、给不同角色的落地清单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%9D%E3%80%81%E4%BA%94%E4%B8%AA%E5%B8%B8%E8%A7%81%E8%AF%AF%E8%A7%A3"><span class="toc-text">九、五个常见误解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E3%80%81%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%80%BB%E7%BB%93"><span class="toc-text">十、一句话总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A0%E6%9D%90%E6%9D%A5%E6%BA%90"><span class="toc-text">素材来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%96%87%E7%AB%A0"><span class="toc-text">相关文章</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%85%88%E5%8E%98%E6%B8%85%E4%B8%80%E4%B8%AA%E6%A0%B9%E6%9C%AC%E5%B7%AE%E5%88%AB%EF%BC%9A%E4%BB%8E%E3%80%8C%E8%BE%93%E5%87%BA%E8%A2%AB%E6%93%8D%E7%BA%B5%E3%80%8D%E5%88%B0%E3%80%8C%E8%A1%8C%E4%B8%BA%E8%A2%AB%E6%93%8D%E7%BA%B5%E3%80%8D"><span class="toc-text">一、先厘清一个根本差别：从「输出被操纵」到「行为被操纵」</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%8D%81%E5%A4%A7%E9%A3%8E%E9%99%A9%E6%B8%85%E5%8D%95"><span class="toc-text">二、十大风险清单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%9B%AE%E6%A0%87%E8%A2%AB%E5%8A%AB%E6%8C%81%EF%BC%9AASI01-%E4%B8%8E-ASI06"><span class="toc-text">三、目标被劫持：ASI01 与 ASI06</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ASI01-%E6%99%BA%E8%83%BD%E4%BD%93%E7%9B%AE%E6%A0%87%E5%8A%AB%E6%8C%81"><span class="toc-text">ASI01 智能体目标劫持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ASI06-%E5%86%85%E5%AD%98%E4%B8%8E%E4%B8%8A%E4%B8%8B%E6%96%87%E6%8A%95%E6%AF%92"><span class="toc-text">ASI06 内存与上下文投毒</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%9D%83%E9%99%90%E8%A2%AB%E6%94%BE%E5%A4%A7%EF%BC%9AASI02%E3%80%81ASI03%E3%80%81ASI04%E3%80%81ASI05"><span class="toc-text">四、权限被放大：ASI02、ASI03、ASI04、ASI05</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ASI02-%E5%B7%A5%E5%85%B7%E6%BB%A5%E7%94%A8%E4%B8%8E%E5%88%A9%E7%94%A8"><span class="toc-text">ASI02 工具滥用与利用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ASI03-%E8%BA%AB%E4%BB%BD%E4%B8%8E%E6%9D%83%E9%99%90%E6%BB%A5%E7%94%A8"><span class="toc-text">ASI03 身份与权限滥用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ASI04-%E6%99%BA%E8%83%BD%E4%BD%93%E4%BE%9B%E5%BA%94%E9%93%BE%E6%BC%8F%E6%B4%9E"><span class="toc-text">ASI04 智能体供应链漏洞</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ASI05-%E6%84%8F%E5%A4%96%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%EF%BC%88RCE%EF%BC%89"><span class="toc-text">ASI05 意外代码执行（RCE）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E7%B3%BB%E7%BB%9F%E5%A4%B1%E6%8E%A7%EF%BC%9AASI07%E3%80%81ASI08%E3%80%81ASI09%E3%80%81ASI10"><span class="toc-text">五、系统失控：ASI07、ASI08、ASI09、ASI10</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ASI07-%E4%B8%8D%E5%AE%89%E5%85%A8%E7%9A%84%E6%99%BA%E8%83%BD%E4%BD%93%E9%97%B4%E9%80%9A%E4%BF%A1"><span class="toc-text">ASI07 不安全的智能体间通信</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ASI08-%E7%BA%A7%E8%81%94%E6%95%85%E9%9A%9C"><span class="toc-text">ASI08 级联故障</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ASI09-%E4%BA%BA%E6%9C%BA%E4%BF%A1%E4%BB%BB%E5%88%A9%E7%94%A8"><span class="toc-text">ASI09 人机信任利用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ASI10-%E6%81%B6%E6%84%8F%E6%99%BA%E8%83%BD%E4%BD%93"><span class="toc-text">ASI10 恶意智能体</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%8A%8A%E5%8D%81%E6%9D%A1%E4%B8%B2%E8%B5%B7%E6%9D%A5%EF%BC%9A%E4%B8%80%E6%AC%A1%E5%AE%8C%E6%95%B4%E6%94%BB%E5%87%BB%E9%93%BE%E6%8E%A8%E6%BC%94"><span class="toc-text">六、把十条串起来：一次完整攻击链推演</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%A0%E7%BB%9F%E9%98%B2%E6%8A%A4%E5%9C%A8%E8%BF%99%E6%9D%A1%E9%93%BE%E4%B8%8A%E5%85%A8%E7%BA%BF%E5%A4%B1%E6%95%88"><span class="toc-text">为什么传统防护在这条链上全线失效</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%80%BC%E5%BE%97%E5%81%9A%E6%88%90%E6%A3%80%E6%B5%8B%E6%8C%87%E6%A0%87%E7%9A%84%E5%87%A0%E6%9D%A1"><span class="toc-text">值得做成检测指标的几条</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E5%8D%81%E6%9D%A1%E8%83%8C%E5%90%8E%E7%9A%84%E4%B8%A4%E6%9D%A1%E4%B8%BB%E7%BA%BF%EF%BC%9A%E6%9C%80%E5%B0%8F-Agent-%E5%8E%9F%E5%88%99%E4%B8%8E%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7"><span class="toc-text">七、十条背后的两条主线：最小 Agent 原则与可观测性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E7%BB%99%E4%B8%8D%E5%90%8C%E8%A7%92%E8%89%B2%E7%9A%84%E8%90%BD%E5%9C%B0%E6%B8%85%E5%8D%95"><span class="toc-text">八、给不同角色的落地清单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%9D%E3%80%81%E4%BA%94%E4%B8%AA%E5%B8%B8%E8%A7%81%E8%AF%AF%E8%A7%A3"><span class="toc-text">九、五个常见误解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E3%80%81%E7%BB%99%E5%9B%A2%E9%98%9F%E7%9A%84%E5%85%AD%E6%9D%A1%E6%9C%80%E5%B0%8F%E8%B5%B7%E6%AD%A5%E8%B7%AF%E5%BE%84"><span class="toc-text">十、给团队的六条最小起步路径</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E4%B8%80%E3%80%81%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%80%BB%E7%BB%93"><span class="toc-text">十一、一句话总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A0%E6%9D%90%E6%9D%A5%E6%BA%90"><span class="toc-text">素材来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%96%87%E7%AB%A0"><span class="toc-text">相关文章</span></a></li></ol>
           
         </div>
       </section>
@@ -444,37 +444,37 @@
     <ul class="recent-list">
       
         <li>
-          <a class="recent-item" href="/2026/09/18/20260918/2026091801/">
-            <strong>3.6 万起、十起案例、四种犯罪模型——公安部「净网—2026」通报里，网络犯罪是怎么被拆成流水线的</strong>
+          <a class="recent-item" href="/2026/09/18/20260918/2026091807/">
+            <strong>检索笔记：历届国际黑客大会的无线电议题，以及那些踩在监管边界上的技术</strong>
             <em>2026-09-18</em>
           </a>
         </li>
       
         <li>
-          <a class="recent-item" href="/2026/09/17/20260917/2026091703/">
-            <strong>2026 网安周：AI 治理框架一年一更，今年为什么把「智能体」单独拎出来</strong>
-            <em>2026-09-17</em>
+          <a class="recent-item" href="/2026/09/18/20260918/2026091806/">
+            <strong>三场包管理器投毒：npm「沙虫」600+ 版本、RubyGems 500+ 包、42 个 TanStack 包——2026 年供应链攻击的三条入口</strong>
+            <em>2026-09-18</em>
           </a>
         </li>
       
         <li>
-          <a class="recent-item" href="/2026/09/17/20260917/2026091702/">
-            <strong>冒充公检法诈骗已经下沉到小学生：从「捐款返利」到屏幕共享，孩子是怎么被一步步逼进密室的</strong>
-            <em>2026-09-17</em>
+          <a class="recent-item" href="/2026/09/18/20260918/2026091805/">
+            <strong>75 款 App 被通报：执法下沉到小程序，租充电宝、扫码骑车、挂号问诊这条链路被盯上了</strong>
+            <em>2026-09-18</em>
           </a>
         </li>
       
         <li>
-          <a class="recent-item" href="/2026/09/17/20260917/2026091701/">
-            <strong>不转账、不扫码，骗子却让你把现金装进奶粉罐寄走——「两金」线下交付产业链拆解</strong>
-            <em>2026-09-17</em>
+          <a class="recent-item" href="/2026/09/18/20260918/2026091804/">
+            <strong>你家门口那个摄像头要「持证上岗」了：53 款首批备案、三星分级、五维检测，和一份自查清单</strong>
+            <em>2026-09-18</em>
           </a>
         </li>
       
         <li>
-          <a class="recent-item" href="/2026/09/14/20260914/2026091402/">
-            <strong>当 2570 万行物流数据在暗网标价：DLP 落在哪、拦什么、怎么不被绕过——数据防泄漏实战全景</strong>
-            <em>2026-09-14</em>
+          <a class="recent-item" href="/2026/09/18/20260918/2026091803/">
+            <strong>10 台云主机 + 一个大模型 = 180 万款 App 的密钥被扒光：Anthropic 154 页报告里的 AI 攻击流水线</strong>
+            <em>2026-09-18</em>
           </a>
         </li>
       
@@ -881,7 +881,16 @@
 <p><strong>误解四：「这些风险还比较远，等落地了再说。」</strong><br>清单里点名的案例大多已经发生：Amazon Q v1.84.0 受污染提示词已分发至数千用户；npm 上的仿冒 postmark-mcp 已在野运行；Replit 的智能体已在实际任务中删除&#x2F;覆盖生产数据。这不是预测清单，是<strong>事后归纳</strong>。</p>
 <p><strong>误解五：「智能体安全属于模型安全，交给算法团队。」</strong><br>十条里只有 ASI01 与 ASI06 直接落在模型&#x2F;上下文层面，其余八条落在身份、权限、供应链、运行时、通信、可观测性——<strong>全是经典安全工程的范畴</strong>。把它归给算法团队，等于让写业务代码的人去管 IAM 和供应链。</p>
 <hr>
-<h2 id="十、一句话总结"><a href="#十、一句话总结" class="headerlink" title="十、一句话总结"></a>十、一句话总结</h2><p>OWASP 这份清单最有价值的地方，不在于列了十条风险，而在于它重新定义了「智能体安全」的对象：</p>
+<h2 id="十、给团队的六条最小起步路径"><a href="#十、给团队的六条最小起步路径" class="headerlink" title="十、给团队的六条最小起步路径"></a>十、给团队的六条最小起步路径</h2><p>如果团队刚准备上智能体、资源有限，按这个顺序做，性价比最高：</p>
+<p><strong>第 1 步：先画一张「工具—权限」表。</strong><br>把智能体能调用的每个工具列出来，标注它<strong>用什么身份、能读写什么、最坏情况能造成什么</strong>。这张表是所有后续决策的基础，也是 ASI02&#x2F;ASI03 的起点。多数团队做完这一步，就会发现有几个工具的权限明显给大了。</p>
+<p><strong>第 2 步：把「外部内容」和「指令」分通道。</strong><br>这是防 ASI01 最有效、成本最低的一招。检索到的网页、邮件、文档<strong>只能进上下文</strong>，不能进指令通道；指令只来自可信控制面（系统提示 + 用户确认过的意图）。</p>
+<p><strong>第 3 步：给每个智能体一个独立身份。</strong><br>不要多个 Agent 共用一个人类账号。这是 ASI03 的前提——<strong>没有独立身份，最小权限无从谈起</strong>。</p>
+<p><strong>第 4 步：高风险动作加「双重确认」。</strong><br>删除、转账、外发、改权限、改配置——这些动作需要<strong>独立通道的二次确认</strong>（不是在同一个对话框里再问一遍 AI）。</p>
+<p><strong>第 5 步：把执行放进沙箱。</strong><br>代码执行、文件写入、网络访问都在受限环境里做，执行完销毁。这一招同时覆盖 ASI05 和 ASI02 的后果。</p>
+<p><strong>第 6 步：把「序列」记下来。</strong><br>日志要能还原<strong>一次决策的完整链路</strong>：谁发起的、读了什么上下文、调了哪些工具、产出了什么。单条日志没用，<strong>可关联的序列</strong>才是 ASI08&#x2F;ASI10 的检测基础。</p>
+<p>六步做完，覆盖不了全部十条，但能挡住绝大多数<strong>已发生的真实案例</strong>——因为那些案例走的正是这六步没做好的路径。</p>
+<hr>
+<h2 id="十一、一句话总结"><a href="#十一、一句话总结" class="headerlink" title="十一、一句话总结"></a>十一、一句话总结</h2><p>OWASP 这份清单最有价值的地方，不在于列了十条风险，而在于它重新定义了「智能体安全」的对象：</p>
 <p><strong>你不是在保护一个模型，你是在管理一个会自主行动、会记住事情、会互相委托、会调用工具的数字主体群。</strong> 它需要的不是「更聪明的过滤」，而是身份、权限、供应链、可观测性这些<strong>老老实实的工程基建</strong>——只不过这些基建过去是为人和服务建的，现在要为一种既不是人也不是服务的新主体重做一遍。</p>
 <p>这也是为什么它值得单独成一份清单：大模型 Top 10 关心的是「它说什么」，而这份关心的是「<strong>它做了什么，以及我们能不能知道</strong>」。</p>
 <hr>
@@ -929,13 +938,13 @@
 
   <nav class="article-actions">
     
-      <span class="article-action article-action--prev is-disabled" aria-disabled="true">
+      <a class="article-action article-action--prev" href="/2026/09/18/20260918/2026091803/">
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-left"></use></svg>
 
         <span class="action-label">上一篇</span>
-        <span class="action-title">没有更早的文章了</span>
-      </span>
+        <span class="action-title">10 台云主机 + 一个大模型 = 180 万款 App 的密钥被扒光：Anthropic 154 页报告里的 AI 攻击流水线</span>
+      </a>
     
     
       <a class="article-action article-action--next" href="/2026/09/18/20260918/2026091801/">
@@ -971,10 +980,42 @@
     </header>
     <div class="related-paper__grid">
       
-        <a class="related-card" href="/2026/08/25/20260825/2026082503/">
+        <a class="related-card" href="/2026/09/18/20260918/2026091803/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/../../images/20260918/2026091803-anthropic-report-cover.png" alt="10 台云主机 + 一个大模型 = 180 万款 App 的密钥被扒光：Anthropic 154 页报告里的 AI 攻击流水线" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">10 台云主机 + 一个大模型 = 180 万款 App 的密钥被扒光：Anthropic 154 页报告里的 AI 攻击流水线</strong>
+            <em class="related-card__date">2026-09-18</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/09/18/20260918/2026091806/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/../../images/20260918/2026091806-supply-chain-poison-cover.png" alt="三场包管理器投毒：npm「沙虫」600+ 版本、RubyGems 500+ 包、42 个 TanStack 包——2026 年供应链攻击的三条入口" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">三场包管理器投毒：npm「沙虫」600+ 版本、RubyGems 500+ 包、42 个 TanStack 包——2026 年供应链攻击的三条入口</strong>
+            <em class="related-card__date">2026-09-18</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/08/25/20260825/2026082503/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/../../images/20260825/web-security-cover.png" alt="你部署的每个接口，都在被自动化工具扫描：Web 安全全景——从 OWASP Top 10 到一条完整的攻击链" loading="lazy" referrerpolicy="no-referrer">
   
@@ -990,7 +1031,7 @@
         <a class="related-card" href="/2026/08/19/20260819/2026081916/">
           <span class="related-card__thumb">
             
-<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/../../images/20260819/2026081916-solarwinds.png" alt="SolarWinds 事件复盘：一场潜伏九个月、横跨全球的&#34;供应链核爆&#34;" loading="lazy" referrerpolicy="no-referrer">
   
@@ -999,38 +1040,6 @@
           </span>
           <span class="related-card__body">
             <strong class="related-card__title">SolarWinds 事件复盘：一场潜伏九个月、横跨全球的&#34;供应链核爆&#34;</strong>
-            <em class="related-card__date">2026-08-19</em>
-          </span>
-        </a>
-      
-        <a class="related-card" href="/2026/08/19/20260819/2026081917/">
-          <span class="related-card__thumb">
-            
-<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
-  
-    <img class="paper-thumb__img" src="/../../images/20260819/2026081917-package-supply-chain.png" alt="NPM/PyPI 供应链投毒：从依赖劫持到 typosquatting，开源依赖的隐形风险" loading="lazy" referrerpolicy="no-referrer">
-  
-</div>
-
-          </span>
-          <span class="related-card__body">
-            <strong class="related-card__title">NPM/PyPI 供应链投毒：从依赖劫持到 typosquatting，开源依赖的隐形风险</strong>
-            <em class="related-card__date">2026-08-19</em>
-          </span>
-        </a>
-      
-        <a class="related-card" href="/2026/08/19/20260819/2026081907/">
-          <span class="related-card__thumb">
-            
-<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
-  
-    <img class="paper-thumb__img" src="/../../images/20260819/2026081907-xz-backdoor.png" alt="xz-utils 后门事件复盘：一次险些瘫痪全球 Linux 的&#34;完美供应链投毒&#34;" loading="lazy" referrerpolicy="no-referrer">
-  
-</div>
-
-          </span>
-          <span class="related-card__body">
-            <strong class="related-card__title">xz-utils 后门事件复盘：一次险些瘫痪全球 Linux 的&#34;完美供应链投毒&#34;</strong>
             <em class="related-card__date">2026-08-19</em>
           </span>
         </a>
