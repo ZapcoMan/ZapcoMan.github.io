@@ -9,12 +9,12 @@
 <meta name="theme-color" content="#f7f3e9">
 
 <title>ZapcoMan&#39;s world</title>
-<meta name="description" content="ZapcoMan&#39;s world收录 10 篇文章，包括拿到第一个 shell 只完成了 20%：域渗透六段流水线，从用户名枚举到 DCSync 接管域控、Canary、PIE、CET、PAC 一层层压上来，二进制利用还剩什么：现代缓解全景与 fuzzing 驱动的漏洞研究流水线、一个 %n 就能改写程序人生：格式化字符串的泄露与任意写，以及 GOT 覆写这...">
+<meta name="description" content="ZapcoMan&#39;s world收录 10 篇文章，包括GCM 的 nonce 只要重复一次，攻击者就能伪造任意消息：AEAD 的六种误用、一条 nonce 毁掉整条曲线：ECDSA 的五类致命错误，从索尼的常数 4 到格攻击、MD5 死了二十年，还在给恶意软件签名：哈希碰撞、长度扩展与口令存储的完整攻防。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="ZapcoMan&#39;s world">
 <meta property="og:url" content="http://example.com/">
 <meta property="og:site_name" content="ZapcoMan&#39;s world">
-<meta property="og:description" content="ZapcoMan&#39;s world收录 10 篇文章，包括拿到第一个 shell 只完成了 20%：域渗透六段流水线，从用户名枚举到 DCSync 接管域控、Canary、PIE、CET、PAC 一层层压上来，二进制利用还剩什么：现代缓解全景与 fuzzing 驱动的漏洞研究流水线、一个 %n 就能改写程序人生：格式化字符串的泄露与任意写，以及 GOT 覆写这...">
+<meta property="og:description" content="ZapcoMan&#39;s world收录 10 篇文章，包括GCM 的 nonce 只要重复一次，攻击者就能伪造任意消息：AEAD 的六种误用、一条 nonce 毁掉整条曲线：ECDSA 的五类致命错误，从索尼的常数 4 到格攻击、MD5 死了二十年，还在给恶意软件签名：哈希碰撞、长度扩展与口令存储的完整攻防。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="ZapcoMan">
 <meta name="twitter:card" content="summary">
@@ -22,7 +22,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Blog","headline":"ZapcoMan's world","name":"ZapcoMan's world","description":"ZapcoMan's world收录 10 篇文章，包括拿到第一个 shell 只完成了 20%：域渗透六段流水线，从用户名枚举到 DCSync 接管域控、Canary、PIE、CET、PAC 一层层压上来，二进制利用还剩什么：现代缓解全景与 fuzzing 驱动的漏洞研究流水线、一个 %n 就能改写程序人生：格式化字符串的泄露与任意写，以及 GOT 覆写这...","url":"http://example.com/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"about":"ZapcoMan's world"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Blog","headline":"ZapcoMan's world","name":"ZapcoMan's world","description":"ZapcoMan's world收录 10 篇文章，包括GCM 的 nonce 只要重复一次，攻击者就能伪造任意消息：AEAD 的六种误用、一条 nonce 毁掉整条曲线：ECDSA 的五类致命错误，从索尼的常数 4 到格攻击、MD5 死了二十年，还在给恶意软件签名：哈希碰撞、长度扩展与口令存储的完整攻防。","url":"http://example.com/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"about":"ZapcoMan's world"}</script>
 
 <script>
   (function () {
@@ -481,21 +481,21 @@
         
           
             <a class="site-info__item" href="/archives/">
-              <strong>170</strong>
+              <strong>174</strong>
               <span>文章</span>
             </a>
           
         
           
             <a class="site-info__item" href="/categories/">
-              <strong>48</strong>
+              <strong>49</strong>
               <span>分类</span>
             </a>
           
         
           
             <a class="site-info__item" href="/tags/">
-              <strong>485</strong>
+              <strong>517</strong>
               <span>标签</span>
             </a>
           
@@ -551,7 +551,7 @@
         <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">
           <span class="dot dot-0"></span>
           <strong>网络安全</strong>
-          <em>103</em>
+          <em>107</em>
         </a>
       
         <a href="/categories/%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/">
@@ -578,10 +578,10 @@
           <em>3</em>
         </a>
       
-        <a href="/categories/Java/">
+        <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/%E7%BD%91%E7%BB%9C%E8%AF%88%E9%AA%97/">
           <span class="dot dot-1"></span>
-          <strong>Java</strong>
-          <em>8</em>
+          <strong>网络诈骗</strong>
+          <em>9</em>
         </a>
       
     </section>
@@ -648,8 +648,8 @@
           <span class="tape tape--top-center" aria-hidden="true"></span>
           <div class="featured-copy">
             <span class="label-pill">置顶</span>
-            <h1><a href="/2026/11/03/20261103/2026110308/">拿到第一个 shell 只完成了 20%：域渗透六段流水线，从用户名枚举到 DCSync 接管域控</a></h1>
-            <p> 一个很常见的错觉：打下一台机器，就觉得”进去了”。 但在一个真正的中大型企业内网里，那台机器大概率只是一台边缘的 Web 服务器、一台测试机、或者某个员工忘了打补丁的笔记本。它上面没有数据库...</p>
+            <h1><a href="/2026/11/03/20261103/2026110312/">GCM 的 nonce 只要重复一次，攻击者就能伪造任意消息：AEAD 的六种误用</a></h1>
+            <p> 2016 年，四位研究者在扫描全网 HTTPS 服务器时发现了一件奇怪的事：184 台服务器在 GCM 模式下重复使用了 nonce。 他们没有拿到任何私钥。但在拿到两个同 nonce 的密...</p>
             <div class="meta-line">
               <span class="meta-date">
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
@@ -662,7 +662,7 @@
                   <a class="meta-cat-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
                 </span>
               
-              <a class="read-more" href="/2026/11/03/20261103/2026110308/"><span>阅读全文</span>
+              <a class="read-more" href="/2026/11/03/20261103/2026110312/"><span>阅读全文</span>
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
 </a>
             </div>
@@ -671,7 +671,7 @@
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--large paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/../../images/20261103/2026110308-cover.png" alt="拿到第一个 shell 只完成了 20%：域渗透六段流水线，从用户名枚举到 DCSync 接管域控" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20261103/2026110312-cover.png" alt="GCM 的 nonce 只要重复一次，攻击者就能伪造任意消息：AEAD 的六种误用" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
@@ -682,8 +682,8 @@
           <span class="tape tape--top-center" aria-hidden="true"></span>
           <div class="featured-copy">
             <span class="label-pill">置顶</span>
-            <h1><a href="/2026/11/03/20261103/2026110307/">Canary、PIE、CET、PAC 一层层压上来，二进制利用还剩什么：现代缓解全景与 fuzzing 驱动的漏洞研究流水线</a></h1>
-            <p> 过去二十年，二进制利用的历史，就是一部”防御方不断加锁、攻击方不断找钥匙”的历史。 2001 年 StackGuard 让覆盖返回地址不再无声无息；2004 年 NX 让栈上的 shellc...</p>
+            <h1><a href="/2026/11/03/20261103/2026110311/">一条 nonce 毁掉整条曲线：ECDSA 的五类致命错误，从索尼的常数 4 到格攻击</a></h1>
+            <p> 2010 年 12 月，柏林，27C3。 fail0verflow 站在台上，说了一句让全场先愣住再爆笑的话：索尼在 PS3 的 ECDSA 实现里，把每次签名要用的随机数 k 写死成了常数...</p>
             <div class="meta-line">
               <span class="meta-date">
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
@@ -696,7 +696,7 @@
                   <a class="meta-cat-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
                 </span>
               
-              <a class="read-more" href="/2026/11/03/20261103/2026110307/"><span>阅读全文</span>
+              <a class="read-more" href="/2026/11/03/20261103/2026110311/"><span>阅读全文</span>
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
 </a>
             </div>
@@ -705,7 +705,7 @@
             
 <div class="paper-thumb paper-thumb-1 paper-thumb--large paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/../../images/20261103/2026110307-cover.png" alt="Canary、PIE、CET、PAC 一层层压上来，二进制利用还剩什么：现代缓解全景与 fuzzing 驱动的漏洞研究流水线" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20261103/2026110311-cover.png" alt="一条 nonce 毁掉整条曲线：ECDSA 的五类致命错误，从索尼的常数 4 到格攻击" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
@@ -716,8 +716,8 @@
           <span class="tape tape--top-center" aria-hidden="true"></span>
           <div class="featured-copy">
             <span class="label-pill">置顶</span>
-            <h1><a href="/2026/11/03/20261103/2026110306/">一个 %n 就能改写程序人生：格式化字符串的泄露与任意写，以及 GOT 覆写这条路是怎么被堵死的</a></h1>
-            <p> 在所有二进制漏洞里，格式化字符串是最”反直觉”的一类。 栈溢出你要写超长；堆利用你要构造精巧的 chunk 布局。而格式化字符串漏洞的触发条件，有时候只是程序员写了 printf(buf) ...</p>
+            <h1><a href="/2026/11/03/20261103/2026110310/">MD5 死了二十年，还在给恶意软件签名：哈希碰撞、长度扩展与口令存储的完整攻防</a></h1>
+            <p> 2008 年 12 月，柏林，25C3。 Alexander Sotirov 站在台上，把一台普通笔记本算了几个小时的成果投到屏幕上：一个能被当时所有主流浏览器信任的根证书颁发机构。他们没偷...</p>
             <div class="meta-line">
               <span class="meta-date">
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
@@ -730,7 +730,7 @@
                   <a class="meta-cat-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
                 </span>
               
-              <a class="read-more" href="/2026/11/03/20261103/2026110306/"><span>阅读全文</span>
+              <a class="read-more" href="/2026/11/03/20261103/2026110310/"><span>阅读全文</span>
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
 </a>
             </div>
@@ -739,7 +739,7 @@
             
 <div class="paper-thumb paper-thumb-2 paper-thumb--large paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/../../images/20261103/2026110306-cover.png" alt="一个 %n 就能改写程序人生：格式化字符串的泄露与任意写，以及 GOT 覆写这条路是怎么被堵死的" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20261103/2026110310-cover.png" alt="MD5 死了二十年，还在给恶意软件签名：哈希碰撞、长度扩展与口令存储的完整攻防" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
@@ -750,8 +750,8 @@
           <span class="tape tape--top-center" aria-hidden="true"></span>
           <div class="featured-copy">
             <span class="label-pill">置顶</span>
-            <h1><a href="/2026/11/03/20261103/2026110305/">tcache 把堆利用变简单了十倍，也把它变成了另一门手艺：从 fastbin dup 到 safe-linking 的版本迁移史</a></h1>
-            <p> 堆上没有返回地址可以覆盖。 这是初学者第一次转做堆题时最困惑的地方：栈溢出你只要算偏移、填地址；可堆利用里，你打开 gdb，看到的是一堆 0x555555559290 这样的地址，既不知道哪...</p>
+            <h1><a href="/2026/11/03/20261103/2026110309/">AES-256 二十年没被破过一次，泄露的数据却越来越多：密码学实战的七类&#34;用法漏洞&#34;，从 ECB 重排到 RSA 共模</a></h1>
+            <p> 1998 年，Daniel Bleichenbacher 在 CRYPTO 会议上演示了一件事：只要服务器对”RSA 填充是否正确”给出不同的反应，攻击者就能用大约一百万次查询，把一个他完全...</p>
             <div class="meta-line">
               <span class="meta-date">
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
@@ -764,7 +764,7 @@
                   <a class="meta-cat-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
                 </span>
               
-              <a class="read-more" href="/2026/11/03/20261103/2026110305/"><span>阅读全文</span>
+              <a class="read-more" href="/2026/11/03/20261103/2026110309/"><span>阅读全文</span>
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
 </a>
             </div>
@@ -773,7 +773,7 @@
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--large paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/../../images/20261103/2026110305-cover.png" alt="tcache 把堆利用变简单了十倍，也把它变成了另一门手艺：从 fastbin dup 到 safe-linking 的版本迁移史" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20261103/2026110309-cover.png" alt="AES-256 二十年没被破过一次，泄露的数据却越来越多：密码学实战的七类&#34;用法漏洞&#34;，从 ECB 重排到 RSA 共模" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
@@ -820,10 +820,174 @@
   <div class="post-list">
     
       
+<article class="post-card" data-title="GCM 的 nonce 只要重复一次，攻击者就能伪造任意消息：AEAD 的六种误用">
+  <a class="post-thumb-link" href="/2026/11/03/20261103/2026110312/" aria-label="GCM 的 nonce 只要重复一次，攻击者就能伪造任意消息：AEAD 的六种误用">
+    
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/../../images/20261103/2026110312-cover.png" alt="GCM 的 nonce 只要重复一次，攻击者就能伪造任意消息：AEAD 的六种误用" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+  </a>
+  <div class="post-card-copy">
+    <h3><a href="/2026/11/03/20261103/2026110312/">GCM 的 nonce 只要重复一次，攻击者就能伪造任意消息：AEAD 的六种误用</a></h3>
+    <p>2016 年，四位研究者在扫描全网 HTTPS 服务器时发现了一件奇怪的事：184 台服务器在 GCM 模式下重复使用了 nonce。 他们没有拿到任何私钥。但在拿到两个同 nonce 的密文...</p>
+    
+      <div class="meta-line meta-line--tags">
+        <span class="meta-tags">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
+
+          <a class="meta-tag-link" href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/">#密码学</a><a class="meta-tag-link" href="/tags/AES-GCM/">#AES-GCM</a><a class="meta-tag-link" href="/tags/TLS/">#TLS</a><a class="meta-tag-link" href="/tags/nonce/">#nonce</a><a class="meta-tag-link" href="/tags/AEAD/">#AEAD</a><a class="meta-tag-link" href="/tags/ChaCha20-Poly1305/">#ChaCha20-Poly1305</a><a class="meta-tag-link" href="/tags/%E8%AE%A4%E8%AF%81%E5%8A%A0%E5%AF%86/">#认证加密</a><a class="meta-tag-link" href="/tags/%E9%87%8D%E6%94%BE%E6%94%BB%E5%87%BB/">#重放攻击</a><a class="meta-tag-link" href="/tags/WPA3/">#WPA3</a>
+        </span>
+      </div>
+    
+    <div class="meta-line meta-line--tax">
+      <span class="meta-date">
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
+2026-11-03</span>
+      
+        <span class="meta-cat">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+          <a class="meta-cat-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
+        </span>
+      
+    </div>
+  </div>
+</article>
+
+    
+      
+<article class="post-card" data-title="一条 nonce 毁掉整条曲线：ECDSA 的五类致命错误，从索尼的常数 4 到格攻击">
+  <a class="post-thumb-link" href="/2026/11/03/20261103/2026110311/" aria-label="一条 nonce 毁掉整条曲线：ECDSA 的五类致命错误，从索尼的常数 4 到格攻击">
+    
+<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/../../images/20261103/2026110311-cover.png" alt="一条 nonce 毁掉整条曲线：ECDSA 的五类致命错误，从索尼的常数 4 到格攻击" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+  </a>
+  <div class="post-card-copy">
+    <h3><a href="/2026/11/03/20261103/2026110311/">一条 nonce 毁掉整条曲线：ECDSA 的五类致命错误，从索尼的常数 4 到格攻击</a></h3>
+    <p>2010 年 12 月，柏林，27C3。 fail0verflow 站在台上，说了一句让全场先愣住再爆笑的话：索尼在 PS3 的 ECDSA 实现里，把每次签名要用的随机数 k 写死成了常数 ...</p>
+    
+      <div class="meta-line meta-line--tags">
+        <span class="meta-tags">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
+
+          <a class="meta-tag-link" href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/">#密码学</a><a class="meta-tag-link" href="/tags/ECDSA/">#ECDSA</a><a class="meta-tag-link" href="/tags/%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF/">#椭圆曲线</a><a class="meta-tag-link" href="/tags/%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D/">#数字签名</a><a class="meta-tag-link" href="/tags/nonce/">#nonce</a><a class="meta-tag-link" href="/tags/%E6%A0%BC%E6%94%BB%E5%87%BB/">#格攻击</a><a class="meta-tag-link" href="/tags/LLL/">#LLL</a><a class="meta-tag-link" href="/tags/EdDSA/">#EdDSA</a><a class="meta-tag-link" href="/tags/%E6%97%A0%E6%95%88%E6%9B%B2%E7%BA%BF%E6%94%BB%E5%87%BB/">#无效曲线攻击</a><a class="meta-tag-link" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/">#区块链安全</a>
+        </span>
+      </div>
+    
+    <div class="meta-line meta-line--tax">
+      <span class="meta-date">
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
+2026-11-03</span>
+      
+        <span class="meta-cat">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+          <a class="meta-cat-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
+        </span>
+      
+    </div>
+  </div>
+</article>
+
+    
+      
+<article class="post-card" data-title="MD5 死了二十年，还在给恶意软件签名：哈希碰撞、长度扩展与口令存储的完整攻防">
+  <a class="post-thumb-link" href="/2026/11/03/20261103/2026110310/" aria-label="MD5 死了二十年，还在给恶意软件签名：哈希碰撞、长度扩展与口令存储的完整攻防">
+    
+<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/../../images/20261103/2026110310-cover.png" alt="MD5 死了二十年，还在给恶意软件签名：哈希碰撞、长度扩展与口令存储的完整攻防" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+  </a>
+  <div class="post-card-copy">
+    <h3><a href="/2026/11/03/20261103/2026110310/">MD5 死了二十年，还在给恶意软件签名：哈希碰撞、长度扩展与口令存储的完整攻防</a></h3>
+    <p>2008 年 12 月，柏林，25C3。 Alexander Sotirov 站在台上，把一台普通笔记本算了几个小时的成果投到屏幕上：一个能被当时所有主流浏览器信任的根证书颁发机构。他们没偷到...</p>
+    
+      <div class="meta-line meta-line--tags">
+        <span class="meta-tags">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
+
+          <a class="meta-tag-link" href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/">#密码学</a><a class="meta-tag-link" href="/tags/%E9%95%BF%E5%BA%A6%E6%89%A9%E5%B1%95%E6%94%BB%E5%87%BB/">#长度扩展攻击</a><a class="meta-tag-link" href="/tags/%E5%93%88%E5%B8%8C/">#哈希</a><a class="meta-tag-link" href="/tags/MD5/">#MD5</a><a class="meta-tag-link" href="/tags/SHA-1/">#SHA-1</a><a class="meta-tag-link" href="/tags/%E5%93%88%E5%B8%8C%E7%A2%B0%E6%92%9E/">#哈希碰撞</a><a class="meta-tag-link" href="/tags/HMAC/">#HMAC</a><a class="meta-tag-link" href="/tags/%E5%8F%A3%E4%BB%A4%E5%AD%98%E5%82%A8/">#口令存储</a><a class="meta-tag-link" href="/tags/Argon2/">#Argon2</a><a class="meta-tag-link" href="/tags/bcrypt/">#bcrypt</a><a class="meta-tag-link" href="/tags/hashcat/">#hashcat</a>
+        </span>
+      </div>
+    
+    <div class="meta-line meta-line--tax">
+      <span class="meta-date">
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
+2026-11-03</span>
+      
+        <span class="meta-cat">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+          <a class="meta-cat-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
+        </span>
+      
+    </div>
+  </div>
+</article>
+
+    
+      
+<article class="post-card" data-title="AES-256 二十年没被破过一次，泄露的数据却越来越多：密码学实战的七类&#34;用法漏洞&#34;，从 ECB 重排到 RSA 共模">
+  <a class="post-thumb-link" href="/2026/11/03/20261103/2026110309/" aria-label="AES-256 二十年没被破过一次，泄露的数据却越来越多：密码学实战的七类&#34;用法漏洞&#34;，从 ECB 重排到 RSA 共模">
+    
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/../../images/20261103/2026110309-cover.png" alt="AES-256 二十年没被破过一次，泄露的数据却越来越多：密码学实战的七类&#34;用法漏洞&#34;，从 ECB 重排到 RSA 共模" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+  </a>
+  <div class="post-card-copy">
+    <h3><a href="/2026/11/03/20261103/2026110309/">AES-256 二十年没被破过一次，泄露的数据却越来越多：密码学实战的七类&#34;用法漏洞&#34;，从 ECB 重排到 RSA 共模</a></h3>
+    <p>1998 年，Daniel Bleichenbacher 在 CRYPTO 会议上演示了一件事：只要服务器对”RSA 填充是否正确”给出不同的反应，攻击者就能用大约一百万次查询，把一个他完全没...</p>
+    
+      <div class="meta-line meta-line--tags">
+        <span class="meta-tags">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
+
+          <a class="meta-tag-link" href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/">#密码学</a><a class="meta-tag-link" href="/tags/%E4%BE%A7%E4%BF%A1%E9%81%93/">#侧信道</a><a class="meta-tag-link" href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6%E6%94%BB%E5%87%BB/">#密码学攻击</a><a class="meta-tag-link" href="/tags/ECB/">#ECB</a><a class="meta-tag-link" href="/tags/CBC/">#CBC</a><a class="meta-tag-link" href="/tags/Padding-Oracle/">#Padding Oracle</a><a class="meta-tag-link" href="/tags/%E9%95%BF%E5%BA%A6%E6%89%A9%E5%B1%95%E6%94%BB%E5%87%BB/">#长度扩展攻击</a><a class="meta-tag-link" href="/tags/RSA/">#RSA</a><a class="meta-tag-link" href="/tags/%E5%BC%B1%E9%9A%8F%E6%9C%BA%E6%95%B0/">#弱随机数</a><a class="meta-tag-link" href="/tags/TLS/">#TLS</a><a class="meta-tag-link" href="/tags/%E5%9B%BD%E5%AF%86/">#国密</a>
+        </span>
+      </div>
+    
+    <div class="meta-line meta-line--tax">
+      <span class="meta-date">
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
+2026-11-03</span>
+      
+        <span class="meta-cat">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+          <a class="meta-cat-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
+        </span>
+      
+    </div>
+  </div>
+</article>
+
+    
+      
 <article class="post-card" data-title="拿到第一个 shell 只完成了 20%：域渗透六段流水线，从用户名枚举到 DCSync 接管域控">
   <a class="post-thumb-link" href="/2026/11/03/20261103/2026110308/" aria-label="拿到第一个 shell 只完成了 20%：域渗透六段流水线，从用户名枚举到 DCSync 接管域控">
     
-<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/../../images/20261103/2026110308-cover.png" alt="拿到第一个 shell 只完成了 20%：域渗透六段流水线，从用户名枚举到 DCSync 接管域控" loading="lazy" referrerpolicy="no-referrer">
   
@@ -864,7 +1028,7 @@
 <article class="post-card" data-title="Canary、PIE、CET、PAC 一层层压上来，二进制利用还剩什么：现代缓解全景与 fuzzing 驱动的漏洞研究流水线">
   <a class="post-thumb-link" href="/2026/11/03/20261103/2026110307/" aria-label="Canary、PIE、CET、PAC 一层层压上来，二进制利用还剩什么：现代缓解全景与 fuzzing 驱动的漏洞研究流水线">
     
-<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
+<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/../../images/20261103/2026110307-cover.png" alt="Canary、PIE、CET、PAC 一层层压上来，二进制利用还剩什么：现代缓解全景与 fuzzing 驱动的漏洞研究流水线" loading="lazy" referrerpolicy="no-referrer">
   
@@ -905,7 +1069,7 @@
 <article class="post-card" data-title="一个 %n 就能改写程序人生：格式化字符串的泄露与任意写，以及 GOT 覆写这条路是怎么被堵死的">
   <a class="post-thumb-link" href="/2026/11/03/20261103/2026110306/" aria-label="一个 %n 就能改写程序人生：格式化字符串的泄露与任意写，以及 GOT 覆写这条路是怎么被堵死的">
     
-<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/../../images/20261103/2026110306-cover.png" alt="一个 %n 就能改写程序人生：格式化字符串的泄露与任意写，以及 GOT 覆写这条路是怎么被堵死的" loading="lazy" referrerpolicy="no-referrer">
   
@@ -946,7 +1110,7 @@
 <article class="post-card" data-title="tcache 把堆利用变简单了十倍，也把它变成了另一门手艺：从 fastbin dup 到 safe-linking 的版本迁移史">
   <a class="post-thumb-link" href="/2026/11/03/20261103/2026110305/" aria-label="tcache 把堆利用变简单了十倍，也把它变成了另一门手艺：从 fastbin dup 到 safe-linking 的版本迁移史">
     
-<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/../../images/20261103/2026110305-cover.png" alt="tcache 把堆利用变简单了十倍，也把它变成了另一门手艺：从 fastbin dup 到 safe-linking 的版本迁移史" loading="lazy" referrerpolicy="no-referrer">
   
@@ -987,7 +1151,7 @@
 <article class="post-card" data-title="±100 米不是嘴上说说：geo-sleuth 的误差半径、置信分级与「禁止伪造验证」铁律">
   <a class="post-thumb-link" href="/2026/11/03/20261103/2026110303/" aria-label="±100 米不是嘴上说说：geo-sleuth 的误差半径、置信分级与「禁止伪造验证」铁律">
     
-<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
+<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/../../images/20261103/2026110303-cover.png" alt="±100 米不是嘴上说说：geo-sleuth 的误差半径、置信分级与「禁止伪造验证」铁律" loading="lazy" referrerpolicy="no-referrer">
   
@@ -1028,7 +1192,7 @@
 <article class="post-card" data-title="栈溢出四十年没死，只是换了打法：从 ret2win 到 ret2dlresolve 的完整返回地址利用链">
   <a class="post-thumb-link" href="/2026/11/03/20261103/2026110304/" aria-label="栈溢出四十年没死，只是换了打法：从 ret2win 到 ret2dlresolve 的完整返回地址利用链">
     
-<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/../../images/20261103/2026110304-cover.png" alt="栈溢出四十年没死，只是换了打法：从 ret2win 到 ret2dlresolve 的完整返回地址利用链" loading="lazy" referrerpolicy="no-referrer">
   
@@ -1065,170 +1229,6 @@
 </article>
 
     
-      
-<article class="post-card" data-title="机器先排序，人只看前几张：geo-sleuth 怎么把「图寻」做成流水线">
-  <a class="post-thumb-link" href="/2026/11/03/20261103/2026110302/" aria-label="机器先排序，人只看前几张：geo-sleuth 怎么把「图寻」做成流水线">
-    
-<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
-  
-    <img class="paper-thumb__img" src="/../../images/20261103/2026110302-cover.png" alt="机器先排序，人只看前几张：geo-sleuth 怎么把「图寻」做成流水线" loading="lazy" referrerpolicy="no-referrer">
-  
-</div>
-
-  </a>
-  <div class="post-card-copy">
-    <h3><a href="/2026/11/03/20261103/2026110302/">机器先排序，人只看前几张：geo-sleuth 怎么把「图寻」做成流水线</a></h3>
-    <p>传统”图寻”的瓶颈不是看不懂图，而是看不完图。一张照片可能对应几百个候选地点，每个地点几百张卫星图、几百个街景点位。让人把所有缩略图翻一遍，既看不完，又会被先入为主的判断带偏。 geo-sle...</p>
-    
-      <div class="meta-line meta-line--tags">
-        <span class="meta-tags">
-          
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
-
-          <a class="meta-tag-link" href="/tags/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5/">#威胁情报</a><a class="meta-tag-link" href="/tags/geo-sleuth/">#geo-sleuth</a><a class="meta-tag-link" href="/tags/CLIP/">#CLIP</a><a class="meta-tag-link" href="/tags/DINOv2/">#DINOv2</a><a class="meta-tag-link" href="/tags/SIFT/">#SIFT</a><a class="meta-tag-link" href="/tags/%E5%8D%AB%E6%98%9F%E5%BD%B1%E5%83%8F/">#卫星影像</a><a class="meta-tag-link" href="/tags/%E8%A1%97%E6%99%AF%E5%8C%B9%E9%85%8D/">#街景匹配</a><a class="meta-tag-link" href="/tags/%E5%8F%8D%E5%90%91%E5%9B%BE%E7%89%87%E6%90%9C%E7%B4%A2/">#反向图片搜索</a><a class="meta-tag-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/">#计算机视觉</a>
-        </span>
-      </div>
-    
-    <div class="meta-line meta-line--tax">
-      <span class="meta-date">
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
-2026-11-03</span>
-      
-        <span class="meta-cat">
-          
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
-
-          <a class="meta-cat-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
-        </span>
-      
-    </div>
-  </div>
-</article>
-
-    
-      
-<article class="post-card" data-title="一张照片能反推出你在哪拍的？拆解 geo-sleuth 的「可验证地理定位」方法学">
-  <a class="post-thumb-link" href="/2026/11/03/20261103/2026110301/" aria-label="一张照片能反推出你在哪拍的？拆解 geo-sleuth 的「可验证地理定位」方法学">
-    
-<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
-  
-    <img class="paper-thumb__img" src="/../../images/20261103/2026110301-cover.png" alt="一张照片能反推出你在哪拍的？拆解 geo-sleuth 的「可验证地理定位」方法学" loading="lazy" referrerpolicy="no-referrer">
-  
-</div>
-
-  </a>
-  <div class="post-card-copy">
-    <h3><a href="/2026/11/03/20261103/2026110301/">一张照片能反推出你在哪拍的？拆解 geo-sleuth 的「可验证地理定位」方法学</a></h3>
-    <p>你随手发在朋友圈的一张旅行照，没有定位、没有水印、只有一片海和几栋楼。在绝大多数人眼里，这不过是”某处海边”。但在做照片地理定位（photo geolocation）的人眼里，这张图里藏着十几...</p>
-    
-      <div class="meta-line meta-line--tags">
-        <span class="meta-tags">
-          
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
-
-          <a class="meta-tag-link" href="/tags/OSINT/">#OSINT</a><a class="meta-tag-link" href="/tags/%E5%BC%80%E6%BA%90%E6%83%85%E6%8A%A5/">#开源情报</a><a class="meta-tag-link" href="/tags/%E5%9C%B0%E7%90%86%E5%AE%9A%E4%BD%8D/">#地理定位</a><a class="meta-tag-link" href="/tags/geo-sleuth/">#geo-sleuth</a><a class="meta-tag-link" href="/tags/%E7%85%A7%E7%89%87%E5%AE%9A%E4%BD%8D/">#照片定位</a><a class="meta-tag-link" href="/tags/%E7%BD%91%E7%BB%9C%E8%BF%B7%E8%B8%AA/">#网络迷踪</a><a class="meta-tag-link" href="/tags/%E5%9B%BE%E5%AF%BB/">#图寻</a><a class="meta-tag-link" href="/tags/%E8%AF%81%E6%8D%AE%E9%93%BE/">#证据链</a>
-        </span>
-      </div>
-    
-    <div class="meta-line meta-line--tax">
-      <span class="meta-date">
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
-2026-11-03</span>
-      
-        <span class="meta-cat">
-          
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
-
-          <a class="meta-cat-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
-        </span>
-      
-    </div>
-  </div>
-</article>
-
-    
-      
-<article class="post-card" data-title="1060 个仿冒域名、8708 台肉鸡、AI 批量复刻下载站——「银狐」甲蚁(G01)团伙的 SEO 投毒流水线拆解">
-  <a class="post-thumb-link" href="/2026/10/17/20261017/2026101701/" aria-label="1060 个仿冒域名、8708 台肉鸡、AI 批量复刻下载站——「银狐」甲蚁(G01)团伙的 SEO 投毒流水线拆解">
-    
-<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
-  
-    <img class="paper-thumb__img" src="/../../images/20261017/2026101701-g01-cover.png" alt="1060 个仿冒域名、8708 台肉鸡、AI 批量复刻下载站——「银狐」甲蚁(G01)团伙的 SEO 投毒流水线拆解" loading="lazy" referrerpolicy="no-referrer">
-  
-</div>
-
-  </a>
-  <div class="post-card-copy">
-    <h3><a href="/2026/10/17/20261017/2026101701/">1060 个仿冒域名、8708 台肉鸡、AI 批量复刻下载站——「银狐」甲蚁(G01)团伙的 SEO 投毒流水线拆解</a></h3>
-    <p>一个运维工程师，想下一个 FinalShell，在搜索引擎里点进了”官方下载站”。页面做得跟真的一模一样，域名还是 .com.cn 结尾、带实名认证，看起来比官网还像官网。他下载、双击、看见正...</p>
-    
-      <div class="meta-line meta-line--tags">
-        <span class="meta-tags">
-          
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
-
-          <a class="meta-tag-link" href="/tags/%E4%BE%9B%E5%BA%94%E9%93%BE%E6%94%BB%E5%87%BB/">#供应链攻击</a><a class="meta-tag-link" href="/tags/%E9%BB%91%E7%81%B0%E4%BA%A7/">#黑灰产</a><a class="meta-tag-link" href="/tags/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5/">#威胁情报</a><a class="meta-tag-link" href="/tags/%E9%93%B6%E7%8B%90%E6%9C%A8%E9%A9%AC/">#银狐木马</a><a class="meta-tag-link" href="/tags/%E6%9C%A8%E9%A9%AC/">#木马</a><a class="meta-tag-link" href="/tags/SEO%E6%8A%95%E6%AF%92/">#SEO投毒</a><a class="meta-tag-link" href="/tags/%E7%99%BD%E5%8A%A0%E9%BB%91/">#白加黑</a><a class="meta-tag-link" href="/tags/BYOVD/">#BYOVD</a><a class="meta-tag-link" href="/tags/%E4%B8%8B%E8%BD%BD%E7%AB%99%E6%8A%95%E6%AF%92/">#下载站投毒</a><a class="meta-tag-link" href="/tags/CNCERT/">#CNCERT</a>
-        </span>
-      </div>
-    
-    <div class="meta-line meta-line--tax">
-      <span class="meta-date">
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
-2026-10-17</span>
-      
-        <span class="meta-cat">
-          
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
-
-          <a class="meta-cat-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
-        </span>
-      
-    </div>
-  </div>
-</article>
-
-    
-      
-<article class="post-card" data-title="猫池与手机口——从黑卡供给到反欺诈检测的工程视角">
-  <a class="post-thumb-link" href="/2026/09/22/20260922/2026092203/" aria-label="猫池与手机口——从黑卡供给到反欺诈检测的工程视角">
-    
-<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
-  
-    <img class="paper-thumb__img" src="/../../images/20260922/2026092203-catpool-phoneport-cover.png" alt="猫池与手机口——从黑卡供给到反欺诈检测的工程视角" loading="lazy" referrerpolicy="no-referrer">
-  
-</div>
-
-  </a>
-  <div class="post-card-copy">
-    <h3><a href="/2026/09/22/20260922/2026092203/">猫池与手机口——从黑卡供给到反欺诈检测的工程视角</a></h3>
-    <p>普通人看诈骗，最大的疑问往往是：现在手机号不都实名制了吗？为什么灰产手里还有那么多卡？ 答案很残酷：黑产不是”绕开实名”，而是利用实名人、剥离控制权。 反欺诈领域有一个经典悖论：黑产用的工具越...</p>
-    
-      <div class="meta-line meta-line--tags">
-        <span class="meta-tags">
-          
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
-
-          <a class="meta-tag-link" href="/tags/%E5%8F%8D%E6%AC%BA%E8%AF%88/">#反欺诈</a><a class="meta-tag-link" href="/tags/%E6%8E%A5%E7%A0%81%E5%B9%B3%E5%8F%B0/">#接码平台</a><a class="meta-tag-link" href="/tags/%E7%8C%AB%E6%B1%A0/">#猫池</a><a class="meta-tag-link" href="/tags/%E6%89%8B%E6%9C%BA%E5%8F%A3/">#手机口</a><a class="meta-tag-link" href="/tags/GOIP/">#GOIP</a><a class="meta-tag-link" href="/tags/%E9%BB%91%E5%8D%A1/">#黑卡</a><a class="meta-tag-link" href="/tags/%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81%E5%AE%9E%E5%90%8D%E5%88%B6/">#电话号码实名制</a><a class="meta-tag-link" href="/tags/%E5%8F%B7%E7%A0%81%E4%BF%A1%E8%AA%89/">#号码信誉</a><a class="meta-tag-link" href="/tags/%E5%B8%AE%E4%BF%A1%E7%BD%AA/">#帮信罪</a><a class="meta-tag-link" href="/tags/%E8%AF%AD%E9%9F%B3%E4%B8%AD%E8%BD%AC/">#语音中转</a>
-        </span>
-      </div>
-    
-    <div class="meta-line meta-line--tax">
-      <span class="meta-date">
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
-2026-09-22</span>
-      
-        <span class="meta-cat">
-          
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
-
-          <a class="meta-cat-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
-        </span>
-      
-    </div>
-  </div>
-</article>
-
-    
   </div>
 
 
@@ -1243,7 +1243,7 @@
       </span>
     
 
-    <span class="pager-pages">1 / 17</span>
+    <span class="pager-pages">1 / 18</span>
 
     
       <a class="pager-link pager-link--next" href="/page/2/">
@@ -1287,36 +1287,36 @@
     <ul class="recent-list js-random-posts">
       
         <li>
+          <a class="recent-item" href="/2026/11/03/20261103/2026110312/">
+            <strong>GCM 的 nonce 只要重复一次，攻击者就能伪造任意消息：AEAD 的六种误用</strong>
+            <em>2026-11-03</em>
+          </a>
+        </li>
+      
+        <li>
+          <a class="recent-item" href="/2026/11/03/20261103/2026110311/">
+            <strong>一条 nonce 毁掉整条曲线：ECDSA 的五类致命错误，从索尼的常数 4 到格攻击</strong>
+            <em>2026-11-03</em>
+          </a>
+        </li>
+      
+        <li>
+          <a class="recent-item" href="/2026/11/03/20261103/2026110310/">
+            <strong>MD5 死了二十年，还在给恶意软件签名：哈希碰撞、长度扩展与口令存储的完整攻防</strong>
+            <em>2026-11-03</em>
+          </a>
+        </li>
+      
+        <li>
+          <a class="recent-item" href="/2026/11/03/20261103/2026110309/">
+            <strong>AES-256 二十年没被破过一次，泄露的数据却越来越多：密码学实战的七类&#34;用法漏洞&#34;，从 ECB 重排到 RSA 共模</strong>
+            <em>2026-11-03</em>
+          </a>
+        </li>
+      
+        <li>
           <a class="recent-item" href="/2026/11/03/20261103/2026110308/">
             <strong>拿到第一个 shell 只完成了 20%：域渗透六段流水线，从用户名枚举到 DCSync 接管域控</strong>
-            <em>2026-11-03</em>
-          </a>
-        </li>
-      
-        <li>
-          <a class="recent-item" href="/2026/11/03/20261103/2026110307/">
-            <strong>Canary、PIE、CET、PAC 一层层压上来，二进制利用还剩什么：现代缓解全景与 fuzzing 驱动的漏洞研究流水线</strong>
-            <em>2026-11-03</em>
-          </a>
-        </li>
-      
-        <li>
-          <a class="recent-item" href="/2026/11/03/20261103/2026110306/">
-            <strong>一个 %n 就能改写程序人生：格式化字符串的泄露与任意写，以及 GOT 覆写这条路是怎么被堵死的</strong>
-            <em>2026-11-03</em>
-          </a>
-        </li>
-      
-        <li>
-          <a class="recent-item" href="/2026/11/03/20261103/2026110305/">
-            <strong>tcache 把堆利用变简单了十倍，也把它变成了另一门手艺：从 fastbin dup 到 safe-linking 的版本迁移史</strong>
-            <em>2026-11-03</em>
-          </a>
-        </li>
-      
-        <li>
-          <a class="recent-item" href="/2026/11/03/20261103/2026110303/">
-            <strong>±100 米不是嘴上说说：geo-sleuth 的误差半径、置信分级与「禁止伪造验证」铁律</strong>
             <em>2026-11-03</em>
           </a>
         </li>
@@ -1324,6 +1324,30 @@
     </ul>
     <script type="application/json" class="js-random-posts-data">
     [
+    
+      {
+        "title": "GCM 的 nonce 只要重复一次，攻击者就能伪造任意消息：AEAD 的六种误用",
+        "url": "/2026/11/03/20261103/2026110312/",
+        "date": "2026-11-03"
+      },
+    
+      {
+        "title": "一条 nonce 毁掉整条曲线：ECDSA 的五类致命错误，从索尼的常数 4 到格攻击",
+        "url": "/2026/11/03/20261103/2026110311/",
+        "date": "2026-11-03"
+      },
+    
+      {
+        "title": "MD5 死了二十年，还在给恶意软件签名：哈希碰撞、长度扩展与口令存储的完整攻防",
+        "url": "/2026/11/03/20261103/2026110310/",
+        "date": "2026-11-03"
+      },
+    
+      {
+        "title": "AES-256 二十年没被破过一次，泄露的数据却越来越多：密码学实战的七类\"用法漏洞\"，从 ECB 重排到 RSA 共模",
+        "url": "/2026/11/03/20261103/2026110309/",
+        "date": "2026-11-03"
+      },
     
       {
         "title": "拿到第一个 shell 只完成了 20%：域渗透六段流水线，从用户名枚举到 DCSync 接管域控",
@@ -1898,30 +1922,6 @@
       {
         "title": "WAF 指纹识别原理与实现：从 sqlmap 源码学起",
         "url": "/2026/07/06/20260706/2026070630/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "图像预处理 + 二维码识别全攻略：9 种方法让模糊二维码无处遁形",
-        "url": "/2026/07/06/20260706/2026070628/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "Vue3 + Flask 全栈实战：从零构建在线二维码解析器",
-        "url": "/2026/07/06/20260706/2026070629/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "dirsearch 二开实战：集成 EHole 指纹识别与 Swagger 未授权检测",
-        "url": "/2026/07/06/20260706/2026070625/",
-        "date": "2026-07-06"
-      },
-    
-      {
-        "title": "轻量级 OCR 服务搭建：ddddocr + 异步 HTTP 接口",
-        "url": "/2026/07/06/20260706/2026070626/",
         "date": "2026-07-06"
       }
     

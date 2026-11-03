@@ -1,0 +1,1335 @@
+<!doctype html>
+
+<html lang="zh-CN" data-fancybox-enabled="1">
+<head>
+  
+
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f7f3e9">
+
+<title>AES-256 二十年没被破过一次，泄露的数据却越来越多：密码学实战的七类&#34;用法漏洞&#34;，从 ECB 重排到 RSA 共模 | ZapcoMan&#39;s world</title>
+<meta name="description" content="1998 年，Daniel Bleichenbacher 在 CRYPTO 会议上演示了一件事：只要服务器对”RSA 填充是否正确”给出不同的反应，攻击者就能用大约一百万次查询，把一个他完全没有私钥的密文完整解出来。 十九年后的 2017 年，三位研究者把这个方法原封不动地重跑了一遍，扫描 Alexa 前 100 的站点，27 个存在同样的漏洞，并且在 Fa...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AES-256 二十年没被破过一次，泄露的数据却越来越多：密码学实战的七类&quot;用法漏洞&quot;，从 ECB 重排到 RSA 共模 | ZapcoMan&#39;s world">
+<meta property="og:url" content="http://example.com/2026/11/03/20261103/2026110309/">
+<meta property="og:site_name" content="ZapcoMan&#39;s world">
+<meta property="og:description" content="1998 年，Daniel Bleichenbacher 在 CRYPTO 会议上演示了一件事：只要服务器对”RSA 填充是否正确”给出不同的反应，攻击者就能用大约一百万次查询，把一个他完全没有私钥的密文完整解出来。 十九年后的 2017 年，三位研究者把这个方法原封不动地重跑了一遍，扫描 Alexa 前 100 的站点，27 个存在同样的漏洞，并且在 Fa...">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2026/11/03/images/20261103/2026110309-cover.png">
+<meta property="article:published_time" content="2026-11-03T15:20:00.000Z">
+<meta property="article:modified_time" content="2026-11-03T13:45:11.205Z">
+<meta property="article:author" content="ZapcoMan">
+<meta property="article:tag" content="CBC">
+<meta property="article:tag" content="ECB">
+<meta property="article:tag" content="Padding Oracle">
+<meta property="article:tag" content="RSA">
+<meta property="article:tag" content="TLS">
+<meta property="article:tag" content="侧信道">
+<meta property="article:tag" content="国密">
+<meta property="article:tag" content="密码学">
+<meta property="article:tag" content="密码学攻击">
+<meta property="article:tag" content="弱随机数">
+<meta property="article:tag" content="长度扩展攻击">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2026/11/03/images/20261103/2026110309-cover.png">
+<link rel="canonical" href="http://example.com/2026/11/03/20261103/2026110309/">
+
+<link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"AES-256 二十年没被破过一次，泄露的数据却越来越多：密码学实战的七类\"用法漏洞\"，从 ECB 重排到 RSA 共模","name":"AES-256 二十年没被破过一次，泄露的数据却越来越多：密码学实战的七类\"用法漏洞\"，从 ECB 重排到 RSA 共模 | ZapcoMan's world","description":"1998 年，Daniel Bleichenbacher 在 CRYPTO 会议上演示了一件事：只要服务器对”RSA 填充是否正确”给出不同的反应，攻击者就能用大约一百万次查询，把一个他完全没有私钥的密文完整解出来。 十九年后的 2017 年，三位研究者把这个方法原封不动地重跑了一遍，扫描 Alexa 前 100 的站点，27 个存在同样的漏洞，并且在 Fa...","url":"http://example.com/2026/11/03/20261103/2026110309/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20261103/2026110309-cover.png"],"mainEntityOfPage":"http://example.com/2026/11/03/20261103/2026110309/","datePublished":"2026-11-03T15:20:00.000Z","dateModified":"2026-11-03T13:45:11.205Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"密码学, 侧信道, 密码学攻击, ECB, CBC, Padding Oracle, 长度扩展攻击, RSA, 弱随机数, TLS, 国密"}</script>
+
+<script>
+  (function () {
+    var accents = { orange: 1, purple: 1, sakura: 1, blue: 1, pink: 1, green: 1, black: 1 };
+    var match = document.cookie.match(/(?:^|;\s*)flatpaper-accent=([^;]+)/);
+    var accent = 'black';
+    if (match) {
+      try { accent = decodeURIComponent(match[1]); } catch (e) {}
+    }
+    if (!accents[accent]) accent = 'black';
+    document.documentElement.setAttribute('data-accent', accent);
+    try {
+      if (localStorage.getItem('flatpaper-mode') === 'dark') {
+        document.documentElement.classList.add('dark-mode');
+      }
+    } catch (e) {}
+  })();
+</script>
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+
+
+  
+
+  
+
+  
+<script defer src="https://cdn.jsdelivr.net/npm/twikoo@1.7.9/dist/twikoo.all.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
+<script defer src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 8.1.2"><link rel="alternate" href="/atom.xml" title="ZapcoMan's world" type="application/atom+xml">
+</head>
+
+<body
+  class="is-post tag-style-tape bg-style-default"
+  data-default-accent="black"
+  data-code-theme="dark"
+  data-note-style="sticky"
+  data-note-icons="on"
+  data-button-style="circle"
+  data-strong-accent="on"
+>
+  
+    <div class="page-grain"></div>
+  
+  <svg width="0" height="0" style="position:absolute;z-index:-1;" aria-hidden="true">
+    <defs>
+      <filter id="paper-edge" x="-5%" y="-5%" width="110%" height="110%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.04" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+    </defs>
+  </svg>
+  <svg class="flatpaper-icon-sprite" xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute;width:0;height:0;overflow:hidden;" aria-hidden="true" focusable="false"><defs><symbol id="flatpaper-icon-lucide-layout-grid" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></symbol><symbol id="flatpaper-icon-lucide-house" viewBox="0 0 24 24"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol><symbol id="flatpaper-icon-lucide-archive" viewBox="0 0 24 24"><rect width="20" height="5" x="2" y="3" rx="1"/><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8"/><path d="M10 12h4"/></symbol><symbol id="flatpaper-icon-lucide-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol><symbol id="flatpaper-icon-lucide-user" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol><symbol id="flatpaper-icon-lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></symbol><symbol id="flatpaper-icon-lucide-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol><symbol id="flatpaper-icon-lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></symbol><symbol id="flatpaper-icon-lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></symbol><symbol id="flatpaper-icon-lucide-palette" viewBox="0 0 24 24"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"/><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/></symbol><symbol id="flatpaper-icon-fa-brands-github" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></symbol><symbol id="flatpaper-icon-fa-brands-twitter" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></symbol><symbol id="flatpaper-icon-lucide-mail" viewBox="0 0 24 24"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></symbol><symbol id="flatpaper-icon-lucide-rss" viewBox="0 0 24 24"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></symbol><symbol id="flatpaper-icon-lucide-atom" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><path d="M20.2 20.2c2.04-2.03.02-7.36-4.5-11.9-4.54-4.52-9.87-6.54-11.9-4.5-2.04 2.03-.02 7.36 4.5 11.9 4.54 4.52 9.87 6.54 11.9 4.5Z"/><path d="M15.7 15.7c4.52-4.54 6.54-9.87 4.5-11.9-2.03-2.04-7.36-.02-11.9 4.5-4.52 4.54-6.54 9.87-4.5 11.9 2.03 2.04 7.36.02 11.9-4.5Z"/></symbol><symbol id="flatpaper-icon-lucide-heart" viewBox="0 0 24 24"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></symbol><symbol id="flatpaper-icon-lucide-message-circle" viewBox="0 0 24 24"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></symbol><symbol id="flatpaper-icon-lucide-message-square" viewBox="0 0 24 24"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z"/></symbol><symbol id="flatpaper-icon-lucide-share-2" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></symbol><symbol id="flatpaper-icon-lucide-calendar" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></symbol><symbol id="flatpaper-icon-lucide-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol><symbol id="flatpaper-icon-lucide-shuffle" viewBox="0 0 24 24"><path d="m18 14 4 4-4 4"/><path d="m18 2 4 4-4 4"/><path d="M2 18h1.973a4 4 0 0 0 3.3-1.7l5.454-8.6a4 4 0 0 1 3.3-1.7H22"/><path d="M2 6h1.972a4 4 0 0 1 3.6 2.2"/><path d="M22 18h-6.041a4 4 0 0 1-3.3-1.8l-.359-.45"/></symbol><symbol id="flatpaper-icon-lucide-flame" viewBox="0 0 24 24"><path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4"/></symbol><symbol id="flatpaper-icon-lucide-history" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></symbol><symbol id="flatpaper-icon-lucide-table-of-contents" viewBox="0 0 24 24"><path d="M16 5H3"/><path d="M16 12H3"/><path d="M16 19H3"/><path d="M21 5h.01"/><path d="M21 12h.01"/><path d="M21 19h.01"/></symbol><symbol id="flatpaper-icon-lucide-list-tree" viewBox="0 0 24 24"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></symbol><symbol id="flatpaper-icon-lucide-folder" viewBox="0 0 24 24"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></symbol><symbol id="flatpaper-icon-lucide-tag" viewBox="0 0 24 24"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/></symbol><symbol id="flatpaper-icon-lucide-eye" viewBox="0 0 24 24"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></symbol><symbol id="flatpaper-icon-lucide-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol><symbol id="flatpaper-icon-lucide-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></symbol><symbol id="flatpaper-icon-lucide-arrow-up" viewBox="0 0 24 24"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></symbol><symbol id="flatpaper-icon-lucide-chevron-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol><symbol id="flatpaper-icon-lucide-chevron-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol><symbol id="flatpaper-icon-lucide-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol><symbol id="flatpaper-icon-lucide-chevron-up" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></symbol><symbol id="flatpaper-icon-lucide-send" viewBox="0 0 24 24"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></symbol><symbol id="flatpaper-icon-lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></symbol><symbol id="flatpaper-icon-lucide-panel-left" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/></symbol><symbol id="flatpaper-icon-lucide-leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></symbol><symbol id="flatpaper-icon-lucide-aperture" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m14.31 8 5.74 9.94"/><path d="M9.69 8h11.48"/><path d="m7.38 12 5.74-9.94"/><path d="M9.69 16 3.95 6.06"/><path d="M14.31 16H2.83"/><path d="m16.62 12-5.74 9.94"/></symbol><symbol id="flatpaper-icon-lucide-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"/></symbol><symbol id="flatpaper-icon-lucide-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></symbol><symbol id="flatpaper-icon-lucide-radio" viewBox="0 0 24 24"><path d="M16.247 7.761a6 6 0 0 1 0 8.478"/><path d="M19.075 4.933a10 10 0 0 1 0 14.134"/><path d="M4.925 19.067a10 10 0 0 1 0-14.134"/><path d="M7.753 16.239a6 6 0 0 1 0-8.478"/><circle cx="12" cy="12" r="2"/></symbol><symbol id="flatpaper-icon-lucide-hash" viewBox="0 0 24 24"><line x1="4" x2="20" y1="9" y2="9"/><line x1="4" x2="20" y1="15" y2="15"/><line x1="10" x2="8" y1="3" y2="21"/><line x1="16" x2="14" y1="3" y2="21"/></symbol><symbol id="flatpaper-icon-lucide-gift" viewBox="0 0 24 24"><path d="M12 7v14"/><path d="M20 11v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"/><path d="M7.5 7a1 1 0 0 1 0-5A4.8 8 0 0 1 12 7a4.8 8 0 0 1 4.5-5 1 1 0 0 1 0 5"/><rect x="3" y="7" width="18" height="4" rx="1"/></symbol><symbol id="flatpaper-icon-fa-brands-alipay" viewBox="0 0 448 512"><path d="M377.74 32H70.26C31.41 32 0 63.41 0 102.26v307.48C0 448.59 31.41 480 70.26 480h307.48c38.52 0 69.76-31.08 70.26-69.6-45.96-25.62-110.59-60.34-171.6-88.44-32.07 43.97-84.14 81-148.62 81-70.59 0-93.73-45.3-97.04-76.37-3.97-39.01 14.88-81.5 99.52-81.5 35.38 0 79.35 10.25 127.13 24.96 16.53-30.09 26.45-60.34 26.45-60.34h-178.2v-16.7h92.08v-31.24H88.28v-19.01h109.44V92.34h50.92v50.42h109.44v19.01H248.63v31.24h88.77s-15.21 46.62-38.35 90.92c48.93 16.7 100.01 36.04 148.62 52.74V102.26C447.83 63.57 416.43 32 377.74 32zM47.28 322.95c.99 20.17 10.25 53.73 69.93 53.73 52.07 0 92.58-39.68 117.87-72.9-44.63-18.68-84.48-31.41-109.44-31.41-67.45 0-79.35 33.06-78.36 50.58z"/></symbol><symbol id="flatpaper-icon-fa-brands-paypal" viewBox="0 0 384 512"><path d="M111.4 295.9c-3.5 19.2-17.4 108.7-21.5 134-.3 1.8-1 2.5-3 2.5H12.3c-7.6 0-13.1-6.6-12.1-13.9L58.8 46.6c1.5-9.6 10.1-16.9 20-16.9 152.3 0 165.1-3.7 204 11.4 60.1 23.3 65.6 79.5 44 140.3-21.5 62.6-72.5 89.5-140.1 90.3-43.4.7-69.5-7-75.3 24.2zM357.1 152c-1.8-1.3-2.5-1.8-3 1.3-2 11.4-5.1 22.5-8.8 33.6-39.9 113.8-150.5 103.9-204.5 103.9-6.1 0-10.1 3.3-10.9 9.4-22.6 140.4-27.1 169.7-27.1 169.7-1 7.1 3.5 12.9 10.6 12.9h63.5c8.6 0 15.7-6.3 17.4-14.9.7-5.4-1.1 6.1 14.4-91.3 4.6-22 14.3-19.7 29.3-19.7 71 0 126.4-28.8 142.9-112.3 6.5-34.8 4.6-71.4-23.8-92.6z"/></symbol><symbol id="flatpaper-icon-fa-brands-x-twitter" viewBox="0 0 512 512"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></symbol><symbol id="flatpaper-icon-fa-brands-steam" viewBox="0 0 496 512"><path d="M496 256c0 137-111.2 248-248.4 248-113.8 0-209.6-76.3-239-180.4l95.2 39.3c6.4 32.1 34.9 56.4 68.9 56.4 39.2 0 71.9-32.4 70.2-73.5l84.5-60.2c52.1 1.3 95.8-40.9 95.8-93.5 0-51.6-42-93.5-93.7-93.5s-93.7 42-93.7 93.5v1.2L176.6 279c-15.5-.9-30.7 3.4-43.5 12.1L0 236.1C10.2 108.4 117.1 8 247.6 8 384.8 8 496 119 496 256zM155.7 384.3l-30.5-12.6a52.79 52.79 0 0 0 27.2 25.8c26.9 11.2 57.8-1.6 69-28.4 5.4-13 5.5-27.3.1-40.3-5.4-13-15.5-23.2-28.5-28.6-12.9-5.4-26.7-5.2-38.9-.6l31.5 13c19.8 8.2 29.2 30.9 20.9 50.7-8.3 19.9-31 29.2-50.8 21zm173.8-129.9c-34.4 0-62.4-28-62.4-62.3s28-62.3 62.4-62.3 62.4 28 62.4 62.3-27.9 62.3-62.4 62.3zm.1-15.6c25.9 0 46.9-21 46.9-46.8 0-25.9-21-46.8-46.9-46.8s-46.9 21-46.9 46.8c.1 25.8 21.1 46.8 46.9 46.8z"/></symbol><symbol id="flatpaper-icon-fa-brands-bilibili" viewBox="0 0 512 512"><path d="M488.6 104.1C505.3 122.2 513 143.8 511.9 169.8V372.2C511.5 398.6 502.7 420.3 485.4 437.3C468.2 454.3 446.3 463.2 419.9 464H92.02C65.57 463.2 43.81 454.2 26.74 436.8C9.682 419.4 .7667 396.5 0 368.2V169.8C.7667 143.8 9.682 122.2 26.74 104.1C43.81 87.75 65.57 78.77 92.02 78H121.4L96.05 52.19C90.3 46.46 87.42 39.19 87.42 30.4C87.42 21.6 90.3 14.34 96.05 8.603C101.8 2.868 109.1 0 117.9 0C126.7 0 134 2.868 139.8 8.603L213.1 78H301.1L375.6 8.603C381.7 2.868 389.2 0 398 0C406.8 0 414.1 2.868 419.9 8.603C425.6 14.34 428.5 21.6 428.5 30.4C428.5 39.19 425.6 46.46 419.9 52.19L394.6 78L423.9 78C450.3 78.77 471.9 87.75 488.6 104.1H488.6zM449.8 173.8C449.4 164.2 446.1 156.4 439.1 150.3C433.9 144.2 425.1 140.9 416.4 140.5H96.05C86.46 140.9 78.6 144.2 72.47 150.3C66.33 156.4 63.07 164.2 62.69 173.8V368.2C62.69 377.4 65.95 385.2 72.47 391.7C78.99 398.2 86.85 401.5 96.05 401.5H416.4C425.6 401.5 433.4 398.2 439.7 391.7C446 385.2 449.4 377.4 449.8 368.2L449.8 173.8zM185.5 216.5C191.8 222.8 195.2 230.6 195.6 239.7V273C195.2 282.2 191.9 289.9 185.8 296.2C179.6 302.5 171.8 305.7 162.2 305.7C152.6 305.7 144.7 302.5 138.6 296.2C132.5 289.9 129.2 282.2 128.8 273V239.7C129.2 230.6 132.6 222.8 138.9 216.5C145.2 210.2 152.1 206.9 162.2 206.5C171.4 206.9 179.2 210.2 185.5 216.5H185.5zM377 216.5C383.3 222.8 386.7 230.6 387.1 239.7V273C386.7 282.2 383.4 289.9 377.3 296.2C371.2 302.5 363.3 305.7 353.7 305.7C344.1 305.7 336.3 302.5 330.1 296.2C323.1 289.9 320.7 282.2 320.4 273V239.7C320.7 230.6 324.1 222.8 330.4 216.5C336.7 210.2 344.5 206.9 353.7 206.5C362.9 206.9 370.7 210.2 377 216.5H377z"/></symbol><symbol id="flatpaper-icon-fa-brands-youtube" viewBox="0 0 576 512"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></symbol><symbol id="flatpaper-icon-fa-brands-facebook" viewBox="0 0 512 512"><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></symbol><symbol id="flatpaper-icon-fa-brands-instagram" viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></symbol><symbol id="flatpaper-icon-fa-brands-telegram" viewBox="0 0 496 512"><path d="M248,8C111.033,8,0,119.033,0,256S111.033,504,248,504,496,392.967,496,256,384.967,8,248,8ZM362.952,176.66c-3.732,39.215-19.881,134.378-28.1,178.3-3.476,18.584-10.322,24.816-16.948,25.425-14.4,1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25,5.342-39.5,3.652-3.793,67.107-61.51,68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608,69.142-14.845,10.194-26.894,9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7,18.45-13.7,108.446-47.248,144.628-62.3c68.872-28.647,83.183-33.623,92.511-33.789,2.052-.034,6.639.474,9.61,2.885a10.452,10.452,0,0,1,3.53,6.716A43.765,43.765,0,0,1,362.952,176.66Z"/></symbol><symbol id="flatpaper-icon-fa-brands-weibo" viewBox="0 0 512 512"><path d="M407 177.6c7.6-24-13.4-46.8-37.4-41.7-22 4.8-28.8-28.1-7.1-32.8 50.1-10.9 92.3 37.1 76.5 84.8-6.8 21.2-38.8 10.8-32-10.3zM214.8 446.7C108.5 446.7 0 395.3 0 310.4c0-44.3 28-95.4 76.3-143.7C176 67 279.5 65.8 249.9 161c-4 13.1 12.3 5.7 12.3 6 79.5-33.6 140.5-16.8 114 51.4-3.7 9.4 1.1 10.9 8.3 13.1 135.7 42.3 34.8 215.2-169.7 215.2zm143.7-146.3c-5.4-55.7-78.5-94-163.4-85.7-84.8 8.6-148.8 60.3-143.4 116s78.5 94 163.4 85.7c84.8-8.6 148.8-60.3 143.4-116zM347.9 35.1c-25.9 5.6-16.8 43.7 8.3 38.3 72.3-15.2 134.8 52.8 111.7 124-7.4 24.2 29.1 37 37.4 12 31.9-99.8-55.1-195.9-157.4-174.3zm-78.5 311c-17.1 38.8-66.8 60-109.1 46.3-40.8-13.1-58-53.4-40.3-89.7 17.7-35.4 63.1-55.4 103.4-45.1 42 10.8 63.1 50.2 46 88.5zm-86.3-30c-12.9-5.4-30 .3-38 12.9-8.3 12.9-4.3 28 8.6 34 13.1 6 30.8.3 39.1-12.9 8-13.1 3.7-28.3-9.7-34zm32.6-13.4c-5.1-1.7-11.4.6-14.3 5.4-2.9 5.1-1.4 10.6 3.7 12.9 5.1 2 11.7-.3 14.6-5.4 2.8-5.2 1.1-10.9-4-12.9z"/></symbol></defs></svg>
+  
+  <header class="site-header">
+  
+  <button class="icon-button js-sidebar-toggle sidebar-toggle" type="button" aria-label="打开侧边栏" aria-controls="paper-sidebar-drawer" aria-expanded="false">
+    
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-menu"></use></svg>
+
+  </button>
+
+  <div class="brand">
+    <div class="brand-mark-wrapper">
+      
+        <a class="brand-mark" href="/" aria-label="FlatPaper 首页">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-grid flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-layout-grid"></use></svg>
+
+        </a>
+      
+    </div>
+    <a class="brand-text" href="/">ZapcoMan&#39;s world</a>
+  </div>
+
+  <nav class="site-nav" aria-label="主导航">
+    
+      
+        <a class="site-nav-link " href="/">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-house"></use></svg>
+
+          <span>首页</span>
+        </a>
+      
+    
+      
+        <div class="site-nav-item has-children">
+          <button class="site-nav-link site-nav-parent" type="button" aria-haspopup="true" aria-expanded="false">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+            <span>文章</span>
+          </button>
+          <div class="site-nav-menu" role="menu">
+            
+              <a role="menuitem" class="" href="/categories/">
+                
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+                <span>分类</span>
+              </a>
+            
+              <a role="menuitem" class="" href="/tags/">
+                
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
+
+                <span>标签</span>
+              </a>
+            
+              <a role="menuitem" class="" href="/archives/">
+                
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-archive flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-archive"></use></svg>
+
+                <span>归档</span>
+              </a>
+            
+          </div>
+        </div>
+      
+    
+      
+        <a class="site-nav-link " href="/links/">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-link"></use></svg>
+
+          <span>友链</span>
+        </a>
+      
+    
+      
+        <a class="site-nav-link " href="/about/">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-user"></use></svg>
+
+          <span>关于</span>
+        </a>
+      
+    
+  </nav>
+
+  <div class="header-tools">
+    <button class="icon-button js-search-open" type="button" aria-label="搜索文章">
+      
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-search"></use></svg>
+
+    </button>
+    <div class="accent-picker">
+      <button class="icon-button accent-toggle" type="button" aria-label="选择主题色" title="选择主题色" aria-haspopup="true" aria-expanded="false" aria-controls="accent-menu">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-palette"></use></svg>
+
+      </button>
+      <div class="accent-menu" id="accent-menu" role="menu" aria-label="主题色">
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="橙色" aria-checked="false" data-accent-option="orange">
+          <span class="accent-swatch accent-swatch--orange" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="紫色" aria-checked="false" data-accent-option="purple">
+          <span class="accent-swatch accent-swatch--purple" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="樱花粉" aria-checked="false" data-accent-option="sakura">
+          <span class="accent-swatch accent-swatch--sakura" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="蓝色" aria-checked="false" data-accent-option="blue">
+          <span class="accent-swatch accent-swatch--blue" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="粉色" aria-checked="false" data-accent-option="pink">
+          <span class="accent-swatch accent-swatch--pink" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="绿色" aria-checked="false" data-accent-option="green">
+          <span class="accent-swatch accent-swatch--green" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="黑色" aria-checked="false" data-accent-option="black">
+          <span class="accent-swatch accent-swatch--black" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+    <button class="theme-toggle" type="button" aria-label="切换颜色模式">
+      <span class="theme-icon theme-icon--sun">
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-sun"></use></svg>
+</span>
+      <span class="theme-icon theme-icon--moon">
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-moon"></use></svg>
+</span>
+    </button>
+  </div>
+</header>
+
+
+  
+  <main class="paper-shell paper-shell--article">
+    
+
+<aside id="paper-sidebar-drawer" class="paper-sidebar paper-sidebar--right" aria-label="侧边栏">
+  <div class="drawer-toolbar" aria-label="侧边栏工具">
+    <div class="drawer-accent-options" role="group" aria-label="主题色">
+      <button type="button" class="accent-option" aria-label="橙色" aria-pressed="false" data-accent-option="orange">
+        <span class="accent-swatch accent-swatch--orange" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="紫色" aria-pressed="false" data-accent-option="purple">
+        <span class="accent-swatch accent-swatch--purple" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="樱花粉" aria-pressed="false" data-accent-option="sakura">
+        <span class="accent-swatch accent-swatch--sakura" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="蓝色" aria-pressed="false" data-accent-option="blue">
+        <span class="accent-swatch accent-swatch--blue" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="粉色" aria-pressed="false" data-accent-option="pink">
+        <span class="accent-swatch accent-swatch--pink" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="绿色" aria-pressed="false" data-accent-option="green">
+        <span class="accent-swatch accent-swatch--green" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="黑色" aria-pressed="false" data-accent-option="black">
+        <span class="accent-swatch accent-swatch--black" aria-hidden="true"></span>
+      </button>
+    </div>
+    <button class="icon-button drawer-close js-sidebar-close" type="button" aria-label="关闭侧边栏">
+      
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-x"></use></svg>
+
+    </button>
+  </div>
+
+  <section class="side-card nav-card">
+    <nav class="site-nav-drawer" aria-label="移动端导航">
+      
+        
+          <a class="" href="/">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-house"></use></svg>
+
+            <span>首页</span>
+          </a>
+        
+      
+        
+          <div class="drawer-nav-group">
+            <button class="drawer-nav-parent" type="button" aria-expanded="false">
+              
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+              <span>文章</span>
+            </button>
+            <div class="drawer-nav-children">
+              
+                <a class="" href="/categories/">
+                  
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+                  <span>分类</span>
+                </a>
+              
+                <a class="" href="/tags/">
+                  
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
+
+                  <span>标签</span>
+                </a>
+              
+                <a class="" href="/archives/">
+                  
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-archive flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-archive"></use></svg>
+
+                  <span>归档</span>
+                </a>
+              
+            </div>
+          </div>
+        
+      
+        
+          <a class="" href="/links/">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-link"></use></svg>
+
+            <span>友链</span>
+          </a>
+        
+      
+        
+          <a class="" href="/about/">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-user"></use></svg>
+
+            <span>关于</span>
+          </a>
+        
+      
+    </nav>
+  </section>
+
+  <section class="side-card profile-card">
+    
+      <div class="avatar avatar--image avatar--circle">
+        <img src="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4" alt="ZapcoMan" loading="lazy" referrerpolicy="no-referrer">
+      </div>
+    
+    <h3>ZapcoMan</h3>
+    <p class="profile-role">日常记录</p>
+    <p>独立开发者 主攻方向：Java 后端开发（Spring Boot + Vue3 全栈）Python 脚本开发（网络编程、爬虫、数据处理、信息安全工具、自动化运维,渗透测试工具）</p>
+    
+      <div class="site-info" aria-label="站点信息">
+        
+          
+            <a class="site-info__item" href="/archives/">
+              <strong>174</strong>
+              <span>文章</span>
+            </a>
+          
+        
+          
+            <a class="site-info__item" href="/categories/">
+              <strong>49</strong>
+              <span>分类</span>
+            </a>
+          
+        
+          
+            <a class="site-info__item" href="/tags/">
+              <strong>517</strong>
+              <span>标签</span>
+            </a>
+          
+        
+      </div>
+    
+    <div class="socials">
+      
+        <a href="https://github.com/ZapcoMan" target="_blank" rel="noopener" aria-label="GitHub" data-tooltip="GitHub">
+          
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="lucide lucide-github flatpaper-icon flatpaper-icon--fa-brands" aria-hidden="true"><use href="#flatpaper-icon-fa-brands-github"></use></svg>
+
+          
+        </a>
+      
+        <a href="https://space.bilibili.com/544166891" target="_blank" rel="noopener" aria-label="Bilibili" data-tooltip="Bilibili">
+          
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="lucide lucide-bilibili flatpaper-icon flatpaper-icon--fa-brands" aria-hidden="true"><use href="#flatpaper-icon-fa-brands-bilibili"></use></svg>
+
+          
+        </a>
+      
+        <a href="#" target="_blank" rel="noopener" aria-label="掘金" data-tooltip="掘金">
+          
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-send"></use></svg>
+
+          
+        </a>
+      
+      
+        
+        
+        <a href="/atom.xml" aria-label="RSS feed" data-tooltip="RSS feed">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rss flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-rss"></use></svg>
+
+        </a>
+      
+    </div>
+  </section>
+
+  
+
+  
+    <div class="post-sticky-stack">
+      <section class="side-card toc-card">
+        <header class="toc-card__head">
+          <h2>
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-table-of-contents flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-table-of-contents"></use></svg>
+文章目录</h2>
+          <button type="button" class="toc-toggle-all" data-action="toggle-toc" aria-pressed="false" aria-label="展开全部目录" title="展开全部目录">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-chevron-down"></use></svg>
+
+          </button>
+        </header>
+        <div class="toc-content">
+          
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9B%B6%E3%80%81%E5%85%88%E6%8A%8A%E8%B4%A3%E4%BB%BB%E5%88%92%E6%B8%85%EF%BC%9A%E8%A2%AB%E6%94%BB%E7%A0%B4%E7%9A%84%E4%BB%8E%E6%9D%A5%E4%B8%8D%E6%98%AF%E7%AE%97%E6%B3%95"><span class="toc-text">零、先把责任划清：被攻破的从来不是算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81ECB%EF%BC%9A%E5%AF%86%E6%96%87%E8%87%AA%E5%B7%B1%E6%8A%8A%E7%BB%93%E6%9E%84%E7%94%BB%E5%87%BA%E6%9D%A5%E4%BA%86"><span class="toc-text">一、ECB：密文自己把结构画出来了</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-Adobe-2013%EF%BC%9A%E4%B8%80%E4%BA%BF%E4%BA%94%E5%8D%83%E4%B8%87%E6%9D%A1%E8%AE%B0%E5%BD%95%EF%BC%8C%E5%AF%86%E7%A0%81%E4%B8%80%E7%9C%BC%E5%8F%AF%E8%A7%81"><span class="toc-text">1.1 Adobe 2013：一亿五千万条记录，密码一眼可见</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-Java-%E5%92%8C%E5%9B%BD%E5%AF%86%E6%94%B9%E9%80%A0%E9%87%8C%E7%9A%84%E4%B8%A4%E4%B8%AA%E5%BF%85%E8%B8%A9%E7%9A%84%E5%9D%91"><span class="toc-text">1.2 Java 和国密改造里的两个必踩的坑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E6%94%BB%E5%87%BB%EF%BC%9A%E5%9D%97%E9%87%8D%E6%8E%92%EF%BC%88cut-and-paste%EF%BC%89"><span class="toc-text">1.3 攻击：块重排（cut-and-paste）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E6%80%8E%E4%B9%88%E7%94%A8%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E5%88%A4%E5%AE%9A"><span class="toc-text">1.4 怎么用一行代码判定</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81CBC-bit-flipping%EF%BC%9A%E6%94%B9%E4%B8%80%E4%B8%AA%E5%AD%97%E8%8A%82%EF%BC%8C%E7%AF%A1%E6%94%B9%E4%B8%80%E6%95%B4%E6%AE%B5%E6%98%8E%E6%96%87"><span class="toc-text">二、CBC bit-flipping：改一个字节，篡改一整段明文</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%85%B8%E5%9E%8B%E5%9C%BA%E6%99%AF"><span class="toc-text">2.1 典型场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E4%B8%BA%E4%BB%80%E4%B9%88%E5%AE%83%E6%AF%94-padding-oracle-%E6%9B%B4%E5%B8%B8%E8%A7%81"><span class="toc-text">2.2 为什么它比 padding oracle 更常见</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81Padding-oracle%EF%BC%9A%E4%B8%80%E4%B8%AA%E5%B8%83%E5%B0%94%E5%80%BC%E5%B0%B1%E5%A4%9F%E4%BA%86"><span class="toc-text">三、Padding oracle：一个布尔值就够了</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%8E%9F%E7%90%86%EF%BC%9A%E6%8A%8A%E2%80%9D%E5%A1%AB%E5%85%85%E5%AF%B9%E4%B8%8D%E5%AF%B9%E2%80%9D%E5%8F%98%E6%88%90%E4%B8%80%E4%B8%AA%E5%8F%AF%E6%9F%A5%E8%AF%A2%E7%9A%84%E9%A2%84%E8%A8%80%E6%9C%BA"><span class="toc-text">3.1 原理：把”填充对不对”变成一个可查询的预言机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E6%80%8E%E4%B9%88%E4%BB%8E%E4%B8%80%E4%B8%AA%E6%AF%94%E7%89%B9%E9%87%8C%E6%8A%A0%E5%87%BA%E4%B8%80%E4%B8%AA%E5%AD%97%E8%8A%82"><span class="toc-text">3.2 怎么从一个比特里抠出一个字节</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E5%8D%81%E4%B9%9D%E5%B9%B4%EF%BC%8C%E5%9B%9B%E6%AC%A1%E5%A4%8D%E6%B4%BB"><span class="toc-text">3.3 十九年，四次复活</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E7%8E%B0%E4%BB%A3%E7%89%88%E6%9C%AC%EF%BC%9ATLS-%E4%BF%AE%E5%A5%BD%E4%BA%86%EF%BC%8C%E4%BD%A0%E5%86%99%E7%9A%84-token-%E6%B2%A1%E6%9C%89"><span class="toc-text">3.4 现代版本：TLS 修好了，你写的 token 没有</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%93%88%E5%B8%8C%E7%9A%84%E4%B8%A4%E4%B8%AA%E7%BB%8F%E5%85%B8%E6%AD%BB%E6%B3%95"><span class="toc-text">四、哈希的两个经典死法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E9%95%BF%E5%BA%A6%E6%89%A9%E5%B1%95%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88-H-secret-%E2%80%96-msg-%E6%98%AF%E4%B8%AA%E9%94%99%E8%AF%AF%E8%AE%BE%E8%AE%A1"><span class="toc-text">4.1 长度扩展：为什么 H(secret ‖ msg) 是个错误设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E5%8A%A0%E7%9B%90%E6%8C%A1%E5%BE%97%E4%BD%8F%E5%BD%A9%E8%99%B9%E8%A1%A8%EF%BC%8C%E6%8C%A1%E4%B8%8D%E4%BD%8F-GPU"><span class="toc-text">4.2 加盐挡得住彩虹表，挡不住 GPU</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81RSA%EF%BC%9A%E6%95%B0%E5%AD%A6%E6%B2%A1%E9%94%99%EF%BC%8C%E5%8F%82%E6%95%B0%E9%94%99%E4%BA%86"><span class="toc-text">五、RSA：数学没错，参数错了</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E4%B8%80%E5%8F%A5%E8%83%BD%E8%AE%B0%E4%BD%8F%E7%9A%84%E8%AF%9D"><span class="toc-text">5.1 一句能记住的话</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E5%85%B1%E6%A8%A1%E6%94%BB%E5%87%BB%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E6%95%99%E5%85%B7%E7%BA%A7%E6%A1%88%E4%BE%8B"><span class="toc-text">5.2 共模攻击为什么是教具级案例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-%E5%85%B1%E7%94%A8%E7%B4%A0%E6%95%B0%EF%BC%9A%E4%B8%8D%E6%98%AF%E7%90%86%E8%AE%BA%EF%BC%8C%E6%98%AF%E5%AE%9E%E6%B5%8B"><span class="toc-text">5.3 共用素数：不是理论，是实测</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E9%9A%8F%E6%9C%BA%E6%95%B0%EF%BC%9A%E6%95%B4%E6%A0%8B%E6%A5%BC%E6%9C%80%E5%AE%B9%E6%98%93%E5%A1%8C%E7%9A%84%E9%82%A3%E6%A0%B9%E6%9F%B1%E5%AD%90"><span class="toc-text">六、随机数：整栋楼最容易塌的那根柱子</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-Debian-OpenSSL%EF%BC%882008%EF%BC%89%EF%BC%9A%E5%88%A0%E4%BA%86%E4%B8%80%E8%A1%8C%E6%B3%A8%E9%87%8A%E6%8E%89%E7%9A%84%E4%BB%A3%E7%A0%81"><span class="toc-text">6.1 Debian OpenSSL（2008）：删了一行注释掉的代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-Sony-PS3%EF%BC%882010%EF%BC%89%EF%BC%9Ak-%E6%98%AF%E4%B8%AA%E5%B8%B8%E6%95%B0"><span class="toc-text">6.2 Sony PS3（2010）：k 是个常数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-%E5%BC%B1-PRNG-%E7%9A%84%E9%80%9A%E7%94%A8%E6%89%93%E6%B3%95"><span class="toc-text">6.3 弱 PRNG 的通用打法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E5%AE%9E%E7%8E%B0%E5%B1%82%EF%BC%9A%E7%A1%AC%E7%BC%96%E7%A0%81%E5%AF%86%E9%92%A5%E3%80%81%E5%BC%B1-KDF%EF%BC%8C%E5%92%8C%E8%83%BD%E8%A2%AB%E7%A7%92%E8%A1%A8%E9%87%8F%E5%87%BA%E6%9D%A5%E7%9A%84%E6%AF%94%E7%89%B9"><span class="toc-text">七、实现层：硬编码密钥、弱 KDF，和能被秒表量出来的比特</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-%E7%A1%AC%E7%BC%96%E7%A0%81%E5%AF%86%E9%92%A5%EF%BC%9A%E6%8A%80%E6%9C%AF%E5%80%BA%E9%87%8C%E6%9C%80%E9%9A%BE%E8%BF%98%E7%9A%84%E4%B8%80%E7%A7%8D"><span class="toc-text">7.1 硬编码密钥：技术债里最难还的一种</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-%E5%BC%B1-KDF%EF%BC%9A%E6%8A%8A%E2%80%9D%E6%B4%BE%E7%94%9F%E2%80%9D%E5%86%99%E6%88%90%E2%80%9D%E6%8B%BC%E4%B8%80%E4%B8%8B%E2%80%9D"><span class="toc-text">7.2 弱 KDF：把”派生”写成”拼一下”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-%E6%97%B6%E5%BA%8F%E4%BE%A7%E4%BF%A1%E9%81%93%EF%BC%9A%E6%8A%8A%E6%AF%AB%E7%A7%92%E5%8F%98%E6%88%90%E6%AF%94%E7%89%B9"><span class="toc-text">7.3 时序侧信道：把毫秒变成比特</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81TLS-%E4%BA%8C%E5%8D%81%E5%B9%B4%EF%BC%9A%E4%B8%80%E9%83%A8%E2%80%9D%E7%94%A8%E6%B3%95%E9%94%99%E8%AF%AF%E5%8F%B2%E2%80%9D"><span class="toc-text">八、TLS 二十年：一部”用法错误史”</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%9A%84%E5%8F%A6%E4%B8%80%E6%9D%A1%E7%BA%BF%EF%BC%9A%E8%AF%81%E4%B9%A6%E5%9B%BA%E5%AE%9A%E7%BB%95%E8%BF%87"><span class="toc-text">移动端的另一条线：证书固定绕过</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%9D%E3%80%81%E6%8B%BF%E5%88%B0%E4%B8%80%E4%B8%AA%E5%8A%A0%E5%AF%86%E7%B3%BB%E7%BB%9F%EF%BC%8C%E5%85%88%E9%97%AE%E8%BF%99%E4%B8%83%E4%B8%AA%E9%97%AE%E9%A2%98"><span class="toc-text">九、拿到一个加密系统，先问这七个问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E3%80%81%E4%B8%89%E6%9D%A1%E4%B8%8D%E4%BC%9A%E8%BF%87%E6%97%B6%E7%9A%84%E5%8E%9F%E5%88%99"><span class="toc-text">十、三条不会过时的原则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E5%88%99%E4%B8%80%EF%BC%9A%E8%AE%A4%E8%AF%81%E5%85%88%E4%BA%8E%E8%A7%A3%E5%AF%86"><span class="toc-text">原则一：认证先于解密</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E5%88%99%E4%BA%8C%EF%BC%9A%E6%89%80%E6%9C%89%E6%B6%89%E5%8F%8A%E7%A7%98%E5%AF%86%E7%9A%84%E6%AF%94%E8%BE%83%EF%BC%8C%E9%83%BD%E5%BF%85%E9%A1%BB%E6%81%92%E5%AE%9A%E6%97%B6%E9%97%B4"><span class="toc-text">原则二：所有涉及秘密的比较，都必须恒定时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E5%88%99%E4%B8%89%EF%BC%9A%E4%B8%8D%E8%A6%81%E8%87%AA%E5%B7%B1%E6%8B%BC"><span class="toc-text">原则三：不要自己拼</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A5%E4%B8%80%E5%8F%A5%E5%85%B3%E4%BA%8E%E5%9B%BD%E5%AF%86"><span class="toc-text">补一句关于国密</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E4%B8%80%E3%80%81%E5%B0%8F%E7%BB%93"><span class="toc-text">十一、小结</span></a></li></ol>
+          
+        </div>
+      </section>
+      
+
+  <section class="side-card recent-card latest-posts-card">
+    <h2>
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-history flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-history"></use></svg>
+最新文章</h2>
+    <ul class="recent-list">
+      
+        <li>
+          <a class="recent-item" href="/2026/11/03/20261103/2026110312/">
+            <strong>GCM 的 nonce 只要重复一次，攻击者就能伪造任意消息：AEAD 的六种误用</strong>
+            <em>2026-11-03</em>
+          </a>
+        </li>
+      
+        <li>
+          <a class="recent-item" href="/2026/11/03/20261103/2026110311/">
+            <strong>一条 nonce 毁掉整条曲线：ECDSA 的五类致命错误，从索尼的常数 4 到格攻击</strong>
+            <em>2026-11-03</em>
+          </a>
+        </li>
+      
+        <li>
+          <a class="recent-item" href="/2026/11/03/20261103/2026110310/">
+            <strong>MD5 死了二十年，还在给恶意软件签名：哈希碰撞、长度扩展与口令存储的完整攻防</strong>
+            <em>2026-11-03</em>
+          </a>
+        </li>
+      
+        <li>
+          <a class="recent-item" href="/2026/11/03/20261103/2026110308/">
+            <strong>拿到第一个 shell 只完成了 20%：域渗透六段流水线，从用户名枚举到 DCSync 接管域控</strong>
+            <em>2026-11-03</em>
+          </a>
+        </li>
+      
+        <li>
+          <a class="recent-item" href="/2026/11/03/20261103/2026110307/">
+            <strong>Canary、PIE、CET、PAC 一层层压上来，二进制利用还剩什么：现代缓解全景与 fuzzing 驱动的漏洞研究流水线</strong>
+            <em>2026-11-03</em>
+          </a>
+        </li>
+      
+    </ul>
+  </section>
+
+
+    </div>
+  
+
+  
+
+</aside>
+
+    <section class="paper-main">
+      
+
+<div class="article-tape-wrap">
+<span class="tape tape--top-right" aria-hidden="true"></span>
+<article class="article-paper">
+  
+  <header class="article-header">
+    
+      <a class="label-pill" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+        网络安全
+      </a>
+    
+    <h1>AES-256 二十年没被破过一次，泄露的数据却越来越多：密码学实战的七类&#34;用法漏洞&#34;，从 ECB 重排到 RSA 共模</h1>
+    <div class="meta-line meta-line--article">
+      <span class="meta-date">
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
+2026-11-03</span>
+      
+        <span class="meta-tags">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
+
+          <a class="meta-tag-link" href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/">#密码学</a><a class="meta-tag-link" href="/tags/%E4%BE%A7%E4%BF%A1%E9%81%93/">#侧信道</a><a class="meta-tag-link" href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6%E6%94%BB%E5%87%BB/">#密码学攻击</a><a class="meta-tag-link" href="/tags/ECB/">#ECB</a><a class="meta-tag-link" href="/tags/CBC/">#CBC</a><a class="meta-tag-link" href="/tags/Padding-Oracle/">#Padding Oracle</a><a class="meta-tag-link" href="/tags/%E9%95%BF%E5%BA%A6%E6%89%A9%E5%B1%95%E6%94%BB%E5%87%BB/">#长度扩展攻击</a><a class="meta-tag-link" href="/tags/RSA/">#RSA</a><a class="meta-tag-link" href="/tags/%E5%BC%B1%E9%9A%8F%E6%9C%BA%E6%95%B0/">#弱随机数</a><a class="meta-tag-link" href="/tags/TLS/">#TLS</a><a class="meta-tag-link" href="/tags/%E5%9B%BD%E5%AF%86/">#国密</a>
+        </span>
+      
+    </div>
+  </header>
+
+  
+
+
+  <div class="article-content">
+    <blockquote>
+<p>1998 年，Daniel Bleichenbacher 在 CRYPTO 会议上演示了一件事：只要服务器对”RSA 填充是否正确”给出不同的反应，攻击者就能用大约一百万次查询，把一个他完全没有私钥的密文完整解出来。</p>
+<p>十九年后的 2017 年，三位研究者把这个方法原封不动地重跑了一遍，扫描 Alexa 前 100 的站点，27 个存在同样的漏洞，并且在 Facebook、PayPal 等厂商的资产上成功复现。代码一行没改，论文一个字没变。</p>
+</blockquote>
+<p>这就是密码学实战最反直觉的地方：<strong>十九年里，RSA 的数学没有被撼动过分毫，但同一个洞还在原地开着。</strong></p>
+<p>我写过一篇《古典密码学 (一)》，讲凯撒和 Atbash 的 Python 实现，然后就断了。那条线其实一直没接上——从”手写一个替换密码”到”看懂一个真实系统的加密为什么失效”，中间隔着的正是这篇文章。</p>
+<p>它不讲算法怎么设计，只讲算法被<strong>用错</strong>的七种方式。</p>
+<h2 id="零、先把责任划清：被攻破的从来不是算法"><a href="#零、先把责任划清：被攻破的从来不是算法" class="headerlink" title="零、先把责任划清：被攻破的从来不是算法"></a>零、先把责任划清：被攻破的从来不是算法</h2><p>每次出现大规模数据泄露，新闻标题里总有一个熟悉的句式：”某加密算法被破解”。从业者看到这种标题应该先条件反射地问三个问题：</p>
+<ol>
+<li><strong>对手模型是什么？</strong> 攻击者能选择明文吗？能观察时间吗？能反复提交吗？</li>
+<li><strong>复杂度是多少？</strong> 是 2^40 还是 2^120？前者一台机器几天，后者宇宙寿命不够。</li>
+<li><strong>影响哪个实现？</strong> 是算法本身，还是某个库、某个模式、某个参数？</li>
+</ol>
+<p>这三个问题问下来，99% 的”算法被破解”会现出原形——出问题的不是算法，是算法周围那一圈没人负责的东西。</p>
+<p>我把责任分三层：</p>
+<table>
+<thead>
+<tr>
+<th>层次</th>
+<th>出问题的东西</th>
+<th>典型代表</th>
+<th>攻击者需要什么</th>
+<th>实战占比</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>算法</td>
+<td>数学结构被找到弱点</td>
+<td>MD5&#x2F;SHA-1 碰撞、理论上的 AES 简化轮攻击</td>
+<td>极强的密码分析能力</td>
+<td>极低</td>
+</tr>
+<tr>
+<td>协议</td>
+<td>交互流程本身泄露信息</td>
+<td>POODLE、ROBOT、DROWN、0-RTT 重放</td>
+<td>一个能持续观察差异的位置</td>
+<td>中</td>
+</tr>
+<tr>
+<td>实现 &#x2F; 用法</td>
+<td>模式、参数、随机数、比较方式、错误处理</td>
+<td>ECB 滥用、固定 nonce、短路比较</td>
+<td>通常只需要读代码</td>
+<td><strong>绝大多数</strong></td>
+</tr>
+</tbody></table>
+<p>MD5 和 SHA-1 是唯一真正意义上”算法层被打破且造成实战影响”的例子——Flame 恶意软件用 MD5 碰撞伪造了微软的代码签名证书（2012），SHAttered 用 2^63 的代价造出两个 SHA-1 碰撞的 PDF（2017）。除此之外，AES、SHA-256、RSA-2048 至今没有实用攻击。</p>
+<p>而 AES 被引用最多的”攻击”，是 biclique 方法对简化轮数版本的加速，对完整 AES-128 的理论复杂度仍在 2^126 量级——这个数字的意思是：<strong>没有任何实际意义</strong>。</p>
+<p>所以技能里那条原则是对的：<strong>一切破解以”能否拿可控优势”为准，纯理论不列为成果。</strong></p>
+<p>而”可控优势”这四个字，恰好是后面七类攻击的共同结构。它们全部在回答同一个问题：<strong>这个系统多告诉了我一个比特吗？</strong></p>
+<h2 id="一、ECB：密文自己把结构画出来了"><a href="#一、ECB：密文自己把结构画出来了" class="headerlink" title="一、ECB：密文自己把结构画出来了"></a>一、ECB：密文自己把结构画出来了</h2><p>ECB 是所有分组密码模式里最简单的一个：每个块独立加密，<code>C_i = E_K(P_i)</code>。</p>
+<p>它的后果是一句话——<strong>相同的明文块，永远产生相同的密文块</strong>。这叫等值泄露（equality leak）。</p>
+<p>网上流传最广的演示是那张”ECB 加密后的企鹅图仍能看出轮廓”，但那张图其实把问题讲小了。图像轮廓只是视觉上的巧合，真正致命的是等值泄露在<strong>业务数据</strong>里的表现。</p>
+<h3 id="1-1-Adobe-2013：一亿五千万条记录，密码一眼可见"><a href="#1-1-Adobe-2013：一亿五千万条记录，密码一眼可见" class="headerlink" title="1.1 Adobe 2013：一亿五千万条记录，密码一眼可见"></a>1.1 Adobe 2013：一亿五千万条记录，密码一眼可见</h3><p>2013 年 Adobe 泄露 1.53 亿条用户记录。事后分析发现，密码字段用的是 3DES 的 ECB 模式，而密码提示是明文存储的。</p>
+<p>这意味着研究者不需要破解任何东西，只要对密文做一次 <code>GROUP BY</code>，就能直接得到：</p>
+<ul>
+<li>有多少用户使用了同一个密码（密文相同的即同一密码）</li>
+<li>哪些是弱密码（配合明文的密码提示，猜中的概率极高）</li>
+<li>哪些账号属于同一批批量注册（密文完全一致）</li>
+</ul>
+<p><strong>ECB 把一个加密问题，变成了一个统计问题。</strong></p>
+<h3 id="1-2-Java-和国密改造里的两个必踩的坑"><a href="#1-2-Java-和国密改造里的两个必踩的坑" class="headerlink" title="1.2 Java 和国密改造里的两个必踩的坑"></a>1.2 Java 和国密改造里的两个必踩的坑</h3><p>代码审计时，下面两行是值得直接标红的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SunJCE：不指定模式和填充时，默认就是 AES/ECB/PKCS5Padding</span></span><br><span class="line"><span class="type">Cipher</span> <span class="variable">c</span> <span class="operator">=</span> Cipher.getInstance(<span class="string">&quot;AES&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// BouncyCastle 的 SM4 同样是 ECB 默认</span></span><br><span class="line"><span class="type">Cipher</span> <span class="variable">c</span> <span class="operator">=</span> Cipher.getInstance(<span class="string">&quot;SM4&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>Java 这个默认值坑了整整一代人。因为 <code>AES/ECB/PKCS5Padding</code> 是合法配置，编译通过、测试通过、加解密都对，只有在密文被拖走的那一天才会暴露。</p>
+<p>更值得注意的是国密改造。近几年大量系统在做 SM4 替换，而改造中最省事的写法恰恰是 <code>SM4/ECB</code>——**这等于把 AES 十几年前踩过的坑，用国产算法重新挖了一遍。**合规检查看的是”是否使用了 SM4”，不看”用的什么模式”，于是这个错误可以一路通过等保测评。</p>
+<h3 id="1-3-攻击：块重排（cut-and-paste）"><a href="#1-3-攻击：块重排（cut-and-paste）" class="headerlink" title="1.3 攻击：块重排（cut-and-paste）"></a>1.3 攻击：块重排（cut-and-paste）</h3><p>当攻击者能控制一部分明文、又能看到整体密文时，ECB 就退化成了一个乐高积木。</p>
+<p>设明文按 16 字节切块：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">块0: user=gue</span><br><span class="line">块1: st;role=</span><br><span class="line">块2: user;exp</span><br><span class="line">块3: =2026123</span><br></pre></td></tr></table></figure>
+
+<p>如果攻击者能注册一个名为 <code>admin;role=adm</code> 的账号（长度刚好对齐），就能拿到一个内容为 <code>admin;role=adm</code> 的块，然后把它拼到自己的 token 里，让服务端解出 <code>user=admin;role=adm...</code>。</p>
+<p>这类题在 CTF 里被叫做 ECB cut-and-paste，看起来像玩具，但它的现实版本是：<strong>任何”把权限字段和用户数据拼在同一个加密串里”的设计，只要用了 ECB，就等于把权限字段交给了用户。</strong></p>
+<h3 id="1-4-怎么用一行代码判定"><a href="#1-4-怎么用一行代码判定" class="headerlink" title="1.4 怎么用一行代码判定"></a>1.4 怎么用一行代码判定</h3><p>不用解密，只看密文就能判断一个系统是不是 ECB：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">ecb_score</span>(<span class="params">ct: <span class="built_in">bytes</span>, bs: <span class="built_in">int</span> = <span class="number">16</span></span>) -&gt; <span class="built_in">float</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;密文中重复块的比例。真实业务数据下 ECB 几乎不可能为 0。&quot;&quot;&quot;</span></span><br><span class="line">    blocks = [ct[i:i + bs] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(ct) - bs + <span class="number">1</span>, bs)]</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> blocks:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0.0</span></span><br><span class="line">    dup = <span class="built_in">len</span>(blocks) - <span class="built_in">len</span>(<span class="built_in">set</span>(blocks))</span><br><span class="line">    <span class="keyword">return</span> dup / <span class="built_in">len</span>(blocks)</span><br></pre></td></tr></table></figure>
+
+<p>判定逻辑很简单：正常业务数据（JSON 的字段名、重复的填充、结构化的前缀）一定存在重复块。如果 <code>ecb_score</code> 明显大于 0，基本可以确认是 ECB。</p>
+<p>再进一步，把同一个明文加密两次发过去，<strong>密文完全一致</strong>就等于实锤——ECB 或者固定 IV 的 CBC。</p>
+<h2 id="二、CBC-bit-flipping：改一个字节，篡改一整段明文"><a href="#二、CBC-bit-flipping：改一个字节，篡改一整段明文" class="headerlink" title="二、CBC bit-flipping：改一个字节，篡改一整段明文"></a>二、CBC bit-flipping：改一个字节，篡改一整段明文</h2><p>CBC 的解密公式是这个：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">P_i = D_K(C_i) ⊕ C_&#123;i-1&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个公式里藏着一个非常直接的杠杆：<code>C_{i-1}</code> 是攻击者能看到的密文，而它和明文之间只隔了一个 XOR。</p>
+<p>所以对 <code>C_{i-1}</code> 的第 j 个字节做一次异或，<code>P_i</code> 的第 j 个字节就会发生<strong>同样幅度的异或</strong>，位置精确、误差为零。这就是 CBC bit-flipping。</p>
+<p>代价是 <code>P_{i-1}</code> 会整块变成乱码——因为 <code>C_{i-1}</code> 同时是第 i-1 块解密结果的异或对象，改了它，前一块就毁了。</p>
+<p><strong>战术因此变得很明确：把攻击目标放在第二块之后，让第一块去吃那口乱码。</strong></p>
+<h3 id="2-1-典型场景"><a href="#2-1-典型场景" class="headerlink" title="2.1 典型场景"></a>2.1 典型场景</h3><p>一个加密的 cookie：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uid=1001;role=user;exp=20261231</span><br></pre></td></tr></table></figure>
+
+<p>目标是把 <code>role=user</code> 改成 <code>role=root</code>（等长，逐字节异或即可），同时接受前一块变成垃圾。</p>
+<p>更好的目标是那些”第一块本身就是垃圾”的设计——比如 token 最前面放一个随机 IV 或者时间戳，攻击者从第二块开始改，前面乱不乱都无所谓。</p>
+<p>代码实现只有三行：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">flip_byte</span>(<span class="params">ct: <span class="built_in">bytearray</span>, block_index: <span class="built_in">int</span>, pos: <span class="built_in">int</span>, old: <span class="built_in">int</span>, new: <span class="built_in">int</span></span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;把第 block_index 块的 pos 位置从 old 改成 new，影响的是下一块的同一位置。&quot;&quot;&quot;</span></span><br><span class="line">    ct[block_index * <span class="number">16</span> + pos] ^= (old ^ new)</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-为什么它比-padding-oracle-更常见"><a href="#2-2-为什么它比-padding-oracle-更常见" class="headerlink" title="2.2 为什么它比 padding oracle 更常见"></a>2.2 为什么它比 padding oracle 更常见</h3><p>因为它的门槛极低：<strong>不需要任何反馈，不需要报错信息，不需要时序。</strong></p>
+<p>只要满足三个条件，一次请求就能完成篡改：</p>
+<ol>
+<li>用了 CBC 模式</li>
+<li>明文结构可预测（知道要改的字符在原位是什么）</li>
+<li><strong>没有 MAC</strong></li>
+</ol>
+<p>第三条是全部问题的根源。CBC 本身只提供机密性，不提供完整性。而”加密的 cookie”这种设计，绝大多数实现者都只做了加密，忘了认证。</p>
+<p>这就是为什么现代密码学工程的第一条铁律是 <strong>Encrypt-then-MAC</strong>，或者干脆用 AEAD（GCM &#x2F; ChaCha20-Poly1305）。AEAD 会先验 tag 再解密，改一个比特整个包直接丢弃，bit-flipping 无从下手。</p>
+<p>顺带说一句，AES-GCM 的 nonce 复用比 CBC 的 bit-flipping 严重得多。CBC 篡改只是”改内容”，GCM 的 nonce 复用会直接泄露 GHASH 的认证密钥 H，攻击者从此可以<strong>伪造任意消息的合法 tag</strong>——那不是读权限，那是签名权。</p>
+<h2 id="三、Padding-oracle：一个布尔值就够了"><a href="#三、Padding-oracle：一个布尔值就够了" class="headerlink" title="三、Padding oracle：一个布尔值就够了"></a>三、Padding oracle：一个布尔值就够了</h2><p>这是整个密码学实战里最漂亮的一类攻击，也是最能说明”一个比特的价值”的案例。</p>
+<h3 id="3-1-原理：把”填充对不对”变成一个可查询的预言机"><a href="#3-1-原理：把”填充对不对”变成一个可查询的预言机" class="headerlink" title="3.1 原理：把”填充对不对”变成一个可查询的预言机"></a>3.1 原理：把”填充对不对”变成一个可查询的预言机</h3><p>CBC 解密后要去掉 PKCS#7 填充：最后一个字节是 n，就说明末尾有 n 个字节的值都是 n。如果不符合这个规则，解密就失败。</p>
+<p>问题来了——<strong>服务端怎么告诉客户端”解密失败”？</strong></p>
+<ul>
+<li>返回 500</li>
+<li>返回 200 但内容是 “invalid token”</li>
+<li>返回 200 但响应体长度不同</li>
+<li>报错快一点，成功慢一点</li>
+</ul>
+<p>这四种反应里任何一种，只要<strong>成功和失败能被区分</strong>，攻击者就拿到了一个预言机（oracle）：我可以问任意密文”它的填充合法吗”，你回答是或否。</p>
+<p>而填充合法性这一个比特，足以还原整个明文。</p>
+<h3 id="3-2-怎么从一个比特里抠出一个字节"><a href="#3-2-怎么从一个比特里抠出一个字节" class="headerlink" title="3.2 怎么从一个比特里抠出一个字节"></a>3.2 怎么从一个比特里抠出一个字节</h3><p>设目标块是 <code>C_i</code>，它解密后的中间值是 <code>I_i = D_K(C_i)</code>，我们不知道 <code>I_i</code>，但知道 <code>P_i = I_i ⊕ C_{i-1}</code>。</p>
+<p>攻击者构造一个伪造的 <code>C&#39;</code> 当作 <code>C_{i-1}</code> 发过去。服务端算 <code>P&#39; = I_i ⊕ C&#39;</code>，然后检查 <code>P&#39;</code> 的填充。</p>
+<p>如果攻击者让 <code>C&#39;</code> 的最后一个字节等于 <code>g</code>，那么 <code>P&#39;</code> 的最后一个字节就是 <code>I_i[15] ⊕ g</code>。当这个值恰好等于 <code>0x01</code> 时（合法的单字节填充），预言机回答”合法”。</p>
+<p>于是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">I_i[15] = g ⊕ 0x01</span><br><span class="line">P_i[15] = I_i[15] ⊕ C_&#123;i-1&#125;[15]     ← C_&#123;i-1&#125; 是我们已知的真实密文</span><br></pre></td></tr></table></figure>
+
+<p><strong>一个字节的明文出来了。</strong> 平均需要试 128 次（256 的一半）。</p>
+<p>拿到最后一个字节后，把 <code>C&#39;</code> 的最后一个字节固定成 <code>I_i[15] ⊕ 0x02</code>，让填充变成合法的两字节 <code>0x02 0x02</code>，然后开始爆破倒数第二个字节。如此往复，16 个字节全部恢复。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">oracle</span>(<span class="params">ct: <span class="built_in">bytes</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">    r = requests.post(URL, data=&#123;<span class="string">&quot;token&quot;</span>: base64.b64encode(ct)&#125;, timeout=<span class="number">5</span>)</span><br><span class="line">    <span class="keyword">return</span> r.status_code == <span class="number">200</span>        <span class="comment"># 也可能是 r.text != &quot;invalid&quot;、或 len(r.content) == 常数值</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">recover_block</span>(<span class="params">prev: <span class="built_in">bytes</span>, target: <span class="built_in">bytes</span></span>) -&gt; <span class="built_in">bytes</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;prev = C_&#123;i-1&#125;（真实密文），target = C_i。返回这一块的明文。&quot;&quot;&quot;</span></span><br><span class="line">    inter = <span class="built_in">bytearray</span>(<span class="number">16</span>)</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">15</span>, -<span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line">        pad_val = <span class="number">16</span> - j</span><br><span class="line">        fake = <span class="built_in">bytearray</span>(<span class="number">16</span>)</span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(j + <span class="number">1</span>, <span class="number">16</span>):</span><br><span class="line">            fake[k] = inter[k] ^ pad_val      <span class="comment"># 已恢复的字节，构造出正确填充</span></span><br><span class="line">        <span class="keyword">for</span> guess <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">256</span>):</span><br><span class="line">            fake[j] = guess</span><br><span class="line">            <span class="keyword">if</span> oracle(<span class="built_in">bytes</span>(fake) + target):</span><br><span class="line">                inter[j] = guess ^ pad_val</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">bytes</span>(a ^ b <span class="keyword">for</span> a, b <span class="keyword">in</span> <span class="built_in">zip</span>(inter, prev))</span><br></pre></td></tr></table></figure>
+
+<p>有个必须知道的细节：<strong><code>0x01</code> 的歧义</strong>。当目标是最后一个字节时，<code>guess</code> 命中的可能是”恰好构成 <code>0x01</code>“，也可能是”恰好构成 <code>0x02 0x02</code>“之类的巧合。所以标准的实现要在 <code>j == 15</code> 时额外验证一次——改一下倒数第二个字节，如果预言机仍然返回合法，说明命中的是 <code>0x02 0x02</code> 而不是 <code>0x01</code>，需要换一个 <code>guess</code>。</p>
+<p>这个坑我踩过，症状是整块明文最后两个字节始终不对，其他 14 个字节全对。</p>
+<h3 id="3-3-十九年，四次复活"><a href="#3-3-十九年，四次复活" class="headerlink" title="3.3 十九年，四次复活"></a>3.3 十九年，四次复活</h3><table>
+<thead>
+<tr>
+<th>年份</th>
+<th>名字</th>
+<th>版本</th>
+<th>位置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1998</td>
+<td>Bleichenbacher</td>
+<td>RSA PKCS#1 v1.5 填充</td>
+<td>TLS 的 RSA 密钥交换</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>Vaudenay</td>
+<td>CBC 的 PKCS#7 填充</td>
+<td>各种框架的自研加密</td>
+</tr>
+<tr>
+<td>2010</td>
+<td>ASP.NET（CVE-2010-3332）</td>
+<td>CBC</td>
+<td>框架级，影响数百万站点</td>
+</tr>
+<tr>
+<td>2014</td>
+<td>POODLE（CVE-2014-3566）</td>
+<td>SSL 3.0 的填充检查</td>
+<td>协议降级</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>Lucky Thirteen</td>
+<td>时序版本</td>
+<td>MAC-then-Encrypt</td>
+</tr>
+<tr>
+<td>2017</td>
+<td>ROBOT</td>
+<td>RSA 版本复活</td>
+<td>九家大厂</td>
+</tr>
+</tbody></table>
+<p>ROBOT 那篇论文最扎人的地方在于它的方法论：研究者没有找新漏洞，而是<strong>把 1998 年的攻击重新实现了一遍，然后去扫现网</strong>。十九年过去，仍然有大量实现在用不同的错误码、不同的响应时间，忠实地回答着”填充对不对”这个问题。</p>
+<h3 id="3-4-现代版本：TLS-修好了，你写的-token-没有"><a href="#3-4-现代版本：TLS-修好了，你写的-token-没有" class="headerlink" title="3.4 现代版本：TLS 修好了，你写的 token 没有"></a>3.4 现代版本：TLS 修好了，你写的 token 没有</h3><p>现在的 TLS 栈基本不敢再犯这个错——统一的 <code>bad_record_mac</code>、恒定时间的校验、AEAD 全面替代。但这只是把问题从协议层推到了应用层。</p>
+<p>现实中最常见的一类代码是这样的：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/profile&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">profile</span>():</span><br><span class="line">    token = request.cookies.get(<span class="string">&quot;auth&quot;</span>)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        data = decrypt(token)          <span class="comment"># AES-CBC，没有 MAC</span></span><br><span class="line">        uid = parse(data)[<span class="string">&quot;uid&quot;</span>]</span><br><span class="line">        <span class="keyword">return</span> render(load_user(uid))</span><br><span class="line">    <span class="keyword">except</span> PaddingError:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;解密失败&quot;</span>, <span class="number">500</span>          <span class="comment"># ← 这里就是一个 oracle</span></span><br><span class="line">    <span class="keyword">except</span> Exception:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;数据格式错误&quot;</span>, <span class="number">500</span>      <span class="comment"># ← 这里又是一个</span></span><br></pre></td></tr></table></figure>
+
+<p>黑盒检测只需要两步：</p>
+<ol>
+<li>把密文最后一个字节随机改若干次，记录响应码、响应体长度、响应时间</li>
+<li>如果这三项里任意一项出现了<strong>两种以上的聚类</strong>，就是一个 oracle</li>
+</ol>
+<p><strong>同一段密文，改出两种反应，等于把明文交出去了。</strong></p>
+<h2 id="四、哈希的两个经典死法"><a href="#四、哈希的两个经典死法" class="headerlink" title="四、哈希的两个经典死法"></a>四、哈希的两个经典死法</h2><h3 id="4-1-长度扩展：为什么-H-secret-‖-msg-是个错误设计"><a href="#4-1-长度扩展：为什么-H-secret-‖-msg-是个错误设计" class="headerlink" title="4.1 长度扩展：为什么 H(secret ‖ msg) 是个错误设计"></a>4.1 长度扩展：为什么 <code>H(secret ‖ msg)</code> 是个错误设计</h3><p>MD5、SHA-1、SHA-256、SM3 都基于 Merkle–Damgård 结构：消息被分块喂进压缩函数，上一块的输出作为下一块的初始状态。</p>
+<p>关键在于——<strong>最终输出的摘要，就是最后一次压缩之后的内部状态。</strong></p>
+<p>这带来一个后果：如果签名方式是 <code>sig = H(secret ‖ message)</code>，攻击者拿到 <code>sig</code> 和 <code>len(secret)</code>，就能把这个 <code>sig</code> 直接当作压缩函数的输入状态，<strong>接着往后算</strong>，不需要知道 secret 是什么。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">原始：sig = H(secret ‖ &quot;user=guest&quot;)</span><br><span class="line">攻击：new_sig = H(secret ‖ &quot;user=guest&quot; ‖ padding ‖ &quot;&amp;role=admin&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>中间那串 padding 是 Merkle–Damgård 的填充字节（<code>0x80</code> 加若干 <code>0x00</code> 加长度），虽然不可见，但服务端解析时会把它当成消息的一部分——所以攻击者要做的只是把这段不可见字节原样塞进请求里。</p>
+<p>工具一条命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hashpump -s &lt;原签名&gt; -d <span class="string">&#x27;user=guest&#x27;</span> -a <span class="string">&#x27;&amp;role=admin&#x27;</span> -k 16</span><br><span class="line"><span class="comment"># -k 是 secret 的长度；不知道就爆破 1..64</span></span><br></pre></td></tr></table></figure>
+
+<p>三个防御答案，重要性递增：</p>
+<ol>
+<li>用 HMAC——内外两层密钥，长度扩展打不通</li>
+<li>用 SHA-3 &#x2F; Keccak——海绵结构，输出不是内部状态</li>
+<li><strong>别把”哈希”当”签名”用</strong></li>
+</ol>
+<p>第三条才是根子上的问题。长度扩展不是 SHA-256 的缺陷，是”把摘要当 MAC”这个用法错了。</p>
+<h3 id="4-2-加盐挡得住彩虹表，挡不住-GPU"><a href="#4-2-加盐挡得住彩虹表，挡不住-GPU" class="headerlink" title="4.2 加盐挡得住彩虹表，挡不住 GPU"></a>4.2 加盐挡得住彩虹表，挡不住 GPU</h3><p>这是最常被误解的一条。盐的作用只有一个：<strong>让预计算失效</strong>。</p>
+<ul>
+<li>无盐：全世界的 <code>123456</code> 哈希都是同一个值，一张彩虹表通杀</li>
+<li>有盐：每个用户的 <code>123456</code> 哈希都不同，彩虹表作废，得逐个爆破</li>
+</ul>
+<p>但盐完全不阻止针对单个哈希的暴力破解。因为盐是和哈希一起存的，攻击者拿到库就拿到了盐。</p>
+<p>所以口令存储的强度<strong>不由”哈希算法是否被破”决定，而由”每次猜测的成本”决定</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>算法</th>
+<th>单卡速度量级</th>
+<th>8 位随机口令（95 字符集）耗时</th>
+<th>结论</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MD5</td>
+<td>~10^11 H&#x2F;s</td>
+<td>小时级</td>
+<td>等于明文</td>
+</tr>
+<tr>
+<td>SHA-256</td>
+<td>~10^10 H&#x2F;s</td>
+<td>天级</td>
+<td>勉强</td>
+</tr>
+<tr>
+<td>bcrypt（cost 12）</td>
+<td>~10^4 H&#x2F;s</td>
+<td>千年以上</td>
+<td>可用</td>
+</tr>
+<tr>
+<td>Argon2id（高内存）</td>
+<td>~10^3 H&#x2F;s</td>
+<td>更久，且 GPU 优势被内存墙吃掉</td>
+<td>推荐</td>
+</tr>
+</tbody></table>
+<p><em>表内为量级估计，具体随硬件变化。</em></p>
+<p>看这张表就明白了：从 MD5 到 SHA-256，速度快了十倍，对爆破来说毫无区别；从 SHA-256 到 bcrypt，速度慢了一百万倍，这才叫防御。</p>
+<p>原因在于 bcrypt 和 Argon2 是<strong>故意设计得慢且占内存</strong>的——它们的目标不是”输出不可逆”，而是”让可逆的成本高到不划算”。GPU 和 ASIC 擅长的是并行算简单函数，一旦要求每个候选值占用大量内存，并行度就被物理条件卡死了。</p>
+<h2 id="五、RSA：数学没错，参数错了"><a href="#五、RSA：数学没错，参数错了" class="headerlink" title="五、RSA：数学没错，参数错了"></a>五、RSA：数学没错，参数错了</h2><p>RSA 的实战攻击有一条清晰的规律：<strong>所有攻击都发生在”没有正确实现 padding”的前提下。</strong></p>
+<table>
+<thead>
+<tr>
+<th>攻击</th>
+<th>触发条件</th>
+<th>一句话判断</th>
+<th>工具</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>低指数开方</td>
+<td>e&#x3D;3，无 padding，且 m^e &lt; n</td>
+<td>密文比 n 短一大截</td>
+<td><code>gmpy2.iroot</code></td>
+</tr>
+<tr>
+<td>Håstad 广播</td>
+<td>e&#x3D;3，同明文发给 ≥3 个不同模数</td>
+<td>能收集多份密文</td>
+<td>CRT 手写</td>
+</tr>
+<tr>
+<td>共模攻击</td>
+<td>同一个 n，两个互素的 e</td>
+<td>拿到两个公钥指向同一 n</td>
+<td><code>gmpy2</code></td>
+</tr>
+<tr>
+<td>共用素数</td>
+<td>两个 n 有公因子</td>
+<td>有一批公钥</td>
+<td>batch GCD</td>
+</tr>
+<tr>
+<td>Wiener</td>
+<td>私钥指数 d 过小（d &lt; n^0.25&#x2F;3）</td>
+<td>e 特别大</td>
+<td>连分数展开</td>
+</tr>
+<tr>
+<td>Franklin-Reiter</td>
+<td>两条明文满足线性关系</td>
+<td>已知 m2 &#x3D; a·m1 + b</td>
+<td>SageMath</td>
+</tr>
+</tbody></table>
+<h3 id="5-1-一句能记住的话"><a href="#5-1-一句能记住的话" class="headerlink" title="5.1 一句能记住的话"></a>5.1 一句能记住的话</h3><p><strong>没有随机化填充的 RSA，本质上是一个确定性的公开置换——它就是非对称版的 ECB。</strong></p>
+<p>同一个明文用同一个公钥加密两次，密文完全一样。这一点和第一节讲的等值泄露是同一个病。而 PKCS#1 v1.5 和 OAEP 的作用，就是往每次加密里注入随机性，让同一个明文产生不同的密文。</p>
+<p>所以当你看到一个”自研 RSA 加密”时，第一个要问的不是密钥长度，而是：**填充是怎么做的？**如果答案是”直接用 <code>pow(m, e, n)</code>“，那上面那张表里的攻击基本都能打。</p>
+<h3 id="5-2-共模攻击为什么是教具级案例"><a href="#5-2-共模攻击为什么是教具级案例" class="headerlink" title="5.2 共模攻击为什么是教具级案例"></a>5.2 共模攻击为什么是教具级案例</h3><p>同一套系统里，如果两个用户共用同一个 n、但 e 不同（比如一个 e&#x3D;3、一个 e&#x3D;65537），那么任何一个人都能解出用另一个人的公钥加密的消息。</p>
+<p>因为 <code>gcd(e1, e2) = 1</code>，存在 <code>a·e1 + b·e2 = 1</code>，于是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">m = c1^a · c2^b mod n</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">common_modulus</span>(<span class="params">c1, e1, c2, e2, n</span>):</span><br><span class="line">    g, a, b = egcd(e1, e2)            <span class="comment"># a*e1 + b*e2 = 1</span></span><br><span class="line">    <span class="keyword">if</span> a &lt; <span class="number">0</span>:</span><br><span class="line">        c1, a = <span class="built_in">pow</span>(c1, -<span class="number">1</span>, n), -a     <span class="comment"># 负指数转模逆</span></span><br><span class="line">    <span class="keyword">if</span> b &lt; <span class="number">0</span>:</span><br><span class="line">        c2, b = <span class="built_in">pow</span>(c2, -<span class="number">1</span>, n), -b</span><br><span class="line">    <span class="keyword">return</span> (<span class="built_in">pow</span>(c1, a, n) * <span class="built_in">pow</span>(c2, b, n)) % n</span><br></pre></td></tr></table></figure>
+
+<p>它的教育意义在于：<strong>公钥不是”一把钥匙”，而是一组参数。参数的组合方式决定了安全性，而不只是位数。</strong></p>
+<h3 id="5-3-共用素数：不是理论，是实测"><a href="#5-3-共用素数：不是理论，是实测" class="headerlink" title="5.3 共用素数：不是理论，是实测"></a>5.3 共用素数：不是理论，是实测</h3><p>2012 年的论文《Ron was wrong, Whit is right》做了一件很朴素的事：收集了 1160 万个 TLS 和 SSH 公钥，两两求 GCD。</p>
+<p>结果是 0.2% 的密钥存在共享素数——这些设备的随机数生成器在生成素数时熵不足，撞车了。影响范围包括 0.4% 的 TLS 主机和 1% 的 SSH 主机。</p>
+<p>**只要拿到两个共享素数的 n，两个私钥就同时破了。**因为 <code>p = gcd(n1, n2)</code>，剩下的就是一次除法。</p>
+<p>这个案例值得记住的原因：它证明密码学的失败经常不在算法，而在**”生成密钥的那台机器当时有没有足够的熵”**。这就引出了下一节。</p>
+<h2 id="六、随机数：整栋楼最容易塌的那根柱子"><a href="#六、随机数：整栋楼最容易塌的那根柱子" class="headerlink" title="六、随机数：整栋楼最容易塌的那根柱子"></a>六、随机数：整栋楼最容易塌的那根柱子</h2><p>密码学里所有”不可预测”都建立在随机数上：密钥、IV、nonce、盐、ECDSA 的 k。这一根柱子塌了，上面所有数学都白搭。</p>
+<p>三个真实案例，一个比一个荒诞。</p>
+<h3 id="6-1-Debian-OpenSSL（2008）：删了一行注释掉的代码"><a href="#6-1-Debian-OpenSSL（2008）：删了一行注释掉的代码" class="headerlink" title="6.1 Debian OpenSSL（2008）：删了一行注释掉的代码"></a>6.1 Debian OpenSSL（2008）：删了一行注释掉的代码</h3><p>2006 年，一位 Debian 维护者为了消除 Valgrind 的内存警告，删掉了 <code>md_rand.c</code> 里的一行 <code>MD_Update</code> 调用——那行代码的作用是把未初始化内存混入熵池，看起来”不干净”。</p>
+<p>后果是：OpenSSL 的 PRNG 只剩下了进程 ID 作为熵源。<strong>PID 最大 32768。</strong></p>
+<p>于是在 2006 年 9 月到 2008 年 5 月这两年时间里，所有在 Debian&#x2F;Ubuntu 上生成的 SSH 密钥、TLS 证书、OpenVPN 密钥、会话密钥，全部只可能来自 32768 个候选值。</p>
+<p>修复方式不是打补丁，是<strong>所有密钥必须重新生成</strong>。这是密码学史上最贵的一次代码审查。</p>
+<h3 id="6-2-Sony-PS3（2010）：k-是个常数"><a href="#6-2-Sony-PS3（2010）：k-是个常数" class="headerlink" title="6.2 Sony PS3（2010）：k 是个常数"></a>6.2 Sony PS3（2010）：k 是个常数</h3><p>ECDSA 签名需要为每条消息生成一个随机数 k。Sony 的固件里，k 被写死成了常数 4。</p>
+<p>两个签名共享同一个 k 时，私钥就是一道除法题：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 两条签名 (r, s1) 和 (r, s2)，对应消息哈希 z1、z2，共用同一个 k</span></span><br><span class="line">k = (z1 - z2) * <span class="built_in">pow</span>(s1 - s2, -<span class="number">1</span>, n) % n</span><br><span class="line">d = (s1 * k - z1) * <span class="built_in">pow</span>(r, -<span class="number">1</span>, n) % n</span><br></pre></td></tr></table></figure>
+
+<p>fail0verflow 在 CCC 上演示完之后说了一句很著名的话，大意是：”我们不是在破解加密，我们只是在做算术。”</p>
+<p>PS3 的主信任根就此永久失效——因为根密钥泄露是不能靠固件更新挽回的。</p>
+<h3 id="6-3-弱-PRNG-的通用打法"><a href="#6-3-弱-PRNG-的通用打法" class="headerlink" title="6.3 弱 PRNG 的通用打法"></a>6.3 弱 PRNG 的通用打法</h3><p>不用找那么极端的案例，日常遇到的更多是这种：</p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>问题</th>
+<th>恢复方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>C 的 <code>rand()</code></td>
+<td>无种子或固定种子，线性同余</td>
+<td>几个输出即可反推状态</td>
+</tr>
+<tr>
+<td>PHP <code>mt_rand()</code></td>
+<td>MT19937，种子通常是时间戳</td>
+<td><code>php_mt_seed</code> 爆破时间窗口</td>
+</tr>
+<tr>
+<td>Java <code>Random</code></td>
+<td>48 位 LCG</td>
+<td>两个连续输出即可完整还原</td>
+</tr>
+<tr>
+<td>Python <code>random</code></td>
+<td>MT19937</td>
+<td>624 个 32 位输出还原全部状态</td>
+</tr>
+<tr>
+<td>时间戳做 IV</td>
+<td>IV 可预测 → BEAST 类攻击</td>
+<td>直接预测下一块的 IV</td>
+</tr>
+</tbody></table>
+<p>统一的方法论是：<strong>收集足够多的输出，做熵估计和状态恢复</strong>。一个设计良好的随机源，输出应该通过卡方检验、没有周期性、和生成时间无关。而一个用时间戳播种的 PRNG，你甚至能从 token 里直接看出服务器的启动时间。</p>
+<h2 id="七、实现层：硬编码密钥、弱-KDF，和能被秒表量出来的比特"><a href="#七、实现层：硬编码密钥、弱-KDF，和能被秒表量出来的比特" class="headerlink" title="七、实现层：硬编码密钥、弱 KDF，和能被秒表量出来的比特"></a>七、实现层：硬编码密钥、弱 KDF，和能被秒表量出来的比特</h2><p>前面六类还都算”密码学用法”层面的错误，多少有点体面。这一节讲三种更接地气的——它们不涉及任何数学，但在真实项目里出现的频率最高。</p>
+<h3 id="7-1-硬编码密钥：技术债里最难还的一种"><a href="#7-1-硬编码密钥：技术债里最难还的一种" class="headerlink" title="7.1 硬编码密钥：技术债里最难还的一种"></a>7.1 硬编码密钥：技术债里最难还的一种</h3><p>移动端和固件里，密钥经常直接躺在二进制里。常见位置和找法：</p>
+<table>
+<thead>
+<tr>
+<th>位置</th>
+<th>怎么找</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>so &#x2F; elf 的 <code>.rodata</code></td>
+<td><code>strings libapp.so</code> 之后筛 32 位以上的 base64 长串</td>
+</tr>
+<tr>
+<td><code>BuildConfig</code> &#x2F; 常量类</td>
+<td>反编译后全局搜 <code>SECRET</code>、<code>KEY</code>、<code>AES</code></td>
+</tr>
+<tr>
+<td><code>strings.xml</code> &#x2F; <code>assets</code></td>
+<td>解包后直接 grep</td>
+</tr>
+<tr>
+<td>前端打包产物</td>
+<td>搜 <code>aes</code>、<code>CryptoJS</code>、<code>encrypt(</code></td>
+</tr>
+</tbody></table>
+<p>判定一条 base64 串是不是密钥，可以顺手做一次熵估计——真密钥的字符分布接近均匀，普通字符串不会。</p>
+<p>硬编码密钥的麻烦不在于”泄露”，而在于<strong>它没法轮换</strong>。口令泄露了可以改，密钥泄露意味着所有历史密文全部作废，而重新加密全量数据通常是个没人敢排期的工程。所以这类问题一旦上线，往往会原样存在好几年。</p>
+<h3 id="7-2-弱-KDF：把”派生”写成”拼一下”"><a href="#7-2-弱-KDF：把”派生”写成”拼一下”" class="headerlink" title="7.2 弱 KDF：把”派生”写成”拼一下”"></a>7.2 弱 KDF：把”派生”写成”拼一下”</h3><p>比硬编码更隐蔽的是这种写法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">key = hashlib.sha256(password + salt).digest()                  <span class="comment"># 错：一次哈希不是 KDF</span></span><br><span class="line">key = hashlib.pbkdf2_hmac(<span class="string">&quot;sha256&quot;</span>, password, salt, <span class="number">1000</span>)       <span class="comment"># 不够：迭代太少</span></span><br></pre></td></tr></table></figure>
+
+<p>第一条把 KDF 退化成了单次哈希，攻击者拿到盐之后的爆破速度，和直接爆破一个哈希完全一样。第二条看着用对了算法，但 1000 次迭代在今天的 GPU 上是几毫秒的事——OWASP 2023 的建议是 PBKDF2-HMAC-SHA256 至少 600,000 次。</p>
+<p>迭代次数本质上是在给每次猜测<strong>加一道固定的时间税</strong>。1000 次意味着攻击者每秒能试几十万个口令，600,000 次意味着每秒几百个。同一个算法，防御强度差了一千倍。</p>
+<h3 id="7-3-时序侧信道：把毫秒变成比特"><a href="#7-3-时序侧信道：把毫秒变成比特" class="headerlink" title="7.3 时序侧信道：把毫秒变成比特"></a>7.3 时序侧信道：把毫秒变成比特</h3><p>时序攻击的原理一句话：<strong>程序的执行时间依赖于它正在处理的秘密。</strong></p>
+<p>最经典的形态是短路比较——<code>memcmp</code> 在第一个不同的字节就返回，所以”前 3 个字节对了”和”前 0 个字节对了”花的时间不一样。这类差异通常在纳秒到微秒级。</p>
+<p>于是问题变成：<strong>这么小的差异，在网络的噪声里还测得出来吗？</strong></p>
+<p>答案取决于信噪比，而信噪比取决于采样次数。一个实用的判断方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> statistics, time</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">profile</span>(<span class="params">fn, n=<span class="number">10000</span></span>):</span><br><span class="line">    samples = []</span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        t0 = time.perf_counter_ns()</span><br><span class="line">        fn()</span><br><span class="line">        samples.append(time.perf_counter_ns() - t0)</span><br><span class="line">    <span class="keyword">return</span> statistics.median(samples)      <span class="comment"># 中位数比均值抗抖动</span></span><br></pre></td></tr></table></figure>
+
+<p>先测<strong>噪声底</strong>——同一个输入重复测，看中位数的波动范围。再测<strong>信号</strong>——两个不同输入的中位数之差。信号必须显著高于噪声底才算”可测”，否则就是自欺欺人。</p>
+<p>远程场景下这道门槛高得多：一次 HTTP 往返可能 50ms，信号只有 1 微秒，相差五万倍。但这不代表测不出来——**网络抖动是随机的，会互相抵消；信号是系统性的，会累加。**采样足够多之后，均值会收敛到真实差异上。</p>
+<p>Lucky Thirteen 就是这么打穿 TLS 的：它没有找到任何明文，只是发现”填充长度不同 → 参与 MAC 计算的数据量不同 → 耗时不同”，然后采样几十万次，把这个微秒级差异从网络噪声里捞了出来。</p>
+<p>这也是技能里那句”时序侧信道（缩小到可测）”的含义——<strong>侧信道能不能用，不取决于差异有多小，取决于你能采样多少次。</strong></p>
+<h2 id="八、TLS-二十年：一部”用法错误史”"><a href="#八、TLS-二十年：一部”用法错误史”" class="headerlink" title="八、TLS 二十年：一部”用法错误史”"></a>八、TLS 二十年：一部”用法错误史”</h2><p>把 TLS 的历史漏洞按时间排开，会发现一件很有意思的事：<strong>没有一次是”AES 被破了”。</strong></p>
+<table>
+<thead>
+<tr>
+<th>年份</th>
+<th>名字</th>
+<th>本质</th>
+<th>被利用的那个”用法”</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2011</td>
+<td>BEAST</td>
+<td>IV 可预测</td>
+<td>TLS 1.0 用上一块密文当 IV</td>
+</tr>
+<tr>
+<td>2012</td>
+<td>CRIME</td>
+<td>压缩率泄露</td>
+<td>TLS 层压缩</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>BREACH</td>
+<td>同上</td>
+<td>HTTP 响应压缩</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>Lucky Thirteen</td>
+<td>时序差异</td>
+<td>MAC-then-Encrypt</td>
+</tr>
+<tr>
+<td>2014</td>
+<td>Heartbleed</td>
+<td>越界读</td>
+<td>没校验 length 字段</td>
+</tr>
+<tr>
+<td>2014</td>
+<td>POODLE</td>
+<td>padding oracle</td>
+<td>SSL 3.0 的填充检查</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>FREAK &#x2F; Logjam</td>
+<td>降级到 512 位</td>
+<td>出口管制时代的弱套件还在</td>
+</tr>
+<tr>
+<td>2016</td>
+<td>DROWN</td>
+<td>跨协议</td>
+<td>服务器同时开着 SSLv2</td>
+</tr>
+<tr>
+<td>2016</td>
+<td>Sweet32</td>
+<td>生日碰撞</td>
+<td>64 位分组（3DES）</td>
+</tr>
+<tr>
+<td>2017</td>
+<td>ROBOT</td>
+<td>Bleichenbacher 复活</td>
+<td>RSA PKCS#1 v1.5</td>
+</tr>
+<tr>
+<td>2020</td>
+<td>Raccoon</td>
+<td>时序</td>
+<td>DH 的填充处理</td>
+</tr>
+</tbody></table>
+<p>这十一行里，被利用的东西依次是：<strong>一块 IV、一个压缩率、一次时序差、一个长度字段、一个错误码、一个填充字节。</strong></p>
+<p>全部是”多泄露了一个比特”的不同形态。没有一个是在数学上攻破了什么。</p>
+<p>这也解释了为什么 TLS 1.3 的设计哲学是”减法”：删掉 CBC、删掉压缩、删掉 RSA 密钥交换、删掉重协商，只留 AEAD 和 (EC)DHE。<strong>当所有能泄露差异的分支都被删掉，攻击面就消失了。</strong></p>
+<p>顺带说 0-RTT。TLS 1.3 为了让重连更快，允许客户端在第一个 flight 就带上数据。这部分数据<strong>天然不防重放</strong>——攻击者录下来重发一次，服务端就会再执行一次。这是性能与安全的显式取舍，不是 bug。用 0-RTT 承载”转账””下单”这类非幂等操作，就是把这个取舍用错了地方。</p>
+<h3 id="移动端的另一条线：证书固定绕过"><a href="#移动端的另一条线：证书固定绕过" class="headerlink" title="移动端的另一条线：证书固定绕过"></a>移动端的另一条线：证书固定绕过</h3><p>技能里提到”证书固定绕过（配合移动端）”，这属于同类问题的另一面——不是协议被攻破，而是<strong>客户端主动放弃了验证</strong>。</p>
+<p>常见手法是用 Frida hook 掉 <code>TrustManager</code>、<code>X509TrustManager</code> 的校验方法，或者用 objection 一条命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">objection -g com.target.app explore</span><br><span class="line"><span class="comment"># 进入后：</span></span><br><span class="line">android sslpinning <span class="built_in">disable</span></span><br></pre></td></tr></table></figure>
+
+<p>如果 App 只做了单层固定（比如只校验证书哈希），这一步就通了。做了多层（OkHttp 的 <code>CertificatePinner</code> + 自研 native 校验）就需要逐层定位。但这条线的意义在于提醒防御方：<strong>在客户端做安全，默认前提是”这个客户端不受你控制”。</strong></p>
+<h2 id="九、拿到一个加密系统，先问这七个问题"><a href="#九、拿到一个加密系统，先问这七个问题" class="headerlink" title="九、拿到一个加密系统，先问这七个问题"></a>九、拿到一个加密系统，先问这七个问题</h2><p>上面七类攻击，其实可以由一组黑盒问题推出来。这是我实际做事时的顺序：</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>问题</th>
+<th>得到的答案指向</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>密文长度是不是块大小（8&#x2F;16）的整数倍？</td>
+<td>是 → 分组密码；不是 → 流密码或 AEAD</td>
+</tr>
+<tr>
+<td>2</td>
+<td>同一明文加密两次，密文一样吗？</td>
+<td>一样 → ECB，或固定 IV 的 CBC</td>
+</tr>
+<tr>
+<td>3</td>
+<td>改密文中一个字节，服务端怎么反应？</td>
+<td>出现两种以上反应 → padding oracle &#x2F; bit-flipping 入口</td>
+</tr>
+<tr>
+<td>4</td>
+<td>有没有 MAC 或 tag？在哪一段？</td>
+<td>没有 → 篡改类攻击直接可用</td>
+</tr>
+<tr>
+<td>5</td>
+<td>密钥、IV、nonce 从哪来？</td>
+<td>时间戳、计数器、<code>rand()</code> → 弱随机</td>
+</tr>
+<tr>
+<td>6</td>
+<td>签名是 <code>H(secret‖msg)</code> 还是 HMAC？</td>
+<td>前者 → 长度扩展</td>
+</tr>
+<tr>
+<td>7</td>
+<td>错误信息、响应时间、响应长度有几种？</td>
+<td>每一种差异都是一个比特</td>
+</tr>
+</tbody></table>
+<p>**如果只能问一个问题，问第 3 个。**它同时揭示了”有没有完整性校验”和”错误处理是否统一”两件事，而这两件事决定了后面所有攻击的可行性。</p>
+<p>这七个问题不需要源码，不需要逆向，全部是黑盒可观测的。密码学攻击的入口，绝大多数时候就摆在 HTTP 响应里。</p>
+<h2 id="十、三条不会过时的原则"><a href="#十、三条不会过时的原则" class="headerlink" title="十、三条不会过时的原则"></a>十、三条不会过时的原则</h2><p>写到这里，防御其实已经很清楚了。我把它们压缩成三条，因为这二十年里所有”复活”的漏洞，都是因为违反了其中一条。</p>
+<h3 id="原则一：认证先于解密"><a href="#原则一：认证先于解密" class="headerlink" title="原则一：认证先于解密"></a>原则一：认证先于解密</h3><p>Encrypt-then-MAC，或者直接用 AEAD。先验 tag，验不过就整包丢弃，<strong>一个字节都不解释</strong>。</p>
+<p>反过来（MAC-then-Encrypt，或者干脆没有 MAC）就是 POODLE、Lucky Thirteen、所有 bit-flipping 的土壤。判断标准很简单：**解密函数在验证完整性之前，有没有对密文做过任何解析？**有，就是错的。</p>
+<h3 id="原则二：所有涉及秘密的比较，都必须恒定时间"><a href="#原则二：所有涉及秘密的比较，都必须恒定时间" class="headerlink" title="原则二：所有涉及秘密的比较，都必须恒定时间"></a>原则二：所有涉及秘密的比较，都必须恒定时间</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> user_token == secret:          <span class="comment"># 错：短路比较，逐字节泄露长度信息</span></span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">if</span> hmac.compare_digest(user_token, secret):   <span class="comment"># 对</span></span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+
+<p>普通字符串比较在第一个不同字节就返回，攻击者可以通过测量响应时间逐字节推出正确值——每个字节最多试 256 次，但配合统计方法通常几十次就够。</p>
+<p>这条原则的可怕之处在于：<strong>它在功能测试里永远是对的</strong>，只有在有人拿秒表量的时候才暴露。</p>
+<h3 id="原则三：不要自己拼"><a href="#原则三：不要自己拼" class="headerlink" title="原则三：不要自己拼"></a>原则三：不要自己拼</h3><p>用 libsodium，用平台的 AEAD API，用经过审计的库。</p>
+<p>原因不是”你不够聪明”，而是<strong>密码学的正确用法是一组反直觉的约束</strong>，每一条都容易被”优化”掉：IV 不能复用、nonce 不能重复、比较不能短路、错误码必须统一、填充必须随机。这些约束在代码评审时看不出来，在压测时看不出来，只在被攻击时表现出来。</p>
+<p>每一代人都觉得自己能正确使用 RSA。然后 Bleichenbacher 就复活一次。</p>
+<h3 id="补一句关于国密"><a href="#补一句关于国密" class="headerlink" title="补一句关于国密"></a>补一句关于国密</h3><p>这几年做国密改造的项目很多，而改造中最常见的三个错误恰好对应上面三节：</p>
+<table>
+<thead>
+<tr>
+<th>错误</th>
+<th>对应问题</th>
+<th>后果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>SM4/ECB</code></td>
+<td>模式选错</td>
+<td>等值泄露，等同没加密</td>
+</tr>
+<tr>
+<td>SM2 签名复用 k</td>
+<td>随机数</td>
+<td>私钥可直接算出</td>
+</tr>
+<tr>
+<td>SM3 当 HMAC 用（<code>SM3(key‖msg)</code>）</td>
+<td>哈希用法</td>
+<td>长度扩展</td>
+</tr>
+</tbody></table>
+<p>**合规不等于安全。**等保测评看的是”用了什么算法”，攻击者看的是”怎么用的”。这中间的差距，就是这篇文章存在的理由。</p>
+<h2 id="十一、小结"><a href="#十一、小结" class="headerlink" title="十一、小结"></a>十一、小结</h2><p>回到开头那个 1998 年的故事。</p>
+<p>Bleichenbacher 的攻击之所以能活十九年，不是因为它精妙，而是因为它利用的东西太朴素了——<strong>一个系统对”成功”和”失败”给出了不同的反应。</strong></p>
+<p>密码学的数学部分是可靠的。AES 会一直是安全的，SHA-256 也会一直安全下去。真正不可靠的是”人以为自己正在使用数学”这件事：把 ECB 当成 AES、把哈希当成签名、把 <code>==</code> 当成安全比较、把时间戳当成随机数。</p>
+<p>这七类攻击有一个共同的名字，叫<strong>用法漏洞</strong>。它们不在论文里，在代码里。</p>
+<p>而检查它们，往往只需要问一句：<strong>这个系统，多告诉了我一个比特吗？</strong></p>
+<hr>
+<p><strong>相关阅读</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>篇目</th>
+<th>衔接点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>《古典密码学 (一)》</td>
+<td>这条线的起点：凯撒、Atbash 与频率分析，本文的”前传”</td>
+</tr>
+<tr>
+<td>《Go 实现仿 Telegram 端到端加密：从 DH 密钥交换到 AES-GCM》</td>
+<td>正确用法的正面样本：AEAD + DH 应该怎么拼</td>
+</tr>
+<tr>
+<td>《Telegram 软件架构与端到端加密拆解》</td>
+<td>同一套算法，在真实产品里被工程化之后的样子</td>
+</tr>
+<tr>
+<td>《拿到第一个 shell 只完成了 20%》</td>
+<td>密码学失效之后：从拿到凭据到接管域控的下一段</td>
+</tr>
+</tbody></table>
+
+  </div>
+
+  <footer class="article-reactions">
+    <div class="reaction-group">
+      <button type="button" class="reaction reaction--comment" aria-label="跳转到评论区" data-action="scroll-to-comments">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-message-circle"></use></svg>
+
+      </button>
+      <span class="reaction-label">评论</span>
+      
+    </div>
+    <div class="reaction-group reaction-group--right">
+      
+      <button type="button" class="reaction reaction--share" aria-label="分享" data-action="share">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share-2 flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-share-2"></use></svg>
+
+      </button>
+      <span class="reaction-label">分享</span>
+    </div>
+  </footer>
+
+  
+
+
+  <nav class="article-actions">
+    
+      <a class="article-action article-action--prev" href="/2026/11/03/20261103/2026110310/">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-left"></use></svg>
+
+        <span class="action-label">上一篇</span>
+        <span class="action-title">MD5 死了二十年，还在给恶意软件签名：哈希碰撞、长度扩展与口令存储的完整攻防</span>
+      </a>
+    
+    
+      <a class="article-action article-action--next" href="/2026/11/03/20261103/2026110308/">
+        <span class="action-label">下一篇</span>
+        <span class="action-title">拿到第一个 shell 只完成了 20%：域渗透六段流水线，从用户名枚举到 DCSync 接管域控</span>
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
+
+      </a>
+    
+  </nav>
+</article>
+</div>
+
+<button type="button" class="back-to-top" data-action="scroll-to-top" aria-label="返回顶部" hidden>
+  
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-up"></use></svg>
+
+</button>
+
+
+  <section class="related-paper">
+    <header class="related-paper__head">
+      <h2>
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-link"></use></svg>
+相关文章</h2>
+      <a class="related-paper__more" href="/archives/">
+        <span>查看更多</span>
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
+
+      </a>
+    </header>
+    <div class="related-paper__grid">
+      
+        <a class="related-card" href="/2026/11/03/20261103/2026110312/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/../../images/20261103/2026110312-cover.png" alt="GCM 的 nonce 只要重复一次，攻击者就能伪造任意消息：AEAD 的六种误用" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">GCM 的 nonce 只要重复一次，攻击者就能伪造任意消息：AEAD 的六种误用</strong>
+            <em class="related-card__date">2026-11-03</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/11/03/20261103/2026110310/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/../../images/20261103/2026110310-cover.png" alt="MD5 死了二十年，还在给恶意软件签名：哈希碰撞、长度扩展与口令存储的完整攻防" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">MD5 死了二十年，还在给恶意软件签名：哈希碰撞、长度扩展与口令存储的完整攻防</strong>
+            <em class="related-card__date">2026-11-03</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/11/03/20261103/2026110311/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/../../images/20261103/2026110311-cover.png" alt="一条 nonce 毁掉整条曲线：ECDSA 的五类致命错误，从索尼的常数 4 到格攻击" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">一条 nonce 毁掉整条曲线：ECDSA 的五类致命错误，从索尼的常数 4 到格攻击</strong>
+            <em class="related-card__date">2026-11-03</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/08/25/20260825/2026082501/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/../../images/20260825/hardware-security-cover.png" alt="芯片是最后一道防线，但它真的守得住吗：硬件安全入门——从调试接口、固件提取到侧信道攻击" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">芯片是最后一道防线，但它真的守得住吗：硬件安全入门——从调试接口、固件提取到侧信道攻击</strong>
+            <em class="related-card__date">2026-08-25</em>
+          </span>
+        </a>
+      
+    </div>
+  </section>
+
+
+      
+
+<section class="comments-section" aria-label="评论">
+  <header class="comments-section__head">
+    <h2>
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-message-circle"></use></svg>
+评论</h2>
+  </header>
+  <div id="tcomment"></div>
+</section>
+<script>
+window.addEventListener('load', function () {
+  if (typeof twikoo === 'undefined') return;
+  twikoo.init({
+    envId: "https://twikooserver-eta.vercel.app",
+    el: '#tcomment'
+  });
+});
+</script>
+
+
+    </section>
+    
+  </main>
+
+  <div class="sidebar-backdrop js-sidebar-close" aria-hidden="true"></div>
+
+  
+<footer class="site-footer">
+  <span class="site-footer__left">© 2026 By ZapcoMan</span>
+  
+    <span class="site-footer__right">
+      
+        <span class="site-footer__row"><span class="site-footer__powered-prefix">Powered by Theme</span> <a href="https://github.com/Homulilly/hexo-theme-flatpaper" target="_blank" rel="noopener">FlatPaper</a></span>
+      
+    </span>
+  
+</footer>
+
+  
+<div class="search-panel" aria-hidden="true" data-index-url="/flatpaper-search.json">
+  <div class="search-backdrop js-search-close"></div>
+  <section class="search-dialog" role="dialog" aria-modal="true" aria-label="搜索文章">
+    <span class="tape tape--top-left" aria-hidden="true"></span>
+    <header class="search-head">
+      <h2><span class="green-dot"></span>搜索文章</h2>
+      <button class="icon-button js-search-close" type="button" aria-label="关闭搜索">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-x"></use></svg>
+
+      </button>
+    </header>
+    <label class="search-field">
+      
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-search"></use></svg>
+
+      <input id="flatpaper-search" class="search-input" type="search" placeholder="输入关键词，按 Esc 关闭" autocomplete="off">
+    </label>
+    <div class="search-results" data-empty="输入关键词后显示匹配的文章">
+      <p class="search-empty">输入关键词后显示匹配的文章</p>
+    </div>
+  </section>
+</div>
+
+  <script>
+  window.FLATPAPER_I18N = {"language":"zh-CN","common.posts":"文章","common.categories":"分类","common.tags":"标签","common.comments":"评论","common.share":"分享","common.copied":"已复制","common.page":"页面","common.archive":"归档","common.post_list":"文章列表","common.search_posts":"搜索文章","common.random_posts":"随机文章","common.reward":"赞赏","common.view_all":"查看全部","pagination.prev":"上一页","pagination.next":"下一页","pagination.post_pager":"文章分页","pagination.archive_pager":"归档分页","index.featured":"精选文章","index.pinned":"置顶","index.read_more":"阅读全文","index.previous_slide":"上一张","index.next_slide":"下一张","index.carousel_pagination":"轮播页码","index.carousel_slide":"第 %d 张","index.latest_posts":"最新文章","index.empty_posts":"还没有文章。创建第一篇文章后，这里会显示最新内容。","archive.title":"归档","archive.post_list":"文章列表","taxonomy.category_count":"%d 篇","taxonomy.empty_categories":"暂时还没有分类。","taxonomy.empty_tags":"暂时还没有标签。","links.label":"友链","links.title":"友情链接","links.empty_data":"暂未加载到友链数据。请确认 source/_data/links.yml 存在并已 hexo clean。","links.rss_label":"%s 的 RSS","friends_feed.label":"朋友圈","friends_feed.title":"友链朋友圈","friends_feed.loading":"正在加载友链动态…","friends_feed.missing_url":"暂未配置 all.json 地址。","friends_feed.load_failed":"友链动态加载失败，请稍后再试。","friends_feed.empty":"暂时没有抓取到友链文章。","friends_feed.load_more":"加载更多","friends_feed.updated_at":"更新于 %s","friends_feed.friend_count":"%d 位友邻","friends_feed.active_count":"%d 位活跃","friends_feed.article_count":"%d 篇文章","friends_feed.unknown_author":"未知站点","friends_feed.date_unknown":"时间未知","post.scroll_to_comments":"跳转到评论区","post.previous":"上一篇","post.next":"下一篇","post.no_previous":"没有更早的文章了","post.no_next":"已经是最新的一篇","post.back_to_top":"返回顶部","post.related_posts":"相关文章","post.view_more":"查看更多","not_found.label":"页面走丢了","not_found.title":"找不到这个页面","not_found.text":"这个地址可能已经移动、删除，或者从未存在。","not_found.home":"返回首页","not_found.search":"搜索文章","search.placeholder":"输入关键词，按 Esc 关闭","search.empty":"输入关键词后显示匹配的文章","search.loading":"正在加载搜索索引…","search.load_failed":"搜索索引加载失败，请重新打开搜索重试","search.no_result":"没有找到与 \"%s\" 相关的文章","search.close":"关闭搜索","code.copy":"复制代码","code.collapse":"折叠代码","code.expand":"展开代码","heading.anchor":"链接到此节: %s","head.tag":"标签：%s","head.category":"分类：%s","head.archive":"归档","head.archive_with_date":"归档：%s","head.page_number":"第 %d 页","navigation.primary":"主导航","navigation.mobile":"移动端导航","navigation.brand_home":"FlatPaper 首页","navigation.brand_menu":"打开站点导航","navigation.open_sidebar":"打开侧边栏","navigation.close_sidebar":"关闭侧边栏","navigation.sidebar":"侧边栏","navigation.sidebar_tools":"侧边栏工具","navigation.site_links":"站点链接","navigation.site_info":"站点信息","colors.choose_theme_color":"选择主题色","colors.theme_color":"主题色","colors.toggle_color_mode":"切换颜色模式","colors.green":"绿色","colors.purple":"紫色","colors.pink":"粉色","colors.sakura":"樱花粉","colors.blue":"蓝色","colors.orange":"橙色","colors.black":"黑色","profile.default_bio":"热爱生活，热爱代码，喜欢分享技术与生活中的点滴。","welcome.cta":"开始阅读","welcome.title":"欢迎来到 FlatPaper","welcome.text":"一个专注于内容与阅读体验的博客主题。","home_hero.label":"首页开屏","home_hero.enter":"开始阅读","home_hero.note":"今日","home_hero.default_subtitle":"日常记录","home_hero.nav_links":"开屏导航","home_hero.profile_links":"个人链接","home_hero.tools":"开屏工具","home_hero.shuffle_stickers":"打乱贴纸位置","home_hero.link":"链接","home_hero.sticker_image":"贴纸图片","home_hero.visit_confirm":"要访问 %s 吗？","home_hero.visit":"访问","home_hero.cancel":"取消","toc.title":"文章目录","toc.empty":"目录会根据文章标题自动生成。","toc.expand_all":"展开全部目录","toc.collapse_all":"收起全部目录","sidebar.hot_tags":"热门标签","sidebar.latest_posts":"最新文章"};
+  </script>
+  
+<script src="/js/main.js"></script>
+
+  
+</body>
+</html>
