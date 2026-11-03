@@ -8,17 +8,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#f7f3e9">
 
-<title>一张照片能反推出你在哪拍的？拆解 geo-sleuth 的「可验证地理定位」方法学 | ZapcoMan&#39;s world</title>
+<title>删掉 EXIF 也没用：我靠一张随手拍把你定位到 ±100 米，geo-sleuth 六步溯源流水线 | ZapcoMan&#39;s world</title>
 <meta name="description" content="你随手发在朋友圈的一张旅行照，没有定位、没有水印、只有一片海和几栋楼。在绝大多数人眼里，这不过是”某处海边”。但在做照片地理定位（photo geolocation）的人眼里，这张图里藏着十几个可以定位的线索：车牌的底色、路边路灯的样式、远处山脊的轮廓、太阳投下的影子方向、甚至建筑外墙瓷砖的颜色。 问题从来不是”能不能定位”，而是——你的结论，经得起检验吗？...">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一张照片能反推出你在哪拍的？拆解 geo-sleuth 的「可验证地理定位」方法学 | ZapcoMan&#39;s world">
+<meta property="og:title" content="删掉 EXIF 也没用：我靠一张随手拍把你定位到 ±100 米，geo-sleuth 六步溯源流水线 | ZapcoMan&#39;s world">
 <meta property="og:url" content="http://example.com/2026/11/03/20261103/2026110301/">
 <meta property="og:site_name" content="ZapcoMan&#39;s world">
 <meta property="og:description" content="你随手发在朋友圈的一张旅行照，没有定位、没有水印、只有一片海和几栋楼。在绝大多数人眼里，这不过是”某处海边”。但在做照片地理定位（photo geolocation）的人眼里，这张图里藏着十几个可以定位的线索：车牌的底色、路边路灯的样式、远处山脊的轮廓、太阳投下的影子方向、甚至建筑外墙瓷砖的颜色。 问题从来不是”能不能定位”，而是——你的结论，经得起检验吗？...">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/11/03/images/20261103/2026110301-cover.png">
 <meta property="article:published_time" content="2026-11-03T12:30:00.000Z">
-<meta property="article:modified_time" content="2026-11-03T12:17:32.619Z">
+<meta property="article:modified_time" content="2026-11-03T14:23:28.314Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="OSINT">
 <meta property="article:tag" content="geo-sleuth">
@@ -34,7 +34,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"一张照片能反推出你在哪拍的？拆解 geo-sleuth 的「可验证地理定位」方法学","name":"一张照片能反推出你在哪拍的？拆解 geo-sleuth 的「可验证地理定位」方法学 | ZapcoMan's world","description":"你随手发在朋友圈的一张旅行照，没有定位、没有水印、只有一片海和几栋楼。在绝大多数人眼里，这不过是”某处海边”。但在做照片地理定位（photo geolocation）的人眼里，这张图里藏着十几个可以定位的线索：车牌的底色、路边路灯的样式、远处山脊的轮廓、太阳投下的影子方向、甚至建筑外墙瓷砖的颜色。 问题从来不是”能不能定位”，而是——你的结论，经得起检验吗？...","url":"http://example.com/2026/11/03/20261103/2026110301/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20261103/2026110301-cover.png"],"mainEntityOfPage":"http://example.com/2026/11/03/20261103/2026110301/","datePublished":"2026-11-03T12:30:00.000Z","dateModified":"2026-11-03T12:17:32.619Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"OSINT, 开源情报, 地理定位, geo-sleuth, 照片定位, 网络迷踪, 图寻, 证据链"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"删掉 EXIF 也没用：我靠一张随手拍把你定位到 ±100 米，geo-sleuth 六步溯源流水线","name":"删掉 EXIF 也没用：我靠一张随手拍把你定位到 ±100 米，geo-sleuth 六步溯源流水线 | ZapcoMan's world","description":"你随手发在朋友圈的一张旅行照，没有定位、没有水印、只有一片海和几栋楼。在绝大多数人眼里，这不过是”某处海边”。但在做照片地理定位（photo geolocation）的人眼里，这张图里藏着十几个可以定位的线索：车牌的底色、路边路灯的样式、远处山脊的轮廓、太阳投下的影子方向、甚至建筑外墙瓷砖的颜色。 问题从来不是”能不能定位”，而是——你的结论，经得起检验吗？...","url":"http://example.com/2026/11/03/20261103/2026110301/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20261103/2026110301-cover.png"],"mainEntityOfPage":"http://example.com/2026/11/03/20261103/2026110301/","datePublished":"2026-11-03T12:30:00.000Z","dateModified":"2026-11-03T14:23:28.314Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"OSINT, 开源情报, 地理定位, geo-sleuth, 照片定位, 网络迷踪, 图寻, 证据链"}</script>
 
 <script>
   (function () {
@@ -443,35 +443,35 @@
       
         <li>
           <a class="recent-item" href="/2026/11/03/20261103/2026110312/">
-            <strong>GCM 的 nonce 只要重复一次，攻击者就能伪造任意消息：AEAD 的六种误用</strong>
+            <strong>nonce 撞一次，我就能伪造你的任意消息——而且换 nonce 也救不回来：AEAD 的六种误用</strong>
             <em>2026-11-03</em>
           </a>
         </li>
       
         <li>
           <a class="recent-item" href="/2026/11/03/20261103/2026110311/">
-            <strong>一条 nonce 毁掉整条曲线：ECDSA 的五类致命错误，从索尼的常数 4 到格攻击</strong>
+            <strong>索尼把 k 固定成了 4，然后全世界都读到了它的私钥：ECDSA 五类错误，从常数 4 打到格攻击</strong>
             <em>2026-11-03</em>
           </a>
         </li>
       
         <li>
           <a class="recent-item" href="/2026/11/03/20261103/2026110310/">
-            <strong>MD5 死了二十年，还在给恶意软件签名：哈希碰撞、长度扩展与口令存储的完整攻防</strong>
+            <strong>MD5 埋了二十年，你们的签名服务还在给它上香：碰撞、长度扩展，和口令存储里的算力税骗局</strong>
             <em>2026-11-03</em>
           </a>
         </li>
       
         <li>
           <a class="recent-item" href="/2026/11/03/20261103/2026110309/">
-            <strong>AES-256 二十年没被破过一次，泄露的数据却越来越多：密码学实战的七类&#34;用法漏洞&#34;，从 ECB 重排到 RSA 共模</strong>
+            <strong>AES-256 二十年零失手，你们的数据照样漏得干干净净：七类用法漏洞，从 ECB 重排到 RSA 共模</strong>
             <em>2026-11-03</em>
           </a>
         </li>
       
         <li>
           <a class="recent-item" href="/2026/11/03/20261103/2026110308/">
-            <strong>拿到第一个 shell 只完成了 20%：域渗透六段流水线，从用户名枚举到 DCSync 接管域控</strong>
+            <strong>拿到 shell 只算进了门，金库在六个房间之后：从用户名枚举到 DCSync，两个半小时接管一个域</strong>
             <em>2026-11-03</em>
           </a>
         </li>
@@ -503,7 +503,7 @@
         网络安全
       </a>
     
-    <h1>一张照片能反推出你在哪拍的？拆解 geo-sleuth 的「可验证地理定位」方法学</h1>
+    <h1>删掉 EXIF 也没用：我靠一张随手拍把你定位到 ±100 米，geo-sleuth 六步溯源流水线</h1>
     <div class="meta-line meta-line--article">
       <span class="meta-date">
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
@@ -732,7 +732,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-left"></use></svg>
 
         <span class="action-label">上一篇</span>
-        <span class="action-title">机器先排序，人只看前几张：geo-sleuth 怎么把「图寻」做成流水线</span>
+        <span class="action-title">人眼是这条链路上最烂的一环，所以我把它踢出去了：CLIP + DINOv2 + SIFT 的机器排序流水线</span>
       </a>
     
     
@@ -790,13 +790,13 @@
             
 <div class="paper-thumb paper-thumb-1 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/../../images/20261103/2026110303-cover.png" alt="±100 米不是嘴上说说：geo-sleuth 的误差半径、置信分级与「禁止伪造验证」铁律" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20261103/2026110303-cover.png" alt="「大概就在这附近」是句废话：±100 米、五级置信，和写进代码里的防自欺铁律" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">±100 米不是嘴上说说：geo-sleuth 的误差半径、置信分级与「禁止伪造验证」铁律</strong>
+            <strong class="related-card__title">「大概就在这附近」是句废话：±100 米、五级置信，和写进代码里的防自欺铁律</strong>
             <em class="related-card__date">2026-11-03</em>
           </span>
         </a>
@@ -806,13 +806,13 @@
             
 <div class="paper-thumb paper-thumb-2 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/../../images/20261103/2026110302-cover.png" alt="机器先排序，人只看前几张：geo-sleuth 怎么把「图寻」做成流水线" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20261103/2026110302-cover.png" alt="人眼是这条链路上最烂的一环，所以我把它踢出去了：CLIP + DINOv2 + SIFT 的机器排序流水线" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">机器先排序，人只看前几张：geo-sleuth 怎么把「图寻」做成流水线</strong>
+            <strong class="related-card__title">人眼是这条链路上最烂的一环，所以我把它踢出去了：CLIP + DINOv2 + SIFT 的机器排序流水线</strong>
             <em class="related-card__date">2026-11-03</em>
           </span>
         </a>

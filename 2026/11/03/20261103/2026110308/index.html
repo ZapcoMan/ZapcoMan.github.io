@@ -8,17 +8,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#f7f3e9">
 
-<title>拿到第一个 shell 只完成了 20%：域渗透六段流水线，从用户名枚举到 DCSync 接管域控 | ZapcoMan&#39;s world</title>
+<title>拿到 shell 只算进了门，金库在六个房间之后：从用户名枚举到 DCSync，两个半小时接管一个域 | ZapcoMan&#39;s world</title>
 <meta name="description" content="一个很常见的错觉：打下一台机器，就觉得”进去了”。 但在一个真正的中大型企业内网里，那台机器大概率只是一台边缘的 Web 服务器、一台测试机、或者某个员工忘了打补丁的笔记本。它上面没有数据库，没有财务系统，也没有任何有价值的东西。 真正值钱的是 域控——那台跑着 Active Directory 的机器。它不存业务数据，它存的是”谁是谁”和”谁能干什么”。拿...">
 <meta property="og:type" content="article">
-<meta property="og:title" content="拿到第一个 shell 只完成了 20%：域渗透六段流水线，从用户名枚举到 DCSync 接管域控 | ZapcoMan&#39;s world">
+<meta property="og:title" content="拿到 shell 只算进了门，金库在六个房间之后：从用户名枚举到 DCSync，两个半小时接管一个域 | ZapcoMan&#39;s world">
 <meta property="og:url" content="http://example.com/2026/11/03/20261103/2026110308/">
 <meta property="og:site_name" content="ZapcoMan&#39;s world">
 <meta property="og:description" content="一个很常见的错觉：打下一台机器，就觉得”进去了”。 但在一个真正的中大型企业内网里，那台机器大概率只是一台边缘的 Web 服务器、一台测试机、或者某个员工忘了打补丁的笔记本。它上面没有数据库，没有财务系统，也没有任何有价值的东西。 真正值钱的是 域控——那台跑着 Active Directory 的机器。它不存业务数据，它存的是”谁是谁”和”谁能干什么”。拿...">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/11/03/images/20261103/2026110308-cover.png">
 <meta property="article:published_time" content="2026-11-03T14:10:00.000Z">
-<meta property="article:modified_time" content="2026-11-03T13:38:38.531Z">
+<meta property="article:modified_time" content="2026-11-03T14:23:28.488Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="ADCS">
 <meta property="article:tag" content="AS-REP Roasting">
@@ -36,7 +36,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"拿到第一个 shell 只完成了 20%：域渗透六段流水线，从用户名枚举到 DCSync 接管域控","name":"拿到第一个 shell 只完成了 20%：域渗透六段流水线，从用户名枚举到 DCSync 接管域控 | ZapcoMan's world","description":"一个很常见的错觉：打下一台机器，就觉得”进去了”。 但在一个真正的中大型企业内网里，那台机器大概率只是一台边缘的 Web 服务器、一台测试机、或者某个员工忘了打补丁的笔记本。它上面没有数据库，没有财务系统，也没有任何有价值的东西。 真正值钱的是 域控——那台跑着 Active Directory 的机器。它不存业务数据，它存的是”谁是谁”和”谁能干什么”。拿...","url":"http://example.com/2026/11/03/20261103/2026110308/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20261103/2026110308-cover.png"],"mainEntityOfPage":"http://example.com/2026/11/03/20261103/2026110308/","datePublished":"2026-11-03T14:10:00.000Z","dateModified":"2026-11-03T13:38:38.531Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"域渗透, Active Directory, Kerberos, Kerberoasting, AS-REP Roasting, ADCS, BloodHound, DCSync, 黄金票据, 横向移动"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"拿到 shell 只算进了门，金库在六个房间之后：从用户名枚举到 DCSync，两个半小时接管一个域","name":"拿到 shell 只算进了门，金库在六个房间之后：从用户名枚举到 DCSync，两个半小时接管一个域 | ZapcoMan's world","description":"一个很常见的错觉：打下一台机器，就觉得”进去了”。 但在一个真正的中大型企业内网里，那台机器大概率只是一台边缘的 Web 服务器、一台测试机、或者某个员工忘了打补丁的笔记本。它上面没有数据库，没有财务系统，也没有任何有价值的东西。 真正值钱的是 域控——那台跑着 Active Directory 的机器。它不存业务数据，它存的是”谁是谁”和”谁能干什么”。拿...","url":"http://example.com/2026/11/03/20261103/2026110308/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20261103/2026110308-cover.png"],"mainEntityOfPage":"http://example.com/2026/11/03/20261103/2026110308/","datePublished":"2026-11-03T14:10:00.000Z","dateModified":"2026-11-03T14:23:28.488Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"域渗透, Active Directory, Kerberos, Kerberoasting, AS-REP Roasting, ADCS, BloodHound, DCSync, 黄金票据, 横向移动"}</script>
 
 <script>
   (function () {
@@ -445,35 +445,35 @@
       
         <li>
           <a class="recent-item" href="/2026/11/03/20261103/2026110312/">
-            <strong>GCM 的 nonce 只要重复一次，攻击者就能伪造任意消息：AEAD 的六种误用</strong>
+            <strong>nonce 撞一次，我就能伪造你的任意消息——而且换 nonce 也救不回来：AEAD 的六种误用</strong>
             <em>2026-11-03</em>
           </a>
         </li>
       
         <li>
           <a class="recent-item" href="/2026/11/03/20261103/2026110311/">
-            <strong>一条 nonce 毁掉整条曲线：ECDSA 的五类致命错误，从索尼的常数 4 到格攻击</strong>
+            <strong>索尼把 k 固定成了 4，然后全世界都读到了它的私钥：ECDSA 五类错误，从常数 4 打到格攻击</strong>
             <em>2026-11-03</em>
           </a>
         </li>
       
         <li>
           <a class="recent-item" href="/2026/11/03/20261103/2026110310/">
-            <strong>MD5 死了二十年，还在给恶意软件签名：哈希碰撞、长度扩展与口令存储的完整攻防</strong>
+            <strong>MD5 埋了二十年，你们的签名服务还在给它上香：碰撞、长度扩展，和口令存储里的算力税骗局</strong>
             <em>2026-11-03</em>
           </a>
         </li>
       
         <li>
           <a class="recent-item" href="/2026/11/03/20261103/2026110309/">
-            <strong>AES-256 二十年没被破过一次，泄露的数据却越来越多：密码学实战的七类&#34;用法漏洞&#34;，从 ECB 重排到 RSA 共模</strong>
+            <strong>AES-256 二十年零失手，你们的数据照样漏得干干净净：七类用法漏洞，从 ECB 重排到 RSA 共模</strong>
             <em>2026-11-03</em>
           </a>
         </li>
       
         <li>
           <a class="recent-item" href="/2026/11/03/20261103/2026110307/">
-            <strong>Canary、PIE、CET、PAC 一层层压上来，二进制利用还剩什么：现代缓解全景与 fuzzing 驱动的漏洞研究流水线</strong>
+            <strong>Canary、PIE、CET、PAC 一层层压上来，你们以为赢了？控制流堵死，那就改打数据面</strong>
             <em>2026-11-03</em>
           </a>
         </li>
@@ -505,7 +505,7 @@
         网络安全
       </a>
     
-    <h1>拿到第一个 shell 只完成了 20%：域渗透六段流水线，从用户名枚举到 DCSync 接管域控</h1>
+    <h1>拿到 shell 只算进了门，金库在六个房间之后：从用户名枚举到 DCSync，两个半小时接管一个域</h1>
     <div class="meta-line meta-line--article">
       <span class="meta-date">
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
@@ -1309,13 +1309,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-left"></use></svg>
 
         <span class="action-label">上一篇</span>
-        <span class="action-title">AES-256 二十年没被破过一次，泄露的数据却越来越多：密码学实战的七类&#34;用法漏洞&#34;，从 ECB 重排到 RSA 共模</span>
+        <span class="action-title">AES-256 二十年零失手，你们的数据照样漏得干干净净：七类用法漏洞，从 ECB 重排到 RSA 共模</span>
       </a>
     
     
       <a class="article-action article-action--next" href="/2026/11/03/20261103/2026110307/">
         <span class="action-label">下一篇</span>
-        <span class="action-title">Canary、PIE、CET、PAC 一层层压上来，二进制利用还剩什么：现代缓解全景与 fuzzing 驱动的漏洞研究流水线</span>
+        <span class="action-title">Canary、PIE、CET、PAC 一层层压上来，你们以为赢了？控制流堵死，那就改打数据面</span>
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
 
@@ -1367,13 +1367,13 @@
             
 <div class="paper-thumb paper-thumb-1 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/../../images/20261103/2026110312-cover.png" alt="GCM 的 nonce 只要重复一次，攻击者就能伪造任意消息：AEAD 的六种误用" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20261103/2026110312-cover.png" alt="nonce 撞一次，我就能伪造你的任意消息——而且换 nonce 也救不回来：AEAD 的六种误用" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">GCM 的 nonce 只要重复一次，攻击者就能伪造任意消息：AEAD 的六种误用</strong>
+            <strong class="related-card__title">nonce 撞一次，我就能伪造你的任意消息——而且换 nonce 也救不回来：AEAD 的六种误用</strong>
             <em class="related-card__date">2026-11-03</em>
           </span>
         </a>
@@ -1383,13 +1383,13 @@
             
 <div class="paper-thumb paper-thumb-2 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/../../images/20261103/2026110311-cover.png" alt="一条 nonce 毁掉整条曲线：ECDSA 的五类致命错误，从索尼的常数 4 到格攻击" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20261103/2026110311-cover.png" alt="索尼把 k 固定成了 4，然后全世界都读到了它的私钥：ECDSA 五类错误，从常数 4 打到格攻击" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">一条 nonce 毁掉整条曲线：ECDSA 的五类致命错误，从索尼的常数 4 到格攻击</strong>
+            <strong class="related-card__title">索尼把 k 固定成了 4，然后全世界都读到了它的私钥：ECDSA 五类错误，从常数 4 打到格攻击</strong>
             <em class="related-card__date">2026-11-03</em>
           </span>
         </a>
@@ -1399,13 +1399,13 @@
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/../../images/20261103/2026110310-cover.png" alt="MD5 死了二十年，还在给恶意软件签名：哈希碰撞、长度扩展与口令存储的完整攻防" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20261103/2026110310-cover.png" alt="MD5 埋了二十年，你们的签名服务还在给它上香：碰撞、长度扩展，和口令存储里的算力税骗局" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">MD5 死了二十年，还在给恶意软件签名：哈希碰撞、长度扩展与口令存储的完整攻防</strong>
+            <strong class="related-card__title">MD5 埋了二十年，你们的签名服务还在给它上香：碰撞、长度扩展，和口令存储里的算力税骗局</strong>
             <em class="related-card__date">2026-11-03</em>
           </span>
         </a>

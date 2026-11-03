@@ -9,7 +9,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   <rights>All rights reserved 2026, ZapcoMan</rights>
   <title>ZapcoMan's world</title>
-  <updated>2026-11-03T14:04:01.972Z</updated>
+  <updated>2026-11-03T14:23:28.576Z</updated>
   <entry>
     <author>
       <name>ZapcoMan</name>
@@ -36,8 +36,8 @@
 <p>2016 年，四位研究者在扫描全网 HTTPS 服务器时发现了一件奇怪的事：184 台服务器在 GCM 模式下重复使用了 nonce。</p>
 <p>他们没有拿到任何私钥。但在拿到两个同 nonce 的密文之后，他们恢复了 GHASH 的认证密钥]]>
     </summary>
-    <title>GCM 的 nonce 只要重复一次，攻击者就能伪造任意消息：AEAD 的六种误用</title>
-    <updated>2026-11-03T14:04:01.972Z</updated>
+    <title>nonce 撞一次，我就能伪造你的任意消息——而且换 nonce 也救不回来：AEAD 的六种误用</title>
+    <updated>2026-11-03T14:23:28.576Z</updated>
   </entry>
   <entry>
     <author>
@@ -67,8 +67,8 @@
 <p>fail0verflow 站在台上，说了一句让全场先愣住再爆笑的话：索尼在 PS3 的 ECDSA 实现里，把每次签名要用的随机数 k 写死成了常数 4。</p>
 <p>屏幕上打出私钥的十六进]]>
     </summary>
-    <title>一条 nonce 毁掉整条曲线：ECDSA 的五类致命错误，从索尼的常数 4 到格攻击</title>
-    <updated>2026-11-03T14:03:55.940Z</updated>
+    <title>索尼把 k 固定成了 4，然后全世界都读到了它的私钥：ECDSA 五类错误，从常数 4 打到格攻击</title>
+    <updated>2026-11-03T14:23:28.553Z</updated>
   </entry>
   <entry>
     <author>
@@ -98,8 +98,8 @@
 <p>2008 年 12 月，柏林，25C3。</p>
 <p>Alexander Sotirov 站在台上，把一台普通笔记本算了几个小时的成果投到屏幕上：一个能被当时所有主流浏览器信任的<strong>根证书颁发机构</strong>。他们没偷到任何一张]]>
     </summary>
-    <title>MD5 死了二十年，还在给恶意软件签名：哈希碰撞、长度扩展与口令存储的完整攻防</title>
-    <updated>2026-11-03T14:02:00.668Z</updated>
+    <title>MD5 埋了二十年，你们的签名服务还在给它上香：碰撞、长度扩展，和口令存储里的算力税骗局</title>
+    <updated>2026-11-03T14:23:28.532Z</updated>
   </entry>
   <entry>
     <author>
@@ -129,8 +129,8 @@
 <p>1998 年，Daniel Bleichenbacher 在 CRYPTO 会议上演示了一件事：只要服务器对”RSA 填充是否正确”给出不同的反应，攻击者就能用大约一百万次查询，把一个他完全没有私钥的密文完整解出来。</p>
 <p>十九年后的 20]]>
     </summary>
-    <title>AES-256 二十年没被破过一次，泄露的数据却越来越多：密码学实战的七类&quot;用法漏洞&quot;，从 ECB 重排到 RSA 共模</title>
-    <updated>2026-11-03T13:45:11.205Z</updated>
+    <title>AES-256 二十年零失手，你们的数据照样漏得干干净净：七类用法漏洞，从 ECB 重排到 RSA 共模</title>
+    <updated>2026-11-03T14:23:28.509Z</updated>
   </entry>
   <entry>
     <author>
@@ -159,8 +159,8 @@
 <p>一个很常见的错觉：打下一台机器，就觉得”进去了”。</p>
 <p>但在一个真正的中大型企业内网里，那台机器大概率只是一台边缘的 Web 服务器、一台测试机、或者某个员工忘了打补丁的笔记本。它上面没有数据库，没有财务系统，也没有任何有价值的东西。</]]>
     </summary>
-    <title>拿到第一个 shell 只完成了 20%：域渗透六段流水线，从用户名枚举到 DCSync 接管域控</title>
-    <updated>2026-11-03T13:38:38.531Z</updated>
+    <title>拿到 shell 只算进了门，金库在六个房间之后：从用户名枚举到 DCSync，两个半小时接管一个域</title>
+    <updated>2026-11-03T14:23:28.488Z</updated>
   </entry>
   <entry>
     <author>
@@ -188,8 +188,8 @@
 <p>过去二十年，二进制利用的历史，就是一部”防御方不断加锁、攻击方不断找钥匙”的历史。</p>
 <p>2001 年 StackGuard 让覆盖返回地址不再无声无息；2004 年 NX 让栈上的 shellcode 变成一堆废字节；2010 年前后 A]]>
     </summary>
-    <title>Canary、PIE、CET、PAC 一层层压上来，二进制利用还剩什么：现代缓解全景与 fuzzing 驱动的漏洞研究流水线</title>
-    <updated>2026-11-03T13:19:19.195Z</updated>
+    <title>Canary、PIE、CET、PAC 一层层压上来，你们以为赢了？控制流堵死，那就改打数据面</title>
+    <updated>2026-11-03T14:23:28.464Z</updated>
   </entry>
   <entry>
     <author>
@@ -216,8 +216,8 @@
 <p>在所有二进制漏洞里，格式化字符串是最”反直觉”的一类。</p>
 <p>栈溢出你要写超长；堆利用你要构造精巧的 chunk 布局。而格式化字符串漏洞的触发条件，有时候只是程序员写了 <code>printf(buf)</code> 而不是 <code]]>
     </summary>
-    <title>一个 %n 就能改写程序人生：格式化字符串的泄露与任意写，以及 GOT 覆写这条路是怎么被堵死的</title>
-    <updated>2026-11-03T13:24:48.572Z</updated>
+    <title>给我一个 %n，我就能把你的内存改成我想要的样子：GOT 覆写这条路是被谁堵死的</title>
+    <updated>2026-11-03T14:23:28.443Z</updated>
   </entry>
   <entry>
     <author>
@@ -245,8 +245,8 @@
 <p>堆上没有返回地址可以覆盖。</p>
 <p>这是初学者第一次转做堆题时最困惑的地方：栈溢出你只要算偏移、填地址；可堆利用里，你打开 gdb，看到的是一堆 <code>0x555555559290</code> 这样的地址，既不知道哪个字段有意义，也不]]>
     </summary>
-    <title>tcache 把堆利用变简单了十倍，也把它变成了另一门手艺：从 fastbin dup 到 safe-linking 的版本迁移史</title>
-    <updated>2026-11-03T13:12:46.076Z</updated>
+    <title>glibc 升一版，我的 exploit 废一次：fastbin dup 打到 safe-linking 堆利用断代史</title>
+    <updated>2026-11-03T14:26:23.491Z</updated>
   </entry>
   <entry>
     <author>
@@ -273,8 +273,8 @@
 <p>“这张照片拍摄于圣托里尼，误差 ±10 米。”</p>
 <p>这是大模型最爱给出的答案，也是渗过漏洞最多的答案。你问它凭什么，它给不出任何”我确实跑过某个命令、看过某个文件”的依据。在事实核查、内容溯源这类场景里，这种答案和一个没说的答案，危害是一]]>
     </summary>
-    <title>±100 米不是嘴上说说：geo-sleuth 的误差半径、置信分级与「禁止伪造验证」铁律</title>
-    <updated>2026-11-03T12:16:43.079Z</updated>
+    <title>「大概就在这附近」是句废话：±100 米、五级置信，和写进代码里的防自欺铁律</title>
+    <updated>2026-11-03T14:23:28.387Z</updated>
   </entry>
   <entry>
     <author>
@@ -300,8 +300,8 @@
       <![CDATA[<blockquote>
 <p>1988 年 11 月 2 日，Morris 蠕虫用一个小小的 <code>gets()</code> 溢出，让当时约 6 万台联网机器中的 6000 台瘫痪。三十八年后，<code>gets()</code> 早就从 C 标准里被删掉了，栈保护、]]>
     </summary>
-    <title>栈溢出四十年没死，只是换了打法：从 ret2win 到 ret2dlresolve 的完整返回地址利用链</title>
-    <updated>2026-11-03T13:12:09.664Z</updated>
+    <title>一个忘了检查长度的 strcpy，四十年后依然能把整个进程交出来：从 ret2win 打到 ret2dlresolve</title>
+    <updated>2026-11-03T14:23:28.398Z</updated>
   </entry>
   <entry>
     <author>
@@ -329,8 +329,8 @@
 <p>传统”图寻”的瓶颈不是看不懂图，而是<strong>看不完图</strong>。一张照片可能对应几百个候选地点，每个地点几百张卫星图、几百个街景点位。让人把所有缩略图翻一遍，既看不完，又会被先入为主的判断带偏。</p>
 </blockquote>]]>
     </summary>
-    <title>机器先排序，人只看前几张：geo-sleuth 怎么把「图寻」做成流水线</title>
-    <updated>2026-11-03T12:15:50.377Z</updated>
+    <title>人眼是这条链路上最烂的一环，所以我把它踢出去了：CLIP + DINOv2 + SIFT 的机器排序流水线</title>
+    <updated>2026-11-03T14:23:28.365Z</updated>
   </entry>
   <entry>
     <author>
@@ -356,8 +356,8 @@
       <![CDATA[<blockquote>
 <p>你随手发在朋友圈的一张旅行照，没有定位、没有水印、只有一片海和几栋楼。在绝大多数人眼里，这不过是”某处海边”。但在做照片地理定位（photo geolocation）的人眼里，这张图里藏着十几个可以定位的线索：车牌的底色、路边路灯的样式、远处山脊的]]>
     </summary>
-    <title>一张照片能反推出你在哪拍的？拆解 geo-sleuth 的「可验证地理定位」方法学</title>
-    <updated>2026-11-03T12:17:32.619Z</updated>
+    <title>删掉 EXIF 也没用：我靠一张随手拍把你定位到 ±100 米，geo-sleuth 六步溯源流水线</title>
+    <updated>2026-11-03T14:23:28.314Z</updated>
   </entry>
   <entry>
     <author>
@@ -484,8 +484,8 @@
     </author>
     <category term="网络安全" scheme="http://example.com/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
     <category term="无线电与信号安全" scheme="http://example.com/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/%E6%97%A0%E7%BA%BF%E7%94%B5%E4%B8%8E%E4%BF%A1%E5%8F%B7%E5%AE%89%E5%85%A8/"/>
-    <category term="卫星安全" scheme="http://example.com/tags/%E5%8D%AB%E6%98%9F%E5%AE%89%E5%85%A8/"/>
     <category term="SDR" scheme="http://example.com/tags/SDR/"/>
+    <category term="卫星安全" scheme="http://example.com/tags/%E5%8D%AB%E6%98%9F%E5%AE%89%E5%85%A8/"/>
     <category term="GPS欺骗" scheme="http://example.com/tags/GPS%E6%AC%BA%E9%AA%97/"/>
     <category term="DEF CON" scheme="http://example.com/tags/DEF-CON/"/>
     <category term="Black Hat" scheme="http://example.com/tags/Black-Hat/"/>

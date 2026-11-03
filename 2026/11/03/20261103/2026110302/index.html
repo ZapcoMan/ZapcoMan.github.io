@@ -8,17 +8,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#f7f3e9">
 
-<title>机器先排序，人只看前几张：geo-sleuth 怎么把「图寻」做成流水线 | ZapcoMan&#39;s world</title>
+<title>人眼是这条链路上最烂的一环，所以我把它踢出去了：CLIP + DINOv2 + SIFT 的机器排序流水线 | ZapcoMan&#39;s world</title>
 <meta name="description" content="传统”图寻”的瓶颈不是看不懂图，而是看不完图。一张照片可能对应几百个候选地点，每个地点几百张卫星图、几百个街景点位。让人把所有缩略图翻一遍，既看不完，又会被先入为主的判断带偏。 geo-sleuth 的感知层（Perception）做了一件反直觉的事：让机器先把海量候选排好序，人只去看排序最靠前的那 20 张、那 10 张。 上一篇讲了方法学的整体架构（决策...">
 <meta property="og:type" content="article">
-<meta property="og:title" content="机器先排序，人只看前几张：geo-sleuth 怎么把「图寻」做成流水线 | ZapcoMan&#39;s world">
+<meta property="og:title" content="人眼是这条链路上最烂的一环，所以我把它踢出去了：CLIP + DINOv2 + SIFT 的机器排序流水线 | ZapcoMan&#39;s world">
 <meta property="og:url" content="http://example.com/2026/11/03/20261103/2026110302/">
 <meta property="og:site_name" content="ZapcoMan&#39;s world">
 <meta property="og:description" content="传统”图寻”的瓶颈不是看不懂图，而是看不完图。一张照片可能对应几百个候选地点，每个地点几百张卫星图、几百个街景点位。让人把所有缩略图翻一遍，既看不完，又会被先入为主的判断带偏。 geo-sleuth 的感知层（Perception）做了一件反直觉的事：让机器先把海量候选排好序，人只去看排序最靠前的那 20 张、那 10 张。 上一篇讲了方法学的整体架构（决策...">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/11/03/images/20261103/2026110302-cover.png">
 <meta property="article:published_time" content="2026-11-03T13:00:00.000Z">
-<meta property="article:modified_time" content="2026-11-03T12:15:50.377Z">
+<meta property="article:modified_time" content="2026-11-03T14:23:28.365Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="CLIP">
 <meta property="article:tag" content="DINOv2">
@@ -35,7 +35,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"机器先排序，人只看前几张：geo-sleuth 怎么把「图寻」做成流水线","name":"机器先排序，人只看前几张：geo-sleuth 怎么把「图寻」做成流水线 | ZapcoMan's world","description":"传统”图寻”的瓶颈不是看不懂图，而是看不完图。一张照片可能对应几百个候选地点，每个地点几百张卫星图、几百个街景点位。让人把所有缩略图翻一遍，既看不完，又会被先入为主的判断带偏。 geo-sleuth 的感知层（Perception）做了一件反直觉的事：让机器先把海量候选排好序，人只去看排序最靠前的那 20 张、那 10 张。 上一篇讲了方法学的整体架构（决策...","url":"http://example.com/2026/11/03/20261103/2026110302/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20261103/2026110302-cover.png"],"mainEntityOfPage":"http://example.com/2026/11/03/20261103/2026110302/","datePublished":"2026-11-03T13:00:00.000Z","dateModified":"2026-11-03T12:15:50.377Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"威胁情报, geo-sleuth, CLIP, DINOv2, SIFT, 卫星影像, 街景匹配, 反向图片搜索, 计算机视觉"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"人眼是这条链路上最烂的一环，所以我把它踢出去了：CLIP + DINOv2 + SIFT 的机器排序流水线","name":"人眼是这条链路上最烂的一环，所以我把它踢出去了：CLIP + DINOv2 + SIFT 的机器排序流水线 | ZapcoMan's world","description":"传统”图寻”的瓶颈不是看不懂图，而是看不完图。一张照片可能对应几百个候选地点，每个地点几百张卫星图、几百个街景点位。让人把所有缩略图翻一遍，既看不完，又会被先入为主的判断带偏。 geo-sleuth 的感知层（Perception）做了一件反直觉的事：让机器先把海量候选排好序，人只去看排序最靠前的那 20 张、那 10 张。 上一篇讲了方法学的整体架构（决策...","url":"http://example.com/2026/11/03/20261103/2026110302/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20261103/2026110302-cover.png"],"mainEntityOfPage":"http://example.com/2026/11/03/20261103/2026110302/","datePublished":"2026-11-03T13:00:00.000Z","dateModified":"2026-11-03T14:23:28.365Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"威胁情报, geo-sleuth, CLIP, DINOv2, SIFT, 卫星影像, 街景匹配, 反向图片搜索, 计算机视觉"}</script>
 
 <script>
   (function () {
@@ -444,35 +444,35 @@
       
         <li>
           <a class="recent-item" href="/2026/11/03/20261103/2026110312/">
-            <strong>GCM 的 nonce 只要重复一次，攻击者就能伪造任意消息：AEAD 的六种误用</strong>
+            <strong>nonce 撞一次，我就能伪造你的任意消息——而且换 nonce 也救不回来：AEAD 的六种误用</strong>
             <em>2026-11-03</em>
           </a>
         </li>
       
         <li>
           <a class="recent-item" href="/2026/11/03/20261103/2026110311/">
-            <strong>一条 nonce 毁掉整条曲线：ECDSA 的五类致命错误，从索尼的常数 4 到格攻击</strong>
+            <strong>索尼把 k 固定成了 4，然后全世界都读到了它的私钥：ECDSA 五类错误，从常数 4 打到格攻击</strong>
             <em>2026-11-03</em>
           </a>
         </li>
       
         <li>
           <a class="recent-item" href="/2026/11/03/20261103/2026110310/">
-            <strong>MD5 死了二十年，还在给恶意软件签名：哈希碰撞、长度扩展与口令存储的完整攻防</strong>
+            <strong>MD5 埋了二十年，你们的签名服务还在给它上香：碰撞、长度扩展，和口令存储里的算力税骗局</strong>
             <em>2026-11-03</em>
           </a>
         </li>
       
         <li>
           <a class="recent-item" href="/2026/11/03/20261103/2026110309/">
-            <strong>AES-256 二十年没被破过一次，泄露的数据却越来越多：密码学实战的七类&#34;用法漏洞&#34;，从 ECB 重排到 RSA 共模</strong>
+            <strong>AES-256 二十年零失手，你们的数据照样漏得干干净净：七类用法漏洞，从 ECB 重排到 RSA 共模</strong>
             <em>2026-11-03</em>
           </a>
         </li>
       
         <li>
           <a class="recent-item" href="/2026/11/03/20261103/2026110308/">
-            <strong>拿到第一个 shell 只完成了 20%：域渗透六段流水线，从用户名枚举到 DCSync 接管域控</strong>
+            <strong>拿到 shell 只算进了门，金库在六个房间之后：从用户名枚举到 DCSync，两个半小时接管一个域</strong>
             <em>2026-11-03</em>
           </a>
         </li>
@@ -504,7 +504,7 @@
         网络安全
       </a>
     
-    <h1>机器先排序，人只看前几张：geo-sleuth 怎么把「图寻」做成流水线</h1>
+    <h1>人眼是这条链路上最烂的一环，所以我把它踢出去了：CLIP + DINOv2 + SIFT 的机器排序流水线</h1>
     <div class="meta-line meta-line--article">
       <span class="meta-date">
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
@@ -685,13 +685,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-left"></use></svg>
 
         <span class="action-label">上一篇</span>
-        <span class="action-title">栈溢出四十年没死，只是换了打法：从 ret2win 到 ret2dlresolve 的完整返回地址利用链</span>
+        <span class="action-title">一个忘了检查长度的 strcpy，四十年后依然能把整个进程交出来：从 ret2win 打到 ret2dlresolve</span>
       </a>
     
     
       <a class="article-action article-action--next" href="/2026/11/03/20261103/2026110301/">
         <span class="action-label">下一篇</span>
-        <span class="action-title">一张照片能反推出你在哪拍的？拆解 geo-sleuth 的「可验证地理定位」方法学</span>
+        <span class="action-title">删掉 EXIF 也没用：我靠一张随手拍把你定位到 ±100 米，geo-sleuth 六步溯源流水线</span>
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
 
@@ -727,13 +727,13 @@
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/../../images/20261103/2026110303-cover.png" alt="±100 米不是嘴上说说：geo-sleuth 的误差半径、置信分级与「禁止伪造验证」铁律" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20261103/2026110303-cover.png" alt="「大概就在这附近」是句废话：±100 米、五级置信，和写进代码里的防自欺铁律" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">±100 米不是嘴上说说：geo-sleuth 的误差半径、置信分级与「禁止伪造验证」铁律</strong>
+            <strong class="related-card__title">「大概就在这附近」是句废话：±100 米、五级置信，和写进代码里的防自欺铁律</strong>
             <em class="related-card__date">2026-11-03</em>
           </span>
         </a>
@@ -743,13 +743,13 @@
             
 <div class="paper-thumb paper-thumb-1 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/../../images/20261103/2026110301-cover.png" alt="一张照片能反推出你在哪拍的？拆解 geo-sleuth 的「可验证地理定位」方法学" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20261103/2026110301-cover.png" alt="删掉 EXIF 也没用：我靠一张随手拍把你定位到 ±100 米，geo-sleuth 六步溯源流水线" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">一张照片能反推出你在哪拍的？拆解 geo-sleuth 的「可验证地理定位」方法学</strong>
+            <strong class="related-card__title">删掉 EXIF 也没用：我靠一张随手拍把你定位到 ±100 米，geo-sleuth 六步溯源流水线</strong>
             <em class="related-card__date">2026-11-03</em>
           </span>
         </a>

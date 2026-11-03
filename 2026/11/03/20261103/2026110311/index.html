@@ -8,17 +8,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#f7f3e9">
 
-<title>一条 nonce 毁掉整条曲线：ECDSA 的五类致命错误，从索尼的常数 4 到格攻击 | ZapcoMan&#39;s world</title>
+<title>索尼把 k 固定成了 4，然后全世界都读到了它的私钥：ECDSA 五类错误，从常数 4 打到格攻击 | ZapcoMan&#39;s world</title>
 <meta name="description" content="2010 年 12 月，柏林，27C3。 fail0verflow 站在台上，说了一句让全场先愣住再爆笑的话：索尼在 PS3 的 ECDSA 实现里，把每次签名要用的随机数 k 写死成了常数 4。 屏幕上打出私钥的十六进制。索尼花了四年建立的主信任根，在四十分钟的演讲里永久失效——而且无法通过固件更新修复，因为根密钥一旦泄露，换密钥就等于让所有已售出的机器拒...">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一条 nonce 毁掉整条曲线：ECDSA 的五类致命错误，从索尼的常数 4 到格攻击 | ZapcoMan&#39;s world">
+<meta property="og:title" content="索尼把 k 固定成了 4，然后全世界都读到了它的私钥：ECDSA 五类错误，从常数 4 打到格攻击 | ZapcoMan&#39;s world">
 <meta property="og:url" content="http://example.com/2026/11/03/20261103/2026110311/">
 <meta property="og:site_name" content="ZapcoMan&#39;s world">
 <meta property="og:description" content="2010 年 12 月，柏林，27C3。 fail0verflow 站在台上，说了一句让全场先愣住再爆笑的话：索尼在 PS3 的 ECDSA 实现里，把每次签名要用的随机数 k 写死成了常数 4。 屏幕上打出私钥的十六进制。索尼花了四年建立的主信任根，在四十分钟的演讲里永久失效——而且无法通过固件更新修复，因为根密钥一旦泄露，换密钥就等于让所有已售出的机器拒...">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/11/03/images/20261103/2026110311-cover.png">
 <meta property="article:published_time" content="2026-11-03T15:40:00.000Z">
-<meta property="article:modified_time" content="2026-11-03T14:03:55.940Z">
+<meta property="article:modified_time" content="2026-11-03T14:23:28.553Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="ECDSA">
 <meta property="article:tag" content="EdDSA">
@@ -36,7 +36,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"一条 nonce 毁掉整条曲线：ECDSA 的五类致命错误，从索尼的常数 4 到格攻击","name":"一条 nonce 毁掉整条曲线：ECDSA 的五类致命错误，从索尼的常数 4 到格攻击 | ZapcoMan's world","description":"2010 年 12 月，柏林，27C3。 fail0verflow 站在台上，说了一句让全场先愣住再爆笑的话：索尼在 PS3 的 ECDSA 实现里，把每次签名要用的随机数 k 写死成了常数 4。 屏幕上打出私钥的十六进制。索尼花了四年建立的主信任根，在四十分钟的演讲里永久失效——而且无法通过固件更新修复，因为根密钥一旦泄露，换密钥就等于让所有已售出的机器拒...","url":"http://example.com/2026/11/03/20261103/2026110311/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20261103/2026110311-cover.png"],"mainEntityOfPage":"http://example.com/2026/11/03/20261103/2026110311/","datePublished":"2026-11-03T15:40:00.000Z","dateModified":"2026-11-03T14:03:55.940Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"密码学, ECDSA, 椭圆曲线, 数字签名, nonce, 格攻击, LLL, EdDSA, 无效曲线攻击, 区块链安全"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"索尼把 k 固定成了 4，然后全世界都读到了它的私钥：ECDSA 五类错误，从常数 4 打到格攻击","name":"索尼把 k 固定成了 4，然后全世界都读到了它的私钥：ECDSA 五类错误，从常数 4 打到格攻击 | ZapcoMan's world","description":"2010 年 12 月，柏林，27C3。 fail0verflow 站在台上，说了一句让全场先愣住再爆笑的话：索尼在 PS3 的 ECDSA 实现里，把每次签名要用的随机数 k 写死成了常数 4。 屏幕上打出私钥的十六进制。索尼花了四年建立的主信任根，在四十分钟的演讲里永久失效——而且无法通过固件更新修复，因为根密钥一旦泄露，换密钥就等于让所有已售出的机器拒...","url":"http://example.com/2026/11/03/20261103/2026110311/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20261103/2026110311-cover.png"],"mainEntityOfPage":"http://example.com/2026/11/03/20261103/2026110311/","datePublished":"2026-11-03T15:40:00.000Z","dateModified":"2026-11-03T14:23:28.553Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"密码学, ECDSA, 椭圆曲线, 数字签名, nonce, 格攻击, LLL, EdDSA, 无效曲线攻击, 区块链安全"}</script>
 
 <script>
   (function () {
@@ -445,35 +445,35 @@
       
         <li>
           <a class="recent-item" href="/2026/11/03/20261103/2026110312/">
-            <strong>GCM 的 nonce 只要重复一次，攻击者就能伪造任意消息：AEAD 的六种误用</strong>
+            <strong>nonce 撞一次，我就能伪造你的任意消息——而且换 nonce 也救不回来：AEAD 的六种误用</strong>
             <em>2026-11-03</em>
           </a>
         </li>
       
         <li>
           <a class="recent-item" href="/2026/11/03/20261103/2026110310/">
-            <strong>MD5 死了二十年，还在给恶意软件签名：哈希碰撞、长度扩展与口令存储的完整攻防</strong>
+            <strong>MD5 埋了二十年，你们的签名服务还在给它上香：碰撞、长度扩展，和口令存储里的算力税骗局</strong>
             <em>2026-11-03</em>
           </a>
         </li>
       
         <li>
           <a class="recent-item" href="/2026/11/03/20261103/2026110309/">
-            <strong>AES-256 二十年没被破过一次，泄露的数据却越来越多：密码学实战的七类&#34;用法漏洞&#34;，从 ECB 重排到 RSA 共模</strong>
+            <strong>AES-256 二十年零失手，你们的数据照样漏得干干净净：七类用法漏洞，从 ECB 重排到 RSA 共模</strong>
             <em>2026-11-03</em>
           </a>
         </li>
       
         <li>
           <a class="recent-item" href="/2026/11/03/20261103/2026110308/">
-            <strong>拿到第一个 shell 只完成了 20%：域渗透六段流水线，从用户名枚举到 DCSync 接管域控</strong>
+            <strong>拿到 shell 只算进了门，金库在六个房间之后：从用户名枚举到 DCSync，两个半小时接管一个域</strong>
             <em>2026-11-03</em>
           </a>
         </li>
       
         <li>
           <a class="recent-item" href="/2026/11/03/20261103/2026110307/">
-            <strong>Canary、PIE、CET、PAC 一层层压上来，二进制利用还剩什么：现代缓解全景与 fuzzing 驱动的漏洞研究流水线</strong>
+            <strong>Canary、PIE、CET、PAC 一层层压上来，你们以为赢了？控制流堵死，那就改打数据面</strong>
             <em>2026-11-03</em>
           </a>
         </li>
@@ -505,7 +505,7 @@
         网络安全
       </a>
     
-    <h1>一条 nonce 毁掉整条曲线：ECDSA 的五类致命错误，从索尼的常数 4 到格攻击</h1>
+    <h1>索尼把 k 固定成了 4，然后全世界都读到了它的私钥：ECDSA 五类错误，从常数 4 打到格攻击</h1>
     <div class="meta-line meta-line--article">
       <span class="meta-date">
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
@@ -1014,13 +1014,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-left"></use></svg>
 
         <span class="action-label">上一篇</span>
-        <span class="action-title">GCM 的 nonce 只要重复一次，攻击者就能伪造任意消息：AEAD 的六种误用</span>
+        <span class="action-title">nonce 撞一次，我就能伪造你的任意消息——而且换 nonce 也救不回来：AEAD 的六种误用</span>
       </a>
     
     
       <a class="article-action article-action--next" href="/2026/11/03/20261103/2026110310/">
         <span class="action-label">下一篇</span>
-        <span class="action-title">MD5 死了二十年，还在给恶意软件签名：哈希碰撞、长度扩展与口令存储的完整攻防</span>
+        <span class="action-title">MD5 埋了二十年，你们的签名服务还在给它上香：碰撞、长度扩展，和口令存储里的算力税骗局</span>
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
 
@@ -1056,13 +1056,13 @@
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/../../images/20261103/2026110312-cover.png" alt="GCM 的 nonce 只要重复一次，攻击者就能伪造任意消息：AEAD 的六种误用" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20261103/2026110312-cover.png" alt="nonce 撞一次，我就能伪造你的任意消息——而且换 nonce 也救不回来：AEAD 的六种误用" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">GCM 的 nonce 只要重复一次，攻击者就能伪造任意消息：AEAD 的六种误用</strong>
+            <strong class="related-card__title">nonce 撞一次，我就能伪造你的任意消息——而且换 nonce 也救不回来：AEAD 的六种误用</strong>
             <em class="related-card__date">2026-11-03</em>
           </span>
         </a>
@@ -1072,13 +1072,13 @@
             
 <div class="paper-thumb paper-thumb-1 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/../../images/20261103/2026110310-cover.png" alt="MD5 死了二十年，还在给恶意软件签名：哈希碰撞、长度扩展与口令存储的完整攻防" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20261103/2026110310-cover.png" alt="MD5 埋了二十年，你们的签名服务还在给它上香：碰撞、长度扩展，和口令存储里的算力税骗局" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">MD5 死了二十年，还在给恶意软件签名：哈希碰撞、长度扩展与口令存储的完整攻防</strong>
+            <strong class="related-card__title">MD5 埋了二十年，你们的签名服务还在给它上香：碰撞、长度扩展，和口令存储里的算力税骗局</strong>
             <em class="related-card__date">2026-11-03</em>
           </span>
         </a>
@@ -1088,13 +1088,13 @@
             
 <div class="paper-thumb paper-thumb-2 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/../../images/20261103/2026110309-cover.png" alt="AES-256 二十年没被破过一次，泄露的数据却越来越多：密码学实战的七类&#34;用法漏洞&#34;，从 ECB 重排到 RSA 共模" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20261103/2026110309-cover.png" alt="AES-256 二十年零失手，你们的数据照样漏得干干净净：七类用法漏洞，从 ECB 重排到 RSA 共模" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">AES-256 二十年没被破过一次，泄露的数据却越来越多：密码学实战的七类&#34;用法漏洞&#34;，从 ECB 重排到 RSA 共模</strong>
+            <strong class="related-card__title">AES-256 二十年零失手，你们的数据照样漏得干干净净：七类用法漏洞，从 ECB 重排到 RSA 共模</strong>
             <em class="related-card__date">2026-11-03</em>
           </span>
         </a>

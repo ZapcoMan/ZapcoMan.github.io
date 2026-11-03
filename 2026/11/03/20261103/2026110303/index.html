@@ -8,17 +8,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#f7f3e9">
 
-<title>±100 米不是嘴上说说：geo-sleuth 的误差半径、置信分级与「禁止伪造验证」铁律 | ZapcoMan&#39;s world</title>
+<title>「大概就在这附近」是句废话：±100 米、五级置信，和写进代码里的防自欺铁律 | ZapcoMan&#39;s world</title>
 <meta name="description" content="“这张照片拍摄于圣托里尼，误差 ±10 米。” 这是大模型最爱给出的答案，也是渗过漏洞最多的答案。你问它凭什么，它给不出任何”我确实跑过某个命令、看过某个文件”的依据。在事实核查、内容溯源这类场景里，这种答案和一个没说的答案，危害是一样的——甚至更糟，因为它自带权威感。 geo-sleuth 把”可信”做成了硬约束，而不是好习惯。这一篇，专门拆它的”纪律 b...">
 <meta property="og:type" content="article">
-<meta property="og:title" content="±100 米不是嘴上说说：geo-sleuth 的误差半径、置信分级与「禁止伪造验证」铁律 | ZapcoMan&#39;s world">
+<meta property="og:title" content="「大概就在这附近」是句废话：±100 米、五级置信，和写进代码里的防自欺铁律 | ZapcoMan&#39;s world">
 <meta property="og:url" content="http://example.com/2026/11/03/20261103/2026110303/">
 <meta property="og:site_name" content="ZapcoMan&#39;s world">
 <meta property="og:description" content="“这张照片拍摄于圣托里尼，误差 ±10 米。” 这是大模型最爱给出的答案，也是渗过漏洞最多的答案。你问它凭什么，它给不出任何”我确实跑过某个命令、看过某个文件”的依据。在事实核查、内容溯源这类场景里，这种答案和一个没说的答案，危害是一样的——甚至更糟，因为它自带权威感。 geo-sleuth 把”可信”做成了硬约束，而不是好习惯。这一篇，专门拆它的”纪律 b...">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/11/03/images/20261103/2026110303-cover.png">
 <meta property="article:published_time" content="2026-11-03T13:30:00.000Z">
-<meta property="article:modified_time" content="2026-11-03T12:16:43.079Z">
+<meta property="article:modified_time" content="2026-11-03T14:23:28.387Z">
 <meta property="article:author" content="ZapcoMan">
 <meta property="article:tag" content="geo-sleuth">
 <meta property="article:tag" content="事实核查">
@@ -34,7 +34,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"±100 米不是嘴上说说：geo-sleuth 的误差半径、置信分级与「禁止伪造验证」铁律","name":"±100 米不是嘴上说说：geo-sleuth 的误差半径、置信分级与「禁止伪造验证」铁律 | ZapcoMan's world","description":"“这张照片拍摄于圣托里尼，误差 ±10 米。” 这是大模型最爱给出的答案，也是渗过漏洞最多的答案。你问它凭什么，它给不出任何”我确实跑过某个命令、看过某个文件”的依据。在事实核查、内容溯源这类场景里，这种答案和一个没说的答案，危害是一样的——甚至更糟，因为它自带权威感。 geo-sleuth 把”可信”做成了硬约束，而不是好习惯。这一篇，专门拆它的”纪律 b...","url":"http://example.com/2026/11/03/20261103/2026110303/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20261103/2026110303-cover.png"],"mainEntityOfPage":"http://example.com/2026/11/03/20261103/2026110303/","datePublished":"2026-11-03T13:30:00.000Z","dateModified":"2026-11-03T12:16:43.079Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"geo-sleuth, 误差半径, 置信分级, 反幻觉, 事实核查, 证据标准, 排除法, 候选板"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"「大概就在这附近」是句废话：±100 米、五级置信，和写进代码里的防自欺铁律","name":"「大概就在这附近」是句废话：±100 米、五级置信，和写进代码里的防自欺铁律 | ZapcoMan's world","description":"“这张照片拍摄于圣托里尼，误差 ±10 米。” 这是大模型最爱给出的答案，也是渗过漏洞最多的答案。你问它凭什么，它给不出任何”我确实跑过某个命令、看过某个文件”的依据。在事实核查、内容溯源这类场景里，这种答案和一个没说的答案，危害是一样的——甚至更糟，因为它自带权威感。 geo-sleuth 把”可信”做成了硬约束，而不是好习惯。这一篇，专门拆它的”纪律 b...","url":"http://example.com/2026/11/03/20261103/2026110303/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20261103/2026110303-cover.png"],"mainEntityOfPage":"http://example.com/2026/11/03/20261103/2026110303/","datePublished":"2026-11-03T13:30:00.000Z","dateModified":"2026-11-03T14:23:28.387Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"geo-sleuth, 误差半径, 置信分级, 反幻觉, 事实核查, 证据标准, 排除法, 候选板"}</script>
 
 <script>
   (function () {
@@ -443,35 +443,35 @@
       
         <li>
           <a class="recent-item" href="/2026/11/03/20261103/2026110312/">
-            <strong>GCM 的 nonce 只要重复一次，攻击者就能伪造任意消息：AEAD 的六种误用</strong>
+            <strong>nonce 撞一次，我就能伪造你的任意消息——而且换 nonce 也救不回来：AEAD 的六种误用</strong>
             <em>2026-11-03</em>
           </a>
         </li>
       
         <li>
           <a class="recent-item" href="/2026/11/03/20261103/2026110311/">
-            <strong>一条 nonce 毁掉整条曲线：ECDSA 的五类致命错误，从索尼的常数 4 到格攻击</strong>
+            <strong>索尼把 k 固定成了 4，然后全世界都读到了它的私钥：ECDSA 五类错误，从常数 4 打到格攻击</strong>
             <em>2026-11-03</em>
           </a>
         </li>
       
         <li>
           <a class="recent-item" href="/2026/11/03/20261103/2026110310/">
-            <strong>MD5 死了二十年，还在给恶意软件签名：哈希碰撞、长度扩展与口令存储的完整攻防</strong>
+            <strong>MD5 埋了二十年，你们的签名服务还在给它上香：碰撞、长度扩展，和口令存储里的算力税骗局</strong>
             <em>2026-11-03</em>
           </a>
         </li>
       
         <li>
           <a class="recent-item" href="/2026/11/03/20261103/2026110309/">
-            <strong>AES-256 二十年没被破过一次，泄露的数据却越来越多：密码学实战的七类&#34;用法漏洞&#34;，从 ECB 重排到 RSA 共模</strong>
+            <strong>AES-256 二十年零失手，你们的数据照样漏得干干净净：七类用法漏洞，从 ECB 重排到 RSA 共模</strong>
             <em>2026-11-03</em>
           </a>
         </li>
       
         <li>
           <a class="recent-item" href="/2026/11/03/20261103/2026110308/">
-            <strong>拿到第一个 shell 只完成了 20%：域渗透六段流水线，从用户名枚举到 DCSync 接管域控</strong>
+            <strong>拿到 shell 只算进了门，金库在六个房间之后：从用户名枚举到 DCSync，两个半小时接管一个域</strong>
             <em>2026-11-03</em>
           </a>
         </li>
@@ -503,7 +503,7 @@
         网络安全
       </a>
     
-    <h1>±100 米不是嘴上说说：geo-sleuth 的误差半径、置信分级与「禁止伪造验证」铁律</h1>
+    <h1>「大概就在这附近」是句废话：±100 米、五级置信，和写进代码里的防自欺铁律</h1>
     <div class="meta-line meta-line--article">
       <span class="meta-date">
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
@@ -715,13 +715,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-left"></use></svg>
 
         <span class="action-label">上一篇</span>
-        <span class="action-title">tcache 把堆利用变简单了十倍，也把它变成了另一门手艺：从 fastbin dup 到 safe-linking 的版本迁移史</span>
+        <span class="action-title">glibc 升一版，我的 exploit 废一次：fastbin dup 打到 safe-linking 堆利用断代史</span>
       </a>
     
     
       <a class="article-action article-action--next" href="/2026/11/03/20261103/2026110304/">
         <span class="action-label">下一篇</span>
-        <span class="action-title">栈溢出四十年没死，只是换了打法：从 ret2win 到 ret2dlresolve 的完整返回地址利用链</span>
+        <span class="action-title">一个忘了检查长度的 strcpy，四十年后依然能把整个进程交出来：从 ret2win 打到 ret2dlresolve</span>
         
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
 
@@ -757,13 +757,13 @@
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/../../images/20261103/2026110302-cover.png" alt="机器先排序，人只看前几张：geo-sleuth 怎么把「图寻」做成流水线" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20261103/2026110302-cover.png" alt="人眼是这条链路上最烂的一环，所以我把它踢出去了：CLIP + DINOv2 + SIFT 的机器排序流水线" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">机器先排序，人只看前几张：geo-sleuth 怎么把「图寻」做成流水线</strong>
+            <strong class="related-card__title">人眼是这条链路上最烂的一环，所以我把它踢出去了：CLIP + DINOv2 + SIFT 的机器排序流水线</strong>
             <em class="related-card__date">2026-11-03</em>
           </span>
         </a>
@@ -773,13 +773,13 @@
             
 <div class="paper-thumb paper-thumb-1 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/../../images/20261103/2026110301-cover.png" alt="一张照片能反推出你在哪拍的？拆解 geo-sleuth 的「可验证地理定位」方法学" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20261103/2026110301-cover.png" alt="删掉 EXIF 也没用：我靠一张随手拍把你定位到 ±100 米，geo-sleuth 六步溯源流水线" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">一张照片能反推出你在哪拍的？拆解 geo-sleuth 的「可验证地理定位」方法学</strong>
+            <strong class="related-card__title">删掉 EXIF 也没用：我靠一张随手拍把你定位到 ±100 米，geo-sleuth 六步溯源流水线</strong>
             <em class="related-card__date">2026-11-03</em>
           </span>
         </a>
@@ -789,13 +789,13 @@
             
 <div class="paper-thumb paper-thumb-2 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/../../images/20261103/2026110312-cover.png" alt="GCM 的 nonce 只要重复一次，攻击者就能伪造任意消息：AEAD 的六种误用" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20261103/2026110312-cover.png" alt="nonce 撞一次，我就能伪造你的任意消息——而且换 nonce 也救不回来：AEAD 的六种误用" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">GCM 的 nonce 只要重复一次，攻击者就能伪造任意消息：AEAD 的六种误用</strong>
+            <strong class="related-card__title">nonce 撞一次，我就能伪造你的任意消息——而且换 nonce 也救不回来：AEAD 的六种误用</strong>
             <em class="related-card__date">2026-11-03</em>
           </span>
         </a>
@@ -805,13 +805,13 @@
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/../../images/20261103/2026110311-cover.png" alt="一条 nonce 毁掉整条曲线：ECDSA 的五类致命错误，从索尼的常数 4 到格攻击" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20261103/2026110311-cover.png" alt="索尼把 k 固定成了 4，然后全世界都读到了它的私钥：ECDSA 五类错误，从常数 4 打到格攻击" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">一条 nonce 毁掉整条曲线：ECDSA 的五类致命错误，从索尼的常数 4 到格攻击</strong>
+            <strong class="related-card__title">索尼把 k 固定成了 4，然后全世界都读到了它的私钥：ECDSA 五类错误，从常数 4 打到格攻击</strong>
             <em class="related-card__date">2026-11-03</em>
           </span>
         </a>
