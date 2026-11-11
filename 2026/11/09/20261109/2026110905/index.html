@@ -8,33 +8,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#f7f3e9">
 
-<title>翻遍设置也找不到它：SystemHelper 事件里被混为一谈的两个组件、三级证据，和「没图标算不算预装 App」的合规边界 | ZapcoMan&#39;s world</title>
-<meta name="description" content="这两天信息流里刷屏的是一长串包名 com.mobiletools.systemhelper。但真正让人不安的从来不是这个字符串，是有人翻遍设置也找不到它——你不知道自己每天揣着的这台设备里，究竟有哪些东西在替你做决定。 这轮讨论里，我看到最值得写的不是「赶紧删」，而是三件被搅在一起的事：两个完全不同的组件被当成一个、三类重量完全不同的证据被当成一类、以及一条...">
+<title>设置里翻不到它，jadx 里它自己全招了：SystemHelper.apk 的四类采集代码、60+ 厂商反射适配与 5 个上报端点 | ZapcoMan&#39;s world</title>
+<meta name="description" content="上一篇写这个组件时，我把它当成一场舆情来拆：谁先发帖、谁转述了什么、哪些说法够不上证据。后来读到「kali笔记」2026 年 11 月 8 日那篇《来看看SystemHelper干了什么？》，才发现问题不在我写错了什么，而在整个视角就不对——人家把 APK 从手机里拖出来，反编译，逐文件把调用点贴了出来。 于是这篇推倒重来。不谈传闻，不谈时间线，只谈代码：一...">
 <meta property="og:type" content="article">
-<meta property="og:title" content="翻遍设置也找不到它：SystemHelper 事件里被混为一谈的两个组件、三级证据，和「没图标算不算预装 App」的合规边界 | ZapcoMan&#39;s world">
+<meta property="og:title" content="设置里翻不到它，jadx 里它自己全招了：SystemHelper.apk 的四类采集代码、60+ 厂商反射适配与 5 个上报端点 | ZapcoMan&#39;s world">
 <meta property="og:url" content="http://example.com/2026/11/09/20261109/2026110905/">
 <meta property="og:site_name" content="ZapcoMan&#39;s world">
-<meta property="og:description" content="这两天信息流里刷屏的是一长串包名 com.mobiletools.systemhelper。但真正让人不安的从来不是这个字符串，是有人翻遍设置也找不到它——你不知道自己每天揣着的这台设备里，究竟有哪些东西在替你做决定。 这轮讨论里，我看到最值得写的不是「赶紧删」，而是三件被搅在一起的事：两个完全不同的组件被当成一个、三类重量完全不同的证据被当成一类、以及一条...">
+<meta property="og:description" content="上一篇写这个组件时，我把它当成一场舆情来拆：谁先发帖、谁转述了什么、哪些说法够不上证据。后来读到「kali笔记」2026 年 11 月 8 日那篇《来看看SystemHelper干了什么？》，才发现问题不在我写错了什么，而在整个视角就不对——人家把 APK 从手机里拖出来，反编译，逐文件把调用点贴了出来。 于是这篇推倒重来。不谈传闻，不谈时间线，只谈代码：一...">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2026/11/09/images/20261109/2026110905-cover.png">
 <meta property="article:published_time" content="2026-11-09T04:10:00.000Z">
-<meta property="article:modified_time" content="2026-11-09T04:09:20.271Z">
+<meta property="article:modified_time" content="2026-11-11T08:19:05.600Z">
 <meta property="article:author" content="ZapcoMan">
-<meta property="article:tag" content="Android权限模型">
-<meta property="article:tag" content="HyperOS">
+<meta property="article:tag" content="Android逆向">
+<meta property="article:tag" content="OMA DM">
 <meta property="article:tag" content="SystemHelper">
-<meta property="article:tag" content="反诈">
-<meta property="article:tag" content="最小必要">
-<meta property="article:tag" content="证据分级">
+<meta property="article:tag" content="TelephonyManager">
+<meta property="article:tag" content="UsageStats">
+<meta property="article:tag" content="jadx">
+<meta property="article:tag" content="反射适配">
 <meta property="article:tag" content="隐私合规">
-<meta property="article:tag" content="预置应用">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/2026/11/09/images/20261109/2026110905-cover.png">
 <link rel="canonical" href="http://example.com/2026/11/09/20261109/2026110905/">
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"翻遍设置也找不到它：SystemHelper 事件里被混为一谈的两个组件、三级证据，和「没图标算不算预装 App」的合规边界","name":"翻遍设置也找不到它：SystemHelper 事件里被混为一谈的两个组件、三级证据，和「没图标算不算预装 App」的合规边界 | ZapcoMan's world","description":"这两天信息流里刷屏的是一长串包名 com.mobiletools.systemhelper。但真正让人不安的从来不是这个字符串，是有人翻遍设置也找不到它——你不知道自己每天揣着的这台设备里，究竟有哪些东西在替你做决定。 这轮讨论里，我看到最值得写的不是「赶紧删」，而是三件被搅在一起的事：两个完全不同的组件被当成一个、三类重量完全不同的证据被当成一类、以及一条...","url":"http://example.com/2026/11/09/20261109/2026110905/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20261109/2026110905-cover.png"],"mainEntityOfPage":"http://example.com/2026/11/09/20261109/2026110905/","datePublished":"2026-11-09T04:10:00.000Z","dateModified":"2026-11-09T04:09:20.271Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"反诈, 最小必要, SystemHelper, HyperOS, Android权限模型, 预置应用, 隐私合规, 证据分级"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"设置里翻不到它，jadx 里它自己全招了：SystemHelper.apk 的四类采集代码、60+ 厂商反射适配与 5 个上报端点","name":"设置里翻不到它，jadx 里它自己全招了：SystemHelper.apk 的四类采集代码、60+ 厂商反射适配与 5 个上报端点 | ZapcoMan's world","description":"上一篇写这个组件时，我把它当成一场舆情来拆：谁先发帖、谁转述了什么、哪些说法够不上证据。后来读到「kali笔记」2026 年 11 月 8 日那篇《来看看SystemHelper干了什么？》，才发现问题不在我写错了什么，而在整个视角就不对——人家把 APK 从手机里拖出来，反编译，逐文件把调用点贴了出来。 于是这篇推倒重来。不谈传闻，不谈时间线，只谈代码：一...","url":"http://example.com/2026/11/09/20261109/2026110905/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20261109/2026110905-cover.png"],"mainEntityOfPage":"http://example.com/2026/11/09/20261109/2026110905/","datePublished":"2026-11-09T04:10:00.000Z","dateModified":"2026-11-11T08:19:05.600Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"SystemHelper, Android逆向, jadx, OMA DM, TelephonyManager, UsageStats, 反射适配, 隐私合规"}</script>
 
 <script>
   (function () {
@@ -367,7 +367,7 @@
         
           
             <a class="site-info__item" href="/tags/">
-              <strong>614</strong>
+              <strong>616</strong>
               <span>标签</span>
             </a>
           
@@ -429,7 +429,7 @@
         </header>
         <div class="toc-content">
           
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%97%B6%E9%97%B4%E7%BA%BF%EF%BC%9A%E5%85%88%E6%8A%8A%E4%BA%8B%E6%83%85%E6%91%86%E6%AD%A3"><span class="toc-text">一、时间线：先把事情摆正</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%84%E7%BA%A0%E5%81%8F%EF%BC%9A%E8%BF%99%E6%98%AF%E4%B8%A4%E4%B8%AA%E7%BB%84%E4%BB%B6%EF%BC%8C%E4%B8%8D%E6%98%AF%E4%B8%80%E4%B8%AA"><span class="toc-text">二、最重要的纠偏：这是两个组件，不是一个</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E6%89%BE%E4%B8%8D%E5%88%B0%E5%AE%83%EF%BC%9AAndroid-%E7%9A%84%E4%B8%89%E5%B1%82%E6%9D%83%E9%99%90%E5%9C%B0%E5%BD%A2"><span class="toc-text">三、为什么你找不到它：Android 的三层权限地形</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E9%80%90%E5%AD%97%E6%AE%B5%E6%95%B0%E4%B8%80%E9%81%8D%EF%BC%9A%E5%88%B0%E5%BA%95%E4%B8%8A%E6%8A%A5%E4%BA%86%E4%BB%80%E4%B9%88"><span class="toc-text">四、逐字段数一遍：到底上报了什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%98%8E%E6%96%87-HTTP-%E2%89%A0-%E6%98%8E%E6%96%87%E6%95%B0%E6%8D%AE%EF%BC%9A%E4%B8%80%E5%A4%84%E6%9C%80%E5%AE%B9%E6%98%93%E8%A2%AB%E8%AF%AF%E8%AF%BB%E7%9A%84%E5%9C%B0%E6%96%B9"><span class="toc-text">五、明文 HTTP ≠ 明文数据：一处最容易被误读的地方</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E4%B8%89%E7%BA%A7%E8%AF%81%E6%8D%AE%EF%BC%9A%E8%BF%99%E8%BD%AE%E8%AE%A8%E8%AE%BA%E6%9C%80%E8%AF%A5%E8%A1%A5%E7%9A%84%E4%B8%80%E5%BC%A0%E8%A1%A8"><span class="toc-text">六、三级证据：这轮讨论最该补的一张表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E5%8F%8D%E8%AF%88%E6%98%AF%E6%AD%A3%E5%BD%93%E7%9A%84%EF%BC%8C%E4%BD%86%E6%AD%A3%E5%BD%93%E7%9B%AE%E7%9A%84%E4%B8%8D%E7%AD%89%E4%BA%8E%E5%8F%AF%E4%BB%A5%E4%B8%8D%E8%A7%A3%E9%87%8A%E6%89%8B%E6%AE%B5"><span class="toc-text">七、反诈是正当的，但正当目的不等于可以不解释手段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E9%82%A3%E6%9D%A1%E8%B0%81%E9%83%BD%E6%B2%A1%E6%8F%90%E7%9A%84%E5%90%88%E8%A7%84%E8%BE%B9%E7%95%8C%EF%BC%9A%E6%B2%A1%E6%9C%89%E5%9B%BE%E6%A0%87%EF%BC%8C%E7%AE%97%E4%B8%8D%E7%AE%97%E3%80%8C%E9%A2%84%E7%BD%AE%E5%BA%94%E7%94%A8%E8%BD%AF%E4%BB%B6%E3%80%8D"><span class="toc-text">八、那条谁都没提的合规边界：没有图标，算不算「预置应用软件」</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%9D%E3%80%81%E6%99%AE%E9%80%9A%E7%94%A8%E6%88%B7%E8%83%BD%E5%81%9A%E7%9A%84%EF%BC%8C%E5%92%8C%E4%B8%8D%E5%BB%BA%E8%AE%AE%E5%81%9A%E7%9A%84"><span class="toc-text">九、普通用户能做的，和不建议做的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E3%80%81%E8%A1%8C%E4%B8%9A%E4%BE%A7%E8%AF%A5%E8%A1%A5%E7%9A%84%E9%82%A3%E4%B8%80%E8%AF%BE"><span class="toc-text">十、行业侧该补的那一课</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E4%B8%80%E3%80%81%E7%BB%93%E5%B0%BE%EF%BC%9A%E6%AF%94%E3%80%8C%E8%B5%B6%E7%B4%A7%E5%88%A0%E3%80%8D%E6%9B%B4%E8%AF%A5%E7%95%99%E4%B8%8B%E7%9A%84%E4%B8%9C%E8%A5%BF"><span class="toc-text">十一、结尾：比「赶紧删」更该留下的东西</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%85%88%E6%8A%8A%E6%9D%90%E6%96%99%E6%9D%A5%E6%BA%90%E5%92%8C%E6%96%B9%E6%B3%95%E6%91%86%E6%AD%A3"><span class="toc-text">一、先把材料来源和方法摆正</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%A0%B7%E6%9C%AC%E6%8C%87%E7%BA%B9%EF%BC%9A%E5%85%88%E6%8A%8A%E8%BF%99%E4%B8%AA-APK-%E9%92%89%E6%AD%BB"><span class="toc-text">二、样本指纹：先把这个 APK 钉死</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%BB%8E-product-priv-app-%E5%88%B0-jadx%EF%BC%9A%E4%B8%80%E6%9D%A1%E5%8F%AA%E8%AF%BB%E5%8F%96%E8%AF%81%E9%93%BE"><span class="toc-text">三、从 &#x2F;product&#x2F;priv-app 到 jadx：一条只读取证链</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%AD%97%E6%AE%B5%E6%B8%85%E5%8D%95%EF%BC%9ADeviceInfo-java-%E7%9A%84%E5%B8%B8%E9%87%8F%E5%B0%B1%E6%98%AF%E6%9C%80%E7%A1%AC%E7%9A%84%E8%AF%81%E6%8D%AE"><span class="toc-text">四、字段清单：DeviceInfo.java 的常量就是最硬的证据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E9%87%87%E9%9B%86%E4%B9%8B%E4%B8%80%EF%BC%9A%E8%AE%BE%E5%A4%87%E6%A0%87%E8%AF%86%E3%80%81%E5%9F%BA%E7%AB%99%E4%BD%8D%E7%BD%AE%EF%BC%8C%E4%BB%A5%E5%8F%8A%E5%8F%8D%E5%B0%84%E5%85%9C%E5%BA%95"><span class="toc-text">五、采集之一：设备标识、基站位置，以及反射兜底</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E9%87%87%E9%9B%86%E4%B9%8B%E4%BA%8C%EF%BC%9A%E5%BA%94%E7%94%A8%E6%B8%85%E5%8D%95%E3%80%81%E5%89%8D%E5%8F%B0%E6%97%B6%E9%95%BF%E3%80%81%E9%80%90%E5%BA%94%E7%94%A8%E6%B5%81%E9%87%8F%E4%B8%8E-IP"><span class="toc-text">六、采集之二：应用清单、前台时长、逐应用流量与 IP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E4%B8%8A%E6%8A%A5%EF%BC%9A5-%E4%B8%AA%E7%AB%AF%E7%82%B9%E3%80%81RSA-AES%EF%BC%8C%E5%92%8C%E6%8C%89%E8%BF%90%E8%90%A5%E5%95%86%E5%88%86%E6%B5%81%E7%9A%84-MD5"><span class="toc-text">七、上报：5 个端点、RSA+AES，和按运营商分流的 MD5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%8160-%E5%8E%82%E5%95%86%E9%80%82%E9%85%8D%EF%BC%9A%E5%8F%8D%E5%B0%84%E6%89%8D%E6%98%AF%E8%BF%99%E5%A5%97%E4%BB%A3%E7%A0%81%E7%9A%84%E9%AA%A8%E6%9E%B6"><span class="toc-text">八、60+ 厂商适配：反射才是这套代码的骨架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%9D%E3%80%81%E5%AE%9A%E6%80%A7%EF%BC%9A%E4%B8%8D%E6%98%AF%E6%9C%A8%E9%A9%AC%EF%BC%8C%E4%BD%86%E4%B9%9F%E4%B8%8D%E6%98%AF%E3%80%8C%E6%B2%A1%E4%BB%80%E4%B9%88%E3%80%8D"><span class="toc-text">九、定性：不是木马，但也不是「没什么」</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E3%80%81%E8%AF%81%E6%8D%AE%E8%BE%B9%E7%95%8C%EF%BC%9A%E8%BF%99%E4%BB%BD%E5%88%86%E6%9E%90%E8%83%BD%E8%AF%81%E6%98%8E%E4%BB%80%E4%B9%88%EF%BC%8C%E4%B8%8D%E8%83%BD%E8%AF%81%E6%98%8E%E4%BB%80%E4%B9%88"><span class="toc-text">十、证据边界：这份分析能证明什么，不能证明什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E4%B8%80%E3%80%81%E9%98%B2%E5%BE%A1%E4%B8%8E%E5%90%88%E8%A7%84%E8%A7%86%E8%A7%92%EF%BC%9A%E8%AF%A5%E5%85%AC%E5%BC%80%E4%BB%80%E4%B9%88%EF%BC%8C%E8%AF%A5%E9%97%AE%E4%BB%80%E4%B9%88"><span class="toc-text">十一、防御与合规视角：该公开什么，该问什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E4%BA%8C%E3%80%81%E7%BB%93%E8%AE%BA"><span class="toc-text">十二、结论</span></a></li></ol>
           
         </div>
       </section>
@@ -503,7 +503,7 @@
         网络安全
       </a>
     
-    <h1>翻遍设置也找不到它：SystemHelper 事件里被混为一谈的两个组件、三级证据，和「没图标算不算预装 App」的合规边界</h1>
+    <h1>设置里翻不到它，jadx 里它自己全招了：SystemHelper.apk 的四类采集代码、60+ 厂商反射适配与 5 个上报端点</h1>
     <div class="meta-line meta-line--article">
       <span class="meta-date">
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
@@ -513,7 +513,7 @@
           
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
 
-          <a class="meta-tag-link" href="/tags/%E5%8F%8D%E8%AF%88/">#反诈</a><a class="meta-tag-link" href="/tags/%E6%9C%80%E5%B0%8F%E5%BF%85%E8%A6%81/">#最小必要</a><a class="meta-tag-link" href="/tags/SystemHelper/">#SystemHelper</a><a class="meta-tag-link" href="/tags/HyperOS/">#HyperOS</a><a class="meta-tag-link" href="/tags/Android%E6%9D%83%E9%99%90%E6%A8%A1%E5%9E%8B/">#Android权限模型</a><a class="meta-tag-link" href="/tags/%E9%A2%84%E7%BD%AE%E5%BA%94%E7%94%A8/">#预置应用</a><a class="meta-tag-link" href="/tags/%E9%9A%90%E7%A7%81%E5%90%88%E8%A7%84/">#隐私合规</a><a class="meta-tag-link" href="/tags/%E8%AF%81%E6%8D%AE%E5%88%86%E7%BA%A7/">#证据分级</a>
+          <a class="meta-tag-link" href="/tags/SystemHelper/">#SystemHelper</a><a class="meta-tag-link" href="/tags/Android%E9%80%86%E5%90%91/">#Android逆向</a><a class="meta-tag-link" href="/tags/jadx/">#jadx</a><a class="meta-tag-link" href="/tags/OMA-DM/">#OMA DM</a><a class="meta-tag-link" href="/tags/TelephonyManager/">#TelephonyManager</a><a class="meta-tag-link" href="/tags/UsageStats/">#UsageStats</a><a class="meta-tag-link" href="/tags/%E5%8F%8D%E5%B0%84%E9%80%82%E9%85%8D/">#反射适配</a><a class="meta-tag-link" href="/tags/%E9%9A%90%E7%A7%81%E5%90%88%E8%A7%84/">#隐私合规</a>
         </span>
       
     </div>
@@ -524,322 +524,645 @@
 
   <div class="article-content">
     <blockquote>
-<p>这两天信息流里刷屏的是一长串包名 <code>com.mobiletools.systemhelper</code>。但真正让人不安的从来不是这个字符串，是有人翻遍设置也找不到它——<strong>你不知道自己每天揣着的这台设备里，究竟有哪些东西在替你做决定。</strong></p>
+<p>上一篇写这个组件时，我把它当成一场舆情来拆：谁先发帖、谁转述了什么、哪些说法够不上证据。后来读到「kali笔记」2026 年 11 月 8 日那篇《来看看SystemHelper干了什么？》，才发现问题不在我写错了什么，而在<strong>整个视角就不对</strong>——人家把 APK 从手机里拖出来，反编译，逐文件把调用点贴了出来。</p>
+<p>于是这篇推倒重来。不谈传闻，不谈时间线，只谈代码：一个 1.6 MB 的 APK 里，定义了哪些字段、调了哪些 API、给 60 多家厂商写了多少反射适配、往哪 5 个地址发东西，以及哪些事是<strong>静态反编译根本证明不了</strong>的。</p>
 </blockquote>
-<p>这轮讨论里，我看到最值得写的不是「赶紧删」，而是三件被搅在一起的事：<strong>两个完全不同的组件被当成一个</strong>、<strong>三类重量完全不同的证据被当成一类</strong>、以及<strong>一条谁都没提的合规边界</strong>（一个没有图标、不出现在应用列表、不可卸载的系统组件，到底该按哪一类管）。</p>
-<p>先把能核实的和不能核实的分开，再谈判断。这也是之前写地理定位方法学时反复强调的那条纪律：**每个结论都要能指回它用过的线索、跑过的命令、产出的文件。**这一次舆论场里最缺的，恰恰是它。</p>
-<h2 id="一、时间线：先把事情摆正"><a href="#一、时间线：先把事情摆正" class="headerlink" title="一、时间线：先把事情摆正"></a>一、时间线：先把事情摆正</h2><table>
-<thead>
-<tr>
-<th>时间</th>
-<th>事件</th>
-<th>性质</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>2026-10-31</td>
-<td>X 用户 MeT（@MeTerminator666）发帖称，朋友接到当地警方来电要求卸载 X 与 Telegram；他随后对一台<strong>已 root、运行 HyperOS 3 的小米 14</strong> 做了逆向</td>
-<td>单一来源，事件起点</td>
-</tr>
-<tr>
-<td>2026-11 初</td>
-<td>另一位审计者从 <strong>Redmi</strong> 手机取出同一组件，逐字段完整拆解，数清了上报内容</td>
-<td>第二份独立拆解</td>
-</tr>
-<tr>
-<td>2026-11-05</td>
-<td>V2EX 帖《能不能有点隐私》汇总全事，171 条回复；留下两个没答的问题：VPN 能不能挡、这份数据能拼出什么画像</td>
-<td>社区讨论</td>
-</tr>
-<tr>
-<td>2026-11-06 ~ 07</td>
-<td>多家媒体报道、行业论坛讨论「反诈与隐私的边界」；部分自媒体开始出现二次加工的说法</td>
-<td>传播扩散</td>
-</tr>
-<tr>
-<td>截至发稿</td>
-<td><strong>未见小米或中国联通针对这套具体说法的公开回应</strong>；小米台湾表示暂未回应</td>
-<td>待补</td>
-</tr>
-</tbody></table>
-<p>这条时间线里最该记住的一点：**公开可查的逆向分析，主要基于一台已 root 的小米 14，加一份 Redmi 的同组件拆解。**其他品牌、其他系统版本是否行为一致，尚未确认。把「一台机器的分析结论」直接推成「所有国产安卓」，本身就是一次证据越级。</p>
-<h2 id="二、最重要的纠偏：这是两个组件，不是一个"><a href="#二、最重要的纠偏：这是两个组件，不是一个" class="headerlink" title="二、最重要的纠偏：这是两个组件，不是一个"></a>二、最重要的纠偏：这是两个组件，不是一个</h2><p>网上把「录屏」「应用清单」「24 小时使用时长」「IMEI」全塞到了 SystemHelper 头上。实际是两条完全不同的链路：</p>
+<h2 id="一、先把材料来源和方法摆正"><a href="#一、先把材料来源和方法摆正" class="headerlink" title="一、先把材料来源和方法摆正"></a>一、先把材料来源和方法摆正</h2><p>这次重写只依据一份主材料加四张配图，不混入口耳相传的社区说法。</p>
 <table>
 <thead>
 <tr>
-<th></th>
-<th><strong>SystemHelper</strong></th>
-<th><strong>系统安全组件 &#x2F; GuardProvider</strong></th>
+<th>编号</th>
+<th>材料</th>
+<th>提供了什么</th>
+<th>证据性质</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>包名</td>
-<td><code>com.mobiletools.systemhelper</code></td>
-<td><code>com.miui.guardprovider</code></td>
+<td>主文</td>
+<td>「kali笔记」（作者 大表哥吆）2026-11-08《来看看SystemHelper干了什么？》</td>
+<td>提取与反编译过程、四类采集代码、MD5 匿名化逻辑、MIUI&#x2F;vivo 反射代码</td>
+<td>单一来源的静态逆向</td>
 </tr>
 <tr>
-<td>归属</td>
-<td><strong>不是小米的代码</strong>，属运营商侧的设备管理（DM）客户端 &#x2F; 设备注册 SDK</td>
-<td>小米自有反诈安全组件</td>
+<td>图 1</td>
+<td>样本基本信息表</td>
+<td>文件名、SHA256、包名、版本、sharedUserId、SDK、签名</td>
+<td>样本指纹，可复算</td>
 </tr>
 <tr>
-<td>主要采集</td>
-<td>已安装应用、过去 24 小时各 App 使用时长与流量、设备与 SIM 标识、小区&#x2F;信号、定位</td>
-<td>第三方应用清单（包名、版本、签名摘要、应用名）</td>
+<td>图 2</td>
+<td>定性结论 + C2&#x2F;服务端点表</td>
+<td>组件归属与定性、5 个端点及其传输方式</td>
+<td>作者分析结论（部分地址打码）</td>
 </tr>
 <tr>
-<td>上报去向</td>
-<td>联通设备管理地址 <code>dm.wo.com.cn:18080/register</code></td>
-<td>小米反诈检测服务 &#x2F; 云端风险判定</td>
+<td>图 3</td>
+<td>Telephony 厂商适配对比</td>
+<td>华为&#x2F;小米&#x2F;vivo 三类反射入口与独有手法</td>
+<td>作者整理的能力矩阵</td>
 </tr>
 <tr>
-<td><strong>录屏</strong></td>
-<td><strong>没有</strong></td>
-<td><strong>有</strong>（社区逆向称约 3 秒切片 → MP4 → Base64 → 加密上传；无风险则删除暂存，延迟约 2 秒再录）</td>
-</tr>
-<tr>
-<td>用户可见性</td>
-<td>无图标、不出现在常规应用列表</td>
-<td>系统安全中心相关组件</td>
-</tr>
-<tr>
-<td>卸载难度</td>
-<td>未 root 无法卸载或提取</td>
-<td>系统特权组件，同样不易处理</td>
+<td>图 4</td>
+<td>jadx 里 <code>DeviceInfo.java</code> 截图</td>
+<td>字段常量定义与「N 个用法」计数</td>
+<td>反编译器直接输出</td>
 </tr>
 </tbody></table>
-<p>**「隔几秒录一次屏」这件事属于 <code>guardprovider</code>，不属于 SystemHelper。**这一条错了，后面所有推论都会歪：比如「开 VPN 能不能挡录屏」和「开 VPN 能不能挡 SystemHelper 的上报」，是两个不同的问题。</p>
-<p>2023 年学术论文《Android OS Privacy Under the Loupe》分析过中国版 Android 固件（机型含小米、OPPO realme、一加），把 <code>com.mobiletools.systemhelper</code> 归为<strong>中国联通的设备注册 SDK</strong>，并提到它可在后台访问位置。也就是说，这个包名在两年前就进过学术文献，并非这次才出现——<strong>这次的新信息是「具体上报了哪些字段」和「上报频率」，不是「它存在」。</strong></p>
-<h2 id="三、为什么你找不到它：Android-的三层权限地形"><a href="#三、为什么你找不到它：Android-的三层权限地形" class="headerlink" title="三、为什么你找不到它：Android 的三层权限地形"></a>三、为什么你找不到它：Android 的三层权限地形</h2><p>SystemHelper 让人最不舒服的一点不是「收了什么」，是「连看都看不见」。这来自 Android 预装体系的层级差异：</p>
+<p>四张图里的文字我用离线 OCR 抽了一遍，再逐张人工校对（脚本与结果留在 <code>.workbuddy/</code>）。**凡是图中被打码的地址段，一律按遮挡处理，不猜、不补、不还原。**这条纪律后面还会反复用到。</p>
+<p>方法上要说清三件事：</p>
+<table>
+<thead>
+<tr>
+<th>边界</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>单样本</td>
+<td>一个 APK、一台设备、一个版本；不同品牌&#x2F;固件版本的组件行为可能不同</td>
+</tr>
+<tr>
+<td>静态方法</td>
+<td>jadx 反编译 + 代码阅读 + AI 辅助归纳，看到的是「代码能做什么」，不是「运行时做了什么」</td>
+</tr>
+<tr>
+<td>AI 辅助</td>
+<td>配图结论由作者将反编译源码交给 AI 分析得出，属于归纳性结论，需要按代码逐条复核</td>
+</tr>
+</tbody></table>
+<p>**静态分析能证明能力，不能证明行为。**这句话决定了本文后面每一段能写多重。</p>
+<h2 id="二、样本指纹：先把这个-APK-钉死"><a href="#二、样本指纹：先把这个-APK-钉死" class="headerlink" title="二、样本指纹：先把这个 APK 钉死"></a>二、样本指纹：先把这个 APK 钉死</h2><p>图 1 给出的样本信息是整篇文章的地基，逐项抄录如下：</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>值</th>
+<th>值得注意的地方</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>文件名</td>
+<td><code>SystemHelper.apk</code>（约 1.6 MB）</td>
+<td>体积极小，符合「一个采集与上报客户端」而非完整应用</td>
+</tr>
+<tr>
+<td>SHA256</td>
+<td><code>416d0fc0405fc19b243e72f2a7963517e5b88991a7dfac494934449969a6015d</code></td>
+<td>可用于比对不同设备取出的样本是否同一份</td>
+</tr>
+<tr>
+<td>包名</td>
+<td><code>com.mobiletools.systemhelper</code></td>
+<td>与 2023 年学术论文点名的包名一致</td>
+</tr>
+<tr>
+<td>版本</td>
+<td><code>versionName 1.2-20220907</code>（2022-09-07 构建），<code>versionCode 3</code></td>
+<td><strong>构建于 2022 年</strong>，不是 2026 年才出现的新组件</td>
+</tr>
+<tr>
+<td>sharedUserId</td>
+<td><code>com.mobiletools.systemhelper.uid</code>（共享 UID）</td>
+<td>与同签名组件共享 Linux UID，越过普通沙箱的数据隔离</td>
+</tr>
+<tr>
+<td>SDK</td>
+<td><code>minSdk 24</code>（Android 7.0）&#x2F; <code>targetSdk 33</code>（Android 13）</td>
+<td>横跨七个大版本，解释了后面为什么需要海量兼容代码</td>
+</tr>
+<tr>
+<td>签名</td>
+<td>APK Signing Block + <code>META-INF/CERT.RSA</code></td>
+<td>标准 APK 签名方案，具体签发主体需验签确认</td>
+</tr>
+</tbody></table>
+<p>三个容易被跳过的点：</p>
+<ul>
+<li>**版本号里的日期是最硬的一条时间证据。**2022-09-07 构建、versionCode 只有 3，说明这套代码在两年前就已成型。舆论场里「新出现的监控组件」这个说法，至少对这份样本不成立。</li>
+<li>**<code>sharedUserId</code> 比包名更关键。**普通 App 各自一个 UID，数据目录互不可见；声明共享 UID 后，同签名、同 UID 的组件可以互读数据、共享权限。这是系统级组件才玩得起的安排。</li>
+<li>**<code>minSdk 24</code> 到 <code>targetSdk 33</code> 的跨度，几乎预告了后面的 60+ 适配。**Android 7 到 13 之间，设备标识符读取权限、后台定位、非 SDK 接口管控、双卡 API 全都变过好几轮。</li>
+</ul>
+<p>顺带对一下旧稿：我之前写的是 <code>1.2-20230228</code>，与本次配图的 <code>1.2-20220907</code> 不一致。这不是谁抄错，更可能是<strong>不同设备&#x2F;不同批次取出的样本版本不同</strong>——所以任何「所有手机上都是这一个版本」的推断都不成立，样本哈希必须和结论绑定写。</p>
+<h2 id="三、从-product-priv-app-到-jadx：一条只读取证链"><a href="#三、从-product-priv-app-到-jadx：一条只读取证链" class="headerlink" title="三、从 /product/priv-app 到 jadx：一条只读取证链"></a>三、从 <code>/product/priv-app</code> 到 jadx：一条只读取证链</h2><p>原文的起步只有两步，都是只读操作：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ① 从设备取出 APK（需 USB 调试，仅提取，不改动系统分区）</span></span><br><span class="line">adb pull /product/privapp/SystemHelper/SystemHelper.apk ./SystemHelper.apk</span><br><span class="line"></span><br><span class="line"><span class="comment"># ② 反编译，保留源码目录</span></span><br><span class="line">jadx -d /tmp/jadx-out --no-res <span class="string">&quot;/root/my like/11/SystemHelper.apk&quot;</span></span><br><span class="line"><span class="built_in">ls</span> -laR resources sources</span><br></pre></td></tr></table></figure>
+
+<p><code>adb pull</code> 是取文件，不是卸载、冻结或刷机；设备需为本人所有且已授权调试。本文不提供任何改动系统分区的操作。</p>
+<p>路径本身比命令更有信息量：</p>
+<table>
+<thead>
+<tr>
+<th>安装位置</th>
+<th>典型权限来源</th>
+<th>用户可见性</th>
+<th>普通 App 能否拿到同款权限</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/data/app</code></td>
+<td>用户安装，运行时授权</td>
+<td>可见、可卸载</td>
+<td>否</td>
+</tr>
+<tr>
+<td><code>/system/app</code></td>
+<td>出厂预置，仍受常规权限模型</td>
+<td>通常可见</td>
+<td>否</td>
+</tr>
+<tr>
+<td><code>/system/priv-app</code></td>
+<td>平台签名 → signature 级特权</td>
+<td>常无图标</td>
+<td>否</td>
+</tr>
+<tr>
+<td><strong><code>/product/priv-app</code></strong></td>
+<td>厂商&#x2F;产品分区的特权预置</td>
+<td>常无图标</td>
+<td>否</td>
+</tr>
+</tbody></table>
+<p>组件落在 <code>priv-app</code>，意味着 <code>getImei()</code>、<code>getSubscriberId()</code>、后台读取使用统计这类<strong>普通 App 在 Android 10 之后基本拿不到</strong>的能力，在出厂时就被授予了。它不是绕过了权限模型，而是从一开始就不站在普通 App 那一侧。</p>
+<p>这也解释了一个反直觉的事实：**这类组件不需要「漏洞」。**它拿到的每一个 API，都是系统按签名特权正常发放的。</p>
+<h2 id="四、字段清单：DeviceInfo-java-的常量就是最硬的证据"><a href="#四、字段清单：DeviceInfo-java-的常量就是最硬的证据" class="headerlink" title="四、字段清单：DeviceInfo.java 的常量就是最硬的证据"></a>四、字段清单：<code>DeviceInfo.java</code> 的常量就是最硬的证据</h2><p>图 4 是 jadx 里 <code>com.mobiletools.systemhelper.control.DeviceInfo</code> 的截图，左侧是类成员树，右侧是常量定义，旁边还标着「N 个用法」。把主文的字段表、图 4 的常量、图 2 的类别三者对齐：</p>
+<table>
+<thead>
+<tr>
+<th>代码常量（图 4 &#x2F; 主文）</th>
+<th>值</th>
+<th>含义</th>
+<th>敏感度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>DEVICE_INFO_IMEI1</code> &#x2F; <code>IMEI2</code></td>
+<td><code>IMEI1</code> &#x2F; <code>IMEI2</code></td>
+<td>双卡设备的 IMEI</td>
+<td>高，永久设备标识</td>
+</tr>
+<tr>
+<td><code>DEVICE_INFO_IMSI1</code> &#x2F; <code>IMSI2</code></td>
+<td><code>IMSI1</code> &#x2F; <code>IMSI2</code></td>
+<td>双卡 IMSI</td>
+<td>高，锁定订阅用户</td>
+</tr>
+<tr>
+<td><code>DEVICE_INFO_ICCID1</code> &#x2F; <code>ICCID2</code></td>
+<td><code>ICCID1</code> &#x2F; <code>ICCID2</code></td>
+<td>SIM 卡序列号</td>
+<td>高</td>
+</tr>
+<tr>
+<td><code>DEVICE_INFO_MSISDN1</code> &#x2F; <code>MSISDN2</code></td>
+<td><code>MSISDN1</code> &#x2F; <code>MSISDN2</code></td>
+<td><strong>手机号</strong></td>
+<td>极高，直接身份信息</td>
+</tr>
+<tr>
+<td><code>DEVICE_INFO_CELLID1</code> &#x2F; <code>CELLID2</code></td>
+<td><code>CellID1</code> &#x2F; <code>CellID2</code></td>
+<td>小区标识</td>
+<td>极高，可推算位置</td>
+</tr>
+<tr>
+<td><code>DEVICE_INFO_LAC1</code> &#x2F; <code>LAC2</code></td>
+<td><code>LAC1</code> &#x2F; <code>LAC2</code></td>
+<td>位置区码</td>
+<td>极高，配合 CellID 定位</td>
+</tr>
+<tr>
+<td><code>DEVICE_INFO_MNC</code> &#x2F; <code>MNU</code> 类</td>
+<td><code>MNC</code> 等</td>
+<td>运营商与网络制式</td>
+<td>中</td>
+</tr>
+<tr>
+<td><code>DEVICE_INFO_APP_INFO</code></td>
+<td><code>AppInfo</code>（<code>JSONArray</code>）</td>
+<td>已安装应用列表 + 使用时长 + 逐应用流量</td>
+<td>高，行为画像</td>
+</tr>
+<tr>
+<td><code>DEVICE_INFO_IPV4</code> &#x2F; <code>IPV6</code></td>
+<td><code>IPv4</code> &#x2F; <code>IPv6</code></td>
+<td>公网 IP</td>
+<td>中</td>
+</tr>
+<tr>
+<td><code>DEVICE_INFO_5GEnabled1</code> &#x2F; <code>2</code></td>
+<td><code>5GEnabled1</code> &#x2F; <code>5GEnabled2</code></td>
+<td>双卡 5G 开关状态</td>
+<td>低</td>
+</tr>
+<tr>
+<td><code>DEVICE_INFO_ACCTYPE</code></td>
+<td><code>AccType</code>（图 4 标注 0 个用法）</td>
+<td>接入类型</td>
+<td>低</td>
+</tr>
+<tr>
+<td><code>DEVICE_INFO_DATASLOT</code></td>
+<td><code>DataSlot</code></td>
+<td>当前数据卡</td>
+<td>低</td>
+</tr>
+<tr>
+<td><code>DEVICE_INFO_DeviceType</code></td>
+<td><code>DeviceType</code></td>
+<td>设备类型</td>
+<td>低</td>
+</tr>
+<tr>
+<td><code>DEVICE_INFO_HISTORY</code></td>
+<td><code>History</code></td>
+<td>历史记录</td>
+<td>中，含义需看具体赋值点</td>
+</tr>
+<tr>
+<td><code>DEVICE_INFO_HWVERSION</code></td>
+<td><code>HWVersion</code></td>
+<td>硬件版本</td>
+<td>低</td>
+</tr>
+<tr>
+<td><code>DEVICE_INFO_MANUF</code></td>
+<td><code>MANUF</code></td>
+<td>制造商</td>
+<td>低</td>
+</tr>
+<tr>
+<td><code>DEVICE_INFO_SignalInfo</code></td>
+<td><code>SignalInfo</code></td>
+<td>信号强度，可辅助定位</td>
+<td>中</td>
+</tr>
+<tr>
+<td>类别补充（图 2 类别表）</td>
+<td><code>VoLTE</code> &#x2F; <code>VoNR</code> &#x2F; <code>SubType</code></td>
+<td>网络能力开关与制式</td>
+<td>低</td>
+</tr>
+</tbody></table>
+<p>这里必须写一句防越界的提醒：**字段被定义 ≠ 字段一定被上报。**常量存在只说明代码里有这个位置；是否赋值、是否序列化进请求体、是否真的发出，要看调用点与运行时抓包。图 4 里 <code>AccType</code> 标着「0 个用法」，就是最直白的例子——定义了，但在这份代码里没人用。</p>
+<p>反过来说，<code>IMEI1</code>、<code>AppInfo</code>、<code>History</code> 这些标着「2 个用法」的常量，配合下一节的调用点，才算构成完整证据链。<strong>常量 + 调用点 + 上报端点，三者对上，才叫一条链。</strong></p>
+<h2 id="五、采集之一：设备标识、基站位置，以及反射兜底"><a href="#五、采集之一：设备标识、基站位置，以及反射兜底" class="headerlink" title="五、采集之一：设备标识、基站位置，以及反射兜底"></a>五、采集之一：设备标识、基站位置，以及反射兜底</h2><p>主文给出的第一段采集代码在 <code>device/DeviceInfoReaderBase.java:238-296</code>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// device/DeviceInfoReaderBase.java:238-296（据原文整理）</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">readAndroidR</span><span class="params">(Context context, DeviceInfo deviceInfo)</span> &#123;</span><br><span class="line">    <span class="type">TelephonyManager</span> <span class="variable">tm</span> <span class="operator">=</span> (TelephonyManager) context.getSystemService(<span class="string">&quot;phone&quot;</span>);</span><br><span class="line">    deviceInfo.IMEI1   = tm.getImei(<span class="number">0</span>);                       <span class="comment">// 卡1 IMEI</span></span><br><span class="line">    deviceInfo.IMEI2   = tm.getImei(<span class="number">1</span>);                       <span class="comment">// 卡2 IMEI</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">subId</span> <span class="operator">=</span> getSubIdBySlotId(<span class="number">0</span>);</span><br><span class="line">    <span class="type">TelephonyManager</span> <span class="variable">sub</span> <span class="operator">=</span> tm.createForSubscriptionId(subId);</span><br><span class="line">    deviceInfo.IMSI1   = sub.getSubscriberId();               <span class="comment">// IMSI</span></span><br><span class="line">    deviceInfo.ICCID1  = sub.getSimSerialNumber();            <span class="comment">// ICCID</span></span><br><span class="line">    deviceInfo.MSISDN1 = sub.getLine1Number();                <span class="comment">// 手机号</span></span><br><span class="line">    deviceInfo.MNC1    = sub.getNetworkOperator();            <span class="comment">// 运营商</span></span><br><span class="line">    setCellLoc(context, <span class="number">0</span>, deviceInfo);                       <span class="comment">// 基站位置</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这几个 API 的语义差别值得单独摆一张表，很多人把它们混成「读了设备信息」一句话：</p>
+<table>
+<thead>
+<tr>
+<th>API</th>
+<th>取到什么</th>
+<th>普通 App 的现实</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>getImei(slot)</code></td>
+<td>设备硬件标识</td>
+<td>Android 10 起对普通 App 关闭</td>
+</tr>
+<tr>
+<td><code>getSubscriberId()</code></td>
+<td>IMSI，订阅用户标识</td>
+<td>需特权&#x2F;运营商权限</td>
+</tr>
+<tr>
+<td><code>getSimSerialNumber()</code></td>
+<td>ICCID，卡序列号</td>
+<td>需特权</td>
+</tr>
+<tr>
+<td><code>getLine1Number()</code></td>
+<td>本机号码</td>
+<td>常为空，且需特权；不可靠但敏感</td>
+</tr>
+<tr>
+<td><code>getNetworkOperator()</code></td>
+<td>MNC&#x2F;MCC</td>
+<td>相对宽松</td>
+</tr>
+</tbody></table>
+<p>第二段是基站位置，<code>device/DeviceInfoReaderBase.java:175-235</code>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// device/DeviceInfoReaderBase.java:175-235（据原文整理）</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title function_">setCellLoc</span><span class="params">(Context context, <span class="type">int</span> i, DeviceInfo deviceInfo)</span> &#123;</span><br><span class="line">    <span class="type">ServiceState</span> <span class="variable">state</span> <span class="operator">=</span> tm.createForSubscriptionId(subId).getServiceState();</span><br><span class="line">    <span class="keyword">for</span> (NetworkRegistrationInfo nri : state.getNetworkRegistrationInfoList()) &#123;</span><br><span class="line">        <span class="type">CellIdentity</span> <span class="variable">ci</span> <span class="operator">=</span> nri.getCellIdentity();</span><br><span class="line">        <span class="keyword">if</span> (ci <span class="keyword">instanceof</span> CellIdentityGsm) &#123;</span><br><span class="line">            cid = String.valueOf(((CellIdentityGsm) ci).getCid());   <span class="comment">// GSM 小区</span></span><br><span class="line">            lac = String.valueOf(((CellIdentityGsm) ci).getLac());   <span class="comment">// 位置区</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ci <span class="keyword">instanceof</span> CellIdentityLte) &#123;</span><br><span class="line">            cid = String.valueOf(((CellIdentityLte) ci).getCi());    <span class="comment">// LTE 小区</span></span><br><span class="line">            lac = String.valueOf(((CellIdentityLte) ci).getTac());   <span class="comment">// 跟踪区</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ci <span class="keyword">instanceof</span> CellIdentityCdma) &#123;</span><br><span class="line">            <span class="comment">// 甚至直接取 CDMA 基站经纬度</span></span><br><span class="line">            pos = String.format(<span class="string">&quot;%d:%d&quot;</span>,</span><br><span class="line">                  ((CellIdentityCdma) ci).getLongitude(),</span><br><span class="line">                  ((CellIdentityCdma) ci).getLatitude());</span><br><span class="line">        &#125; <span class="comment">// Wcdma / Tdscdma / Nr 分支同理</span></span><br><span class="line">    &#125;</span><br><span class="line">    deviceInfo.CellID1 = cid;</span><br><span class="line">    deviceInfo.LAC1    = lac;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>网络制式</th>
+<th>取用字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GSM</td>
+<td><code>getCid()</code> &#x2F; <code>getLac()</code></td>
+<td>小区 ID + 位置区码</td>
+</tr>
+<tr>
+<td>LTE</td>
+<td><code>getCi()</code> &#x2F; <code>getTac()</code></td>
+<td>小区 ID + 跟踪区码</td>
+</tr>
+<tr>
+<td>CDMA</td>
+<td><code>getLongitude()</code> &#x2F; <code>getLatitude()</code></td>
+<td>直接带经纬度</td>
+</tr>
+<tr>
+<td>WCDMA &#x2F; TDSCDMA &#x2F; NR</td>
+<td>同构分支</td>
+<td>5G 走 <code>CellIdentityNr</code></td>
+</tr>
+</tbody></table>
+<p>要说准一句：**CellID + LAC 不是 GPS 坐标。**它需要配合基站位置数据库才能换算成地理位置，精度从市区几百米到郊区数公里不等。写成「实时精确定位」是夸大，写成「只是网络质量数据」又是缩小——它属于可以稳定推算活动范围的元信息。</p>
+<p>针对高通多卡平台，代码还准备了一层反射兜底（<code>device/PhoneInterfaceReflection.java:11,70-72,85-87</code>）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 厂商私有类的反射调用（据原文整理）</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">MSIM</span> <span class="operator">=</span> <span class="string">&quot;android.telephony.MSimTelephonyManager&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">getDeviceId</span><span class="params">(<span class="type">int</span> slot)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> (String) getMethod(MSIM, <span class="string">&quot;getDeviceId&quot;</span>, Integer.TYPE)</span><br><span class="line">                    .invoke(<span class="built_in">this</span>.mManager, slot);      <span class="comment">// 反射取 IMEI</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">getLine1Number</span><span class="params">(<span class="type">int</span> slot)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> (String) getMethod(MSIM, <span class="string">&quot;getLine1Number&quot;</span>, Integer.TYPE)</span><br><span class="line">                    .invoke(<span class="built_in">this</span>.mManager, slot);      <span class="comment">// 反射取手机号</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="六、采集之二：应用清单、前台时长、逐应用流量与-IP"><a href="#六、采集之二：应用清单、前台时长、逐应用流量与-IP" class="headerlink" title="六、采集之二：应用清单、前台时长、逐应用流量与 IP"></a>六、采集之二：应用清单、前台时长、逐应用流量与 IP</h2><p>第三段在 <code>control/QueryAppInfoThread.java:74-203</code>，是整套代码里最能勾出生活轮廓的一段：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// control/QueryAppInfoThread.java（据原文整理）</span></span><br><span class="line"><span class="keyword">private</span> List&lt;AppInfo&gt; <span class="title function_">queryAppUsageStatsDescend</span><span class="params">()</span> &#123;</span><br><span class="line">    List&lt;ApplicationInfo&gt; apps = <span class="built_in">this</span>.pm.getInstalledApplications(<span class="number">0</span>);  <span class="comment">// 全部已装应用</span></span><br><span class="line">    List&lt;UsageStats&gt; stats = queryAppUsageStats();                      <span class="comment">// 使用统计</span></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">private</span> List&lt;UsageStats&gt; <span class="title function_">queryAppUsageStats</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">UsageStatsManager</span> <span class="variable">usm</span> <span class="operator">=</span> (UsageStatsManager)</span><br><span class="line">        <span class="built_in">this</span>.mCtx.getSystemService(<span class="string">&quot;usagestats&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ArrayList</span>(usm.queryAndAggregateUsageStats(start, end).values());</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 前台时长，单位分钟</span></span><br><span class="line">appInfo.setRunTime(usageStats.getTotalTimeInForeground() / <span class="number">60000</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 逐应用流量：按 IMSI 区分移动数据，另统计 WiFi</span></span><br><span class="line"><span class="type">NetworkStatsManager</span> <span class="variable">nsm</span> <span class="operator">=</span> (NetworkStatsManager) getSystemService(<span class="string">&quot;netstats&quot;</span>);</span><br><span class="line"><span class="type">NetworkStats</span> <span class="variable">ns</span> <span class="operator">=</span> nsm.querySummary(<span class="number">0</span>, <span class="built_in">this</span>.mDeviceInfo.IMSI1, start, end);</span><br><span class="line">rxBytes += bucket.getRxBytes();</span><br><span class="line">txBytes += bucket.getTxBytes();</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>数据源</th>
+<th>API</th>
+<th>得到什么</th>
+<th>画像含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>PackageManager</code></td>
+<td><code>getInstalledApplications(0)</code></td>
+<td>完整应用清单</td>
+<td>装了哪些服务、有没有小众工具</td>
+</tr>
+<tr>
+<td><code>UsageStatsManager</code></td>
+<td><code>queryAndAggregateUsageStats()</code></td>
+<td>每 App 前台时长</td>
+<td>作息、使用强度、偏好</td>
+</tr>
+<tr>
+<td><code>NetworkStatsManager</code></td>
+<td><code>querySummary(..., IMSI1, ...)</code></td>
+<td>每 App 上下行字节</td>
+<td>活跃时段、流量型行为</td>
+</tr>
+<tr>
+<td>双卡 + WiFi</td>
+<td>卡1&#x2F;卡2 分别统计</td>
+<td>网络通道维度</td>
+<td>哪张卡在承载什么</td>
+</tr>
+</tbody></table>
+<p>第四段是 IP 与信号，代码很短（<code>control/GetIPAddressThread.java:50-54</code>）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// control/GetIPAddressThread.java:50-54（据原文整理）</span></span><br><span class="line">Enumeration&lt;NetworkInterface&gt; ifaces = NetworkInterface.getNetworkInterfaces();</span><br><span class="line">Enumeration&lt;InetAddress&gt; addrs = ifaces.nextElement().getInetAddresses();</span><br><span class="line"><span class="type">InetAddress</span> <span class="variable">addr</span> <span class="operator">=</span> addrs.nextElement();</span><br></pre></td></tr></table></figure>
+
+<p>加上 <code>SignalInfo</code>（信号强度，可辅助定位），<code>IPv4</code>&#x2F;<code>IPv6</code>，这一部分拼起来，回答的是「这台设备在网络侧长什么样」。</p>
+<p><strong>四类采集合起来最值得说的不是字段多，而是可关联性</strong>：唯一设备标识 + 手机号 + 小区位置 + 24 小时应用使用与流量，构成一条带身份、带位置、带行为的时间序列。它推不出聊天内容，但足以勾出作息、通勤半径与常用服务。这是元数据层面的画像能力，也是讨论这类组件时唯一准确的描述。</p>
+<h2 id="七、上报：5-个端点、RSA-AES，和按运营商分流的-MD5"><a href="#七、上报：5-个端点、RSA-AES，和按运营商分流的-MD5" class="headerlink" title="七、上报：5 个端点、RSA+AES，和按运营商分流的 MD5"></a>七、上报：5 个端点、RSA+AES，和按运营商分流的 MD5</h2><p>图 2 列出 5 个服务端点。<strong>地址中被打码的段落按遮挡保留，不做还原</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>地址（按图转写，遮挡处以 <code>[遮挡]</code> 标出）</th>
+<th>用途</th>
+<th>传输方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td><code>http://dm.[遮挡]30/registerV3</code></td>
+<td>主注册上报</td>
+<td><strong>RSA + AES 加密</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>http://dm.wo.com.cn[遮挡]/public/ip</code></td>
+<td>获取公网 IP</td>
+<td>明文</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>http://dm.wo.com.cn[遮挡]/RegisterLog</code></td>
+<td>运行日志上报</td>
+<td>明文，<code>jsonData=</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>http://61.148.212.26:[遮挡]/RegisterPort?wsdl</code></td>
+<td>旧版 SOAP（<code>GetRegister</code>）</td>
+<td>明文 SOAP</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>http://cnc-labs[遮挡]/Service/web/getRegister[遮挡]</code></td>
+<td>备选上报</td>
+<td>明文，<code>jsonData=</code></td>
+</tr>
+</tbody></table>
+<p>几个判断要分开写：</p>
+<table>
+<thead>
+<tr>
+<th>观察</th>
+<th>能推出</th>
+<th>不能推出</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>主注册走 RSA+AES</td>
+<td>载荷在应用层做了加密</td>
+<td>不能推出密钥管理是否稳妥、是否可被还原</td>
+</tr>
+<tr>
+<td>其余 4 个端点标为明文</td>
+<td>传输层无 TLS，链路可见</td>
+<td>不能推出「所有数据都裸奔」，日志&#x2F;公网 IP 请求与主注册载荷不是一回事</td>
+</tr>
+<tr>
+<td>地址均为 <code>http://</code></td>
+<td>目标域名、端口、请求节奏对链路观察者可见</td>
+<td>不能推出内容可读</td>
+</tr>
+<tr>
+<td>存在 <code>?wsdl</code> 旧版 SOAP 与备选端点</td>
+<td>有历史版本兼容与容灾路径</td>
+<td>不能推出当前版本实际调用了哪几个</td>
+</tr>
+</tbody></table>
+<p>主文里还有一处非常关键的分流逻辑，在 <code>device/DeviceManager.java:539-552</code>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// device/DeviceManager.java:539-552（据原文整理）</span></span><br><span class="line"><span class="keyword">if</span> (deviceInfo.MNC1 != <span class="literal">null</span> &amp;&amp; !isUnicomNetwork(deviceInfo.MNC1)) &#123;</span><br><span class="line">    deviceInfo.ICCID1  = MD5.getMD5Str(deviceInfo.ICCID1);   <span class="comment">// 非联通卡 → MD5</span></span><br><span class="line">    deviceInfo.MSISDN1 = MD5.getMD5Str(deviceInfo.MSISDN1);</span><br><span class="line">    deviceInfo.IMSI1   = MD5.getMD5Str(deviceInfo.IMSI1);</span><br><span class="line">    deviceInfo.CellID1 = MD5.getMD5Str(deviceInfo.CellID1);</span><br><span class="line">    deviceInfo.LAC1    = MD5.getMD5Str(deviceInfo.LAC1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>按主文说明，联通号段（MNC <code>46001</code> &#x2F; <code>46006</code> &#x2F; <code>46009</code>）的数据为明文采集上报，其他运营商卡走 MD5 匿名化。这里有两个层次：</p>
+<ol>
+<li>**「匿名化」不等于匿名。**MD5 是确定性无盐哈希，手机号 11 位、IMSI 有固定前缀，取值空间有限，彩虹表可反查。对可枚举标识符做 MD5，在工程上通常只算「脱敏」，不算不可逆匿名化。</li>
+<li>**分流依据本身是代码里的 <code>isUnicomNetwork</code> 判断。**它说明采集策略按运营商做了区分，但判断分支是否覆盖所有情况、被 MD5 的字段是否还在别处以明文出现，都要看完整调用链，不能凭这一屏下结论。</li>
+</ol>
+<h2 id="八、60-厂商适配：反射才是这套代码的骨架"><a href="#八、60-厂商适配：反射才是这套代码的骨架" class="headerlink" title="八、60+ 厂商适配：反射才是这套代码的骨架"></a>八、60+ 厂商适配：反射才是这套代码的骨架</h2><p>主文提到内置 60 多个 <code>DeviceInfoReader*</code>，用 <code>Class.forName</code> + <code>getMethod</code> + <code>invoke</code> 调厂商私有&#x2F;隐藏 API。图 3 把其中三家摊开对比，这是整组配图里信息密度最高的一张：</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>华为</th>
+<th>小米</th>
+<th>vivo</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>反射入口类</td>
+<td><code>TelephonyManagerEx</code> &#x2F; <code>HwTelephonyManager</code> &#x2F; MTK <code>ITelephonyEx</code></td>
+<td><code>miui.telephony.TelephonyManager(Ex)</code></td>
+<td><code>VivoTelephonyApiParams</code> + <code>ITelephony.vivoTelephonyApi()</code></td>
+</tr>
+<tr>
+<td>IMEI 采集</td>
+<td><code>getImei(slot)</code> &#x2F; MTK <code>getSvtImei</code>(Binder)</td>
+<td>标准 <code>getImei(slot)</code></td>
+<td>标准 <code>getImei(slot)</code></td>
+</tr>
+<tr>
+<td>IMSI &#x2F; ICCID &#x2F; 手机号</td>
+<td>反射 <code>getSubscriberId</code> &#x2F; <code>getSimSerialNumber</code> &#x2F; <code>getLine1Number</code></td>
+<td>反射 <code>getSubscriberIdForSubscription</code> &#x2F; <code>getSimSerialNumberForSubscription</code> &#x2F; <code>getLine1NumberForSubscription</code></td>
+<td>反射 <code>getSubscriberId</code> &#x2F; <code>getSimSerialNumber</code> &#x2F; <code>getLine1Number</code></td>
+</tr>
+<tr>
+<td>基站位置</td>
+<td><code>HwTelephonyManager.getCellLocation</code></td>
+<td><code>miui...getCellLocationForSlot</code></td>
+<td><code>getAllCellInfo()</code> &#x2F; <code>getCellLocation</code></td>
+</tr>
+<tr>
+<td>独特手法</td>
+<td>通过 <code>ServiceManager.getService(&quot;phoneEx&quot;)</code> 拿 MTK Binder</td>
+<td>读 <code>/proc</code> 内存文件推 RAM 容量</td>
+<td>反射 <code>getITelephony</code> 调 <code>vivoTelephonyAPI</code>（自定义 Binder 方法）</td>
+</tr>
+<tr>
+<td>额外采集</td>
+<td>双卡判断 <code>isMultiSimEnabled</code></td>
+<td><code>VoLTE isVolteEnabledByUser</code>、<code>5G isFiveGCapable</code></td>
+<td>VoLTE&#x2F;5G 状态、联通定制识别 <code>ro.vivo.op.entry</code></td>
+</tr>
+</tbody></table>
+<p>图底那句适配策略总结得很准：<strong>反射入口类差异化｜基础数据走标准 API｜厂商能力通过系统属性与自定义接口扩展。</strong></p>
+<p>主文贴了两段代表性代码。MIUI 走私有 <code>TelephonyManager</code>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// DeviceInfoReaderXiaomi.java:286-303（据原文整理）</span></span><br><span class="line">Class&lt;?&gt; miuiTM = Utils.getClassByName(<span class="string">&quot;miui.telephony.TelephonyManager&quot;</span>);</span><br><span class="line"><span class="type">Object</span>   <span class="variable">miui</span>   <span class="operator">=</span> Utils.invokeMethod(Utils.getMethodByName(miuiTM, <span class="string">&quot;getDefault&quot;</span>), <span class="literal">null</span>);</span><br><span class="line">deviceInfo.IMSI1   = (String) Utils.invokeMethod(</span><br><span class="line">    Utils.getMethodByName(miuiTM, <span class="string">&quot;getSubscriberIdForSubscription&quot;</span>, Integer.TYPE), miui, subId);</span><br><span class="line">deviceInfo.ICCID1  = (String) Utils.invokeMethod(</span><br><span class="line">    Utils.getMethodByName(miuiTM, <span class="string">&quot;getSimSerialNumberForSubscription&quot;</span>, Integer.TYPE), miui, subId);</span><br><span class="line">deviceInfo.MSISDN1 = (String) Utils.invokeMethod(</span><br><span class="line">    Utils.getMethodByName(miuiTM, <span class="string">&quot;getLine1NumberForSubscription&quot;</span>, Integer.TYPE), miui, subId);</span><br><span class="line">deviceInfo.MNC1    = (String) Utils.invokeMethod(</span><br><span class="line">    Utils.getMethodByName(miuiTM, <span class="string">&quot;getSimOperatorForSubscription&quot;</span>, Integer.TYPE), miui, subId);</span><br></pre></td></tr></table></figure>
+
+<p>vivo 那条链更长，<code>DeviceInfoReaderVIVO.java:348-380</code> 一共五步：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// DeviceInfoReaderVIVO.java:348-380（据原文整理，五步反射链）</span></span><br><span class="line"><span class="comment">// ① 反射隐藏方法，拿 ITelephony Binder</span></span><br><span class="line"><span class="type">Method</span> <span class="variable">getITelephony</span> <span class="operator">=</span> tm.getClass().getDeclaredMethod(<span class="string">&quot;getITelephony&quot;</span>);</span><br><span class="line">getITelephony.setAccessible(<span class="literal">true</span>);</span><br><span class="line"><span class="type">Object</span> <span class="variable">iTelephony</span> <span class="operator">=</span> getITelephony.invoke(tm);</span><br><span class="line"><span class="comment">// ② 反射实例化 vivo 私有参数类</span></span><br><span class="line">Class&lt;?&gt; cls = Class.forName(<span class="string">&quot;com.android.internal.telephony.VivoTelephonyApiParams&quot;</span>);</span><br><span class="line"><span class="type">Object</span> <span class="variable">params</span> <span class="operator">=</span> cls.getConstructor(String.class).newInstance(str);</span><br><span class="line"><span class="comment">// ③ 塞入 slot / phoneId 等参数</span></span><br><span class="line"><span class="type">Method</span> <span class="variable">put</span> <span class="operator">=</span> cls.getMethod(<span class="string">&quot;put&quot;</span>, String.class, Object.class);</span><br><span class="line">put.invoke(params, <span class="string">&quot;slot&quot;</span>, <span class="number">0</span>);</span><br><span class="line"><span class="comment">// ④ 调 vivo 自定义 Binder 方法</span></span><br><span class="line"><span class="type">Object</span> <span class="variable">result</span> <span class="operator">=</span> iTelephony.getClass()</span><br><span class="line">    .getMethod(<span class="string">&quot;vivoTelephonyApi&quot;</span>, cls).invoke(iTelephony, params);</span><br><span class="line"><span class="comment">// ⑤ 从返回值取参数</span></span><br><span class="line"><span class="keyword">return</span> (HashMap) result.getClass().getMethod(<span class="string">&quot;getParamValues&quot;</span>).invoke(result);</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>反射手法</th>
+<th>用途</th>
+<th>脆弱点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Class.forName</code> 私有类</td>
+<td>找厂商隐藏入口</td>
+<td>类名换版本即失效</td>
+</tr>
+<tr>
+<td><code>setAccessible(true)</code></td>
+<td>绕过可见性</td>
+<td>Android 9 起受非 SDK 接口限制</td>
+</tr>
+<tr>
+<td><code>getITelephony</code> Binder</td>
+<td>拿系统电话服务</td>
+<td>隐藏 API，随版本收紧</td>
+</tr>
+<tr>
+<td>自定义参数类 + <code>invoke</code></td>
+<td>传厂商私有协议</td>
+<td>签名一变就抛异常</td>
+</tr>
+<tr>
+<td>读 <code>/proc</code>、系统属性 <code>ro.*</code></td>
+<td>补标准 API 拿不到的能力</td>
+<td>依赖具体内核&#x2F;固件实现</td>
+</tr>
+</tbody></table>
+<p>**这 60 多个 Reader 不是「功能多」，是 Android 碎片化的成本。**同一件事（拿双卡 IMEI、拿手机号、拿小区）在不同厂商、不同芯片平台、不同 Android 版本上要用完全不同的入口。用反射把它们兜住，短期可行，长期极脆——每一个 hidden API 都是一颗随系统升级可能失效的钉子。从工程角度看，这部分代码恰恰最像「老系统组件的包袱」，而不像一个 2026 年新写的采集器。</p>
+<h2 id="九、定性：不是木马，但也不是「没什么」"><a href="#九、定性：不是木马，但也不是「没什么」" class="headerlink" title="九、定性：不是木马，但也不是「没什么」"></a>九、定性：不是木马，但也不是「没什么」</h2><p>图 2 的定性结论照录如下：</p>
+<blockquote>
+<p>这是中国联通（China Unicom）的 <strong>OMA DM 设备管理&#x2F;注册激活预装应用</strong>，用于定制机（合约机）的设备注册、数据采集与上报。服务器为联通官方域名。</p>
+<p><strong>不是恶意木马</strong>：无短信拦截&#x2F;发送、无通话权限、无摄像头&#x2F;麦克风、无远程命令执行。但属于<strong>高度敏感的数据采集类应用</strong>（采集手机号、基站定位、应用行为画像）。</p>
+</blockquote>
+<p>这段结论我认同，而且认为它比舆论场里的多数标题更值得传播。两端都要守住：</p>
+<table>
+<thead>
+<tr>
+<th>常见误读</th>
+<th>代码层面的事实</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>「这是木马&#x2F;后门」</td>
+<td>无远程命令执行、无短信与通话权限、无摄像头麦克风；能力集中在读取与上报</td>
+</tr>
+<tr>
+<td>「它在偷看聊天记录」</td>
+<td>四类采集里没有任何内容读取路径，取的是元数据与统计值</td>
+</tr>
+<tr>
+<td>「只是普通运维数据，无所谓」</td>
+<td>IMEI + 手机号 + 小区 + 应用使用与流量，具备可关联的身份画像能力</td>
+</tr>
+<tr>
+<td>「它 2026 年才被塞进手机」</td>
+<td>样本构建于 2022-09-07，包名 2023 年已见诸学术文献</td>
+</tr>
+<tr>
+<td>「明文 HTTP &#x3D; 内容裸奔」</td>
+<td>主注册走 RSA+AES；明文的是另外几条通道，两者不能混写</td>
+</tr>
+<tr>
+<td>「MD5 过就匿名了」</td>
+<td>无盐 MD5 对可枚举标识符不等于不可逆匿名化</td>
+</tr>
+</tbody></table>
+<p><strong>反诈与设备注册本身是真实、正当的业务需求</strong>，运营商对定制机做激活注册、网络质量采集也有明确的运维理由。把这套组件整体污名化，既不准确，也不公平；但反过来，用「不是木马」来结束讨论同样草率——<strong>风险不来自恶意，来自权限范围与可关联性</strong>。</p>
+<h2 id="十、证据边界：这份分析能证明什么，不能证明什么"><a href="#十、证据边界：这份分析能证明什么，不能证明什么" class="headerlink" title="十、证据边界：这份分析能证明什么，不能证明什么"></a>十、证据边界：这份分析能证明什么，不能证明什么</h2><p>这是整篇文章最该被记住的一节。把结论按重量分三层：</p>
 <table>
 <thead>
 <tr>
 <th>层级</th>
-<th>安装位置</th>
-<th>权限来源</th>
-<th>用户能否看见&#x2F;卸载</th>
+<th>结论</th>
+<th>依据</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>普通 App</td>
-<td><code>/data/app</code></td>
-<td>运行时授权，受沙箱约束</td>
-<td>可见、可卸载</td>
+<td><strong>A · 代码可见</strong></td>
+<td>字段常量定义、四类采集调用点、5 个端点字符串、MD5 分流、反射适配链、样本指纹</td>
+<td>jadx 输出、配图、主文代码</td>
 </tr>
 <tr>
-<td>普通预装 App</td>
-<td><code>/system/app</code></td>
-<td>出厂预置，但仍走常规权限模型</td>
-<td>通常可见，多数可卸载</td>
+<td><strong>B · 需运行时验证</strong></td>
+<td>是否真的每次都采集全部字段、触发频率、请求体实际内容、加密实现强度、5 个端点当前是否都活跃</td>
+<td>需要抓包、动态插桩、多机型复测</td>
 </tr>
 <tr>
-<td><strong>特权系统组件</strong></td>
-<td><code>/system/priv-app</code></td>
-<td><strong>平台签名</strong> → signature 级权限，出厂即授予</td>
-<td><strong>常无图标、不在应用列表、不可卸载</strong></td>
+<td><strong>C · 无法由本材料判断</strong></td>
+<td>数据留存周期、谁可访问、后续如何使用、与任何具体外部事件的因果、其他品牌&#x2F;版本行为是否一致</td>
+<td>超出单样本静态分析的能力</td>
 </tr>
 </tbody></table>
-<p>社区公开的组件信息大致是：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">包名        com.mobiletools.systemhelper</span><br><span class="line">版本        1.2-20230228 (versionCode 3)</span><br><span class="line">路径        /system/priv-app/SystemHelper/SystemHelper.apk</span><br><span class="line">SDK        targetSdk 33 / minSdk 24</span><br></pre></td></tr></table></figure>
-
-<p><strong>平台签名</strong>是关键：它意味着这个 APK 是用手机厂商的平台密钥签的，Android 因此按「签名特权」对待它，普通 App 申请不到的权限（读取硬件标识、后台定位、开机自启、查询使用统计）在出厂时就给了。有公开资料提到，运营商自己的 Android DM 适配指南写明了这个组件的预装路径，并要求厂商<strong>不要阻止它开机自启</strong>。</p>
-<p>从工程角度这完全可以理解：设备注册、双卡与网络制式适配、运营商配置下发，确实需要一个开机就得跑、且不受普通权限弹窗干扰的组件。但从用户角度，这就构成了一个非常别扭的事实——<strong>它承担的是「服务」，拿到的却是「信任」，而这两者之间没有任何一次用户可见的确认。</strong></p>
-<h2 id="四、逐字段数一遍：到底上报了什么"><a href="#四、逐字段数一遍：到底上报了什么" class="headerlink" title="四、逐字段数一遍：到底上报了什么"></a>四、逐字段数一遍：到底上报了什么</h2><p>第二位审计者从 Redmi 取出同一组件做了完整拆解，把上报内容按三部分数了出来。这是目前公开信息里最扎实的一块：</p>
-<table>
-<thead>
-<tr>
-<th>部分</th>
-<th>主要字段</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>① 设备与 SIM</td>
-<td>双卡 IMEI &#x2F; IMSI &#x2F; ICCID、运营商网络码、小区标识 CID &#x2F; PCI &#x2F; TAC、网络类型、5G 与 VoLTE 开关、厂商型号与软硬件版本</td>
-<td>约 40 个字段</td>
-</tr>
-<tr>
-<td>② 信号与位置</td>
-<td>SIM 标识（第二次出现）、信道号 ARFCN、RSRP &#x2F; RSRQ &#x2F; SINR；内嵌定位库提供经纬度、海拔、速度、航向</td>
-<td><strong>仅当接入中国境内网络时才存储</strong></td>
-</tr>
-<tr>
-<td>③ 应用使用</td>
-<td>过去 24 小时使用过哪些 App、各自时长、关联流量统计</td>
-<td>部分系统应用被排除</td>
-</tr>
-</tbody></table>
-<p>几个值得单独标出来的边界：</p>
+<p>再列几条必须显式写出的限制：</p>
 <ul>
-<li><strong>② 有明确的地理触发条件</strong>（境内网络），不是「随时随地」。这个条件写在代码里，是拆解能给出的最硬的一种事实。</li>
-<li>字段多 ≠ 内容敏感度高。IMEI&#x2F;IMSI&#x2F;ICCID 是设备与卡的标识，小区与信号是网络质量数据——它们本身是通信运维的常规字段。<strong>真正让它们变敏感的，是「和 ③ 拼在一起」</strong>：一份带唯一设备标识、带位置、带 24 小时应用使用时长的时间序列，已经足以勾出作息、通勤、常用服务和生活半径。数据风险往往不在单个字段，在<strong>可关联性</strong>。</li>
-<li>这也是 V2EX 那个帖子里没答上来的第二个问题：这份数据能拼出什么画像。答案不是「它偷看了聊天记录」（没有证据支持），而是<strong>元数据层面的画像能力</strong>——这个词更准确，也更需要被讨论。</li>
+<li>**静态分析看到的是能力，不是行为。**代码里存在 <code>getLine1Number()</code>，不等于每台设备每次都拿到了号码并返回了非空值。</li>
+<li>**AI 辅助归纳要复核。**配图里的定性结论与能力矩阵由作者把反编译源码交给 AI 得出，本文按主文贴出的代码逐条对过，但结论性表述仍应视为作者判断。</li>
+<li>**图中遮挡部分不还原。**5 个端点的地址段有打码，任何「补全域名」的写法都是编造。</li>
+<li>**不要把两个组件混回来。**社区讨论里那套「约 3 秒录屏、加密上传」的行为属于另一个系统安全组件，主文与本文分析的是 <code>SystemHelper.apk</code>，两者不是一回事。</li>
+<li>**不作合规性定性。**是否适用「最小必要」、如何归类无图标的 priv-app 服务，涉及具体产品形态与监管解释，应由官方给出结论。</li>
 </ul>
-<h2 id="五、明文-HTTP-≠-明文数据：一处最容易被误读的地方"><a href="#五、明文-HTTP-≠-明文数据：一处最容易被误读的地方" class="headerlink" title="五、明文 HTTP ≠ 明文数据：一处最容易被误读的地方"></a>五、明文 HTTP ≠ 明文数据：一处最容易被误读的地方</h2><p>社区拆解里有一句很抓眼的描述：上报地址是<strong>明文 HTTP</strong> 的联通设备管理地址。于是「数据裸奔」的说法立刻传开了。这里必须把两件事拆开：</p>
-<table>
-<thead>
-<tr>
-<th>事实</th>
-<th>能推出什么</th>
-<th>不能推出什么</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>地址默认值是明文 HTTP</td>
-<td>传输层没有 TLS，目标域名与端口对链路上的观察者可见</td>
-<td>不能推出载荷内容可读</td>
-</tr>
-<tr>
-<td>载荷体在代码里经过应用层加密处理</td>
-<td>至少存在一层混淆&#x2F;加密</td>
-<td>不能推出加密强度、密钥管理、是否可被人还原</td>
-</tr>
-<tr>
-<td>二者组合</td>
-<td><strong>元信息（去哪、多久一次、多大）暴露，内容保密性取决于应用层实现</strong></td>
-<td>「谁都能读到内容」目前无人能下定论</td>
-</tr>
-</tbody></table>
-<p>换句话说：**「地址是明文」是确认的事实，「内容能被中间人读出」是未验证的推断。**把这两句写成一句，就是典型的证据越级。</p>
-<p>顺便回答 V2EX 留下的第一个问题「开 VPN 能不能挡」——这类系统组件走的是自身网络通道，且拥有普通 App 没有的特权；是否受用户配置的 VPN 路由约束，取决于系统实现与 VPN 是否为全局强制。**在没抓包实测之前，任何「能」或「不能」都是猜。**这又回到那条纪律：结论要指回可复现的观测。</p>
-<h2 id="六、三级证据：这轮讨论最该补的一张表"><a href="#六、三级证据：这轮讨论最该补的一张表" class="headerlink" title="六、三级证据：这轮讨论最该补的一张表"></a>六、三级证据：这轮讨论最该补的一张表</h2><p>把流传的说法按证据重量排开，很多争论会立刻消失：</p>
-<table>
-<thead>
-<tr>
-<th>级别</th>
-<th>判据</th>
-<th>本事件里属于这一级的</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>A · 可独立核实</strong></td>
-<td>官方文档、法规原文、学术论文、组件路径与签名、隐私政策列明的数据类型</td>
-<td>工信部联信管函〔2022〕269 号；小米 2026 年 4 月开发者文档「设备涉诈检测业务介绍」提及可判断屏幕共享&#x2F;录屏&#x2F;SIM 通话等行为；隐私政策列有应用清单、使用情况、设备标识；2023 年论文把该包归为联通设备注册 SDK；组件路径与平台签名</td>
-</tr>
-<tr>
-<td><strong>B · 单一来源的逆向分析</strong></td>
-<td>有人跑过、拆过、贴过字段，但样本有限且未经第三方复现</td>
-<td>MeT 对一台已 root 小米 14 的分析；第二位审计者对 Redmi 同组件的逐字段拆解；约 3 秒录屏与加密上传流程；具体上报频率与地址</td>
-</tr>
-<tr>
-<td><strong>C · 未证实 &#x2F; 二次转述</strong></td>
-<td>无公开证据、因果链断裂、或来源自称「据闻」</td>
-<td>「数据到了警方」「那通电话就是这个包导致的」「关掉设置里的反诈开关后底层照常上传」「另一机型的通话记录数据库、过热熔断、音频避让」等社区二次披露；「删除后会不会被 OTA &#x2F; 云控装回」（发帖者本人称尚未验证）</td>
-</tr>
-</tbody></table>
-<p>几个必须写清楚的判断：</p>
-<ol>
-<li>**没有任何公开证据表明这些数据流向了警方，也不能把「朋友接到电话」直接归因于这个包。**两件事在时间上先后发生，不等于因果。这是整轮传播里最普遍的一处逻辑跳跃。</li>
-<li>**官方文件写了「设备涉诈检测」，不等于证实了社区披露的具体程序、传输频率和录屏流程。**前者是厂商白纸黑字的能力说明，后者是个人的逆向结论；它们能对上「数据类型」，对不上「哪个包、多久一次、怎么传」。<strong>对不上的这一段，才是真正该被追问的地方。</strong></li>
-<li>那份自称「据闻、不代表本人看法」的二次转述里，细节丰富到令人不适（数据库表名、字段名拼写错误、CPU 占用时长、若干域名）。<strong>细节多不等于可信</strong>——在拿到可复现的取证过程之前，它只能留在 C 级。</li>
-</ol>
-<p>把「MeT 称」「官方文件写了」「有人转述」分开表述，不是文字游戏，是这件事里唯一能让讨论继续往前走的做法。</p>
-<h2 id="七、反诈是正当的，但正当目的不等于可以不解释手段"><a href="#七、反诈是正当的，但正当目的不等于可以不解释手段" class="headerlink" title="七、反诈是正当的，但正当目的不等于可以不解释手段"></a>七、反诈是正当的，但正当目的不等于可以不解释手段</h2><p>有一点必须先说清楚：<strong>电信网络诈骗治理是真实、正当且有明确法律依据的需求</strong>，端侧风险识别（判断是否正在屏幕共享、是否被远程操控、是否装了仿冒 App）在实践中确实救过人。把它整体污名化，既不准确，也不公平。</p>
-<p>但「目的正当」和「手段是否需要说明」是两个问题。用户此刻想知道的其实非常具体，而且一点都不过分：</p>
-<table>
-<thead>
-<tr>
-<th>用户的问题</th>
-<th>目前公开信息能否回答</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>这个组件是谁的、负责什么</td>
-<td>部分（学术论文与适配指南指向运营商侧 DM）</td>
-</tr>
-<tr>
-<td>具体传了哪些字段</td>
-<td>能（第二份拆解已逐字段列出）</td>
-</tr>
-<tr>
-<td>传给谁、留存多久、谁可访问</td>
-<td><strong>不能</strong></td>
-</tr>
-<tr>
-<td>我能不能关、关了影响什么</td>
-<td><strong>不能</strong></td>
-</tr>
-<tr>
-<td>删了会不会回来</td>
-<td><strong>不能</strong>（发帖者称未验证）</td>
-</tr>
-<tr>
-<td>不同品牌 &#x2F; 版本是否一致</td>
-<td><strong>不能</strong></td>
-</tr>
-</tbody></table>
-<p>「隐私政策里写了会收集应用列表」不等于「已经告知」。一份几十页的文档、一个藏在三级菜单里的开关、一句「为保障你的安全」，与「哪个程序、什么条件下、传什么、给谁、怎么关」之间，差着整整一层可核对性。<strong>合规披露和用户知情，不是同一件事。</strong></p>
-<h2 id="八、那条谁都没提的合规边界：没有图标，算不算「预置应用软件」"><a href="#八、那条谁都没提的合规边界：没有图标，算不算「预置应用软件」" class="headerlink" title="八、那条谁都没提的合规边界：没有图标，算不算「预置应用软件」"></a>八、那条谁都没提的合规边界：没有图标，算不算「预置应用软件」</h2><p>这是整篇文章里我认为最值得留下的一段。</p>
-<p>工信部、国家网信办《关于进一步规范移动智能终端应用软件预置行为的通告》（工信部联信管函〔2022〕269 号，2023-01-01 施行）里，有几条原文值得逐字看：</p>
-<table>
-<thead>
-<tr>
-<th>条款</th>
-<th>原文要点</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>第一条</td>
-<td>预置应用软件指「由生产企业预置，<strong>在移动智能终端主屏幕和辅助屏界面内存在用户交互入口</strong>，为满足用户应用需求而提供的、<strong>可独立使用</strong>的软件程序」</td>
-</tr>
-<tr>
-<td>第二条</td>
-<td>遵循「依法合规、用户至上、安全便捷、<strong>最小必要</strong>」；「谁预置、谁负责」；保障用户<strong>知情权、选择权</strong></td>
-</tr>
-<tr>
-<td>第三条</td>
-<td>除基本功能软件外的预置应用软件<strong>均可卸载</strong>，并提供安全便捷的卸载方式</td>
-</tr>
-<tr>
-<td>第四条</td>
-<td>基本功能软件限四类：操作系统基本组件（系统设置、文件管理）、硬件正常运行（多媒体摄录）、基本通信应用（接打电话&#x2F;短信&#x2F;通讯录&#x2F;浏览器）、应用商店；<strong>同一基本功能至多一个可设为不可卸载</strong></td>
-</tr>
-<tr>
-<td>第六条</td>
-<td>应<strong>明示所提供预置应用软件的相关信息</strong>，履行登记、审核、监测、留存、下架全链条管理，完善投诉受理，落实个人信息保护责任</td>
-</tr>
-</tbody></table>
-<p>现在把 SystemHelper 放进去看，会卡在一个很有意思的位置：</p>
-<ul>
-<li>它<strong>没有用户交互入口</strong>，也不「可独立使用」——按第一条的字面定义，它不太像通告所说的「预置应用软件」；</li>
-<li>但它又显然不属于第四条列举的「操作系统基本组件」（那里举的是系统设置、文件管理），它是一个<strong>承担数据采集与上报的服务</strong>；</li>
-<li>第三条「除基本功能软件外均可卸载」和第六条「明示信息」，究竟适不适用于这一类<strong>无图标、平台签名、priv-app 形态的系统服务</strong>，公开讨论里几乎没人问。</li>
-</ul>
-<p>于是真正的空白不是「它违没违规」，而是：**一个既不在用户视野里、又实际处理个人信息的系统级组件，应该归到哪一类、按什么规则明示、要不要提供可预期的开关。**这是分类问题，也是这轮舆情里最该被主管部门和厂商回答的技术性问题。</p>
-<p>需要明确：**本文不作合规性定性。**是否适用、如何适用，涉及具体产品形态与监管解释，应由官方给出结论。这里只指出一处值得说清的分类地带——因为「连按哪条管都还没说清」，比「有没有偷偷上传」更接近问题的根部。</p>
-<h2 id="九、普通用户能做的，和不建议做的"><a href="#九、普通用户能做的，和不建议做的" class="headerlink" title="九、普通用户能做的，和不建议做的"></a>九、普通用户能做的，和不建议做的</h2><p>先说不推荐的部分：**不建议自行改动、卸载或冻结系统级组件。**这类组件可能与 SIM 注册、双卡识别、网络配置下发相关；不同机型与系统版本行为不同，别人「亲测没事」不是你的保险；卸载后是否被云控或 OTA 恢复，目前本身就还没验证；改动系统分区还可能影响保修。更别为了「清理」去装来路不明的一键卸载工具——<strong>你正在担心数据去向，这时候再装一个不知道底细的 App，方向就反了。</strong></p>
-<p>能做的、也是更有效的四件事：</p>
-<table>
-<thead>
-<tr>
-<th>动作</th>
-<th>怎么做</th>
-<th>价值</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>确认它在不在</td>
-<td>系统设置 → 应用管理 → 显示系统应用 → 搜索包名</td>
-<td>把「听说」变成「我核对过」</td>
-</tr>
-<tr>
-<td>读原始材料</td>
-<td>查厂商隐私政策与开发者文档中列明的数据类型</td>
-<td>分清 A 级与 B 级信息</td>
-</tr>
-<tr>
-<td>走官方渠道反馈</td>
-<td>厂商客服 &#x2F; 官方反馈入口 &#x2F; 12321 等正规投诉渠道</td>
-<td>让诉求进入可被统计和回应的通道</td>
-</tr>
-<tr>
-<td>关注后续回应</td>
-<td>等厂商与主管部门的具体说明，尤其是字段清单、留存周期、开关设计</td>
-<td>避免用 C 级信息做长期判断</td>
-</tr>
-</tbody></table>
-<p>第四点看着被动，其实是这件事里最有杠杆的一步：<strong>这类问题的解法和单个用户删不删一个包无关，只和「有没有一份可查、可审计、可预期的清单」有关。</strong></p>
-<h2 id="十、行业侧该补的那一课"><a href="#十、行业侧该补的那一课" class="headerlink" title="十、行业侧该补的那一课"></a>十、行业侧该补的那一课</h2><p>把用户要的东西整理成一张最小信息集，其实并不苛刻：</p>
+<h2 id="十一、防御与合规视角：该公开什么，该问什么"><a href="#十一、防御与合规视角：该公开什么，该问什么" class="headerlink" title="十一、防御与合规视角：该公开什么，该问什么"></a>十一、防御与合规视角：该公开什么，该问什么</h2><p>先说不做什么：**本文不提供卸载、冻结、禁用或刷机指令。**这类组件可能与 SIM 注册、双卡识别、运营商配置下发相关；不同机型与固件版本行为不同，别人「亲测没事」不是你的保险；改动系统分区还可能影响保修。为了「清理」去装来路不明的一键工具，方向与担忧正好相反。</p>
+<p>用户真正需要的，其实是一份能对上号的清单：</p>
 <table>
 <thead>
 <tr>
@@ -848,20 +1171,20 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>系统级组件清单（包名、归属方、版本、安装路径）</td>
-<td>让「它在不在」变成可查，而不是靠 root 后 adb 翻</td>
+<td>系统级组件清单（包名、归属方、版本、安装路径、样本哈希）</td>
+<td>让「它在不在」可查，而不是靠 root 后翻目录</td>
 </tr>
 <tr>
 <td>每个组件的采集字段与触发条件</td>
 <td>让「收了什么」可被第三方复核</td>
 </tr>
 <tr>
-<td>数据去向、留存周期、共享对象</td>
-<td>让「传给谁」有答案</td>
+<td>端点清单、传输保护方式、数据去向与留存周期</td>
+<td>让「传给谁、怎么传」有答案</td>
 </tr>
 <tr>
 <td>用户可操作的开关及其真实效果</td>
-<td>让「关了会怎样」可预期，而不是「不弹窗了」</td>
+<td>让「关了会怎样」可预期</td>
 </tr>
 <tr>
 <td>版本变更说明与回退路径</td>
@@ -869,17 +1192,43 @@
 </tr>
 <tr>
 <td>第三方独立验证与公开回应机制</td>
-<td>让下一次不必靠一条社交媒体帖子才被发现</td>
+<td>让下一次不必靠一条帖子才被发现</td>
 </tr>
 </tbody></table>
-<p>2023 年的论文已经点名过这个包，两年多之后，普通用户仍然是靠一台 root 手机和一条帖子才知道系统里可能有这么个东西。**这不是某一家厂商的脸面问题，是整个定制系统行业在「透明度基础设施」上欠的一堂课。**反诈做得越深入，这堂课就越该补——因为安全功能拿到的权限越大，可解释性的 obligation 就越重。</p>
-<h2 id="十一、结尾：比「赶紧删」更该留下的东西"><a href="#十一、结尾：比「赶紧删」更该留下的东西" class="headerlink" title="十一、结尾：比「赶紧删」更该留下的东西"></a>十一、结尾：比「赶紧删」更该留下的东西</h2><p>这轮讨论里有两种很响的声音：「反诈需要，别大惊小怪」和「赶紧换机」。中间那个最该被听见的问题——<strong>「这到底是什么」</strong>——反而最安静。</p>
-<p>回答它靠的不是更激烈的措辞，是三件很朴素的事：<strong>把两个组件分开，把三级证据分开，把「合规披露」和「用户知情」分开。</strong></p>
-<p>有意思的是，这三件事和之前写地理定位那套方法学是同一条纪律：**结论必须能指回它用过的线索、跑过的命令、产出的文件；观察与推断要分开写；拿不到的证据就写「拿不到」。**它看着笨，却是这类事件里唯一不会让讨论越走越偏的做法。</p>
-<p>用户真正的不安，说到底不是「隐私被偷了」，而是**「我连自己每天用的东西是什么都不知道」**。这个不安不该被一句「你不懂技术」打发，也不该被一句「赶紧删」消费掉。它该换来的，是一份能对上号的清单。</p>
+<p>工信部、国家网信办《关于进一步规范移动智能终端应用软件预置行为的通告》（工信部联信管函〔2022〕269 号）要求「最小必要」「谁预置、谁负责」、保障知情权与选择权，并明示预置应用软件信息。而一个<strong>无图标、平台签名、以服务形态存在</strong>的组件，究竟按「预置应用软件」还是按「系统基本组件」管理，公开讨论里仍缺少明确说法。这里只指出分类地带的存在，不作定性。</p>
+<p>能做的、也更有效的四件事：</p>
+<table>
+<thead>
+<tr>
+<th>动作</th>
+<th>价值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>只读核对（在自有设备上查看系统应用、比对包名与版本）</td>
+<td>把「听说」变成「我核对过」</td>
+</tr>
+<tr>
+<td>阅读厂商隐私政策与开发者文档列明的数据类型</td>
+<td>分清代码事实与官方披露</td>
+</tr>
+<tr>
+<td>通过厂商客服、官方反馈入口、12321 等正规渠道反馈</td>
+<td>让诉求进入可被统计与回应的通道</td>
+</tr>
+<tr>
+<td>关注后续公开说明，尤其是字段清单、留存周期与开关设计</td>
+<td>避免用未经证实的信息做长期判断</td>
+</tr>
+</tbody></table>
+<h2 id="十二、结论"><a href="#十二、结论" class="headerlink" title="十二、结论"></a>十二、结论</h2><p>把 1.6 MB 的 APK 拖出来反编译之后，能确定的东西其实相当具体：一个 2022 年构建、带 <code>sharedUserId</code> 的 OMA DM 预装组件，用四类代码读取设备与 SIM 标识、小区位置、应用使用与流量、IP；用 60 多个反射适配跨过厂商碎片化；把主注册数据经 RSA+AES 发往运营商端点，并对非联通卡做 MD5 脱敏。</p>
+<p>**它不是木马。**但把它归为「普通运维」也不诚实——一套绑定了唯一设备标识、手机号、位置与行为时间序列的系统级采集，讨论的重点从来不是恶意与否，而是可关联性、透明度与可预期性。</p>
+<p>这轮重写换掉的不只是内容，是提问方式：从「网上都说了什么」换成「代码里到底写了什么，以及代码证明不了什么」。前者靠转述，后者靠可复核的调用点。真要继续往下查，缺的也不是更激烈的措辞，而是<strong>多机型样本哈希、运行时抓包、以及一份官方给出的字段与端点清单</strong>。</p>
 <hr>
-<p><strong>主要公开来源</strong>：X 用户 MeT 2026-10-31 帖及后续社区逆向拆解（dev.to 完整字段分析、V2EX 11-05 汇总讨论）；2023 年论文《Android OS Privacy Under the Loupe》；小米澎湃 OS 开发者平台 2026 年 4 月「设备涉诈检测业务介绍」及隐私政策；工信部、国家网信办《关于进一步规范移动智能终端应用软件预置行为的通告》（工信部联信管函〔2022〕269 号，中国政府网）；多家媒体 11 月上旬报道。本文对 B&#x2F;C 级信息均标注为「据披露 &#x2F; 待核实」，不作事实认定，亦不作合规性定性。</p>
-<p><em>本文仅用于安全研究、隐私保护讨论与合规科普，不含任何系统组件改动指令。事件仍在发展中，请以厂商与主管部门后续公开说明为准。</em></p>
+<p><strong>主要来源</strong>：「kali笔记」（作者 大表哥吆）2026-11-08《来看看SystemHelper干了什么？》及其四张配图（样本基本信息、定性结论与 C2 端点、Telephony 厂商适配对比、<code>DeviceInfo.java</code> 反编译截图）；配图文字经离线 OCR 提取后人工校对。补充交叉印证：ACM WiSec 2023 论文《Android OS Privacy Under the Loupe – A Tale from the East》（DOI 10.1145&#x2F;3558482.3581775）曾点名同一包名；工信部联信管函〔2022〕269 号。本文对单一来源的逆向结论均标注「据原文」，图中遮挡地址不作还原，不作合规性定性。</p>
+<blockquote>
+<p><strong>免责声明</strong>：本文仅用于授权环境下的安全研究、移动隐私讨论与合规科普，内容为公开材料的静态代码分析与方法学讨论，不含任何系统组件卸载、冻结、禁用或刷机指令，不提供针对真实系统的攻击步骤。未经授权对信息系统进行测试属违法行为；静态分析结论不等同于已证实的数据上传行为。事件仍在发展中，请以厂商与主管部门后续公开说明为准。</p>
+</blockquote>
 
   </div>
 
@@ -951,67 +1300,67 @@
     </header>
     <div class="related-paper__grid">
       
-        <a class="related-card" href="/2026/09/03/20260903/2026090302/">
+        <a class="related-card" href="/2026/09/11/20260911/2026091101/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/../../images/20260903/2026090302-selfie-osint-cover.png" alt="一张&#34;普通&#34;的自拍，能出卖你多少：从瞳孔反光到 AI 地理定位，你的照片正在变成一份档案" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20260911/2026091101-weworm-cover.png" alt="一通没接的微信来电，就能接管你的账号：WeWorm 零点击蠕虫、AI 两天造出 RCE，与 14 亿用户的 40 天攻防" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">一张&#34;普通&#34;的自拍，能出卖你多少：从瞳孔反光到 AI 地理定位，你的照片正在变成一份档案</strong>
-            <em class="related-card__date">2026-09-03</em>
+            <strong class="related-card__title">一通没接的微信来电，就能接管你的账号：WeWorm 零点击蠕虫、AI 两天造出 RCE，与 14 亿用户的 40 天攻防</strong>
+            <em class="related-card__date">2026-09-11</em>
           </span>
         </a>
       
-        <a class="related-card" href="/2026/09/03/20260903/2026090301/">
+        <a class="related-card" href="/2026/11/10/20261110/2026111007/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-1 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/../../images/20260903/2026090301-data-blackmarket-cover.png" alt="你的个人信息在暗网值多少钱：从 0.5 元买你的住址、2300 元查你住过的酒店，到 1.53 亿份驾照在暗网明码标价" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20261110/2026111007-cover.png" alt="翻日志不叫威胁狩猎：假设驱动、数据模型，以及「什么都没猎到」为什么也算结果" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">你的个人信息在暗网值多少钱：从 0.5 元买你的住址、2300 元查你住过的酒店，到 1.53 亿份驾照在暗网明码标价</strong>
-            <em class="related-card__date">2026-09-03</em>
+            <strong class="related-card__title">翻日志不叫威胁狩猎：假设驱动、数据模型，以及「什么都没猎到」为什么也算结果</strong>
+            <em class="related-card__date">2026-11-10</em>
           </span>
         </a>
       
-        <a class="related-card" href="/2026/08/23/20260823/2026082304/">
+        <a class="related-card" href="/2026/11/10/20261110/2026111006/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-2 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/../../images/20260823/biometric-cover.png" alt="人脸是身份证，指纹是钥匙：生物特征一旦泄露不可重置" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20261110/2026111006-cover.png" alt="演练打完就散会，等于没打：ROE、注入场景与紫队闭环里那十二个真正该量的数" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">人脸是身份证，指纹是钥匙：生物特征一旦泄露不可重置</strong>
-            <em class="related-card__date">2026-08-23</em>
+            <strong class="related-card__title">演练打完就散会，等于没打：ROE、注入场景与紫队闭环里那十二个真正该量的数</strong>
+            <em class="related-card__date">2026-11-10</em>
           </span>
         </a>
       
-        <a class="related-card" href="/2026/08/23/20260823/2026082303/">
+        <a class="related-card" href="/2026/11/10/20261110/2026111005/">
           <span class="related-card__thumb">
             
 <div class="paper-thumb paper-thumb-0 paper-thumb--cover">
   
-    <img class="paper-thumb__img" src="/../../images/20260823/smart-home-attack-cover.png" alt="你家的每个插头都在联网：智能家居攻击面全景" loading="lazy" referrerpolicy="no-referrer">
+    <img class="paper-thumb__img" src="/../../images/20261110/2026111005-cover.png" alt="把 ATT&amp;CK 贴满墙也不等于能发现入侵：检测覆盖度怎么算，以及「这条规则真的会响吗」" loading="lazy" referrerpolicy="no-referrer">
   
 </div>
 
           </span>
           <span class="related-card__body">
-            <strong class="related-card__title">你家的每个插头都在联网：智能家居攻击面全景</strong>
-            <em class="related-card__date">2026-08-23</em>
+            <strong class="related-card__title">把 ATT&amp;CK 贴满墙也不等于能发现入侵：检测覆盖度怎么算，以及「这条规则真的会响吗」</strong>
+            <em class="related-card__date">2026-11-10</em>
           </span>
         </a>
       
