@@ -1,0 +1,1017 @@
+<!doctype html>
+
+<html lang="zh-CN" data-fancybox-enabled="1">
+<head>
+  
+
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f7f3e9">
+
+<title>社会工程学笔记（一） | ZapcoMan&#39;s world</title>
+<meta name="description" content="黑客攻击本性黑客攻击行为分类 在网络中任何一个人，如果他对别人 （或其信息系统） 实施了攻击，那么此刻他就是一个黑客；或者说，他的这个行为，便是黑客行为，又称为黑客攻击。 粗略地说，网络黑客攻击，是指违背他人意愿而采取信息手段等非身体接触方式，以伤害他人的财产或数据资源为目标的行为。无论攻击行为是发生在线上或线下，黑客行为的最终效果都主要体现在网络空间中...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="社会工程学笔记（一） | ZapcoMan&#39;s world">
+<meta property="og:url" content="http://example.com/2026/11/16/20261116/2026111601/">
+<meta property="og:site_name" content="ZapcoMan&#39;s world">
+<meta property="og:description" content="黑客攻击本性黑客攻击行为分类 在网络中任何一个人，如果他对别人 （或其信息系统） 实施了攻击，那么此刻他就是一个黑客；或者说，他的这个行为，便是黑客行为，又称为黑客攻击。 粗略地说，网络黑客攻击，是指违背他人意愿而采取信息手段等非身体接触方式，以伤害他人的财产或数据资源为目标的行为。无论攻击行为是发生在线上或线下，黑客行为的最终效果都主要体现在网络空间中...">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2026/11/16/images/20261116/2026111601-cover.png">
+<meta property="article:published_time" content="2026-11-16T10:20:00.000Z">
+<meta property="article:modified_time" content="2026-11-16T10:43:46.656Z">
+<meta property="article:author" content="ZapcoMan">
+<meta property="article:tag" content="反欺诈">
+<meta property="article:tag" content="威胁意识">
+<meta property="article:tag" content="心理学">
+<meta property="article:tag" content="欺骗识别">
+<meta property="article:tag" content="社会工程学">
+<meta property="article:tag" content="社工攻击">
+<meta property="article:tag" content="说服">
+<meta property="article:tag" content="谣言">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2026/11/16/images/20261116/2026111601-cover.png">
+<link rel="canonical" href="http://example.com/2026/11/16/20261116/2026111601/">
+
+<link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"社会工程学笔记（一）","name":"社会工程学笔记（一） | ZapcoMan's world","description":"黑客攻击本性黑客攻击行为分类 在网络中任何一个人，如果他对别人 （或其信息系统） 实施了攻击，那么此刻他就是一个黑客；或者说，他的这个行为，便是黑客行为，又称为黑客攻击。 粗略地说，网络黑客攻击，是指违背他人意愿而采取信息手段等非身体接触方式，以伤害他人的财产或数据资源为目标的行为。无论攻击行为是发生在线上或线下，黑客行为的最终效果都主要体现在网络空间中...","url":"http://example.com/2026/11/16/20261116/2026111601/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"image":["http://example.com/images/20261116/2026111601-cover.png"],"mainEntityOfPage":"http://example.com/2026/11/16/20261116/2026111601/","datePublished":"2026-11-16T10:20:00.000Z","dateModified":"2026-11-16T10:43:46.656Z","author":{"@type":"Person","name":"ZapcoMan"},"publisher":{"@type":"Organization","name":"ZapcoMan's world"},"keywords":"社会工程学, 反欺诈, 社工攻击, 心理学, 欺骗识别, 说服, 谣言, 威胁意识"}</script>
+
+<script>
+  (function () {
+    var accents = { orange: 1, purple: 1, sakura: 1, blue: 1, pink: 1, green: 1, black: 1 };
+    var match = document.cookie.match(/(?:^|;\s*)flatpaper-accent=([^;]+)/);
+    var accent = 'black';
+    if (match) {
+      try { accent = decodeURIComponent(match[1]); } catch (e) {}
+    }
+    if (!accents[accent]) accent = 'black';
+    document.documentElement.setAttribute('data-accent', accent);
+    try {
+      if (localStorage.getItem('flatpaper-mode') === 'dark') {
+        document.documentElement.classList.add('dark-mode');
+      }
+    } catch (e) {}
+  })();
+</script>
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+
+
+  
+
+  
+
+  
+<script defer src="https://cdn.jsdelivr.net/npm/twikoo@1.7.9/dist/twikoo.all.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
+<script defer src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 8.1.2"><link rel="alternate" href="/atom.xml" title="ZapcoMan's world" type="application/atom+xml">
+</head>
+
+<body
+  class="is-post tag-style-tape bg-style-default"
+  data-default-accent="black"
+  data-code-theme="dark"
+  data-note-style="sticky"
+  data-note-icons="on"
+  data-button-style="circle"
+  data-strong-accent="on"
+>
+  
+    <div class="page-grain"></div>
+  
+  <svg width="0" height="0" style="position:absolute;z-index:-1;" aria-hidden="true">
+    <defs>
+      <filter id="paper-edge" x="-5%" y="-5%" width="110%" height="110%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.04" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+    </defs>
+  </svg>
+  <svg class="flatpaper-icon-sprite" xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute;width:0;height:0;overflow:hidden;" aria-hidden="true" focusable="false"><defs><symbol id="flatpaper-icon-lucide-layout-grid" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></symbol><symbol id="flatpaper-icon-lucide-house" viewBox="0 0 24 24"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol><symbol id="flatpaper-icon-lucide-archive" viewBox="0 0 24 24"><rect width="20" height="5" x="2" y="3" rx="1"/><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8"/><path d="M10 12h4"/></symbol><symbol id="flatpaper-icon-lucide-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol><symbol id="flatpaper-icon-lucide-user" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol><symbol id="flatpaper-icon-lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></symbol><symbol id="flatpaper-icon-lucide-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol><symbol id="flatpaper-icon-lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></symbol><symbol id="flatpaper-icon-lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></symbol><symbol id="flatpaper-icon-lucide-palette" viewBox="0 0 24 24"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"/><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/></symbol><symbol id="flatpaper-icon-fa-brands-github" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></symbol><symbol id="flatpaper-icon-fa-brands-twitter" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></symbol><symbol id="flatpaper-icon-lucide-mail" viewBox="0 0 24 24"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></symbol><symbol id="flatpaper-icon-lucide-rss" viewBox="0 0 24 24"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></symbol><symbol id="flatpaper-icon-lucide-atom" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><path d="M20.2 20.2c2.04-2.03.02-7.36-4.5-11.9-4.54-4.52-9.87-6.54-11.9-4.5-2.04 2.03-.02 7.36 4.5 11.9 4.54 4.52 9.87 6.54 11.9 4.5Z"/><path d="M15.7 15.7c4.52-4.54 6.54-9.87 4.5-11.9-2.03-2.04-7.36-.02-11.9 4.5-4.52 4.54-6.54 9.87-4.5 11.9 2.03 2.04 7.36.02 11.9-4.5Z"/></symbol><symbol id="flatpaper-icon-lucide-heart" viewBox="0 0 24 24"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></symbol><symbol id="flatpaper-icon-lucide-message-circle" viewBox="0 0 24 24"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></symbol><symbol id="flatpaper-icon-lucide-message-square" viewBox="0 0 24 24"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z"/></symbol><symbol id="flatpaper-icon-lucide-share-2" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></symbol><symbol id="flatpaper-icon-lucide-calendar" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></symbol><symbol id="flatpaper-icon-lucide-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol><symbol id="flatpaper-icon-lucide-shuffle" viewBox="0 0 24 24"><path d="m18 14 4 4-4 4"/><path d="m18 2 4 4-4 4"/><path d="M2 18h1.973a4 4 0 0 0 3.3-1.7l5.454-8.6a4 4 0 0 1 3.3-1.7H22"/><path d="M2 6h1.972a4 4 0 0 1 3.6 2.2"/><path d="M22 18h-6.041a4 4 0 0 1-3.3-1.8l-.359-.45"/></symbol><symbol id="flatpaper-icon-lucide-flame" viewBox="0 0 24 24"><path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4"/></symbol><symbol id="flatpaper-icon-lucide-history" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></symbol><symbol id="flatpaper-icon-lucide-table-of-contents" viewBox="0 0 24 24"><path d="M16 5H3"/><path d="M16 12H3"/><path d="M16 19H3"/><path d="M21 5h.01"/><path d="M21 12h.01"/><path d="M21 19h.01"/></symbol><symbol id="flatpaper-icon-lucide-list-tree" viewBox="0 0 24 24"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></symbol><symbol id="flatpaper-icon-lucide-folder" viewBox="0 0 24 24"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></symbol><symbol id="flatpaper-icon-lucide-tag" viewBox="0 0 24 24"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/></symbol><symbol id="flatpaper-icon-lucide-eye" viewBox="0 0 24 24"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></symbol><symbol id="flatpaper-icon-lucide-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol><symbol id="flatpaper-icon-lucide-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></symbol><symbol id="flatpaper-icon-lucide-arrow-up" viewBox="0 0 24 24"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></symbol><symbol id="flatpaper-icon-lucide-chevron-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol><symbol id="flatpaper-icon-lucide-chevron-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol><symbol id="flatpaper-icon-lucide-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol><symbol id="flatpaper-icon-lucide-chevron-up" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></symbol><symbol id="flatpaper-icon-lucide-send" viewBox="0 0 24 24"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></symbol><symbol id="flatpaper-icon-lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></symbol><symbol id="flatpaper-icon-lucide-panel-left" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/></symbol><symbol id="flatpaper-icon-lucide-leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></symbol><symbol id="flatpaper-icon-lucide-aperture" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m14.31 8 5.74 9.94"/><path d="M9.69 8h11.48"/><path d="m7.38 12 5.74-9.94"/><path d="M9.69 16 3.95 6.06"/><path d="M14.31 16H2.83"/><path d="m16.62 12-5.74 9.94"/></symbol><symbol id="flatpaper-icon-lucide-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"/></symbol><symbol id="flatpaper-icon-lucide-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></symbol><symbol id="flatpaper-icon-lucide-radio" viewBox="0 0 24 24"><path d="M16.247 7.761a6 6 0 0 1 0 8.478"/><path d="M19.075 4.933a10 10 0 0 1 0 14.134"/><path d="M4.925 19.067a10 10 0 0 1 0-14.134"/><path d="M7.753 16.239a6 6 0 0 1 0-8.478"/><circle cx="12" cy="12" r="2"/></symbol><symbol id="flatpaper-icon-lucide-hash" viewBox="0 0 24 24"><line x1="4" x2="20" y1="9" y2="9"/><line x1="4" x2="20" y1="15" y2="15"/><line x1="10" x2="8" y1="3" y2="21"/><line x1="16" x2="14" y1="3" y2="21"/></symbol><symbol id="flatpaper-icon-lucide-gift" viewBox="0 0 24 24"><path d="M12 7v14"/><path d="M20 11v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"/><path d="M7.5 7a1 1 0 0 1 0-5A4.8 8 0 0 1 12 7a4.8 8 0 0 1 4.5-5 1 1 0 0 1 0 5"/><rect x="3" y="7" width="18" height="4" rx="1"/></symbol><symbol id="flatpaper-icon-fa-brands-alipay" viewBox="0 0 448 512"><path d="M377.74 32H70.26C31.41 32 0 63.41 0 102.26v307.48C0 448.59 31.41 480 70.26 480h307.48c38.52 0 69.76-31.08 70.26-69.6-45.96-25.62-110.59-60.34-171.6-88.44-32.07 43.97-84.14 81-148.62 81-70.59 0-93.73-45.3-97.04-76.37-3.97-39.01 14.88-81.5 99.52-81.5 35.38 0 79.35 10.25 127.13 24.96 16.53-30.09 26.45-60.34 26.45-60.34h-178.2v-16.7h92.08v-31.24H88.28v-19.01h109.44V92.34h50.92v50.42h109.44v19.01H248.63v31.24h88.77s-15.21 46.62-38.35 90.92c48.93 16.7 100.01 36.04 148.62 52.74V102.26C447.83 63.57 416.43 32 377.74 32zM47.28 322.95c.99 20.17 10.25 53.73 69.93 53.73 52.07 0 92.58-39.68 117.87-72.9-44.63-18.68-84.48-31.41-109.44-31.41-67.45 0-79.35 33.06-78.36 50.58z"/></symbol><symbol id="flatpaper-icon-fa-brands-paypal" viewBox="0 0 384 512"><path d="M111.4 295.9c-3.5 19.2-17.4 108.7-21.5 134-.3 1.8-1 2.5-3 2.5H12.3c-7.6 0-13.1-6.6-12.1-13.9L58.8 46.6c1.5-9.6 10.1-16.9 20-16.9 152.3 0 165.1-3.7 204 11.4 60.1 23.3 65.6 79.5 44 140.3-21.5 62.6-72.5 89.5-140.1 90.3-43.4.7-69.5-7-75.3 24.2zM357.1 152c-1.8-1.3-2.5-1.8-3 1.3-2 11.4-5.1 22.5-8.8 33.6-39.9 113.8-150.5 103.9-204.5 103.9-6.1 0-10.1 3.3-10.9 9.4-22.6 140.4-27.1 169.7-27.1 169.7-1 7.1 3.5 12.9 10.6 12.9h63.5c8.6 0 15.7-6.3 17.4-14.9.7-5.4-1.1 6.1 14.4-91.3 4.6-22 14.3-19.7 29.3-19.7 71 0 126.4-28.8 142.9-112.3 6.5-34.8 4.6-71.4-23.8-92.6z"/></symbol><symbol id="flatpaper-icon-fa-brands-x-twitter" viewBox="0 0 512 512"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></symbol><symbol id="flatpaper-icon-fa-brands-steam" viewBox="0 0 496 512"><path d="M496 256c0 137-111.2 248-248.4 248-113.8 0-209.6-76.3-239-180.4l95.2 39.3c6.4 32.1 34.9 56.4 68.9 56.4 39.2 0 71.9-32.4 70.2-73.5l84.5-60.2c52.1 1.3 95.8-40.9 95.8-93.5 0-51.6-42-93.5-93.7-93.5s-93.7 42-93.7 93.5v1.2L176.6 279c-15.5-.9-30.7 3.4-43.5 12.1L0 236.1C10.2 108.4 117.1 8 247.6 8 384.8 8 496 119 496 256zM155.7 384.3l-30.5-12.6a52.79 52.79 0 0 0 27.2 25.8c26.9 11.2 57.8-1.6 69-28.4 5.4-13 5.5-27.3.1-40.3-5.4-13-15.5-23.2-28.5-28.6-12.9-5.4-26.7-5.2-38.9-.6l31.5 13c19.8 8.2 29.2 30.9 20.9 50.7-8.3 19.9-31 29.2-50.8 21zm173.8-129.9c-34.4 0-62.4-28-62.4-62.3s28-62.3 62.4-62.3 62.4 28 62.4 62.3-27.9 62.3-62.4 62.3zm.1-15.6c25.9 0 46.9-21 46.9-46.8 0-25.9-21-46.8-46.9-46.8s-46.9 21-46.9 46.8c.1 25.8 21.1 46.8 46.9 46.8z"/></symbol><symbol id="flatpaper-icon-fa-brands-bilibili" viewBox="0 0 512 512"><path d="M488.6 104.1C505.3 122.2 513 143.8 511.9 169.8V372.2C511.5 398.6 502.7 420.3 485.4 437.3C468.2 454.3 446.3 463.2 419.9 464H92.02C65.57 463.2 43.81 454.2 26.74 436.8C9.682 419.4 .7667 396.5 0 368.2V169.8C.7667 143.8 9.682 122.2 26.74 104.1C43.81 87.75 65.57 78.77 92.02 78H121.4L96.05 52.19C90.3 46.46 87.42 39.19 87.42 30.4C87.42 21.6 90.3 14.34 96.05 8.603C101.8 2.868 109.1 0 117.9 0C126.7 0 134 2.868 139.8 8.603L213.1 78H301.1L375.6 8.603C381.7 2.868 389.2 0 398 0C406.8 0 414.1 2.868 419.9 8.603C425.6 14.34 428.5 21.6 428.5 30.4C428.5 39.19 425.6 46.46 419.9 52.19L394.6 78L423.9 78C450.3 78.77 471.9 87.75 488.6 104.1H488.6zM449.8 173.8C449.4 164.2 446.1 156.4 439.1 150.3C433.9 144.2 425.1 140.9 416.4 140.5H96.05C86.46 140.9 78.6 144.2 72.47 150.3C66.33 156.4 63.07 164.2 62.69 173.8V368.2C62.69 377.4 65.95 385.2 72.47 391.7C78.99 398.2 86.85 401.5 96.05 401.5H416.4C425.6 401.5 433.4 398.2 439.7 391.7C446 385.2 449.4 377.4 449.8 368.2L449.8 173.8zM185.5 216.5C191.8 222.8 195.2 230.6 195.6 239.7V273C195.2 282.2 191.9 289.9 185.8 296.2C179.6 302.5 171.8 305.7 162.2 305.7C152.6 305.7 144.7 302.5 138.6 296.2C132.5 289.9 129.2 282.2 128.8 273V239.7C129.2 230.6 132.6 222.8 138.9 216.5C145.2 210.2 152.1 206.9 162.2 206.5C171.4 206.9 179.2 210.2 185.5 216.5H185.5zM377 216.5C383.3 222.8 386.7 230.6 387.1 239.7V273C386.7 282.2 383.4 289.9 377.3 296.2C371.2 302.5 363.3 305.7 353.7 305.7C344.1 305.7 336.3 302.5 330.1 296.2C323.1 289.9 320.7 282.2 320.4 273V239.7C320.7 230.6 324.1 222.8 330.4 216.5C336.7 210.2 344.5 206.9 353.7 206.5C362.9 206.9 370.7 210.2 377 216.5H377z"/></symbol><symbol id="flatpaper-icon-fa-brands-youtube" viewBox="0 0 576 512"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></symbol><symbol id="flatpaper-icon-fa-brands-facebook" viewBox="0 0 512 512"><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></symbol><symbol id="flatpaper-icon-fa-brands-instagram" viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></symbol><symbol id="flatpaper-icon-fa-brands-telegram" viewBox="0 0 496 512"><path d="M248,8C111.033,8,0,119.033,0,256S111.033,504,248,504,496,392.967,496,256,384.967,8,248,8ZM362.952,176.66c-3.732,39.215-19.881,134.378-28.1,178.3-3.476,18.584-10.322,24.816-16.948,25.425-14.4,1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25,5.342-39.5,3.652-3.793,67.107-61.51,68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608,69.142-14.845,10.194-26.894,9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7,18.45-13.7,108.446-47.248,144.628-62.3c68.872-28.647,83.183-33.623,92.511-33.789,2.052-.034,6.639.474,9.61,2.885a10.452,10.452,0,0,1,3.53,6.716A43.765,43.765,0,0,1,362.952,176.66Z"/></symbol><symbol id="flatpaper-icon-fa-brands-weibo" viewBox="0 0 512 512"><path d="M407 177.6c7.6-24-13.4-46.8-37.4-41.7-22 4.8-28.8-28.1-7.1-32.8 50.1-10.9 92.3 37.1 76.5 84.8-6.8 21.2-38.8 10.8-32-10.3zM214.8 446.7C108.5 446.7 0 395.3 0 310.4c0-44.3 28-95.4 76.3-143.7C176 67 279.5 65.8 249.9 161c-4 13.1 12.3 5.7 12.3 6 79.5-33.6 140.5-16.8 114 51.4-3.7 9.4 1.1 10.9 8.3 13.1 135.7 42.3 34.8 215.2-169.7 215.2zm143.7-146.3c-5.4-55.7-78.5-94-163.4-85.7-84.8 8.6-148.8 60.3-143.4 116s78.5 94 163.4 85.7c84.8-8.6 148.8-60.3 143.4-116zM347.9 35.1c-25.9 5.6-16.8 43.7 8.3 38.3 72.3-15.2 134.8 52.8 111.7 124-7.4 24.2 29.1 37 37.4 12 31.9-99.8-55.1-195.9-157.4-174.3zm-78.5 311c-17.1 38.8-66.8 60-109.1 46.3-40.8-13.1-58-53.4-40.3-89.7 17.7-35.4 63.1-55.4 103.4-45.1 42 10.8 63.1 50.2 46 88.5zm-86.3-30c-12.9-5.4-30 .3-38 12.9-8.3 12.9-4.3 28 8.6 34 13.1 6 30.8.3 39.1-12.9 8-13.1 3.7-28.3-9.7-34zm32.6-13.4c-5.1-1.7-11.4.6-14.3 5.4-2.9 5.1-1.4 10.6 3.7 12.9 5.1 2 11.7-.3 14.6-5.4 2.8-5.2 1.1-10.9-4-12.9z"/></symbol></defs></svg>
+  
+  <header class="site-header">
+  
+  <button class="icon-button js-sidebar-toggle sidebar-toggle" type="button" aria-label="打开侧边栏" aria-controls="paper-sidebar-drawer" aria-expanded="false">
+    
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-menu"></use></svg>
+
+  </button>
+
+  <div class="brand">
+    <div class="brand-mark-wrapper">
+      
+        <a class="brand-mark" href="/" aria-label="FlatPaper 首页">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-grid flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-layout-grid"></use></svg>
+
+        </a>
+      
+    </div>
+    <a class="brand-text" href="/">ZapcoMan&#39;s world</a>
+  </div>
+
+  <nav class="site-nav" aria-label="主导航">
+    
+      
+        <a class="site-nav-link " href="/">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-house"></use></svg>
+
+          <span>首页</span>
+        </a>
+      
+    
+      
+        <div class="site-nav-item has-children">
+          <button class="site-nav-link site-nav-parent" type="button" aria-haspopup="true" aria-expanded="false">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+            <span>文章</span>
+          </button>
+          <div class="site-nav-menu" role="menu">
+            
+              <a role="menuitem" class="" href="/categories/">
+                
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+                <span>分类</span>
+              </a>
+            
+              <a role="menuitem" class="" href="/tags/">
+                
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
+
+                <span>标签</span>
+              </a>
+            
+              <a role="menuitem" class="" href="/archives/">
+                
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-archive flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-archive"></use></svg>
+
+                <span>归档</span>
+              </a>
+            
+          </div>
+        </div>
+      
+    
+      
+        <a class="site-nav-link " href="/links/">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-link"></use></svg>
+
+          <span>友链</span>
+        </a>
+      
+    
+      
+        <a class="site-nav-link " href="/about/">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-user"></use></svg>
+
+          <span>关于</span>
+        </a>
+      
+    
+  </nav>
+
+  <div class="header-tools">
+    <button class="icon-button js-search-open" type="button" aria-label="搜索文章">
+      
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-search"></use></svg>
+
+    </button>
+    <div class="accent-picker">
+      <button class="icon-button accent-toggle" type="button" aria-label="选择主题色" title="选择主题色" aria-haspopup="true" aria-expanded="false" aria-controls="accent-menu">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-palette"></use></svg>
+
+      </button>
+      <div class="accent-menu" id="accent-menu" role="menu" aria-label="主题色">
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="橙色" aria-checked="false" data-accent-option="orange">
+          <span class="accent-swatch accent-swatch--orange" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="紫色" aria-checked="false" data-accent-option="purple">
+          <span class="accent-swatch accent-swatch--purple" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="樱花粉" aria-checked="false" data-accent-option="sakura">
+          <span class="accent-swatch accent-swatch--sakura" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="蓝色" aria-checked="false" data-accent-option="blue">
+          <span class="accent-swatch accent-swatch--blue" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="粉色" aria-checked="false" data-accent-option="pink">
+          <span class="accent-swatch accent-swatch--pink" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="绿色" aria-checked="false" data-accent-option="green">
+          <span class="accent-swatch accent-swatch--green" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="accent-option" role="menuitemradio" aria-label="黑色" aria-checked="false" data-accent-option="black">
+          <span class="accent-swatch accent-swatch--black" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+    <button class="theme-toggle" type="button" aria-label="切换颜色模式">
+      <span class="theme-icon theme-icon--sun">
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-sun"></use></svg>
+</span>
+      <span class="theme-icon theme-icon--moon">
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-moon"></use></svg>
+</span>
+    </button>
+  </div>
+</header>
+
+
+  
+  <main class="paper-shell paper-shell--article">
+    
+
+<aside id="paper-sidebar-drawer" class="paper-sidebar paper-sidebar--right" aria-label="侧边栏">
+  <div class="drawer-toolbar" aria-label="侧边栏工具">
+    <div class="drawer-accent-options" role="group" aria-label="主题色">
+      <button type="button" class="accent-option" aria-label="橙色" aria-pressed="false" data-accent-option="orange">
+        <span class="accent-swatch accent-swatch--orange" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="紫色" aria-pressed="false" data-accent-option="purple">
+        <span class="accent-swatch accent-swatch--purple" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="樱花粉" aria-pressed="false" data-accent-option="sakura">
+        <span class="accent-swatch accent-swatch--sakura" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="蓝色" aria-pressed="false" data-accent-option="blue">
+        <span class="accent-swatch accent-swatch--blue" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="粉色" aria-pressed="false" data-accent-option="pink">
+        <span class="accent-swatch accent-swatch--pink" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="绿色" aria-pressed="false" data-accent-option="green">
+        <span class="accent-swatch accent-swatch--green" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="accent-option" aria-label="黑色" aria-pressed="false" data-accent-option="black">
+        <span class="accent-swatch accent-swatch--black" aria-hidden="true"></span>
+      </button>
+    </div>
+    <button class="icon-button drawer-close js-sidebar-close" type="button" aria-label="关闭侧边栏">
+      
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-x"></use></svg>
+
+    </button>
+  </div>
+
+  <section class="side-card nav-card">
+    <nav class="site-nav-drawer" aria-label="移动端导航">
+      
+        
+          <a class="" href="/">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-house"></use></svg>
+
+            <span>首页</span>
+          </a>
+        
+      
+        
+          <div class="drawer-nav-group">
+            <button class="drawer-nav-parent" type="button" aria-expanded="false">
+              
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+              <span>文章</span>
+            </button>
+            <div class="drawer-nav-children">
+              
+                <a class="" href="/categories/">
+                  
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+                  <span>分类</span>
+                </a>
+              
+                <a class="" href="/tags/">
+                  
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
+
+                  <span>标签</span>
+                </a>
+              
+                <a class="" href="/archives/">
+                  
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-archive flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-archive"></use></svg>
+
+                  <span>归档</span>
+                </a>
+              
+            </div>
+          </div>
+        
+      
+        
+          <a class="" href="/links/">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-link"></use></svg>
+
+            <span>友链</span>
+          </a>
+        
+      
+        
+          <a class="" href="/about/">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-user"></use></svg>
+
+            <span>关于</span>
+          </a>
+        
+      
+    </nav>
+  </section>
+
+  <section class="side-card profile-card">
+    
+      <div class="avatar avatar--image avatar--circle">
+        <img src="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4" alt="ZapcoMan" loading="lazy" referrerpolicy="no-referrer">
+      </div>
+    
+    <h3>ZapcoMan</h3>
+    <p class="profile-role">日常记录</p>
+    <p>独立开发者 主攻方向：Java 后端开发（Spring Boot + Vue3 全栈）Python 脚本开发（网络编程、爬虫、数据处理、信息安全工具、自动化运维,渗透测试工具）</p>
+    
+      <div class="site-info" aria-label="站点信息">
+        
+          
+            <a class="site-info__item" href="/archives/">
+              <strong>189</strong>
+              <span>文章</span>
+            </a>
+          
+        
+          
+            <a class="site-info__item" href="/categories/">
+              <strong>58</strong>
+              <span>分类</span>
+            </a>
+          
+        
+          
+            <a class="site-info__item" href="/tags/">
+              <strong>622</strong>
+              <span>标签</span>
+            </a>
+          
+        
+      </div>
+    
+    <div class="socials">
+      
+        <a href="https://github.com/ZapcoMan" target="_blank" rel="noopener" aria-label="GitHub" data-tooltip="GitHub">
+          
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="lucide lucide-github flatpaper-icon flatpaper-icon--fa-brands" aria-hidden="true"><use href="#flatpaper-icon-fa-brands-github"></use></svg>
+
+          
+        </a>
+      
+        <a href="https://space.bilibili.com/544166891" target="_blank" rel="noopener" aria-label="Bilibili" data-tooltip="Bilibili">
+          
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="lucide lucide-bilibili flatpaper-icon flatpaper-icon--fa-brands" aria-hidden="true"><use href="#flatpaper-icon-fa-brands-bilibili"></use></svg>
+
+          
+        </a>
+      
+        <a href="#" target="_blank" rel="noopener" aria-label="掘金" data-tooltip="掘金">
+          
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-send"></use></svg>
+
+          
+        </a>
+      
+      
+        
+        
+        <a href="/atom.xml" aria-label="RSS feed" data-tooltip="RSS feed">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rss flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-rss"></use></svg>
+
+        </a>
+      
+    </div>
+  </section>
+
+  
+
+  
+    <div class="post-sticky-stack">
+      <section class="side-card toc-card">
+        <header class="toc-card__head">
+          <h2>
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-table-of-contents flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-table-of-contents"></use></svg>
+文章目录</h2>
+          <button type="button" class="toc-toggle-all" data-action="toggle-toc" aria-pressed="false" aria-label="展开全部目录" title="展开全部目录">
+            
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-chevron-down"></use></svg>
+
+          </button>
+        </header>
+        <div class="toc-content">
+          
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%BB%91%E5%AE%A2%E6%94%BB%E5%87%BB%E8%A1%8C%E4%B8%BA%E5%88%86%E7%B1%BB"><span class="toc-text">黑客攻击行为分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%BB%91%E5%AE%A2%E6%94%BB%E5%87%BB%E7%9A%84%E6%9C%AC%E8%83%BD"><span class="toc-text">黑客攻击的本能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6%E6%94%BB%E5%87%BB%E7%9A%84%E7%89%B9%E7%82%B9%E5%8F%8A%E7%AE%80%E5%8F%B2"><span class="toc-text">社会工程学攻击的特点及简史</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E4%BA%BA"><span class="toc-text">读人</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AC%BA%E9%AA%97"><span class="toc-text">欺骗</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AA%97%E5%AD%90%E5%9C%A8%E9%AA%97%E4%BD%A0%E5%89%8D%EF%BC%8C%E5%B8%B8%E5%B8%B8%E4%BC%9A%E5%85%88%E8%A1%8C%E8%90%A5%E9%80%A0%E6%AC%BA%E9%AA%97%E7%8E%AF%E5%A2%83%EF%BC%8C%E4%B8%BB%E8%A6%81%E6%9C%89%E4%BB%A5%E4%B8%8B%E5%9B%9B%E4%B8%AA%E8%A6%81%E7%82%B9%E3%80%82"><span class="toc-text">骗子在骗你前，常常会先行营造欺骗环境，主要有以下四个要点。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%A3%E8%A8%80"><span class="toc-text">谣言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B4%E6%9C%8D"><span class="toc-text">说服</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B1%E6%83%91"><span class="toc-text">诱惑</span></a></li></ol>
+          
+        </div>
+      </section>
+      
+
+  <section class="side-card recent-card latest-posts-card">
+    <h2>
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-history flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-history"></use></svg>
+最新文章</h2>
+    <ul class="recent-list">
+      
+        <li>
+          <a class="recent-item" href="/2026/11/10/20261110/2026111007/">
+            <strong>翻日志不叫威胁狩猎：假设驱动、数据模型，以及「什么都没猎到」为什么也算结果</strong>
+            <em>2026-11-10</em>
+          </a>
+        </li>
+      
+        <li>
+          <a class="recent-item" href="/2026/11/10/20261110/2026111006/">
+            <strong>演练打完就散会，等于没打：ROE、注入场景与紫队闭环里那十二个真正该量的数</strong>
+            <em>2026-11-10</em>
+          </a>
+        </li>
+      
+        <li>
+          <a class="recent-item" href="/2026/11/10/20261110/2026111005/">
+            <strong>把 ATT&amp;CK 贴满墙也不等于能发现入侵：检测覆盖度怎么算，以及「这条规则真的会响吗」</strong>
+            <em>2026-11-10</em>
+          </a>
+        </li>
+      
+        <li>
+          <a class="recent-item" href="/2026/11/10/20261110/2026111004/">
+            <strong>网址输对了，服务器却换了人：DNS、BGP、CA 三条信任链各自能守什么、守不住什么</strong>
+            <em>2026-11-10</em>
+          </a>
+        </li>
+      
+        <li>
+          <a class="recent-item" href="/2026/11/10/20261110/2026111003/">
+            <strong>代码每一行都「正确」，钱还是没了：编译器不会替你挡住的六类合约逻辑陷阱</strong>
+            <em>2026-11-10</em>
+          </a>
+        </li>
+      
+    </ul>
+  </section>
+
+
+    </div>
+  
+
+  
+
+</aside>
+
+    <section class="paper-main">
+      
+
+<div class="article-tape-wrap">
+<span class="tape tape--top-right" aria-hidden="true"></span>
+<article class="article-paper">
+  
+  <header class="article-header">
+    
+      <a class="label-pill" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+        网络安全
+      </a>
+    
+    <h1>社会工程学笔记（一）</h1>
+    <div class="meta-line meta-line--article">
+      <span class="meta-date">
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
+2026-11-16</span>
+      
+        <span class="meta-tags">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
+
+          <a class="meta-tag-link" href="/tags/%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6/">#社会工程学</a><a class="meta-tag-link" href="/tags/%E5%8F%8D%E6%AC%BA%E8%AF%88/">#反欺诈</a><a class="meta-tag-link" href="/tags/%E7%A4%BE%E5%B7%A5%E6%94%BB%E5%87%BB/">#社工攻击</a><a class="meta-tag-link" href="/tags/%E5%BF%83%E7%90%86%E5%AD%A6/">#心理学</a><a class="meta-tag-link" href="/tags/%E6%AC%BA%E9%AA%97%E8%AF%86%E5%88%AB/">#欺骗识别</a><a class="meta-tag-link" href="/tags/%E8%AF%B4%E6%9C%8D/">#说服</a><a class="meta-tag-link" href="/tags/%E8%B0%A3%E8%A8%80/">#谣言</a><a class="meta-tag-link" href="/tags/%E5%A8%81%E8%83%81%E6%84%8F%E8%AF%86/">#威胁意识</a>
+        </span>
+      
+    </div>
+  </header>
+
+  
+
+
+  <div class="article-content">
+    <h1 id="黑客攻击本性"><a href="#黑客攻击本性" class="headerlink" title="黑客攻击本性"></a>黑客攻击本性</h1><h2 id="黑客攻击行为分类"><a href="#黑客攻击行为分类" class="headerlink" title="黑客攻击行为分类"></a>黑客攻击行为分类</h2><ul>
+<li>在网络中任何一个人，如果他对别人 <strong>（或其信息系统）</strong> 实施了攻击，那么此刻他就是一个黑客；或者说，他的这个行为，便是黑客行为，又称为黑客攻击。</li>
+<li>粗略地说，网络黑客攻击，是指违背他人意愿而采取信息手段等非身体接触方式，以伤害他人的财产或数据资源为目标的行为。无论攻击行为是发生在线上或线下，黑客行为的最终效果都主要体现在网络空间中。</li>
+<li>黑客行为可大致归为四类：观点表达型、情绪宣泄型、利益诉求型和网络犯罪型。</li>
+</ul>
+<ol>
+<li>观点表达型攻击<ul>
+<li></li>
+</ul>
+<p>观点表达型攻击在网络中较为常见，其典型代表就是网上的各类骂人帖等。当某件事情发生后，网民会片面地发表评论，对相关人、事进行攻击；或者，对此事件持不同观点的网民之间彼此攻击。若涉事人员具有某些特殊身份，可供新闻炒作的话，那么相关的攻击将更加激烈。不过，由于此类攻击往往不涉及攻击者的切身利益，所以，攻击行为的持续时间通常都很短，特别是随着新闻事件影响力的逐渐衰退，或涉事某方的淡出，攻击行为也就相应结束。</p>
+<ul>
+<li>另外，此类攻击主要以讽刺、诽谤和谩骂等语言攻击为手段，具有典型的偶发性，没有明确的组织性；其后果不十分严重，特别是当相互攻击的各方都是匿名状态时，更是如此。</li>
+</ul>
+</li>
+<li>情绪宣泄型攻击<ul>
+<li></li>
+</ul>
+<p>情绪宣泄型攻击，是指网民将自身在线上或线下所遭受到的各种不满以攻击方式表达出来的行为。特别是当其不满已积怨许久，而又恰遇某个导火索事件发生时，相应的攻击行为将借题发挥，突然剧烈爆发。此类攻击，通常也是事先没有组织性的，或者至少可以说组织性不强；但是，如果平常积怨较多，也可能在很短的时间内变得有组织，从而产生强大的攻击力，甚至危害社会的稳定。此类攻击的非理性成分较多，真正被攻击的对象，既可能是事件当事人，也可能是事件旁观者，还可能是“替罪羊”；攻击群体之间极容易相互影响、相互刺激，甚至产生“共振现象”，使得攻击者们“……不再是他们自己，而变成了不再受自己意识支配的玩偶”。受此影响，攻击者们有可能做出违规甚至违法的行为。除言语攻击之外，为了发泄不满，攻击者可能发动任何其他类型的攻击，包括（但不限于）破坏对方的网络和电脑，公开其隐私，甚至从物理上捣毁相关财物等。</p>
+</li>
+<li>利益诉求型攻击<ul>
+<li></li>
+</ul>
+<p>利益诉求型攻击以信息和网络为手段，力图达成攻击者自己的既定利益目标。此类攻击者，通常是利益受损者或其同情者；而被攻击者，可能是“害人者”，有时可能是无辜的人。比如，攻击者希望借助网络媒体引起大众关注，以此向对方施压，维护或追索自己的利益。当然，大部分攻击者，会严格将其行为控制在法律允许范围内；但是，个别攻击者，则可能突破法律范畴，甚至通过揭露他人隐私、夸大事实或编造谎言，以图达到自己的目的。此类攻击，早期多数是维权者的自发行为；但是，随着网上“职业推手”和“网络水军”的出现，也会出现一定的组织特征。当利益诉求者的目的达到或事件热度期过去后，此类攻击一般也就停止了。</p>
+</li>
+<li>网络犯罪型攻击<ul>
+<li></li>
+</ul>
+<p>网络犯罪型攻击也称为狭义的黑客攻击，它可能造成极其严重的后果，甚至使某些国家、地区、大型组织企业或公共服务设施的网络信息系统瘫痪。此类攻击者通过网络信息手段，实施了“应当受到刑法处罚的行为”。比如，通过非法操作计算机网络，窃取机密数据、盗窃情报、破坏智能电网系统，造成极大的社会危害等。此类犯罪行为的科技含量较高，且目标非常明确，包括（但不限于）非法侵入他人电脑，破坏信息系统，破译机要密码，盗取别人账号或口令，造谣中伤等。此类攻击的侵害目标，既可能是硬件，也可能是软件，还可能是人。此类攻击，既有个人行为，也有组织行为。其中的“组织”，既包括网上的虚拟组织，也包括现实生活中的实体组织等，以至许多国家已专门成立了新的军种——网络部队来实施或对抗此类攻击。此类攻击的目的，通常是获取某种利己资源或损害他人利益；被攻击者既可能是明确的现实目标，也可能是网上的目标或是网络控制管理的民用或军事设施。</p>
+</li>
+</ol>
+<ul>
+<li>攻击还可分为狭义攻击和广义攻击。前者是有意违反社会道德及行为规范的伤害行为；后者则涵盖了全部有动机的伤害行为，而不论其是否违反了社会道德及行为规范。</li>
+</ul>
+<h2 id="黑客攻击的本能"><a href="#黑客攻击的本能" class="headerlink" title="黑客攻击的本能"></a>黑客攻击的本能</h2><ol>
+<li>严格地说，所谓攻击行为，是指个体违反了社会道德的、有动机的、伤害他人的行为。</li>
+</ol>
+<ul>
+<li><p>在认定攻击行为时，必须考虑三个方面：</p>
+<ol>
+<li>个体的外在行为表现；</li>
+<li>是否违反了社会道德及行为规范；</li>
+<li>个体的内在动机和意图。</li>
+</ol>
+</li>
+<li><p>其中，前两方面可以直观地观察，也比较容易判断；但是，第三方面（即分析行为动机）却是一件困难而复杂的事，因为它不能直接诉诸人类感官，所以必须间接考察，例如考虑以下4个方面。</p>
+<ol>
+<li>行为发生的社会情境。结合当时的现场情境或环境特点，有助于理解行为者的动机和意图。例如，课堂上的网络安全攻防实习行为，严格讲不是攻击行为；虽然从纯技术角度看，这些行为与黑客攻击行为没有区别。</li>
+<li>行为者的社会角色。红客测试用户密码的行为，是受社会认可的，当然不是攻击行为。但是，一旦社会角色颠倒 比如，**<br>黑客测试红客的密码 **，那么情况马上就不一样了，即可被视为攻击行为。</li>
+<li>行为发生前的相关线索。如果“攻击者”和“受害者”是同盟成员，只是在共同对抗敌方时误伤友方，那么相应的行为当然不是攻击；相反，如果他们本来就是敌对的双方，那么任何有可能伤害对方的行为，都会被认为是攻击行为。</li>
+<li>行为者的身份特性。行为者的社会地位、性别、种族背景、教育程度及职业和经历等，也是判断行为者动机的线索。如果相关行为与其身份不匹配，那么很可能是攻击行为。<ul>
+<li>比如：曾经有黑客案底的人，若他又试图进入别人的信息系统，那么他很可能就是在发动新的攻击；</li>
+<li>反之，网管工程师测试自己系统安全漏洞的行为，当然不算攻击行为。</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>上述4个方面并不是绝对的，在分析伤害行为时还需要综合考虑，借助以往的经验，全面细致地考察各种因素，以便更准确地判断攻击行为的动机是否是恶意。</li>
+</ul>
+</li>
+</ul>
+<h1 id="社工黑客的心理特征"><a href="#社工黑客的心理特征" class="headerlink" title="社工黑客的心理特征"></a>社工黑客的心理特征</h1><h2 id="社会工程学攻击的特点及简史"><a href="#社会工程学攻击的特点及简史" class="headerlink" title="社会工程学攻击的特点及简史"></a>社会工程学攻击的特点及简史</h2><ul>
+<li>信息安全中的“社会工程学”的出现与美国“世界头号黑客”凯文·米特尼克事 件有种某种联系。米特尼克从1983年开始黑客入侵并逐渐升级，犯下多种罪行，<br>1988年被捕，1999年判刑68个月。</li>
+<li>2000年1月21日，他获得假释出狱，结合自身经<br>历，在2002年出版了一本畅销书——《欺骗的艺术》。该书详细介绍了他（和其他黑客）专门利用人性的善良、人的轻信和人性弱点的攻击手段，并美其名曰“社会工程学攻击”。</li>
+<li>虽然至今没有公认的对“社会工程学”的严格定义，但是从该书题 目的关键词“欺骗”两字，便可粗略知悉“社会工程学”的大意。</li>
+<li>当然，必须从学术上严肃正名的是：研究“社会工程学”，绝不是想当骗子；社会工程学，也绝不 仅仅是“厚黑学”中的“欺骗”，而是有更深刻内涵的心理学核心。</li>
+<li>有趣的是，原本名为《欺骗的艺术》的书，传到中国后却被善意地反译<br>为“反欺骗的艺术”；好像那位“世界头号黑客”是“反欺骗”的英雄一样！无论如何，将“欺骗”改为“反欺骗”，都显得意味深长。</li>
+<li>我们无意深挖其原因，只是想严肃地指出：全球信息安全界，必须认真正视，并全面深入研究“社会工程学 攻击”；除非红客和用户不顾自己的信息安全！</li>
+</ul>
+<blockquote>
+<p>在最新的国安电影 《惊蛰无声》 中曾经出现过 类似的场景 国安队长被境外势力 以美人计利用 出轨为威胁进行 胁迫完成其危害国家安全的任务<br>如:在接近特定目标时 使用境外势力给予的遥控器引爆藏于 目标身上的遥控炸弹。<br>这是属于典型的社工攻击 电影中提到 国安队长十分警惕 在境外势力使用美人计多次使其出现破绽 之后才找到机会 记录下证据。<br>可见我们的《三十六计》 即便是在21世纪的今天 依然可以在很多地方使用。</p>
+</blockquote>
+<ul>
+<li>其实，社会工程学攻击，以下简称为“社工攻击”，或更简称为“社工”，是黑客众多攻击手段中的一类</li>
+<li>它们具有以下特点：<ol>
+<li>攻击的直接对象是鲜活的“人”（用户或红客），而不是冷血的“设 备”，虽然可以运用各种设备来当武器。<ul>
+<li></li>
+</ul>
+<p>由于“人”是所有计算机系统的核心，所以一旦“人”被攻破如用户的银行密码被骗取，银行卡验证码被窃取，那么接下来再辅以其他硬件或软件攻击手段如克隆一张银行卡-&gt;&gt;&gt;<br><strong>近距离接触使用NFC 进行一次克隆</strong>，便可轻松达到黑客的攻击目的如取走你的钱，或者直接控制里的银行账户进行<br>虚拟货币的购买，转移。</p>
+</li>
+<li>虽然攻击的是“人”，但是黑客与被攻击的“人”之间，并无直接的身体 接触<br>如绑架、“碰瓷”、入室盗窃等手段，都不属于社工攻击，至少不是网络黑客所关注的社工攻击；所以，社工攻击的武器其实只是“信息”，攻击成果的表现形式也是“信息”。反正，即使是“人”被攻破了，受害者也几乎感觉不到痛，甚至“自己被卖了后，还在帮骗子数钱”；待到黑客的全套攻击最终完成时，受害者再哭天抢地，都已晚了。<ul>
+<li>事实上 典型诈骗 就是一种典型的社会工程学攻击 通过各种话术场景的构造 造成目标人的心理防线出现漏洞</li>
+<li>例如 贪小便宜；对告知的场景产生恐惧，紧张，着急，生气等 这些都可能成为被骗子利用的工具，从而使得目标人将自己的隐私&#x2F;钱财<br>全都交出去</li>
+<li>实施者通常具有强大的反侦察意识，在国家反诈行动的执行过程中骗子为了对抗国家的反诈行动从而衍生出各种话术诱使目标人通过其他方式<ol>
+<li>快递书本 将书本内部掏空然后放置贵重金属；</li>
+<li>购买初高中使用的藏手机神器 —（淘宝卖家制造的各种隐藏手机用的镜子，水杯，充电宝等具备暗格的东西 ） 然后购买<br>苹果手机等高价值物品进行邮寄</li>
+<li>直接使用目标人手机开设 虚拟货币账户然后进行转账</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>社工攻击仍然是一种赛博式攻击，即攻击并非一蹴而就，而常常需要与被攻击者之间进行多次信息互动，诱导受害者有意无意地协助黑客一步一步地逼近最终目标。<ul>
+<li>换句话说，在攻击过程中，黑客需要针对被攻击对象的具体反应（即反馈）进行“微调”；</li>
+<li></li>
+</ul>
+<p>然后，对相应的“反馈→微调→反馈”封闭循环链，再进行反复迭代，直到黑客达到目标为止。社工攻击的最典型例子，便是大家熟悉的电信诈骗：按照事先准备好的剧本，骗子设法使受害人落于陷井，对骗子坚信不疑，诱导受害人乖乖地把钱交出来，甚至连警察想拦都拦不住！</p>
+<blockquote>
+<p>如果我们还没把“赛博 式”过程描述清楚的话，那么请回忆一下赤壁大战中，曹操是如何被“赛博式”手<br>段、一步一步地诱致失败的：先让曹操杀掉自己的水师头目，然后把自己的船连成 一体，由黄盖驾火船冲入船阵，逆风纵火，最后败逃华容道等。</p>
+</blockquote>
+<ul>
+<li>由此可见，黑客的社工攻击，是一种赛博式攻击；但是，赛博式攻击，可不仅仅限于黑客的社工攻击。</li>
+</ul>
+</li>
+<li>社工攻击正在成为黑客攻击的常用手段，甚至在所有重大黑客事件中，社工攻击几乎都是主力军。</li>
+<li>社工攻击的另一个突出特点是：如果你不了解它，那么它将威力无穷；如果你知道它正在攻击你，那么你很容易化解。比如，当你判断出正在接听的电话是<br>诈骗电话时，即使骗子再高明，你也不会上当，甚至还可以随心所欲地戏弄骗子。<ul>
+<li>可是，情形的严峻性在于，社工的攻击对象，往往是全无防备的、善良的普通网民，而且每一个网民都可能成为受害者。因此，对付黑客的社工攻击，绝不只是安全专家的任务。</li>
+</ul>
+</li>
+<li>关于社工的学术专著，绝对不止车载斗量，只不过书名有所变化而已，比如，《三十六计》中，计计皆含社工精华；《孙子兵法》十三篇中，篇篇都是社工的杰作。</li>
+</ol>
+</li>
+</ul>
+<h1 id="社工黑客的攻击思路"><a href="#社工黑客的攻击思路" class="headerlink" title="社工黑客的攻击思路"></a>社工黑客的攻击思路</h1><ul>
+<li>把人的个体，看成一台特殊的电脑，即“热血电脑”；把人的群体，则看成由若干“热血电脑”连接成的“热血网络”。<ol>
+<li>针对“热血电脑”，他们可充分利用熟悉且惯用的攻击方法，去攻击输入、输出、存储和处理等部分；</li>
+<li>针对“热血网络”，他们或把该网络中的某些计算机攻破，或在传输过程 中大做文章。至于他们到底如何做，请看随后各章的逐一解剖。</li>
+</ol>
+</li>
+</ul>
+<h1 id="“社工”是“社会工程学”的重要方面。"><a href="#“社工”是“社会工程学”的重要方面。" class="headerlink" title="“社工”是“社会工程学”的重要方面。"></a>“社工”是“社会工程学”的重要方面。</h1><ul>
+<li>因为，它是当今全球信息安全界的软肋！这里，“社工”所涉及的关键词主要有：诱惑、诱导、欺骗、欺诈、影响、操纵、操控、控制、伪装、说服、侦探、博弈、洗脑、情报收集等。可见，此处的“社工”，主要基于人性的各种弱点和漏洞</li>
+</ul>
+<h2 id="读人"><a href="#读人" class="headerlink" title="读人"></a>读人</h2><ul>
+<li>黑客的所谓“读人”，其实就是了解被攻击对象的基本品格，比如，能力、人 格等。</li>
+<li>特别需要向理工科读者强调的是：<ol>
+<li><p>是心理学的几乎所有成果，都是从统计中得来的，所以，都会有例外，大家务必不能生搬硬套。比如，当多方面的证据都表明“某人具有<br>某种品格”时，此人具有该种品格的可能性就很大，但也一定有例外。</p>
+<ul>
+<li>本书的副标题是“社会 工程学原理”，所以，也要适当尊重“社会性”。比如，针对相信鬼神的人群，黑客就能拿鬼神来当攻击武器，而并不在乎科学上是否真的有鬼。<ul>
+<li>知己知彼，百战不殆！</li>
+</ul>
+</li>
+<li>黑客在攻击“电脑”时，最好能事先充分了解“电脑”的基本品质，然后再有 的放矢地发动攻击。</li>
+<li>比如，若知道目标“电脑”的处理能力很低，那么DoS攻击就很 有效；</li>
+<li>若知道“电脑”的操作系统版本，那么利用该版本的已知漏洞，黑客的攻击就容易奏效。</li>
+<li>由于黑客的攻击，只能是短 暂且“非身体接触”的，还必须在暗地里偷偷进行，同时被攻击者更不会积极配合</li>
+<li>所以，黑客不可能对被攻击者的基本品质有全面了解，其实也没必要做全面了解。</li>
+</ul>
+<ol>
+<li>能力<ol>
+<li>它是一种心理特征，是顺利实现某种活动的心理条件。能力的高低，会影响所从事活动的效率。</li>
+<li>能力”可分类为：<ol>
+<li>一般能力和特殊能力。一般能力是指，在不同种类的活动中都会表现出来的能<br>力，如观察力、记忆力、抽象概括力、想象力、创造力等；其中，抽象概括力是一般能力的核心。平常所说的“智力”，其实就是指“一般能力”，即完成任何任务<br>都和这些能力密不可分。 特殊能力是指，在某种专业活动中，才表现出来的能力。2. 例如，画家的色彩鉴别力、音乐家的旋律识别能力等。</li>
+<li>模仿能力和创造能力。模仿能力是指，通过观察外部行为来学习知识，然后以类似的方式做出反应的能力，例如，婴儿模仿父母说话的能力等。创造能力是指，<br>产生新思想，制作新产品的能力。创造能力强的人，能超脱具体的知觉情景、思维<br>定式、传统观念和习惯束缚，在常见现象中发现新东西等。作家创作或科学家攻 关，都依赖于创造力。</li>
+<li>流体能力和晶体能力，它们是比较陌生的名词。流体能力是指，在处理事物的过程中，所表现的能力，例如，对关系的认识，类比、演绎推理能力，形成抽象概念的能力等。流体能力不取决于当事者的文化和知识水平，而主要依赖于个人禀<br>赋。晶体能力是指，获得语言、数学知识的能力，它取决于后天的学习，与社会文化密切相关。</li>
+<li>认知能力、操作能力和社交能力。其中，认知能力是指，人脑加工、储存和提取信息的能力，即常说的智力，如观察力、记忆力、想象力等。人们认识客观世界，获得各种知识，就主要依赖于认知能力。操作能力是指，人们操作自己的肢体，以完成各项活动的能力，如劳动能力、艺术表演能力等。社交能力是指，在社<br>交活动中表现出来的能力，比如，组织管理能力，言语感染力，判别决策力，调解 纠纷、处理意外事故的能力等。</li>
+<li>能力与知识、技能等密切相关，甚至相互转化；但是，它们又有所区别。一方<br>面，只有那些能广泛应用和迁移的知识和技能，才能被转化成能力；另一方面，能力既是掌握知识、技能的前提，也是知识、技能的结果。</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>人格<ol>
+<li>人格是构成一个人思想、情感及行为的特有且稳定的模式；也是区别于他人的稳定而统一的心理品质。人格的组成部分，包括气质、性格、认知风格和自我调控系统等。这些组成部分，既相互区别，又相互影响、相互制约，并最终形成一个整体。</li>
+<li>认知风格，是在认识世界的过程中，个人所偏爱的信息加工方式，又称为“认知方式”。比如，有人喜欢与别人讨论问题，并从中得到启发，而有人则喜欢独立<br>思考等。认知方式多种多样，按不同的标准，可分为场独立型和场依存型、冲动型和沉思型、同时型和继时型等。</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="欺骗"><a href="#欺骗" class="headerlink" title="欺骗"></a>欺骗</h2><ul>
+<li>现代汉语词典》第7版中，对“欺骗”释义为“用虚假的言语或行动来掩盖<br>事实真相，使人上当”；其意义相近的词有欺诈、诱惑、迷惑、哄骗、愚弄、瞒哄、诓骗、诈骗、障眼、戏弄、开涮、诱骗、诓人、尔虞我诈、狡诈、伪善、逢迎、诋毁、诽谤、讹诈、耍花招、摆噱头、作假、耍奸、耍滑头、弄虚作假、欺上瞒下、上当受骗、瞒天过海、挂羊头卖狗肉、妖言惑众、故弄玄虚、迷人眼目、偷<br>梁换柱、偷天换日、弄鬼、做手脚、浑水摸鱼等。</li>
+<li>欺骗具有三要素：<ul>
+<li>从真伪角度看，欺骗的突出特点是“伪”，即捏造事实，或者掩盖事实真相。</li>
+<li>目的性，即行骗都有预期目的。否则，即使某行为是假的（比如魔术），却不具有目的性，那就不能算作欺骗；对行为对象来说，这种假动作更像误会。</li>
+<li>社会性，即欺骗是一种社会行为，产生于互动过程中：或者由一个人指向另一个人，即一个人欺骗另一个人；或者在外界影响下，同一人的人格中，某些结构的相互作用，即自欺欺人。</li>
+</ul>
+</li>
+<li>欺骗的种类非常多。从善恶角度来分类，既有善意欺骗，也有恶意欺骗；<ul>
+<li>善意欺骗的特征是：对于个人之间来说，表现为利他，比如，大夫对绝症病情的隐瞒。</li>
+<li>恶意欺骗的特征：对于个人之间来说，表现为利己而害他，比如，电信诈骗。从涉及欺骗各方是否为个人来看，又可分为个人之<br>间的欺骗、双向欺骗、自我欺骗、个人与集团之间的欺骗、社会欺骗（比如邪教等）等。</li>
+<li>根据欺骗的内容，又可分为经济欺骗、政治欺骗、军事欺骗、感情欺骗、 情报欺骗、舆论欺骗、新闻欺骗、信仰迷信欺骗、艺术欺骗、科技欺骗、游戏欺骗等。</li>
+<li>按欺骗延续的时间来分类，又有瞬时欺骗、短时欺骗和长时欺骗等。</li>
+</ul>
+</li>
+</ul>
+<h3 id="骗子在骗你前，常常会先行营造欺骗环境，主要有以下四个要点。"><a href="#骗子在骗你前，常常会先行营造欺骗环境，主要有以下四个要点。" class="headerlink" title="骗子在骗你前，常常会先行营造欺骗环境，主要有以下四个要点。"></a>骗子在骗你前，常常会先行营造欺骗环境，主要有以下四个要点。</h3><ul>
+<li>唤起你的信任感。其手段至少包括：用良好的声誉影响你（比如，让你身边的亲朋好友等都称赞他），用诚实、正直的形象感化你，向你展示开朗而富有魅<br>力的笑容、用可以信任的语调、讲述令你羡慕的个人传奇（比如，大额度的慈善捐 款等），恭维奉承你，博取你的怜悯同情，当然还会针对你的个性营造特殊的情境等。</li>
+<li>装成老实人。这既是为了唤起你的信任，但也有它本身的特点，其本质在于，骗子让你觉得他很笨，从而使你放松警惕，以为在同老实人打交道，从而不再防备他的圈套。当然，此法的另一种变异就是：骗子让你觉得自己更聪明，于是便可让你“聪明反被聪明误”。</li>
+<li>利用伪证来引诱。骗子以间接的手段，提供某些信息，让你自己根据这些 信息，自愿做出有利于骗子的判断。其技巧在于，提供了无可挑剔的定向事实后，你必然会据此做出自损的结论。</li>
+<li>设置“平行现实”。形象地说，就是制造相应的假象，吸引你的注意力，然后对你下手</li>
+</ul>
+<h4 id="骗子行骗常用下列一些方法"><a href="#骗子行骗常用下列一些方法" class="headerlink" title="骗子行骗常用下列一些方法"></a>骗子行骗常用下列一些方法</h4><ul>
+<li>暗示法，包括被动暗示法和主动暗示法。被动暗示法成功的重要因素有三 点：一是施行暗示的人，对于受暗示者拥有绝对权威性；二是受暗示者有可能接受<br>暗示；三是具体的策划必须巧妙、严谨，使受暗示者深信不疑。最典型的被动暗示法，就是众所周知的催眠术。主动暗示法，又称自我暗示法，它常见于气功中，甚至可以说，做气功的全过程都充满了自我暗示。</li>
+<li>伪装法，包括物理伪装、心理伪装和生理伪装。伪装的最终目的是给受骗者造成判断失误，包括知觉上失误（错觉）和思维判断的失误，因此，一切伪装都可归结为心理伪装。不过，物理伪装最直观，故又称为自然伪装，它利用对方的错觉，达到隐藏目的。比如，军事中常用的物理伪装有隐形伪装、象形伪装、变形伪<br>装、听错觉伪装、嗅错觉伪装等。</li>
+<li>假面具法。这是一种典型的心理伪装，此时骗子扮演成某种角色来行骗，比如，冒充警察等。施行此法时，骗子必须具备三个条件：首先，有一定的基础，<br>使得所扮演的角色不容易“露馅”；其次，需要有其他方面的配合，否则成功率将不高；最后，所扮角色要有一定的稳定性，否则也会失败。</li>
+<li>行为替代法。它其实是假面具法的一个特例，它仅限于角色行为扮演（比如，假冒他人去招领失物等），不包括身份、语言、地位等的扮演。此法生效的前提是，受骗方不了解被替代者的外貌特征、语言、生活及行为习惯等相关情况。</li>
+<li>现场伪造法。此法生效的关键是，伪造得自然，丝毫不显做作，骗局难于识破。伪造的隐秘性越好，对方就越容易上当。历史上，孙膑的“减灶退敌”，就是此法的经典</li>
+<li>销毁痕迹法。它其实是现场伪造法的一个特例，高明的网络黑客，退出你的系统后，一定会优先考虑运用此法，以避免留下作案痕迹。<blockquote>
+<p>但是销毁痕迹 本身这件事就暴露出 黑客攻击过 这台冷血电脑&#x2F;热血电脑 的事实。例如 你入侵目标的网络 将<br>目标大楼内的某个时段的监控彻底抹除来掩盖你&#x2F;你的队友进入大楼进行攻击的全过程 这一事实本身 就是一种痕迹</p>
+</blockquote>
+</li>
+<li>愚弄法，即骗子利用对方的愚昧或无知来行骗。此时，骗子的常见工具包括宗教迷信和伪科学技术等。</li>
+<li>插脚入门法，即先小骗，再逐步升级，施行大骗。当情感欺骗时，骗子就常用此法，一点一滴地加码，最终让对方落入圈套。</li>
+</ul>
+<blockquote>
+<p>国安电影《惊蛰无声》 中 国安队长就是先被 引诱出轨然后被录制下证据进而被境外势力进行情感勒索。</p>
+</blockquote>
+<ul>
+<li>报酬引诱法，即给受骗者一定的报酬，达到行骗目的。这里的报酬，既可以是物质的，如实物或钱物报酬，也可以是社会及心理的，比如，赞美报酬、情感报酬、微笑报酬，以及荣誉、社会地位报酬等。</li>
+</ul>
+<blockquote>
+<p>最直观的报酬引诱法就是 刷单诈骗，开始还给你几十块 几百块 你一旦投入的多了就会出现各种问题引诱你 投入更多的钱<br>很多人最基础的想法就是 我一旦被要求投入过多的钱我就不继续了 可事实上是 一旦上头你想停下来都停不下来。</p>
+</blockquote>
+<ul>
+<li>长线钓鱼法，即放长线，钓大鱼。此欺骗法的特征有三：首先，骗局布设时间长；其次，隐蔽性很强；最后，骗子的目标和行为较为统一，看起来符合正常的行为逻辑。卧底间谍，就是此类骗术的代表。</li>
+<li>证章伪造法，包括伪造证件、票证和印章等。</li>
+</ul>
+<blockquote>
+<p>比如 骗子伪装成公安等官方部门给你打电话 要求你将自己的钱转账到《安全账户》。骗子会伪装一个令你信服的场景和你进行视频通话<br>同时骗子也会穿上 包括不限于的警服等工作服取得你的信任</p>
+</blockquote>
+<ul>
+<li>认知协调法，即行骗者努力调整被骗者的认知，使得它与欺骗行为尽可能一致，从而达到欺骗目的。比如：在自我欺骗时，“烟虫”会找出许多理由，来<br>让自己的吸烟行为“合理化”；在诱骗他人时，传销头目会给学员洗脑，让他们觉得“拉亲属入伙”是为亲人造福。</li>
+<li>夸张法。此法可出现在几乎所有类型的欺骗行为中，夸张的内容包括：<br>地位、身份、能力、富有程度、家庭背景、社会关系等。在运用此法时，受骗者相信事件是真的，却不知事件的范围和规模；相信某人具有某方面的能力，却不知其<br>能力究竟有多大。任何人都希望得到“能人”的帮忙，骗子正是利用了这种心理倾向，使用夸张法来行骗。夸张法还有一种变形，称为缩小法，即把前面夸张的东西<br>缩小；当然，目的仍然是使对方上当，比如，刚提过的减灶退敌。</li>
+</ul>
+<blockquote>
+<p>比如 骗子会以某种平台扣费为由 要求你将手机的权限交予对方 进而控制你的手机 对你的银行账户进行控制。</p>
+</blockquote>
+<ul>
+<li>强制法。它采取强制手段，使受害者由被迫服从，到主动遵从。强制法之所以能生效，这是因为强制能导致屈从，屈从可转为内化。许多屈打成招，就是此法的“杰作”。</li>
+<li>恐怖法。此法与强制法，既有相同之处（二者均含恐吓与强迫的成<br>分），但更有差别：强制法借助武力，而恐怖法却是以后果的严重性来威胁，使受害者极度恐惧，并渴望获得解救；当骗子提出某种“良策”后，受骗者立即主动从<br>之，并没有内化过程。从骗局的成因来看，强制法是由外力所致，而恐怖法却是由内部压力所致。恐怖法常见于迷信欺骗和科技欺骗中。</li>
+<li>息控制法。它通过操纵信息的内容、数量等来欺骗受害者，包括信息保密欺骗法、信息中断欺骗法和信息筛选欺骗法等。信息控制法的特点主要有：首先，信息操纵者有明显的功利目的；其次，经选择后传播的信息可能是真的，但让<br>受信者误以为没别的重要信息；还有，如果未传递的信息仅是偶然事件，那受信者多半不会怀疑。</li>
+<li>权威作用法，即骗子冒充某方面的权威，招摇撞骗；当然，也有个别权威，依仗自己的影响来行骗。</li>
+<li>调虎离山法，由三十六计中的调虎离山计演化而来。</li>
+<li>谣言法。此法很特殊，将在随后详细介绍。</li>
+<li>综合性骗术，即将以上各种欺骗方法巧妙结合起来，达到行骗最终目的。</li>
+</ul>
+<h2 id="谣言"><a href="#谣言" class="headerlink" title="谣言"></a>谣言</h2><ul>
+<li>谣言，就是故意捏造出来的蛊惑人心的假消息。造谣是独特的社会性欺骗行为。</li>
+<li>谣言的特点主要有三个<ol>
+<li>绝大部分谣言的内容，与生存及生活密切相关，因此，大众的关注度很高。</li>
+<li>参与传播的人数众多，传播速度快，波及范围广。</li>
+<li>社会危害大。</li>
+</ol>
+</li>
+<li>造谣者的动机主要有：<ol>
+<li>欲望，比如谋利等；</li>
+<li>憎恶，比如抹黑别人；</li>
+<li>恶作剧，比如笑看信谣者惊慌失措的情景等。</li>
+</ol>
+</li>
+<li>谣言传播的途径主要有：<strong>大众媒介传播</strong>（比如，网络、社媒朋友圈、广播、电视、报纸、杂志等），其特点是<strong>速度快，范围广，欺骗性大</strong>。<br><strong>非正式通信网络传播</strong> 比如，书信、口头言语，街头摊位宣传等，这是谣言传播的主渠道。</li>
+<li>甚至有一些街头的小广告 比如 广告卡片背面是100元纸币的图片 来吸引人；在共享单车上面贴小广告，医院，网吧公共厕所的墙壁上，进行<br><strong>《宣传》</strong></li>
+</ul>
+<h2 id="说服"><a href="#说服" class="headerlink" title="说服"></a>说服</h2><h4 id="如果以自己坚信不疑的东西去说服别人，会相对容易；否则，便是灌输或洗脑。"><a href="#如果以自己坚信不疑的东西去说服别人，会相对容易；否则，便是灌输或洗脑。" class="headerlink" title="如果以自己坚信不疑的东西去说服别人，会相对容易；否则，便是灌输或洗脑。"></a>如果以自己坚信不疑的东西去说服别人，会相对容易；否则，便是灌输或洗脑。</h4><ul>
+<li>说服，以声音开始，以行动结束。其核心是论据，使被说服者在某种动机引导下，转变或调整行为。</li>
+<li>如果论据充分，那么说服力就强，就容易令人信服。当然，在特殊情况下，有些被说服者是盲目的，甚至对论据不关心，比如许多信谣者。<ol>
+<li>用通俗易懂的语言表达你的观点，否则，听者的注意力可能被干扰。</li>
+<li>事前充分了解对方的动机，并正确预判他的反应，以便有的放矢</li>
+<li>要努力使你看起来“与众不同”，比如，显得更可信等。</li>
+<li>充分利用心理手段，比如，借助从众效应：“聪明人都在这么做，而你正好是聪明人。”</li>
+<li>深入角色。一方面，要真正进入自己的角色，因为以旁观者身份进行的说服很难成功。另一方面，要用换位思考，理解他在想什么，他真正想要什么。</li>
+<li>努力使对方心情愉快，确保与他平等对话，互动沟通，实现双赢。</li>
+<li>不能感情用事，更不要与对方争吵。</li>
+<li>不回避成规陋习、人性弱点、环境的诱导因素等，使得他“自愿做出的正确选择”刚好与你的愿望吻合。有时候，人们做出决定，并不是因为该决定正确，<br>而是它合理：“我必须这么做，虽然有所保留。”</li>
+<li>不能急于求成，“耐心等待”也是说服的有力武器。</li>
+<li>通过各种途径（包括但不限于声音、视频、文字、表情、动作等），向对方提供有利于你的证据，并引导他进行你期待中的思考，最终得出“正确决定”，完成你的说服工作。</li>
+<li>当给对方提供证据时，并非越多越好，而应该将证据进行有选择的组合，突出你的观点，剔除有害信息，引导和暗示他进入你预设的路线。若有必要，此时可能还需要帮手，来营造相应的旁证，形成有利环境等。</li>
+<li>展现你的魅力并利用他的爱好，尽力彰显你们的共同点。</li>
+<li>怎么讲”比“讲什么”更重要，比如：最有力的证据，就要最先出示；要努力给被说服者留下良好的第一印象；等等。</li>
+<li>需要满足他的某些需求，给他足够的安全感，否则就没有双赢，他当然就不可能被你说服了。</li>
+<li>充分利用情绪武器，比如，在对方心情愉快的时候开展说服工作。</li>
+<li>说服工作是一个系统工程，别指望一蹴而就，只要每次都能达成下一步，就能在妥协的基础上最终达成共识。</li>
+<li>重视突发危机（特别是公众事件）的处理技巧。比如，面对突发危机， 不能对问题进行过分的修饰和推诿，必须及时传递出某些积极的关键信息，展现解决问题的诚意、力量和信心等。</li>
+<li>平常注意维护好自己的声誉，因为一旦被贴上缺乏诚信的标签后，你就不可能说服任何人了。</li>
+</ol>
+</li>
+</ul>
+<h2 id="诱惑"><a href="#诱惑" class="headerlink" title="诱惑"></a>诱惑</h2><ul>
+<li>其实从纯心理学角度来看，诱惑、欺 骗、谣言、说服等有许多重叠之处，但是从社会学角度来看，它们又存在许多重要区别。</li>
+<li>诱惑的核心，显然是诱饵！如果被诱对象对你的诱饵根本不感兴趣，那么相应的诱惑就必败无疑。诱惑的最高境界是：不损人利己，而实现共赢。</li>
+<li>对普通人来说，诱惑力最大的诱饵便是利诱，比如，经济利诱、职位利诱等。</li>
+<li>任何固定的诱饵，都不可能让所有人动心。如果某人未被你诱惑，那么无非有三个原因：<ol>
+<li>此人、此时、此地对你的诱饵没动心。</li>
+<li>你没发现他的深层次需求。</li>
+<li>你未从他的角度，拓展他的需求。实际上，世间没有不动心的人，而只是诱饵是否值得他动心而已。</li>
+</ol>
+</li>
+</ul>
+<hr>
+<p><em>本文仅用于授权环境下的安全研究、威胁意识教育与防御能力建设。文中骗术分类用于识别与防范，不含可操作的攻击脚本，请勿用于任何未授权场景。</em></p>
+
+  </div>
+
+  <footer class="article-reactions">
+    <div class="reaction-group">
+      <button type="button" class="reaction reaction--comment" aria-label="跳转到评论区" data-action="scroll-to-comments">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-message-circle"></use></svg>
+
+      </button>
+      <span class="reaction-label">评论</span>
+      
+    </div>
+    <div class="reaction-group reaction-group--right">
+      
+      <button type="button" class="reaction reaction--share" aria-label="分享" data-action="share">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share-2 flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-share-2"></use></svg>
+
+      </button>
+      <span class="reaction-label">分享</span>
+    </div>
+  </footer>
+
+  
+
+
+  <nav class="article-actions">
+    
+      <span class="article-action article-action--prev is-disabled" aria-disabled="true">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-left"></use></svg>
+
+        <span class="action-label">上一篇</span>
+        <span class="action-title">没有更早的文章了</span>
+      </span>
+    
+    
+      <a class="article-action article-action--next" href="/2026/11/10/20261110/2026111007/">
+        <span class="action-label">下一篇</span>
+        <span class="action-title">翻日志不叫威胁狩猎：假设驱动、数据模型，以及「什么都没猎到」为什么也算结果</span>
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
+
+      </a>
+    
+  </nav>
+</article>
+</div>
+
+<button type="button" class="back-to-top" data-action="scroll-to-top" aria-label="返回顶部" hidden>
+  
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-up"></use></svg>
+
+</button>
+
+
+  <section class="related-paper">
+    <header class="related-paper__head">
+      <h2>
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-link"></use></svg>
+相关文章</h2>
+      <a class="related-paper__more" href="/archives/">
+        <span>查看更多</span>
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-arrow-right"></use></svg>
+
+      </a>
+    </header>
+    <div class="related-paper__grid">
+      
+        <a class="related-card" href="/2026/09/14/20260914/2026091401/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/../../images/20260914/2026091401-pretexting-cover.png" alt="伪装：从推着清洁车的「维修工」，到视频会议里的「CFO」——社会工程学的第一性功课、七条原则与破绽清单" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">伪装：从推着清洁车的「维修工」，到视频会议里的「CFO」——社会工程学的第一性功课、七条原则与破绽清单</strong>
+            <em class="related-card__date">2026-09-14</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/08/25/20260825/2026082504/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/../../images/20260825/social-engineering-cover.png" alt="电话那头，不再是「人类」：新一代社工攻击——vishing、SIM 卡交换、二维码钓鱼与「2FA 克星」Evilginx" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">电话那头，不再是「人类」：新一代社工攻击——vishing、SIM 卡交换、二维码钓鱼与「2FA 克星」Evilginx</strong>
+            <em class="related-card__date">2026-08-25</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2026/06/29/20260629/2026062902/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/../../images/20260629/2026062902-osint-twitter.png" alt="X（Twitter）平台开源情报调查技巧" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">X（Twitter）平台开源情报调查技巧</strong>
+            <em class="related-card__date">2026-06-29</em>
+          </span>
+        </a>
+      
+        <a class="related-card" href="/2022/08/23/20260823/2026082302/">
+          <span class="related-card__thumb">
+            
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/../../images/20220823/cult-brainwashing-cover.png" alt="当&#34;救赎&#34;变成牢笼：宗教洗脑的完整话术模板与脱困指南——从《周处除三害》的灵修骗局说起" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+          </span>
+          <span class="related-card__body">
+            <strong class="related-card__title">当&#34;救赎&#34;变成牢笼：宗教洗脑的完整话术模板与脱困指南——从《周处除三害》的灵修骗局说起</strong>
+            <em class="related-card__date">2022-08-23</em>
+          </span>
+        </a>
+      
+    </div>
+  </section>
+
+
+      
+
+<section class="comments-section" aria-label="评论">
+  <header class="comments-section__head">
+    <h2>
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-message-circle"></use></svg>
+评论</h2>
+  </header>
+  <div id="tcomment"></div>
+</section>
+<script>
+window.addEventListener('load', function () {
+  if (typeof twikoo === 'undefined') return;
+  twikoo.init({
+    envId: "https://twikooserver-eta.vercel.app",
+    el: '#tcomment'
+  });
+});
+</script>
+
+
+    </section>
+    
+  </main>
+
+  <div class="sidebar-backdrop js-sidebar-close" aria-hidden="true"></div>
+
+  
+<footer class="site-footer">
+  <span class="site-footer__left">© 2026 By ZapcoMan</span>
+  
+    <span class="site-footer__right">
+      
+        <span class="site-footer__row"><span class="site-footer__powered-prefix">Powered by Theme</span> <a href="https://github.com/Homulilly/hexo-theme-flatpaper" target="_blank" rel="noopener">FlatPaper</a></span>
+      
+    </span>
+  
+</footer>
+
+  
+<div class="search-panel" aria-hidden="true" data-index-url="/flatpaper-search.json">
+  <div class="search-backdrop js-search-close"></div>
+  <section class="search-dialog" role="dialog" aria-modal="true" aria-label="搜索文章">
+    <span class="tape tape--top-left" aria-hidden="true"></span>
+    <header class="search-head">
+      <h2><span class="green-dot"></span>搜索文章</h2>
+      <button class="icon-button js-search-close" type="button" aria-label="关闭搜索">
+        
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-x"></use></svg>
+
+      </button>
+    </header>
+    <label class="search-field">
+      
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-search"></use></svg>
+
+      <input id="flatpaper-search" class="search-input" type="search" placeholder="输入关键词，按 Esc 关闭" autocomplete="off">
+    </label>
+    <div class="search-results" data-empty="输入关键词后显示匹配的文章">
+      <p class="search-empty">输入关键词后显示匹配的文章</p>
+    </div>
+  </section>
+</div>
+
+  <script>
+  window.FLATPAPER_I18N = {"language":"zh-CN","common.posts":"文章","common.categories":"分类","common.tags":"标签","common.comments":"评论","common.share":"分享","common.copied":"已复制","common.page":"页面","common.archive":"归档","common.post_list":"文章列表","common.search_posts":"搜索文章","common.random_posts":"随机文章","common.reward":"赞赏","common.view_all":"查看全部","pagination.prev":"上一页","pagination.next":"下一页","pagination.post_pager":"文章分页","pagination.archive_pager":"归档分页","index.featured":"精选文章","index.pinned":"置顶","index.read_more":"阅读全文","index.previous_slide":"上一张","index.next_slide":"下一张","index.carousel_pagination":"轮播页码","index.carousel_slide":"第 %d 张","index.latest_posts":"最新文章","index.empty_posts":"还没有文章。创建第一篇文章后，这里会显示最新内容。","archive.title":"归档","archive.post_list":"文章列表","taxonomy.category_count":"%d 篇","taxonomy.empty_categories":"暂时还没有分类。","taxonomy.empty_tags":"暂时还没有标签。","links.label":"友链","links.title":"友情链接","links.empty_data":"暂未加载到友链数据。请确认 source/_data/links.yml 存在并已 hexo clean。","links.rss_label":"%s 的 RSS","friends_feed.label":"朋友圈","friends_feed.title":"友链朋友圈","friends_feed.loading":"正在加载友链动态…","friends_feed.missing_url":"暂未配置 all.json 地址。","friends_feed.load_failed":"友链动态加载失败，请稍后再试。","friends_feed.empty":"暂时没有抓取到友链文章。","friends_feed.load_more":"加载更多","friends_feed.updated_at":"更新于 %s","friends_feed.friend_count":"%d 位友邻","friends_feed.active_count":"%d 位活跃","friends_feed.article_count":"%d 篇文章","friends_feed.unknown_author":"未知站点","friends_feed.date_unknown":"时间未知","post.scroll_to_comments":"跳转到评论区","post.previous":"上一篇","post.next":"下一篇","post.no_previous":"没有更早的文章了","post.no_next":"已经是最新的一篇","post.back_to_top":"返回顶部","post.related_posts":"相关文章","post.view_more":"查看更多","not_found.label":"页面走丢了","not_found.title":"找不到这个页面","not_found.text":"这个地址可能已经移动、删除，或者从未存在。","not_found.home":"返回首页","not_found.search":"搜索文章","search.placeholder":"输入关键词，按 Esc 关闭","search.empty":"输入关键词后显示匹配的文章","search.loading":"正在加载搜索索引…","search.load_failed":"搜索索引加载失败，请重新打开搜索重试","search.no_result":"没有找到与 \"%s\" 相关的文章","search.close":"关闭搜索","code.copy":"复制代码","code.collapse":"折叠代码","code.expand":"展开代码","heading.anchor":"链接到此节: %s","head.tag":"标签：%s","head.category":"分类：%s","head.archive":"归档","head.archive_with_date":"归档：%s","head.page_number":"第 %d 页","navigation.primary":"主导航","navigation.mobile":"移动端导航","navigation.brand_home":"FlatPaper 首页","navigation.brand_menu":"打开站点导航","navigation.open_sidebar":"打开侧边栏","navigation.close_sidebar":"关闭侧边栏","navigation.sidebar":"侧边栏","navigation.sidebar_tools":"侧边栏工具","navigation.site_links":"站点链接","navigation.site_info":"站点信息","colors.choose_theme_color":"选择主题色","colors.theme_color":"主题色","colors.toggle_color_mode":"切换颜色模式","colors.green":"绿色","colors.purple":"紫色","colors.pink":"粉色","colors.sakura":"樱花粉","colors.blue":"蓝色","colors.orange":"橙色","colors.black":"黑色","profile.default_bio":"热爱生活，热爱代码，喜欢分享技术与生活中的点滴。","welcome.cta":"开始阅读","welcome.title":"欢迎来到 FlatPaper","welcome.text":"一个专注于内容与阅读体验的博客主题。","home_hero.label":"首页开屏","home_hero.enter":"开始阅读","home_hero.note":"今日","home_hero.default_subtitle":"日常记录","home_hero.nav_links":"开屏导航","home_hero.profile_links":"个人链接","home_hero.tools":"开屏工具","home_hero.shuffle_stickers":"打乱贴纸位置","home_hero.link":"链接","home_hero.sticker_image":"贴纸图片","home_hero.visit_confirm":"要访问 %s 吗？","home_hero.visit":"访问","home_hero.cancel":"取消","toc.title":"文章目录","toc.empty":"目录会根据文章标题自动生成。","toc.expand_all":"展开全部目录","toc.collapse_all":"收起全部目录","sidebar.hot_tags":"热门标签","sidebar.latest_posts":"最新文章"};
+  </script>
+  
+<script src="/js/main.js"></script>
+
+  
+</body>
+</html>

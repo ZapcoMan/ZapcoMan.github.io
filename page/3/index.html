@@ -9,12 +9,12 @@
 <meta name="theme-color" content="#f7f3e9">
 
 <title>第 3 页 | ZapcoMan&#39;s world</title>
-<meta name="description" content="ZapcoMan&#39;s world收录 10 篇文章，包括给我一个 %n，我就能把你的内存改成我想要的样子：GOT 覆写这条路是被谁堵死的、glibc 升一版，我的 exploit 废一次：fastbin dup 打到 safe-linking 堆利用断代史、「大概就在这附近」是句废话：±100 米、五级置信，和写进代码里的防自欺铁律。 第 3 页。">
+<meta name="description" content="ZapcoMan&#39;s world收录 10 篇文章，包括Canary、PIE、CET、PAC 一层层压上来，你们以为赢了？控制流堵死，那就改打数据面、给我一个 %n，我就能把你的内存改成我想要的样子：GOT 覆写这条路是被谁堵死的、glibc 升一版，我的 exploit 废一次：fastbin dup 打到 safe-linking 堆利用断代史。 第 3...">
 <meta property="og:type" content="website">
 <meta property="og:title" content="第 3 页 | ZapcoMan&#39;s world">
 <meta property="og:url" content="http://example.com/page/3/">
 <meta property="og:site_name" content="ZapcoMan&#39;s world">
-<meta property="og:description" content="ZapcoMan&#39;s world收录 10 篇文章，包括给我一个 %n，我就能把你的内存改成我想要的样子：GOT 覆写这条路是被谁堵死的、glibc 升一版，我的 exploit 废一次：fastbin dup 打到 safe-linking 堆利用断代史、「大概就在这附近」是句废话：±100 米、五级置信，和写进代码里的防自欺铁律。 第 3 页。">
+<meta property="og:description" content="ZapcoMan&#39;s world收录 10 篇文章，包括Canary、PIE、CET、PAC 一层层压上来，你们以为赢了？控制流堵死，那就改打数据面、给我一个 %n，我就能把你的内存改成我想要的样子：GOT 覆写这条路是被谁堵死的、glibc 升一版，我的 exploit 废一次：fastbin dup 打到 safe-linking 堆利用断代史。 第 3...">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="ZapcoMan">
 <meta name="twitter:card" content="summary">
@@ -22,7 +22,7 @@
 
 <link rel="icon" href="https://avatars.githubusercontent.com/u/66863012?s=400&amp;u=12653af0def352c0458bfcf15b96cfa21fcaf518&amp;v=4">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Blog","headline":"第 3 页 | ZapcoMan's world","name":"第 3 页 | ZapcoMan's world","description":"ZapcoMan's world收录 10 篇文章，包括给我一个 %n，我就能把你的内存改成我想要的样子：GOT 覆写这条路是被谁堵死的、glibc 升一版，我的 exploit 废一次：fastbin dup 打到 safe-linking 堆利用断代史、「大概就在这附近」是句废话：±100 米、五级置信，和写进代码里的防自欺铁律。 第 3 页。","url":"http://example.com/page/3/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"about":"第 3 页"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Blog","headline":"第 3 页 | ZapcoMan's world","name":"第 3 页 | ZapcoMan's world","description":"ZapcoMan's world收录 10 篇文章，包括Canary、PIE、CET、PAC 一层层压上来，你们以为赢了？控制流堵死，那就改打数据面、给我一个 %n，我就能把你的内存改成我想要的样子：GOT 覆写这条路是被谁堵死的、glibc 升一版，我的 exploit 废一次：fastbin dup 打到 safe-linking 堆利用断代史。 第 3...","url":"http://example.com/page/3/","inLanguage":"zh-CN","isPartOf":{"@type":"WebSite","name":"ZapcoMan's world","url":"http://example.com/"},"about":"第 3 页"}</script>
 
 <script>
   (function () {
@@ -336,7 +336,7 @@
         
           
             <a class="site-info__item" href="/archives/">
-              <strong>188</strong>
+              <strong>189</strong>
               <span>文章</span>
             </a>
           
@@ -350,7 +350,7 @@
         
           
             <a class="site-info__item" href="/tags/">
-              <strong>616</strong>
+              <strong>622</strong>
               <span>标签</span>
             </a>
           
@@ -406,7 +406,7 @@
         <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">
           <span class="dot dot-0"></span>
           <strong>网络安全</strong>
-          <em>120</em>
+          <em>121</em>
         </a>
       
         <a href="/categories/%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/">
@@ -499,10 +499,51 @@
   <div class="post-list">
     
       
+<article class="post-card" data-title="Canary、PIE、CET、PAC 一层层压上来，你们以为赢了？控制流堵死，那就改打数据面">
+  <a class="post-thumb-link" href="/2026/11/03/20261103/2026110307/" aria-label="Canary、PIE、CET、PAC 一层层压上来，你们以为赢了？控制流堵死，那就改打数据面">
+    
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+  
+    <img class="paper-thumb__img" src="/../../images/20261103/2026110307-cover.png" alt="Canary、PIE、CET、PAC 一层层压上来，你们以为赢了？控制流堵死，那就改打数据面" loading="lazy" referrerpolicy="no-referrer">
+  
+</div>
+
+  </a>
+  <div class="post-card-copy">
+    <h3><a href="/2026/11/03/20261103/2026110307/">Canary、PIE、CET、PAC 一层层压上来，你们以为赢了？控制流堵死，那就改打数据面</a></h3>
+    <p>过去二十年，二进制利用的历史，就是一部”防御方不断加锁、攻击方不断找钥匙”的历史。 2001 年 StackGuard 让覆盖返回地址不再无声无息；2004 年 NX 让栈上的 shellco...</p>
+    
+      <div class="meta-line meta-line--tags">
+        <span class="meta-tags">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
+
+          <a class="meta-tag-link" href="/tags/ASLR/">#ASLR</a><a class="meta-tag-link" href="/tags/%E7%BC%93%E8%A7%A3%E7%BB%95%E8%BF%87/">#缓解绕过</a><a class="meta-tag-link" href="/tags/CET/">#CET</a><a class="meta-tag-link" href="/tags/PAC/">#PAC</a><a class="meta-tag-link" href="/tags/PIE/">#PIE</a><a class="meta-tag-link" href="/tags/libFuzzer/">#libFuzzer</a><a class="meta-tag-link" href="/tags/AFL/">#AFL++</a><a class="meta-tag-link" href="/tags/%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/">#模糊测试</a><a class="meta-tag-link" href="/tags/%E6%BC%8F%E6%B4%9E%E7%A0%94%E7%A9%B6/">#漏洞研究</a>
+        </span>
+      </div>
+    
+    <div class="meta-line meta-line--tax">
+      <span class="meta-date">
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
+2026-11-03</span>
+      
+        <span class="meta-cat">
+          
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
+
+          <a class="meta-cat-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
+        </span>
+      
+    </div>
+  </div>
+</article>
+
+    
+      
 <article class="post-card" data-title="给我一个 %n，我就能把你的内存改成我想要的样子：GOT 覆写这条路是被谁堵死的">
   <a class="post-thumb-link" href="/2026/11/03/20261103/2026110306/" aria-label="给我一个 %n，我就能把你的内存改成我想要的样子：GOT 覆写这条路是被谁堵死的">
     
-<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/../../images/20261103/2026110306-cover.png" alt="给我一个 %n，我就能把你的内存改成我想要的样子：GOT 覆写这条路是被谁堵死的" loading="lazy" referrerpolicy="no-referrer">
   
@@ -518,7 +559,7 @@
           
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
 
-          <a class="meta-tag-link" href="/tags/%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/">#漏洞利用</a><a class="meta-tag-link" href="/tags/%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2/">#格式化字符串</a><a class="meta-tag-link" href="/tags/n/">#%n</a><a class="meta-tag-link" href="/tags/%E4%BB%BB%E6%84%8F%E5%86%99/">#任意写</a><a class="meta-tag-link" href="/tags/GOT%E8%A6%86%E5%86%99/">#GOT覆写</a><a class="meta-tag-link" href="/tags/RELRO/">#RELRO</a><a class="meta-tag-link" href="/tags/FORTIFY-SOURCE/">#FORTIFY_SOURCE</a><a class="meta-tag-link" href="/tags/FSOP/">#FSOP</a>
+          <a class="meta-tag-link" href="/tags/%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/">#漏洞利用</a><a class="meta-tag-link" href="/tags/FSOP/">#FSOP</a><a class="meta-tag-link" href="/tags/%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2/">#格式化字符串</a><a class="meta-tag-link" href="/tags/n/">#%n</a><a class="meta-tag-link" href="/tags/%E4%BB%BB%E6%84%8F%E5%86%99/">#任意写</a><a class="meta-tag-link" href="/tags/GOT%E8%A6%86%E5%86%99/">#GOT覆写</a><a class="meta-tag-link" href="/tags/RELRO/">#RELRO</a><a class="meta-tag-link" href="/tags/FORTIFY-SOURCE/">#FORTIFY_SOURCE</a>
         </span>
       </div>
     
@@ -543,7 +584,7 @@
 <article class="post-card" data-title="glibc 升一版，我的 exploit 废一次：fastbin dup 打到 safe-linking 堆利用断代史">
   <a class="post-thumb-link" href="/2026/11/03/20261103/2026110305/" aria-label="glibc 升一版，我的 exploit 废一次：fastbin dup 打到 safe-linking 堆利用断代史">
     
-<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
+<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/../../images/20261103/2026110305-cover.png" alt="glibc 升一版，我的 exploit 废一次：fastbin dup 打到 safe-linking 堆利用断代史" loading="lazy" referrerpolicy="no-referrer">
   
@@ -559,7 +600,7 @@
           
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
 
-          <a class="meta-tag-link" href="/tags/%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/">#漏洞利用</a><a class="meta-tag-link" href="/tags/FSOP/">#FSOP</a><a class="meta-tag-link" href="/tags/%E5%A0%86%E6%BA%A2%E5%87%BA/">#堆溢出</a><a class="meta-tag-link" href="/tags/tcache/">#tcache</a><a class="meta-tag-link" href="/tags/fastbin/">#fastbin</a><a class="meta-tag-link" href="/tags/unsorted-bin/">#unsorted bin</a><a class="meta-tag-link" href="/tags/UAF/">#UAF</a><a class="meta-tag-link" href="/tags/safe-linking/">#safe-linking</a><a class="meta-tag-link" href="/tags/glibc/">#glibc</a>
+          <a class="meta-tag-link" href="/tags/%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/">#漏洞利用</a><a class="meta-tag-link" href="/tags/%E5%A0%86%E6%BA%A2%E5%87%BA/">#堆溢出</a><a class="meta-tag-link" href="/tags/tcache/">#tcache</a><a class="meta-tag-link" href="/tags/fastbin/">#fastbin</a><a class="meta-tag-link" href="/tags/unsorted-bin/">#unsorted bin</a><a class="meta-tag-link" href="/tags/UAF/">#UAF</a><a class="meta-tag-link" href="/tags/safe-linking/">#safe-linking</a><a class="meta-tag-link" href="/tags/glibc/">#glibc</a><a class="meta-tag-link" href="/tags/FSOP/">#FSOP</a>
         </span>
       </div>
     
@@ -584,7 +625,7 @@
 <article class="post-card" data-title="「大概就在这附近」是句废话：±100 米、五级置信，和写进代码里的防自欺铁律">
   <a class="post-thumb-link" href="/2026/11/03/20261103/2026110303/" aria-label="「大概就在这附近」是句废话：±100 米、五级置信，和写进代码里的防自欺铁律">
     
-<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/../../images/20261103/2026110303-cover.png" alt="「大概就在这附近」是句废话：±100 米、五级置信，和写进代码里的防自欺铁律" loading="lazy" referrerpolicy="no-referrer">
   
@@ -625,7 +666,7 @@
 <article class="post-card" data-title="一个忘了检查长度的 strcpy，四十年后依然能把整个进程交出来：从 ret2win 打到 ret2dlresolve">
   <a class="post-thumb-link" href="/2026/11/03/20261103/2026110304/" aria-label="一个忘了检查长度的 strcpy，四十年后依然能把整个进程交出来：从 ret2win 打到 ret2dlresolve">
     
-<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/../../images/20261103/2026110304-cover.png" alt="一个忘了检查长度的 strcpy，四十年后依然能把整个进程交出来：从 ret2win 打到 ret2dlresolve" loading="lazy" referrerpolicy="no-referrer">
   
@@ -666,7 +707,7 @@
 <article class="post-card" data-title="人眼是这条链路上最烂的一环，所以我把它踢出去了：CLIP + DINOv2 + SIFT 的机器排序流水线">
   <a class="post-thumb-link" href="/2026/11/03/20261103/2026110302/" aria-label="人眼是这条链路上最烂的一环，所以我把它踢出去了：CLIP + DINOv2 + SIFT 的机器排序流水线">
     
-<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
+<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/../../images/20261103/2026110302-cover.png" alt="人眼是这条链路上最烂的一环，所以我把它踢出去了：CLIP + DINOv2 + SIFT 的机器排序流水线" loading="lazy" referrerpolicy="no-referrer">
   
@@ -707,7 +748,7 @@
 <article class="post-card" data-title="删掉 EXIF 也没用：我靠一张随手拍把你定位到 ±100 米，geo-sleuth 六步溯源流水线">
   <a class="post-thumb-link" href="/2026/11/03/20261103/2026110301/" aria-label="删掉 EXIF 也没用：我靠一张随手拍把你定位到 ±100 米，geo-sleuth 六步溯源流水线">
     
-<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/../../images/20261103/2026110301-cover.png" alt="删掉 EXIF 也没用：我靠一张随手拍把你定位到 ±100 米，geo-sleuth 六步溯源流水线" loading="lazy" referrerpolicy="no-referrer">
   
@@ -748,7 +789,7 @@
 <article class="post-card" data-title="1060 个仿冒域名、8708 台肉鸡、AI 批量复刻下载站——「银狐」甲蚁(G01)团伙的 SEO 投毒流水线拆解">
   <a class="post-thumb-link" href="/2026/10/17/20261017/2026101701/" aria-label="1060 个仿冒域名、8708 台肉鸡、AI 批量复刻下载站——「银狐」甲蚁(G01)团伙的 SEO 投毒流水线拆解">
     
-<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
+<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/../../images/20261017/2026101701-g01-cover.png" alt="1060 个仿冒域名、8708 台肉鸡、AI 批量复刻下载站——「银狐」甲蚁(G01)团伙的 SEO 投毒流水线拆解" loading="lazy" referrerpolicy="no-referrer">
   
@@ -789,7 +830,7 @@
 <article class="post-card" data-title="猫池与手机口——从黑卡供给到反欺诈检测的工程视角">
   <a class="post-thumb-link" href="/2026/09/22/20260922/2026092203/" aria-label="猫池与手机口——从黑卡供给到反欺诈检测的工程视角">
     
-<div class="paper-thumb paper-thumb-1 paper-thumb--cover">
+<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/../../images/20260922/2026092203-catpool-phoneport-cover.png" alt="猫池与手机口——从黑卡供给到反欺诈检测的工程视角" loading="lazy" referrerpolicy="no-referrer">
   
@@ -830,7 +871,7 @@
 <article class="post-card" data-title="一个手机号怎么「养」出十万羊毛号——接码平台、号商与养号工厂的四段流水线">
   <a class="post-thumb-link" href="/2026/09/22/20260922/2026092202/" aria-label="一个手机号怎么「养」出十万羊毛号——接码平台、号商与养号工厂的四段流水线">
     
-<div class="paper-thumb paper-thumb-2 paper-thumb--cover">
+<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
   
     <img class="paper-thumb__img" src="/../../images/20260922/2026092202-sms-code-farm-cover.png" alt="一个手机号怎么「养」出十万羊毛号——接码平台、号商与养号工厂的四段流水线" loading="lazy" referrerpolicy="no-referrer">
   
@@ -847,47 +888,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
 
           <a class="meta-tag-link" href="/tags/%E9%BB%91%E7%81%B0%E4%BA%A7/">#黑灰产</a><a class="meta-tag-link" href="/tags/%E6%8E%A5%E7%A0%81%E5%B9%B3%E5%8F%B0/">#接码平台</a><a class="meta-tag-link" href="/tags/%E5%8F%B7%E5%95%86/">#号商</a><a class="meta-tag-link" href="/tags/%E7%BE%8A%E6%AF%9B%E5%85%9A/">#羊毛党</a><a class="meta-tag-link" href="/tags/%E5%85%BB%E5%8F%B7/">#养号</a><a class="meta-tag-link" href="/tags/%E5%8D%A1%E5%95%86/">#卡商</a><a class="meta-tag-link" href="/tags/%E8%99%9A%E6%8B%9F%E8%BF%90%E8%90%A5%E5%95%86/">#虚拟运营商</a><a class="meta-tag-link" href="/tags/%E7%89%A9%E8%81%94%E7%BD%91%E5%8D%A1/">#物联网卡</a><a class="meta-tag-link" href="/tags/%E7%BE%A4%E6%8E%A5%E7%A0%81/">#群接码</a><a class="meta-tag-link" href="/tags/%E6%8B%A6%E6%88%AA%E5%8D%A1/">#拦截卡</a>
-        </span>
-      </div>
-    
-    <div class="meta-line meta-line--tax">
-      <span class="meta-date">
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-calendar"></use></svg>
-2026-09-22</span>
-      
-        <span class="meta-cat">
-          
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-folder"></use></svg>
-
-          <a class="meta-cat-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
-        </span>
-      
-    </div>
-  </div>
-</article>
-
-    
-      
-<article class="post-card" data-title="风控把散点连成网，黑产把网撕成散点——欺诈团伙的「五层打散术」，与风控的「五层反制」">
-  <a class="post-thumb-link" href="/2026/09/22/20260922/2026092201/" aria-label="风控把散点连成网，黑产把网撕成散点——欺诈团伙的「五层打散术」，与风控的「五层反制」">
-    
-<div class="paper-thumb paper-thumb-0 paper-thumb--cover">
-  
-    <img class="paper-thumb__img" src="/../../images/20260922/2026092201-device-graph-cover.png" alt="风控把散点连成网，黑产把网撕成散点——欺诈团伙的「五层打散术」，与风控的「五层反制」" loading="lazy" referrerpolicy="no-referrer">
-  
-</div>
-
-  </a>
-  <div class="post-card-copy">
-    <h3><a href="/2026/09/22/20260922/2026092201/">风控把散点连成网，黑产把网撕成散点——欺诈团伙的「五层打散术」，与风控的「五层反制」</a></h3>
-    <p>风控系统接到一笔可疑申请，申请人用的是设备 A。按传统思路，拦截这一笔就够了。但如果系统把设备 A 放进关系图谱里往外查一圈，会看到完全不同的画面：A、B、C 共用同一个 IP 段、同一个基站...</p>
-    
-      <div class="meta-line meta-line--tags">
-        <span class="meta-tags">
-          
-<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag flatpaper-icon flatpaper-icon--lucide" aria-hidden="true"><use href="#flatpaper-icon-lucide-tag"></use></svg>
-
-          <a class="meta-tag-link" href="/tags/%E8%AE%BE%E5%A4%87%E6%8C%87%E7%BA%B9/">#设备指纹</a><a class="meta-tag-link" href="/tags/%E9%BB%91%E7%81%B0%E4%BA%A7/">#黑灰产</a><a class="meta-tag-link" href="/tags/%E5%8F%8D%E6%AC%BA%E8%AF%88/">#反欺诈</a><a class="meta-tag-link" href="/tags/%E9%A3%8E%E6%8E%A7/">#风控</a><a class="meta-tag-link" href="/tags/%E5%85%B3%E8%81%94%E7%BD%91%E7%BB%9C/">#关联网络</a><a class="meta-tag-link" href="/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/">#知识图谱</a><a class="meta-tag-link" href="/tags/%E5%9B%BE%E8%AE%A1%E7%AE%97/">#图计算</a><a class="meta-tag-link" href="/tags/%E7%A4%BE%E5%8C%BA%E5%8F%91%E7%8E%B0/">#社区发现</a><a class="meta-tag-link" href="/tags/%E7%A7%92%E6%8B%A8IP/">#秒拨IP</a><a class="meta-tag-link" href="/tags/%E5%9B%A2%E4%BC%99%E6%8C%96%E6%8E%98/">#团伙挖掘</a>
         </span>
       </div>
     
@@ -966,6 +966,13 @@
     <ul class="recent-list js-random-posts">
       
         <li>
+          <a class="recent-item" href="/2026/11/16/20261116/2026111601/">
+            <strong>社会工程学笔记（一）</strong>
+            <em>2026-11-16</em>
+          </a>
+        </li>
+      
+        <li>
           <a class="recent-item" href="/2026/11/10/20261110/2026111007/">
             <strong>翻日志不叫威胁狩猎：假设驱动、数据模型，以及「什么都没猎到」为什么也算结果</strong>
             <em>2026-11-10</em>
@@ -993,16 +1000,15 @@
           </a>
         </li>
       
-        <li>
-          <a class="recent-item" href="/2026/11/10/20261110/2026111003/">
-            <strong>代码每一行都「正确」，钱还是没了：编译器不会替你挡住的六类合约逻辑陷阱</strong>
-            <em>2026-11-10</em>
-          </a>
-        </li>
-      
     </ul>
     <script type="application/json" class="js-random-posts-data">
     [
+    
+      {
+        "title": "社会工程学笔记（一）",
+        "url": "/2026/11/16/20261116/2026111601/",
+        "date": "2026-11-16"
+      },
     
       {
         "title": "翻日志不叫威胁狩猎：假设驱动、数据模型，以及「什么都没猎到」为什么也算结果",
@@ -1473,14 +1479,14 @@
       },
     
       {
-        "title": "Java 反序列化攻击面（二）：Fastjson 的 autoType 与\"修复 vs 绕过\"拉锯战",
-        "url": "/2026/08/19/20260819/2026081911/",
+        "title": "NPM/PyPI 供应链投毒：从依赖劫持到 typosquatting，开源依赖的隐形风险",
+        "url": "/2026/08/19/20260819/2026081917/",
         "date": "2026-08-19"
       },
     
       {
-        "title": "NPM/PyPI 供应链投毒：从依赖劫持到 typosquatting，开源依赖的隐形风险",
-        "url": "/2026/08/19/20260819/2026081917/",
+        "title": "Java 反序列化攻击面（二）：Fastjson 的 autoType 与\"修复 vs 绕过\"拉锯战",
+        "url": "/2026/08/19/20260819/2026081911/",
         "date": "2026-08-19"
       },
     
@@ -1596,12 +1602,6 @@
         "title": "在国内搭一台隐私副机：GrapheneOS + 随身 WiFi + 国内 WireGuard 加密通道",
         "url": "/2026/07/25/2026072501/",
         "date": "2026-07-25"
-      },
-    
-      {
-        "title": "Reality 协议研究：从 Shadowsocks 到 Reality 的演进与 Demo 复现",
-        "url": "/2026/07/19/2026071901/",
-        "date": "2026-07-19"
       }
     
     ]
